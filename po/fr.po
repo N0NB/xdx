@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 0.99\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-08 19:06+0200\n"
+"POT-Creation-Date: 2003-10-12 17:50+0200\n"
 "PO-Revision-Date: 2003-10-08 08:00+0200\n"
 "Last-Translator: Jean-Luc coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: fr <jean-luc.coulon@wanadoo;fr>\n"
@@ -14,60 +14,60 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: src/gui.c:44
+#: src/gui.c:46
 msgid "/_Program"
 msgstr "/_Programme"
 
-#: src/gui.c:45
+#: src/gui.c:47
 msgid "/_Program/Quit"
 msgstr "/_Programme/Quitte"
 
-#: src/gui.c:47
+#: src/gui.c:49
 msgid "/_Host"
 msgstr "/_Hôte"
 
-#: src/gui.c:48
+#: src/gui.c:50
 msgid "/_Host/Open"
 msgstr "/_Hôte/Ouvrir"
 
-#: src/gui.c:50
+#: src/gui.c:52
 msgid "/_Host/Close"
 msgstr "/_Hôte/Fermer"
 
-#: src/gui.c:52
+#: src/gui.c:54
 msgid "/_Settings"
 msgstr "/_Paramètres"
 
-#: src/gui.c:53
+#: src/gui.c:55
 msgid "/_Settings/Preferences"
 msgstr "/_Paramètres/Préférences"
 
-#: src/gui.c:55
+#: src/gui.c:57
 msgid "/H_elp"
 msgstr "/_Aide"
 
-#: src/gui.c:56
+#: src/gui.c:58
 msgid "/H_elp/Manual"
 msgstr "/_Aide/Manuel"
 
-#: src/gui.c:58
+#: src/gui.c:60
 msgid "/H_elp/About"
 msgstr "/_Aide/A propos"
 
-#: src/gui.c:121
+#: src/gui.c:123
 #, c-format
 msgid "Error loading icon: %s"
 msgstr "Erreur lors du chargement de l'icône : %s"
 
-#: src/gui.c:156
+#: src/gui.c:158
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:177
+#: src/gui.c:179
 msgid "Remarks"
 msgstr "Commentaires"
 
-#: src/gui.c:184
+#: src/gui.c:186
 msgid "Time"
 msgstr "Heure"
 
@@ -105,67 +105,67 @@ msgstr "%s version %s"
 msgid "Published under the GNU General Public License"
 msgstr "Diffusé selon la Licence Publique générale GNU"
 
-#: src/gui_settingsdialog.c:129
+#: src/gui_settingsdialog.c:128
 msgid "xdx - preferences"
 msgstr "xdx - préférences"
 
-#: src/gui_settingsdialog.c:145
+#: src/gui_settingsdialog.c:144
 msgid "Enable autologin"
 msgstr "Autoriser le login automatique"
 
-#: src/gui_settingsdialog.c:151
+#: src/gui_settingsdialog.c:150
 msgid "Callsign"
 msgstr "Indicatif"
 
-#: src/gui_settingsdialog.c:158
+#: src/gui_settingsdialog.c:157
 msgid "Commands"
 msgstr "Commandes"
 
-#: src/gui_settingsdialog.c:165
+#: src/gui_settingsdialog.c:164
 msgid "Comma separated list of commands to send at login"
 msgstr "Liste de commandes séparées par une virgule à lancer lors du login"
 
-#: src/gui_settingsdialog.c:167
+#: src/gui_settingsdialog.c:166
 msgid "Callsign to be used for login"
 msgstr "Indicatif à utiliser lors du login"
 
-#: src/gui_settingsdialog.c:169
+#: src/gui_settingsdialog.c:168
 msgid "Login"
 msgstr "Login"
 
-#: src/gui_settingsdialog.c:199
+#: src/gui_settingsdialog.c:198
 msgid "Save DX spots"
 msgstr "Sauvegarder les spots DX"
 
-#: src/gui_settingsdialog.c:201
+#: src/gui_settingsdialog.c:200
 msgid "Save WCY/WWV"
 msgstr "Sauvegarder WCY/WWV"
 
-#: src/gui_settingsdialog.c:203
+#: src/gui_settingsdialog.c:202
 msgid "Save \"To all\""
 msgstr "Sauvegarder \"To all\""
 
-#: src/gui_settingsdialog.c:205
+#: src/gui_settingsdialog.c:204
 msgid "Save WX"
 msgstr "Sauvegarder WX"
 
-#: src/gui_settingsdialog.c:207
+#: src/gui_settingsdialog.c:206
 msgid "Saving"
 msgstr "Enregistrement"
 
-#: src/gui_settingsdialog.c:232
+#: src/gui_settingsdialog.c:231
 msgid "Enable hamlib"
 msgstr "Autoriser la hamlib"
 
-#: src/gui_settingsdialog.c:238
+#: src/gui_settingsdialog.c:237
 msgid "Command for rigctl"
 msgstr "Commande pour rigctl"
 
-#: src/gui_settingsdialog.c:243
+#: src/gui_settingsdialog.c:242
 msgid "Hamlib"
 msgstr "Hamlib"
 
-#: src/gui_settingsdialog.c:246
+#: src/gui_settingsdialog.c:245
 #, c-format
 msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
@@ -174,24 +174,24 @@ msgstr ""
 "Lors du double clic sur un spot dx ceci règlera la fréquence de votre "
 "transceiver en utilisant rigctl (%d = la fréquence extraite du spot DX)"
 
-#: src/gui_settingsdialog.c:273
+#: src/gui_settingsdialog.c:272
 msgid "Web browser"
 msgstr "Navigateur internet"
 
-#: src/gui_settingsdialog.c:280
+#: src/gui_settingsdialog.c:279
 msgid "Mail program"
 msgstr "Programme de gestion du courrier"
 
-#: src/gui_settingsdialog.c:285
+#: src/gui_settingsdialog.c:284
 msgid "Programs"
 msgstr "Programmes"
 
-#: src/gui_settingsdialog.c:288
+#: src/gui_settingsdialog.c:287
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
 msgstr "Navigateur à lancer après avoir cliqué une url (%s = url)"
 
-#: src/gui_settingsdialog.c:290
+#: src/gui_settingsdialog.c:289
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
@@ -202,61 +202,61 @@ msgstr ""
 msgid "xdx - manual"
 msgstr "xdx - à propos"
 
-#: src/main.c:75
+#: src/main.c:80
 #, c-format
 msgid "Welcome to %s"
 msgstr "Bienvenue à %s"
 
-#: src/net.c:107
+#: src/net.c:85
 #, c-format
 msgid "Resolving %s..."
 msgstr "Résolution de %s en cours..."
 
-#: src/net.c:113
+#: src/net.c:91
 #, c-format
 msgid "Resolve failed: %s"
 msgstr "La résolution vers %s n'a pas abouti"
 
-#: src/net.c:120
+#: src/net.c:98
 #, c-format
 msgid "Connecting to: %s"
 msgstr "Connexion à: %s en cours"
 
-#: src/net.c:155
+#: src/net.c:133
 #, c-format
 msgid "Connected to %s"
 msgstr "Connecté à %s"
 
-#: src/net.c:166
+#: src/net.c:144
 #, c-format
 msgid "Error on setting channel encoding: %s"
 msgstr "Erreur lors de l'établissement de l'encodage du canal : %s"
 
-#: src/net.c:304
+#: src/net.c:282
 #, c-format
 msgid "Write failed: %s"
 msgstr "Erreur d'écriture : %s"
 
-#: src/net.c:316
+#: src/net.c:294
 msgid "Nothing to send, you are not connected"
 msgstr "Rien à envoyer, vous n'êtes pas connecté"
 
-#: src/preferences.c:48
+#: src/preferences.c:47
 #, c-format
 msgid "Creating ~/.%s directory."
 msgstr "Création du répertoire ~/.%s."
 
-#: src/preferences.c:51
+#: src/preferences.c:50
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr "~/.%s n'est pas un répertoire."
 
-#: src/utils.c:116
+#: src/utils.c:119
 #, c-format
 msgid "Fork has failed: %s"
 msgstr "Erreur de fork : %s"
 
-#: src/utils.c:131 src/utils.c:146
+#: src/utils.c:134 src/utils.c:149
 #, c-format
 msgid "Starting: %s"
 msgstr "Démarrage en cours : %s"

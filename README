@@ -3,7 +3,10 @@ xdx by Joop Stakenborg <pg4i@amsat.org>
 
 See the file called 'MANUAL' if you want to learn more about xdx or dx-clusters.
 You can also selected help->manual from the menu after xdx is started, it will
-display the same file.
+display the same file. The file called 'INSTALL' will show you how to compile 
+xdx for your linux distribution.
+
+Thanks to Jean-Luc Coulon (F5IBH) for french translations of xdx.
 
 If you find any bugs let me know and I will try to fix them.
-Joop, PG4I <pg4i@amsat.org>
+Joop, PG4I <pg4i@amsat.org> (former callsigns pa4tu and pa3aba).

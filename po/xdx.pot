@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Joop Stakenborg <pg4i@amsat.org>M  
+# Copyright (C) YEAR Joop Stakenborg <pg4i@amsat.org>
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-08 19:06+0200\n"
+"POT-Creation-Date: 2003-10-12 17:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,60 +16,60 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gui.c:44
+#: src/gui.c:46
 msgid "/_Program"
 msgstr ""
 
-#: src/gui.c:45
+#: src/gui.c:47
 msgid "/_Program/Quit"
 msgstr ""
 
-#: src/gui.c:47
+#: src/gui.c:49
 msgid "/_Host"
 msgstr ""
 
-#: src/gui.c:48
+#: src/gui.c:50
 msgid "/_Host/Open"
 msgstr ""
 
-#: src/gui.c:50
+#: src/gui.c:52
 msgid "/_Host/Close"
 msgstr ""
 
-#: src/gui.c:52
+#: src/gui.c:54
 msgid "/_Settings"
 msgstr ""
 
-#: src/gui.c:53
+#: src/gui.c:55
 msgid "/_Settings/Preferences"
 msgstr ""
 
-#: src/gui.c:55
+#: src/gui.c:57
 msgid "/H_elp"
 msgstr ""
 
-#: src/gui.c:56
+#: src/gui.c:58
 msgid "/H_elp/Manual"
 msgstr ""
 
-#: src/gui.c:58
+#: src/gui.c:60
 msgid "/H_elp/About"
 msgstr ""
 
-#: src/gui.c:121
+#: src/gui.c:123
 #, c-format
 msgid "Error loading icon: %s"
 msgstr ""
 
-#: src/gui.c:156
+#: src/gui.c:158
 msgid "Spotter"
 msgstr ""
 
-#: src/gui.c:177
+#: src/gui.c:179
 msgid "Remarks"
 msgstr ""
 
-#: src/gui.c:184
+#: src/gui.c:186
 msgid "Time"
 msgstr ""
 
@@ -107,91 +107,91 @@ msgstr ""
 msgid "Published under the GNU General Public License"
 msgstr ""
 
-#: src/gui_settingsdialog.c:129
+#: src/gui_settingsdialog.c:128
 msgid "xdx - preferences"
 msgstr ""
 
-#: src/gui_settingsdialog.c:145
+#: src/gui_settingsdialog.c:144
 msgid "Enable autologin"
 msgstr ""
 
-#: src/gui_settingsdialog.c:151
+#: src/gui_settingsdialog.c:150
 msgid "Callsign"
 msgstr ""
 
-#: src/gui_settingsdialog.c:158
+#: src/gui_settingsdialog.c:157
 msgid "Commands"
 msgstr ""
 
-#: src/gui_settingsdialog.c:165
+#: src/gui_settingsdialog.c:164
 msgid "Comma separated list of commands to send at login"
 msgstr ""
 
-#: src/gui_settingsdialog.c:167
+#: src/gui_settingsdialog.c:166
 msgid "Callsign to be used for login"
 msgstr ""
 
-#: src/gui_settingsdialog.c:169
+#: src/gui_settingsdialog.c:168
 msgid "Login"
 msgstr ""
 
-#: src/gui_settingsdialog.c:199
+#: src/gui_settingsdialog.c:198
 msgid "Save DX spots"
 msgstr ""
 
-#: src/gui_settingsdialog.c:201
+#: src/gui_settingsdialog.c:200
 msgid "Save WCY/WWV"
 msgstr ""
 
-#: src/gui_settingsdialog.c:203
+#: src/gui_settingsdialog.c:202
 msgid "Save \"To all\""
 msgstr ""
 
-#: src/gui_settingsdialog.c:205
+#: src/gui_settingsdialog.c:204
 msgid "Save WX"
 msgstr ""
 
-#: src/gui_settingsdialog.c:207
+#: src/gui_settingsdialog.c:206
 msgid "Saving"
 msgstr ""
 
-#: src/gui_settingsdialog.c:232
+#: src/gui_settingsdialog.c:231
 msgid "Enable hamlib"
 msgstr ""
 
-#: src/gui_settingsdialog.c:238
+#: src/gui_settingsdialog.c:237
 msgid "Command for rigctl"
 msgstr ""
 
-#: src/gui_settingsdialog.c:243
+#: src/gui_settingsdialog.c:242
 msgid "Hamlib"
 msgstr ""
 
-#: src/gui_settingsdialog.c:246
+#: src/gui_settingsdialog.c:245
 #, c-format
 msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
 "using rigctl (%d = the frequency retrieved from the DX spot)"
 msgstr ""
 
-#: src/gui_settingsdialog.c:273
+#: src/gui_settingsdialog.c:272
 msgid "Web browser"
 msgstr ""
 
-#: src/gui_settingsdialog.c:280
+#: src/gui_settingsdialog.c:279
 msgid "Mail program"
 msgstr ""
 
-#: src/gui_settingsdialog.c:285
+#: src/gui_settingsdialog.c:284
 msgid "Programs"
 msgstr ""
 
-#: src/gui_settingsdialog.c:288
+#: src/gui_settingsdialog.c:287
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
 msgstr ""
 
-#: src/gui_settingsdialog.c:290
+#: src/gui_settingsdialog.c:289
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
@@ -200,61 +200,61 @@ msgstr ""
 msgid "xdx - manual"
 msgstr ""
 
-#: src/main.c:75
+#: src/main.c:80
 #, c-format
 msgid "Welcome to %s"
 msgstr ""
 
-#: src/net.c:107
+#: src/net.c:85
 #, c-format
 msgid "Resolving %s..."
 msgstr ""
 
-#: src/net.c:113
+#: src/net.c:91
 #, c-format
 msgid "Resolve failed: %s"
 msgstr ""
 
-#: src/net.c:120
+#: src/net.c:98
 #, c-format
 msgid "Connecting to: %s"
 msgstr ""
 
-#: src/net.c:155
+#: src/net.c:133
 #, c-format
 msgid "Connected to %s"
 msgstr ""
 
-#: src/net.c:166
+#: src/net.c:144
 #, c-format
 msgid "Error on setting channel encoding: %s"
 msgstr ""
 
-#: src/net.c:304
+#: src/net.c:282
 #, c-format
 msgid "Write failed: %s"
 msgstr ""
 
-#: src/net.c:316
+#: src/net.c:294
 msgid "Nothing to send, you are not connected"
 msgstr ""
 
-#: src/preferences.c:48
+#: src/preferences.c:47
 #, c-format
 msgid "Creating ~/.%s directory."
 msgstr ""
 
-#: src/preferences.c:51
+#: src/preferences.c:50
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr ""
 
-#: src/utils.c:116
+#: src/utils.c:119
 #, c-format
 msgid "Fork has failed: %s"
 msgstr ""
 
-#: src/utils.c:131 src/utils.c:146
+#: src/utils.c:134 src/utils.c:149
 #, c-format
 msgid "Starting: %s"
 msgstr ""

@@ -19,7 +19,7 @@ For a list of DX Clusters see http://ve9wh.weblink.nbtel.net/dxclusters.html.
 
 Commands
 ========
-Here are some basic commands to get started:
+Here are some basic cluster commands to get started:
 
 announce/full 'msg': Send a line of text to all connected stations.
 bye: Exit the DX Cluster.
