@@ -195,7 +195,7 @@ create_mainwindow (void)
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   column =
-    gtk_tree_view_column_new_with_attributes ("Info", renderer, "text",
+    gtk_tree_view_column_new_with_attributes (_("Info"), renderer, "text",
 					      INFO_COLUMN, NULL);
   gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
     GTK_TREE_VIEW_COLUMN_FIXED);

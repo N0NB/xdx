@@ -295,9 +295,9 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pcolumnshseparator, FALSE, FALSE, 0);
   pspottercheckbutton = gtk_check_button_new_with_mnemonic (_("Spotter"));
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pspottercheckbutton, FALSE, FALSE, 0);
-  pqrgcheckbutton = gtk_check_button_new_with_mnemonic (_("QRG"));
+  pqrgcheckbutton = gtk_check_button_new_with_mnemonic ("QRG");
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pqrgcheckbutton, FALSE, FALSE, 0);
-  pdxcheckbutton = gtk_check_button_new_with_mnemonic (_("DX"));
+  pdxcheckbutton = gtk_check_button_new_with_mnemonic ("DX");
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pdxcheckbutton, FALSE, FALSE, 0);
   premarkscheckbutton = gtk_check_button_new_with_mnemonic (_("Remarks"));
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox), premarkscheckbutton, FALSE, FALSE, 0);
