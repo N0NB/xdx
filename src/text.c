@@ -28,6 +28,9 @@
 #include "text.h"
 #include "net.h"
 #include "gui.h"
+#include "preferences.h"
+
+extern preferencestype preferences;
 
 typedef struct dxinfo 
 {
@@ -310,6 +313,7 @@ extractinfo(gchar *msg)
 
   if (dxmsg = g_strrstr(info, "DX de "))
   {
+    if (preferences.savedx) savedx (msg);
     dx->spotter = g_strdup(findcall(dxmsg + 6, &l));
     dx->freq = g_strdup(findfreq(dxmsg + 6 + l));
     dx->dxcall = g_strdup(findspace(dxmsg + 26));

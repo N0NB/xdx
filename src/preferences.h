@@ -31,6 +31,7 @@ typedef struct
   gint autologin;
   gint autoreconnect;
   gchar *callsign;
+  gint savedx;
 } preferencestype;
 
 void dircheck (void);

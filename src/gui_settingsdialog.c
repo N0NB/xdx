@@ -165,6 +165,11 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   psavinglabel = gtk_label_new (_("Saving"));
   gtk_frame_set_label_widget (GTK_FRAME (psavingframe), psavinglabel);
 
+  if (preferences.savedx == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), FALSE);
+
   phamlibframe = gtk_frame_new (NULL);
   gtk_widget_show (phamlibframe);
   gtk_box_pack_start (GTK_BOX (pvbox), phamlibframe, TRUE, TRUE, 0);
@@ -231,6 +236,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   if (response == GTK_RESPONSE_OK)
   {
+    /* login frame */
     state = gtk_toggle_button_get_active 
       (GTK_TOGGLE_BUTTON(pautologincheckbutton));
     if (state) 
@@ -248,6 +254,14 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.autoreconnect = 1; 
     else 
       preferences.autoreconnect = 0;
+
+    /* saving frame */
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(psavedxcheckbutton));
+    if (state) 
+      preferences.savedx = 1; 
+    else 
+      preferences.savedx = 0;
     g_free (str);
   }
 

@@ -71,6 +71,7 @@ loadpreferences (void)
   preferences.autologin = 0;
   preferences.autoreconnect = 0;
   preferences.callsign = g_strdup("N0CALL");
+  preferences.savedx = 0;
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -98,6 +99,8 @@ loadpreferences (void)
           preferences.autoreconnect = atoi(value);
         else if (!g_strcasecmp(label, "callsign")) 
           preferences.callsign = g_strdup(value);
+        else if (!g_strcasecmp(label, "savedx")) 
+          preferences.savedx = atoi(value);
       }
     fclose (fp);
   }
@@ -138,6 +141,8 @@ savepreferences (void)
     fprintf(fp, "autoreconnect %s\n", str);
     str = g_strdup_printf("%s", preferences.callsign);
     fprintf(fp, "callsign %s\n", str);
+    str = g_strdup_printf("%d", preferences.savedx);
+    fprintf(fp, "savedx %s\n", str);
     g_free(str);
     fclose (fp);
   }

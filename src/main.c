@@ -45,6 +45,9 @@ main (int argc, char *argv[])
   textdomain (PACKAGE);
 #endif
 
+  putenv ("TZ=GMT");
+  tzset ();
+
   add_pixmap_directory(PACKAGE_DATA_DIR G_DIR_SEPARATOR_S "pixmaps");
   add_pixmap_directory(PACKAGE_SOURCE_DIR G_DIR_SEPARATOR_S "pixmaps");
 

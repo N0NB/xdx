@@ -24,6 +24,7 @@ xdx_SOURCES = \
 	types.h \
 	utils.h \
   hyperlink.h \
+  save.h \
 	gui.c \
 	gui_opendialog.c \
 	gui_closedialog.c \
@@ -35,4 +36,5 @@ xdx_SOURCES = \
 	preferences.c \
 	text.c \
 	utils.c \
-  hyperlink.c
+  hyperlink.c \
+  save.c
