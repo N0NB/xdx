@@ -10,8 +10,8 @@ EXTRA_DIST = \
 SUBDIRS = \
 	m4 \
 	po \
-	src \
-	intl
+	src
+
 
 man_MANS = xdx.1
 
@@ -50,3 +50,5 @@ rpm: Makefile
 	sudo rpm -ta $(PACKAGE)-$(VERSION).tar.gz
 	rm $(PACKAGE)-$(VERSION).tar.gz
 
+
+ACLOCAL_AMFLAGS = -I m4
