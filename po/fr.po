@@ -5,6 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-05-21 14:28+0200\n"
 "PO-Revision-Date: 2004-05-21 16:04+0100\n"
 "Last-Translator: Jean-Luc  Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
@@ -71,23 +72,19 @@ msgstr "/_Aide/A propos"
 msgid "Error loading icon: %s"
 msgstr "Erreur lors du chargement de l'icône : %s"
 
-#: src/gui.c:158
-#: src/gui_settingsdialog.c:296
+#: src/gui.c:158 src/gui_settingsdialog.c:296
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:182
-#: src/gui_settingsdialog.c:302
+#: src/gui.c:182 src/gui_settingsdialog.c:302
 msgid "Remarks"
 msgstr "Commentaires"
 
-#: src/gui.c:190
-#: src/gui_settingsdialog.c:304
+#: src/gui.c:190 src/gui_settingsdialog.c:304
 msgid "Time"
 msgstr "Heure"
 
-#: src/gui.c:198
-#: src/gui_settingsdialog.c:306
+#: src/gui.c:198 src/gui_settingsdialog.c:306
 msgid "Info"
 msgstr "Info"
 
@@ -202,8 +199,8 @@ msgstr "Navigateur internet à lancer après avoir cliqué une url (%s = url)"
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
-"Programme de courriel à lancer après avoir cliqué une url de courrier (%s = ""
-url de courriel)"
+"Programme de courriel à lancer après avoir cliqué une url de courrier (%s = "
+"url de courriel)"
 
 #: src/gui_settingsdialog.c:290
 msgid "Columns"
@@ -263,8 +260,7 @@ msgstr "Connecté à %s"
 msgid "Error on setting channel encoding: %s"
 msgstr "Erreur lors de l'établissement de l'encodage du canal : %s"
 
-#: src/net.c:218
-#: src/net.c:231
+#: src/net.c:218 src/net.c:231
 msgid "Connection closed by remote host"
 msgstr "Connexion fermée par l'hôte distant"
 
@@ -292,9 +288,7 @@ msgstr "~/.%s n'est pas un répertoire."
 msgid "Fork has failed: %s"
 msgstr "Erreur de fork : %s"
 
-#: src/utils.c:134
-#: src/utils.c:149
+#: src/utils.c:134 src/utils.c:149
 #, c-format
 msgid "Starting: %s"
 msgstr "Démarrage en cours : %s"
-
