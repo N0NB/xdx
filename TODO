@@ -4,7 +4,8 @@ Version 0.3:
   to WCY, WWV or To All messages. We have to split them.
 * Statusbar messages other than "Connected to .." or "disconnected"
   should get at timeout.
-* Clickable URL's
+* Clickable URL's.
+* Clean up the icon for the debian menu (lintian).
 
 Version 0.4:
 
