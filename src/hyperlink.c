@@ -85,7 +85,6 @@ findw (gunichar ch, gpointer user_data)
   switch (ch)
   {
     case ' ':
-    case ':':
     case ',':
     case ';':
       return TRUE;
