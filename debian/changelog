@@ -1,8 +1,9 @@
 xdx (0.3) unstable; urgency=low
 
   * Allow the main window to shrink.
+  * Add command line history.
 
- -- Joop Stakenborg <pa3aba@debian.org>  Mon, 28 Oct 2002 21:54:36 +0100
+ -- Joop Stakenborg <pa3aba@debian.org>  Wed, 30 Oct 2002 19:15:17 +0100
 
 xdx (0.2) unstable; urgency=low
 
