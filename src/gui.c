@@ -605,9 +605,9 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
   PangoFontDescription *font;
   GdkCursor *cursor;
 
-  aboutdialog = gtk_dialog_new_with_buttons (_("xdx - about"), NULL, 0,
-					     GTK_STOCK_OK, GTK_RESPONSE_OK,
-					     NULL);
+  aboutdialog = gtk_dialog_new_with_buttons (_("xdx - about"), 
+    GTK_WINDOW (gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, 
+    GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
 
   g_signal_connect(G_OBJECT(aboutdialog), "destroy",
                          GTK_SIGNAL_FUNC(event_destroy), aboutdialog);
