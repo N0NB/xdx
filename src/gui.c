@@ -310,18 +310,24 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 					 gpointer user_data)
 {
 
-  switch (event->keyval)
+  GtkWidget *mainentry;
+
+  mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
+  if (GTK_WIDGET_HAS_FOCUS(mainentry))
   {
-    case GDK_Up:
-      gtk_signal_emit_stop_by_name(GTK_OBJECT(widget), "key_press_event");
-      tx_previous();
-    break;
-    case GDK_Down:
-      gtk_signal_emit_stop_by_name(GTK_OBJECT(widget), "key_press_event");
-      tx_next();
-    break;
-    default:
-    break;
+    switch (event->keyval)
+    {
+      case GDK_Up:
+        gtk_signal_emit_stop_by_name(GTK_OBJECT(widget), "key_press_event");
+        tx_previous();
+      break;
+      case GDK_Down:
+        gtk_signal_emit_stop_by_name(GTK_OBJECT(widget), "key_press_event");
+        tx_next();
+      break;
+      default:
+      break;
+    }
   }
   return FALSE;
 }
