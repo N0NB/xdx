@@ -95,7 +95,7 @@ create_mainwindow (void)
 {
   GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned1, *clistscrolledwindow,
 	  *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview;
-  GtkCellRenderer *renderer;
+  GtkCellRenderer *renderer, *boldrenderer;
   GtkTreeViewColumn *column;
   GtkTextBuffer *buffer;
   GtkTreeStore *model;
@@ -150,6 +150,8 @@ create_mainwindow (void)
   g_object_unref (G_OBJECT (model));
 
   renderer = gtk_cell_renderer_text_new ();
+  boldrenderer = gtk_cell_renderer_text_new ();
+  g_object_set (G_OBJECT (boldrenderer), "weight", "bold", NULL);
 
   column =
     gtk_tree_view_column_new_with_attributes (_("Spotter"), renderer, "text",
@@ -166,7 +168,7 @@ create_mainwindow (void)
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   column =
-    gtk_tree_view_column_new_with_attributes ("DX", renderer, "text",
+    gtk_tree_view_column_new_with_attributes ("DX", boldrenderer, "text",
 					      DX_COLUMN, NULL);
   gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
