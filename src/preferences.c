@@ -74,10 +74,14 @@ loadpreferences (void)
     while (!feof (fp))
       {
         if (fscanf (fp, "%s %s", label, value) == EOF) break;
-	if (!g_strcasecmp(label, "x")) preferences.x = atoi(value);
-        else if (!g_strcasecmp(label, "y")) preferences.y = atoi(value);
-        else if (!g_strcasecmp(label, "width")) preferences.width = atoi(value);
-        else if (!g_strcasecmp(label, "height")) preferences.height = atoi(value);
+	      if (!g_strcasecmp(label, "x")) 
+          preferences.x = atoi(value);
+        else if (!g_strcasecmp(label, "y")) 
+          preferences.y = atoi(value);
+        else if (!g_strcasecmp(label, "width")) 
+          preferences.width = atoi(value);
+        else if (!g_strcasecmp(label, "height")) 
+          preferences.height = atoi(value);
         else if (!g_strcasecmp(label, "columnwidths")) 
           preferences.columnwidths = g_strdup(value);
       }
@@ -101,9 +105,6 @@ savepreferences (void)
   fp = fopen (preferencesfile, "w");
   if (fp)
   {
-
-    /* warning and version */
-    fprintf (fp, _("# settings file for %s, do not edit\n"), PACKAGE);
     fprintf (fp, "version %s\n", VERSION);
     str = g_strdup_printf("%d", preferences.x);
     fprintf(fp, "x %s\n", str);
