@@ -8,6 +8,7 @@ build:
 	$(checkdir)
 	./configure --prefix=/usr --datadir=/usr/share
 	$(MAKE) CFLAGS="-O2 -g"
+#	$(MAKE) CC=gcc-3.2 CFLAGS="-O2 -g"
 	touch build
 
 clean:
