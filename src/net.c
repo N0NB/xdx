@@ -38,10 +38,10 @@
 #include <sys/types.h>
 #include <string.h>
 #include <errno.h>
+#include <netinet/in.h>
 #include <resolv.h>
 #include <netdb.h>
 #include <sys/socket.h>
-#include <netinet/in.h>
 #include <arpa/inet.h>
 #include <signal.h>
 #include <fcntl.h>

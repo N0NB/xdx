@@ -7,7 +7,8 @@ display the same file. The file called 'INSTALL' will show you how to compile
 xdx for your linux distribution.
 
 Thanks to Jean-Luc Coulon (F5IBH) for french translations and Baltasar Perez
-(EB8AKF) for spanish translations of xdx.
+(EB8AKF) for spanish translations of xdx. Thanks to Matt Dawson (GW0VNR) for
+testing this release on freebsd.
 
 If you find any bugs let me know and I will try to fix them.
 Joop, PG4I <pg4i@amsat.org> (former callsigns pa4tu and pa3aba).
