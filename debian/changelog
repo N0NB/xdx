@@ -1,3 +1,11 @@
+xdx (1.1) unstable; urgency=low
+
+  * Correctly save preferences and history when selecting program->exit from
+    the menu.
+  * Set the cursor after the entry when recalling history of the command line.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue, 21 Oct 2003 18:58:04 +0200
+
 xdx (1.0) unstable; urgency=low
 
   * A preferences dialog has been added.

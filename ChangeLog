@@ -1,3 +1,10 @@
+Changelog for version xdx (1.1)
+  * Correctly save preferences and history when selecting program->exit from
+    the menu. This bug was reported by Wilbert Knol ZL2BSJ, thanks!
+  * Set the cursor after the entry when recalling history of the command line.
+
+ -- Joop Stakenborg <pg4i@amsat.org>  Tue, 21 Oct 2003 18:58:04 +0200
+
 Changelog for version xdx (1.0)
 
   * A preferences dialog has been added.
