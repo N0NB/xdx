@@ -95,7 +95,7 @@ menu_set_sensitive (GtkItemFactory * ifa, const gchar * path, gboolean sens)
 
 static void shellcommand (gchar *command)
 {
-  gint result, pid; 
+  gint result, pid = -1; 
   gchar *args[4];
   GString *msg = g_string_new ("");
   
@@ -109,7 +109,7 @@ static void shellcommand (gchar *command)
     result = execvp(args[0], args);
     _exit(0);
   }
-  else
+  else if (pid == -1)
   {
     g_string_printf (msg, _("Fork has failed: %s"), g_strerror (errno));
     updatestatusbar (msg, TRUE);
