@@ -1,4 +1,4 @@
 ?package(xdx):needs=X11 section=Apps/Hamradio \
   title="Xdx" command="/usr/bin/xdx" \
-  icon="/usr/share/pixmaps/xdx/xdx.xpm" \
+  icon="/usr/share/xdx/pixmaps/xdx.xpm" \
   longtitle="Xdx: tcp/ip client for DX-clusters"
