@@ -185,7 +185,7 @@ msgstr "Mail programma"
 
 #: src/gui_settingsdialog.c:285
 msgid "Programs"
-msgstr "/Programma's"
+msgstr "Programma's"
 
 #: src/gui_settingsdialog.c:288
 #, c-format
