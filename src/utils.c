@@ -40,22 +40,6 @@ add_pixmap_directory (const gchar * directory)
 }
 
 /* 
- * clear the statusbar 
- */
-
-static gint statusbar_timeout(gpointer data)
-{
-  GtkWidget *mainstatusbar;
-
-  mainstatusbar = g_object_get_data (G_OBJECT (gui->window), "mainstatusbar");
-  gtk_statusbar_pop(GTK_STATUSBAR(mainstatusbar), 1);
-  gtk_statusbar_push(GTK_STATUSBAR(mainstatusbar), 1, _("Ready."));
-  gtk_timeout_remove(statusbartimer);
-  statusbartimer = -1;
-  return FALSE;
-}
-
-/* 
  * print a message to the statusbar 
  */
 
@@ -67,8 +51,6 @@ updatestatusbar (GString * statusmessage)
   mainstatusbar = g_object_get_data (G_OBJECT (gui->window), "mainstatusbar");
   gtk_statusbar_pop (GTK_STATUSBAR (mainstatusbar), 1);
   gtk_statusbar_push (GTK_STATUSBAR (mainstatusbar), 1, statusmessage->str);
-  if (statusbartimer != -1) gtk_timeout_remove(statusbartimer);
-  statusbartimer = gtk_timeout_add(30000, statusbar_timeout, NULL);
 }
 
 /* 
