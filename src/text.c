@@ -318,7 +318,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 	  if (!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
 	      || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
 	    gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, len,
-                  "green_foreground", NULL);
+                  "wwv", NULL);
 	  else
 	    gtk_text_buffer_insert (buffer, &end, dx->toall, len);
 	  mark = gtk_text_buffer_get_mark (buffer, "insert");
@@ -329,5 +329,5 @@ maintext_add (gchar msg[], gint len, gint messagetype)
     }
     else if (messagetype == MESSAGE_TX)
       gtk_text_buffer_insert_with_tags_by_name (buffer, &end, msg, len,
-					      "red_foreground", NULL);
+					      "sent", NULL);
 }

@@ -209,9 +209,9 @@ create_mainwindow (void)
   gtk_container_add (GTK_CONTAINER (mainscrolledwindow), maintext);
   GTK_WIDGET_UNSET_FLAGS (maintext, GTK_CAN_FOCUS);
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
-  gtk_text_buffer_create_tag (buffer, "green_foreground", "foreground", "blue",
+  gtk_text_buffer_create_tag (buffer, "wwv", "foreground", "green",
 			      NULL);
-  gtk_text_buffer_create_tag (buffer, "red_foreground", "foreground", "red",
+  gtk_text_buffer_create_tag (buffer, "sent", "foreground", "red",
 			      NULL);
   gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue", 
 				    "underline", PANGO_UNDERLINE_SINGLE, NULL);
