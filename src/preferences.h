@@ -20,6 +20,16 @@
 /*
  * preferences.h
  */
+typedef struct
+{
+  gint x;
+  gint y;
+  gint width;
+  gint height;
+  gint panedpos;
+} preferencestype;
+
+preferencestype preferences;
 
 void dircheck (void);
 void loadpreferences (void);

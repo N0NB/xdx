@@ -104,8 +104,6 @@ create_mainwindow (void)
 
   gui = new_gui();
   gui->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_position (GTK_WINDOW (gui->window), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size (GTK_WINDOW (gui->window), 700, 550);
   icon = gdk_pixbuf_new_from_file (PACKAGE_DATA_DIR "/pixmaps/xdx.png", &err);
   if (err)
   {
@@ -136,7 +134,6 @@ create_mainwindow (void)
   vpaned1 = gtk_vpaned_new ();
   gtk_widget_show (vpaned1);
   gtk_box_pack_start (GTK_BOX (mainvbox), vpaned1, TRUE, TRUE, 0);
-  gtk_paned_set_position (GTK_PANED (vpaned1), 340);
 
   clistscrolledwindow = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (clistscrolledwindow);
@@ -213,8 +210,9 @@ create_mainwindow (void)
   gtk_box_pack_start (GTK_BOX (mainvbox), mainstatusbar, FALSE, FALSE, 0);
 
   g_signal_connect (G_OBJECT (gui->window), "destroy",
-		    G_CALLBACK (gtk_main_quit), gui->window);
-  gtk_quit_add (0, (GtkFunction) on_mainwindow_delete_event, NULL);
+		    G_CALLBACK (on_mainwindow_destroy_event), NULL);
+  g_signal_connect (G_OBJECT (gui->window), "delete_event",
+		    G_CALLBACK (on_mainwindow_delete_event), NULL);
   g_signal_connect (G_OBJECT (mainentry), "activate",
 		    G_CALLBACK (on_mainentry_activate), NULL);
   g_signal_connect (G_OBJECT (gui->window), "key_press_event",
@@ -228,6 +226,7 @@ create_mainwindow (void)
   g_object_set_data (G_OBJECT (gui->window), "mainentry", mainentry);
   g_object_set_data (G_OBJECT (gui->window), "model", model);
   g_object_set_data (G_OBJECT (gui->window), "buffer", buffer);
+  g_object_set_data (G_OBJECT (gui->window), "vpaned1", vpaned1);
 
   gtk_widget_grab_focus (mainentry);
 
@@ -263,11 +262,25 @@ gboolean
 on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 			    gpointer user_data)
 {
-  gint i, n;
-  GList *link;
+  GtkWidget *vpaned1;
+	
+  vpaned1 = g_object_get_data (G_OBJECT(gui->window), "vpaned1");
+  preferences.panedpos = gtk_paned_get_position(GTK_PANED(vpaned1));
+  gtk_window_get_position(GTK_WINDOW(gui->window), &preferences.x, &preferences.y);
+  gtk_window_get_size(GTK_WINDOW(gui->window), &preferences.width, &preferences.height);
 
   savehistory ();
   savepreferences ();
+
+  return FALSE;
+}
+
+gboolean
+on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
+			    gpointer user_data)
+{
+  gint i, n;
+  GList *link;
 
   gui->window = NULL;
   gui->item_factory = NULL;
@@ -303,8 +316,11 @@ on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
   gui->preferencesdir = NULL;
   g_free(gui);
 
+  gtk_main_quit ();
+
   return FALSE;
 }
+
 
 gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 					 gpointer user_data)

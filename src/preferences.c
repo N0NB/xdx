@@ -59,21 +59,29 @@ loadpreferences (void)
   gchar *preferencesfile, label[100], value[100];
   FILE *fp;
 
-  /* defaults (nothing here yet)*/
+  /* defaults */
+  preferences.x = 10;
+  preferences.y = 30;
+  preferences.width = 700;
+  preferences.height = 550;
+  preferences.panedpos = 90;
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
   fp = fopen (preferencesfile, "r");
-  if (fp == NULL)
-    return;
-
-  /* read preferences file */
-  while (!feof (fp))
-    {
-      if (fscanf (fp, "%s %s", label, value) == EOF)
-	break;
-    }
-  fclose (fp);
+  if (fp)
+  {
+    while (!feof (fp))
+      {
+        if (fscanf (fp, "%s %s", label, value) == EOF) break;
+	if (!g_strcasecmp(label, "x")) preferences.x = atoi(value);
+        else if (!g_strcasecmp(label, "y")) preferences.y = atoi(value);
+        else if (!g_strcasecmp(label, "width")) preferences.width = atoi(value);
+        else if (!g_strcasecmp(label, "height")) preferences.height = atoi(value);
+        else if (!g_strcasecmp(label, "panedpos")) preferences.panedpos = atoi(value);
+      }
+    fclose (fp);
+  }
   g_free(preferencesfile);
 }
 
@@ -84,21 +92,30 @@ loadpreferences (void)
 void
 savepreferences (void)
 {
-  gchar *preferencesfile;
+  gchar *preferencesfile, *str;
   FILE *fp;
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
   fp = fopen (preferencesfile, "w");
-  if (fp == NULL)
-    return;
+  if (fp)
+  {
 
-  /* warning and version */
-  fprintf (fp, _("# settings file for %s, do not edit\n"), PACKAGE);
-  fprintf (fp, "version %s\n", VERSION);
-
-  /* settings (nothing here yet) */
-
-  fclose (fp);
+    /* warning and version */
+    fprintf (fp, _("# settings file for %s, do not edit\n"), PACKAGE);
+    fprintf (fp, "version %s\n", VERSION);
+    str = g_strdup_printf("%d", preferences.x);
+    fprintf(fp, "x %s\n", str);
+    str = g_strdup_printf("%d", preferences.y);
+    fprintf(fp, "y %s\n", str);
+    str = g_strdup_printf("%d", preferences.width);
+    fprintf(fp, "width %s\n", str);
+    str = g_strdup_printf("%d", preferences.height);
+    fprintf(fp, "height %s\n", str);
+    str = g_strdup_printf("%d", preferences.panedpos);
+    fprintf(fp, "panedpos %s\n", str);
+    g_free(str);
+    fclose (fp);
+  }
   g_free(preferencesfile);
 }

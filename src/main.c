@@ -31,7 +31,7 @@
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *mainstatusbar;
+  GtkWidget *mainstatusbar, *vpaned1;
   gchar *lang;
   GString *greeting = g_string_new ("");
 
@@ -51,7 +51,13 @@ main (int argc, char *argv[])
   dircheck ();
   loadpreferences ();
   loadhistory ();
+
   gtk_widget_show (gui->window);
+
+  gdk_window_move_resize(gui->window->window, preferences.x, preferences.y,
+	preferences.width, preferences.height);
+  vpaned1 = g_object_get_data (G_OBJECT (gui->window), "vpaned1");
+  gtk_paned_set_position (GTK_PANED (vpaned1), preferences.panedpos);
 
   menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE); /* do not translate */
   g_string_printf (greeting, _("Welcome to %s"), PACKAGE);
