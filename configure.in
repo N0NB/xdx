@@ -48,7 +48,6 @@ AC_OUTPUT([ \
 	xdx.1 \
 	xdx.spec
 	Makefile \
-	m4/Makefile \
 	src/Makefile \
 	po/Makefile.in \
 	po/Makefile \
