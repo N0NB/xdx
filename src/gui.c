@@ -544,19 +544,31 @@ static gboolean on_weblink_button_press_event(GtkWidget *widget, GdkEventButton 
 }
 
 
+static void event_destroy(gpointer data)
+{
+  GtkWidget *aboutdialog = (GtkWidget *)data;
+  
+  aboutdialog = NULL;
+}
+
+
 void
 on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
   GtkWidget *aboutdialog, *vbox, *stock, *aboutlabel, *separator, *eventbox;
   GString *labeltext = g_string_new ("");
   PangoFontDescription *font;
+  GdkCursor *cursor;
 
-  aboutdialog = gtk_dialog_new_with_buttons (_("xdx - about"),
-					     GTK_WINDOW (gui->window),
-					     GTK_DIALOG_MODAL |
-					     GTK_DIALOG_DESTROY_WITH_PARENT,
+  aboutdialog = gtk_dialog_new_with_buttons (_("xdx - about"), NULL, 0,
 					     GTK_STOCK_OK, GTK_RESPONSE_OK,
 					     NULL);
+
+  g_signal_connect(G_OBJECT(aboutdialog), "destroy",
+                         GTK_SIGNAL_FUNC(event_destroy), aboutdialog);
+  g_signal_connect(G_OBJECT(aboutdialog), "response",
+                         GTK_SIGNAL_FUNC(gtk_widget_destroy), NULL);
+
 
   vbox = gtk_vbox_new (FALSE, 8);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 8);
@@ -587,15 +599,15 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
   aboutlabel = gtk_label_new (labeltext->str);
   gtk_label_set_use_markup(GTK_LABEL(aboutlabel), TRUE);
   gtk_container_add (GTK_CONTAINER (eventbox), aboutlabel);
-  /* TODO: change the cursor when mouse is over the link */
 
   g_string_printf (labeltext, _("Published under the GNU General Public License"));
   aboutlabel = gtk_label_new (labeltext->str);
   g_string_free (labeltext, TRUE);
   gtk_box_pack_start (GTK_BOX (vbox), aboutlabel, FALSE, FALSE, 0);
 
-  gtk_widget_show_all (vbox);
+  gtk_widget_show_all(aboutdialog);
 
-  gtk_dialog_run (GTK_DIALOG (aboutdialog));
-  gtk_widget_destroy (aboutdialog);
+  cursor = gdk_cursor_new(GDK_HAND2);
+  gdk_window_set_cursor(eventbox->window, cursor);
+  gdk_cursor_unref(cursor);
 }
