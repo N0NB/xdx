@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  xdx 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-12 17:50+0200\n"
+"POT-Creation-Date: 2004-05-21 13:45+0200\n"
 "PO-Revision-Date: 2004-01-26 23:21+0000\n"
 "Last-Translator: Baltasar Perez (eb8akf) <baltipd@yahoo.com>\n"
 "Language-Team: es <baltipd@yahoo.com>\n"
@@ -59,15 +59,15 @@ msgstr "/_Ayuda/Acerca de"
 msgid "Error loading icon: %s"
 msgstr "Error en la carga del icono: %s"
 
-#: src/gui.c:158
+#: src/gui.c:158 src/gui_settingsdialog.c:296
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:179
+#: src/gui.c:182 src/gui_settingsdialog.c:302
 msgid "Remarks"
 msgstr "Comentarios"
 
-#: src/gui.c:186
+#: src/gui.c:190 src/gui_settingsdialog.c:304
 msgid "Time"
 msgstr "Hora"
 
@@ -105,67 +105,56 @@ msgstr "%s versión %s"
 msgid "Published under the GNU General Public License"
 msgstr "Publicado bajo la Licencia Pública General GNU"
 
-#: src/gui_settingsdialog.c:128
+#: src/gui_settingsdialog.c:137
 msgid "xdx - preferences"
 msgstr "xdx - preferencias"
 
-#: src/gui_settingsdialog.c:144
+#: src/gui_settingsdialog.c:153
+msgid "General"
+msgstr ""
+
+#: src/gui_settingsdialog.c:156
+msgid "Output"
+msgstr ""
+
+#: src/gui_settingsdialog.c:166
 msgid "Enable autologin"
 msgstr "Habilitar autologin"
 
-#: src/gui_settingsdialog.c:150
+#: src/gui_settingsdialog.c:172
 msgid "Callsign"
 msgstr "Indicativo"
 
-#: src/gui_settingsdialog.c:157
+#: src/gui_settingsdialog.c:179
 msgid "Commands"
 msgstr "Comandos"
 
-#: src/gui_settingsdialog.c:164
+#: src/gui_settingsdialog.c:186
 msgid "Comma separated list of commands to send at login"
-msgstr "Lista de comandos separados por comas para enviar al entrar al DX-Cluster"
+msgstr ""
+"Lista de comandos separados por comas para enviar al entrar al DX-Cluster"
 
-#: src/gui_settingsdialog.c:166
+#: src/gui_settingsdialog.c:188
 msgid "Callsign to be used for login"
 msgstr "Indicativo a utilizar en el DX-Cluster"
 
-#: src/gui_settingsdialog.c:168
+#: src/gui_settingsdialog.c:190
 msgid "Login"
 msgstr "Login"
 
-#: src/gui_settingsdialog.c:198
-msgid "Save DX spots"
-msgstr "Guardar spots DX"
-
-#: src/gui_settingsdialog.c:200
-msgid "Save WCY/WWV"
-msgstr "Guardar WCY/WWV"
-
-#: src/gui_settingsdialog.c:202
-msgid "Save \"To all\""
-msgstr "Guardar \"To all\""
-
-#: src/gui_settingsdialog.c:204
-msgid "Save WX"
-msgstr "Guardar WX"
-
-#: src/gui_settingsdialog.c:206
-msgid "Saving"
-msgstr "Guardando"
-
-#: src/gui_settingsdialog.c:231
+#: src/gui_settingsdialog.c:221
 msgid "Enable hamlib"
 msgstr "Habilitar hamlib"
 
-#: src/gui_settingsdialog.c:237
+#: src/gui_settingsdialog.c:227
 msgid "Command for rigctl"
 msgstr "Comando para rigctl"
 
-#: src/gui_settingsdialog.c:242
+#: src/gui_settingsdialog.c:232
 msgid "Hamlib"
 msgstr "Hamlib"
 
-#: src/gui_settingsdialog.c:245
+#: src/gui_settingsdialog.c:235
 #, c-format
 msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
@@ -174,33 +163,79 @@ msgstr ""
 "Cuando haga doble click sobre un spot DX, su equipo se ajustará a la "
 "frecuencia del spot utilizando rigctl (%d = frecuencia del spot DX)"
 
-#: src/gui_settingsdialog.c:272
+#: src/gui_settingsdialog.c:262
 msgid "Web browser"
 msgstr "Navegador Web"
 
-#: src/gui_settingsdialog.c:279
+#: src/gui_settingsdialog.c:269
 msgid "Mail program"
 msgstr "Lector de correo"
 
-#: src/gui_settingsdialog.c:284
+#: src/gui_settingsdialog.c:274
 msgid "Programs"
 msgstr "Programas"
 
-#: src/gui_settingsdialog.c:287
+#: src/gui_settingsdialog.c:277
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
 msgstr "Navegador web a ejecutar al hacer click sobre una url (%s = url)"
 
-#: src/gui_settingsdialog.c:289
+#: src/gui_settingsdialog.c:279
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
-msgstr "Lector de correo a ejecutar al hacer click sobre una dirección (%s = mail url)"
+msgstr ""
+"Lector de correo a ejecutar al hacer click sobre una dirección (%s = mail "
+"url)"
+
+#: src/gui_settingsdialog.c:290
+msgid "Columns"
+msgstr "Columns"
+
+#: src/gui_settingsdialog.c:292
+msgid "Columns to show on the screen"
+msgstr ""
+
+#: src/gui_settingsdialog.c:298
+msgid "QRG"
+msgstr ""
+
+#: src/gui_settingsdialog.c:300
+msgid "DX"
+msgstr ""
+
+#: src/gui_settingsdialog.c:306
+msgid "Info"
+msgstr ""
+
+#: src/gui_settingsdialog.c:338
+msgid "Save DX spots"
+msgstr "Guardar spots DX"
+
+#: src/gui_settingsdialog.c:340
+msgid "Save WCY/WWV"
+msgstr "Guardar WCY/WWV"
+
+#: src/gui_settingsdialog.c:342
+msgid "Save \"To all\""
+msgstr "Guardar \"To all\""
+
+#: src/gui_settingsdialog.c:344
+msgid "Save WX"
+msgstr "Guardar WX"
+
+#: src/gui_settingsdialog.c:346
+msgid "Saving"
+msgstr "Guardando"
 
 #: src/gui_manualdialog.c:39
 msgid "xdx - manual"
 msgstr "xdx - manual"
 
-#: src/main.c:80
+#: src/gui_manualdialog.c:52
+msgid "MANUAL"
+msgstr "MANUAL.es"
+
+#: src/main.c:107
 #, c-format
 msgid "Welcome to %s"
 msgstr "Bienvenido a %s"
