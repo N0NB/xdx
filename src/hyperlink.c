@@ -58,7 +58,7 @@ linkcontains2dots (gchar *link)
   for (;;)
   {
     if (split[i] == NULL) break;
-    if (strlen (split[i]) <= 2) toshort = TRUE;
+    if (strlen (split[i]) < 2) toshort = TRUE;
     i++;
   }
   if (toshort) return FALSE;
