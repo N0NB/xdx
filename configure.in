@@ -10,7 +10,7 @@ AC_LANG_C
 
 dnl Add the languages wich your application supports here.
 ALL_LINGUAS="nl fr"
-AM_GNU_GETTEXT
+AM_GNU_GETTEXT([external])
 
 # Checks for header files.
 AC_HEADER_SYS_WAIT
