@@ -169,7 +169,6 @@ clresolve (servertype *cluster)
     err = NULL;
   }
   cluster->source_id = g_io_add_watch (cluster->rxchannel, G_IO_IN, rx, cluster);
-  g_object_set_data(G_OBJECT (gui->window), "cluster", cluster);
   return TRUE;
 }
 
@@ -184,13 +183,15 @@ cldisconnect (gboolean updatemessagebar)
   GString *msg = g_string_new ("");
   servertype *cluster;
 
-  cluster = (servertype *)g_object_get_data(G_OBJECT(gui->window), "cluster");
+  cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
   g_io_channel_unref(cluster->rxchannel);
   cluster->rxchannel = NULL;
   g_source_remove(cluster->source_id);
   g_free(cluster->host);
   g_free(cluster->port);
-  g_free(cluster);
+
+  close(cluster->sockethandle);
+  cluster->sockethandle = -1;
 
   if (updatemessagebar)
   {
@@ -224,8 +225,8 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
 
   switch (res)
     {
-    case G_IO_STATUS_ERROR:
-      g_string_printf (msg, _("Error on read: %s"), err->message);
+    case G_IO_STATUS_ERROR: /*connection refused */
+      g_string_printf (msg, ("%s"), err->message);
       updatestatusbar (msg);
       g_string_free (msg, TRUE);
       g_error_free (err);
@@ -236,7 +237,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
     case G_IO_STATUS_NORMAL:
       ret = TRUE;
       break;
-    case G_IO_STATUS_EOF:
+    case G_IO_STATUS_EOF: /* remote end has closed connection */
       cldisconnect (TRUE);
       return FALSE;
       break;
@@ -246,7 +247,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
 
   if ((cond & G_IO_IN) && G_IO_STATUS_NORMAL)
     {
-      if (numbytes == 0)	/* remote end has closed connection */
+      if (numbytes == 0) /* remote end has closed connection */
 	{
 	  cldisconnect (TRUE);
 	  ret = FALSE;
@@ -268,11 +269,11 @@ tx (GString * txmsg)
   GString *errmsg = g_string_new ("");
   servertype *cluster;
 	
-  cluster = (servertype *)g_object_get_data(G_OBJECT(gui->window), "cluster");
+  cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
 
-  if (cluster->rxchannel)
+  if ((cluster->rxchannel) && (cluster->sockethandle != -1))
     {
-      tx_save(txmsg);
+      if (txmsg->len > 0) tx_save(txmsg);
       txmsg = g_string_append (txmsg, "\n");
       numbytes = write (cluster->sockethandle, txmsg->str, txmsg->len);
       if (numbytes == -1)

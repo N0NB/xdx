@@ -1,3 +1,16 @@
+xdx (0.3) unstable; urgency=low
+
+  * Allow the main window to shrink.
+  * Add command line history.
+  * Save size and position of the main window.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Wed, 30 Oct 2002 23:56:22 +0100
+
+xdx (0.2.1) unstable; urgency=low
+
+  * A fix for gcc v3 compilers. Thanks to Han Sytsma, PE1FAM and Bartek Wiacek,
+    SP5QWB for reporting.
+
 xdx (0.2) unstable; urgency=low
 
   * Fixed a scrolling bug for the text widget.

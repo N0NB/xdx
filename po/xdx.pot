@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-10-05 16:23+0200\n"
+"POT-Creation-Date: 2002-11-14 20:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,90 +15,90 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gui.c:40
+#: src/gui.c:41
 msgid "/_Program"
 msgstr ""
 
-#: src/gui.c:41
+#: src/gui.c:42
 msgid "/_Program/Quit"
 msgstr ""
 
-#: src/gui.c:43
+#: src/gui.c:44
 msgid "/_Host"
 msgstr ""
 
-#: src/gui.c:44
+#: src/gui.c:45
 msgid "/_Host/Open"
 msgstr ""
 
-#: src/gui.c:46
+#: src/gui.c:47
 msgid "/_Host/Close"
 msgstr ""
 
-#: src/gui.c:48
+#: src/gui.c:49
 msgid "/H_elp"
 msgstr ""
 
-#: src/gui.c:49
+#: src/gui.c:50
 msgid "/H_elp/About"
 msgstr ""
 
-#: src/gui.c:108
+#: src/gui.c:110
 #, c-format
 msgid "Error loading icon: %s"
 msgstr ""
 
-#: src/gui.c:152
+#: src/gui.c:153
 msgid "Spotter"
 msgstr ""
 
-#: src/gui.c:170
+#: src/gui.c:168
 msgid "Remarks"
 msgstr ""
 
-#: src/gui.c:176
+#: src/gui.c:173
 msgid "Time"
 msgstr ""
 
-#: src/gui.c:320
+#: src/gui.c:371
 msgid "xdx - open connection"
 msgstr ""
 
-#: src/gui.c:340
+#: src/gui.c:391
 msgid "_Hostname"
 msgstr ""
 
-#: src/gui.c:348
+#: src/gui.c:399
 msgid "_Port"
 msgstr ""
 
-#: src/gui.c:424
+#: src/gui.c:475
 msgid "xdx - close connection"
 msgstr ""
 
-#: src/gui.c:441
+#: src/gui.c:492
 #, c-format
 msgid "Close connection to %s ?"
 msgstr ""
 
-#: src/gui.c:475
+#: src/gui.c:526
 msgid "No running mozilla window found"
 msgstr ""
 
-#: src/gui.c:490
+#: src/gui.c:541
 msgid "xdx - about"
 msgstr ""
 
-#: src/gui.c:502
+#: src/gui.c:553
 #, c-format
 msgid "%s version %s"
 msgstr ""
 
-#: src/gui.c:528
+#: src/gui.c:579
 msgid "Published under the GNU General Public License"
 msgstr ""
 
-#: src/main.c:57
+#: src/main.c:63
 #, c-format
 msgid "Welcome to %s"
 msgstr ""
@@ -137,12 +137,12 @@ msgstr ""
 msgid "Error on read: %s"
 msgstr ""
 
-#: src/net.c:279
+#: src/net.c:280
 #, c-format
 msgid "Write failed: %s"
 msgstr ""
 
-#: src/net.c:289
+#: src/net.c:292
 msgid "Nothing to send, you are not connected"
 msgstr ""
 
@@ -156,7 +156,7 @@ msgstr ""
 msgid "~/.%s is not a directory."
 msgstr ""
 
-#: src/preferences.c:97
+#: src/preferences.c:105
 #, c-format
 msgid "# settings file for %s, do not edit\n"
 msgstr ""

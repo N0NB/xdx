@@ -101,6 +101,7 @@ create_mainwindow (void)
   GdkPixbuf *icon = NULL;
   GError *err = NULL;
   GString *msg = g_string_new ("");
+  servertype *cluster;
 
   gui = new_gui();
   gui->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -228,6 +229,9 @@ create_mainwindow (void)
   g_object_set_data (G_OBJECT (gui->window), "buffer", buffer);
   g_object_set_data (G_OBJECT (gui->window), "vpaned1", vpaned1);
 
+  cluster = new_cluster();
+  g_object_set_data(G_OBJECT (gui->window), "cluster", cluster);
+
   gtk_widget_grab_focus (mainentry);
 
   return;
@@ -263,7 +267,12 @@ on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 			    gpointer user_data)
 {
   GtkWidget *vpaned1;
-	
+  servertype *cluster;
+
+  cluster = g_object_get_data(G_OBJECT(widget), "cluster");
+  if (cluster->sockethandle != -1)
+    cldisconnect(FALSE);
+
   vpaned1 = g_object_get_data (G_OBJECT(gui->window), "vpaned1");
   preferences.panedpos = gtk_paned_get_position(GTK_PANED(vpaned1));
   gtk_window_get_position(GTK_WINDOW(gui->window), &preferences.x, &preferences.y);
@@ -281,10 +290,14 @@ on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
 {
   gint i, n;
   GList *link;
+  servertype *cluster;
 
   gui->window = NULL;
   gui->item_factory = NULL;
-	
+
+  cluster = g_object_get_data(G_OBJECT(widget), "cluster");
+  g_free(cluster);
+
   link = gui->hostnamehistory;
   while (link)
 	{
@@ -409,7 +422,7 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   if (response == GTK_RESPONSE_OK)
     {
-      cluster = new_cluster();
+      cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
       cluster->host = gtk_editable_get_chars (GTK_EDITABLE
 				      (GTK_COMBO (hostnamecombo)->entry), 0, -1);
       cluster->port = gtk_editable_get_chars (GTK_EDITABLE
