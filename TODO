@@ -3,7 +3,6 @@ Version 0.3:
 * When the cluster is really busy, dx messages might be appended
   to WCY, WWV or To All messages. We have to split them.
 * Clickable URL's.
-* Clean up the icon for the debian menu (lintian).
 * What prevents gtk_paned_get_position/gtk_paned_set_position from working
   correctly?
 
