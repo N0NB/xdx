@@ -63,7 +63,7 @@ main (int argc, char *argv[])
   g_strfreev(wsplit);
 
   vpaned1 = g_object_get_data (G_OBJECT (gui->window), "vpaned1");
-  gtk_paned_set_position (GTK_PANED(vpaned1), preferences.panedpos / 4);
+  gtk_paned_set_position (GTK_PANED(vpaned1), 90);
   gdk_window_move_resize(gui->window->window, preferences.x, preferences.y,
 	preferences.width, preferences.height);
 

@@ -26,7 +26,6 @@ typedef struct
   gint y;
   gint width;
   gint height;
-  gint panedpos;
   gchar *columnwidths;
 } preferencestype;
 
