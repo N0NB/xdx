@@ -65,7 +65,7 @@ main (int argc, char *argv[])
   gdk_window_move_resize(gui->window->window, preferences.x, preferences.y,
 	preferences.width, preferences.height);
   vpaned1 = g_object_get_data (G_OBJECT (gui->window), "vpaned1");
-  gtk_paned_set_position (GTK_PANED(vpaned1), preferences.panedpos/4);
+  gtk_paned_set_position (GTK_PANED(vpaned1), preferences.panedpos / 4);
 
   menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE); /* do not translate */
   g_string_printf (greeting, _("Welcome to %s"), PACKAGE);

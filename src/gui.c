@@ -287,11 +287,11 @@ on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
   if (cluster->sockethandle != -1)
     cldisconnect(FALSE);
 
-  vpaned1 = g_object_get_data (G_OBJECT(gui->window), "vpaned1");
-  preferences.panedpos = gtk_paned_get_position(GTK_PANED(vpaned1));
-
   gtk_window_get_position(GTK_WINDOW(gui->window), &preferences.x, &preferences.y);
   gtk_window_get_size(GTK_WINDOW(gui->window), &preferences.width, &preferences.height);
+
+  vpaned1 = g_object_get_data (G_OBJECT(gui->window), "vpaned1");
+  preferences.panedpos = GTK_PANED(vpaned1)->child1_size;
 
   treeview = g_object_get_data (G_OBJECT(gui->window), "treeview");
   columns = gtk_tree_view_get_columns(GTK_TREE_VIEW(treeview));
