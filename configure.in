@@ -11,6 +11,12 @@ AC_LANG_C
 dnl Add the languages wich your application supports here.
 ALL_LINGUAS="nl fr"
 AM_GNU_GETTEXT([external])
+# autoheader templates for AM_GNU_GETTEXT checks.
+AH_TEMPLATE([ENABLE_NLS], [])
+AH_TEMPLATE([HAVE_CATGETS], [])
+AH_TEMPLATE([HAVE_GETTEXT], [])
+AH_TEMPLATE([HAVE_LC_MESSAGES], [])
+AH_TEMPLATE([HAVE_STPCPY], [])
 
 # Checks for header files.
 AC_HEADER_SYS_WAIT
@@ -25,24 +31,15 @@ AC_TYPE_SIGNAL
 AC_FUNC_STAT
 AC_CHECK_FUNCS([alarm bzero gethostbyname inet_ntoa memset mkdir socket strerror])
 
-dnl Looking for configuration scripts.
-AC_CHECK_PROG(PKG_INC,pkg-config,`pkg-config --cflags glib-2.0 gtk+-2.0 gobject-2.0 gmodule-2.0 pango pangoxft gdk-x11-2.0 gdk-pixbuf-2.0 atk gtk+-x11-2.0 pangox`)
-AC_SUBST(PKG_INC)
+if test "${ac_cv_c_compiler_gnu}" = "yes"; then
+  CFLAGS="${CFLAGS} -Wall"
+fi
 
-dnl Looking for libraries.
-LIBS=" "
-PKG_LIB2=`pkg-config --libs glib-2.0 gtk+-2.0 gobject-2.0 gmodule-2.0 pango pangoxft gdk-x11-2.0 gdk-pixbuf-2.0 atk gtk+-x11-2.0 pangox`
-PKG_LIB=""
-for i in $PKG_LIB2 ; do
-	case $i in 
-		-l*) PKG_LIB="$i $PKG_LIB" ;;
-		-L*) LIBS="$i $LIBS" ;;
-	esac
-done
-for i in $PKG_LIB ; do
-	j=${i#'-l'}
-	AC_CHECK_LIB($j,main)
-done
+dnl Looking for configuration scripts.
+pkg_modules="gtk+-2.0 >= 2.0.0"
+PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
+AC_SUBST(PACKAGE_CFLAGS)
+AC_SUBST(PACKAGE_LIBS)
 
 AC_OUTPUT([ \
 	xdx.1 \
@@ -50,5 +47,4 @@ AC_OUTPUT([ \
 	Makefile \
 	src/Makefile \
 	po/Makefile.in \
-	po/Makefile \
 	])

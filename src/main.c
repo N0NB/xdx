@@ -27,6 +27,7 @@
 #include "preferences.h"
 #include "history.h"
 #include "utils.h"
+#include "locale.h"
 
 extern preferencestype preferences;
 
@@ -38,10 +39,10 @@ main (int argc, char *argv[])
   GString *greeting = g_string_new ("");
   gint i;
 
-  lang = gtk_set_locale ();	/* don't free lang */
 
 #ifdef ENABLE_NLS
   bindtextdomain (PACKAGE, PACKAGE_LOCALE_DIR);
+  bind_textdomain_codeset (PACKAGE, "UTF-8");
   textdomain (PACKAGE);
 #endif
 
@@ -51,7 +52,9 @@ main (int argc, char *argv[])
   add_pixmap_directory(PACKAGE_DATA_DIR G_DIR_SEPARATOR_S "pixmaps");
   add_pixmap_directory(PACKAGE_SOURCE_DIR G_DIR_SEPARATOR_S "pixmaps");
 
+  lang = gtk_set_locale ();	/* don't free lang */
   gtk_init (&argc, &argv);
+  setlocale(LC_NUMERIC, "C");
 
   create_mainwindow ();
   dircheck ();

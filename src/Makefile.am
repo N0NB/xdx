@@ -1,6 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
-INCLUDES=-I/usr/include @PKG_INC@ \
+INCLUDES= \
+	@PACKAGE_CFLAGS@ -I.. \
 	-DPACKAGE_DATA_DIR=\"$(datadir)/xdx\" \
 	-DPACKAGE_LOCALE_DIR=\"$(datadir)/locale\" \
 	-DPACKAGE_SOURCE_DIR=\"$(srcdir)\" \
@@ -40,3 +41,5 @@ xdx_SOURCES = \
 	utils.c \
   hyperlink.c \
   save.c
+
+xdx_LDADD = @PACKAGE_LIBS@
