@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.53)
-AC_INIT(xdx, 0.2cvs, pa4tu@amsat.org)
+AC_INIT(xdx, 0.3cvs, pa4tu@amsat.org)
 AM_INIT_AUTOMAKE
 
 AC_PROG_INSTALL
