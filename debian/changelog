@@ -3,8 +3,9 @@ xdx (0.3) unstable; urgency=low
   * Allow the main window to shrink.
   * Add command line history.
   * Save size and position of the main window.
+  * Save widths of the columns in the top pane.
 
- -- Joop Stakenborg <pa3aba@debian.org>  Wed, 27 Nov 2002 13:56:22 +0100
+ -- Joop Stakenborg <pa3aba@debian.org>  Fri, 29 Nov 2002 21:09:29 +0100
 
 xdx (0.2.1) unstable; urgency=low
 
