@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 0.99\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-05 17:03+0200\n"
-"PO-Revision-Date: 2002-08-28 21:52+0200\n"
+"POT-Creation-Date: 2003-10-05 21:37+0200\n"
+"PO-Revision-Date: 2003-08-10 08:00+0200\n"
 "Last-Translator: Jean-Luc coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: fr <jean-luc.coulon@wanadoo;fr>\n"
 "MIME-Version: 1.0\n"
@@ -36,11 +36,11 @@ msgstr "/_Hôte/Fermer"
 
 #: src/gui.c:52
 msgid "/_Settings"
-msgstr ""
+msgstr "/_Paramètres"
 
 #: src/gui.c:53
 msgid "/_Settings/Preferences"
-msgstr ""
+msgstr "/_Paramètres/Préférences"
 
 #: src/gui.c:55
 msgid "/H_elp"
@@ -48,7 +48,7 @@ msgstr "/_Aide"
 
 #: src/gui.c:56
 msgid "/H_elp/Manual"
-msgstr "/_Aide/Manual"
+msgstr "/_Aide/Manuel"
 
 #: src/gui.c:58
 msgid "/H_elp/About"
@@ -57,7 +57,7 @@ msgstr "/_Aide/A propos"
 #: src/gui.c:121
 #, c-format
 msgid "Error loading icon: %s"
-msgstr ""
+msgstr "Erreur lors du chargement de l'icône : %s"
 
 #: src/gui.c:156
 msgid "Spotter"
@@ -94,7 +94,7 @@ msgstr "Fermer la connexion vers %s ?"
 
 #: src/gui_aboutdialog.c:61
 msgid "xdx - about"
-msgstr "xdx - a propos"
+msgstr "xdx - à propos"
 
 #: src/gui_aboutdialog.c:76
 #, c-format
@@ -107,63 +107,63 @@ msgstr "Diffusé selon la Licence Publique générale GNU"
 
 #: src/gui_settingsdialog.c:129
 msgid "xdx - preferences"
-msgstr ""
+msgstr "xdx - préférences"
 
 #: src/gui_settingsdialog.c:145
 msgid "Enable autologin"
-msgstr ""
+msgstr "Autoriser le login automatique"
 
 #: src/gui_settingsdialog.c:151
 msgid "Callsign"
-msgstr ""
+msgstr "Indicatif"
 
 #: src/gui_settingsdialog.c:158
 msgid "Commands"
-msgstr ""
+msgstr "Commandes"
 
 #: src/gui_settingsdialog.c:165
 msgid "Comma separated list of commands to send at login"
-msgstr ""
+msgstr "Liste de commandes séparées par une virgule à lancer lors du login"
 
 #: src/gui_settingsdialog.c:167
 msgid "Callsign to be used for login"
-msgstr ""
+msgstr "Indicatif à utiliser lors du login"
 
 #: src/gui_settingsdialog.c:169
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: src/gui_settingsdialog.c:199
 msgid "Save DX spots"
-msgstr ""
+msgstr "Sauvegarder les spots DX"
 
 #: src/gui_settingsdialog.c:201
 msgid "Save WCY/WWV"
-msgstr ""
+msgstr "Sauvegarder WCY/WWV"
 
 #: src/gui_settingsdialog.c:203
 msgid "Save \"To all\""
-msgstr ""
+msgstr "Sauvegarder \"To all\""
 
 #: src/gui_settingsdialog.c:205
 msgid "Save WX"
-msgstr ""
+msgstr "Sauvegarder WX"
 
 #: src/gui_settingsdialog.c:207
 msgid "Saving"
-msgstr ""
+msgstr "Enregistrement"
 
 #: src/gui_settingsdialog.c:232
 msgid "Enable hamlib"
-msgstr ""
+msgstr "Autoriser la hamlib"
 
 #: src/gui_settingsdialog.c:238
 msgid "Command for rigctl"
-msgstr ""
+msgstr "Commande pour rigctl"
 
 #: src/gui_settingsdialog.c:243
 msgid "Hamlib"
-msgstr ""
+msgstr "Hamlib"
 
 #: src/gui_settingsdialog.c:246
 #, c-format
@@ -171,33 +171,36 @@ msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
 "using rigctl (%d = the frequency retrieved from the DX spot)"
 msgstr ""
+"Lors du double clic sur un spot dx ceci règlera la fréquence de "
+"votre transceiver en utilisant rigctl (%d = la fréquence extraite du spot DX)"
 
 #: src/gui_settingsdialog.c:273
 msgid "Web browser"
-msgstr ""
+msgstr "Navigateur internet"
 
 #: src/gui_settingsdialog.c:280
 msgid "Mail program"
-msgstr ""
+msgstr "Programme de gestion du courrier"
 
 #: src/gui_settingsdialog.c:285
 msgid "Programs"
-msgstr "/Programmes"
+msgstr "Programmes"
 
 #: src/gui_settingsdialog.c:288
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
-msgstr ""
+msgstr "Navigateur à lancer après avoir cliqué une url (%s = url)"
 
 #: src/gui_settingsdialog.c:290
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
+"Programme de courrier à lancer après avoir cliqué une url de courrier "
+"(%s = url de courrier)"
 
 #: src/gui_manualdialog.c:39
-#, fuzzy
 msgid "xdx - manual"
-msgstr "xdx - a propos"
+msgstr "xdx - à propos"
 
 #: src/main.c:75
 #, c-format
@@ -217,7 +220,7 @@ msgstr "La résolution vers %s n'a pas abouti"
 #: src/net.c:120
 #, c-format
 msgid "Connecting to: %s"
-msgstr "Connexion à : %s en cours"
+msgstr "Connexion à: %s en cours"
 
 #: src/net.c:155
 #, c-format
@@ -227,7 +230,7 @@ msgstr "Connecté à %s"
 #: src/net.c:166
 #, c-format
 msgid "Error on setting channel encoding: %s"
-msgstr ""
+msgstr "Erreur lors de l'établissement de l'encodage du canal : %s"
 
 #: src/net.c:304
 #, c-format
@@ -236,7 +239,7 @@ msgstr "Erreur d'écriture : %s"
 
 #: src/net.c:316
 msgid "Nothing to send, you are not connected"
-msgstr ""
+msgstr "Rien à envoyer, vous n'êtes pas connecté"
 
 #: src/preferences.c:48
 #, c-format
@@ -249,11 +252,11 @@ msgid "~/.%s is not a directory."
 msgstr "~/.%s n'est pas un répertoire."
 
 #: src/utils.c:116
-#, fuzzy, c-format
+#, c-format
 msgid "Fork has failed: %s"
-msgstr "Erreur d'écriture : %s"
+msgstr "Erreur de fork : %s"
 
 #: src/utils.c:131 src/utils.c:146
 #, c-format
 msgid "Starting: %s"
-msgstr ""
+msgstr "Démarrage en cours : %s"
