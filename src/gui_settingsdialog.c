@@ -194,6 +194,14 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewwvcheckbutton), TRUE);
   else
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewwvcheckbutton), FALSE);
+  if (preferences.savetoall == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavetoallcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavetoallcheckbutton), FALSE);
+  if (preferences.savewx == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewxcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewxcheckbutton), FALSE);
 
   phamlibframe = gtk_frame_new (NULL);
   gtk_widget_show (phamlibframe);
@@ -294,6 +302,19 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.savewwv = 1; 
     else 
       preferences.savewwv = 0;
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(psavetoallcheckbutton));
+    if (state) 
+      preferences.savetoall = 1; 
+    else 
+      preferences.savetoall = 0;
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(psavewxcheckbutton));
+    if (state) 
+      preferences.savewx = 1; 
+    else 
+      preferences.savewx = 0;
+
     g_free (str);
   }
 

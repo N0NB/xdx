@@ -32,6 +32,8 @@ typedef struct
   gchar *commands;
   gint savedx;
   gint savewwv;
+  gint savetoall;
+  gint savewx;
 } preferencestype;
 
 void dircheck (void);

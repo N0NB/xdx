@@ -72,6 +72,8 @@ loadpreferences (void)
   preferences.commands = g_strdup("set/page 0");
   preferences.savedx = 0;
   preferences.savewwv = 0;
+  preferences.savetoall = 0;
+  preferences.savewx = 0;
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -104,6 +106,10 @@ loadpreferences (void)
           preferences.savedx = atoi(value);
         else if (!g_strcasecmp(label, "savewwv")) 
           preferences.savewwv = atoi(value);
+        else if (!g_strcasecmp(label, "savetoall")) 
+          preferences.savetoall = atoi(value);
+        else if (!g_strcasecmp(label, "savewx")) 
+          preferences.savewx = atoi(value);
       }
     fclose (fp);
   }
@@ -147,6 +153,10 @@ savepreferences (void)
     fprintf(fp, "savedx %s\n", str);
     str = g_strdup_printf("%d", preferences.savewwv);
     fprintf(fp, "savewwv %s\n", str);
+    str = g_strdup_printf("%d", preferences.savetoall);
+    fprintf(fp, "savetoall %s\n", str);
+    str = g_strdup_printf("%d", preferences.savewx);
+    fprintf(fp, "savewx %s\n", str);
     g_free(str);
     fclose (fp);
   }

@@ -481,12 +481,16 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           if (preferences.savewwv) savewwv (dx->toall);
         }
         else if (!g_ascii_strncasecmp (dx->toall, "WX de ", 5))
+        {
           gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, 
             len, "wx", NULL); /* should be utf-8 clean */
+          if (preferences.savewx) savewx (dx->toall);
+        }
         else
         {
           if (dx->toall && dx->toall[0] && (utf8 = try_utf8(dx->toall)))
           {
+            if (preferences.savetoall) savetoall (dx->toall);
             if (contains_smileys (utf8))
               insert_with_smileys (GTK_TEXT_VIEW(maintext), utf8, NULL);
             else

@@ -91,3 +91,41 @@ void savewwv (gchar *wwv)
   }
   g_free (wwvfile);
 }
+
+void savetoall (gchar *toall)
+{
+  gchar *toallfile, *d, *t;
+  FILE *fp;
+
+  toallfile = g_strdup_printf ("%s/toall", gui->preferencesdir);
+  fp = fopen (toallfile, "a");
+  if (fp)
+  {
+    d = getdate ();
+    t = gettime ();
+    fprintf (fp, "%s %s GMT - %s", d, t, toall);
+    g_free (t);
+    g_free (d);
+    fclose (fp);
+  }
+  g_free (toallfile);
+}
+
+void savewx (gchar *wx)
+{
+  gchar *wxfile, *d, *t;
+  FILE *fp;
+
+  wxfile = g_strdup_printf ("%s/wx", gui->preferencesdir);
+  fp = fopen (wxfile, "a");
+  if (fp)
+  {
+    d = getdate ();
+    t = gettime ();
+    fprintf (fp, "%s %s GMT - %s", d, t, wx);
+    g_free (t);
+    g_free (d);
+    fclose (fp);
+  }
+  g_free (wxfile);
+}

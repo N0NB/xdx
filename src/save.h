@@ -23,3 +23,5 @@
 
 void savedx (gchar *dx);
 void savewwv (gchar *wwv);
+void savetoall (gchar *toall);
+void savewx (gchar *wx);
