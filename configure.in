@@ -48,7 +48,6 @@ AC_CONFIG_FILES([ \
 	xdx.1 \
 	xdx.spec
 	Makefile \
-	intl/Makefile \
 	m4/Makefile \
 	src/Makefile \
 	po/Makefile.in \
