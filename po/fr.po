@@ -5,14 +5,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
-"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-05-21 14:28+0200\n"
-"PO-Revision-Date: 2003-10-12 18:00+0200\n"
-"Last-Translator: Jean-Luc coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
+"PO-Revision-Date: 2004-05-21 16:04+0100\n"
+"Last-Translator: Jean-Luc  Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: fr <jean-luc.coulon@wanadoo;fr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: src/gui_aboutdialog.c:61
 msgid "xdx - about"
@@ -33,7 +32,7 @@ msgstr "/_Programme"
 
 #: src/gui.c:47
 msgid "/_Program/Quit"
-msgstr "/_Programme/Quitte"
+msgstr "/_Programme/Quitter"
 
 #: src/gui.c:49
 msgid "/_Host"
@@ -70,23 +69,27 @@ msgstr "/_Aide/A propos"
 #: src/gui.c:123
 #, c-format
 msgid "Error loading icon: %s"
-msgstr "Erreur lors du chargement de l'icône: %s"
+msgstr "Erreur lors du chargement de l'icône : %s"
 
-#: src/gui.c:158 src/gui_settingsdialog.c:296
+#: src/gui.c:158
+#: src/gui_settingsdialog.c:296
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:182 src/gui_settingsdialog.c:302
+#: src/gui.c:182
+#: src/gui_settingsdialog.c:302
 msgid "Remarks"
 msgstr "Commentaires"
 
-#: src/gui.c:190 src/gui_settingsdialog.c:304
+#: src/gui.c:190
+#: src/gui_settingsdialog.c:304
 msgid "Time"
 msgstr "Heure"
 
-#: src/gui.c:198 src/gui_settingsdialog.c:306
+#: src/gui.c:198
+#: src/gui_settingsdialog.c:306
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: src/gui_closedialog.c:44
 msgid "xdx - close connection"
@@ -95,11 +98,11 @@ msgstr "xdx - ferme la connexion"
 #: src/gui_closedialog.c:61
 #, c-format
 msgid "Close connection to %s ?"
-msgstr "Fermer la connexion vers %s ?"
+msgstr "Fermer la connexion vers %s ?"
 
 #: src/gui_closedialog.c:72
 msgid "Connection closed"
-msgstr ""
+msgstr "Connexion fermée"
 
 #: src/gui_manualdialog.c:39
 msgid "xdx - manual"
@@ -107,11 +110,11 @@ msgstr "xdx - à propos"
 
 #: src/gui_manualdialog.c:52
 msgid "MANUAL"
-msgstr "MANUAL"
+msgstr "MANUEL"
 
 #: src/gui_opendialog.c:48
 msgid "xdx - open connection"
-msgstr "xdx - ouvre la connexion"
+msgstr "xdx - connexion établie"
 
 #: src/gui_opendialog.c:68
 msgid "_Hostname"
@@ -127,11 +130,11 @@ msgstr "xdx - préférences"
 
 #: src/gui_settingsdialog.c:153
 msgid "General"
-msgstr ""
+msgstr "Général"
 
 #: src/gui_settingsdialog.c:156
 msgid "Output"
-msgstr ""
+msgstr "Sortie"
 
 #: src/gui_settingsdialog.c:166
 msgid "Enable autologin"
@@ -175,7 +178,7 @@ msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
 "using rigctl (%d = the frequency retrieved from the DX spot)"
 msgstr ""
-"Lors du double clic sur un spot dx ceci règlera la fréquence de votre "
+"Lors du double clic sur un spot dx ceci réglera la fréquence de votre "
 "transceiver en utilisant rigctl (%d = la fréquence extraite du spot DX)"
 
 #: src/gui_settingsdialog.c:262
@@ -184,7 +187,7 @@ msgstr "Navigateur internet"
 
 #: src/gui_settingsdialog.c:269
 msgid "Mail program"
-msgstr "Programme de gestion du courrier"
+msgstr "Programme de gestion du courriel"
 
 #: src/gui_settingsdialog.c:274
 msgid "Programs"
@@ -193,22 +196,22 @@ msgstr "Programmes"
 #: src/gui_settingsdialog.c:277
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
-msgstr "Navigateur à lancer après avoir cliqué une url (%s = url)"
+msgstr "Navigateur internet à lancer après avoir cliqué une url (%s = url)"
 
 #: src/gui_settingsdialog.c:279
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
-"Programme de courrier à lancer après avoir cliqué une url de courrier (%s = "
-"url de courrier)"
+"Programme de courriel à lancer après avoir cliqué une url de courrier (%s = ""
+url de courriel)"
 
 #: src/gui_settingsdialog.c:290
 msgid "Columns"
-msgstr ""
+msgstr "Colonnes"
 
 #: src/gui_settingsdialog.c:292
 msgid "Columns to show on the screen"
-msgstr ""
+msgstr "Colonnes à afficher sur l'écran"
 
 #: src/gui_settingsdialog.c:338
 msgid "Save DX spots"
@@ -220,7 +223,7 @@ msgstr "Sauvegarder WCY/WWV"
 
 #: src/gui_settingsdialog.c:342
 msgid "Save \"To all\""
-msgstr "Sauvegarder \"To all\""
+msgstr "Sauvegarder « To all »"
 
 #: src/gui_settingsdialog.c:344
 msgid "Save WX"
@@ -243,12 +246,12 @@ msgstr "Résolution de %s en cours..."
 #: src/net.c:91
 #, c-format
 msgid "Resolve failed: %s"
-msgstr "Erreur de la résolution: %s"
+msgstr "Erreur dans la résolution : %s"
 
 #: src/net.c:98
 #, c-format
 msgid "Connecting to: %s"
-msgstr "Connexion à: %s en cours"
+msgstr "Connexion à %s en cours"
 
 #: src/net.c:133
 #, c-format
@@ -258,16 +261,17 @@ msgstr "Connecté à %s"
 #: src/net.c:144
 #, c-format
 msgid "Error on setting channel encoding: %s"
-msgstr "Erreur lors de l'établissement de l'encodage du canal: %s"
+msgstr "Erreur lors de l'établissement de l'encodage du canal : %s"
 
-#: src/net.c:218 src/net.c:231
+#: src/net.c:218
+#: src/net.c:231
 msgid "Connection closed by remote host"
-msgstr ""
+msgstr "Connexion fermée par l'hôte distant"
 
 #: src/net.c:282
 #, c-format
 msgid "Write failed: %s"
-msgstr "Erreur d'écriture: %s"
+msgstr "Erreur d'écriture : %s"
 
 #: src/net.c:294
 msgid "Nothing to send, you are not connected"
@@ -286,9 +290,11 @@ msgstr "~/.%s n'est pas un répertoire."
 #: src/utils.c:119
 #, c-format
 msgid "Fork has failed: %s"
-msgstr "Erreur de fork: %s"
+msgstr "Erreur de fork : %s"
 
-#: src/utils.c:134 src/utils.c:149
+#: src/utils.c:134
+#: src/utils.c:149
 #, c-format
 msgid "Starting: %s"
-msgstr "Démarrage en cours: %s"
+msgstr "Démarrage en cours : %s"
+
