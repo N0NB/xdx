@@ -6,6 +6,8 @@ Version 0.3:
   should get at timeout.
 * Clickable URL's.
 * Clean up the icon for the debian menu (lintian).
+* What prevents gtk_paned_get_position/gtk_paned_set_position from working
+  correctly?
 
 Version 0.4:
 
