@@ -34,8 +34,9 @@
 static gboolean 
 linkcontains2dots (gchar *link)
 {
-  gint dots = 0;
-  gchar *linktocheck, *end, *j;
+  gint dots = 0, i = 0;
+  gchar *linktocheck, *end, *j, **split;
+  gboolean toshort = FALSE;
 
   linktocheck = g_strdup (link);
   end = linktocheck + strlen (linktocheck);
@@ -50,10 +51,18 @@ linkcontains2dots (gchar *link)
         break;
       }
     }
-
   g_free (linktocheck);
-  if (dots >= 1) return TRUE;
-  return FALSE;
+  if (dots < 1) return FALSE;
+
+  split = g_strsplit (link, ".", -1);
+  for (;;)
+  {
+    if (split[i] == NULL) break;
+    if (strlen (split[i]) <= 2) toshort = TRUE;
+    i++;
+  }
+  if (toshort) return FALSE;
+  return TRUE;
 }
 
 /*
