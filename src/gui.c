@@ -51,7 +51,7 @@ static GtkItemFactoryEntry menu_items[] = {
   {N_("/_Settings"), NULL, NULL, 0, "<Branch>"},
   {N_("/_Settings/Preferences"), "<control>P", on_settings_activate, 0, 
     "<StockItem>", GTK_STOCK_PREFERENCES},
-  {N_("/H_elp"), NULL, NULL, 0, "<LastBranch>"},
+  {N_("/H_elp"), NULL, NULL, 0, "<Branch>"},
   {N_("/H_elp/About"), "<control>H", on_about_activate, 0, "<StockItem>",
    GTK_STOCK_HELP},
 };
