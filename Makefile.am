@@ -7,7 +7,8 @@ EXTRA_DIST = config.rpath mkinstalldirs  \
 	xdx.1 \
 	xdx.1.in \
 	MANUAL \
-	MANUAL.es
+	MANUAL.es \
+	MANUAL.pl
 
 SUBDIRS = \
 	m4 \
