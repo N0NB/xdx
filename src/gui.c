@@ -33,6 +33,7 @@
 #include "gui_opendialog.h"
 #include "gui_closedialog.h"
 #include "gui_aboutdialog.h"
+#include "gui_settingsdialog.h"
 
 /**********************************MAIN WINDOW********************************/
 
@@ -45,6 +46,9 @@ static GtkItemFactoryEntry menu_items[] = {
    GTK_STOCK_OPEN},
   {N_("/_Host/Close"), "<control>C", on_close_activate, 0, "<StockItem>",
    GTK_STOCK_CLOSE},
+  {N_("/_Preferences"), NULL, NULL, 0, "<Branch>"},
+  {N_("/_Preferences/Settings"), "<control>S", on_settings_activate, 0, 
+    "<StockItem>", GTK_STOCK_PREFERENCES},
   {N_("/H_elp"), NULL, NULL, 0, "<LastBranch>"},
   {N_("/H_elp/About"), "<control>H", on_about_activate, 0, "<StockItem>",
    GTK_STOCK_HELP},

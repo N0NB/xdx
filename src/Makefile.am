@@ -16,6 +16,7 @@ xdx_SOURCES = \
 	gui_opendialog.h \
 	gui_closedialog.h \
 	gui_aboutdialog.h \
+	gui_settingsdialog.h \
 	history.h \
 	net.h \
 	preferences.h \
@@ -27,6 +28,7 @@ xdx_SOURCES = \
 	gui_opendialog.c \
 	gui_closedialog.c \
 	gui_aboutdialog.c \
+	gui_settingsdialog.c \
 	history.c \
 	main.c \
 	net.c \
