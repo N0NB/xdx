@@ -34,7 +34,9 @@ linkcontains2dots (gchar *link)
 {
   gint dots = 0;
   gchar *linktocheck, *end, *j;
- 
+
+  if (g_strrstr (link, ".."))
+    return FALSE;
   linktocheck = g_strdup (link);
   end = linktocheck + strlen (linktocheck);
   for (j = linktocheck; j < end; ++j)
