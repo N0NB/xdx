@@ -1,3 +1,11 @@
+xdx (0.4) unstable; urgency=low
+
+  * A URL in the chat window will now appear blue and underlined when your
+    mouse is over it. Clicking on it will open the link in mozilla.
+  * Fix saving of position, size of the main window and columnwidths.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue, 26 Aug 2003 10:36:16 +0200
+
 xdx (0.3) unstable; urgency=low
 
   * Allow the main window to shrink.
