@@ -1,7 +1,6 @@
 # XDX - DX-cluster client for X/GTK+.
-# Copyright (C) 2002 Joop Stakenborg <pa4tu@amsat.org>
+# Copyright (C) 2002-2003 Joop Stakenborg <pg4i@amsat.org>
 # This file is distributed under the same license as the xdx package.
-# Joop Stakenborg <pg4i@amsat.org>, 2002-2003.
 #
 msgid ""
 msgstr ""
