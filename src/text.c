@@ -96,6 +96,21 @@ create_smiley_list (void)
   s->str = ":-(";
   s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png";
   smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ":-((";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/cry.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ":((";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/cry.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ":))";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/bigsmile.png";
+  smileylist = g_slist_append(smileylist, s);
+  s->str = ":-))";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/bigsmile.png";
+  smileylist = g_slist_append(smileylist, s);
 }
 
 /* 
@@ -334,8 +349,6 @@ static gboolean
 contains_smileys (gchar *str)
 {
   if (g_strrstr (str, ":)"))
-    return TRUE;
-  else if (g_strrstr (str, ":-)"))
     return TRUE;
   else if (g_strrstr (str, ":-)"))
     return TRUE;
