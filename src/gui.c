@@ -44,7 +44,7 @@ extern preferencestype preferences;
 
 static GtkItemFactoryEntry menu_items[] = {
   {N_("/_Program"), NULL, NULL, 0, "<Branch>"},
-  {N_("/_Program/Quit"), "<control>Q", gtk_main_quit, 0, "<StockItem>",
+  {N_("/_Program/Quit"), "<control>Q", on_quit_activate, 0, "<StockItem>",
    GTK_STOCK_QUIT},
   {N_("/_Host"), NULL, NULL, 0, "<Branch>"},
   {N_("/_Host/Open"), "<control>O", on_open_activate, 0, "<StockItem>",
@@ -279,12 +279,7 @@ on_mainentry_activate (GtkEditable * editable, gpointer user_data)
   gtk_widget_grab_focus (GTK_WIDGET (mainentry));
 }
 
-/*
- * called at program exit
- */
-gboolean
-on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
-			    gpointer user_data)
+static void syncprefs (void)
 {
   GtkWidget *treeview;
   GList * columns;
@@ -292,7 +287,7 @@ on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
   servertype *cluster;
   GString *w = g_string_new("");
 
-  cluster = g_object_get_data(G_OBJECT(widget), "cluster");
+  cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
   if (cluster->sockethandle != -1)
     cldisconnect(NULL, FALSE);
 
@@ -311,22 +306,18 @@ on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 
   savehistory ();
   savepreferences ();
-
-  return FALSE;
 }
 
-gboolean
-on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
-			    gpointer user_data)
+static void cleanup (void)
 {
   GList *link;
   servertype *cluster;
 
-  gui->window = NULL;
   gui->item_factory = NULL;
 
-  cluster = g_object_get_data(G_OBJECT(widget), "cluster");
+  cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
   g_free(cluster);
+  gui->window = NULL;
 
   g_free(preferences.columnwidths);
   g_free(preferences.callsign);
@@ -367,9 +358,33 @@ on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
   g_free(gui->url);
   gui->url = NULL;
   g_free(gui);
+}
 
+void
+on_quit_activate (GtkMenuItem * menuitem, gpointer user_data)
+{
+  syncprefs ();
+  cleanup ();
   gtk_main_quit ();
+}
 
+/*
+ * called at program exit
+ */
+gboolean
+on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
+			    gpointer user_data)
+{
+  syncprefs ();
+  return FALSE;
+}
+
+gboolean
+on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
+			    gpointer user_data)
+{
+  cleanup ();
+  gtk_main_quit ();
   return FALSE;
 }
 
