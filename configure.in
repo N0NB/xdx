@@ -10,7 +10,7 @@ AC_LANG_C
 AC_CHECK_PROGS(RPMBUILD, rpmbuild, rpm)
 
 dnl Add the languages wich your application supports here.
-ALL_LINGUAS="nl fr es"
+ALL_LINGUAS="nl fr es pl"
 AM_GNU_GETTEXT([external])
 # autoheader templates for AM_GNU_GETTEXT checks.
 AH_TEMPLATE([ENABLE_NLS], [])
