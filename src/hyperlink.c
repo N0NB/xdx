@@ -95,6 +95,31 @@ set_cursor (GtkTextView *text_view, gint x, gint y)
 }
 
 /*
+ * check if this tag is a url tag
+ */
+static GtkTextTag *
+get_link_tag(GtkTextIter * iter)
+{
+  GtkTextTag *link_tag = NULL;
+  GSList *list;
+  GSList *tag_list = gtk_text_iter_get_tags(iter);
+ 
+  for (list = tag_list; list; list = g_slist_next(list)) 
+    {
+      GtkTextTag *tag = list->data;
+      gchar *name;
+      g_object_get (G_OBJECT(tag), "name", &name, NULL);
+      if (!strncmp(name, "url", 3))
+        link_tag = tag_list->data;
+      g_free(name);
+    }
+  g_slist_free(tag_list);
+
+  return link_tag;
+}
+ 
+
+/*
  * click on a link
  */
 gboolean on_maintext_event_after (GtkWidget * widget, 
@@ -120,12 +145,15 @@ gboolean on_maintext_event_after (GtkWidget * widget,
     GTK_TEXT_WINDOW_WIDGET, ev->x, ev->y, &x, &y);
   gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (widget), &iter, x, y);
 
-  if (gtk_text_iter_get_tags (&iter))
+  if (get_link_tag (&iter))
     openurl (gui->url);
 
   return FALSE;
 }
 
+/*
+ * grab mouse coordinates and modify cursor
+ */
 gboolean on_maintext_motion_notify_event (GtkWidget * widget, 
           GdkEventMotion *event, gpointer user_data)
 {
