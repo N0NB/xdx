@@ -1,0 +1,3 @@
+This release adds a preferences dialog where you can change various settings 
+for xdx. I have also added basic support for smileys and web browser/mail
+support. See the ChangeLog for details.
