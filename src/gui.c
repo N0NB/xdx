@@ -466,6 +466,17 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
 	      (GCompareFunc)g_ascii_strncasecmp);
       if (!node)
 	gui->hostnamehistory = g_list_prepend (gui->hostnamehistory, g_strdup(cluster->host));
+      else
+        { /* add last connection to the top of the list */
+          if (g_list_position(gui->hostnamehistory, node) != 0)
+          {
+            g_free(node->data);
+            gui->hostnamehistory = 
+              g_list_remove_link(gui->hostnamehistory, node);
+            gui->hostnamehistory = 
+              g_list_prepend(gui->hostnamehistory, g_strdup(cluster->host));
+          }
+        }
 
       if (g_list_length (gui->hostnamehistory) > HOSTNAMEHISTORY)
 	gui->hostnamehistory =
@@ -477,6 +488,17 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
 	      (GCompareFunc)g_ascii_strncasecmp);
       if (!node)
 	gui->porthistory = g_list_prepend (gui->porthistory, g_strdup(cluster->port));
+      else
+        {
+          if (g_list_position(gui->porthistory, node) != 0)
+          {
+            g_free(node->data);
+            gui->porthistory = 
+              g_list_remove_link(gui->porthistory, node);
+            gui->porthistory = 
+              g_list_prepend(gui->porthistory, g_strdup(cluster->port));
+          }
+        }
 
       if (g_list_length (gui->porthistory) > PORTHISTORY)
 	gui->porthistory =
