@@ -415,7 +415,7 @@ double_click (GtkWidget *widget, GdkEventButton *event, gpointer user_data)
       gtk_tree_model_get (model, &selected, 1, &getf, -1);
       fsplit = g_strsplit (getf, ".", -1);
       setf = atoi(fsplit[0]) * 1000 + atoi(fsplit[1]) * 100;
-      if (g_strrstr(preferences.rigctl, "%d")
+      if (g_strrstr(preferences.rigctl, "%d"))
       {
         hamlibstr = g_strdup_printf (preferences.rigctl, setf);
         system (hamlibstr);
