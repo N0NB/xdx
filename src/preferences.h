@@ -27,7 +27,6 @@ typedef struct
   gint width;
   gint height;
   gchar *columnwidths;
-  gint panedpos;
   gint autologin;
   gint autoreconnect;
   gchar *callsign;

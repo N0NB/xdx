@@ -212,9 +212,9 @@ create_mainwindow (void)
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);
 
   vpaned1 = gtk_vpaned_new ();
-  gtk_paned_pack1 (GTK_PANED (vpaned1), clistscrolledwindow, TRUE, FALSE);
-  gtk_paned_pack2 (GTK_PANED (vpaned1), mainscrolledwindow, FALSE, TRUE);
-  gtk_paned_set_position (GTK_PANED(vpaned1), preferences.panedpos);
+  gtk_paned_pack1 (GTK_PANED (vpaned1), clistscrolledwindow, TRUE, TRUE);
+  gtk_paned_pack2 (GTK_PANED (vpaned1), mainscrolledwindow, TRUE, TRUE);
+  gtk_widget_set_size_request (mainscrolledwindow, -1, 10);
   gtk_box_pack_start (GTK_BOX (mainvbox), vpaned1, TRUE, TRUE, 0);
 
   mainentry = gtk_entry_new ();
@@ -245,7 +245,6 @@ create_mainwindow (void)
   g_object_set_data (G_OBJECT (gui->window), "mainentry", mainentry);
   g_object_set_data (G_OBJECT (gui->window), "model", model);
   g_object_set_data (G_OBJECT (gui->window), "buffer", buffer);
-  g_object_set_data (G_OBJECT (gui->window), "vpaned1", vpaned1);
 
   cluster = new_cluster();
   g_object_set_data(G_OBJECT (gui->window), "cluster", cluster);
@@ -294,9 +293,6 @@ on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 
   gtk_window_get_position(GTK_WINDOW(gui->window), &preferences.x, &preferences.y);
   gtk_window_get_size(GTK_WINDOW(gui->window), &preferences.width, &preferences.height);
-
-  vpaned1 = g_object_get_data (G_OBJECT(gui->window), "vpaned1");
-  preferences.panedpos = gtk_paned_get_position (GTK_PANED(vpaned1));
 
   treeview = g_object_get_data (G_OBJECT(gui->window), "treeview");
   columns = gtk_tree_view_get_columns(GTK_TREE_VIEW(treeview));

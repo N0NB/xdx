@@ -66,7 +66,6 @@ loadpreferences (void)
   preferences.y = 30;
   preferences.width = 700;
   preferences.height = 550;
-  preferences.panedpos = 450;
   preferences.columnwidths = g_strdup("70,70,70,360,60,60,");
   preferences.autologin = 0;
   preferences.autoreconnect = 0;
@@ -91,8 +90,6 @@ loadpreferences (void)
           preferences.height = atoi(value);
         else if (!g_strcasecmp(label, "columnwidths")) 
           preferences.columnwidths = g_strdup(value);
-        else if (!g_strcasecmp(label, "panedpos")) 
-          preferences.panedpos = atoi(value);
         else if (!g_strcasecmp(label, "autologin")) 
           preferences.autologin = atoi(value);
         else if (!g_strcasecmp(label, "autoreconnect")) 
@@ -133,8 +130,6 @@ savepreferences (void)
     fprintf(fp, "height %s\n", str);
     str = g_strdup_printf("%s", preferences.columnwidths);
     fprintf(fp, "columnwidths %s\n", str);
-    str = g_strdup_printf("%d", preferences.panedpos);
-    fprintf(fp, "panedpos %s\n", str);
     str = g_strdup_printf("%d", preferences.autologin);
     fprintf(fp, "autologin %s\n", str);
     str = g_strdup_printf("%d", preferences.autoreconnect);
