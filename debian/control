@@ -9,5 +9,11 @@ Package: xdx
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: DX-cluster tcp/ip client for amateur radio
- Xdx is a client to connect to a DX-cluster. Dx messages will be displayed in a
- list, announcements will go to a text display.
+ Xdx is a client to connect to a DX-cluster. Dx messages will be displayed
+ in a list, announcements will go to a text display.
+ . 
+ As well as the usual functions, if you have hamlib installed it can control
+ the radio and set the frequency simply by double clicking a DX-spot
+ (using rigctl).
+ .
+ WWW: http://www.qsl.net/pg4i/linux/xdx.html
