@@ -209,13 +209,14 @@ cldisconnect (GString *msg, gboolean timeout)
 gboolean
 rx (GIOChannel * channel, GIOCondition cond, gpointer data)
 {
-  gchar buf[1024];
+  gchar buf[1024], **sendsplit = NULL;
   gsize numbytes;
   GString *msg = g_string_new ("");
-  GString *callsign = g_string_new ("");
+  GString *txstr = g_string_new ("");
   GIOStatus res = G_IO_STATUS_NORMAL;
   GError *err = NULL;
   gboolean ret;
+  gint i = 0;
   servertype *cluster = (servertype *)data;
 
   do
@@ -261,9 +262,18 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
         if (!cluster->connected && (preferences.autologin == 1) && 
           (g_ascii_strcasecmp (preferences.callsign, "?")))
         {
-          g_string_printf (callsign, "%s", preferences.callsign);
-          tx (callsign);
-          g_string_free (callsign, TRUE);
+          g_string_printf (txstr, "%s", preferences.callsign);
+          tx (txstr);
+          g_string_free (txstr, TRUE);
+          sendsplit = g_strsplit (preferences.commands, ",", 0);
+          while (sendsplit[i])
+          {
+            txstr = g_string_new (sendsplit[i]);
+            tx (txstr);
+            g_string_free (txstr, TRUE);
+            i++;
+          }
+          g_strfreev (sendsplit);
           cluster->connected = TRUE;
         }
       }

@@ -68,8 +68,8 @@ loadpreferences (void)
   preferences.height = 550;
   preferences.columnwidths = g_strdup("70,70,70,360,60,60,");
   preferences.autologin = 0;
-  preferences.autoreconnect = 0;
   preferences.callsign = g_strdup("N0CALL");
+  preferences.commands = g_strdup("set/page 0");
   preferences.savedx = 0;
   preferences.savewwv = 0;
 
@@ -93,10 +93,13 @@ loadpreferences (void)
           preferences.columnwidths = g_strdup(value);
         else if (!g_strcasecmp(label, "autologin")) 
           preferences.autologin = atoi(value);
-        else if (!g_strcasecmp(label, "autoreconnect")) 
-          preferences.autoreconnect = atoi(value);
         else if (!g_strcasecmp(label, "callsign")) 
           preferences.callsign = g_strdup(value);
+        else if (!g_strcasecmp(label, "commands"))
+        {
+          g_strdelimit (value, "_", ' ');
+          preferences.commands = g_strdup(value);
+        }
         else if (!g_strcasecmp(label, "savedx")) 
           preferences.savedx = atoi(value);
         else if (!g_strcasecmp(label, "savewwv")) 
@@ -135,10 +138,11 @@ savepreferences (void)
     fprintf(fp, "columnwidths %s\n", str);
     str = g_strdup_printf("%d", preferences.autologin);
     fprintf(fp, "autologin %s\n", str);
-    str = g_strdup_printf("%d", preferences.autoreconnect);
-    fprintf(fp, "autoreconnect %s\n", str);
     str = g_strdup_printf("%s", preferences.callsign);
     fprintf(fp, "callsign %s\n", str);
+    str = g_strdup_printf("%s", preferences.commands);
+    g_strdelimit (str, " ", '_');
+    fprintf(fp, "commands %s\n", str);
     str = g_strdup_printf("%d", preferences.savedx);
     fprintf(fp, "savedx %s\n", str);
     str = g_strdup_printf("%d", preferences.savewwv);

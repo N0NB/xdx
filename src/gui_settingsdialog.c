@@ -35,7 +35,7 @@ on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
   GtkWidget *pautologincheckbutton, *ploginhseparator, *pcallsignlabel,
-    *pcallsignentry, *preconnectcheckbutton;
+    *pcallsignentry, *pcommandslabel, *pcommandsentry;
   gboolean state;
 
   pautologincheckbutton = g_object_get_data (G_OBJECT (preferencesdialog), 
@@ -46,8 +46,10 @@ on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
     "pcallsignlabel");
   pcallsignentry = g_object_get_data (G_OBJECT (preferencesdialog), 
     "pcallsignentry");
-  preconnectcheckbutton = g_object_get_data (G_OBJECT (preferencesdialog), 
-    "preconnectcheckbutton");
+  pcommandslabel = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "pcommandslabel");
+  pcommandsentry = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "pcommandsentry");
 
   state = gtk_toggle_button_get_active 
     (GTK_TOGGLE_BUTTON(pautologincheckbutton));
@@ -56,14 +58,16 @@ on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
     gtk_widget_set_sensitive (ploginhseparator, TRUE);
     gtk_widget_set_sensitive (pcallsignlabel, TRUE);
     gtk_widget_set_sensitive (pcallsignentry, TRUE);
-    gtk_widget_set_sensitive (preconnectcheckbutton, TRUE);
+    gtk_widget_set_sensitive (pcommandslabel, TRUE);
+    gtk_widget_set_sensitive (pcommandsentry, TRUE);
   }
   else
   {
     gtk_widget_set_sensitive (ploginhseparator, FALSE);
     gtk_widget_set_sensitive (pcallsignlabel, FALSE);
     gtk_widget_set_sensitive (pcallsignentry, FALSE);
-    gtk_widget_set_sensitive (preconnectcheckbutton, FALSE);
+    gtk_widget_set_sensitive (pcommandslabel, FALSE);
+    gtk_widget_set_sensitive (pcommandsentry, FALSE);
   }
 }
 
@@ -80,18 +84,27 @@ on_phamlibcheckbutton_toggled          (GtkToggleButton *togglebutton,
  */
 void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
-  GtkWidget *pdialog_vbox, *pvbox, *ploginframe,
-    *ploginvbox, *pautologincheckbutton, *ploginhseparator, *ploginhbox,
-    *pcallsignlabel, *pcallsignentry, *preconnectcheckbutton, *ploginlabel,
+  GtkWidget *pdialog_vbox, *pvbox, 
+
+    *ploginframe, *ploginvbox, *pautologincheckbutton, *ploginhseparator, 
+    *ploginhbox, *pcallsignlabel, *pcallsignentry, *pcommandshbox, 
+    *pcommandslabel, *pcommandsentry, *ploginlabel,
+
     *psavingframe, *psavingvbox, *psavedxcheckbutton, *psavewwvcheckbutton,
-    *psavetoallcheckbutton, *psavewxcheckbutton, *psavinglabel, *phamlibframe,
-    *phamlibvbox, *phamlibcheckbutton, *phamlibhseparator, *phamlibhbox,
-    *priglabel, *prigentry, *phamliblabel, *pprogframe, *pprogvbox, *pproghbox1,
-    *pprogbrowserlabel, *pprogbrowserentry, *pproghbox2, *pprogmaillabel,
-    *pprogmailentry, *pproglabel, *pdialog_action_area;
+    *psavetoallcheckbutton, *psavewxcheckbutton, *psavinglabel, 
+
+    *phamlibframe, *phamlibvbox, *phamlibcheckbutton, *phamlibhseparator, 
+    *phamlibhbox, *priglabel, *prigentry, *phamliblabel, 
+
+    *pprogframe, *pprogvbox, *pproghbox1, *pprogbrowserlabel, 
+    *pprogbrowserentry, *pproghbox2, *pprogmaillabel,
+    *pprogmailentry, *pproglabel, 
+
+    *pdialog_action_area;
   gint response;
   gboolean state;
   gchar *str;
+  GtkTooltips *tooltips;
 
   gtk_widget_set_sensitive (gui->window, 0);
   preferencesdialog = gtk_dialog_new_with_buttons (_("xdx - preferences"),
@@ -121,8 +134,17 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   pcallsignentry = gtk_entry_new ();
   gtk_box_pack_start (GTK_BOX (ploginhbox), pcallsignentry, TRUE, TRUE, 5);
   gtk_entry_set_max_length (GTK_ENTRY (pcallsignentry), 15);
-  preconnectcheckbutton = gtk_check_button_new_with_mnemonic (_("Enable auto-reconnect"));
-  gtk_box_pack_start (GTK_BOX (ploginvbox), preconnectcheckbutton, FALSE, FALSE, 0);
+  pcommandshbox = gtk_hbox_new (TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (ploginvbox), pcommandshbox, TRUE, TRUE, 0);
+  pcommandslabel = gtk_label_new (_("Commands"));
+  gtk_box_pack_start (GTK_BOX (pcommandshbox), pcommandslabel, FALSE, FALSE, 0);
+  pcommandsentry = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (pcommandshbox), pcommandsentry, TRUE, TRUE, 5);
+  gtk_entry_set_max_length (GTK_ENTRY (pcommandsentry), 80);
+  tooltips = gtk_tooltips_new ();
+  gtk_tooltips_set_tip (tooltips, pcommandsentry, 
+    _("Comma separated list of commands to send at login"), NULL);
+
   ploginlabel = gtk_label_new (_("Login"));
   gtk_frame_set_label_widget (GTK_FRAME (ploginframe), ploginlabel);
 
@@ -132,7 +154,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_widget_set_sensitive (ploginhseparator, TRUE);
     gtk_widget_set_sensitive (pcallsignlabel, TRUE);
     gtk_widget_set_sensitive (pcallsignentry, TRUE);
-    gtk_widget_set_sensitive (preconnectcheckbutton, TRUE);
+    gtk_widget_set_sensitive (pcommandslabel, TRUE);
+    gtk_widget_set_sensitive (pcommandsentry, TRUE);
   }
   else
   {
@@ -140,15 +163,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_widget_set_sensitive (ploginhseparator, FALSE);
     gtk_widget_set_sensitive (pcallsignlabel, FALSE);
     gtk_widget_set_sensitive (pcallsignentry, FALSE);
-    gtk_widget_set_sensitive (preconnectcheckbutton, FALSE);
+    gtk_widget_set_sensitive (pcommandslabel, FALSE);
+    gtk_widget_set_sensitive (pcommandsentry, FALSE);
   }
   if (g_ascii_strcasecmp (preferences.callsign, "?"))
     gtk_entry_set_text (GTK_ENTRY(pcallsignentry), preferences.callsign);
-  if (preferences.autoreconnect == 1)
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(preconnectcheckbutton), TRUE);
-  else
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(preconnectcheckbutton), FALSE);
-  
+  if (g_ascii_strcasecmp (preferences.commands, "?"))
+    gtk_entry_set_text (GTK_ENTRY(pcommandsentry), preferences.commands);
 
   psavingframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox), psavingframe, TRUE, TRUE, 0);
@@ -169,6 +190,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
   else
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), FALSE);
+  if (preferences.savewwv == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewwvcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewwvcheckbutton), FALSE);
 
   phamlibframe = gtk_frame_new (NULL);
   gtk_widget_show (phamlibframe);
@@ -225,8 +250,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     pcallsignlabel);
   g_object_set_data (G_OBJECT (preferencesdialog), "pcallsignentry", 
     pcallsignentry);
-  g_object_set_data (G_OBJECT (preferencesdialog), "preconnectcheckbutton", 
-    preconnectcheckbutton);
+  g_object_set_data (G_OBJECT (preferencesdialog), "pcommandslabel", 
+    pcommandslabel);
+  g_object_set_data (G_OBJECT (preferencesdialog), "pcommandsentry", 
+    pcommandsentry);
 
   g_object_set_data (G_OBJECT (preferencesdialog), "phamlibcheckbutton", 
     phamlibcheckbutton);
@@ -248,12 +275,11 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.callsign = g_strdup ("?");
     else
       preferences.callsign = g_strdup (str);
-    state = gtk_toggle_button_get_active 
-      (GTK_TOGGLE_BUTTON(preconnectcheckbutton));
-    if (state) 
-      preferences.autoreconnect = 1; 
-    else 
-      preferences.autoreconnect = 0;
+    str = gtk_editable_get_chars (GTK_EDITABLE (pcommandsentry), 0, -1);
+    if (strlen(str) == 0)
+      preferences.commands = g_strdup ("?");
+    else
+      preferences.commands = g_strdup (str);
 
     /* saving frame */
     state = gtk_toggle_button_get_active 
@@ -262,6 +288,12 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.savedx = 1; 
     else 
       preferences.savedx = 0;
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(psavewwvcheckbutton));
+    if (state) 
+      preferences.savewwv = 1; 
+    else 
+      preferences.savewwv = 0;
     g_free (str);
   }
 

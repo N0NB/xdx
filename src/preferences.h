@@ -28,8 +28,8 @@ typedef struct
   gint height;
   gchar *columnwidths;
   gint autologin;
-  gint autoreconnect;
   gchar *callsign;
+  gchar *commands;
   gint savedx;
   gint savewwv;
 } preferencestype;
