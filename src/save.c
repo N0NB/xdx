@@ -72,3 +72,22 @@ void savedx (gchar *dx)
   }
   g_free (savedxfile);
 }
+
+void savewwv (gchar *wwv)
+{
+  gchar *wwvfile, *d, *t;
+  FILE *fp;
+
+  wwvfile = g_strdup_printf ("%s/wwv", gui->preferencesdir);
+  fp = fopen (wwvfile, "a");
+  if (fp)
+  {
+    d = getdate ();
+    t = gettime ();
+    fprintf (fp, "%s %s GMT - %s", d, t, wwv);
+    g_free (t);
+    g_free (d);
+    fclose (fp);
+  }
+  g_free (wwvfile);
+}

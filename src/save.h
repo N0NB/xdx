@@ -22,3 +22,4 @@
  */
 
 void savedx (gchar *dx);
+void savewwv (gchar *wwv);
