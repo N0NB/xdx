@@ -34,6 +34,8 @@ typedef struct
   gint savewwv;
   gint savetoall;
   gint savewx;
+  gint hamlib;
+  gchar *rigctl;
 } preferencestype;
 
 void dircheck (void);

@@ -34,12 +34,10 @@ void
 on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-  GtkWidget *pautologincheckbutton, *ploginhseparator, *pcallsignlabel,
-    *pcallsignentry, *pcommandslabel, *pcommandsentry;
+  GtkWidget *ploginhseparator, *pcallsignlabel, *pcallsignentry, 
+    *pcommandslabel, *pcommandsentry;
   gboolean state;
 
-  pautologincheckbutton = g_object_get_data (G_OBJECT (preferencesdialog), 
-    "pautologincheckbutton");
   ploginhseparator = g_object_get_data (G_OBJECT (preferencesdialog), 
     "ploginhseparator");
   pcallsignlabel = g_object_get_data (G_OBJECT (preferencesdialog), 
@@ -51,8 +49,7 @@ on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
   pcommandsentry = g_object_get_data (G_OBJECT (preferencesdialog), 
     "pcommandsentry");
 
-  state = gtk_toggle_button_get_active 
-    (GTK_TOGGLE_BUTTON(pautologincheckbutton));
+  state = gtk_toggle_button_get_active (togglebutton);
   if (state)
   {
     gtk_widget_set_sensitive (ploginhseparator, TRUE);
@@ -76,7 +73,29 @@ void
 on_phamlibcheckbutton_toggled          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
+  GtkWidget *phamlibhseparator, *priglabel, *prigentry;
+  gboolean state;
 
+  phamlibhseparator = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "phamlibhseparator");
+  priglabel = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "priglabel");
+  prigentry = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "prigentry");
+
+  state = gtk_toggle_button_get_active (togglebutton);
+  if (state)
+  {
+    gtk_widget_set_sensitive (phamlibhseparator, TRUE);
+    gtk_widget_set_sensitive (priglabel, TRUE);
+    gtk_widget_set_sensitive (prigentry, TRUE);
+  }
+  else
+  {
+    gtk_widget_set_sensitive (phamlibhseparator, FALSE);
+    gtk_widget_set_sensitive (priglabel, FALSE);
+    gtk_widget_set_sensitive (prigentry, FALSE);
+  }
 }
 
 /*
@@ -144,6 +163,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   tooltips = gtk_tooltips_new ();
   gtk_tooltips_set_tip (tooltips, pcommandsentry, 
     _("Comma separated list of commands to send at login"), NULL);
+  gtk_tooltips_set_tip (tooltips, pcallsignentry, 
+    _("Callsign to be used for login"), NULL);
 
   ploginlabel = gtk_label_new (_("Login"));
   gtk_frame_set_label_widget (GTK_FRAME (ploginframe), ploginlabel);
@@ -221,7 +242,28 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_entry_set_max_length (GTK_ENTRY (prigentry), 80);
   phamliblabel = gtk_label_new (_("Hamlib"));
   gtk_frame_set_label_widget (GTK_FRAME (phamlibframe), phamliblabel);
+  gtk_tooltips_set_tip (tooltips, prigentry, _(
+    "When double clicking on a dx-spot this will set the frequency of your "
+    "rig using rigctl"
+    ), NULL);
 
+  if (preferences.hamlib == 1)
+  {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(phamlibcheckbutton), TRUE);
+    gtk_widget_set_sensitive (phamlibhseparator, TRUE);
+    gtk_widget_set_sensitive (priglabel, TRUE);
+    gtk_widget_set_sensitive (prigentry, TRUE);
+  }
+  else
+  {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(phamlibcheckbutton), FALSE);
+    gtk_widget_set_sensitive (phamlibhseparator, FALSE);
+    gtk_widget_set_sensitive (priglabel, FALSE);
+    gtk_widget_set_sensitive (prigentry, FALSE);
+  }
+  if (g_ascii_strcasecmp (preferences.rigctl, "?"))
+    gtk_entry_set_text (GTK_ENTRY(prigentry), preferences.rigctl);
+  
   pprogframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox), pprogframe, TRUE, TRUE, 0);
   pprogvbox = gtk_vbox_new (FALSE, 0);
@@ -250,8 +292,6 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
                     G_CALLBACK (on_phamlibcheckbutton_toggled),
                     NULL);
 
-  g_object_set_data (G_OBJECT (preferencesdialog), "pautologincheckbutton", 
-    pautologincheckbutton);
   g_object_set_data (G_OBJECT (preferencesdialog), "ploginhseparator", 
     ploginhseparator);
   g_object_set_data (G_OBJECT (preferencesdialog), "pcallsignlabel", 
@@ -263,8 +303,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   g_object_set_data (G_OBJECT (preferencesdialog), "pcommandsentry", 
     pcommandsentry);
 
-  g_object_set_data (G_OBJECT (preferencesdialog), "phamlibcheckbutton", 
-    phamlibcheckbutton);
+  g_object_set_data (G_OBJECT (preferencesdialog), "phamlibhseparator", 
+    phamlibhseparator);
+  g_object_set_data (G_OBJECT (preferencesdialog), "priglabel", 
+    priglabel);
+  g_object_set_data (G_OBJECT (preferencesdialog), "prigentry", 
+    prigentry);
+
 
   gtk_widget_show_all (pvbox);
   response = gtk_dialog_run (GTK_DIALOG (preferencesdialog));
@@ -314,6 +359,19 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.savewx = 1; 
     else 
       preferences.savewx = 0;
+
+    /* hamlib frame */
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(phamlibcheckbutton));
+    if (state) 
+      preferences.hamlib = 1; 
+    else 
+      preferences.hamlib = 0;
+    str = gtk_editable_get_chars (GTK_EDITABLE (prigentry), 0, -1);
+    if (strlen(str) == 0)
+      preferences.rigctl = g_strdup ("?");
+    else
+      preferences.rigctl = g_strdup (str);
 
     g_free (str);
   }

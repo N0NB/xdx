@@ -74,6 +74,8 @@ loadpreferences (void)
   preferences.savewwv = 0;
   preferences.savetoall = 0;
   preferences.savewx = 0;
+  preferences.hamlib = 0;
+  preferences.rigctl = g_strdup("rigctl -m 1 set_freq %freq");;
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -110,6 +112,13 @@ loadpreferences (void)
           preferences.savetoall = atoi(value);
         else if (!g_strcasecmp(label, "savewx")) 
           preferences.savewx = atoi(value);
+        else if (!g_strcasecmp(label, "hamlib")) 
+          preferences.hamlib = atoi(value);
+        else if (!g_strcasecmp(label, "rigctl"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.rigctl = g_strdup(value);
+        }
       }
     fclose (fp);
   }
@@ -157,6 +166,11 @@ savepreferences (void)
     fprintf(fp, "savetoall %s\n", str);
     str = g_strdup_printf("%d", preferences.savewx);
     fprintf(fp, "savewx %s\n", str);
+    str = g_strdup_printf("%d", preferences.hamlib);
+    fprintf(fp, "hamlib %s\n", str);
+    str = g_strdup_printf("%s", preferences.rigctl);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "rigctl %s\n", str);
     g_free(str);
     fclose (fp);
   }

@@ -326,6 +326,8 @@ on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
 
   g_free(preferences.columnwidths);
   g_free(preferences.callsign);
+  g_free(preferences.commands);
+  g_free(preferences.rigctl);
 
   link = gui->hostnamehistory;
   while (link)
