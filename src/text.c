@@ -131,14 +131,15 @@ findcall (gchar * str, gint * spotterlen)
     {
       *spotterlen = *spotterlen + 1;
       switch (*j)
-	{
-	case ':':
-	  *j = '\0';
-	  found = TRUE;
-	  break;
-	}
+      {
+        case ':':
+        case ' ': /* bug in dx-spider for calls > 6 ? */
+        *j = '\0';
+        found = TRUE;
+        break;
+      }
       if (found)
-	break;
+      break;
     }
   return (str);
 }
