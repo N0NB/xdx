@@ -110,7 +110,7 @@ msgstr "xdx - à propos"
 
 #: src/gui_manualdialog.c:52
 msgid "MANUAL"
-msgstr "MANUEL"
+msgstr "MANUAL"
 
 #: src/gui_opendialog.c:48
 msgid "xdx - open connection"
