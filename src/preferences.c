@@ -75,7 +75,7 @@ loadpreferences (void)
   preferences.savetoall = 0;
   preferences.savewx = 0;
   preferences.hamlib = 0;
-  preferences.rigctl = g_strdup("rigctl -m 1 set_freq %freq");;
+  preferences.rigctl = g_strdup("rigctl -m 1 set_freq %d");;
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
