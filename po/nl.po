@@ -4,15 +4,28 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdx 1.0\n"
+"Project-Id-Version: xdx 1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-21 13:45+0200\n"
-"PO-Revision-Date: 2003-10-12 21:00+0200\n"
+"POT-Creation-Date: 2004-05-21 14:28+0200\n"
+"PO-Revision-Date: 2004-05-21 21:00+0200\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8-bit\n"
+
+#: src/gui_aboutdialog.c:61
+msgid "xdx - about"
+msgstr "xdx - info"
+
+#: src/gui_aboutdialog.c:76
+#, c-format
+msgid "%s version %s"
+msgstr "%s versie %s"
+
+#: src/gui_aboutdialog.c:101
+msgid "Published under the GNU General Public License"
+msgstr "Vrijgegeven onder the GNU General Public License"
 
 #: src/gui.c:46
 msgid "/_Program"
@@ -57,7 +70,7 @@ msgstr "/_Hulp/Info"
 #: src/gui.c:123
 #, c-format
 msgid "Error loading icon: %s"
-msgstr "Fout bij het laden van het programma icon: %s"
+msgstr "Fout bij het laden van het programma icoon: %s"
 
 #: src/gui.c:158 src/gui_settingsdialog.c:296
 msgid "Spotter"
@@ -71,6 +84,31 @@ msgstr "Opmerkingen"
 msgid "Time"
 msgstr "Tijd"
 
+#: src/gui.c:198 src/gui_settingsdialog.c:306
+msgid "Info"
+msgstr "Info"
+
+#: src/gui_closedialog.c:44
+msgid "xdx - close connection"
+msgstr "xdx - verbinding sluiten"
+
+#: src/gui_closedialog.c:61
+#, c-format
+msgid "Close connection to %s ?"
+msgstr "Verbinding naar %s sluiten ?"
+
+#: src/gui_closedialog.c:72
+msgid "Connection closed"
+msgstr "Verbinding gesloten"
+
+#: src/gui_manualdialog.c:39
+msgid "xdx - manual"
+msgstr "xdx - manual"
+
+#: src/gui_manualdialog.c:52
+msgid "MANUAL"
+msgstr "MANUAL"
+
 #: src/gui_opendialog.c:48
 msgid "xdx - open connection"
 msgstr "xdx - verbinding openen"
@@ -83,39 +121,17 @@ msgstr "_Hostnaam"
 msgid "_Port"
 msgstr "_Poort"
 
-#: src/gui_closedialog.c:44
-msgid "xdx - close connection"
-msgstr "xdx - verbinding sluiten"
-
-#: src/gui_closedialog.c:61
-#, c-format
-msgid "Close connection to %s ?"
-msgstr "Verbinding naar %s sluiten ?"
-
-#: src/gui_aboutdialog.c:61
-msgid "xdx - about"
-msgstr "xdx - info"
-
-#: src/gui_aboutdialog.c:76
-#, c-format
-msgid "%s version %s"
-msgstr "%s versie %s"
-
-#: src/gui_aboutdialog.c:101
-msgid "Published under the GNU General Public License"
-msgstr "Vrijgegeven onder the GNU General Public License"
-
 #: src/gui_settingsdialog.c:137
 msgid "xdx - preferences"
 msgstr "xdx - voorkeuren"
 
 #: src/gui_settingsdialog.c:153
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: src/gui_settingsdialog.c:156
 msgid "Output"
-msgstr ""
+msgstr "Output"
 
 #: src/gui_settingsdialog.c:166
 msgid "Enable autologin"
@@ -192,19 +208,7 @@ msgstr "Kolommen"
 
 #: src/gui_settingsdialog.c:292
 msgid "Columns to show on the screen"
-msgstr ""
-
-#: src/gui_settingsdialog.c:298
-msgid "QRG"
-msgstr ""
-
-#: src/gui_settingsdialog.c:300
-msgid "DX"
-msgstr ""
-
-#: src/gui_settingsdialog.c:306
-msgid "Info"
-msgstr ""
+msgstr "Kolommen die te zien zijn op het scherm"
 
 #: src/gui_settingsdialog.c:338
 msgid "Save DX spots"
@@ -225,14 +229,6 @@ msgstr "WX opslaan"
 #: src/gui_settingsdialog.c:346
 msgid "Saving"
 msgstr "Opslaan"
-
-#: src/gui_manualdialog.c:39
-msgid "xdx - manual"
-msgstr "xdx - manual"
-
-#: src/gui_manualdialog.c:52
-msgid "MANUAL"
-msgstr "MANUAL"
 
 #: src/main.c:107
 #, c-format
@@ -263,6 +259,10 @@ msgstr "Verbonden met %s"
 #, c-format
 msgid "Error on setting channel encoding: %s"
 msgstr "Fout bij het instellen van de kanaal encoding: %s"
+
+#: src/net.c:218 src/net.c:231
+msgid "Connection closed by remote host"
+msgstr "Verbinding verbroken"
 
 #: src/net.c:282
 #, c-format

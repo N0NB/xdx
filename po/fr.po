@@ -4,15 +4,28 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdx 1.0\n"
+"Project-Id-Version: xdx 1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-21 13:45+0200\n"
+"POT-Creation-Date: 2004-05-21 14:28+0200\n"
 "PO-Revision-Date: 2003-10-12 18:00+0200\n"
 "Last-Translator: Jean-Luc coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: fr <jean-luc.coulon@wanadoo;fr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8-bit\n"
+
+#: src/gui_aboutdialog.c:61
+msgid "xdx - about"
+msgstr "xdx - à propos"
+
+#: src/gui_aboutdialog.c:76
+#, c-format
+msgid "%s version %s"
+msgstr "%s version %s"
+
+#: src/gui_aboutdialog.c:101
+msgid "Published under the GNU General Public License"
+msgstr "Diffusé selon la Licence Publique générale GNU"
 
 #: src/gui.c:46
 msgid "/_Program"
@@ -71,6 +84,31 @@ msgstr "Commentaires"
 msgid "Time"
 msgstr "Heure"
 
+#: src/gui.c:198 src/gui_settingsdialog.c:306
+msgid "Info"
+msgstr ""
+
+#: src/gui_closedialog.c:44
+msgid "xdx - close connection"
+msgstr "xdx - ferme la connexion"
+
+#: src/gui_closedialog.c:61
+#, c-format
+msgid "Close connection to %s ?"
+msgstr "Fermer la connexion vers %s ?"
+
+#: src/gui_closedialog.c:72
+msgid "Connection closed"
+msgstr ""
+
+#: src/gui_manualdialog.c:39
+msgid "xdx - manual"
+msgstr "xdx - à propos"
+
+#: src/gui_manualdialog.c:52
+msgid "MANUAL"
+msgstr "MANUAL"
+
 #: src/gui_opendialog.c:48
 msgid "xdx - open connection"
 msgstr "xdx - ouvre la connexion"
@@ -82,28 +120,6 @@ msgstr "Nom d'_hôte"
 #: src/gui_opendialog.c:76
 msgid "_Port"
 msgstr "_Port"
-
-#: src/gui_closedialog.c:44
-msgid "xdx - close connection"
-msgstr "xdx - ferme la connexion"
-
-#: src/gui_closedialog.c:61
-#, c-format
-msgid "Close connection to %s ?"
-msgstr "Fermer la connexion vers %s ?"
-
-#: src/gui_aboutdialog.c:61
-msgid "xdx - about"
-msgstr "xdx - à propos"
-
-#: src/gui_aboutdialog.c:76
-#, c-format
-msgid "%s version %s"
-msgstr "%s version %s"
-
-#: src/gui_aboutdialog.c:101
-msgid "Published under the GNU General Public License"
-msgstr "Diffusé selon la Licence Publique générale GNU"
 
 #: src/gui_settingsdialog.c:137
 msgid "xdx - preferences"
@@ -188,22 +204,10 @@ msgstr ""
 
 #: src/gui_settingsdialog.c:290
 msgid "Columns"
-msgstr "Columns"
+msgstr ""
 
 #: src/gui_settingsdialog.c:292
 msgid "Columns to show on the screen"
-msgstr ""
-
-#: src/gui_settingsdialog.c:298
-msgid "QRG"
-msgstr ""
-
-#: src/gui_settingsdialog.c:300
-msgid "DX"
-msgstr ""
-
-#: src/gui_settingsdialog.c:306
-msgid "Info"
 msgstr ""
 
 #: src/gui_settingsdialog.c:338
@@ -225,14 +229,6 @@ msgstr "Sauvegarder WX"
 #: src/gui_settingsdialog.c:346
 msgid "Saving"
 msgstr "Enregistrement"
-
-#: src/gui_manualdialog.c:39
-msgid "xdx - manual"
-msgstr "xdx - à propos"
-
-#: src/gui_manualdialog.c:52
-msgid "MANUAL"
-msgstr "MANUAL"
 
 #: src/main.c:107
 #, c-format
@@ -263,6 +259,10 @@ msgstr "Connecté à %s"
 #, c-format
 msgid "Error on setting channel encoding: %s"
 msgstr "Erreur lors de l'établissement de l'encodage du canal: %s"
+
+#: src/net.c:218 src/net.c:231
+msgid "Connection closed by remote host"
+msgstr ""
 
 #: src/net.c:282
 #, c-format
