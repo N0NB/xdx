@@ -76,6 +76,8 @@ loadpreferences (void)
   preferences.savewx = 0;
   preferences.hamlib = 0;
   preferences.rigctl = g_strdup("rigctl -m 1 set_freq %d");;
+  preferences.browserapp = g_strdup("mozilla %s");
+  preferences.mailapp = g_strdup("mozilla -compose \"to=%s\"");
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -118,6 +120,16 @@ loadpreferences (void)
         {
           g_strdelimit (value, "~", ' ');
           preferences.rigctl = g_strdup(value);
+        }
+        else if (!g_strcasecmp(label, "browserapp"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.browserapp = g_strdup(value);
+        }
+        else if (!g_strcasecmp(label, "mailapp"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.mailapp = g_strdup(value);
         }
       }
     fclose (fp);
@@ -171,6 +183,12 @@ savepreferences (void)
     str = g_strdup_printf("%s", preferences.rigctl);
     g_strdelimit (str, " ", '~');
     fprintf(fp, "rigctl %s\n", str);
+    str = g_strdup_printf("%s", preferences.browserapp);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "browserapp %s\n", str);
+    str = g_strdup_printf("%s", preferences.mailapp);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "mailapp %s\n", str);
     g_free(str);
     fclose (fp);
   }

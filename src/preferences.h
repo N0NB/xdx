@@ -36,6 +36,8 @@ typedef struct
   gint savewx;
   gint hamlib;
   gchar *rigctl;
+  gchar *browserapp;
+  gchar *mailapp;
 } preferencestype;
 
 void dircheck (void);

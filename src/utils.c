@@ -25,7 +25,9 @@
 #include <errno.h>
 #include "utils.h"
 #include "gui.h"
+#include "preferences.h"
 
+extern preferencestype preferences;
 static GList *pixmaps_directories = NULL;
 
 /* 
@@ -122,11 +124,15 @@ void openurl (gchar *url)
   gchar buf[1024];
   GString *msg = g_string_new ("");
 
-  g_snprintf(buf, sizeof(buf), "mozilla %s", url);
-  g_string_printf (msg, _("Starting: %s"), buf);
-  updatestatusbar (msg, TRUE);
+  
+  if (g_strrstr(preferences.browserapp, "%s"))
+  {
+    g_snprintf(buf, sizeof(buf), preferences.browserapp, url);
+    g_string_printf (msg, _("Starting: %s"), buf);
+    updatestatusbar (msg, TRUE);
+    shellcommand (buf);
+  }
   g_string_free (msg, TRUE);
-  shellcommand (buf);
 }
 
 void openmail (gchar *url)
@@ -134,11 +140,14 @@ void openmail (gchar *url)
   gchar buf[1024];
   GString *msg = g_string_new ("");
 
-  g_snprintf(buf, sizeof(buf), "mozilla -compose \"to=%s\"", url);
-  g_string_printf (msg, _("Starting: %s"), buf);
-  updatestatusbar (msg, TRUE);
+  if (g_strrstr(preferences.mailapp, "%s"))
+  {
+    g_snprintf(buf, sizeof(buf), preferences.mailapp, url);
+    g_string_printf (msg, _("Starting: %s"), buf);
+    updatestatusbar (msg, TRUE);
+    shellcommand (buf);
+  }
   g_string_free (msg, TRUE);
-  shellcommand (buf);
 }
 
 gchar *try_utf8 (const gchar *str)

@@ -285,6 +285,11 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   pproglabel = gtk_label_new (_("Programs"));
   gtk_frame_set_label_widget (GTK_FRAME (pprogframe), pproglabel);
 
+  if (g_ascii_strcasecmp (preferences.browserapp, "?"))
+    gtk_entry_set_text (GTK_ENTRY(pprogbrowserentry), preferences.browserapp);
+  if (g_ascii_strcasecmp (preferences.mailapp, "?"))
+    gtk_entry_set_text (GTK_ENTRY(pprogmailentry), preferences.mailapp);
+
   g_signal_connect ((gpointer) pautologincheckbutton, "toggled",
                     G_CALLBACK (on_pautologincheckbutton_toggled),
                     NULL);
@@ -372,6 +377,18 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.rigctl = g_strdup ("?");
     else
       preferences.rigctl = g_strdup (str);
+
+    /* programs frame */
+    str = gtk_editable_get_chars (GTK_EDITABLE (pprogbrowserentry), 0, -1);
+    if (strlen(str) == 0)
+      preferences.browserapp = g_strdup ("?");
+    else
+      preferences.browserapp = g_strdup (str);
+    str = gtk_editable_get_chars (GTK_EDITABLE (pprogmailentry), 0, -1);
+    if (strlen(str) == 0)
+      preferences.mailapp = g_strdup ("?");
+    else
+      preferences.mailapp = g_strdup (str);
 
     g_free (str);
   }
