@@ -1,3 +1,10 @@
+Version 0.3:
+
+* The last station connected should be on top of the list
+  in the connection dialog.
+* When the cluster is really busy, dx messages might be appended
+  to WCY, WWV or To All messages. We have to split them.
+
 Version 0.4:
 
 * interface with hamlib
