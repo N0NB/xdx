@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-EXTRA_DIST = config.rpath mkinstalldirs \
+EXTRA_DIST = \
 	Xdx.desktop \
 	xdx.spec \
 	xdx.spec.in \
@@ -56,3 +56,4 @@ rpm: Makefile
 
 
 ACLOCAL_AMFLAGS = -I m4
+
