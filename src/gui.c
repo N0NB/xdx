@@ -62,6 +62,8 @@ guitype *new_gui(void)
 	gui->preferencesdir = NULL;
 	gui->updown = 0;
 	gui->txitem = 0;
+        gui->statusbartimer = -1;
+        gui->statusbarmessage = g_strdup("");
         return(gui);
 }
 
@@ -109,7 +111,7 @@ create_mainwindow (void)
   if (err)
   {
     g_string_printf (msg, _("Error loading icon: %s"), err->message);
-    updatestatusbar (msg);
+    updatestatusbar (msg, TRUE);
     g_string_free (msg, TRUE);
     g_error_free (err);
     err = NULL;
@@ -285,7 +287,7 @@ on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 
   cluster = g_object_get_data(G_OBJECT(widget), "cluster");
   if (cluster->sockethandle != -1)
-    cldisconnect(FALSE);
+    cldisconnect(NULL, FALSE);
 
   gtk_window_get_position(GTK_WINDOW(gui->window), &preferences.x, &preferences.y);
   gtk_window_get_size(GTK_WINDOW(gui->window), &preferences.width, &preferences.height);
@@ -530,6 +532,7 @@ on_close_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
   GtkWidget *closedialog, *closelabel, *hbox, *stock, *mainentry;
   GString *labeltext = g_string_new ("");
+  GString *msg = g_string_new ("");
   gint response;
   servertype *cluster;
 
@@ -561,7 +564,11 @@ on_close_activate (GtkMenuItem * menuitem, gpointer user_data)
   response = gtk_dialog_run (GTK_DIALOG (closedialog));
 
   if (response == GTK_RESPONSE_OK)
-    cldisconnect (TRUE);
+    {
+      g_string_printf (msg, ("Connection closed"));
+      cldisconnect (msg, FALSE);
+      g_string_free(msg, TRUE);
+    }
 
   gtk_widget_destroy (closedialog);
 
@@ -586,7 +593,7 @@ static gboolean on_weblink_button_press_event(GtkWidget *widget, GdkEventButton 
   if (result != 0)
   {
     g_string_printf (msg, _("No running mozilla window found"));
-    updatestatusbar (msg);
+    updatestatusbar (msg, TRUE);
     g_string_free (msg, TRUE);
   }
   return FALSE;

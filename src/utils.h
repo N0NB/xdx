@@ -45,6 +45,6 @@
 
 
 void add_pixmap_directory (const gchar * directory);
-void updatestatusbar (GString * statusmessage);
+void updatestatusbar (GString * statusmessage, gboolean timeout);
 void menu_set_sensitive (GtkItemFactory * ifa, const gchar * path,
 			 gboolean sens);

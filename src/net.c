@@ -102,13 +102,13 @@ clresolve (servertype *cluster)
   GIOStatus res = G_IO_STATUS_NORMAL;
 
   g_string_printf (msg, _("Resolving %s..."), cluster->host);
-  updatestatusbar (msg);
+  updatestatusbar (msg, FALSE);
 
   clhostent = gethostbyname (cluster->host);
   if (clhostent == NULL)
     {
       g_string_printf (msg, _("Resolve failed: %s"), hstrerror (h_errno));
-      updatestatusbar (msg);
+      updatestatusbar (msg, FALSE);
       g_string_free (msg, TRUE);
       return FALSE;
     }
@@ -116,13 +116,13 @@ clresolve (servertype *cluster)
     {
       g_string_printf (msg, _("Connecting to: %s"),
 		       inet_ntoa (*((struct in_addr *) clhostent->h_addr)));
-      updatestatusbar (msg);
+      updatestatusbar (msg, FALSE);
     }
 
   if ((cluster->sockethandle = socket (AF_INET, SOCK_STREAM, 0)) == -1)
     {
       msg = g_string_new (strerror (errno));
-      updatestatusbar (msg);
+      updatestatusbar (msg, FALSE);
       g_string_free (msg, TRUE);
       return FALSE;
     }
@@ -144,13 +144,13 @@ clresolve (servertype *cluster)
   if (ret == -1 && errno != EINPROGRESS)
     {
       msg = g_string_new (strerror (errno));
-      updatestatusbar (msg);
+      updatestatusbar (msg, FALSE);
       g_string_free (msg, TRUE);
       return FALSE;
     }
 
   g_string_printf (msg, _("Connected to %s"), cluster->host);
-  updatestatusbar (msg);
+  updatestatusbar (msg, FALSE);
   g_string_free (msg, TRUE);
 
   menu_set_sensitive (gui->item_factory, "/Host/Open", FALSE);
@@ -163,7 +163,7 @@ clresolve (servertype *cluster)
   if ((res != G_IO_STATUS_NORMAL) && err)
   {
     g_string_printf (msg, _("Error on setting channel encoding: %s"), err->message);
-    updatestatusbar (msg);
+    updatestatusbar (msg, TRUE);
     g_string_free (msg, TRUE);
     g_error_free (err);
     err = NULL;
@@ -178,9 +178,8 @@ clresolve (servertype *cluster)
  */
 
 void
-cldisconnect (gboolean updatemessagebar)
+cldisconnect (GString *msg, gboolean timeout)
 {
-  GString *msg = g_string_new ("");
   servertype *cluster;
 
   cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
@@ -193,12 +192,7 @@ cldisconnect (gboolean updatemessagebar)
   close(cluster->sockethandle);
   cluster->sockethandle = -1;
 
-  if (updatemessagebar)
-  {
-    g_string_printf (msg, _("Connection closed"));
-    updatestatusbar (msg);
-    g_string_free (msg, TRUE);
-  }
+  updatestatusbar (msg, timeout);
 
   menu_set_sensitive (gui->item_factory, "/Host/Open", TRUE);
   menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE);
@@ -227,18 +221,19 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
     {
     case G_IO_STATUS_ERROR: /*connection refused */
       g_string_printf (msg, ("%s"), err->message);
-      updatestatusbar (msg);
+      cldisconnect (msg, FALSE);
       g_string_free (msg, TRUE);
       g_error_free (err);
       err = NULL;
-      cldisconnect (FALSE);
       return FALSE;
       break;
     case G_IO_STATUS_NORMAL:
       ret = TRUE;
       break;
     case G_IO_STATUS_EOF: /* remote end has closed connection */
-      cldisconnect (TRUE);
+      g_string_printf (msg, ("Connection closed by remote host"));
+      cldisconnect (msg, FALSE);
+      g_string_free (msg, TRUE);
       return FALSE;
       break;
     default:
@@ -249,7 +244,9 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
     {
       if (numbytes == 0) /* remote end has closed connection */
 	{
-	  cldisconnect (TRUE);
+          g_string_printf (msg, ("Connection closed by remote host"));
+          cldisconnect (msg, FALSE);
+          g_string_free (msg, TRUE);
 	  ret = FALSE;
 	}
       else
@@ -279,7 +276,7 @@ tx (GString * txmsg)
       if (numbytes == -1)
 	{
 	  g_string_printf (errmsg, _("Write failed: %s"), g_strerror (errno));
-	  updatestatusbar (errmsg);
+	  updatestatusbar (errmsg, FALSE);
           g_string_free (errmsg, TRUE);
 	  return;
 	}
@@ -291,7 +288,7 @@ tx (GString * txmsg)
   else
     {
   g_string_printf (errmsg, _("Nothing to send, you are not connected"));
-  updatestatusbar (errmsg);
+  updatestatusbar (errmsg, FALSE);
   g_string_free (errmsg, TRUE);
     }
 }

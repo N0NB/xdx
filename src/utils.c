@@ -25,7 +25,6 @@
 #include "utils.h"
 #include "gui.h"
 
-static gint statusbartimer = -1;
 static GList *pixmaps_directories = NULL;
 
 /* 
@@ -39,18 +38,43 @@ add_pixmap_directory (const gchar * directory)
 					g_strdup (directory));
 }
 
+/*
+ * set statusbar  message to the previous message after a timeout occurs
+ */  
+   
+static gint 
+statusbar_timeout(gpointer data)  
+{  
+  GtkWidget *mainstatusbar;  
+
+  mainstatusbar = g_object_get_data (G_OBJECT (gui->window), "mainstatusbar");  
+  gtk_statusbar_pop(GTK_STATUSBAR(mainstatusbar), 1);  
+  gtk_statusbar_push(GTK_STATUSBAR(mainstatusbar), 1, gui->statusbarmessage);  
+  gtk_timeout_remove(gui->statusbartimer);  
+  gui->statusbartimer = -1;  
+  return FALSE;  
+}  
+ 
 /* 
- * print a message to the statusbar 
+ * print a message to the statusbar. If timeout is set, the statusbar will
+ * be set to the previous message after 5 seconds
  */
 
 void
-updatestatusbar (GString * statusmessage)
+updatestatusbar (GString * statusmessage, gboolean timeout)
 {
   GtkWidget *mainstatusbar;
 
   mainstatusbar = g_object_get_data (G_OBJECT (gui->window), "mainstatusbar");
   gtk_statusbar_pop (GTK_STATUSBAR (mainstatusbar), 1);
   gtk_statusbar_push (GTK_STATUSBAR (mainstatusbar), 1, statusmessage->str);
+  if (timeout)
+    {
+      if (gui->statusbartimer != -1) 
+        gtk_timeout_remove(gui->statusbartimer);  
+      gui->statusbartimer = gtk_timeout_add(5000, statusbar_timeout, NULL);
+    }
+  else gui->statusbarmessage = g_strdup(statusmessage->str);
 }
 
 /* 

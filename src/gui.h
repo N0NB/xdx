@@ -30,6 +30,8 @@ typedef struct guitype {
 	gchar *preferencesdir;
 	guint updown;
 	guint txitem;
+        gint statusbartimer;
+        gchar *statusbarmessage;
 } guitype;
 
 guitype *gui;

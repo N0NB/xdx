@@ -69,8 +69,7 @@ main (int argc, char *argv[])
 
   menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE); /* do not translate */
   g_string_printf (greeting, _("Welcome to %s"), PACKAGE);
-  mainstatusbar = g_object_get_data (G_OBJECT (gui->window), "mainstatusbar");
-  gtk_statusbar_push (GTK_STATUSBAR (mainstatusbar), 1, greeting->str);
+  updatestatusbar(greeting, FALSE);
   g_string_free (greeting, TRUE);
 
   gtk_main ();
