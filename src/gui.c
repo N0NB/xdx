@@ -63,7 +63,7 @@ guitype *new_gui(void)
 	gui->updown = 0;
 	gui->txitem = 0;
         gui->statusbartimer = -1;
-        gui->statusbarmessage = g_strdup("");
+        gui->statusbarmessage = NULL;
         return(gui);
 }
 
@@ -356,6 +356,8 @@ on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
 	
   g_free(gui->preferencesdir);
   gui->preferencesdir = NULL;
+  g_free(gui->statusbarmessage);
+  gui->statusbarmessage = NULL;
   g_free(gui);
 
   gtk_main_quit ();
