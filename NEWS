@@ -1,3 +1,6 @@
-This release adds a preferences dialog where you can change various settings 
-for xdx. I have also added basic support for smileys, web browser/mail
-and hamlib support. See the ChangeLog for details.
+This release adds a preferences dialog where you can change various settings
+for xdx. Autologin and hamlib support have been added. You can save dx 
+information to a file. There is also web browser/mail support when clicking 
+on a link in the chat window.
+
+See the ChangeLog for details.
