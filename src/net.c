@@ -215,7 +215,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
       ret = TRUE;
       break;
     case G_IO_STATUS_EOF: /* remote end has closed connection */
-      g_string_printf (msg, ("Connection closed by remote host"));
+      g_string_printf (msg, _("Connection closed by remote host"));
       cldisconnect (msg, FALSE);
       g_string_free (msg, TRUE);
       return FALSE;
@@ -228,7 +228,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
     {
       if (numbytes == 0) /* remote end has closed connection */
       {
-        g_string_printf (msg, ("Connection closed by remote host"));
+        g_string_printf (msg, _("Connection closed by remote host"));
         cldisconnect (msg, FALSE);
         g_string_free (msg, TRUE);
         ret = FALSE;
