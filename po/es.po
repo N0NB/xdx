@@ -7,9 +7,9 @@ msgstr ""
 "Project-Id-Version:  xdx 1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-05-21 14:28+0200\n"
-"PO-Revision-Date: 2004-01-26 23:21+0000\n"
-"Last-Translator: Baltasar Perez (eb8akf) <baltipd@yahoo.com>\n"
-"Language-Team: es <baltipd@yahoo.com>\n"
+"PO-Revision-Date: 2004-05-21 23:10+0100\n"
+"Last-Translator: Baltasar Perez (ec8ayr) <ec8ayr@yahoo.com>\n"
+"Language-Team: es <ec8ayr@yahoo.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -86,7 +86,7 @@ msgstr "Hora"
 
 #: src/gui.c:198 src/gui_settingsdialog.c:306
 msgid "Info"
-msgstr ""
+msgstr "Información"
 
 #: src/gui_closedialog.c:44
 msgid "xdx - close connection"
@@ -99,7 +99,7 @@ msgstr "¿Cerrar la conexión con %s?"
 
 #: src/gui_closedialog.c:72
 msgid "Connection closed"
-msgstr ""
+msgstr "Conexión finalizada"
 
 #: src/gui_manualdialog.c:39
 msgid "xdx - manual"
@@ -127,11 +127,11 @@ msgstr "xdx - preferencias"
 
 #: src/gui_settingsdialog.c:153
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: src/gui_settingsdialog.c:156
 msgid "Output"
-msgstr ""
+msgstr "Salida"
 
 #: src/gui_settingsdialog.c:166
 msgid "Enable autologin"
@@ -205,11 +205,11 @@ msgstr ""
 
 #: src/gui_settingsdialog.c:290
 msgid "Columns"
-msgstr ""
+msgstr "Columnas"
 
 #: src/gui_settingsdialog.c:292
 msgid "Columns to show on the screen"
-msgstr ""
+msgstr "Columnas a mostrar en pantalla"
 
 #: src/gui_settingsdialog.c:338
 msgid "Save DX spots"
@@ -249,7 +249,7 @@ msgstr "Fallo en la resolución: %s"
 #: src/net.c:98
 #, c-format
 msgid "Connecting to: %s"
-msgstr "Conectando a: %s"
+msgstr "Conectando con: %s"
 
 #: src/net.c:133
 #, c-format
@@ -263,7 +263,7 @@ msgstr "Error al establecer la codificación del canal: %s"
 
 #: src/net.c:218 src/net.c:231
 msgid "Connection closed by remote host"
-msgstr ""
+msgstr "Conexión finalizada por el servidor"
 
 #: src/net.c:282
 #, c-format
