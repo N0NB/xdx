@@ -209,7 +209,7 @@ create_mainwindow (void)
   gtk_container_add (GTK_CONTAINER (mainscrolledwindow), maintext);
   GTK_WIDGET_UNSET_FLAGS (maintext, GTK_CAN_FOCUS);
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
-  gtk_text_buffer_create_tag (buffer, "wwv", "foreground", "green",
+  gtk_text_buffer_create_tag (buffer, "wwv", "foreground", "darkgreen",
 			      NULL);
   gtk_text_buffer_create_tag (buffer, "sent", "foreground", "red",
 			      NULL);
@@ -236,8 +236,6 @@ create_mainwindow (void)
 		    G_CALLBACK (on_mainwindow_key_press_event), NULL);
   g_signal_connect (G_OBJECT(maintext), "motion_notify_event",
 		    G_CALLBACK (on_maintext_motion_notify_event), NULL);
-  g_signal_connect (G_OBJECT (maintext), "visibility-notify-event", 
-			G_CALLBACK (on_maintext_visibility_notify_event), NULL);
   g_signal_connect (G_OBJECT (maintext), "event-after",
         G_CALLBACK (on_maintext_event_after), NULL);
  
