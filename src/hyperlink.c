@@ -53,7 +53,11 @@ linkcontains2dots (gchar *link)
   return FALSE;
 }
 
-static gboolean islink (gchar *link)
+/*
+ * check if link
+ */
+static gboolean 
+islink (gchar *link)
 {
   if (g_strrstr (link, " "))
     return FALSE;
@@ -70,7 +74,11 @@ static gboolean islink (gchar *link)
   return FALSE;
 }
 
-gboolean findw (gunichar ch, gpointer user_data)
+/*
+ * used by set_cursor to find begin/end of a word
+ */
+static gboolean 
+findw (gunichar ch, gpointer user_data)
 {
   if (g_unichar_isspace (ch))
     return TRUE;
@@ -175,7 +183,12 @@ gboolean on_maintext_event_after (GtkWidget * widget,
   gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (widget), &iter, x, y);
 
   if (get_link_tag (&iter))
-    openurl (gui->url);
+  {
+    if (g_strrstr (gui->url, "@"))
+      openmail (gui->url);
+    else
+      openurl (gui->url);
+  }
 
   return FALSE;
 }
@@ -183,8 +196,9 @@ gboolean on_maintext_event_after (GtkWidget * widget,
 /*
  * grab mouse coordinates and modify cursor
  */
-gboolean on_maintext_motion_notify_event (GtkWidget * widget, 
-          GdkEventMotion *event, gpointer user_data)
+gboolean 
+on_maintext_motion_notify_event (GtkWidget * widget, GdkEventMotion *event, 
+  gpointer user_data)
 {
   GdkWindow *window;
   gint x, y;
