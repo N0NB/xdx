@@ -472,6 +472,9 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
           gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, 
             len, "wwv", NULL); /* should be utf-8 clean */
+        else if (!g_ascii_strncasecmp (dx->toall, "WX de ", 5))
+          gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, 
+            len, "wx", NULL); /* should be utf-8 clean */
         else
         {
           if (dx->toall && dx->toall[0] && (utf8 = try_utf8(dx->toall)))

@@ -203,6 +203,8 @@ create_mainwindow (void)
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
   gtk_text_buffer_create_tag (buffer, "wwv", "foreground", "darkgreen",
 			      NULL);
+  gtk_text_buffer_create_tag (buffer, "wx", "foreground", "magenta",
+			      NULL);
   gtk_text_buffer_create_tag (buffer, "sent", "foreground", "red",
 			      NULL);
   gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue", 
