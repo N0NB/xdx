@@ -42,6 +42,7 @@ linkcontains2dots (gchar *link)
       switch (*j)
       {
         case '.':
+        case '@':
           dots++;
         break;
       }
