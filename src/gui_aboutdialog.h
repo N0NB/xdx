@@ -18,31 +18,7 @@
  */
 
 /*
- * gui.h
+ * gui_aboutdialog.h
  */
 
-typedef struct guitype {
-	GtkWidget *window;
-	GtkItemFactory *item_factory;
-	GList *hostnamehistory;
-	GList *porthistory;
-	GList *txhistory;
-	gchar *preferencesdir;
-	guint updown;
-	guint txitem;
-  gint statusbartimer;
-  gchar *statusbarmessage;
-  gchar *url;
-} guitype;
-
-guitype *gui;
-
-guitype *new_gui(void);
-void create_mainwindow (void);
-gboolean on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
-				     gpointer user_data);
-gboolean on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
-				     gpointer user_data);
-void on_mainentry_activate (GtkEditable * editable, gpointer user_data);
-gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
-				     gpointer user_data);
+void on_about_activate (GtkMenuItem * menuitem, gpointer user_data);

@@ -13,6 +13,9 @@ bin_PROGRAMS = xdx
 
 xdx_SOURCES = \
 	gui.h \
+	gui_opendialog.h \
+	gui_closedialog.h \
+	gui_aboutdialog.h \
 	history.h \
 	net.h \
 	preferences.h \
@@ -21,6 +24,9 @@ xdx_SOURCES = \
 	utils.h \
   hyperlink.h \
 	gui.c \
+	gui_opendialog.c \
+	gui_closedialog.c \
+	gui_aboutdialog.c \
 	history.c \
 	main.c \
 	net.c \
