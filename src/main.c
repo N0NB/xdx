@@ -28,6 +28,8 @@
 #include "history.h"
 #include "utils.h"
 
+extern preferencestype preferences;
+
 int
 main (int argc, char *argv[])
 {

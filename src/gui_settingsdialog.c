@@ -25,12 +25,46 @@
 #include "gui_settingsdialog.h"
 #include "utils.h"
 #include "gui.h"
+#include "preferences.h"
+
+GtkWidget *preferencesdialog;
+extern preferencestype preferences;
 
 void
 on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
+  GtkWidget *pautologincheckbutton, *ploginhseparator, *pcallsignlabel,
+    *pcallsignentry, *preconnectcheckbutton;
+  gboolean state;
 
+  pautologincheckbutton = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "pautologincheckbutton");
+  ploginhseparator = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "ploginhseparator");
+  pcallsignlabel = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "pcallsignlabel");
+  pcallsignentry = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "pcallsignentry");
+  preconnectcheckbutton = g_object_get_data (G_OBJECT (preferencesdialog), 
+    "preconnectcheckbutton");
+
+  state = gtk_toggle_button_get_active 
+    (GTK_TOGGLE_BUTTON(pautologincheckbutton));
+  if (state)
+  {
+    gtk_widget_set_sensitive (ploginhseparator, TRUE);
+    gtk_widget_set_sensitive (pcallsignlabel, TRUE);
+    gtk_widget_set_sensitive (pcallsignentry, TRUE);
+    gtk_widget_set_sensitive (preconnectcheckbutton, TRUE);
+  }
+  else
+  {
+    gtk_widget_set_sensitive (ploginhseparator, FALSE);
+    gtk_widget_set_sensitive (pcallsignlabel, FALSE);
+    gtk_widget_set_sensitive (pcallsignentry, FALSE);
+    gtk_widget_set_sensitive (preconnectcheckbutton, FALSE);
+  }
 }
 
 
@@ -46,7 +80,7 @@ on_phamlibcheckbutton_toggled          (GtkToggleButton *togglebutton,
  */
 void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
-  GtkWidget *preferencesdialog, *pdialog_vbox, *pvbox, *ploginframe,
+  GtkWidget *pdialog_vbox, *pvbox, *ploginframe,
     *ploginvbox, *pautologincheckbutton, *ploginhseparator, *ploginhbox,
     *pcallsignlabel, *pcallsignentry, *preconnectcheckbutton, *ploginlabel,
     *psavingframe, *psavingvbox, *psavedxcheckbutton, *psavewwvcheckbutton,
@@ -56,6 +90,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *pprogbrowserlabel, *pprogbrowserentry, *pproghbox2, *pprogmaillabel,
     *pprogmailentry, *pproglabel, *pdialog_action_area;
   gint response;
+  gboolean state;
+  gchar *str;
 
   gtk_widget_set_sensitive (gui->window, 0);
   preferencesdialog = gtk_dialog_new_with_buttons (_("xdx - preferences"),
@@ -89,6 +125,30 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (ploginvbox), preconnectcheckbutton, FALSE, FALSE, 0);
   ploginlabel = gtk_label_new (_("Login"));
   gtk_frame_set_label_widget (GTK_FRAME (ploginframe), ploginlabel);
+
+  if (preferences.autologin == 1)
+  {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pautologincheckbutton), TRUE);
+    gtk_widget_set_sensitive (ploginhseparator, TRUE);
+    gtk_widget_set_sensitive (pcallsignlabel, TRUE);
+    gtk_widget_set_sensitive (pcallsignentry, TRUE);
+    gtk_widget_set_sensitive (preconnectcheckbutton, TRUE);
+  }
+  else
+  {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pautologincheckbutton), FALSE);
+    gtk_widget_set_sensitive (ploginhseparator, FALSE);
+    gtk_widget_set_sensitive (pcallsignlabel, FALSE);
+    gtk_widget_set_sensitive (pcallsignentry, FALSE);
+    gtk_widget_set_sensitive (preconnectcheckbutton, FALSE);
+  }
+  if (g_ascii_strcasecmp (preferences.callsign, "?"))
+    gtk_entry_set_text (GTK_ENTRY(pcallsignentry), preferences.callsign);
+  if (preferences.autoreconnect == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(preconnectcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(preconnectcheckbutton), FALSE);
+  
 
   psavingframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox), psavingframe, TRUE, TRUE, 0);
@@ -152,11 +212,43 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
                     G_CALLBACK (on_phamlibcheckbutton_toggled),
                     NULL);
 
+  g_object_set_data (G_OBJECT (preferencesdialog), "pautologincheckbutton", 
+    pautologincheckbutton);
+  g_object_set_data (G_OBJECT (preferencesdialog), "ploginhseparator", 
+    ploginhseparator);
+  g_object_set_data (G_OBJECT (preferencesdialog), "pcallsignlabel", 
+    pcallsignlabel);
+  g_object_set_data (G_OBJECT (preferencesdialog), "pcallsignentry", 
+    pcallsignentry);
+  g_object_set_data (G_OBJECT (preferencesdialog), "preconnectcheckbutton", 
+    preconnectcheckbutton);
+
+  g_object_set_data (G_OBJECT (preferencesdialog), "phamlibcheckbutton", 
+    phamlibcheckbutton);
+
   gtk_widget_show_all (pvbox);
   response = gtk_dialog_run (GTK_DIALOG (preferencesdialog));
 
   if (response == GTK_RESPONSE_OK)
   {
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(pautologincheckbutton));
+    if (state) 
+      preferences.autologin = 1; 
+    else 
+      preferences.autologin = 0;
+    str = gtk_editable_get_chars (GTK_EDITABLE (pcallsignentry), 0, -1);
+    if (strlen(str) == 0)
+      preferences.callsign = g_strdup ("?");
+    else
+      preferences.callsign = g_strdup (str);
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(preconnectcheckbutton));
+    if (state) 
+      preferences.autoreconnect = 1; 
+    else 
+      preferences.autoreconnect = 0;
+    g_free (str);
   }
 
   gtk_widget_destroy (preferencesdialog);

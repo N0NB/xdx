@@ -73,18 +73,21 @@
 #include "net.h"
 #include "utils.h"
 #include "text.h"
+#include "preferences.h"
 
+extern preferencestype preferences;
 
 /* create a new struct for the server */
 servertype *new_cluster(void)
 {
-        servertype *server = g_new0(servertype, 1);
-        server->host = NULL;
-        server->port = NULL;
-	server->rxchannel = NULL;
-        server->source_id = 0;
-	server->sockethandle = -1;
-        return(server);
+  servertype *server = g_new0(servertype, 1);
+  server->host = NULL;
+  server->port = NULL;
+  server->rxchannel = NULL;
+  server->source_id = 0;
+  server->sockethandle = -1;
+  server->connected = FALSE;
+  return(server);
 }
 
 /* 
@@ -148,7 +151,7 @@ clresolve (servertype *cluster)
       g_string_free (msg, TRUE);
       return FALSE;
     }
-
+  
   g_string_printf (msg, _("Connected to %s"), cluster->host);
   updatestatusbar (msg, FALSE);
   g_string_free (msg, TRUE);
@@ -157,9 +160,7 @@ clresolve (servertype *cluster)
   menu_set_sensitive (gui->item_factory, "/Host/Close", TRUE);
 
   cluster->rxchannel = g_io_channel_unix_new (cluster->sockethandle);
-  /* some hams like to type non-ascii characters on the cluster. We could never guess what the
-         locale is, so we make the channel binary */
-  res = g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
+  res = g_io_channel_set_encoding (cluster->rxchannel, "UTF-8", &err);
   if ((res != G_IO_STATUS_NORMAL) && err)
   {
     g_string_printf (msg, _("Error on setting channel encoding: %s"), err->message);
@@ -168,7 +169,9 @@ clresolve (servertype *cluster)
     g_error_free (err);
     err = NULL;
   }
+
   cluster->source_id = g_io_add_watch (cluster->rxchannel, G_IO_IN, rx, cluster);
+
   return TRUE;
 }
 
@@ -191,6 +194,7 @@ cldisconnect (GString *msg, gboolean timeout)
 
   close(cluster->sockethandle);
   cluster->sockethandle = -1;
+  cluster->connected = FALSE;
 
   if (msg) updatestatusbar (msg, timeout);
 
@@ -208,6 +212,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
   gchar buf[1024];
   gsize numbytes;
   GString *msg = g_string_new ("");
+  GString *callsign = g_string_new ("");
   GIOStatus res = G_IO_STATUS_NORMAL;
   GError *err = NULL;
   gboolean ret;
@@ -243,14 +248,25 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
   if ((cond & G_IO_IN) && G_IO_STATUS_NORMAL)
     {
       if (numbytes == 0) /* remote end has closed connection */
-	{
-          g_string_printf (msg, ("Connection closed by remote host"));
-          cldisconnect (msg, FALSE);
-          g_string_free (msg, TRUE);
-	  ret = FALSE;
-	}
+      {
+        g_string_printf (msg, ("Connection closed by remote host"));
+        cldisconnect (msg, FALSE);
+        g_string_free (msg, TRUE);
+        ret = FALSE;
+	    }
       else
-	maintext_add (buf, numbytes, MESSAGE_RX);
+      {
+        maintext_add (buf, numbytes, MESSAGE_RX);
+        /* autologin */
+        if (!cluster->connected && (preferences.autologin == 1) && 
+          (g_ascii_strcasecmp (preferences.callsign, "?")))
+        {
+          g_string_printf (callsign, "%s", preferences.callsign);
+          tx (callsign);
+          g_string_free (callsign, TRUE);
+          cluster->connected = TRUE;
+        }
+      }
     }
   return ret;
 }

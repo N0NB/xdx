@@ -92,9 +92,9 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
       cluster->port = gtk_editable_get_chars (GTK_EDITABLE
 				      (GTK_COMBO (portcombo)->entry), 0, -1);
       if (!g_ascii_strcasecmp (cluster->host, ""))
-	cluster->host = "localhost";
+        cluster->host = "localhost";
       if (!g_ascii_strcasecmp (cluster->port, ""))
-	cluster->port = "8000";
+        cluster->port = "8000";
       
 
       /* let's see if we need to add host/port to the history */
@@ -102,7 +102,8 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
       node = g_list_find_custom (gui->hostnamehistory, cluster->host, 
 	      (GCompareFunc)g_ascii_strncasecmp);
       if (!node)
-	gui->hostnamehistory = g_list_prepend (gui->hostnamehistory, g_strdup(cluster->host));
+        gui->hostnamehistory = g_list_prepend (gui->hostnamehistory, 
+          g_strdup(cluster->host));
       else
         { /* add last connection to the top of the list */
           if (g_list_position(gui->hostnamehistory, node) != 0)
@@ -116,15 +117,13 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
         }
 
       if (g_list_length (gui->hostnamehistory) > HOSTNAMEHISTORY)
-	gui->hostnamehistory =
-	  g_list_remove (gui->hostnamehistory,
-			 g_list_last (gui->hostnamehistory)->data);
-      
+        gui->hostnamehistory = g_list_remove (gui->hostnamehistory, 
+          g_list_last (gui->hostnamehistory)->data);
       node = NULL;
       node = g_list_find_custom (gui->porthistory, cluster->port,
 	      (GCompareFunc)g_ascii_strncasecmp);
       if (!node)
-	gui->porthistory = g_list_prepend (gui->porthistory, g_strdup(cluster->port));
+        gui->porthistory = g_list_prepend (gui->porthistory, g_strdup(cluster->port));
       else
         {
           if (g_list_position(gui->porthistory, node) != 0)
@@ -138,14 +137,13 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
         }
 
       if (g_list_length (gui->porthistory) > PORTHISTORY)
-	gui->porthistory =
-	  g_list_remove (gui->porthistory, g_list_last (gui->porthistory)->data);
+        gui->porthistory = g_list_remove (gui->porthistory, 
+          g_list_last (gui->porthistory)->data);
 
       menu_set_sensitive (gui->item_factory, "/Host/Open", FALSE);
       menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE);
 
       result = clresolve (cluster);
-
     }
 
   gtk_widget_destroy (opendialog);

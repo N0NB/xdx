@@ -30,6 +30,8 @@
 #include "utils.h"
 #include "gui.h"
 
+preferencestype preferences;
+
 /*
  * check if ~/.xdx directory exists
  */
@@ -66,6 +68,9 @@ loadpreferences (void)
   preferences.height = 550;
   preferences.panedpos = 450;
   preferences.columnwidths = g_strdup("70,70,70,360,60,60,");
+  preferences.autologin = 0;
+  preferences.autoreconnect = 0;
+  preferences.callsign = g_strdup("N0CALL");
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -87,6 +92,12 @@ loadpreferences (void)
           preferences.columnwidths = g_strdup(value);
         else if (!g_strcasecmp(label, "panedpos")) 
           preferences.panedpos = atoi(value);
+        else if (!g_strcasecmp(label, "autologin")) 
+          preferences.autologin = atoi(value);
+        else if (!g_strcasecmp(label, "autoreconnect")) 
+          preferences.autoreconnect = atoi(value);
+        else if (!g_strcasecmp(label, "callsign")) 
+          preferences.callsign = g_strdup(value);
       }
     fclose (fp);
   }
@@ -121,6 +132,12 @@ savepreferences (void)
     fprintf(fp, "columnwidths %s\n", str);
     str = g_strdup_printf("%d", preferences.panedpos);
     fprintf(fp, "panedpos %s\n", str);
+    str = g_strdup_printf("%d", preferences.autologin);
+    fprintf(fp, "autologin %s\n", str);
+    str = g_strdup_printf("%d", preferences.autoreconnect);
+    fprintf(fp, "autoreconnect %s\n", str);
+    str = g_strdup_printf("%s", preferences.callsign);
+    fprintf(fp, "callsign %s\n", str);
     g_free(str);
     fclose (fp);
   }

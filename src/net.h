@@ -32,6 +32,7 @@ typedef struct servertype {
 	GIOChannel *rxchannel;
 	guint source_id;
 	gint sockethandle;
+  gboolean connected;
 } servertype;
 
 servertype *new_cluster(void);

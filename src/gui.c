@@ -35,6 +35,8 @@
 #include "gui_aboutdialog.h"
 #include "gui_settingsdialog.h"
 
+extern preferencestype preferences;
+
 /**********************************MAIN WINDOW********************************/
 
 static GtkItemFactoryEntry menu_items[] = {
@@ -325,6 +327,7 @@ on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
   g_free(cluster);
 
   g_free(preferences.columnwidths);
+  g_free(preferences.callsign);
 
   link = gui->hostnamehistory;
   while (link)

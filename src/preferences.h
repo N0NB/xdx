@@ -28,9 +28,10 @@ typedef struct
   gint height;
   gchar *columnwidths;
   gint panedpos;
+  gint autologin;
+  gint autoreconnect;
+  gchar *callsign;
 } preferencestype;
-
-preferencestype preferences;
 
 void dircheck (void);
 void loadpreferences (void);
