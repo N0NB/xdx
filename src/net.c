@@ -192,7 +192,7 @@ cldisconnect (GString *msg, gboolean timeout)
   close(cluster->sockethandle);
   cluster->sockethandle = -1;
 
-  updatestatusbar (msg, timeout);
+  if (msg) updatestatusbar (msg, timeout);
 
   menu_set_sensitive (gui->item_factory, "/Host/Open", TRUE);
   menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE);
