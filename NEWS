@@ -1,0 +1,21 @@
+xdx (0.2) unstable; urgency=low
+
+  * Fixed a scrolling bug for the text widget.
+  * Set the g_io_channel encoding to binary to support the many different
+    languages used on the cluster, utf8 encoding would cause iconv failures
+    on receiving a message, which lead to disconnects.
+  * Some work on the about box.
+  * The statusbar is cleared after 30 seconds.
+  * French translations by Jean-Luc Coulon <jean-luc.coulon at wanadoo.fr>.
+  * Provide rpm packages.
+  * Fixed some memory leaks with memprof.
+  * Some code rewrites.
+  * Debian: do not create symlinks to /usr/doc (lintian).
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Fri, 30 Aug 2002 13:28:00 +0200
+
+xdx (0.1) unstable; urgency=low
+
+  * First public release. 
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Wed, 20 Aug 2002 10:24:08 +0100

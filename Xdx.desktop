@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Xdx
+Comment=DX-cluster client for amateur radio
+Exec=/usr/bin/xdx
+Icon=/usr/share/xdx/pixmaps/xdx.png
+Terminal=false
+MultipleArgs=false
+Type=Application

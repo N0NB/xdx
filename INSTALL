@@ -1,0 +1,21 @@
+Basic installation instructions for xdx
+=======================================
+
+The simplest way to compile xdx is:
+
+  1. `cd' to the directory containing the package's source code and type
+     `./configure' to configure the package for your system.
+
+  2. Type `make' to compile the package.
+
+  3. Type `make install' to install the programs and any data files and
+     documentation. 
+
+  4. When you want to stip the binary when installing, just type:
+     `make install-strip'.
+
+By default, `make install' will install the package's files in 
+`/usr/local/bin', `/usr/local/man/man1', `/usr/local/share/xdx', etc.  
+You can specify an installation prefix other than `/usr/local' by giving 
+`configure' the option `--prefix=PATH'.
+

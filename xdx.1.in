@@ -1,0 +1,19 @@
+.\"
+.TH "XDX" "1" "Version @VERSION@" "Joop Stakenborg" "Hamradio"
+.SH "NAME"
+xdx \- tcp/ip DX-cluster client for Amateur Radio
+
+.SH "DESCRIPTION"
+\fBXdx\fR is a DX-cluster client which shows a list with DX announcements
+and a separate text widget with WWV, WCY, "To ALL" and other server messages.
+
+.SH "SEE ALSO"
+The \fBxdx\fR homepage at 
+.br 
+http://people.debian.org/~pa3aba/xdx.html
+.SH "AUTHOR"
+Both \fBxdx\fR and this manual page were written
+by Joop Stakenborg
+<pa4tu@amsat.org>
+aka 
+<pa3aba@debian.org>.
