@@ -318,9 +318,16 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 	  if (!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
 	      || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
 	    gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, len,
-                  "wwv", NULL);
+                  "wwv", NULL); /* should be utf-8 clean */
 	  else
+    { /* try local language, if it fails fall back to ISO-8859-1 */
+      if (!g_utf8_validate (dx->toall, -1, NULL ))
+        dx->toall = g_locale_to_utf8 (dx->toall, -1, NULL, NULL, NULL);
+      if (!g_utf8_validate (dx->toall, -1, NULL ))
+        g_convert (dx->toall, strlen (dx->toall), "UTF-8", "ISO-8859-1", 
+          NULL, NULL, NULL);
 	    gtk_text_buffer_insert (buffer, &end, dx->toall, len);
+    }
 	  mark = gtk_text_buffer_get_mark (buffer, "insert");
 	  gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 0.0, 1.0);
           g_free(dx->toall);
@@ -328,6 +335,13 @@ maintext_add (gchar msg[], gint len, gint messagetype)
       g_free(dx);
     }
     else if (messagetype == MESSAGE_TX)
+    { /* try local language, if it fails fall back to ISO-8859-1 */
+      if (!g_utf8_validate (msg, -1, NULL ))
+        msg = g_locale_to_utf8 (msg, -1, NULL, NULL, NULL);
+      if (!g_utf8_validate (msg, -1, NULL ))
+        g_convert (msg, strlen (msg), "UTF-8", "ISO-8859-1", 
+          NULL, NULL, NULL);
       gtk_text_buffer_insert_with_tags_by_name (buffer, &end, msg, len,
 					      "sent", NULL);
+    }
 }
