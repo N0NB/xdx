@@ -1,0 +1,18 @@
+Changelog for version xdx (0.99)
+
+  * A preferences dialog has been added.
+  * A URL in the chat window will now appear blue and underlined when your
+    mouse is over it. Clicking on it will open the link in your preferred
+    browser or mail program (see the preferences dialog).
+  * Fixed saving of position, size of the main window and columnwidths.
+  * Support for smileys (:) :-) :)) :-)) ;) ;-) :( :-( :(( :-(() 
+    in the chatwindow.
+  * Basic hamlib support. Double clicking on a dxspot will set your rig's
+    frequency. Needs the rigctl binary from the hamlib distribution.
+  * Autologin has been added. To use it, enter your callsign in the preferences
+    dialog. You can also add a comma separated list of commands here, which 
+    will be sent after login to the cluster.
+  * Dxspots, wcy/wwv information, toall and wx information can be saved to
+    independent files when activated from the preferences dialog.
+
+ -- Joop Stakenborg <pg4i@amsat.org>  Tue,  3 Oct 2003 19:29:00 +0200
