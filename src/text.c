@@ -291,25 +291,30 @@ maintext_add (gchar msg[], gint len, gint messagetype)
       dx = extractinfo(msg);
       if (dx->dx)
       { 
-          g_strstrip(dx->freq);
-          g_strstrip(dx->remark);
-	  gtk_tree_store_append (model, &iter, NULL);
-	  gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
-			      dx->freq, DX_COLUMN, dx->dxcall, REM_COLUMN, dx->remark,
-			      TIME_COLUMN, dx->time, INFO_COLUMN, dx->info, -1);
-	  path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &iter);
-	  gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL,
-				    FALSE);
-	  gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path,
-					NULL, TRUE, 0.0, 1.0);
-	  gtk_tree_path_free (path);
+        g_strstrip(dx->freq);
+        g_strstrip(dx->remark);
+        gtk_tree_store_append (model, &iter, NULL);
+        /* remark field may contain foreign language characters */
+        if (!g_utf8_validate (dx->remark, -1, NULL ))
+          dx->remark = g_locale_to_utf8 (dx->remark, -1, NULL, NULL, NULL);
+        if (!g_utf8_validate (dx->remark, -1, NULL ))
+          g_convert (dx->remark, strlen (dx->remark), "UTF-8", "ISO-8859-1", 
+            NULL, NULL, NULL);
+        gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
+  		    dx->freq, DX_COLUMN, dx->dxcall, REM_COLUMN, dx->remark,
+  		    TIME_COLUMN, dx->time, INFO_COLUMN, dx->info, -1);
+        path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &iter);
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL, FALSE);
+        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path,
+        	NULL, TRUE, 0.0, 1.0);
+        gtk_tree_path_free (path);
 
-          g_free(dx->spotter);
-          g_free(dx->freq);
-          g_free(dx->dxcall);
-          g_free(dx->remark);
-          g_free(dx->time);
-          g_free(dx->info);
+        g_free(dx->spotter);
+        g_free(dx->freq);
+        g_free(dx->dxcall);
+        g_free(dx->remark);
+        g_free(dx->time);
+        g_free(dx->info);
       }
       if (dx->nodx)  
 	{
