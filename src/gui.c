@@ -138,7 +138,7 @@ create_mainwindow (void)
   gtk_widget_show (clistscrolledwindow);
   gtk_paned_pack1 (GTK_PANED (vpaned1), clistscrolledwindow, TRUE, TRUE);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (clistscrolledwindow),
-				  GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
+				  GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
   model = gtk_tree_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING,
 			      G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
@@ -151,38 +151,32 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes (_("Spotter"), renderer, "text",
 					      FROM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_fixed_width (column, 80);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes ("QRG", renderer, "text",
 					      FREQ_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_fixed_width (column, 100);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes ("DX", renderer, "text",
 					      DX_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_fixed_width (column, 100);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes (_("Remarks"), renderer, "text",
 					      REM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_fixed_width (column, 280);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes (_("Time"), renderer, "text",
 					      TIME_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_fixed_width (column, 60);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes ("Info", renderer, "text",
 					      INFO_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_fixed_width (column, 60);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   gtk_widget_show (treeview);
@@ -192,7 +186,7 @@ create_mainwindow (void)
   gtk_widget_show (mainscrolledwindow);
   gtk_paned_pack2 (GTK_PANED (vpaned1), mainscrolledwindow, TRUE, TRUE);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (mainscrolledwindow),
-				  GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
+				  GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
   maintext = gtk_text_view_new ();
   gtk_widget_show (maintext);
