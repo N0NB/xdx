@@ -152,32 +152,32 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes (_("Spotter"), renderer, "text",
 					      FROM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes ("QRG", renderer, "text",
 					      FREQ_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes ("DX", renderer, "text",
 					      DX_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes (_("Remarks"), renderer, "text",
 					      REM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes (_("Time"), renderer, "text",
 					      TIME_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   column =
     gtk_tree_view_column_new_with_attributes ("Info", renderer, "text",
 					      INFO_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   gtk_widget_show (treeview);
