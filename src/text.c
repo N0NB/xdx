@@ -73,6 +73,21 @@ create_smiley_list (void)
   smiley *s;
 
   s = new_smiley ();
+  s->str = ":-((";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/cry.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ":((";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/cry.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ":))";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/bigsmile.png";
+  smileylist = g_slist_append(smileylist, s);
+  s->str = ":-))";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/bigsmile.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
   s->str = ":)";
   s->file = PACKAGE_DATA_DIR "/pixmaps/smile.png";
   smileylist = g_slist_append(smileylist, s);
@@ -95,21 +110,6 @@ create_smiley_list (void)
   s = new_smiley ();
   s->str = ":-(";
   s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png";
-  smileylist = g_slist_append(smileylist, s);
-  s = new_smiley ();
-  s->str = ":-((";
-  s->file = PACKAGE_DATA_DIR "/pixmaps/cry.png";
-  smileylist = g_slist_append(smileylist, s);
-  s = new_smiley ();
-  s->str = ":((";
-  s->file = PACKAGE_DATA_DIR "/pixmaps/cry.png";
-  smileylist = g_slist_append(smileylist, s);
-  s = new_smiley ();
-  s->str = ":))";
-  s->file = PACKAGE_DATA_DIR "/pixmaps/bigsmile.png";
-  smileylist = g_slist_append(smileylist, s);
-  s->str = ":-))";
-  s->file = PACKAGE_DATA_DIR "/pixmaps/bigsmile.png";
   smileylist = g_slist_append(smileylist, s);
 }
 
