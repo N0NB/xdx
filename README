@@ -4,11 +4,11 @@ xdx by Joop Stakenborg <pg4i@amsat.org>
 See the file called 'MANUAL' if you want to learn more about xdx or dx-clusters.
 You can also selected help->manual from the menu after xdx is started, it will
 display the same file. The file called 'INSTALL' will show you how to compile 
-xdx for your linux distribution.
+xdx for your linux/bsd distribution.
 
 Thanks to Jean-Luc Coulon (F5IBH) for french translations and Baltasar Perez
 (EB8AKF) for spanish translations of xdx. Thanks to Matt Dawson (GW0VNR) for
-testing this release on freebsd.
+providing freebsd packages and testing on this platform.
 
 If you find any bugs let me know and I will try to fix them.
 Joop, PG4I <pg4i@amsat.org> (former callsigns pa4tu and pa3aba).
