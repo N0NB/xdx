@@ -4,8 +4,11 @@ Version 0.3:
   in the connection dialog.
 * When the cluster is really busy, dx messages might be appended
   to WCY, WWV or To All messages. We have to split them.
+* Statusbar messages other than "Connected to .." or "disconnected"
+  should get at timeout.
 
 Version 0.4:
 
-* interface with hamlib
+* Interface with hamlib.
+* Filters for dx messages.
 
