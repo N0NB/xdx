@@ -1,12 +1,13 @@
 ## Process this file with automake to produce Makefile.in
 
-EXTRA_DIST = \
+EXTRA_DIST = config.rpath mkinstalldirs  \
 	Xdx.desktop \
 	xdx.spec \
 	xdx.spec.in \
 	xdx.1 \
 	xdx.1.in \
-	MANUAL
+	MANUAL \
+	MANUAL.es
 
 SUBDIRS = \
 	m4 \
@@ -28,6 +29,9 @@ install-data-local:
 	fi
 	if test -f MANUAL; then \
 		$(INSTALL_DATA) MANUAL $(DESTDIR)$(pkgdatadir); \
+	fi
+	if test -f MANUAL.es; then \
+		$(INSTALL_DATA) MANUAL.es $(DESTDIR)$(pkgdatadir); \
 	fi
 
 
