@@ -26,17 +26,45 @@
 #include "hyperlink.h"
 #include "gui.h"
 
+/*
+ * count number of dots in a link
+ */
+static gboolean 
+linkcontains2dots (gchar *link)
+{
+  gint dots = 0;
+  gchar *linktocheck, *end, *j;
+ 
+  linktocheck = g_strdup (link);
+  end = linktocheck + strlen (linktocheck);
+  for (j = linktocheck; j < end; ++j)
+    {
+      switch (*j)
+      {
+        case '.':
+          dots++;
+        break;
+      }
+    }
+
+  g_free (linktocheck);
+  if (dots > 1) return TRUE;
+  return FALSE;
+}
+
 static gboolean islink (gchar *link)
 {
   if (g_strrstr (link, " "))
     return FALSE;
-  else if (g_strrstr (link, "\n"))
-    return FALSE;
-  else if (g_strrstr (link, "\r"))
-    return FALSE;
   else if (!g_ascii_strncasecmp (link, "http://", 7))
     return TRUE;
   else if (!g_ascii_strncasecmp (link, "www.", 4))
+    return TRUE;
+  else if (!g_ascii_strncasecmp (link, "ftp://", 7))
+    return TRUE;
+  else if (!g_ascii_strncasecmp (link, "ftp.", 7))
+    return TRUE;
+  if ( linkcontains2dots (link))
     return TRUE;
   return FALSE;
 }
