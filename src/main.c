@@ -37,9 +37,9 @@ int
 main (int argc, char *argv[])
 {
   GtkWidget *treeview;
+  GtkTreeViewColumn *column;
   gchar *lang, **wsplit;
   GString *greeting = g_string_new ("");
-  gint i;
 
 
 #ifdef ENABLE_NLS
@@ -64,11 +64,38 @@ main (int argc, char *argv[])
   loadhistory ();
 
   treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
-  wsplit = g_strsplit(preferences.columnwidths, ",", 0);
-  for (i = 0; i < 5; i++)
-    gtk_tree_view_column_set_fixed_width
-      (gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), i), atoi(wsplit[i]));
-  g_strfreev(wsplit);
+  wsplit = g_strsplit (preferences.columnwidths, ",", 0);
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW(treeview), 0);
+  if (!preferences.col0visible)
+    gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+  else
+    gtk_tree_view_column_set_fixed_width (column, atoi(wsplit[0]));
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW(treeview), 1);
+  if (!preferences.col1visible)
+    gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+  else
+    gtk_tree_view_column_set_fixed_width (column, atoi(wsplit[1]));
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW(treeview), 2);
+  if (!preferences.col2visible)
+    gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+  else
+    gtk_tree_view_column_set_fixed_width (column, atoi(wsplit[2]));
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW(treeview), 3);
+  if (!preferences.col3visible)
+    gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+  else
+    gtk_tree_view_column_set_fixed_width (column, atoi(wsplit[3]));
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW(treeview), 4);
+  if (!preferences.col4visible)
+    gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+  else
+    gtk_tree_view_column_set_fixed_width (column, atoi(wsplit[4]));
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW(treeview), 5);
+  if (!preferences.col5visible)
+    gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+  else
+    gtk_tree_view_column_set_fixed_width (column, atoi(wsplit[5]));
+  g_strfreev (wsplit);
 
   gtk_widget_show_all (gui->window);
   gtk_window_move (GTK_WINDOW(gui->window), 

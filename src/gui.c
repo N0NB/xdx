@@ -65,13 +65,13 @@ guitype *new_gui(void)
 {
   guitype *gui = g_new0(guitype, 1);
   gui->window = NULL;
-	gui->item_factory = NULL;
-	gui->hostnamehistory = NULL;
-	gui->porthistory = NULL;
-	gui->txhistory = NULL;
-	gui->preferencesdir = NULL;
-	gui->updown = 0;
-	gui->txitem = 0;
+  gui->item_factory = NULL;
+  gui->hostnamehistory = NULL;
+  gui->porthistory = NULL;
+  gui->txhistory = NULL;
+  gui->preferencesdir = NULL;
+  gui->updown = 0;
+  gui->txitem = 0;
   gui->statusbartimer = -1;
   gui->statusbarmessage = NULL;
   return(gui);
@@ -157,42 +157,48 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes (_("Spotter"), renderer, "text",
 					      FROM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
+  gtk_tree_view_column_set_sizing (GTK_TREE_VIEW_COLUMN(column), 
+    GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_resizable (GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   column =
     gtk_tree_view_column_new_with_attributes ("QRG", renderer, "text",
 					      FREQ_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
+  gtk_tree_view_column_set_sizing (GTK_TREE_VIEW_COLUMN(column), 
+    GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_resizable (GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   column =
     gtk_tree_view_column_new_with_attributes ("DX", boldrenderer, "text",
 					      DX_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+    GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   column =
     gtk_tree_view_column_new_with_attributes (_("Remarks"), renderer, "text",
 					      REM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+    GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   column =
     gtk_tree_view_column_new_with_attributes (_("Time"), renderer, "text",
 					      TIME_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+    GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   column =
     gtk_tree_view_column_new_with_attributes ("Info", renderer, "text",
 					      INFO_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+    GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
@@ -283,7 +289,7 @@ static void syncprefs (void)
 {
   GtkWidget *treeview;
   GList * columns;
-  gint i, length;
+  gint i, length, width;
   servertype *cluster;
   GString *w = g_string_new("");
 
@@ -295,14 +301,26 @@ static void syncprefs (void)
   gtk_window_get_size(GTK_WINDOW(gui->window), &preferences.width, &preferences.height);
 
   treeview = g_object_get_data (G_OBJECT(gui->window), "treeview");
-  columns = gtk_tree_view_get_columns(GTK_TREE_VIEW(treeview));
-  length = g_list_length(columns);
-  for (i = 0; i < length; i++) 
-      g_string_append_printf(w, "%d,", gtk_tree_view_column_get_width
-        (gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), i)));
-  g_list_free(columns);
-  preferences.columnwidths = g_strdup(w->str);
-  g_string_free(w, TRUE);
+  columns = gtk_tree_view_get_columns (GTK_TREE_VIEW(treeview));
+  length = g_list_length (columns);
+  for (i = 0; i < length; i++)
+  {
+      width = gtk_tree_view_column_get_width
+        (gtk_tree_view_get_column (GTK_TREE_VIEW(treeview), i));
+      if (width == 0)
+      {
+        if (i == 0) width = COL0WIDTH;
+        else if (i == 1) width = COL1WIDTH;
+        else if (i == 2) width = COL2WIDTH;
+        else if (i == 3) width = COL3WIDTH;
+        else if (i == 4) width = COL4WIDTH;
+        else if (i == 5) width = COL5WIDTH;
+      }
+      g_string_append_printf (w, "%d,", width);
+  }
+  g_list_free (columns);
+  preferences.columnwidths = g_strdup (w->str);
+  g_string_free (w, TRUE);
 
   savehistory ();
   savepreferences ();

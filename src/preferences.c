@@ -65,7 +65,9 @@ loadpreferences (void)
   preferences.y = 30;
   preferences.width = 700;
   preferences.height = 550;
-  preferences.columnwidths = g_strdup("70,70,70,360,60,60,");
+  preferences.columnwidths = 
+    g_strdup_printf("%d,%d,%d,%d,%d,%d,",
+    COL0WIDTH, COL1WIDTH, COL2WIDTH, COL3WIDTH, COL4WIDTH, COL5WIDTH);
   preferences.autologin = 0;
   preferences.callsign = g_strdup("N0CALL");
   preferences.commands = g_strdup("set/page 0");
@@ -77,6 +79,13 @@ loadpreferences (void)
   preferences.rigctl = g_strdup("rigctl -m 1 set_freq %d");;
   preferences.browserapp = g_strdup("mozilla %s");
   preferences.mailapp = g_strdup("mozilla -compose \"to=%s\"");
+  preferences.col0visible = 1;
+  preferences.col1visible = 1;
+  preferences.col2visible = 1;
+  preferences.col3visible = 1;
+  preferences.col4visible = 1;
+  preferences.col5visible = 1;
+  
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -130,6 +139,18 @@ loadpreferences (void)
           g_strdelimit (value, "~", ' ');
           preferences.mailapp = g_strdup(value);
         }
+        else if (!g_ascii_strcasecmp(label, "col0visible")) 
+          preferences.col0visible = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "col1visible")) 
+          preferences.col1visible = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "col2visible")) 
+          preferences.col2visible = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "col3visible")) 
+          preferences.col3visible = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "col4visible")) 
+          preferences.col4visible = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "col5visible")) 
+          preferences.col5visible = atoi(value);
       }
     fclose (fp);
   }
@@ -188,6 +209,18 @@ savepreferences (void)
     str = g_strdup_printf("%s", preferences.mailapp);
     g_strdelimit (str, " ", '~');
     fprintf(fp, "mailapp %s\n", str);
+    str = g_strdup_printf("%d", preferences.col0visible);
+    fprintf(fp, "col0visible %s\n", str);
+    str = g_strdup_printf("%d", preferences.col1visible);
+    fprintf(fp, "col1visible %s\n", str);
+    str = g_strdup_printf("%d", preferences.col2visible);
+    fprintf(fp, "col2visible %s\n", str);
+    str = g_strdup_printf("%d", preferences.col3visible);
+    fprintf(fp, "col3visible %s\n", str);
+    str = g_strdup_printf("%d", preferences.col4visible);
+    fprintf(fp, "col4visible %s\n", str);
+    str = g_strdup_printf("%d", preferences.col5visible);
+    fprintf(fp, "col5visible %s\n", str);
     g_free(str);
     fclose (fp);
   }

@@ -22,14 +22,14 @@
  */
 
 typedef struct guitype {
-	GtkWidget *window;
-	GtkItemFactory *item_factory;
-	GList *hostnamehistory;
-	GList *porthistory;
-	GList *txhistory;
-	gchar *preferencesdir;
-	guint updown;
-	guint txitem;
+  GtkWidget *window;
+  GtkItemFactory *item_factory;
+  GList *hostnamehistory;
+  GList *porthistory;
+  GList *txhistory;
+  gchar *preferencesdir;
+  guint updown;
+  guint txitem;
   gint statusbartimer;
   gchar *statusbarmessage;
   gchar *url;
@@ -48,3 +48,4 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
             gpointer user_data);
 gboolean double_click (GtkWidget *widget, GdkEventButton *event, 
             gpointer user_data);
+void on_quit_activate (GtkMenuItem * menuitem, gpointer user_data);

@@ -104,7 +104,9 @@ on_phamlibcheckbutton_toggled          (GtkToggleButton *togglebutton,
  */
 void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
-  GtkWidget *pdialog_vbox, *pvbox, 
+  GtkWidget *pdialog_vbox, *pvbox1, *pvbox2, 
+
+    *pnotebook, *plabel1, *plabel2,
 
     *ploginframe, *ploginvbox, *pautologincheckbutton, *ploginhseparator, 
     *ploginhbox, *pcallsignlabel, *pcallsignentry, *pcommandshbox, 
@@ -118,7 +120,14 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
     *pprogframe, *pprogvbox, *pproghbox1, *pprogbrowserlabel, 
     *pprogbrowserentry, *pproghbox2, *pprogmaillabel,
-    *pprogmailentry, *pproglabel;
+    *pprogmailentry, *pproglabel,
+
+    *pcolumnsframe, *pcolumnsvbox, *pcolumnsvboxlabel, *pcolumnslabel,
+    *pcolumnshseparator, *pspottercheckbutton, *pqrgcheckbutton,
+    *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton, 
+    *pinfocheckbutton;
+  GtkTreeViewColumn *column;
+  GtkWidget *treeview;
   gint response;
   gboolean state;
   gchar *str;
@@ -133,12 +142,25 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 					    GTK_STOCK_OK,
 					    GTK_RESPONSE_OK, NULL);
 
+  
   pdialog_vbox = GTK_DIALOG (preferencesdialog)->vbox;
-  pvbox = gtk_vbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (pdialog_vbox), pvbox, TRUE, TRUE, 0);
+
+  pnotebook = gtk_notebook_new ();
+  pvbox1 = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (pnotebook), pvbox1);
+  pvbox2 = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (pnotebook), pvbox2);
+  plabel1 = gtk_label_new (_("General"));
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
+    gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 0), plabel1);
+  plabel2 = gtk_label_new (_("Output"));
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
+    gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 1), plabel2);
+  gtk_box_pack_start (GTK_BOX (pdialog_vbox), pnotebook, TRUE, TRUE, 0);
+
 
   ploginframe = gtk_frame_new (NULL);
-  gtk_box_pack_start (GTK_BOX (pvbox), ploginframe, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (pvbox1), ploginframe, TRUE, TRUE, 0);
   ploginvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (ploginframe), ploginvbox);
   pautologincheckbutton = gtk_check_button_new_with_mnemonic (_("Enable autologin"));
@@ -191,41 +213,9 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   if (g_ascii_strcasecmp (preferences.commands, "?"))
     gtk_entry_set_text (GTK_ENTRY(pcommandsentry), preferences.commands);
 
-  psavingframe = gtk_frame_new (NULL);
-  gtk_box_pack_start (GTK_BOX (pvbox), psavingframe, TRUE, TRUE, 0);
-  psavingvbox = gtk_vbox_new (TRUE, 0);
-  gtk_container_add (GTK_CONTAINER (psavingframe), psavingvbox);
-  psavedxcheckbutton = gtk_check_button_new_with_mnemonic (_("Save DX spots"));
-  gtk_box_pack_start (GTK_BOX (psavingvbox), psavedxcheckbutton, FALSE, FALSE, 0);
-  psavewwvcheckbutton = gtk_check_button_new_with_mnemonic (_("Save WCY/WWV"));
-  gtk_box_pack_start (GTK_BOX (psavingvbox), psavewwvcheckbutton, FALSE, FALSE, 0);
-  psavetoallcheckbutton = gtk_check_button_new_with_mnemonic (_("Save \"To all\""));
-  gtk_box_pack_start (GTK_BOX (psavingvbox), psavetoallcheckbutton, FALSE, FALSE, 0);
-  psavewxcheckbutton = gtk_check_button_new_with_mnemonic (_("Save WX"));
-  gtk_box_pack_start (GTK_BOX (psavingvbox), psavewxcheckbutton, FALSE, FALSE, 0);
-  psavinglabel = gtk_label_new (_("Saving"));
-  gtk_frame_set_label_widget (GTK_FRAME (psavingframe), psavinglabel);
-
-  if (preferences.savedx == 1)
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
-  else
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), FALSE);
-  if (preferences.savewwv == 1)
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewwvcheckbutton), TRUE);
-  else
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewwvcheckbutton), FALSE);
-  if (preferences.savetoall == 1)
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavetoallcheckbutton), TRUE);
-  else
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavetoallcheckbutton), FALSE);
-  if (preferences.savewx == 1)
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewxcheckbutton), TRUE);
-  else
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewxcheckbutton), FALSE);
-
   phamlibframe = gtk_frame_new (NULL);
   gtk_widget_show (phamlibframe);
-  gtk_box_pack_start (GTK_BOX (pvbox), phamlibframe, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (pvbox1), phamlibframe, TRUE, TRUE, 0);
   phamlibvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (phamlibframe), phamlibvbox);
   phamlibcheckbutton = gtk_check_button_new_with_mnemonic (_("Enable hamlib"));
@@ -264,7 +254,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_entry_set_text (GTK_ENTRY(prigentry), preferences.rigctl);
   
   pprogframe = gtk_frame_new (NULL);
-  gtk_box_pack_start (GTK_BOX (pvbox), pprogframe, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (pvbox1), pprogframe, TRUE, TRUE, 0);
   pprogvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (pprogframe), pprogvbox);
   pproghbox1 = gtk_hbox_new (TRUE, 0);
@@ -293,6 +283,86 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   if (g_ascii_strcasecmp (preferences.mailapp, "?"))
     gtk_entry_set_text (GTK_ENTRY(pprogmailentry), preferences.mailapp);
 
+  pcolumnsframe = gtk_frame_new (NULL);
+  gtk_box_pack_start (GTK_BOX (pvbox2), pcolumnsframe, TRUE, TRUE, 0);
+  pcolumnsvbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (pcolumnsframe), pcolumnsvbox);
+  pcolumnslabel = gtk_label_new (_("Columns"));
+  gtk_frame_set_label_widget (GTK_FRAME (pcolumnsframe), pcolumnslabel);
+  pcolumnsvboxlabel = gtk_label_new (_("Columns to show on the screen"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pcolumnsvboxlabel, FALSE, FALSE, 0);
+  pcolumnshseparator = gtk_hseparator_new ();
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pcolumnshseparator, FALSE, FALSE, 0);
+  pspottercheckbutton = gtk_check_button_new_with_mnemonic (_("Spotter"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pspottercheckbutton, FALSE, FALSE, 0);
+  pqrgcheckbutton = gtk_check_button_new_with_mnemonic (_("QRG"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pqrgcheckbutton, FALSE, FALSE, 0);
+  pdxcheckbutton = gtk_check_button_new_with_mnemonic (_("DX"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pdxcheckbutton, FALSE, FALSE, 0);
+  premarkscheckbutton = gtk_check_button_new_with_mnemonic (_("Remarks"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), premarkscheckbutton, FALSE, FALSE, 0);
+  ptimecheckbutton = gtk_check_button_new_with_mnemonic (_("Time"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), ptimecheckbutton, FALSE, FALSE, 0);
+  pinfocheckbutton = gtk_check_button_new_with_mnemonic (_("Info"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pinfocheckbutton, FALSE, FALSE, 0);
+  if (preferences.col0visible == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pspottercheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pspottercheckbutton), FALSE);
+  if (preferences.col1visible == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pqrgcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pqrgcheckbutton), FALSE);
+  if (preferences.col2visible == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pdxcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pdxcheckbutton), FALSE);
+  if (preferences.col3visible == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(premarkscheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(premarkscheckbutton), FALSE);
+  if (preferences.col4visible == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(ptimecheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(ptimecheckbutton), FALSE);
+  if (preferences.col5visible == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pinfocheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pinfocheckbutton), FALSE);
+
+
+  psavingframe = gtk_frame_new (NULL);
+  gtk_box_pack_start (GTK_BOX (pvbox2), psavingframe, TRUE, TRUE, 0);
+  psavingvbox = gtk_vbox_new (TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (psavingframe), psavingvbox);
+  psavedxcheckbutton = gtk_check_button_new_with_mnemonic (_("Save DX spots"));
+  gtk_box_pack_start (GTK_BOX (psavingvbox), psavedxcheckbutton, FALSE, FALSE, 0);
+  psavewwvcheckbutton = gtk_check_button_new_with_mnemonic (_("Save WCY/WWV"));
+  gtk_box_pack_start (GTK_BOX (psavingvbox), psavewwvcheckbutton, FALSE, FALSE, 0);
+  psavetoallcheckbutton = gtk_check_button_new_with_mnemonic (_("Save \"To all\""));
+  gtk_box_pack_start (GTK_BOX (psavingvbox), psavetoallcheckbutton, FALSE, FALSE, 0);
+  psavewxcheckbutton = gtk_check_button_new_with_mnemonic (_("Save WX"));
+  gtk_box_pack_start (GTK_BOX (psavingvbox), psavewxcheckbutton, FALSE, FALSE, 0);
+  psavinglabel = gtk_label_new (_("Saving"));
+  gtk_frame_set_label_widget (GTK_FRAME (psavingframe), psavinglabel);
+
+  if (preferences.savedx == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), FALSE);
+  if (preferences.savewwv == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewwvcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewwvcheckbutton), FALSE);
+  if (preferences.savetoall == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavetoallcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavetoallcheckbutton), FALSE);
+  if (preferences.savewx == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewxcheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewxcheckbutton), FALSE);
+ 
   g_signal_connect ((gpointer) pautologincheckbutton, "toggled",
                     G_CALLBACK (on_pautologincheckbutton_toggled),
                     NULL);
@@ -318,8 +388,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   g_object_set_data (G_OBJECT (preferencesdialog), "prigentry", 
     prigentry);
 
-
-  gtk_widget_show_all (pvbox);
+  gtk_widget_show_all (pnotebook);
   response = gtk_dialog_run (GTK_DIALOG (preferencesdialog));
 
   if (response == GTK_RESPONSE_OK)
@@ -392,6 +461,99 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.mailapp = g_strdup ("?");
     else
       preferences.mailapp = g_strdup (str);
+
+    /* columns frame */
+    treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(pspottercheckbutton));
+    column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 0);
+    if (state)
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), TRUE);
+      if (preferences.col0visible == 0)
+        gtk_tree_view_column_set_fixed_width (column, COL0WIDTH);
+      preferences.col0visible = 1;
+    }	    
+    else
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+      preferences.col0visible = 0;
+    }
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(pqrgcheckbutton));
+    column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 1);
+    if (state)
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), TRUE);
+      if (preferences.col1visible == 0)
+        gtk_tree_view_column_set_fixed_width (column, COL1WIDTH);
+      preferences.col1visible = 1;
+    }	    
+    else
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+      preferences.col1visible = 0;
+    }
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(pdxcheckbutton));
+    column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 2);
+    if (state)
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), TRUE);
+      if (preferences.col2visible == 0)
+        gtk_tree_view_column_set_fixed_width (column, COL2WIDTH);
+      preferences.col2visible = 1;
+    }	    
+    else
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+      preferences.col2visible = 0;
+    }
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(premarkscheckbutton));
+    column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 3);
+    if (state)
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), TRUE);
+      if (preferences.col3visible == 0)
+        gtk_tree_view_column_set_fixed_width (column, COL3WIDTH);
+      preferences.col3visible = 1;
+    }	    
+    else
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+      preferences.col3visible = 0;
+    }
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(ptimecheckbutton));
+    column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 4);
+    if (state)
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), TRUE);
+      if (preferences.col4visible == 0)
+        gtk_tree_view_column_set_fixed_width (column, COL4WIDTH);
+      preferences.col4visible = 1;
+    }	    
+    else
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+      preferences.col4visible = 0;
+    }
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(pinfocheckbutton));
+    column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 5);
+    if (state)
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), TRUE);
+      if (preferences.col5visible == 0)
+        gtk_tree_view_column_set_fixed_width (column, COL5WIDTH);
+      preferences.col5visible = 1;
+    }	    
+    else
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+      preferences.col5visible = 0;
+    }
 
     g_free (str);
   }
