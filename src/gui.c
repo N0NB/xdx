@@ -126,24 +126,14 @@ create_mainwindow (void)
   }
 
   mainvbox = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (mainvbox);
   gtk_container_add (GTK_CONTAINER (gui->window), mainvbox);
 
   handlebox = gtk_handle_box_new ();
-  gtk_widget_show (handlebox);
   gtk_box_pack_start (GTK_BOX (mainvbox), handlebox, FALSE, FALSE, 0);
-
   get_main_menu (gui->window, &mainmenubar);
   gtk_container_add (GTK_CONTAINER (handlebox), mainmenubar);
-  gtk_widget_show (mainmenubar);
-
-  vpaned1 = gtk_vpaned_new ();
-  gtk_widget_show (vpaned1);
-  gtk_box_pack_start (GTK_BOX (mainvbox), vpaned1, TRUE, TRUE, 0);
 
   clistscrolledwindow = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (clistscrolledwindow);
-  gtk_paned_pack1 (GTK_PANED (vpaned1), clistscrolledwindow, TRUE, TRUE);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (clistscrolledwindow),
 				  GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
@@ -199,17 +189,13 @@ create_mainwindow (void)
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-  gtk_widget_show (treeview);
   gtk_container_add (GTK_CONTAINER (clistscrolledwindow), treeview);
 
   mainscrolledwindow = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_show (mainscrolledwindow);
-  gtk_paned_pack2 (GTK_PANED (vpaned1), mainscrolledwindow, TRUE, TRUE);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (mainscrolledwindow),
 				  GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
   maintext = gtk_text_view_new ();
-  gtk_widget_show (maintext);
   gtk_container_add (GTK_CONTAINER (mainscrolledwindow), maintext);
   GTK_WIDGET_UNSET_FLAGS (maintext, GTK_CAN_FOCUS);
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
@@ -221,13 +207,17 @@ create_mainwindow (void)
 				    "underline", PANGO_UNDERLINE_SINGLE, NULL);
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);
 
+  vpaned1 = gtk_vpaned_new ();
+  gtk_paned_pack1 (GTK_PANED (vpaned1), clistscrolledwindow, TRUE, FALSE);
+  gtk_paned_pack2 (GTK_PANED (vpaned1), mainscrolledwindow, FALSE, TRUE);
+  gtk_paned_set_position (GTK_PANED(vpaned1), preferences.panedpos);
+  gtk_box_pack_start (GTK_BOX (mainvbox), vpaned1, TRUE, TRUE, 0);
+
   mainentry = gtk_entry_new ();
   gtk_entry_set_max_length (GTK_ENTRY (mainentry), 80);
-  gtk_widget_show (mainentry);
   gtk_box_pack_start (GTK_BOX (mainvbox), mainentry, FALSE, FALSE, 0);
 
   mainstatusbar = gtk_statusbar_new ();
-  gtk_widget_show (mainstatusbar);
   gtk_box_pack_start (GTK_BOX (mainvbox), mainstatusbar, FALSE, FALSE, 0);
 
   g_signal_connect (G_OBJECT (gui->window), "destroy",

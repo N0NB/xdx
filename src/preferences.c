@@ -64,6 +64,7 @@ loadpreferences (void)
   preferences.y = 30;
   preferences.width = 700;
   preferences.height = 550;
+  preferences.panedpos = 450;
   preferences.columnwidths = g_strdup("70,70,70,360,60,60,");
 
   /* open preferences file */

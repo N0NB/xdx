@@ -31,7 +31,7 @@
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *mainstatusbar, *vpaned1, *treeview;
+  GtkWidget *mainstatusbar, *treeview;
   gchar *lang, **wsplit;
   GString *greeting = g_string_new ("");
   gint i;
@@ -53,8 +53,6 @@ main (int argc, char *argv[])
   loadpreferences ();
   loadhistory ();
 
-  gtk_widget_show (gui->window);
-
   treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
   wsplit = g_strsplit(preferences.columnwidths, ",", 0);
   for (i = 0; i < 5; i++)
@@ -62,11 +60,11 @@ main (int argc, char *argv[])
       (gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), i), atoi(wsplit[i]));
   g_strfreev(wsplit);
 
-  gdk_window_move_resize(gui->window->window, preferences.x, preferences.y,
-	preferences.width, preferences.height);
-  vpaned1 = g_object_get_data (G_OBJECT (gui->window), "vpaned1");
-  /* why do I have to divide the paned position by 4.25 ?? */
-  gtk_paned_set_position (GTK_PANED(vpaned1), preferences.panedpos / 4.25);
+  gtk_widget_show_all (gui->window);
+  gtk_window_move (GTK_WINDOW(gui->window), 
+    preferences.x, preferences.y);
+  gtk_window_resize (GTK_WINDOW(gui->window), 
+    preferences.width, preferences.height);
 
   menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE); /* do not translate */
   g_string_printf (greeting, _("Welcome to %s"), PACKAGE);
