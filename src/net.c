@@ -121,7 +121,7 @@ clresolve (servertype *cluster)
 
   if ((cluster->sockethandle = socket (AF_INET, SOCK_STREAM, 0)) == -1)
     {
-      msg = g_string_new (strerror (errno));
+      msg = g_string_new (g_strerror (errno));
       updatestatusbar (msg, FALSE);
       g_string_free (msg, TRUE);
       return FALSE;
@@ -143,7 +143,7 @@ clresolve (servertype *cluster)
 
   if (ret == -1 && errno != EINPROGRESS)
     {
-      msg = g_string_new (strerror (errno));
+      msg = g_string_new (g_strerror (errno));
       updatestatusbar (msg, FALSE);
       g_string_free (msg, TRUE);
       return FALSE;

@@ -111,7 +111,7 @@ static void shellcommand (gchar *command)
   }
   else
   {
-    g_string_printf (msg, _("Fork has failed: %s"), strerror (errno));
+    g_string_printf (msg, _("Fork has failed: %s"), g_strerror (errno));
     updatestatusbar (msg, TRUE);
     g_string_free (msg, TRUE);
   }
