@@ -30,8 +30,9 @@ typedef struct guitype {
 	gchar *preferencesdir;
 	guint updown;
 	guint txitem;
-        gint statusbartimer;
-        gchar *statusbarmessage;
+  gint statusbartimer;
+  gchar *statusbarmessage;
+  gchar *url;
 } guitype;
 
 guitype *gui;
@@ -44,8 +45,6 @@ gboolean on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
 				     gpointer user_data);
 void on_mainentry_activate (GtkEditable * editable, gpointer user_data);
 gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
-				     gpointer user_data);
-gboolean on_maintext_motion_notify_event (GtkWidget * widget, GdkEvent * event,
 				     gpointer user_data);
 
 /* menus */

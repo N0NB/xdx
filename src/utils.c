@@ -91,3 +91,19 @@ menu_set_sensitive (GtkItemFactory * ifa, const gchar * path, gboolean sens)
   w = gtk_item_factory_get_item (ifa, path);
   gtk_widget_set_sensitive (w, sens);
 }
+
+void openurl (gchar *url)
+{
+  gchar buf[1024];
+  gint result;
+  GString *msg = g_string_new ("");
+
+  g_snprintf(buf, sizeof(buf), "mozilla -remote openURL\\(%s\\)", url);
+  result = system(buf);
+  if (result != 0)
+  {    
+    g_string_printf (msg, _("No running mozilla window found"));
+    updatestatusbar (msg, TRUE);
+    g_string_free (msg, TRUE);
+  }
+}

@@ -19,11 +19,12 @@ xdx_SOURCES = \
 	text.h \
 	types.h \
 	utils.h \
+  hyperlink.h \
 	gui.c \
 	history.c \
 	main.c \
 	net.c \
 	preferences.c \
 	text.c \
-	utils.c
-
+	utils.c \
+  hyperlink.c

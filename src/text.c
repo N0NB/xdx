@@ -318,7 +318,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 	  if (!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
 	      || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
 	    gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, len,
-                  "blue_foreground", NULL);
+                  "green_foreground", NULL);
 	  else
 	    gtk_text_buffer_insert (buffer, &end, dx->toall, len);
 	  mark = gtk_text_buffer_get_mark (buffer, "insert");

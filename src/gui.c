@@ -30,6 +30,7 @@
 #include "net.h"
 #include "utils.h"
 #include "history.h"
+#include "hyperlink.h"
 
 #define HOSTNAMEHISTORY 10
 #define PORTHISTORY     10
@@ -53,8 +54,8 @@ static GtkItemFactoryEntry menu_items[] = {
 
 guitype *new_gui(void)
 {
-        guitype *gui = g_new0(guitype, 1);
-        gui->window = NULL;
+  guitype *gui = g_new0(guitype, 1);
+  gui->window = NULL;
 	gui->item_factory = NULL;
 	gui->hostnamehistory = NULL;
 	gui->porthistory = NULL;
@@ -62,9 +63,9 @@ guitype *new_gui(void)
 	gui->preferencesdir = NULL;
 	gui->updown = 0;
 	gui->txitem = 0;
-        gui->statusbartimer = -1;
-        gui->statusbarmessage = NULL;
-        return(gui);
+  gui->statusbartimer = -1;
+  gui->statusbarmessage = NULL;
+  return(gui);
 }
 
 static gchar *menu_translate(const gchar *path, gpointer data)
@@ -95,7 +96,7 @@ void
 create_mainwindow (void)
 {
   GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned1, *clistscrolledwindow,
-	*mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview;
+	  *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview;
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
   GtkTextBuffer *buffer;
@@ -208,10 +209,12 @@ create_mainwindow (void)
   gtk_container_add (GTK_CONTAINER (mainscrolledwindow), maintext);
   GTK_WIDGET_UNSET_FLAGS (maintext, GTK_CAN_FOCUS);
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
-  gtk_text_buffer_create_tag (buffer, "blue_foreground", "foreground", "blue",
+  gtk_text_buffer_create_tag (buffer, "green_foreground", "foreground", "blue",
 			      NULL);
   gtk_text_buffer_create_tag (buffer, "red_foreground", "foreground", "red",
 			      NULL);
+  gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue", 
+				    "underline", PANGO_UNDERLINE_SINGLE, NULL);
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);
 
   mainentry = gtk_entry_new ();
@@ -233,7 +236,11 @@ create_mainwindow (void)
 		    G_CALLBACK (on_mainwindow_key_press_event), NULL);
   g_signal_connect (G_OBJECT(maintext), "motion_notify_event",
 		    G_CALLBACK (on_maintext_motion_notify_event), NULL);
-
+  g_signal_connect (G_OBJECT (maintext), "visibility-notify-event", 
+			G_CALLBACK (on_maintext_visibility_notify_event), NULL);
+  g_signal_connect (G_OBJECT (maintext), "event-after",
+        G_CALLBACK (on_maintext_event_after), NULL);
+ 
   g_object_set_data (G_OBJECT (gui->window), "maintext", maintext);
   g_object_set_data (G_OBJECT (gui->window), "treeview", treeview);
   g_object_set_data (G_OBJECT (gui->window), "mainstatusbar", mainstatusbar);
@@ -253,7 +260,6 @@ create_mainwindow (void)
 /*
  * hit <enter> in the entry widget
  */
-
 void
 on_mainentry_activate (GtkEditable * editable, gpointer user_data)
 {
@@ -274,7 +280,6 @@ on_mainentry_activate (GtkEditable * editable, gpointer user_data)
 /*
  * called at program exit
  */
-
 gboolean
 on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 			    gpointer user_data)
@@ -328,33 +333,35 @@ on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
   while (link)
 	{
 		g_free(link->data);
-	        link = link->next;
+	  link = link->next;
 	}
-      g_list_free(gui->hostnamehistory);
-      gui->hostnamehistory = NULL;
+  g_list_free(gui->hostnamehistory);
+  gui->hostnamehistory = NULL;
 	
   link = gui->porthistory;
   while (link)
 	{
 		g_free(link->data);
-	        link = link->next;
+	  link = link->next;
 	}
-      g_list_free(gui->porthistory);
-      gui->porthistory = NULL;
+  g_list_free(gui->porthistory);
+  gui->porthistory = NULL;
 
   link = gui->txhistory;
   while (link)
 	{
 		g_free(link->data);
-	        link = link->next;
+	  link = link->next;
 	}
-      g_list_free(gui->txhistory);
-      gui->txhistory = NULL;
+  g_list_free(gui->txhistory);
+  gui->txhistory = NULL;
 	
   g_free(gui->preferencesdir);
   gui->preferencesdir = NULL;
   g_free(gui->statusbarmessage);
   gui->statusbarmessage = NULL;
+  g_free(gui->url);
+  gui->url = NULL;
   g_free(gui);
 
   gtk_main_quit ();
@@ -363,6 +370,9 @@ on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
 }
 
 
+/* 
+ * history of the entry widget 
+ */
 gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 					 gpointer user_data)
 {
@@ -389,13 +399,6 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
   return FALSE;
 }
 
-gboolean on_maintext_motion_notify_event (GtkWidget * widget, GdkEvent * event,
-                                         gpointer user_data)
-{
-
-/* TODO: catch uri's and click on them */	
-
-}
 /********************************* MENUS *************************************/
 
 void
@@ -580,21 +583,10 @@ on_close_activate (GtkMenuItem * menuitem, gpointer user_data)
  * the link is clicked in the about dialog
  */
 
-static gboolean on_weblink_button_press_event(GtkWidget *widget, GdkEventButton *event)
+static gboolean on_weblink_button_press_event (GtkWidget *widget, 
+  GdkEventButton *event)
 {
-  static gchar *cmdline = "mozilla -remote openURL\\(%s\\)";
-  gchar buf[1024];
-  gint result;
-  GString *msg = g_string_new ("");
-
-  g_snprintf(buf, sizeof(buf), cmdline, XDX_HOMEPAGE);
-  result = system(buf);
-  if (result != 0)
-  {
-    g_string_printf (msg, _("No running mozilla window found"));
-    updatestatusbar (msg, TRUE);
-    g_string_free (msg, TRUE);
-  }
+  openurl (XDX_HOMEPAGE);
   return FALSE;
 }
 
@@ -641,7 +633,7 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
   separator = gtk_hseparator_new();
   gtk_box_pack_start (GTK_BOX (vbox), separator, FALSE, FALSE, 0);
 
-  g_string_printf (labeltext, "Copyright (C) 2002, Joop Stakenborg <pa4tu@amsat.org>");
+  g_string_printf (labeltext, "Copyright (C) 2002, Joop Stakenborg <pg4i@amsat.org>");
   aboutlabel = gtk_label_new (labeltext->str);
   gtk_box_pack_start (GTK_BOX (vbox), aboutlabel, FALSE, FALSE, 0);
 
