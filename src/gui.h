@@ -35,7 +35,7 @@ typedef struct guitype {
 guitype *gui;
 
 guitype *new_gui(void);
-GtkWidget *create_mainwindow (void);
+void create_mainwindow (void);
 gboolean on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 				     gpointer user_data);
 gboolean on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,

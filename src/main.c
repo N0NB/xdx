@@ -47,7 +47,7 @@ main (int argc, char *argv[])
 
   gtk_init (&argc, &argv);
 
-  gui->window = create_mainwindow ();
+  create_mainwindow ();
   dircheck ();
   loadpreferences ();
   loadhistory ();

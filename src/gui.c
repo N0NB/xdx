@@ -89,7 +89,7 @@ get_main_menu (GtkWidget * window, GtkWidget ** menubar)
     *menubar = gtk_item_factory_get_widget (gui->item_factory, "<main>");
 }
 
-GtkWidget *
+void
 create_mainwindow (void)
 {
   GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned1, *clistscrolledwindow,
@@ -230,7 +230,7 @@ create_mainwindow (void)
 
   gtk_widget_grab_focus (mainentry);
 
-  return gui->window;
+  return;
 }
 
 /*
