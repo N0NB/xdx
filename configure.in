@@ -44,7 +44,7 @@ for i in $PKG_LIB ; do
 	AC_CHECK_LIB($j,main)
 done
 
-AC_CONFIG_FILES([ \
+AC_OUTPUT([ \
 	xdx.1 \
 	xdx.spec
 	Makefile \
@@ -54,4 +54,3 @@ AC_CONFIG_FILES([ \
 	po/Makefile \
 	])
 
-AC_OUTPUT
