@@ -1,6 +1,6 @@
 # xlog.spec
 #
-# Copyright (c) 2002 Joop Stakenborg pa4tu@amsat.org
+# Copyright (c) 2002-2003 Joop Stakenborg pg4i@amsat.org
 #
 %define name xdx
 %define version @VERSION@
@@ -15,9 +15,9 @@ Group: Applications/Networking
 Prefix: /usr
 BuildRoot: /var/tmp/%{name}-%{version}
 Summary: DX-cluster tcp/ip client for amateur radio
-Vendor: Joop Stakenborg <pa4tu@amsat.org>
+Vendor: Joop Stakenborg <pg4i@amsat.org>
 URL: http://people.debian.org/~pa3aba/xdx.html
-Packager: Joop Stakenborg <pa4tu@amsat.org>
+Packager: Joop Stakenborg <pg4i@amsat.org>
 Source: %{name}-%{version}.tar.gz
 
 %description
@@ -45,10 +45,11 @@ rm -rf $RPM_BUILD_ROOT
 
 /usr/share/locale/nl/LC_MESSAGES/xdx.mo
 /usr/share/locale/fr/LC_MESSAGES/xdx.mo
-/usr/share/xdx/pixmaps/xdx.png
+/usr/share/xdx/pixmaps/*.png
 /usr/share/xdx/pixmaps/xdx.xcf
 /usr/share/xdx/pixmaps/xdx.xpm
 /usr/share/man/man1/xdx.1.gz
+/usr/share/xdx/MANUAL
 /usr/bin/xdx
 
 
