@@ -238,7 +238,9 @@ create_mainwindow (void)
 		    G_CALLBACK (on_maintext_motion_notify_event), NULL);
   g_signal_connect (G_OBJECT (maintext), "event-after",
         G_CALLBACK (on_maintext_event_after), NULL);
- 
+  g_signal_connect (G_OBJECT (treeview), "button-press-event",
+        G_CALLBACK (double_click), NULL);
+
   g_object_set_data (G_OBJECT (gui->window), "maintext", maintext);
   g_object_set_data (G_OBJECT (gui->window), "treeview", treeview);
   g_object_set_data (G_OBJECT (gui->window), "mainstatusbar", mainstatusbar);
@@ -395,6 +397,31 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
       break;
       default:
       break;
+    }
+  }
+  return FALSE;
+}
+
+gboolean 
+double_click (GtkWidget *widget, GdkEventButton *event, gpointer user_data)
+{  
+  GtkTreeIter selected;
+  GtkTreeModel *model;
+  gchar *getf, **fsplit, *hamlibstr;
+  gint setf;
+
+  if (event->type == GDK_2BUTTON_PRESS)
+  {
+    if (gtk_tree_selection_get_selected
+      (gtk_tree_view_get_selection (GTK_TREE_VIEW(widget)), &model, &selected))
+    {
+      gtk_tree_model_get (model, &selected, 1, &getf, -1);
+      fsplit = g_strsplit (getf, ".", -1);
+      setf = atoi(fsplit[0]) * 1000 + atoi(fsplit[1]) * 100;
+      hamlibstr = g_strdup_printf ("rigctl -m 210 set_freq %d", setf);
+      system (hamlibstr);
+      g_free (hamlibstr);
+      g_strfreev (fsplit);
     }
   }
   return FALSE;

@@ -3,9 +3,12 @@ xdx (0.4) unstable; urgency=low
   * A URL in the chat window will now appear blue and underlined when your
     mouse is over it. Clicking on it will open the link in mozilla.
   * Fix saving of position, size of the main window and columnwidths.
-  * Support for smileys (:) :-) ;) ;-) :( :-() in the chatwindow.
+  * Support for smileys (:) :-) :)) :-)) ;) ;-) :( :-( :(( :-(() 
+    in the chatwindow.
+  * Basic hamlib support. Double clicking on a dxspot will set your rig's
+    frequency. Needs the rigctl binary from the hamlib distribution.
 
- -- Joop Stakenborg <pa3aba@debian.org>  Mon,  1 Sep 2003 14:19:36 +0200
+ -- Joop Stakenborg <pa3aba@debian.org>  Tue,  2 Sep 2003 00:29:02 +0200
 
 xdx (0.3) unstable; urgency=low
 
