@@ -23,12 +23,14 @@
 
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#include <stdlib.h>
 
 #include "types.h"
 #include "gui.h"
 #include "preferences.h"
 #include "net.h"
 #include "utils.h"
+#include "history.h"
 #include "hyperlink.h"
 #include "gui_opendialog.h"
 #include "gui_closedialog.h"
@@ -127,7 +129,7 @@ create_mainwindow (void)
   if (icon)
   {
   gtk_window_set_icon (GTK_WINDOW (gui->window), icon);
-  gdk_pixbuf_unref (icon);
+  g_object_unref (icon);
   }
 
   mainvbox = gtk_vbox_new (FALSE, 0);
@@ -217,7 +219,7 @@ create_mainwindow (void)
   vpaned1 = gtk_vpaned_new ();
   gtk_paned_pack1 (GTK_PANED (vpaned1), clistscrolledwindow, TRUE, TRUE);
   gtk_paned_pack2 (GTK_PANED (vpaned1), mainscrolledwindow, TRUE, TRUE);
-  gtk_widget_set_size_request (mainscrolledwindow, -1, 10);
+  gtk_widget_set_size_request (mainscrolledwindow, -1, 20);
   gtk_box_pack_start (GTK_BOX (mainvbox), vpaned1, TRUE, TRUE, 0);
 
   mainentry = gtk_entry_new ();
@@ -317,7 +319,6 @@ gboolean
 on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
 			    gpointer user_data)
 {
-  gint i, n;
   GList *link;
   servertype *cluster;
 
@@ -388,11 +389,11 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
     switch (event->keyval)
     {
       case GDK_Up:
-        gtk_signal_emit_stop_by_name(GTK_OBJECT(widget), "key_press_event");
+        g_signal_stop_emission_by_name (GTK_OBJECT(widget), "key_press_event");
         tx_previous();
       break;
       case GDK_Down:
-        gtk_signal_emit_stop_by_name(GTK_OBJECT(widget), "key_press_event");
+        g_signal_stop_emission_by_name (GTK_OBJECT(widget), "key_press_event");
         tx_next();
       break;
       default:

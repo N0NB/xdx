@@ -23,6 +23,9 @@
 
 #include <gtk/gtk.h>
 #include <errno.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <string.h>
 #include "utils.h"
 #include "gui.h"
 #include "preferences.h"

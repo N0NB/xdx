@@ -23,12 +23,14 @@
  */
 
 #include <gtk/gtk.h>
+#include <string.h>
 #include "types.h"
 #include "utils.h"
 #include "text.h"
 #include "net.h"
 #include "gui.h"
 #include "preferences.h"
+#include "save.h"
 
 extern preferencestype preferences;
 
@@ -53,7 +55,6 @@ typedef struct
  
 
 static dxinfo *dx;
-static smiley *sm;
 GSList *smileylist = NULL;
 
 /*
@@ -312,7 +313,7 @@ extractinfo(gchar *msg)
   dx = new_dx();
   info = g_strdup(msg);
 
-  if (dxmsg = g_strrstr(info, "DX de "))
+  if ((dxmsg = g_strrstr(info, "DX de ")))
   {
     if (preferences.savedx) savedx (msg);
     dx->spotter = g_strdup(findcall(dxmsg + 6, &l));
@@ -337,7 +338,7 @@ extractinfo(gchar *msg)
     dx->dx = FALSE;
     dx->nodx = TRUE;
   }
-  if (len = msg - dxmsg > 0) 
+  if ((len = msg - dxmsg) > 0) 
   { /* dx and other messages on one line */
     dx->toall = g_strndup(msg, len);
     dx->nodx = TRUE;

@@ -22,6 +22,7 @@
  */
 
 #include <gtk/gtk.h>
+#include <string.h>
 #include "gui_settingsdialog.h"
 #include "utils.h"
 #include "gui.h"
@@ -117,9 +118,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
     *pprogframe, *pprogvbox, *pproghbox1, *pprogbrowserlabel, 
     *pprogbrowserentry, *pproghbox2, *pprogmaillabel,
-    *pprogmailentry, *pproglabel, 
-
-    *pdialog_action_area;
+    *pprogmailentry, *pproglabel;
   gint response;
   gboolean state;
   gchar *str;

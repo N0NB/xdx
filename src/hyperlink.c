@@ -23,8 +23,10 @@
  
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#include <string.h>
 #include "hyperlink.h"
 #include "gui.h"
+#include "utils.h"
 
 /*
  * count number of dots in a link
@@ -37,6 +39,9 @@ linkcontains2dots (gchar *link)
 
   if (g_strrstr (link, ".."))
     return FALSE;
+  if (!g_strrstr (link, "."))
+    return FALSE;
+
   linktocheck = g_strdup (link);
   end = linktocheck + strlen (linktocheck);
   for (j = linktocheck; j < end; ++j)
@@ -45,6 +50,7 @@ linkcontains2dots (gchar *link)
       {
         case '.':
         case '@':
+        case '/':
           dots++;
         break;
       }

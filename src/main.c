@@ -22,6 +22,8 @@
  */
 
 #include <gtk/gtk.h>
+#include <stdlib.h>
+#include <time.h>
 #include "gui.h"
 #include "utils.h"
 #include "preferences.h"
@@ -34,7 +36,7 @@ extern preferencestype preferences;
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *mainstatusbar, *treeview;
+  GtkWidget *treeview;
   gchar *lang, **wsplit;
   GString *greeting = g_string_new ("");
   gint i;

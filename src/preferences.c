@@ -23,9 +23,8 @@
 
 #include <gtk/gtk.h>
 #include <stdio.h>
-#if HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
+#include <stdlib.h>
+#include <sys/stat.h>
 #include "preferences.h"
 #include "utils.h"
 #include "gui.h"
@@ -87,46 +86,46 @@ loadpreferences (void)
     while (!feof (fp))
       {
         if (fscanf (fp, "%s %s", label, value) == EOF) break;
-	      if (!g_strcasecmp(label, "x")) 
+	      if (!g_ascii_strcasecmp(label, "x")) 
           preferences.x = atoi(value);
-        else if (!g_strcasecmp(label, "y")) 
+        else if (!g_ascii_strcasecmp(label, "y")) 
           preferences.y = atoi(value);
-        else if (!g_strcasecmp(label, "width")) 
+        else if (!g_ascii_strcasecmp(label, "width")) 
           preferences.width = atoi(value);
-        else if (!g_strcasecmp(label, "height")) 
+        else if (!g_ascii_strcasecmp(label, "height")) 
           preferences.height = atoi(value);
-        else if (!g_strcasecmp(label, "columnwidths")) 
+        else if (!g_ascii_strcasecmp(label, "columnwidths")) 
           preferences.columnwidths = g_strdup(value);
-        else if (!g_strcasecmp(label, "autologin")) 
+        else if (!g_ascii_strcasecmp(label, "autologin")) 
           preferences.autologin = atoi(value);
-        else if (!g_strcasecmp(label, "callsign")) 
+        else if (!g_ascii_strcasecmp(label, "callsign")) 
           preferences.callsign = g_strdup(value);
-        else if (!g_strcasecmp(label, "commands"))
+        else if (!g_ascii_strcasecmp(label, "commands"))
         {
           g_strdelimit (value, "_", ' ');
           preferences.commands = g_strdup(value);
         }
-        else if (!g_strcasecmp(label, "savedx")) 
+        else if (!g_ascii_strcasecmp(label, "savedx")) 
           preferences.savedx = atoi(value);
-        else if (!g_strcasecmp(label, "savewwv")) 
+        else if (!g_ascii_strcasecmp(label, "savewwv")) 
           preferences.savewwv = atoi(value);
-        else if (!g_strcasecmp(label, "savetoall")) 
+        else if (!g_ascii_strcasecmp(label, "savetoall")) 
           preferences.savetoall = atoi(value);
-        else if (!g_strcasecmp(label, "savewx")) 
+        else if (!g_ascii_strcasecmp(label, "savewx")) 
           preferences.savewx = atoi(value);
-        else if (!g_strcasecmp(label, "hamlib")) 
+        else if (!g_ascii_strcasecmp(label, "hamlib")) 
           preferences.hamlib = atoi(value);
-        else if (!g_strcasecmp(label, "rigctl"))
+        else if (!g_ascii_strcasecmp(label, "rigctl"))
         {
           g_strdelimit (value, "~", ' ');
           preferences.rigctl = g_strdup(value);
         }
-        else if (!g_strcasecmp(label, "browserapp"))
+        else if (!g_ascii_strcasecmp(label, "browserapp"))
         {
           g_strdelimit (value, "~", ' ');
           preferences.browserapp = g_strdup(value);
         }
-        else if (!g_strcasecmp(label, "mailapp"))
+        else if (!g_ascii_strcasecmp(label, "mailapp"))
         {
           g_strdelimit (value, "~", ' ');
           preferences.mailapp = g_strdup(value);

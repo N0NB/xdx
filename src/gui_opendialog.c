@@ -41,7 +41,7 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
     *hostlabel, *portlabel, *mainentry;
   gint response;
   GList *node;
-  gboolean result;
+  gboolean result = FALSE;
   servertype *cluster;
 
   gtk_widget_set_sensitive (gui->window, 0);

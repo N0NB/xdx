@@ -68,7 +68,6 @@ savehistory (void)
 {
   gchar *historyfile;
   FILE *fp;
-  gchar *history;
   guint i, n;
   GList *link;
 
@@ -81,7 +80,7 @@ savehistory (void)
 	  for (i = 0; i < n; i++)
 	    {
 	      link = g_list_nth (gui->hostnamehistory, i);
-	      if (link) fprintf (fp, "ho:%s\n", link->data);
+	      if (link) fprintf (fp, "ho:%s\n", (gchar *)link->data);
 	    }
 	}
 
@@ -90,7 +89,7 @@ savehistory (void)
 	  for (i = 0; i < n; i++)
 	    {
 	      link = g_list_nth (gui->porthistory, i);
-	      if (link) fprintf (fp, "po:%s\n", link->data);
+	      if (link) fprintf (fp, "po:%s\n", (gchar *)link->data);
 	    }
 	}
 

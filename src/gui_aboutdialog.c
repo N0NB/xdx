@@ -53,7 +53,7 @@ static void event_destroy(gpointer data)
 void
 on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
-  GtkWidget *aboutdialog, *vbox, *stock, *aboutlabel, *separator, *eventbox;
+  GtkWidget *aboutdialog, *vbox, *aboutlabel, *separator, *eventbox;
   GString *labeltext = g_string_new ("");
   PangoFontDescription *font;
   GdkCursor *cursor;

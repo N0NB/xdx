@@ -22,22 +22,6 @@
  * disconnecting.
  */
 
-#if STDC_HEADERS
-# include <stdlib.h>
-# include <stddef.h>
-#else
-# if HAVE_STDLIB_H
-#  include <stdlib.h>
-# endif
-#endif
-
-#if HAVE_UNISTD_H
-# include <unistd.h>
-#endif
-
-#if HAVE_SYS_TYPES_H
-# include <sys/types.h>
-#endif
 
 #if HAVE_SYS_WAIT_H
 # include <sys/wait.h>
@@ -49,17 +33,10 @@
 # define WIFEXITED(stat_val) (((stat_val) & 255) == 0)
 #endif
 
-#if HAVE_STRING_H
-# if !STDC_HEADERS && HAVE_MEMORY_H
-#  include <memory.h>
-# endif
-# include <string.h>
-#endif
-
-#if HAVE_STRINGS_H
-# include <strings.h>
-#endif
-
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>
 #include <errno.h>
 #include <resolv.h>
 #include <netdb.h>
@@ -74,6 +51,7 @@
 #include "utils.h"
 #include "text.h"
 #include "preferences.h"
+#include "history.h"
 
 extern preferencestype preferences;
 
@@ -215,7 +193,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
   GString *txstr = g_string_new ("");
   GIOStatus res = G_IO_STATUS_NORMAL;
   GError *err = NULL;
-  gboolean ret;
+  gboolean ret = FALSE;
   gint i = 0;
   servertype *cluster = (servertype *)data;
 
