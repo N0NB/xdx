@@ -23,3 +23,6 @@
 
 void loadhistory (void);
 void savehistory (void);
+void tx_save(GString *txmsg);
+void tx_previous(void);
+void tx_next(void);

@@ -270,9 +270,10 @@ tx (GString * txmsg)
 	
   cluster = (servertype *)g_object_get_data(G_OBJECT(gui->window), "cluster");
 
-  txmsg = g_string_append (txmsg, "\n");
   if (cluster->rxchannel)
     {
+      tx_save(txmsg);
+      txmsg = g_string_append (txmsg, "\n");
       numbytes = write (cluster->sockethandle, txmsg->str, txmsg->len);
       if (numbytes == -1)
 	{
@@ -282,7 +283,9 @@ tx (GString * txmsg)
 	  return;
 	}
       else
+        {
 	maintext_add (txmsg->str, txmsg->len, MESSAGE_TX);
+	}
     }
   else
     {

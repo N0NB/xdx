@@ -22,6 +22,7 @@
  */
 
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 
 #include "types.h"
 #include "gui.h"
@@ -57,7 +58,10 @@ guitype *new_gui(void)
 	gui->item_factory = NULL;
 	gui->hostnamehistory = NULL;
 	gui->porthistory = NULL;
+	gui->txhistory = NULL;
 	gui->preferencesdir = NULL;
+	gui->updown = 0;
+	gui->txitem = 0;
         return(gui);
 }
 
@@ -213,6 +217,8 @@ create_mainwindow (void)
   gtk_quit_add (0, (GtkFunction) on_mainwindow_delete_event, NULL);
   g_signal_connect (G_OBJECT (mainentry), "activate",
 		    G_CALLBACK (on_mainentry_activate), NULL);
+  g_signal_connect (G_OBJECT (gui->window), "key_press_event",
+		    G_CALLBACK (on_mainwindow_key_press_event), NULL);
   g_signal_connect (G_OBJECT(maintext), "motion_notify_event",
 		    G_CALLBACK (on_maintext_motion_notify_event), NULL);
 
@@ -283,11 +289,40 @@ on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 	}
       g_list_free(gui->porthistory);
       gui->porthistory = NULL;
+
+  link = gui->txhistory;
+  while (link)
+	{
+		g_free(link->data);
+	        link = link->next;
+	}
+      g_list_free(gui->txhistory);
+      gui->txhistory = NULL;
 	
   g_free(gui->preferencesdir);
   gui->preferencesdir = NULL;
   g_free(gui);
 
+  return FALSE;
+}
+
+gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
+					 gpointer user_data)
+{
+
+  switch (event->keyval)
+  {
+    case GDK_Up:
+      gtk_signal_emit_stop_by_name(GTK_OBJECT(widget), "key_press_event");
+      tx_previous();
+    break;
+    case GDK_Down:
+      gtk_signal_emit_stop_by_name(GTK_OBJECT(widget), "key_press_event");
+      tx_next();
+    break;
+    default:
+    break;
+  }
   return FALSE;
 }
 

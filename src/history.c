@@ -27,6 +27,8 @@
 #include "history.h"
 #include "gui.h"
 
+#define TXHISTORY 10
+
 /*
  * recall history and copy into the appropriate GList
  */
@@ -94,4 +96,43 @@ savehistory (void)
 
   fclose (fp);
   g_free(historyfile);
+}
+
+void tx_save(GString *txmsg)
+{
+  gui->txhistory = g_list_append(gui->txhistory, g_strdup(txmsg->str));
+  if (g_list_length(gui->txhistory) > TXHISTORY)
+    gui->txhistory = g_list_remove(gui->txhistory, g_list_first(gui->txhistory)->data);
+  else gui->txitem++; 
+  gui->updown = 0;
+}
+
+void tx_previous(void)
+{
+  GtkWidget *mainentry;
+  gchar *str;
+
+  if (gui->updown < gui->txitem) gui->updown++;
+  if (gui->txhistory)
+  {
+    str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
+    mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
+    gtk_entry_set_text(GTK_ENTRY(mainentry), str);
+  }
+}
+
+void tx_next(void)
+{
+  GtkWidget *mainentry;
+  gchar *str;
+
+  if (gui->updown > 0) gui->updown--;
+  mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
+  if (gui->updown == 0)
+    gtk_entry_set_text(GTK_ENTRY(mainentry), "");
+    else
+    {
+      str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
+      gtk_entry_set_text(GTK_ENTRY(mainentry), str);
+    }
 }
