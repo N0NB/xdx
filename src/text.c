@@ -29,20 +29,32 @@
 #include "net.h"
 #include "gui.h"
 
-gint last = 0;
-gboolean info = FALSE;
+typedef struct dxinfo {
+  gchar *spotter;
+  gchar *freq;
+  gchar *dxcall;
+  gchar *remark;
+  gchar *time;
+  gchar *info;
+  gchar *toall;
+  gboolean dx;
+  gboolean nodx;
+} dxinfo;
 
-/* find callsign and keep a counter for the start of frequency field */
+static dxinfo *dx;
+
+/* extract call from dxmessage and return call and length of call */
 static gchar *
-findcall (gchar * str)
+findcall (gchar * str, gint * spotterlen)
 {
   gchar *end, *j;
   gboolean found = FALSE;
 
   end = str + strlen (str);
+  *spotterlen = 0;
   for (j = str; j < end; ++j)
     {
-      last++;
+      *spotterlen = *spotterlen + 1;
       switch (*j)
 	{
 	case ':':
@@ -79,9 +91,9 @@ findspace (gchar * str)
   return (str);
 }
 
-/* end of remarks field found if there is a space and the next character is a digit */
+/* find the end of frequency field */
 static gchar *
-findrem (gchar * str)
+findfreq (gchar * str)
 {
   gchar *end, *j;
   gboolean found = FALSE;
@@ -89,11 +101,38 @@ findrem (gchar * str)
   end = str + strlen (str);
   for (j = str; j < end; ++j)
     {
-      last++;
+      switch (*j)
+	{
+	case '.':
+	  *(j + 2) = '\0';
+	  found = TRUE;
+	  break;
+	}
+      if (found)
+	break;
+    }
+  return (str);
+}
+
+/* end of remarks field found if there is a space 
+ * and the next 2 characters are digits 
+ */
+static gchar *
+findrem (gchar * str, gint * remlen)
+{
+  gchar *end, *j;
+  gboolean found = FALSE;
+
+  end = str + strlen (str);
+  *remlen = 0;
+  for (j = str; j < end; ++j)
+    {
+      *remlen = *remlen + 1;
       switch (*j)
 	{
 	case ' ':
-	  if ((j > str + 28) && g_ascii_isdigit (*(j + 1)))
+	  if ((j > str + 28) && g_ascii_isdigit (*(j + 1))
+            && g_ascii_isdigit (*(j + 2)))
 	    {
 	      *j = '\0';
 	      found = TRUE;
@@ -107,7 +146,7 @@ findrem (gchar * str)
 
 }
 
-/* search for the end of time field and check if it is followed by an info field */
+/* search for the end of time field */
 static gchar *
 findtime (gchar * str)
 {
@@ -117,15 +156,10 @@ findtime (gchar * str)
   end = str + strlen (str);
   for (j = str; j < end; ++j)
     {
-      last++;
       switch (*j)
 	{
 	case 'Z':
 	  *(j + 1) = '\0';
-	  if (g_ascii_isalpha (*(j + 2)) || g_ascii_isdigit (*(j + 2)))
-	    {
-	      info = TRUE;
-	    }
 	  found = TRUE;
 	  break;
 	}
@@ -141,10 +175,12 @@ findinfo (gchar * str)
 {
   gchar *end, *j;
   gboolean found = FALSE;
+  gint len = 0;
 
   end = str + strlen (str);
   for (j = str; j < end; ++j)
     {
+      len++;
       switch (*j)
 	{
 	case '\r':
@@ -155,33 +191,71 @@ findinfo (gchar * str)
       if (found)
 	break;
     }
+  if (len < 2) str = NULL;
   return (str);
 }
 
-/* look for ascii bell, if found: beep and replace with cr/lf */
-static gchar *
-findbeep (gchar * str, gint l)
+dxinfo *new_dx(void)
 {
-  gchar *end, *j;
-  gboolean found = FALSE;
+        dxinfo *dx = g_new0(dxinfo, 1);
+        dx->spotter = NULL;
+        dx->freq = NULL;
+        dx->dxcall = NULL;
+        dx->remark = NULL;
+        dx->time = NULL;
+        dx->info = NULL;
+        dx->toall = NULL;
+	dx->dx = FALSE;
+        dx->nodx = FALSE;
+        return(dx);
+}
 
-  end = str + l;
-  for (j = str; j < end; ++j)
-    {
-      switch (*j)
-	{
-	case '\a':
-	  gdk_beep ();
-	  *j = '\r';
-	  *(j + 1) = '\n';
-	  *(j + 2) = '\0';
-	  found = TRUE;
-	  break;
-	}
-      if (found)
-	break;
-    }
-  return (str);
+/*
+ * DX~de~JA0AOQ:~~~~~1822.5~~RA3DOX~~~~~~~cq..~loud~~~~~~~~~~~~~~~~~~~~~~1923Z
+ * 01234567890123456789012345678901234567890123456789012345678901234567890123456789
+ *       -                   -            -     <-- fixed positions
+ */
+static dxinfo *
+extractinfo(gchar *msg)
+{
+  gchar *dxmsg, *info;
+  gint l, len;
+
+  dx = new_dx();
+  info = g_strdup(msg);
+
+  if (dxmsg = g_strrstr(info, "DX de "))
+  {
+    dx->spotter = g_strdup(findcall(dxmsg + 6, &l));
+    dx->freq = g_strdup(findfreq(dxmsg + 6 + l));
+    dx->dxcall = g_strdup(findspace(dxmsg + 26));
+    dx->remark = g_strdup(findrem(dxmsg + 39, &l));
+    dx->time = g_strdup(findtime(dxmsg + 39 + l));
+    dx->info = g_strdup(findinfo(dxmsg + 45 + l));
+    dx->toall = NULL;
+    dx->dx = TRUE;
+    dx->nodx = FALSE;
+  }
+  else
+  {
+    dx->spotter = NULL;
+    dx->freq = NULL;
+    dx->dxcall = NULL;
+    dx->remark = NULL;
+    dx->time = NULL;
+    dx->info = NULL;
+    dx->toall = g_strdup(msg);
+    dx->dx = FALSE;
+    dx->nodx = TRUE;
+  }
+  if (len = msg - dxmsg > 0) 
+  { /* dx and other messages on one line */
+    dx->toall = g_strndup(msg, len);
+    dx->nodx = TRUE;
+  }
+  
+  g_free(info);
+  return(dx);
 }
 
 /*
@@ -198,7 +272,6 @@ maintext_add (gchar msg[], gint len, gint messagetype)
   GtkTreePath *path;
   GtkTreeStore *model;
   GtkTextBuffer *buffer;
-  gchar *call, *freq, *dx, *rem, *time, *inf = NULL;
 
   if (len < 1024) msg[len] = '\0';
 
@@ -209,61 +282,50 @@ maintext_add (gchar msg[], gint len, gint messagetype)
   gtk_text_buffer_get_bounds (buffer, &start, &end);
 
   if (messagetype == MESSAGE_RX)
-    {
-      msg = findbeep (msg, len);
-      if (!g_ascii_strncasecmp (msg, "DX de ", 6))
-	{
-	  call = g_strdup (msg + 6);
-	  call = findcall (call);
-
-	  freq = g_strdup (msg + 6 + last + 1);
-	  last = 0;
-	  g_strstrip (freq);
-	  freq = findspace (freq);
-
-	  dx = g_strdup (msg + 26);
-	  dx = findspace (dx);
-
-	  rem = g_strdup (msg + 39);
-	  rem = findrem (rem);
-
-	  time = g_strdup (msg + 39 + last);
-	  time = findtime (time);
-
-	  if (info)
-	    {
-	      inf = g_strdup (msg + 39 + last);
-	      inf = findinfo (inf);
-	      info = FALSE;
-	    }
-	  last = 0;
-
+    { /* beep if there is a bell */
+      if (g_strrstr(msg, "\a"))
+      {
+        gdk_beep();
+        g_strdelimit(msg, "\a", ' ');
+      }
+      dx = extractinfo(msg);
+      if (dx->dx)
+      { 
+          g_strstrip(dx->freq);
+          g_strstrip(dx->remark);
 	  gtk_tree_store_append (model, &iter, NULL);
-	  gtk_tree_store_set (model, &iter, FROM_COLUMN, call, FREQ_COLUMN,
-			      freq, DX_COLUMN, dx, REM_COLUMN, rem,
-			      TIME_COLUMN, time, INFO_COLUMN, inf, -1);
+	  gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
+			      dx->freq, DX_COLUMN, dx->dxcall, REM_COLUMN, dx->remark,
+			      TIME_COLUMN, dx->time, INFO_COLUMN, dx->info, -1);
 	  path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &iter);
 	  gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL,
 				    FALSE);
 	  gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path,
 					NULL, TRUE, 0.0, 1.0);
 	  gtk_tree_path_free (path);
-	}
-      else
+
+          g_free(dx->spotter);
+          g_free(dx->freq);
+          g_free(dx->dxcall);
+          g_free(dx->remark);
+          g_free(dx->time);
+          g_free(dx->info);
+      }
+      if (dx->nodx)  
 	{
           gtk_text_buffer_place_cursor(buffer, &end);
 
-	  if (!g_ascii_strncasecmp (msg, "WWV de ", 6)
-	      || !g_ascii_strncasecmp (msg, "WCY de ", 6))
-	    gtk_text_buffer_insert_with_tags_by_name (buffer, &end, msg, len,
-						      "blue_foreground",
-						      NULL);
+	  if (!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
+	      || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
+	    gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, len,
+                  "blue_foreground", NULL);
 	  else
-	    gtk_text_buffer_insert (buffer, &end, msg, len);
-
-	    mark = gtk_text_buffer_get_mark (buffer, "insert");
-	    gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 0.0, 1.0);
+	    gtk_text_buffer_insert (buffer, &end, dx->toall, len);
+	  mark = gtk_text_buffer_get_mark (buffer, "insert");
+	  gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 0.0, 1.0);
+          g_free(dx->toall);
 	}
+      g_free(dx);
     }
     else if (messagetype == MESSAGE_TX)
       gtk_text_buffer_insert_with_tags_by_name (buffer, &end, msg, len,
