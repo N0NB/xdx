@@ -160,7 +160,7 @@ clresolve (servertype *cluster)
   menu_set_sensitive (gui->item_factory, "/Host/Close", TRUE);
 
   cluster->rxchannel = g_io_channel_unix_new (cluster->sockethandle);
-  res = g_io_channel_set_encoding (cluster->rxchannel, "UTF-8", &err);
+  res = g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
   if ((res != G_IO_STATUS_NORMAL) && err)
   {
     g_string_printf (msg, _("Error on setting channel encoding: %s"), err->message);
