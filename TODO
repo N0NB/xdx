@@ -1,7 +1,0 @@
-Version 0.4:
-
-* Clickable URL's.
-* Interface with hamlib.
-* Filters for dx messages.
-* Autologin and autoreconnect.
-* Save dx messages and announcements.

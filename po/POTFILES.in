@@ -4,7 +4,7 @@ src/gui.c
 src/gui_opendialog.c
 src/gui_closedialog.c
 src/gui_aboutdialog.c
-src/gui_preferencesdialog.c
+src/gui_settingsdialog.c
 src/gui_manualdialog.c
 src/history.c
 src/main.c
@@ -13,3 +13,4 @@ src/preferences.c
 src/text.c
 src/utils.c
 src/hyperlink.c
+src/save.c

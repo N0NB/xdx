@@ -7,7 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-12-05 19:54+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-05 17:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,35 +16,47 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gui.c:41
+#: src/gui.c:44
 msgid "/_Program"
 msgstr ""
 
-#: src/gui.c:42
+#: src/gui.c:45
 msgid "/_Program/Quit"
 msgstr ""
 
-#: src/gui.c:44
+#: src/gui.c:47
 msgid "/_Host"
 msgstr ""
 
-#: src/gui.c:45
+#: src/gui.c:48
 msgid "/_Host/Open"
 msgstr ""
 
-#: src/gui.c:47
+#: src/gui.c:50
 msgid "/_Host/Close"
 msgstr ""
 
-#: src/gui.c:49
+#: src/gui.c:52
+msgid "/_Settings"
+msgstr ""
+
+#: src/gui.c:53
+msgid "/_Settings/Preferences"
+msgstr ""
+
+#: src/gui.c:55
 msgid "/H_elp"
 msgstr ""
 
-#: src/gui.c:50
+#: src/gui.c:56
+msgid "/H_elp/Manual"
+msgstr ""
+
+#: src/gui.c:58
 msgid "/H_elp/About"
 msgstr ""
 
-#: src/gui.c:113
+#: src/gui.c:121
 #, c-format
 msgid "Error loading icon: %s"
 msgstr ""
@@ -60,94 +73,188 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
-#: src/gui.c:412
+#: src/gui_opendialog.c:48
 msgid "xdx - open connection"
 msgstr ""
 
-#: src/gui.c:432
+#: src/gui_opendialog.c:68
 msgid "_Hostname"
 msgstr ""
 
-#: src/gui.c:440
+#: src/gui_opendialog.c:76
 msgid "_Port"
 msgstr ""
 
-#: src/gui.c:539
+#: src/gui_closedialog.c:44
 msgid "xdx - close connection"
 msgstr ""
 
-#: src/gui.c:556
+#: src/gui_closedialog.c:61
 #, c-format
 msgid "Close connection to %s ?"
 msgstr ""
 
-#: src/gui.c:594
-msgid "No running mozilla window found"
-msgstr ""
-
-#: src/gui.c:618
+#: src/gui_aboutdialog.c:61
 msgid "xdx - about"
 msgstr ""
 
-#: src/gui.c:633
+#: src/gui_aboutdialog.c:76
 #, c-format
 msgid "%s version %s"
 msgstr ""
 
-#: src/gui.c:658
+#: src/gui_aboutdialog.c:101
 msgid "Published under the GNU General Public License"
 msgstr ""
 
-#: src/main.c:71
+#: src/gui_settingsdialog.c:129
+msgid "xdx - preferences"
+msgstr ""
+
+#: src/gui_settingsdialog.c:145
+msgid "Enable autologin"
+msgstr ""
+
+#: src/gui_settingsdialog.c:151
+msgid "Callsign"
+msgstr ""
+
+#: src/gui_settingsdialog.c:158
+msgid "Commands"
+msgstr ""
+
+#: src/gui_settingsdialog.c:165
+msgid "Comma separated list of commands to send at login"
+msgstr ""
+
+#: src/gui_settingsdialog.c:167
+msgid "Callsign to be used for login"
+msgstr ""
+
+#: src/gui_settingsdialog.c:169
+msgid "Login"
+msgstr ""
+
+#: src/gui_settingsdialog.c:199
+msgid "Save DX spots"
+msgstr ""
+
+#: src/gui_settingsdialog.c:201
+msgid "Save WCY/WWV"
+msgstr ""
+
+#: src/gui_settingsdialog.c:203
+msgid "Save \"To all\""
+msgstr ""
+
+#: src/gui_settingsdialog.c:205
+msgid "Save WX"
+msgstr ""
+
+#: src/gui_settingsdialog.c:207
+msgid "Saving"
+msgstr ""
+
+#: src/gui_settingsdialog.c:232
+msgid "Enable hamlib"
+msgstr ""
+
+#: src/gui_settingsdialog.c:238
+msgid "Command for rigctl"
+msgstr ""
+
+#: src/gui_settingsdialog.c:243
+msgid "Hamlib"
+msgstr ""
+
+#: src/gui_settingsdialog.c:246
+#, c-format
+msgid ""
+"When double clicking on a dx-spot this will set the frequency of your rig "
+"using rigctl (%d = the frequency retrieved from the DX spot)"
+msgstr ""
+
+#: src/gui_settingsdialog.c:273
+msgid "Web browser"
+msgstr ""
+
+#: src/gui_settingsdialog.c:280
+msgid "Mail program"
+msgstr ""
+
+#: src/gui_settingsdialog.c:285
+msgid "Programs"
+msgstr ""
+
+#: src/gui_settingsdialog.c:288
+#, c-format
+msgid "Web browser to start after clicking on a url (%s = url)"
+msgstr ""
+
+#: src/gui_settingsdialog.c:290
+#, c-format
+msgid "Mail program to start after clicking on a mail url (%s = mail url)"
+msgstr ""
+
+#: src/gui_manualdialog.c:39
+msgid "xdx - manual"
+msgstr ""
+
+#: src/main.c:75
 #, c-format
 msgid "Welcome to %s"
 msgstr ""
 
-#: src/net.c:104
+#: src/net.c:107
 #, c-format
 msgid "Resolving %s..."
 msgstr ""
 
-#: src/net.c:110
+#: src/net.c:113
 #, c-format
 msgid "Resolve failed: %s"
 msgstr ""
 
-#: src/net.c:117
+#: src/net.c:120
 #, c-format
 msgid "Connecting to: %s"
 msgstr ""
 
-#: src/net.c:152
+#: src/net.c:155
 #, c-format
 msgid "Connected to %s"
 msgstr ""
 
-#: src/net.c:165
+#: src/net.c:166
 #, c-format
 msgid "Error on setting channel encoding: %s"
 msgstr ""
 
-#: src/net.c:278
+#: src/net.c:304
 #, c-format
 msgid "Write failed: %s"
 msgstr ""
 
-#: src/net.c:290
+#: src/net.c:316
 msgid "Nothing to send, you are not connected"
 msgstr ""
 
-#: src/preferences.c:46
+#: src/preferences.c:48
 #, c-format
 msgid "Creating ~/.%s directory."
 msgstr ""
 
-#: src/preferences.c:49
+#: src/preferences.c:51
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr ""
 
-#: src/preferences.c:106
+#: src/utils.c:116
 #, c-format
-msgid "# settings file for %s, do not edit\n"
+msgid "Fork has failed: %s"
+msgstr ""
+
+#: src/utils.c:131 src/utils.c:146
+#, c-format
+msgid "Starting: %s"
 msgstr ""

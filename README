@@ -1,10 +1,9 @@
-xdx by Joop Stakenborg <pa4tu@amsat.org>
-----------------------------------------
+xdx by Joop Stakenborg <pg4i@amsat.org>
+---------------------------------------
 
-I wrote xdx because I wanted to get some experience with GTK+ 2.0, 
-glib 2.0, autoconf 2.53, automake 1.6 and gettext 0.11.5. 
-Xdx uses the new GtkTreeView, GtkTextView, GtkItemFactory, GtkDialog widgets
-and the g_io stuff.
+See the file called 'MANUAL' if you want to learn more about xdx or dx-clusters.
+You can also selected help->manual from the menu after xdx is started, it will
+display the same file.
 
 If you find any bugs let me know and I will try to fix them.
-Joop, PA4TU
+Joop, PG4I <pg4i@amsat.org>
