@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdx 0.99\n"
+"Project-Id-Version: xdx 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-10-12 17:50+0200\n"
-"PO-Revision-Date: 2003-10-08 08:00+0200\n"
+"PO-Revision-Date: 2003-10-12 18:00+0200\n"
 "Last-Translator: Jean-Luc coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: fr <jean-luc.coulon@wanadoo;fr>\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "/_Aide/A propos"
 #: src/gui.c:123
 #, c-format
 msgid "Error loading icon: %s"
-msgstr "Erreur lors du chargement de l'icône : %s"
+msgstr "Erreur lors du chargement de l'icône: %s"
 
 #: src/gui.c:158
 msgid "Spotter"
@@ -215,7 +215,7 @@ msgstr "Résolution de %s en cours..."
 #: src/net.c:91
 #, c-format
 msgid "Resolve failed: %s"
-msgstr "La résolution vers %s n'a pas abouti"
+msgstr "Erreur de la résolution: %s"
 
 #: src/net.c:98
 #, c-format
@@ -230,12 +230,12 @@ msgstr "Connecté à %s"
 #: src/net.c:144
 #, c-format
 msgid "Error on setting channel encoding: %s"
-msgstr "Erreur lors de l'établissement de l'encodage du canal : %s"
+msgstr "Erreur lors de l'établissement de l'encodage du canal: %s"
 
 #: src/net.c:282
 #, c-format
 msgid "Write failed: %s"
-msgstr "Erreur d'écriture : %s"
+msgstr "Erreur d'écriture: %s"
 
 #: src/net.c:294
 msgid "Nothing to send, you are not connected"
@@ -254,9 +254,9 @@ msgstr "~/.%s n'est pas un répertoire."
 #: src/utils.c:119
 #, c-format
 msgid "Fork has failed: %s"
-msgstr "Erreur de fork : %s"
+msgstr "Erreur de fork: %s"
 
 #: src/utils.c:134 src/utils.c:149
 #, c-format
 msgid "Starting: %s"
-msgstr "Démarrage en cours : %s"
+msgstr "Démarrage en cours: %s"

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdx 0.99\n"
+"Project-Id-Version: xdx 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-10-12 17:50+0200\n"
-"PO-Revision-Date: 2003-10-05 21:00+0200\n"
+"PO-Revision-Date: 2003-10-12 21:00+0200\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
