@@ -1,6 +1,6 @@
 /*  
  *  xdx - GTK+ DX-cluster client for amateur radio
- *  Copyright (C) 2002 Joop Stakenborg <pa4tu@amsat.org>
+ *  Copyright (C) 2002-2003 Joop Stakenborg <pg4i@amsat.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
