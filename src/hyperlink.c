@@ -37,11 +37,6 @@ linkcontains2dots (gchar *link)
   gint dots = 0;
   gchar *linktocheck, *end, *j;
 
-  if (g_strrstr (link, ".."))
-    return FALSE;
-  if (!g_strrstr (link, "."))
-    return FALSE;
-
   linktocheck = g_strdup (link);
   end = linktocheck + strlen (linktocheck);
   for (j = linktocheck; j < end; ++j)
@@ -57,7 +52,7 @@ linkcontains2dots (gchar *link)
     }
 
   g_free (linktocheck);
-  if (dots > 1) return TRUE;
+  if (dots >= 1) return TRUE;
   return FALSE;
 }
 
@@ -69,6 +64,10 @@ islink (gchar *link)
 {
   if (g_strrstr (link, " "))
     return FALSE;
+  else if (!g_strrstr (link, "."))
+    return FALSE;
+  else if (g_strrstr (link, ".."))
+    return FALSE;
   else if (!g_ascii_strncasecmp (link, "http://", 7))
     return TRUE;
   else if (!g_ascii_strncasecmp (link, "www.", 4))
@@ -77,7 +76,7 @@ islink (gchar *link)
     return TRUE;
   else if (!g_ascii_strncasecmp (link, "ftp.", 7))
     return TRUE;
-  if ( linkcontains2dots (link))
+  else if ( linkcontains2dots (link))
     return TRUE;
   return FALSE;
 }
