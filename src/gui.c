@@ -281,7 +281,7 @@ gboolean
 on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 			    gpointer user_data)
 {
-  GtkWidget *vpaned1, *treeview;
+  GtkWidget *treeview;
   GList * columns;
   gint i, length;
   servertype *cluster;
