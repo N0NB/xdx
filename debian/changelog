@@ -1,12 +1,19 @@
-xdx (0.4) unstable; urgency=low
+xdx (0.99) unstable; urgency=low
 
+  * A preferences dialog has been added.
   * A URL in the chat window will now appear blue and underlined when your
-    mouse is over it. Clicking on it will open the link in mozilla.
-  * Fix saving of position, size of the main window and columnwidths.
+    mouse is over it. Clicking on it will open the link in your preferred
+    browser or mail program (see the preferences dialog).
+  * Fixed saving of position, size of the main window and columnwidths.
   * Support for smileys (:) :-) :)) :-)) ;) ;-) :( :-( :(( :-(() 
     in the chatwindow.
   * Basic hamlib support. Double clicking on a dxspot will set your rig's
     frequency. Needs the rigctl binary from the hamlib distribution.
+  * Autologin has been added. To use it, enter your callsign in the preferences
+    dialog. You can also add a comma separated list of commands here, which 
+    will be sent after login to the cluster.
+  * Dxspots, wcy/wwv information, toall and wx information can be saved to
+    independent files when activated from the preferences dialog.
 
  -- Joop Stakenborg <pa3aba@debian.org>  Tue,  2 Sep 2003 00:29:02 +0200
 
