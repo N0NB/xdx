@@ -1,9 +1,13 @@
 # List of source files containing translable strings.
 
 src/gui.c
+src/gui_opendialog.c
+src/gui_closedialog.c
+src/gui_aboutdialog.c
 src/history.c
 src/main.c
 src/net.c
 src/preferences.c
 src/text.c
 src/utils.c
+src/hyperlink.c
