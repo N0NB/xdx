@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Joop Stakenborg <pa4tu@amsat.org>
+# Copyright (C) YEAR Free Software Foundation, Inc.
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-11-14 20:08+0100\n"
+"POT-Creation-Date: 2002-12-05 19:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,62 +43,62 @@ msgstr ""
 msgid "/H_elp/About"
 msgstr ""
 
-#: src/gui.c:110
+#: src/gui.c:113
 #, c-format
 msgid "Error loading icon: %s"
 msgstr ""
 
-#: src/gui.c:153
+#: src/gui.c:156
 msgid "Spotter"
 msgstr ""
 
-#: src/gui.c:168
+#: src/gui.c:177
 msgid "Remarks"
 msgstr ""
 
-#: src/gui.c:173
+#: src/gui.c:184
 msgid "Time"
 msgstr ""
 
-#: src/gui.c:371
+#: src/gui.c:412
 msgid "xdx - open connection"
 msgstr ""
 
-#: src/gui.c:391
+#: src/gui.c:432
 msgid "_Hostname"
 msgstr ""
 
-#: src/gui.c:399
+#: src/gui.c:440
 msgid "_Port"
 msgstr ""
 
-#: src/gui.c:475
+#: src/gui.c:539
 msgid "xdx - close connection"
 msgstr ""
 
-#: src/gui.c:492
+#: src/gui.c:556
 #, c-format
 msgid "Close connection to %s ?"
 msgstr ""
 
-#: src/gui.c:526
+#: src/gui.c:594
 msgid "No running mozilla window found"
 msgstr ""
 
-#: src/gui.c:541
+#: src/gui.c:618
 msgid "xdx - about"
 msgstr ""
 
-#: src/gui.c:553
+#: src/gui.c:633
 #, c-format
 msgid "%s version %s"
 msgstr ""
 
-#: src/gui.c:579
+#: src/gui.c:658
 msgid "Published under the GNU General Public License"
 msgstr ""
 
-#: src/main.c:63
+#: src/main.c:71
 #, c-format
 msgid "Welcome to %s"
 msgstr ""
@@ -128,21 +128,12 @@ msgstr ""
 msgid "Error on setting channel encoding: %s"
 msgstr ""
 
-#: src/net.c:197
-msgid "Connection closed"
-msgstr ""
-
-#: src/net.c:228
-#, c-format
-msgid "Error on read: %s"
-msgstr ""
-
-#: src/net.c:280
+#: src/net.c:278
 #, c-format
 msgid "Write failed: %s"
 msgstr ""
 
-#: src/net.c:292
+#: src/net.c:290
 msgid "Nothing to send, you are not connected"
 msgstr ""
 
@@ -156,11 +147,7 @@ msgstr ""
 msgid "~/.%s is not a directory."
 msgstr ""
 
-#: src/preferences.c:105
+#: src/preferences.c:106
 #, c-format
 msgid "# settings file for %s, do not edit\n"
-msgstr ""
-
-#: src/utils.c:52
-msgid "Ready."
 msgstr ""
