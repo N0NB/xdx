@@ -5,7 +5,8 @@ EXTRA_DIST = \
 	xdx.spec \
 	xdx.spec.in \
 	xdx.1 \
-	xdx.1.in
+	xdx.1.in \
+	MANUAL
 
 SUBDIRS = \
 	m4 \
@@ -24,6 +25,9 @@ install-data-local:
 				$(INSTALL_DATA) $$pixmap $(DESTDIR)$(pkgdatadir)/pixmaps; \
 			fi \
 		done \
+	fi
+	if test -f MANUAL; then \
+		$(INSTALL_DATA) MANUAL $(DESTDIR)$(pkgdatadir); \
 	fi
 
 

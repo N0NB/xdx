@@ -8,12 +8,4 @@ xdx \- tcp/ip DX-cluster client for Amateur Radio
 and a separate text widget with WWV, WCY, "To ALL" and other server messages.
 
 .SH "SEE ALSO"
-The \fBxdx\fR homepage at 
-.br 
-http://people.debian.org/~pa3aba/xdx.html
-.SH "AUTHOR"
-Both \fBxdx\fR and this manual page were written
-by Joop Stakenborg
-<pa4tu@amsat.org>
-aka 
-<pa3aba@debian.org>.
+Select Help->Manual after starting xdx for a full manual.

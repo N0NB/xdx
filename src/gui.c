@@ -34,6 +34,7 @@
 #include "gui_closedialog.h"
 #include "gui_aboutdialog.h"
 #include "gui_settingsdialog.h"
+#include "gui_manualdialog.h"
 
 extern preferencestype preferences;
 
@@ -52,7 +53,9 @@ static GtkItemFactoryEntry menu_items[] = {
   {N_("/_Settings/Preferences"), "<control>P", on_settings_activate, 0, 
     "<StockItem>", GTK_STOCK_PREFERENCES},
   {N_("/H_elp"), NULL, NULL, 0, "<Branch>"},
-  {N_("/H_elp/About"), "<control>H", on_about_activate, 0, "<StockItem>",
+  {N_("/H_elp/Manual"), "<control>M", on_manual_activate, 0, "<StockItem>",
+   GTK_STOCK_HELP},
+  {N_("/H_elp/About"), "<control>A", on_about_activate, 0, "<StockItem>",
    GTK_STOCK_HELP},
 };
 

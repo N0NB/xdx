@@ -1,0 +1,81 @@
+xdx - tcp/ip DX-cluster client for Amateur Radio
+================================================
+ 
+Xdx is a DX-cluster client which shows a list with DX announcements and a
+separate text widget with WWV, WCY, "To ALL" and other server messages.
+
+What is a DX Cluster?
+=====================
+A DX Cluster is a means for Amateur (Ham) Radio operators to tell each other,
+in realtime, about DX stations (other interesting or rare Amateur Radio 
+stations all over the world).
+
+Users who are connected to a DX Cluster are capable of announcing DX spots 
+and related announcements, send personal talk messages, send and receive mail 
+messages, search and retrieve archived data, and access data from information 
+databases.
+
+For a list of DX Clusters see http://ve9wh.weblink.nbtel.net/dxclusters.html.
+
+Commands
+========
+Here are some basic commands to get started:
+
+announce/full 'msg': Send a line of text to all connected stations.
+bye: Exit the DX Cluster.
+dx 'frequency' 'callsign' 'comment': Send DX spot information.
+show/dx: View previously logged DX spots.
+
+Command examples
+================
+1) dx 28002.2 xz7a worked with 80m dipole!!
+2) sh/dx on hf/cw 50
+
+Most clusters will provide help by sending a '?' or 'help <command>'.
+
+Autologin
+=========
+The first thing you may want to do after starting xdx is selecting
+Settings->Preferences from the menu and enable autologin. You should login
+with your Callsign. After connecting, a number of commands can be send to
+the cluster. You may enter them in the 'Commands' entry, separated by a
+comma, e.g. set/page 0,unset beep' will disable paging and stop beeps.
+
+Saving DX info
+==============
+Individual messages can be saved to a file when activated from the preferences
+dialog.
+
+$HOME/.xdx/dxspots  DX spots as displayed in the top list.
+$HOME/.xdx/wwv      WCY/WWV anouncements with propagation info.
+$HOME/.xdx/toall    Chat messages as displayed in the bottom text widget.
+$HOME/.xdx/wx       Weather information.
+
+Hamlib support
+==============
+When double clicking on a dxspot this will set your rig's frequency. You need 
+the rigctl binary from the hamlib distribution for this. Please modify the ID 
+for your rig in the rigctl command line in preferences dialog, e.g. 
+'rigctl -m 210 set_freq %d' will use ID 210 (Kenwood TS-870), see 
+"rigctl ---list" for a list of models.
+
+Web browsers and mail programs
+==============================
+A URL in the chat window will appear blue and underlined when your mouse is 
+over it. Clicking on it will open the link in your preferred browser or mail 
+program (see the preferences dialog):
+
+Start the gnome web-browser when clicking a URL: 'epiphany %s'.
+Start mozilla-mail on clicking a mail URL: 'mozilla -compose "to=%s"'.
+
+Smileys
+=======
+There is support for a limited number of smileys in the chat window:
+:)  :-)  :))  :-))  ;)  ;-)  :(  :-(  :((  :-((
+
+License and support
+===================
+Xdx is free and published under the GNU GPL license. It is written by
+Joop Stakenborg <pg4i@amsat.org> (former callsigns: pa4tu and pa3aba).
+
+Please send a report if you find bugs or if you want enhancements.

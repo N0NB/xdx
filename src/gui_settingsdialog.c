@@ -244,7 +244,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_frame_set_label_widget (GTK_FRAME (phamlibframe), phamliblabel);
   gtk_tooltips_set_tip (tooltips, prigentry, _(
     "When double clicking on a dx-spot this will set the frequency of your "
-    "rig using rigctl"
+    "rig using rigctl (%d = the frequency retrieved from the DX spot)"
     ), NULL);
 
   if (preferences.hamlib == 1)
@@ -284,6 +284,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_entry_set_max_length (GTK_ENTRY (pprogmailentry), 80);
   pproglabel = gtk_label_new (_("Programs"));
   gtk_frame_set_label_widget (GTK_FRAME (pprogframe), pproglabel);
+  gtk_tooltips_set_tip (tooltips, pprogbrowserentry, 
+    _("Web browser to start after clicking on a url (%s = url)"), NULL);
+  gtk_tooltips_set_tip (tooltips, pprogmailentry, 
+    _("Mail program to start after clicking on a mail url (%s = mail url)"), NULL);
 
   if (g_ascii_strcasecmp (preferences.browserapp, "?"))
     gtk_entry_set_text (GTK_ENTRY(pprogbrowserentry), preferences.browserapp);
