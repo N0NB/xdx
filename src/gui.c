@@ -414,9 +414,9 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
 					    GTK_WINDOW (gui->window),
 					    GTK_DIALOG_MODAL |
 					    GTK_DIALOG_DESTROY_WITH_PARENT,
-					    GTK_STOCK_OK, GTK_RESPONSE_OK,
-					    GTK_STOCK_CANCEL,
-					    GTK_RESPONSE_CANCEL, NULL);
+					    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					    GTK_STOCK_OK,
+					    GTK_RESPONSE_OK, NULL);
 
   hbox = gtk_hbox_new (FALSE, 8);
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 8);
@@ -541,9 +541,9 @@ on_close_activate (GtkMenuItem * menuitem, gpointer user_data)
 					     GTK_WINDOW (gui->window),
 					     GTK_DIALOG_MODAL |
 					     GTK_DIALOG_DESTROY_WITH_PARENT,
-					     GTK_STOCK_OK, GTK_RESPONSE_OK,
-					     GTK_STOCK_CANCEL,
-					     GTK_RESPONSE_CANCEL, NULL);
+					     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					     GTK_STOCK_OK,
+					     GTK_RESPONSE_OK, NULL);
   hbox = gtk_hbox_new (FALSE, 8);
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 8);
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (closedialog)->vbox), hbox, FALSE,
