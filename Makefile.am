@@ -51,7 +51,7 @@ dist-hook:
 
 rpm: Makefile
 	make dist
-	sudo rpm -ta $(PACKAGE)-$(VERSION).tar.gz
+	$(RPMBUILD) -ta $(PACKAGE)-$(VERSION).tar.gz
 	rm $(PACKAGE)-$(VERSION).tar.gz
 
 
