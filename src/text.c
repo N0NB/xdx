@@ -420,6 +420,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
   GtkTreePath *path;
   GtkTreeStore *model;
   GtkTextBuffer *buffer;
+  gchar *utf8;
 
   if (len < 1024) msg[len] = '\0';
 
@@ -442,15 +443,15 @@ maintext_add (gchar msg[], gint len, gint messagetype)
         g_strstrip(dx->freq);
         g_strstrip(dx->remark);
         gtk_tree_store_append (model, &iter, NULL);
-        /* remark field may contain foreign language characters */
-        if (!g_utf8_validate (dx->remark, -1, NULL ))
-          dx->remark = g_locale_to_utf8 (dx->remark, -1, NULL, NULL, NULL);
-        if (!g_utf8_validate (dx->remark, -1, NULL ))
-          g_convert (dx->remark, strlen (dx->remark), "UTF-8", "ISO-8859-1", 
-            NULL, NULL, NULL);
         gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
-  		    dx->freq, DX_COLUMN, dx->dxcall, REM_COLUMN, dx->remark,
-  		    TIME_COLUMN, dx->time, INFO_COLUMN, dx->info, -1);
+  		    dx->freq, DX_COLUMN, dx->dxcall, TIME_COLUMN, dx->time, INFO_COLUMN, 
+          dx->info, -1);
+        /* remark field may contain foreign language characters */
+        if (dx->remark && dx->remark[0] && (utf8 = try_utf8(dx->remark)))
+        {
+          gtk_tree_store_set (model, &iter, REM_COLUMN, dx->remark, -1);
+          g_free (utf8);
+        }
         path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &iter);
         gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL, FALSE);
         gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path,
@@ -472,16 +473,15 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, 
             len, "wwv", NULL); /* should be utf-8 clean */
         else
-        { /* try local language, if it fails fall back to ISO-8859-1 */
-          if (!g_utf8_validate (dx->toall, -1, NULL ))
-            dx->toall = g_locale_to_utf8 (dx->toall, -1, NULL, NULL, NULL);
-          if (!g_utf8_validate (dx->toall, -1, NULL ))
-            g_convert (dx->toall, strlen (dx->toall), "UTF-8", "ISO-8859-1", 
-              NULL, NULL, NULL);
-          if (contains_smileys (dx->toall))
-            insert_with_smileys (GTK_TEXT_VIEW(maintext), dx->toall, NULL);
-          else
-	          gtk_text_buffer_insert (buffer, &end, dx->toall, len);
+        {
+          if (dx->toall && dx->toall[0] && (utf8 = try_utf8(dx->toall)))
+          {
+            if (contains_smileys (utf8))
+              insert_with_smileys (GTK_TEXT_VIEW(maintext), utf8, NULL);
+            else
+	            gtk_text_buffer_insert (buffer, &end, utf8, len);
+            g_free (utf8);
+          }
         }
         mark = gtk_text_buffer_get_mark (buffer, "insert");
         gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 
@@ -491,16 +491,15 @@ maintext_add (gchar msg[], gint len, gint messagetype)
       g_free(dx);
     }
     else if (messagetype == MESSAGE_TX)
-    { /* try local language, if it fails fall back to ISO-8859-1 */
-      if (!g_utf8_validate (msg, -1, NULL ))
-        msg = g_locale_to_utf8 (msg, -1, NULL, NULL, NULL);
-      if (!g_utf8_validate (msg, -1, NULL ))
-        g_convert (msg, strlen (msg), "UTF-8", "ISO-8859-1", 
-          NULL, NULL, NULL);
-      if (contains_smileys (msg))
-        insert_with_smileys (GTK_TEXT_VIEW(maintext), msg, "sent");
-      else
-        gtk_text_buffer_insert_with_tags_by_name 
-          (buffer, &end, msg, len, "sent", NULL);
+    {
+      if (msg && msg[0] && (utf8 = try_utf8(msg)))
+      {
+        if (contains_smileys (utf8))
+          insert_with_smileys (GTK_TEXT_VIEW(maintext), utf8, "sent");
+        else
+          gtk_text_buffer_insert_with_tags_by_name 
+            (buffer, &end, utf8, len, "sent", NULL);
+        g_free (utf8);
+      }
     }
 }
