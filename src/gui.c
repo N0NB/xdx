@@ -411,7 +411,7 @@ double_click (GtkWidget *widget, GdkEventButton *event, gpointer user_data)
   gchar *getf, **fsplit, *hamlibstr;
   gint setf;
 
-  if (event->type == GDK_2BUTTON_PRESS)
+  if ((preferences.hamlib == 1) && (event->type == GDK_2BUTTON_PRESS))
   {
     if (gtk_tree_selection_get_selected
       (gtk_tree_view_get_selection (GTK_TREE_VIEW(widget)), &model, &selected))
