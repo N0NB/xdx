@@ -1,48 +1,61 @@
 # XDX - DX-cluster client for X/GTK+.
 # Copyright (C) 2002 Joop Stakenborg <pa4tu@amsat.org>
 # This file is distributed under the same license as the xdx package.
-# Joop Stakenborg <pa4tu@amsat.org>, 2002.
+# Joop Stakenborg <pg4i@amsat.org>, 2002-2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xdx 0.3\n"
-"POT-Creation-Date: 2002-12-05 19:54+0100\n"
-"PO-Revision-Date: 2002-12-05 21:00+0200\n"
-"Last-Translator: Joop Stakenborg <pa4tu@amsat.org>\n"
-"Language-Team: nl <pa4tu@amsat.org>\n"
+"Project-Id-Version: xdx 0.99\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-05 17:03+0200\n"
+"PO-Revision-Date: 2003-10-05 21:00+0200\n"
+"Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
+"Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: src/gui.c:41
+#: src/gui.c:44
 msgid "/_Program"
 msgstr "/_Programma"
 
-#: src/gui.c:42
+#: src/gui.c:45
 msgid "/_Program/Quit"
 msgstr "/_Programma/Afsluiten"
 
-#: src/gui.c:44
+#: src/gui.c:47
 msgid "/_Host"
 msgstr "/_Station"
 
-#: src/gui.c:45
+#: src/gui.c:48
 msgid "/_Host/Open"
 msgstr "/_Station/Openen"
 
-#: src/gui.c:47
+#: src/gui.c:50
 msgid "/_Host/Close"
 msgstr "/_Station/Sluiten"
 
-#: src/gui.c:49
+#: src/gui.c:52
+msgid "/_Settings"
+msgstr "_Instellingen"
+
+#: src/gui.c:53
+msgid "/_Settings/Preferences"
+msgstr "_Instellingen/Voorkeuren"
+
+#: src/gui.c:55
 msgid "/H_elp"
 msgstr "/_Hulp"
 
-#: src/gui.c:50
+#: src/gui.c:56
+msgid "/H_elp/Manual"
+msgstr "/_Hulp/Manual"
+
+#: src/gui.c:58
 msgid "/H_elp/About"
 msgstr "/_Hulp/Info"
 
-#: src/gui.c:113
+#: src/gui.c:121
 #, c-format
 msgid "Error loading icon: %s"
 msgstr "Fout bij het laden van het programma icon: %s"
@@ -59,94 +72,190 @@ msgstr "Opmerkingen"
 msgid "Time"
 msgstr "Tijd"
 
-#: src/gui.c:412
+#: src/gui_opendialog.c:48
 msgid "xdx - open connection"
 msgstr "xdx - verbinding openen"
 
-#: src/gui.c:432
+#: src/gui_opendialog.c:68
 msgid "_Hostname"
 msgstr "_Hostnaam"
 
-#: src/gui.c:440
+#: src/gui_opendialog.c:76
 msgid "_Port"
 msgstr "_Poort"
 
-#: src/gui.c:539
+#: src/gui_closedialog.c:44
 msgid "xdx - close connection"
 msgstr "xdx - verbinding sluiten"
 
-#: src/gui.c:556
+#: src/gui_closedialog.c:61
 #, c-format
 msgid "Close connection to %s ?"
 msgstr "Verbinding naar %s sluiten ?"
 
-#: src/gui.c:594
-msgid "No running mozilla window found"
-msgstr "Geen open mozilla window gevonden"
-
-#: src/gui.c:618
+#: src/gui_aboutdialog.c:61
 msgid "xdx - about"
 msgstr "xdx - info"
 
-#: src/gui.c:633
+#: src/gui_aboutdialog.c:76
 #, c-format
 msgid "%s version %s"
 msgstr "%s versie %s"
 
-#: src/gui.c:658
+#: src/gui_aboutdialog.c:101
 msgid "Published under the GNU General Public License"
 msgstr "Vrijgegeven onder the GNU General Public License"
 
-#: src/main.c:71
+#: src/gui_settingsdialog.c:129
+msgid "xdx - preferences"
+msgstr "xdx - voorkeuren"
+
+#: src/gui_settingsdialog.c:145
+msgid "Enable autologin"
+msgstr "Autologin aanzetten"
+
+#: src/gui_settingsdialog.c:151
+msgid "Callsign"
+msgstr "Roepletters"
+
+#: src/gui_settingsdialog.c:158
+msgid "Commands"
+msgstr "Commando's"
+
+#: src/gui_settingsdialog.c:165
+msgid "Comma separated list of commands to send at login"
+msgstr "Commando's te versturen na login gescheiden door een komma"
+
+#: src/gui_settingsdialog.c:167
+msgid "Callsign to be used for login"
+msgstr "Roepletters te gebruiken voor login"
+
+#: src/gui_settingsdialog.c:169
+msgid "Login"
+msgstr "Login"
+
+#: src/gui_settingsdialog.c:199
+msgid "Save DX spots"
+msgstr "DX spots opslaan"
+
+#: src/gui_settingsdialog.c:201
+msgid "Save WCY/WWV"
+msgstr "WCY/WWV opslaan"
+
+#: src/gui_settingsdialog.c:203
+msgid "Save \"To all\""
+msgstr "\"To all\" opslaan"
+
+#: src/gui_settingsdialog.c:205
+msgid "Save WX"
+msgstr "WX opslaan"
+
+#: src/gui_settingsdialog.c:207
+msgid "Saving"
+msgstr "Opslaan"
+
+#: src/gui_settingsdialog.c:232
+msgid "Enable hamlib"
+msgstr "Hamlib aanzetten"
+
+#: src/gui_settingsdialog.c:238
+msgid "Command for rigctl"
+msgstr "Aanroepen van rigctl"
+
+#: src/gui_settingsdialog.c:243
+msgid "Hamlib"
+msgstr "Hamlib"
+
+#: src/gui_settingsdialog.c:246
+#, c-format
+msgid ""
+"When double clicking on a dx-spot this will set the frequency of your rig "
+"using rigctl (%d = the frequency retrieved from the DX spot)"
+msgstr ""
+"Wanneer je dubbelklikt op een dx-spot zal dit commando de frequentie van "
+"je ontvanger veranderen met rigctl (%d = de frequentie van de dx-spot"
+
+#: src/gui_settingsdialog.c:273
+msgid "Web browser"
+msgstr "Web browser"
+
+#: src/gui_settingsdialog.c:280
+msgid "Mail program"
+msgstr "Mail programma"
+
+#: src/gui_settingsdialog.c:285
+msgid "Programs"
+msgstr "/Programma's"
+
+#: src/gui_settingsdialog.c:288
+#, c-format
+msgid "Web browser to start after clicking on a url (%s = url)"
+msgstr "Starten van web browser na het klikken op een url (%s = url)"
+
+#: src/gui_settingsdialog.c:290
+#, c-format
+msgid "Mail program to start after clicking on a mail url (%s = mail url)"
+msgstr "Mail programma dat gestart wordt na het klikken op een mail url (%s = mail url)"
+
+#: src/gui_manualdialog.c:39
+msgid "xdx - manual"
+msgstr "xdx - manual"
+
+#: src/main.c:75
 #, c-format
 msgid "Welcome to %s"
 msgstr "Welkom bij %s"
 
-#: src/net.c:104
+#: src/net.c:107
 #, c-format
 msgid "Resolving %s..."
 msgstr "Opzoeken van %s..."
 
-#: src/net.c:110
+#: src/net.c:113
 #, c-format
 msgid "Resolve failed: %s"
 msgstr "Resolver faalt: %s"
 
-#: src/net.c:117
+#: src/net.c:120
 #, c-format
 msgid "Connecting to: %s"
 msgstr "Verbinding maken met: %s"
 
-#: src/net.c:152
+#: src/net.c:155
 #, c-format
 msgid "Connected to %s"
 msgstr "Verbonden met %s"
 
-#: src/net.c:165
+#: src/net.c:166
 #, c-format
 msgid "Error on setting channel encoding: %s"
 msgstr "Fout bij het instellen van de kanaal encoding: %s"
 
-#: src/net.c:278
+#: src/net.c:304
 #, c-format
 msgid "Write failed: %s"
 msgstr "Schrijven faalt: %s"
 
-#: src/net.c:290
+#: src/net.c:316
 msgid "Nothing to send, you are not connected"
 msgstr "Kan niets versturen, je hebt geen verbinding"
 
-#: src/preferences.c:46
+#: src/preferences.c:48
 #, c-format
 msgid "Creating ~/.%s directory."
 msgstr "Maken van ~/.%s bestandsmap."
 
-#: src/preferences.c:49
+#: src/preferences.c:51
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr "~/.%s is geen bestandsmap."
 
-#: src/preferences.c:106
+#: src/utils.c:116
 #, c-format
-msgid "# settings file for %s, do not edit\n"
-msgstr "# settings bestand voor %s, niet veranderen\n"
+msgid "Fork has failed: %s"
+msgstr "Fork faalt: %s"
+
+#: src/utils.c:131 src/utils.c:146
+#, c-format
+msgid "Starting: %s"
+msgstr "Starten van: %s"
