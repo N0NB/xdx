@@ -22,6 +22,7 @@
  */
 
 #include <gtk/gtk.h>
+#include <errno.h>
 #include "utils.h"
 #include "gui.h"
 
@@ -92,18 +93,38 @@ menu_set_sensitive (GtkItemFactory * ifa, const gchar * path, gboolean sens)
   gtk_widget_set_sensitive (w, sens);
 }
 
-void openurl (gchar *url)
+static void shellcommand (gchar *command)
 {
-  gchar buf[1024];
-  gint result;
+  gint result, pid; 
+  gchar *args[4];
   GString *msg = g_string_new ("");
-
-  g_snprintf(buf, sizeof(buf), "mozilla -remote openURL\\(%s\\)", url);
-  result = system(buf);
-  if (result != 0)
-  {    
-    g_string_printf (msg, _("No running mozilla window found"));
+  
+  pid = fork();
+  if (pid == 0) 
+  {
+    args[0] = "sh";
+    args[1] = "-c";
+    args[2] = command;
+    args[3] = NULL;
+    result = execvp(args[0], args);
+    _exit(0);
+  }
+  else
+  {
+    g_string_printf (msg, _("Fork has failed: %s"), strerror (errno));
     updatestatusbar (msg, TRUE);
     g_string_free (msg, TRUE);
   }
+}
+ 
+void openurl (gchar *url)
+{
+  gchar buf[1024];
+  GString *msg = g_string_new ("");
+
+  g_snprintf(buf, sizeof(buf), "mozilla %s", url);
+  g_string_printf (msg, _("Starting %s"), buf);
+  updatestatusbar (msg, TRUE);
+  g_string_free (msg, TRUE);
+  shellcommand (buf);
 }
