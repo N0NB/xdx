@@ -82,9 +82,16 @@ islink (gchar *link)
 static gboolean 
 findw (gunichar ch, gpointer user_data)
 {
-  if (g_unichar_isspace (ch))
-    return TRUE;
-  return FALSE;
+  switch (ch)
+  {
+    case ' ':
+    case ':':
+    case ',':
+    case ';':
+      return TRUE;
+    default:
+      return FALSE;
+  }
 }
 
 /* 
