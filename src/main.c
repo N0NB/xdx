@@ -31,9 +31,10 @@
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *mainstatusbar, *vpaned1;
-  gchar *lang;
+  GtkWidget *mainstatusbar, *vpaned1, *treeview;
+  gchar *lang, **wsplit;
   GString *greeting = g_string_new ("");
+  gint i;
 
   lang = gtk_set_locale ();	/* don't free lang */
 
@@ -53,6 +54,13 @@ main (int argc, char *argv[])
   loadhistory ();
 
   gtk_widget_show (gui->window);
+
+  treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
+  wsplit = g_strsplit(preferences.columnwidths, ",", 0);
+  for (i = 0; i < 5; i++)
+    gtk_tree_view_column_set_fixed_width
+      (gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), i), atoi(wsplit[i]));
+  g_strfreev(wsplit);
 
   gdk_window_move_resize(gui->window->window, preferences.x, preferences.y,
 	preferences.width, preferences.height);

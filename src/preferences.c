@@ -65,6 +65,7 @@ loadpreferences (void)
   preferences.width = 700;
   preferences.height = 550;
   preferences.panedpos = 90;
+  preferences.columnwidths = g_strdup("70,70,70,360,60,60,");
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -79,6 +80,8 @@ loadpreferences (void)
         else if (!g_strcasecmp(label, "width")) preferences.width = atoi(value);
         else if (!g_strcasecmp(label, "height")) preferences.height = atoi(value);
         else if (!g_strcasecmp(label, "panedpos")) preferences.panedpos = atoi(value);
+        else if (!g_strcasecmp(label, "columnwidths")) 
+          preferences.columnwidths = g_strdup(value);
       }
     fclose (fp);
   }
@@ -114,6 +117,8 @@ savepreferences (void)
     fprintf(fp, "height %s\n", str);
     str = g_strdup_printf("%d", preferences.panedpos);
     fprintf(fp, "panedpos %s\n", str);
+    str = g_strdup_printf("%s", preferences.columnwidths);
+    fprintf(fp, "columnwidths %s\n", str);
     g_free(str);
     fclose (fp);
   }

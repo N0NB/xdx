@@ -153,32 +153,43 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes (_("Spotter"), renderer, "text",
 					      FROM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
   column =
     gtk_tree_view_column_new_with_attributes ("QRG", renderer, "text",
 					      FREQ_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
   column =
     gtk_tree_view_column_new_with_attributes ("DX", renderer, "text",
 					      DX_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
   column =
     gtk_tree_view_column_new_with_attributes (_("Remarks"), renderer, "text",
 					      REM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
   column =
     gtk_tree_view_column_new_with_attributes (_("Time"), renderer, "text",
 					      TIME_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+
   column =
     gtk_tree_view_column_new_with_attributes ("Info", renderer, "text",
 					      INFO_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   gtk_widget_show (treeview);
@@ -266,8 +277,11 @@ gboolean
 on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 			    gpointer user_data)
 {
-  GtkWidget *vpaned1;
+  GtkWidget *vpaned1, *treeview;
+  GList * columns;
+  gint i, length;
   servertype *cluster;
+  GString *w = g_string_new("");
 
   cluster = g_object_get_data(G_OBJECT(widget), "cluster");
   if (cluster->sockethandle != -1)
@@ -275,8 +289,19 @@ on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
 
   vpaned1 = g_object_get_data (G_OBJECT(gui->window), "vpaned1");
   preferences.panedpos = gtk_paned_get_position(GTK_PANED(vpaned1));
+
   gtk_window_get_position(GTK_WINDOW(gui->window), &preferences.x, &preferences.y);
   gtk_window_get_size(GTK_WINDOW(gui->window), &preferences.width, &preferences.height);
+
+  treeview = g_object_get_data (G_OBJECT(gui->window), "treeview");
+  columns = gtk_tree_view_get_columns(GTK_TREE_VIEW(treeview));
+  length = g_list_length(columns);
+  for (i = 0; i < length; i++) 
+      g_string_append_printf(w, "%d,", gtk_tree_view_column_get_width
+        (gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), i)));
+  g_list_free(columns);
+  preferences.columnwidths = g_strdup(w->str);
+  g_string_free(w, TRUE);
 
   savehistory ();
   savepreferences ();
@@ -297,6 +322,8 @@ on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
 
   cluster = g_object_get_data(G_OBJECT(widget), "cluster");
   g_free(cluster);
+
+  g_free(preferences.columnwidths);
 
   link = gui->hostnamehistory;
   while (link)
