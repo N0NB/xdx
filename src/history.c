@@ -117,6 +117,7 @@ void tx_previous(void)
     str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
     mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
     gtk_entry_set_text(GTK_ENTRY(mainentry), str);
+    gtk_editable_set_position (GTK_EDITABLE(mainentry), -1);
   }
 }
 
@@ -133,5 +134,6 @@ void tx_next(void)
     {
       str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
       gtk_entry_set_text(GTK_ENTRY(mainentry), str);
+      gtk_editable_set_position (GTK_EDITABLE(mainentry), -1);
     }
 }
