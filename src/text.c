@@ -29,7 +29,8 @@
 #include "net.h"
 #include "gui.h"
 
-typedef struct dxinfo {
+typedef struct dxinfo 
+{
   gchar *spotter;
   gchar *freq;
   gchar *dxcall;
@@ -41,9 +42,65 @@ typedef struct dxinfo {
   gboolean nodx;
 } dxinfo;
 
-static dxinfo *dx;
+typedef struct 
+{
+  gchar *str;
+  gchar *file;
+} smiley;
+ 
 
-/* extract call from dxmessage and return call and length of call */
+static dxinfo *dx;
+static smiley *sm;
+GSList *smileylist = NULL;
+
+/*
+ * create a new smiley struct containing text appearance and path to the pixmap
+ */
+smiley *new_smiley(void)
+{
+  smiley *sm = g_new0(smiley, 1);
+  sm->str = NULL;
+  sm->file = NULL;
+  return(sm);
+}
+
+/*
+ * create a list of supported smileys
+ */
+static void
+create_smiley_list (void)
+{
+  smiley *s;
+
+  s = new_smiley ();
+  s->str = ":)";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/smile.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ":-)";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/smile.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ";)";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/wink.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ";-)";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/wink.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ":(";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png";
+  smileylist = g_slist_append(smileylist, s);
+  s = new_smiley ();
+  s->str = ":-(";
+  s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png";
+  smileylist = g_slist_append(smileylist, s);
+}
+
+/* 
+ * extract call from dxmessage and return call and length of call 
+ */
 static gchar *
 findcall (gchar * str, gint * spotterlen)
 {
@@ -68,7 +125,9 @@ findcall (gchar * str, gint * spotterlen)
   return (str);
 }
 
-/* find the end of frequency and DX-call field */
+/* 
+ * find the end of frequency and DX-call field 
+ */
 static gchar *
 findspace (gchar * str)
 {
@@ -91,7 +150,9 @@ findspace (gchar * str)
   return (str);
 }
 
-/* find the end of frequency field */
+/* 
+ * find the end of frequency field 
+ */
 static gchar *
 findfreq (gchar * str)
 {
@@ -114,7 +175,8 @@ findfreq (gchar * str)
   return (str);
 }
 
-/* end of remarks field found if there is a space 
+/* 
+ * end of remarks field found if there is a space 
  * and the next 2 characters are digits 
  */
 static gchar *
@@ -146,7 +208,9 @@ findrem (gchar * str, gint * remlen)
 
 }
 
-/* search for the end of time field */
+/* 
+ * search for the end of time field 
+ */
 static gchar *
 findtime (gchar * str)
 {
@@ -169,7 +233,9 @@ findtime (gchar * str)
   return (str);
 }
 
-/* search for the end of the locator field */
+/* 
+ * search for the end of the locator field 
+ */
 static gchar *
 findinfo (gchar * str)
 {
@@ -195,19 +261,22 @@ findinfo (gchar * str)
   return (str);
 }
 
+/*
+ * create a new dxinfo struct
+ */
 dxinfo *new_dx(void)
 {
-        dxinfo *dx = g_new0(dxinfo, 1);
-        dx->spotter = NULL;
-        dx->freq = NULL;
-        dx->dxcall = NULL;
-        dx->remark = NULL;
-        dx->time = NULL;
-        dx->info = NULL;
-        dx->toall = NULL;
-	dx->dx = FALSE;
-        dx->nodx = FALSE;
-        return(dx);
+  dxinfo *dx = g_new0(dxinfo, 1);
+  dx->spotter = NULL;
+  dx->freq = NULL;
+  dx->dxcall = NULL;
+  dx->remark = NULL;
+  dx->time = NULL;
+  dx->info = NULL;
+  dx->toall = NULL;
+  dx->dx = FALSE;
+  dx->nodx = FALSE;
+  return(dx);
 }
 
 /*
@@ -259,9 +328,75 @@ extractinfo(gchar *msg)
 }
 
 /*
+ * check for any of the supported smileys
+ */
+static gboolean
+contains_smileys (gchar *str)
+{
+  if (g_strrstr (str, ":)"))
+    return TRUE;
+  else if (g_strrstr (str, ":-)"))
+    return TRUE;
+  else if (g_strrstr (str, ":-)"))
+    return TRUE;
+  else if (g_strrstr (str, ":("))
+    return TRUE;
+  else if (g_strrstr (str, ":-("))
+    return TRUE;
+  else if (g_strrstr (str, ";)"))
+    return TRUE;
+  else if (g_strrstr (str, ";-)"))
+    return TRUE;
+  return FALSE;
+}
+
+/*
+ * insert text and when it has a smiley, replace it with a pixmap
+ */
+static void insert_with_smileys
+(GtkTextView *textview, gchar *str, gchar *tag)
+{
+  GtkTextIter istart, end, iend;
+  GtkTextBuffer *buf;
+  GtkTextMark *mark_start;
+  GtkTextChildAnchor *anchor;
+  GtkWidget *swidget;
+  smiley *s;
+
+  buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (textview));
+  gtk_text_buffer_get_end_iter (buf, &end);
+
+  if (tag)
+    gtk_text_buffer_insert_with_tags_by_name (buf, &end, str, -1, tag, NULL);
+  else
+    gtk_text_buffer_insert (buf, &end, str, -1);
+
+  mark_start = gtk_text_buffer_get_insert (buf);
+  gtk_text_buffer_get_iter_at_mark (buf, &istart, mark_start);
+  gtk_text_buffer_get_start_iter (buf, &iend);
+  gtk_text_iter_backward_char (&istart);
+
+  if (!smileylist) create_smiley_list ();
+  while (smileylist)
+  {
+    s = (smiley *) smileylist->data;
+    while (gtk_text_iter_backward_search
+      (&istart, s->str, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
+    {               
+      swidget = gtk_image_new_from_file (s->file);
+      gtk_text_buffer_delete (buf, &istart, &iend);
+      anchor = gtk_text_buffer_create_child_anchor (buf, &istart);
+      gtk_text_view_add_child_at_anchor (GTK_TEXT_VIEW (textview), 
+        GTK_WIDGET(swidget), anchor);
+      gtk_widget_show (swidget);
+    }
+    smileylist = smileylist->next;
+  }
+}
+
+/*
  * add text to the text widget and dx messages to the list
  */
-
 void
 maintext_add (gchar msg[], gint len, gint messagetype)
 {
@@ -317,26 +452,29 @@ maintext_add (gchar msg[], gint len, gint messagetype)
         g_free(dx->info);
       }
       if (dx->nodx)  
-	{
-          gtk_text_buffer_place_cursor(buffer, &end);
-
-	  if (!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
-	      || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
-	    gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, len,
-                  "wwv", NULL); /* should be utf-8 clean */
-	  else
-    { /* try local language, if it fails fall back to ISO-8859-1 */
-      if (!g_utf8_validate (dx->toall, -1, NULL ))
-        dx->toall = g_locale_to_utf8 (dx->toall, -1, NULL, NULL, NULL);
-      if (!g_utf8_validate (dx->toall, -1, NULL ))
-        g_convert (dx->toall, strlen (dx->toall), "UTF-8", "ISO-8859-1", 
-          NULL, NULL, NULL);
-	    gtk_text_buffer_insert (buffer, &end, dx->toall, len);
-    }
-	  mark = gtk_text_buffer_get_mark (buffer, "insert");
-	  gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 0.0, 1.0);
-          g_free(dx->toall);
-	}
+      {
+        gtk_text_buffer_place_cursor(buffer, &end);
+        if (!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
+            || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
+          gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, 
+            len, "wwv", NULL); /* should be utf-8 clean */
+        else
+        { /* try local language, if it fails fall back to ISO-8859-1 */
+          if (!g_utf8_validate (dx->toall, -1, NULL ))
+            dx->toall = g_locale_to_utf8 (dx->toall, -1, NULL, NULL, NULL);
+          if (!g_utf8_validate (dx->toall, -1, NULL ))
+            g_convert (dx->toall, strlen (dx->toall), "UTF-8", "ISO-8859-1", 
+              NULL, NULL, NULL);
+          if (contains_smileys (dx->toall))
+            insert_with_smileys (GTK_TEXT_VIEW(maintext), dx->toall, NULL);
+          else
+	          gtk_text_buffer_insert (buffer, &end, dx->toall, len);
+        }
+        mark = gtk_text_buffer_get_mark (buffer, "insert");
+        gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 
+          0.0, 1.0);
+        g_free(dx->toall);
+      }
       g_free(dx);
     }
     else if (messagetype == MESSAGE_TX)
@@ -346,7 +484,10 @@ maintext_add (gchar msg[], gint len, gint messagetype)
       if (!g_utf8_validate (msg, -1, NULL ))
         g_convert (msg, strlen (msg), "UTF-8", "ISO-8859-1", 
           NULL, NULL, NULL);
-      gtk_text_buffer_insert_with_tags_by_name (buffer, &end, msg, len,
-					      "sent", NULL);
+      if (contains_smileys (msg))
+        insert_with_smileys (GTK_TEXT_VIEW(maintext), msg, "sent");
+      else
+        gtk_text_buffer_insert_with_tags_by_name 
+          (buffer, &end, msg, len, "sent", NULL);
     }
 }

@@ -274,21 +274,21 @@ tx (GString * txmsg)
       txmsg = g_string_append (txmsg, "\n");
       numbytes = write (cluster->sockethandle, txmsg->str, txmsg->len);
       if (numbytes == -1)
-	{
-	  g_string_printf (errmsg, _("Write failed: %s"), g_strerror (errno));
-	  updatestatusbar (errmsg, FALSE);
-          g_string_free (errmsg, TRUE);
-	  return;
-	}
+      {
+        g_string_printf (errmsg, _("Write failed: %s"), g_strerror (errno));
+        updatestatusbar (errmsg, FALSE);
+        g_string_free (errmsg, TRUE);
+        return;
+      }
       else
-        {
-	maintext_add (txmsg->str, txmsg->len, MESSAGE_TX);
-	}
+      {
+        maintext_add (txmsg->str, txmsg->len, MESSAGE_TX);
+      }
     }
   else
     {
-  g_string_printf (errmsg, _("Nothing to send, you are not connected"));
-  updatestatusbar (errmsg, FALSE);
-  g_string_free (errmsg, TRUE);
+      g_string_printf (errmsg, _("Nothing to send, you are not connected"));
+      updatestatusbar (errmsg, FALSE);
+      g_string_free (errmsg, TRUE);
     }
 }
