@@ -87,6 +87,7 @@ findw (gunichar ch, gpointer user_data)
     case ' ':
     case ',':
     case ';':
+    case '\n':
     case '\r':
       return TRUE;
     default:
