@@ -123,7 +123,7 @@ void openurl (gchar *url)
   GString *msg = g_string_new ("");
 
   g_snprintf(buf, sizeof(buf), "mozilla %s", url);
-  g_string_printf (msg, _("Starting \"%s\""), buf);
+  g_string_printf (msg, _("Starting: %s"), buf);
   updatestatusbar (msg, TRUE);
   g_string_free (msg, TRUE);
   shellcommand (buf);
@@ -135,7 +135,7 @@ void openmail (gchar *url)
   GString *msg = g_string_new ("");
 
   g_snprintf(buf, sizeof(buf), "mozilla -compose \"to=%s\"", url);
-  g_string_printf (msg, _("Starting \"%s\""), buf);
+  g_string_printf (msg, _("Starting: %s"), buf);
   updatestatusbar (msg, TRUE);
   g_string_free (msg, TRUE);
   shellcommand (buf);
