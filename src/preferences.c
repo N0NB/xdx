@@ -84,6 +84,8 @@ loadpreferences (void)
           preferences.height = atoi(value);
         else if (!g_strcasecmp(label, "columnwidths")) 
           preferences.columnwidths = g_strdup(value);
+        else if (!g_strcasecmp(label, "panedpos")) 
+          preferences.panedpos = atoi(value);
       }
     fclose (fp);
   }
@@ -116,6 +118,8 @@ savepreferences (void)
     fprintf(fp, "height %s\n", str);
     str = g_strdup_printf("%s", preferences.columnwidths);
     fprintf(fp, "columnwidths %s\n", str);
+    str = g_strdup_printf("%d", preferences.panedpos);
+    fprintf(fp, "panedpos %s\n", str);
     g_free(str);
     fclose (fp);
   }
