@@ -1,3 +1,13 @@
+xdx (1.2) unstable; urgency=low
+
+  * Fixed compilation against GTK+ version 2.4 by omitting 
+     GTK_DISABLE_DEPRECATED in the Makefile. Closes: #250041.
+  * Added spanish translations and manual by Baltasar Perez, EB8AKF. Thanks!
+  * A new option added to the preferences dialog which allows showing/hiding
+    of columns in the spots window.
+
+ -- Joop Stakenborg <pa3aba@debian.org>  Fri, 21 May 2004 13:36:19 +0200
+
 xdx (1.1) unstable; urgency=low
 
   * Correctly save preferences and history when selecting program->exit from

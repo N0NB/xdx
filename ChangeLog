@@ -1,9 +1,14 @@
+Changelog for version xdx (1.2)
+
+  * Fixed compilation against GTK+ version 2.4.
+  * Added spanish translations and manual by Baltasar Perez, EB8AKF. Thanks!
+  * A new option added to the preferences dialog which allows showing/hiding
+    of columns in the spots window.
+
 Changelog for version xdx (1.1)
   * Correctly save preferences and history when selecting program->exit from
     the menu. This bug was reported by Wilbert Knol ZL2BSJ, thanks!
   * Set the cursor after the entry when recalling history of the command line.
-
- -- Joop Stakenborg <pg4i@amsat.org>  Tue, 21 Oct 2003 18:58:04 +0200
 
 Changelog for version xdx (1.0)
 
@@ -21,5 +26,3 @@ Changelog for version xdx (1.0)
     will be sent after login to the cluster.
   * Dxspots, wcy/wwv information, toall and wx information can be saved to
     independent files when activated from the preferences dialog.
-
- -- Joop Stakenborg <pg4i@amsat.org>  Tue,  3 Oct 2003 19:29:00 +0200
