@@ -229,7 +229,7 @@ create_mainwindow (void)
   gtk_box_pack_start (GTK_BOX (mainvbox), vpaned1, TRUE, TRUE, 0);
 
   mainentry = gtk_entry_new ();
-  gtk_entry_set_max_length (GTK_ENTRY (mainentry), 80);
+  gtk_entry_set_max_length (GTK_ENTRY (mainentry), 1024);
   gtk_box_pack_start (GTK_BOX (mainvbox), mainentry, FALSE, FALSE, 0);
 
   mainstatusbar = gtk_statusbar_new ();
