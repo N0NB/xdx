@@ -155,7 +155,7 @@ void openmail (gchar *url)
 
 gchar *try_utf8 (const gchar *str)
 {
-  gint converted;
+  gsize converted;
   gchar *utf8;
 
   if (str == NULL) return NULL;
