@@ -16,7 +16,7 @@ Prefix: /usr
 BuildRoot: /var/tmp/%{name}-%{version}
 Summary: DX-cluster tcp/ip client for amateur radio
 Vendor: Joop Stakenborg <pg4i@amsat.org>
-URL: http://people.debian.org/~pa3aba/xdx.html
+URL: http://www.qsl.net/pg4i/linux/xdx.html
 Packager: Joop Stakenborg <pg4i@amsat.org>
 Source: %{name}-%{version}.tar.gz
 

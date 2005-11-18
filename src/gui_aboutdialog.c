@@ -27,7 +27,7 @@
 #include "gui.h"
 #include "utils.h"
 
-#define XDX_HOMEPAGE "http://people.debian.org/~pa3aba/xdx.html"
+#define XDX_HOMEPAGE "http://www.qsl.net/pg4i/linux/xdx.html"
 
 /*
  * the link is clicked in the about dialog
