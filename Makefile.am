@@ -15,6 +15,9 @@ SUBDIRS = \
 	po \
 	src
 
+DESKTOP_FILES = Xdx.desktop
+desktopdir = $(datadir)/applications
+desktop_DATA = $(DESKTOP_FILES)
 
 man_MANS = xdx.1
 
