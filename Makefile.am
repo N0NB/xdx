@@ -34,6 +34,9 @@ install-data-local:
 	if test -f MANUAL.es; then \
 		$(INSTALL_DATA) MANUAL.es $(DESTDIR)$(pkgdatadir); \
 	fi
+	if test -f MANUAL.pl; then \
+		$(INSTALL_DATA) MANUAL.pl $(DESTDIR)$(pkgdatadir); \
+	fi
 
 
 dist-hook:
