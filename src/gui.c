@@ -105,15 +105,18 @@ void
 create_mainwindow (void)
 {
   GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned1, *clistscrolledwindow,
-	  *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview;
+	  *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview,
+      *frame;
   GtkCellRenderer *renderer, *boldrenderer;
   GtkTreeViewColumn *column;
-  GtkTextBuffer *buffer;
+  GtkTextBuffer *buffer, *entrybuffer;
   GtkTreeStore *model;
   GdkPixbuf *icon = NULL;
   GError *err = NULL;
   GString *msg = g_string_new ("");
   servertype *cluster;
+  PangoFontDescription *font_description;
+  gint pango_size;
 
   gui = new_gui();
   gui->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -228,9 +231,19 @@ create_mainwindow (void)
   gtk_widget_set_size_request (mainscrolledwindow, -1, 20);
   gtk_box_pack_start (GTK_BOX (mainvbox), vpaned1, TRUE, TRUE, 0);
 
-  mainentry = gtk_entry_new ();
-  gtk_entry_set_max_length (GTK_ENTRY (mainentry), 1024);
-  gtk_box_pack_start (GTK_BOX (mainvbox), mainentry, FALSE, FALSE, 0);
+  mainentry = gtk_text_view_new ();
+  gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW(mainentry), GTK_WRAP_WORD);
+  frame = gtk_frame_new (NULL);
+  gtk_box_pack_start (GTK_BOX (mainvbox), frame, FALSE, FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (frame), mainentry);
+
+  /* height of the frame is 2 times font size */
+  font_description = pango_font_description_copy
+    (gtk_widget_get_style (GTK_WIDGET(mainentry))->font_desc);
+  pango_size = pango_font_description_get_size (font_description);
+  gtk_widget_set_size_request (frame, -1, 4 * PANGO_PIXELS(pango_size));
+
+//  gtk_entry_set_max_length (GTK_ENTRY (mainentry), 1024);
 
   mainstatusbar = gtk_statusbar_new ();
   gtk_box_pack_start (GTK_BOX (mainvbox), mainstatusbar, FALSE, FALSE, 0);
@@ -239,7 +252,8 @@ create_mainwindow (void)
 		    G_CALLBACK (on_mainwindow_destroy_event), NULL);
   g_signal_connect (G_OBJECT (gui->window), "delete_event",
 		    G_CALLBACK (on_mainwindow_delete_event), NULL);
-  g_signal_connect (G_OBJECT (mainentry), "activate",
+  entrybuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mainentry));
+  g_signal_connect (G_OBJECT (entrybuffer), "changed",
 		    G_CALLBACK (on_mainentry_activate), NULL);
   g_signal_connect (G_OBJECT (gui->window), "key_press_event",
 		    G_CALLBACK (on_mainwindow_key_press_event), NULL);
@@ -265,24 +279,37 @@ create_mainwindow (void)
   return;
 }
 
+static gchar *gtk_textbuffer_get_chars (GtkTextBuffer *b)
+{
+  GtkTextIter start, end;
+
+  gtk_text_buffer_get_start_iter (b, &start);
+  gtk_text_buffer_get_end_iter (b, &end);
+  return gtk_text_buffer_get_text (b, &start, &end, FALSE);
+}
+
 /*
  * hit <enter> in the entry widget
  */
 void
-on_mainentry_activate (GtkEditable * editable, gpointer user_data)
+on_mainentry_activate (GtkTextBuffer *buffer, gpointer user_data)
 {
-  gchar *entry;
+  gchar *entry, *p;
   GString *str = g_string_new ("");
   GtkWidget *mainentry;
 
-  mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
-  entry = gtk_editable_get_chars (GTK_EDITABLE (mainentry), 0, -1);
-  str = g_string_new(entry);
-  tx (str);
-  g_string_free(str, TRUE);
+  entry = gtk_textbuffer_get_chars (buffer);
+  if ((p = g_strrstr (entry, "\n")))
+  {
+    *p = '\0';
+    str = g_string_new (entry);
+    tx (str);
+    g_string_free (str, TRUE);
+    gtk_text_buffer_set_text (buffer, "", 0);
+    mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
+    gtk_widget_grab_focus (GTK_WIDGET (mainentry));
+  }
   g_free (entry);
-  gtk_editable_delete_text (GTK_EDITABLE (mainentry), 0, -1);
-  gtk_widget_grab_focus (GTK_WIDGET (mainentry));
 }
 
 static void syncprefs (void)

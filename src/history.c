@@ -109,6 +109,8 @@ void tx_save(GString *txmsg)
 void tx_previous(void)
 {
   GtkWidget *mainentry;
+  GtkTextBuffer *entrybuffer;
+  GtkTextIter end;
   gchar *str;
 
   if (gui->updown < gui->txitem) gui->updown++;
@@ -116,24 +118,32 @@ void tx_previous(void)
   {
     str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
     mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
-    gtk_entry_set_text(GTK_ENTRY(mainentry), str);
-    gtk_editable_set_position (GTK_EDITABLE(mainentry), -1);
+    entrybuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mainentry));
+    gtk_text_buffer_set_text (entrybuffer, str, -1);
+    gtk_text_buffer_get_end_iter (entrybuffer, &end);
+    gtk_text_buffer_place_cursor (entrybuffer, &end);
   }
 }
 
 void tx_next(void)
 {
   GtkWidget *mainentry;
+  GtkTextBuffer *entrybuffer;
+  GtkTextIter end;
   gchar *str;
 
   if (gui->updown > 0) gui->updown--;
+
   mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
+  entrybuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mainentry));
+
   if (gui->updown == 0)
-    gtk_entry_set_text(GTK_ENTRY(mainentry), "");
-    else
-    {
-      str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
-      gtk_entry_set_text(GTK_ENTRY(mainentry), str);
-      gtk_editable_set_position (GTK_EDITABLE(mainentry), -1);
-    }
+    gtk_text_buffer_set_text (entrybuffer, "", 0);
+  else
+  {
+    str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
+    gtk_text_buffer_set_text (entrybuffer, str, -1);
+    gtk_text_buffer_get_end_iter (entrybuffer, &end);
+    gtk_text_buffer_place_cursor (entrybuffer, &end);
+  }
 }
