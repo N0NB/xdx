@@ -15,7 +15,8 @@ and related announcements, send personal talk messages, send and receive mail
 messages, search and retrieve archived data, and access data from information 
 databases.
 
-For a list of DX Clusters see http://ve9wh.weblink.nbtel.net/dxclusters.html.
+For a list of DX Clusters see:
+http://www.cpcug.org/user/wfeidt/Misc/cluster.html.
 
 Commands
 ========
@@ -76,6 +77,6 @@ There is support for a limited number of smileys in the chat window:
 License and support
 ===================
 Xdx is free and published under the GNU GPL license. It is written by
-Joop Stakenborg <pg4i@amsat.org> (former callsigns: pa4tu and pa3aba).
+Joop Stakenborg <pg4i@amsat.org>.
 
 Please send a report if you find bugs or if you want enhancements.

@@ -15,7 +15,8 @@ Los usuarios que están conectados al Cluster DX son capaces de anunciar spots
 DX, enviarse mensajes personales hablados, enviar y recibir mensajes de correo,
 buscar y recuperar datos archivados, y acceder a información de bases de datos.
 
-Una lista de Cluster DX en http://ve9wh.weblink.nbtel.net/dxclusters.html.
+Una lista de Cluster DX en:
+http://www.cpcug.org/user/wfeidt/Misc/cluster.html.
 
 Comandos
 ========
@@ -81,6 +82,6 @@ Existe soporte para un número limitado de emoticones en la ventana de chat:
 Soporte y licencia
 ==================
 Xdx es libre y publicado bajo la licencia GNU GPL. Su autor es
-Joop Stakenborg <pg4i@amsat.org> (antiguos indicativos: pa4tu y pa3aba).
+Joop Stakenborg <pg4i@amsat.org>.
 
 Por favor, envie un informe si encontró fallos o si desea mejoras.
