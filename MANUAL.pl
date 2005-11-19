@@ -1,80 +1,80 @@
-xdx - klient DX-cluster poprzez tcp/ip dla radioamatorów
+xdx - klient DX-cluster poprzez tcp/ip dla radioamatorÃ³w
 ========================================================
 
-Xdx jest klientem DX-cluster, który wy¶wietla listê z og³oszeniami DX oraz
-pokazuje w oddzielnym polu wiadomo¶ci WWV, WCY, "To all" i inne przesy³ane
+Xdx jest klientem DX-cluster, ktÃ³ry wyÅ›wietla listÄ™ z ogÅ‚oszeniami DX oraz
+pokazuje w oddzielnym polu wiadomoÅ›ci WWV, WCY, "To all" i inne przesyÅ‚ane
 z serwera.
  
 Co to jest DX Cluster?
 ======================
-DX Cluster stanowi pomoc dla radioamatorów i s³u¿y do informowania wszystkich 
-o s³yszanych w danej chwili stacjach DX (interesuj±cych b±d¼ niespotykanych
-stacjach krótkofalarskich na ca³ym ¶wiecie)
+DX Cluster stanowi pomoc dla radioamatorÃ³w i sÅ‚uÅ¼y do informowania wszystkich 
+o sÅ‚yszanych w danej chwili stacjach DX (interesujÄ…cych bÄ…dÅº niespotykanych
+stacjach krÃ³tkofalarskich na caÅ‚ym Å›wiecie)
 
-U¿ytkownicy pod³±czeni do DX Clustera maj± mo¿liwo¶æ publikowania og³oszeñ
-o spotach DX i odpowiadania na og³oszenia, wys³ania prywatnych komunikatów
-do innych u¿ytkowników, wysy³ania i odbierania poczty, wyszukiwania i odbierania
-danych archiwalnych i dostêpu do informacji zgromadzonych bazach danych.
+UÅ¼ytkownicy podÅ‚Ä…czeni do DX Clustera majÄ… moÅ¼liwoÅ›Ä‡ publikowania ogÅ‚oszeÅ„
+o spotach DX i odpowiadania na ogÅ‚oszenia, wysÅ‚ania prywatnych komunikatÃ³w
+do innych uÅ¼ytkownikÃ³w, wysyÅ‚ania i odbierania poczty, wyszukiwania i odbierania
+danych archiwalnych i dostÄ™pu do informacji zgromadzonych bazach danych.
 
-Lista DX Clusterów dostêpna jest pod adresem:
-http://ve9wh.weblink.nbtel.net/dxclusters.html.
+Lista DX ClusterÃ³w dostÄ™pna jest pod adresem:
+http://www.cpcug.org/user/wfeidt/Misc/cluster.html.
 
 Polecenia
 =========
-Poni¿ej znajduje siê kilka podstawowych poleceñ, pozwalaj±cych na rozpoczêcie
+PoniÅ¼ej znajduje siÄ™ kilka podstawowych poleceÅ„, pozwalajÄ…cych na rozpoczÄ™cie
 korzystania z DX Clustera:
 
-announce/full 'wiadomo¶æ' : Wysy³a linijkê tekstu do wszystkich po³±czonych stacji.
-bye: Wyj¶cie z DX Cluster.
-dx 'czêstotliwo¶æ' 'znak' 'komentarz': Wys³anie informacji o DX.
+announce/full 'wiadomoÅ›Ä‡' : WysyÅ‚a linijkÄ™ tekstu do wszystkich poÅ‚Ä…czonych stacji.
+bye: WyjÅ›cie z DX Cluster.
+dx 'czÄ™stotliwoÅ›Ä‡' 'znak' 'komentarz': WysÅ‚anie informacji o DX.
 show/dx: Pokazuje poprzednio zalogowane spoty DX.
 
 
-Przyk³ady poleceñ
+PrzykÅ‚ady poleceÅ„
 =================
 1) dx 28002.2 xz7a worked with 80m dipole!!
 2) sh/dx on hf/cw 50
 
-Wiêkszo¶æ clusterów oferuje pomoc po wpisaniu '?' lub 'help <polecenie>'.
+WiÄ™kszoÅ›Ä‡ clusterÃ³w oferuje pomoc po wpisaniu '?' lub 'help <polecenie>'.
 
 Automatyczne logowanie
 ======================
-Jedn± z pierwszych czynno¶ci jak± powiniene¶ wykonaæ po uruchomieniu xdx jest
-w³±czenie funkcji automatycznego logowania w oknie "Ustawienia->Preferencje".
-Logowanie powinno zawsze nastêpowaæ przy u¿yciu w³asnego znaku wywo³awczego.
-Ka¿dorazowo po zalogowaniu mo¿liwe jest wysy³anie do clustera kilku poleceñ.
-Mo¿esz je okre¶liæ w polu tekstowym "Polecenia" oddzielaj±c ka¿de za pomoc±
-przecinka, np. set/page 0,unset beep' spowoduje wy³±czenie przewijania listy
-i brzêczyka.
+JednÄ… z pierwszych czynnoÅ›ci jakÄ… powinieneÅ› wykonaÄ‡ po uruchomieniu xdx jest
+wÅ‚Ä…czenie funkcji automatycznego logowania w oknie "Ustawienia->Preferencje".
+Logowanie powinno zawsze nastÄ™powaÄ‡ przy uÅ¼yciu wÅ‚asnego znaku wywoÅ‚awczego.
+KaÅ¼dorazowo po zalogowaniu moÅ¼liwe jest wysyÅ‚anie do clustera kilku poleceÅ„.
+MoÅ¼esz je okreÅ›liÄ‡ w polu tekstowym "Polecenia" oddzielajÄ…c kaÅ¼de za pomocÄ…
+przecinka, np. set/page 0,unset beep' spowoduje wyÅ‚Ä…czenie przewijania listy
+i brzÄ™czyka.
 
-Zapamiêtywanie informacji DX
+ZapamiÄ™tywanie informacji DX
 ============================
 W przypadku, gdy zaznaczona zostanie odpowiednia opcja w oknie preferencji,
-poszczególne wiadomo¶ci mog± byæ zapamiêtywane do plików.
+poszczegÃ³lne wiadomoÅ›ci mogÄ… byÄ‡ zapamiÄ™tywane do plikÃ³w.
 
-$HOME/.xdx/dxspots  Spoty DX wy¶wietlane na li¶cie w górnej czê¶ci programu
-$HOME/.xdx/wwv      Og³oszenia WCY/WWV z informacj± o propagacji.
-$HOME/.xdx/toall    Wiadomo¶ci chat wy¶wietlane w dolnej czê¶ci programu.
+$HOME/.xdx/dxspots  Spoty DX wyÅ›wietlane na liÅ›cie w gÃ³rnej czÄ™Å›ci programu
+$HOME/.xdx/wwv      OgÅ‚oszenia WCY/WWV z informacjÄ… o propagacji.
+$HOME/.xdx/toall    WiadomoÅ›ci chat wyÅ›wietlane w dolnej czÄ™Å›ci programu.
 $HOME/.xdx/wx       Informacje pogodowe.
 
 Wsparcie dla Hamlib
 ===================
-Kiedy podwójnie klikniesz na spocie DX, spowoduje to ustawienie odpowiedniej
-czêstotliwo¶ci w twoim radiu. Aby by³o to mo¿liwe musisz mieæ zainstalowany
-program rigctl dostêpny z bibliotek± hamlib. Zmodyfikuj ID w wierszu poleceñ
-rigctl znajduj±cym siê oknie preferencji, zgodnie z posiadanym przez siebie
-urz±dzeniem, np. 'rigctl -m 210 set_freq %d' u¿ywa ID 210 (Kenwood TS-870),
-zobacz "rigctl ---list" aby zobaczyæ listê wszystkich modeli.
+Kiedy podwÃ³jnie klikniesz na spocie DX, spowoduje to ustawienie odpowiedniej
+czÄ™stotliwoÅ›ci w twoim radiu. Aby byÅ‚o to moÅ¼liwe musisz mieÄ‡ zainstalowany
+program rigctl dostÄ™pny z bibliotekÄ… hamlib. Zmodyfikuj ID w wierszu poleceÅ„
+rigctl znajdujÄ…cym siÄ™ oknie preferencji, zgodnie z posiadanym przez siebie
+urzÄ…dzeniem, np. 'rigctl -m 210 set_freq %d' uÅ¼ywa ID 210 (Kenwood TS-870),
+zobacz "rigctl ---list" aby zobaczyÄ‡ listÄ™ wszystkich modeli.
 
-Przegl±darki internetowe i programy pocztowe
+PrzeglÄ…darki internetowe i programy pocztowe
 ============================================
-Adresy internetowe w oknie chat wyró¿niane s± kolorem niebieskim i podkre¶lane,
-gdy tylko wskazuje na nie kursor myszy. Klikniêcie na nim powoduje otwarcie
-³±cza w zdefiniowanej przez ciebie przegl±darce internetowej b±d¼ programie
+Adresy internetowe w oknie chat wyrÃ³Å¼niane sÄ… kolorem niebieskim i podkreÅ›lane,
+gdy tylko wskazuje na nie kursor myszy. KlikniÄ™cie na nim powoduje otwarcie
+Å‚Ä…cza w zdefiniowanej przez ciebie przeglÄ…darce internetowej bÄ…dÅº programie
 pocztowym (zobacz okno preferencji):
 
-Uruchom przegl±darkê internetow± Gnome gdy klikniêty zosta³ URL: 'epiphany %s'.
-Uruchom mozilla-mail gdy klikniêty zosta³ adres poczty elektronicznej:
+Uruchom przeglÄ…darkÄ™ internetowÄ… Gnome gdy klikniÄ™ty zostaÅ‚ URL: 'epiphany %s'.
+Uruchom mozilla-mail gdy klikniÄ™ty zostaÅ‚ adres poczty elektronicznej:
 'mozilla -compose "to=%s"'.
 
 Emotikony
@@ -84,8 +84,7 @@ Program posiada wsparcie dla ograniczonej liczby emotikon w oknie chata:
 
 Licencja i wsparcie
 ===================
-Xdx jest bezp³atny i zosta³ opublikowany na podstawie licencji GNU GPL.
-Program ten zosta³ napisany przez Joop'a Stakenborg <pg4i@amsat.org>
-(poprzednie znaki: PA4TU i PA3ABA).
+Xdx jest bezpÅ‚atny i zostaÅ‚ opublikowany na podstawie licencji GNU GPL.
+Program ten zostaÅ‚ napisany przez Joop'a Stakenborg <pg4i@amsat.org>.
 
-Proszê przy¶lij informacjê je¿eli znajdziesz b³±d lub chcesz rozbudowy programu.
+ProszÄ™ przyÅ›lij informacjÄ™ jeÅ¼eli znajdziesz bÅ‚Ä…d lub chcesz rozbudowy programu.
