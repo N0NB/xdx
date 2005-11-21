@@ -1,5 +1,6 @@
 Changelog for version xdx (1.3)
   * Polish translations by Boguslaw Ciastek SQ5TB, thanks!
+  * A Dutch manual has been added.
   * Updated gettext and automake version used.
   * Install a .desktop file.
   * Language files and manuals have been converted to UTF-8.
