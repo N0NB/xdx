@@ -48,8 +48,12 @@ void on_manual_activate (GtkMenuItem * menuitem, gpointer user_data)
 	gtk_container_add (GTK_CONTAINER (swindow), helptextview);
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(helptextview));
 	gtk_text_buffer_get_start_iter (buffer, &iter);
-	helpfile = g_strdup_printf ("%s%s%s", PACKAGE_DATA_DIR, G_DIR_SEPARATOR_S,
-		_("MANUAL"));
+
+/* TRANSLATORS:
+ * Do not translate MANUAL unless you provide a faq in your language,
+ * e.g. the polish faq is called MANUAL.pl.
+ */
+	helpfile = g_strdup_printf ("%s%s%s", PACKAGE_DATA_DIR, G_DIR_SEPARATOR_S, _("MANUAL"));
 
 	g_signal_connect(G_OBJECT(manualdialog), "response",
 		GTK_SIGNAL_FUNC(gtk_widget_destroy), NULL);
