@@ -313,7 +313,7 @@ extractinfo(gchar *msg)
   dx = new_dx();
   info = g_strdup(msg);
 
-  if ((dxmsg = g_strrstr(info, "DX de ")))
+  if ((dxmsg = g_strrstr(info, "DX de ")) && (info[0] == 'D'))
   {
     if (preferences.savedx) savedx (msg);
     dx->spotter = g_strdup(findcall(dxmsg + 6, &l));
