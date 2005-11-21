@@ -8,6 +8,7 @@ EXTRA_DIST = config.rpath mkinstalldirs  \
 	xdx.1.in \
 	MANUAL \
 	MANUAL.es \
+	MANUAL.nl \
 	MANUAL.pl
 
 SUBDIRS = \
@@ -36,6 +37,9 @@ install-data-local:
 	fi
 	if test -f MANUAL.es; then \
 		$(INSTALL_DATA) MANUAL.es $(DESTDIR)$(pkgdatadir); \
+	fi
+	if test -f MANUAL.nl; then \
+		$(INSTALL_DATA) MANUAL.nl $(DESTDIR)$(pkgdatadir); \
 	fi
 	if test -f MANUAL.pl; then \
 		$(INSTALL_DATA) MANUAL.pl $(DESTDIR)$(pkgdatadir); \
