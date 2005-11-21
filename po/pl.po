@@ -6,13 +6,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-21 14:28+0200\n"
+"Report-Msgid-Bugs-To: pg4i@amsat.org\n"
+"POT-Creation-Date: 2005-11-21 10:39+0100\n"
 "PO-Revision-Date: 2004-12-10 08:25+0100\n"
 "Last-Translator: Boguslaw Ciastek SQ5TB <sq5tb@op.pl>\n"
 "Language-Team: PL <PL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: POLAND\n"
@@ -36,7 +36,7 @@ msgstr "/_Program"
 
 #: src/gui.c:47
 msgid "/_Program/Quit"
-msgstr "/_Program/Wyj∂cie"
+msgstr "/_Program/Wyj≈õcie"
 
 #: src/gui.c:49
 msgid "/_Host"
@@ -44,7 +44,7 @@ msgstr "/_Host"
 
 #: src/gui.c:50
 msgid "/_Host/Open"
-msgstr "/_Host/OtwÛrz"
+msgstr "/_Host/Otw√≥rz"
 
 #: src/gui.c:52
 msgid "/_Host/Close"
@@ -64,61 +64,61 @@ msgstr "/P_omoc"
 
 #: src/gui.c:58
 msgid "/H_elp/Manual"
-msgstr "/P_omoc/PodrÍcznik"
+msgstr "/P_omoc/Podrƒôcznik"
 
 #: src/gui.c:60
 msgid "/H_elp/About"
 msgstr "/P_omoc/O programie"
 
-#: src/gui.c:123
+#: src/gui.c:126
 #, c-format
 msgid "Error loading icon: %s"
-msgstr "B≥±d podczas wczytywania ikony: %s"
+msgstr "B≈ÇƒÖd podczas wczytywania ikony: %s"
 
-#: src/gui.c:158
-#: src/gui_settingsdialog.c:296
+#: src/gui.c:161 src/gui_settingsdialog.c:296
 msgid "Spotter"
 msgstr "Nadawca"
 
-#: src/gui.c:182
-#: src/gui_settingsdialog.c:302
+#: src/gui.c:185 src/gui_settingsdialog.c:302
 msgid "Remarks"
 msgstr "Uwagi"
 
-#: src/gui.c:190
-#: src/gui_settingsdialog.c:304
+#: src/gui.c:193 src/gui_settingsdialog.c:304
 msgid "Time"
 msgstr "Czas"
 
-#: src/gui.c:198
-#: src/gui_settingsdialog.c:306
+#: src/gui.c:201 src/gui_settingsdialog.c:306
 msgid "Info"
 msgstr "Info"
 
 #: src/gui_closedialog.c:44
 msgid "xdx - close connection"
-msgstr "xdx - zakoÒcz po≥±czenie"
+msgstr "xdx - zako≈Ñcz po≈ÇƒÖczenie"
 
 #: src/gui_closedialog.c:61
 #, c-format
 msgid "Close connection to %s ?"
-msgstr "ZakoÒczyÊ po≥±czenie z %s ?"
+msgstr "Zako≈Ñczyƒá po≈ÇƒÖczenie z %s ?"
 
 #: src/gui_closedialog.c:72
 msgid "Connection closed"
-msgstr "Po≥±czenie zakoÒczone"
+msgstr "Po≈ÇƒÖczenie zako≈Ñczone"
 
 #: src/gui_manualdialog.c:39
 msgid "xdx - manual"
-msgstr "xdx - podrÍcznik"
+msgstr "xdx - podrƒôcznik"
 
-#: src/gui_manualdialog.c:52
+#. TRANSLATORS:
+#. * Do not translate MANUAL unless you provide a faq in your language,
+#. * e.g. the polish faq is called MANUAL.pl.
+#.
+#: src/gui_manualdialog.c:56
 msgid "MANUAL"
-msgstr "PODR CZNIK"
+msgstr "MANUAL.pl"
 
 #: src/gui_opendialog.c:48
 msgid "xdx - open connection"
-msgstr "xdx - otwÛrz po≥±czenie"
+msgstr "xdx - otw√≥rz po≈ÇƒÖczenie"
 
 #: src/gui_opendialog.c:68
 msgid "_Hostname"
@@ -134,15 +134,15 @@ msgstr "xdx - preferencje"
 
 #: src/gui_settingsdialog.c:153
 msgid "General"
-msgstr "OgÛlne"
+msgstr "Og√≥lne"
 
 #: src/gui_settingsdialog.c:156
 msgid "Output"
-msgstr "Dane wyj∂ciowe"
+msgstr "Dane wyj≈õciowe"
 
 #: src/gui_settingsdialog.c:166
 msgid "Enable autologin"
-msgstr "W≥±cz automatyczne logowanie"
+msgstr "W≈ÇƒÖcz automatyczne logowanie"
 
 #: src/gui_settingsdialog.c:172
 msgid "Callsign"
@@ -154,11 +154,11 @@ msgstr "Polecenia"
 
 #: src/gui_settingsdialog.c:186
 msgid "Comma separated list of commands to send at login"
-msgstr "Oddzielona przecinkami lista poleceÒ do wys≥ania po po≥±czeniu."
+msgstr "Oddzielona przecinkami lista polece≈Ñ do wys≈Çania po po≈ÇƒÖczeniu."
 
 #: src/gui_settingsdialog.c:188
 msgid "Callsign to be used for login"
-msgstr "Znak uøywany do zalogowania"
+msgstr "Znak u≈ºywany do zalogowania"
 
 #: src/gui_settingsdialog.c:190
 msgid "Login"
@@ -178,12 +178,16 @@ msgstr "Hamlib"
 
 #: src/gui_settingsdialog.c:235
 #, c-format
-msgid "When double clicking on a dx-spot this will set the frequency of your rig using rigctl (%d = the frequency retrieved from the DX spot)"
-msgstr "Gdy podwÛjnie klikniesz na spocie DX, ustawia czÍstotliwo∂Ê w twoim radiu uøywaj±c rigctl (%d = czÍstotliwo∂Ê otrzymana ze spotu DX)"
+msgid ""
+"When double clicking on a dx-spot this will set the frequency of your rig "
+"using rigctl (%d = the frequency retrieved from the DX spot)"
+msgstr ""
+"Gdy podw√≥jnie klikniesz na spocie DX, ustawia czƒôstotliwo≈õƒá w twoim radiu "
+"u≈ºywajƒÖc rigctl (%d = czƒôstotliwo≈õƒá otrzymana ze spotu DX)"
 
 #: src/gui_settingsdialog.c:262
 msgid "Web browser"
-msgstr "Przegl±darka internetowa"
+msgstr "PrzeglƒÖdarka internetowa"
 
 #: src/gui_settingsdialog.c:269
 msgid "Mail program"
@@ -196,12 +200,15 @@ msgstr "Programy"
 #: src/gui_settingsdialog.c:277
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
-msgstr "Przegl±darka internetowa uruchamiana po klikniÍciu adresu www (%s = adres)"
+msgstr ""
+"PrzeglƒÖdarka internetowa uruchamiana po klikniƒôciu adresu www (%s = adres)"
 
 #: src/gui_settingsdialog.c:279
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
-msgstr "Program pocztowy uruchamiany po klikniÍciu adresu pocztowego (%s = adres pocztowy)"
+msgstr ""
+"Program pocztowy uruchamiany po klikniƒôciu adresu pocztowego (%s = adres "
+"pocztowy)"
 
 #: src/gui_settingsdialog.c:290
 msgid "Columns"
@@ -221,7 +228,7 @@ msgstr "Zapisz WCY/WWV (informacje o propagacji)"
 
 #: src/gui_settingsdialog.c:342
 msgid "Save \"To all\""
-msgstr "Zapisz \"To all\" (wiadomo∂ci do wszystkich)"
+msgstr "Zapisz \"To all\" (wiadomo≈õci do wszystkich)"
 
 #: src/gui_settingsdialog.c:344
 msgid "Save WX"
@@ -239,41 +246,40 @@ msgstr "Witamy w %s"
 #: src/net.c:85
 #, c-format
 msgid "Resolving %s..."
-msgstr "Nawi±zywanie po≥±czenia z %s..."
+msgstr "NawiƒÖzywanie po≈ÇƒÖczenia z %s..."
 
 #: src/net.c:91
 #, c-format
 msgid "Resolve failed: %s"
-msgstr "Nawi±zanie po≥±czenia nieudane: %s"
+msgstr "NawiƒÖzanie po≈ÇƒÖczenia nieudane: %s"
 
 #: src/net.c:98
 #, c-format
 msgid "Connecting to: %s"
-msgstr "£±czenie z: %s"
+msgstr "≈ÅƒÖczenie z: %s"
 
 #: src/net.c:133
 #, c-format
 msgid "Connected to %s"
-msgstr "Po≥±czony z %s"
+msgstr "Po≈ÇƒÖczony z %s"
 
 #: src/net.c:144
 #, c-format
 msgid "Error on setting channel encoding: %s"
-msgstr "B≥±d przy ustawianiu kodowania kana≥u: %s"
+msgstr "B≈ÇƒÖd przy ustawianiu kodowania kana≈Çu: %s"
 
-#: src/net.c:218
-#: src/net.c:231
+#: src/net.c:218 src/net.c:231
 msgid "Connection closed by remote host"
-msgstr "Po≥±czenie zakoÒczone przez zdalny host."
+msgstr "Po≈ÇƒÖczenie zako≈Ñczone przez zdalny host."
 
 #: src/net.c:282
 #, c-format
 msgid "Write failed: %s"
-msgstr "Nieudana prÛba zapisu: %s"
+msgstr "Nieudana pr√≥ba zapisu: %s"
 
 #: src/net.c:294
 msgid "Nothing to send, you are not connected"
-msgstr "Nic nie wys≥ano, nie jeste∂ po≥±czony(a)"
+msgstr "Nic nie wys≈Çano, nie jeste≈õ po≈ÇƒÖczony(a)"
 
 #: src/preferences.c:47
 #, c-format
@@ -288,11 +294,9 @@ msgstr "~/.%s nie jest katalogiem."
 #: src/utils.c:119
 #, c-format
 msgid "Fork has failed: %s"
-msgstr "Nieudana prÛba utworzenia procesu potomnego: %s"
+msgstr "Nieudana pr√≥ba utworzenia procesu potomnego: %s"
 
-#: src/utils.c:134
-#: src/utils.c:149
+#: src/utils.c:134 src/utils.c:149
 #, c-format
 msgid "Starting: %s"
 msgstr "Uruchamianie: %s"
-

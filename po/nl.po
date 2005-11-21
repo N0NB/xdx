@@ -5,13 +5,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-21 14:28+0200\n"
+"Report-Msgid-Bugs-To: pg4i@amsat.org\n"
+"POT-Creation-Date: 2005-11-21 10:39+0100\n"
 "PO-Revision-Date: 2004-05-21 21:00+0200\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
 #: src/gui_aboutdialog.c:61
@@ -67,24 +67,24 @@ msgstr "/_Hulp/Manual"
 msgid "/H_elp/About"
 msgstr "/_Hulp/Info"
 
-#: src/gui.c:123
+#: src/gui.c:126
 #, c-format
 msgid "Error loading icon: %s"
 msgstr "Fout bij het laden van het programma icoon: %s"
 
-#: src/gui.c:158 src/gui_settingsdialog.c:296
+#: src/gui.c:161 src/gui_settingsdialog.c:296
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:182 src/gui_settingsdialog.c:302
+#: src/gui.c:185 src/gui_settingsdialog.c:302
 msgid "Remarks"
 msgstr "Opmerkingen"
 
-#: src/gui.c:190 src/gui_settingsdialog.c:304
+#: src/gui.c:193 src/gui_settingsdialog.c:304
 msgid "Time"
 msgstr "Tijd"
 
-#: src/gui.c:198 src/gui_settingsdialog.c:306
+#: src/gui.c:201 src/gui_settingsdialog.c:306
 msgid "Info"
 msgstr "Info"
 
@@ -105,9 +105,13 @@ msgstr "Verbinding gesloten"
 msgid "xdx - manual"
 msgstr "xdx - manual"
 
-#: src/gui_manualdialog.c:52
+#. TRANSLATORS:
+#. * Do not translate MANUAL unless you provide a faq in your language,
+#. * e.g. the polish faq is called MANUAL.pl.
+#.
+#: src/gui_manualdialog.c:56
 msgid "MANUAL"
-msgstr "MANUAL"
+msgstr "MANUAL.nl"
 
 #: src/gui_opendialog.c:48
 msgid "xdx - open connection"
