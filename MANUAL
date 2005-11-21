@@ -2,13 +2,13 @@ xdx - tcp/ip DX-cluster client for Amateur Radio
 ================================================
  
 Xdx is a DX-cluster client which shows a list with DX announcements and a
-separate text widget with WWV, WCY, "To ALL" and other server messages.
+separate text widget with WWV, WCY, 'To ALL' and other server messages.
 
 What is a DX Cluster?
 =====================
 A DX Cluster is a means for Amateur (Ham) Radio operators to tell each other,
-in realtime, about DX stations (other interesting or rare Amateur Radio 
-stations all over the world).
+in realtime, about DX stations (interesting or rare Amateur Radio stations
+from all over the world).
 
 Users who are connected to a DX Cluster are capable of announcing DX spots 
 and related announcements, send personal talk messages, send and receive mail 
@@ -37,10 +37,10 @@ Most clusters will provide help by sending a '?' or 'help <command>'.
 Autologin
 =========
 The first thing you may want to do after starting xdx is selecting
-Settings->Preferences from the menu and enable autologin. You should login
-with your Callsign. After connecting, a number of commands can be send to
-the cluster. You may enter them in the 'Commands' entry, separated by a
-comma, e.g. set/page 0,unset beep' will disable paging and stop beeps.
+'Settings->Preferences' from the menu and enable autologin. You should
+login with your Callsign. After connecting, a number of commands can be
+send to the cluster. You may enter them in the 'Commands' entry, separated
+by a comma, e.g. set/page 0,unset beep' will disable paging and stop beeps.
 
 Saving DX info
 ==============
@@ -58,7 +58,7 @@ When double clicking on a dxspot this will set your rig's frequency. You need
 the rigctl binary from the hamlib distribution for this. Please modify the ID 
 for your rig in the rigctl command line in preferences dialog, e.g. 
 'rigctl -m 210 set_freq %d' will use ID 210 (Kenwood TS-870), see 
-"rigctl ---list" for a list of models.
+'rigctl ---list' for a list of models.
 
 Web browsers and mail programs
 ==============================

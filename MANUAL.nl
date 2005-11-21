@@ -9,16 +9,17 @@ Wat is een DX cluster?
 Een DX Cluster is een manier voor zendamateurs om elkaar op de hoogte te
 houden van actieve DX stations.
 
-Gebruikers die verbonden zijn met een DX-Cluster mogen DX berichten verzenden,
-persoonlijke berichten verzenden, mail verzenden en ontvangen, opgeslagen data
-doorzoeken en opvragen en informatie databases gebruiken.
+Gebruikers die verbonden zijn met een DX-Cluster mogen DX berichten
+verzenden, persoonlijke berichten verzenden, mail verzenden en
+ontvangen, opgeslagen data doorzoeken en opvragen en informatie
+databases gebruiken.
 
 Voor een lijst van DX-Clusters zie:
 http://www.cpcug.org/user/wfeidt/Misc/cluster.html.
 
 Commando's
 ==========
-Hieronder enkele commando's om mee te beginnen"
+Hieronder enkele commando's om mee te beginnen:
 
 announce/full 'msg': Stuur een bericht aan alle verbonden stations.
 bye: Verlaat het DX Cluster.
@@ -30,20 +31,22 @@ Voorbeelden van commando's
 1) dx 28002.2 xz7a worked with 80m dipole!!
 2) sh/dx on hf/cw 50
 
-De meeste clusters tonen hulp door een '?' of 'help commando' te versturen.
+De meeste clusters tonen hulp door een '?' of 'help commando' te
+versturen.
 
 Autologin
 =========
-Het eerste wat je kunt doen na het starten van xdx is Instellingen->Voorkeuren
-uit het menu selecteren en autologin aanzetten. Je moet inloggen met je
-roepletters. Nadat je verbonden bent kun je een aantal commando's naar het
-cluster sturen. Je kunt deze invoeren in het "Commando's" veld, gescheiden
-door een komma, 'set/page 0,unset beep' zet bijvoorbeeld het pagineren en
-piepen uit.
+Het eerste wat je kunt doen na het starten van xdx is 'Instellingen->
+Voorkeuren' uit het menu selecteren en autologin aanzetten. Je moet
+inloggen met je roepletters. Nadat je verbonden bent kun je een aantal
+commando's naar het cluster sturen. Je kunt deze invoeren in het
+"Commando's" veld, gescheiden door een komma, 'set/page 0,unset beep'
+zet bijvoorbeeld het pagineren en piepen uit.
 
 DX info opslaan
 ===============
-In het voorkeuren venster kun je tevens het opslaan van berichten aanzetten.
+In het voorkeuren venster kun je tevens het opslaan van berichten
+aanzetten.
 
 $HOME/.xdx/dxspots  DX spots zoals getoond in de bovenste lijst.
 $HOME/.xdx/wwv      WCY/WWV berichten met propagatie info.
@@ -52,19 +55,20 @@ $HOME/.xdx/wx       Weer informatie.
 
 Hamlib support
 ==============
-Wanneer je dubbel klikt op een DX bericht zal de frequentie van je ontvanger
-worden ingesteld. Hiervoor heb je het rigctl hamlib programma nodig. Tevens
-dien je de aanroep van rigctl in het voorkeuren venster te wijzigen.
-'rigctl -m 210 set_freq %d' zal bijvoorbeeld ID 210 gebruiken (Kenwood TS-870),
-zie 'rigctl --list' voor een lijst van modellen.
+Wanneer je dubbel klikt op een DX bericht zal de frequentie van je
+ontvanger worden ingesteld. Hiervoor heb je het rigctl hamlib programma
+nodig. Tevens dien je de aanroep van rigctl in het voorkeuren venster
+te wijzigen. 'rigctl -m 210 set_freq %d' zal bijvoorbeeld ID 210 gebruiken
+(Kenwood TS-870), zie 'rigctl --list' voor een lijst van modellen.
 
 Web browser and mail programma
 ==============================
-Een URL in het text venster zal blauw worden als je je muis er naartoe beweegt.
-Als je vervolgens op de link klikt zal deze worden geopend in je web browser
-of mail programma (zie het voorkeuren venster):
+Een URL in het text venster zal blauw worden als je je muis er naartoe
+beweegt. Als je vervolgens op de link klikt zal deze worden geopend in je
+web browser of mail programma (zie het voorkeuren venster):
 
-Starten van de gnome web-browser indien op een URL wordt geklikt: 'epiphany %s'.
+Starten van de gnome web-browser indien op een URL wordt geklikt:
+'epiphany %s'.
 Starten van mozilla-mail indien op een URL wordt geklikt:
 'mozilla -compose "to=%s"'.
 
