@@ -36,11 +36,11 @@ extern preferencestype preferences;
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *treeview;
+  GtkWidget *treeview, *maintext;
   GtkTreeViewColumn *column;
   gchar *lang, **wsplit;
   GString *greeting = g_string_new ("");
-
+  PangoFontDescription *font_description;
 
 #ifdef ENABLE_NLS
   bindtextdomain (PACKAGE, PACKAGE_LOCALE_DIR);
@@ -64,6 +64,14 @@ main (int argc, char *argv[])
   loadhistory ();
 
   treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
+  maintext = g_object_get_data (G_OBJECT (gui->window), "maintext");
+  font_description = pango_font_description_from_string (preferences.dxfont);
+  gtk_widget_modify_font (GTK_WIDGET(treeview), font_description);
+  pango_font_description_free (font_description);
+  font_description = pango_font_description_from_string (preferences.allfont);
+  gtk_widget_modify_font (GTK_WIDGET(maintext), font_description);
+  pango_font_description_free (font_description);
+
   wsplit = g_strsplit (preferences.columnwidths, ",", 0);
   column = gtk_tree_view_get_column (GTK_TREE_VIEW(treeview), 0);
   if (!preferences.col0visible)

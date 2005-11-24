@@ -243,8 +243,6 @@ create_mainwindow (void)
   pango_size = pango_font_description_get_size (font_description);
   gtk_widget_set_size_request (frame, -1, 4 * PANGO_PIXELS(pango_size));
 
-//  gtk_entry_set_max_length (GTK_ENTRY (mainentry), 1024);
-
   mainstatusbar = gtk_statusbar_new ();
   gtk_box_pack_start (GTK_BOX (mainvbox), mainstatusbar, FALSE, FALSE, 0);
 
@@ -368,6 +366,8 @@ static void cleanup (void)
   g_free(preferences.callsign);
   g_free(preferences.commands);
   g_free(preferences.rigctl);
+  g_free(preferences.dxfont);
+  g_free(preferences.allfont);
 
   link = gui->hostnamehistory;
   while (link)

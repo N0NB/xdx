@@ -85,7 +85,8 @@ loadpreferences (void)
   preferences.col3visible = 1;
   preferences.col4visible = 1;
   preferences.col5visible = 1;
-  
+  preferences.dxfont = g_strdup ("Sans 10");
+  preferences.allfont = g_strdup ("Sans 10");
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -151,6 +152,16 @@ loadpreferences (void)
           preferences.col4visible = atoi(value);
         else if (!g_ascii_strcasecmp(label, "col5visible")) 
           preferences.col5visible = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "dxfont"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.dxfont = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "allfont"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.allfont = g_strdup(value);
+        }
       }
     fclose (fp);
   }
@@ -221,6 +232,12 @@ savepreferences (void)
     fprintf(fp, "col4visible %s\n", str);
     str = g_strdup_printf("%d", preferences.col5visible);
     fprintf(fp, "col5visible %s\n", str);
+    str = g_strdup_printf("%s", preferences.dxfont);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "dxfont %s\n", str);
+    str = g_strdup_printf("%s", preferences.allfont);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "allfont %s\n", str);
     g_free(str);
     fclose (fp);
   }

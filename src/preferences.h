@@ -52,6 +52,8 @@ typedef struct
   gint col3visible;
   gint col4visible;
   gint col5visible;
+  gchar *dxfont;
+  gchar *allfont;
 } preferencestype;
 
 void dircheck (void);

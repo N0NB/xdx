@@ -31,7 +31,7 @@
 GtkWidget *preferencesdialog;
 extern preferencestype preferences;
 
-void
+static void
 on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
@@ -70,7 +70,7 @@ on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
 }
 
 
-void
+static void
 on_phamlibcheckbutton_toggled          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
@@ -99,14 +99,66 @@ on_phamlibcheckbutton_toggled          (GtkToggleButton *togglebutton,
   }
 }
 
+static void
+on_fontbutton_clicked (GtkButton *button, gpointer user_data)
+{
+  GtkWidget *fontselectiondialog, *pfontsdxentry, *pfontsallentry;
+  GdkPixbuf *fontselectiondialog_icon_pixbuf;
+  gchar *font, *path;
+  gint response;
+
+  fontselectiondialog = gtk_font_selection_dialog_new
+    (_("xdx - Select a font"));
+  path = g_build_filename (PACKAGE_DATA_DIR, "pixmaps", "xdx.png", NULL);
+  fontselectiondialog_icon_pixbuf = gdk_pixbuf_new_from_file (path, NULL);
+  g_free (path);
+  if (fontselectiondialog_icon_pixbuf)
+  {
+    gtk_window_set_icon (GTK_WINDOW (fontselectiondialog),
+      fontselectiondialog_icon_pixbuf);
+    g_object_unref (fontselectiondialog_icon_pixbuf);
+  }
+  gtk_widget_destroy (GTK_FONT_SELECTION_DIALOG
+    (fontselectiondialog)->apply_button);
+  gtk_font_selection_dialog_set_preview_text (GTK_FONT_SELECTION_DIALOG
+    (fontselectiondialog), _("How about this font?"));
+  if (GPOINTER_TO_INT(user_data) == 1)
+    gtk_font_selection_dialog_set_font_name
+      (GTK_FONT_SELECTION_DIALOG(fontselectiondialog), preferences.dxfont);
+  else
+    gtk_font_selection_dialog_set_font_name
+      (GTK_FONT_SELECTION_DIALOG(fontselectiondialog), preferences.allfont);
+  gtk_widget_show_all (fontselectiondialog);
+  response = gtk_dialog_run (GTK_DIALOG(fontselectiondialog));
+  if (response == GTK_RESPONSE_OK)
+  {
+    font = gtk_font_selection_dialog_get_font_name
+      (GTK_FONT_SELECTION_DIALOG (fontselectiondialog));
+    if (GPOINTER_TO_INT(user_data) == 1)
+    {
+      pfontsdxentry = g_object_get_data (G_OBJECT (preferencesdialog), 
+        "pfontsdxentry");
+      gtk_entry_set_text (GTK_ENTRY (pfontsdxentry), font);
+    }
+	else
+    {
+      pfontsallentry = g_object_get_data (G_OBJECT (preferencesdialog), 
+        "pfontsallentry");
+      gtk_entry_set_text (GTK_ENTRY (pfontsallentry), font);
+    }
+    g_free (font);
+  }
+  gtk_widget_destroy (fontselectiondialog);
+}
+
 /*
  * called from the menu
  */
 void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
-  GtkWidget *pdialog_vbox, *pvbox1, *pvbox2, 
+  GtkWidget *pdialog_vbox, *pvbox1, *pvbox2, *pvbox3,
 
-    *pnotebook, *plabel1, *plabel2,
+    *pnotebook, *plabel1, *plabel2, *plabel3,
 
     *ploginframe, *ploginvbox, *pautologincheckbutton, *ploginhseparator, 
     *ploginhbox, *pcallsignlabel, *pcallsignentry, *pcommandshbox, 
@@ -125,9 +177,17 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *pcolumnsframe, *pcolumnsvbox, *pcolumnsvboxlabel, *pcolumnslabel,
     *pcolumnshseparator, *pspottercheckbutton, *pqrgcheckbutton,
     *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton, 
-    *pinfocheckbutton;
+    *pinfocheckbutton,
+
+	*pfontsframe, *pfontslabel, *pfontsvbox, *pfontsdxlabel, *pfontsalllabel,
+	*pfontsdxentry, *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
+	*pfontshseparator, *pfontshbox1, *pfontshbox2,
+
+	*phighframe, *phighlabel, *phighvbox;
+
   GtkTreeViewColumn *column;
-  GtkWidget *treeview;
+  GtkWidget *treeview, *maintext, *mainentry;
+  PangoFontDescription *font_description;
   gint response;
   gboolean state;
   gchar *str;
@@ -150,12 +210,17 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_container_add (GTK_CONTAINER (pnotebook), pvbox1);
   pvbox2 = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (pnotebook), pvbox2);
+  pvbox3 = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (pnotebook), pvbox3);
   plabel1 = gtk_label_new (_("General"));
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
     gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 0), plabel1);
   plabel2 = gtk_label_new (_("Output"));
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
     gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 1), plabel2);
+  plabel3 = gtk_label_new (_("Fonts"));
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
+    gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 2), plabel3);
   gtk_box_pack_start (GTK_BOX (pdialog_vbox), pnotebook, TRUE, TRUE, 0);
 
 
@@ -346,6 +411,42 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   psavinglabel = gtk_label_new (_("Saving"));
   gtk_frame_set_label_widget (GTK_FRAME (psavingframe), psavinglabel);
 
+  pfontsframe = gtk_frame_new (NULL);
+  gtk_box_pack_start (GTK_BOX (pvbox3), pfontsframe, TRUE, TRUE, 0);
+  pfontslabel = gtk_label_new (_("Fonts"));
+  gtk_frame_set_label_widget (GTK_FRAME (pfontsframe), pfontslabel);
+  pfontsvbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (pfontsframe), pfontsvbox);
+  pfontsdxlabel = gtk_label_new (_("Font for DX messages"));
+  pfontshbox1 = gtk_hbox_new (FALSE, 0);
+  pfontsdxentry = gtk_entry_new ();
+  pfontsdxbutton = gtk_button_new_from_stock (GTK_STOCK_SELECT_FONT);
+  gtk_box_pack_start (GTK_BOX (pfontsvbox), pfontsdxlabel, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (pfontsvbox), pfontshbox1, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (pfontshbox1), pfontsdxentry, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (pfontshbox1), pfontsdxbutton, FALSE, FALSE, 0);
+  pfontshseparator = gtk_hseparator_new ();
+  gtk_box_pack_start (GTK_BOX (pfontsvbox), pfontshseparator, FALSE, FALSE, 0);
+  pfontsalllabel = gtk_label_new (_("Font for other messages"));
+  pfontshbox2 = gtk_hbox_new (FALSE, 0);
+  pfontsallentry = gtk_entry_new ();
+  pfontsallbutton = gtk_button_new_from_stock (GTK_STOCK_SELECT_FONT);
+  gtk_box_pack_start (GTK_BOX (pfontsvbox), pfontsalllabel, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (pfontsvbox), pfontshbox2, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (pfontshbox2), pfontsallentry, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (pfontshbox2), pfontsallbutton, FALSE, FALSE, 0);
+  gtk_entry_set_text (GTK_ENTRY (pfontsdxentry), preferences.dxfont);
+  gtk_entry_set_text (GTK_ENTRY (pfontsallentry), preferences.allfont);
+  gtk_editable_set_editable (GTK_EDITABLE (pfontsdxentry), FALSE);
+  gtk_editable_set_editable (GTK_EDITABLE (pfontsallentry), FALSE);
+
+  phighframe = gtk_frame_new (NULL);
+  gtk_box_pack_start (GTK_BOX (pvbox3), phighframe, TRUE, TRUE, 0);
+  phighlabel = gtk_label_new (_("Highlighting"));
+  gtk_frame_set_label_widget (GTK_FRAME (phighframe), phighlabel);
+  phighvbox = gtk_vbox_new (TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (phighframe), phighvbox);
+
   if (preferences.savedx == 1)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
   else
@@ -364,11 +465,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewxcheckbutton), FALSE);
  
   g_signal_connect ((gpointer) pautologincheckbutton, "toggled",
-                    G_CALLBACK (on_pautologincheckbutton_toggled),
-                    NULL);
+                    G_CALLBACK (on_pautologincheckbutton_toggled), NULL);
   g_signal_connect ((gpointer) phamlibcheckbutton, "toggled",
-                    G_CALLBACK (on_phamlibcheckbutton_toggled),
-                    NULL);
+                    G_CALLBACK (on_phamlibcheckbutton_toggled), NULL);
+  g_signal_connect ((gpointer) pfontsdxbutton, "clicked",
+                    G_CALLBACK (on_fontbutton_clicked), GINT_TO_POINTER(1));
+  g_signal_connect ((gpointer) pfontsallbutton, "clicked",
+                    G_CALLBACK (on_fontbutton_clicked), GINT_TO_POINTER(2));
 
   g_object_set_data (G_OBJECT (preferencesdialog), "ploginhseparator", 
     ploginhseparator);
@@ -387,6 +490,11 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     priglabel);
   g_object_set_data (G_OBJECT (preferencesdialog), "prigentry", 
     prigentry);
+
+  g_object_set_data (G_OBJECT (preferencesdialog), "pfontsdxentry", 
+    pfontsdxentry);
+  g_object_set_data (G_OBJECT (preferencesdialog), "pfontsallentry", 
+    pfontsallentry);
 
   gtk_widget_show_all (pnotebook);
   response = gtk_dialog_run (GTK_DIALOG (preferencesdialog));
@@ -555,10 +663,26 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.col5visible = 0;
     }
 
+    /* fonts frame */
+    str = gtk_editable_get_chars (GTK_EDITABLE (pfontsdxentry), 0, -1);
+    font_description = pango_font_description_from_string (str);
+    gtk_widget_modify_font (GTK_WIDGET(treeview), font_description);
+    pango_font_description_free (font_description);
+    preferences.dxfont = g_strdup (str);
+
+    str = gtk_editable_get_chars (GTK_EDITABLE (pfontsallentry), 0, -1);
+    font_description = pango_font_description_from_string (str);
+    maintext = g_object_get_data (G_OBJECT (gui->window), "maintext");
+    gtk_widget_modify_font (GTK_WIDGET(maintext), font_description);
+    pango_font_description_free (font_description);
+    preferences.allfont = g_strdup (str);
+
     g_free (str);
   }
 
   gtk_widget_destroy (preferencesdialog);
+  mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
+  gtk_widget_grab_focus (GTK_WIDGET (mainentry));
   gtk_widget_set_sensitive (gui->window, 1);
 
 }
