@@ -420,7 +420,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   pfontsdxlabel = gtk_label_new (_("Font for DX messages"));
   pfontshbox1 = gtk_hbox_new (FALSE, 0);
   pfontsdxentry = gtk_entry_new ();
-  pfontsdxbutton = gtk_button_new_from_stock (GTK_STOCK_SELECT_FONT);
+  pfontsdxbutton = gtk_button_new_with_mnemonic (_("Select _DX Font"));
   gtk_box_pack_start (GTK_BOX (pfontsvbox), pfontsdxlabel, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (pfontsvbox), pfontshbox1, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (pfontshbox1), pfontsdxentry, TRUE, TRUE, 0);
@@ -430,7 +430,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   pfontsalllabel = gtk_label_new (_("Font for other messages"));
   pfontshbox2 = gtk_hbox_new (FALSE, 0);
   pfontsallentry = gtk_entry_new ();
-  pfontsallbutton = gtk_button_new_from_stock (GTK_STOCK_SELECT_FONT);
+  pfontsallbutton = gtk_button_new_with_mnemonic (_("Select _Other Fonts"));
   gtk_box_pack_start (GTK_BOX (pfontsvbox), pfontsalllabel, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (pfontsvbox), pfontshbox2, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (pfontshbox2), pfontsallentry, TRUE, TRUE, 0);
