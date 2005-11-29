@@ -41,6 +41,7 @@ main (int argc, char *argv[])
   gchar *lang, **wsplit;
   GString *greeting = g_string_new ("");
   PangoFontDescription *font_description;
+  gint pango_size;
 
 #ifdef ENABLE_NLS
   bindtextdomain (PACKAGE, PACKAGE_LOCALE_DIR);
@@ -70,6 +71,10 @@ main (int argc, char *argv[])
   pango_font_description_free (font_description);
   font_description = pango_font_description_from_string (preferences.allfont);
   gtk_widget_modify_font (GTK_WIDGET(maintext), font_description);
+  pango_size = pango_font_description_get_size (font_description);
+  /* line spacing is half character size */
+  g_object_set (G_OBJECT(maintext), "pixels-below-lines",
+    PANGO_PIXELS (pango_size) / 2, NULL);
   pango_font_description_free (font_description);
 
   wsplit = g_strsplit (preferences.columnwidths, ",", 0);

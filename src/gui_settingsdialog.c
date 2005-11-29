@@ -674,6 +674,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     font_description = pango_font_description_from_string (str);
     maintext = g_object_get_data (G_OBJECT (gui->window), "maintext");
     gtk_widget_modify_font (GTK_WIDGET(maintext), font_description);
+    pango_size = pango_font_description_get_size (font_description);
+    /* line spacing is half character size */
+    g_object_set (G_OBJECT(maintext), "pixels-below-lines",
+      PANGO_PIXELS (pango_size) / 2, NULL);
     pango_font_description_free (font_description);
     preferences.allfont = g_strdup (str);
 
