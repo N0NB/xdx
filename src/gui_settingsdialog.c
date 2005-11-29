@@ -188,7 +188,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   GtkTreeViewColumn *column;
   GtkWidget *treeview, *maintext, *mainentry;
   PangoFontDescription *font_description;
-  gint response;
+  gint response, pango_size;
   gboolean state;
   gchar *str;
   GtkTooltips *tooltips;
