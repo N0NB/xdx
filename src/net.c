@@ -284,12 +284,12 @@ tx (GString * txmsg)
         g_string_free (errmsg, TRUE);
         return;
       }
-      else
+      else if (preferences.localecho == 1)
       {
         maintext_add (txmsg->str, txmsg->len, MESSAGE_TX);
       }
     }
-  else if (preferences.localecho == 1)
+  else
     {
       g_string_printf (errmsg, _("Nothing to send, you are not connected"));
       updatestatusbar (errmsg, FALSE);
