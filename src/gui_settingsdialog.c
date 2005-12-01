@@ -174,6 +174,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *pprogbrowserentry, *pproghbox2, *pprogmaillabel,
     *pprogmailentry, *pproglabel,
 
+    *pechoframe, *pechocheckbutton, *pechovbox, *pecholabel,
+
     *pcolumnsframe, *pcolumnsvbox, *pcolumnsvboxlabel, *pcolumnslabel,
     *pcolumnshseparator, *pspottercheckbutton, *pqrgcheckbutton,
     *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton, 
@@ -347,6 +349,19 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_entry_set_text (GTK_ENTRY(pprogbrowserentry), preferences.browserapp);
   if (g_ascii_strcasecmp (preferences.mailapp, "?"))
     gtk_entry_set_text (GTK_ENTRY(pprogmailentry), preferences.mailapp);
+
+  pechoframe = gtk_frame_new (NULL);
+  gtk_box_pack_start (GTK_BOX (pvbox2), pechoframe, TRUE, TRUE, 0);
+  pechovbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (pechoframe), pechovbox);
+  pechocheckbutton = gtk_check_button_new_with_mnemonic (_("Echo sent text to the screen"));
+  gtk_box_pack_start (GTK_BOX (pechovbox), pechocheckbutton, FALSE, FALSE, 0);
+  pecholabel = gtk_label_new (_("General"));
+  gtk_frame_set_label_widget (GTK_FRAME (pechoframe), pecholabel);
+  if (preferences.localecho == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pechocheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pechocheckbutton), FALSE);
 
   pcolumnsframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox2), pcolumnsframe, TRUE, TRUE, 0);
@@ -569,6 +584,14 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.mailapp = g_strdup ("?");
     else
       preferences.mailapp = g_strdup (str);
+
+    /* general frame */
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(pechocheckbutton));
+    if (state) 
+      preferences.localecho = 1;
+    else
+      preferences.localecho = 0;
 
     /* columns frame */
     treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");

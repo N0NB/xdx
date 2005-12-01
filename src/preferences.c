@@ -87,6 +87,7 @@ loadpreferences (void)
   preferences.col5visible = 1;
   preferences.dxfont = g_strdup ("Sans 10");
   preferences.allfont = g_strdup ("Sans 10");
+  preferences.localecho = 1;
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -162,6 +163,8 @@ loadpreferences (void)
           g_strdelimit (value, "~", ' ');
           preferences.allfont = g_strdup(value);
         }
+        else if (!g_ascii_strcasecmp(label, "localecho")) 
+          preferences.localecho = atoi(value);
       }
     fclose (fp);
   }
@@ -238,6 +241,8 @@ savepreferences (void)
     str = g_strdup_printf("%s", preferences.allfont);
     g_strdelimit (str, " ", '~');
     fprintf(fp, "allfont %s\n", str);
+    str = g_strdup_printf("%d", preferences.localecho);
+    fprintf(fp, "localecho %s\n", str);
     g_free(str);
     fclose (fp);
   }

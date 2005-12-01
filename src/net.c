@@ -289,7 +289,7 @@ tx (GString * txmsg)
         maintext_add (txmsg->str, txmsg->len, MESSAGE_TX);
       }
     }
-  else
+  else if (preferences.localecho == 1)
     {
       g_string_printf (errmsg, _("Nothing to send, you are not connected"));
       updatestatusbar (errmsg, FALSE);

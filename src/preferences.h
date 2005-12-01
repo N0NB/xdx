@@ -54,6 +54,7 @@ typedef struct
   gint col5visible;
   gchar *dxfont;
   gchar *allfont;
+  gint localecho;
 } preferencestype;
 
 void dircheck (void);
