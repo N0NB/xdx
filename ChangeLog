@@ -10,6 +10,7 @@ Changelog for version xdx (1.3)
     can now be changed through the preferences dialog.
   * Linespacing added to the chat window, which makes it better readable.
   * You can turn local echo off in the preferences dialog.
+  * The position of the divider between the chat and DX window is now saved.
 
 Changelog for version xdx (1.2)
 

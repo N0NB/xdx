@@ -36,7 +36,7 @@ extern preferencestype preferences;
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *treeview, *maintext;
+  GtkWidget *treeview, *maintext, *vpaned;
   GtkTreeViewColumn *column;
   gchar *lang, **wsplit;
   GString *greeting = g_string_new ("");
@@ -66,6 +66,8 @@ main (int argc, char *argv[])
 
   treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
   maintext = g_object_get_data (G_OBJECT (gui->window), "maintext");
+  vpaned = g_object_get_data (G_OBJECT (gui->window), "vpaned");
+
   font_description = pango_font_description_from_string (preferences.dxfont);
   gtk_widget_modify_font (GTK_WIDGET(treeview), font_description);
   pango_font_description_free (font_description);
@@ -115,6 +117,7 @@ main (int argc, char *argv[])
     preferences.x, preferences.y);
   gtk_window_resize (GTK_WINDOW(gui->window), 
     preferences.width, preferences.height);
+  gtk_paned_set_position (GTK_PANED (vpaned), preferences.handlebarpos);
 
   menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE); /* do not translate */
   g_string_printf (greeting, _("Welcome to %s"), PACKAGE);

@@ -104,7 +104,7 @@ get_main_menu (GtkWidget * window, GtkWidget ** menubar)
 void
 create_mainwindow (void)
 {
-  GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned1, *clistscrolledwindow,
+  GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned, *clistscrolledwindow,
 	  *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview,
       *frame;
   GtkCellRenderer *renderer, *boldrenderer;
@@ -139,7 +139,7 @@ create_mainwindow (void)
   gtk_container_add (GTK_CONTAINER (gui->window), mainvbox);
 
   handlebox = gtk_handle_box_new ();
-  gtk_box_pack_start (GTK_BOX (mainvbox), handlebox, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (mainvbox), handlebox, FALSE, TRUE, 0);
   get_main_menu (gui->window, &mainmenubar);
   gtk_container_add (GTK_CONTAINER (handlebox), mainmenubar);
 
@@ -225,16 +225,15 @@ create_mainwindow (void)
 				    "underline", PANGO_UNDERLINE_SINGLE, NULL);
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);
 
-  vpaned1 = gtk_vpaned_new ();
-  gtk_paned_pack1 (GTK_PANED (vpaned1), clistscrolledwindow, TRUE, TRUE);
-  gtk_paned_pack2 (GTK_PANED (vpaned1), mainscrolledwindow, TRUE, TRUE);
-  gtk_widget_set_size_request (mainscrolledwindow, -1, 20);
-  gtk_box_pack_start (GTK_BOX (mainvbox), vpaned1, TRUE, TRUE, 0);
+  vpaned = gtk_vpaned_new ();
+  gtk_paned_add1 (GTK_PANED (vpaned), clistscrolledwindow);
+  gtk_paned_add2 (GTK_PANED (vpaned), mainscrolledwindow);
+  gtk_box_pack_start (GTK_BOX (mainvbox), vpaned, TRUE, TRUE, 0);
 
   mainentry = gtk_text_view_new ();
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW(mainentry), GTK_WRAP_WORD);
   frame = gtk_frame_new (NULL);
-  gtk_box_pack_start (GTK_BOX (mainvbox), frame, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (mainvbox), frame, FALSE, TRUE, 0);
   gtk_container_add (GTK_CONTAINER (frame), mainentry);
 
   /* height of the frame is 2 times font size */
@@ -244,7 +243,7 @@ create_mainwindow (void)
   gtk_widget_set_size_request (frame, -1, 4 * PANGO_PIXELS(pango_size));
 
   mainstatusbar = gtk_statusbar_new ();
-  gtk_box_pack_start (GTK_BOX (mainvbox), mainstatusbar, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (mainvbox), mainstatusbar, FALSE, TRUE, 0);
 
   g_signal_connect (G_OBJECT (gui->window), "destroy",
 		    G_CALLBACK (on_mainwindow_destroy_event), NULL);
@@ -268,6 +267,7 @@ create_mainwindow (void)
   g_object_set_data (G_OBJECT (gui->window), "mainentry", mainentry);
   g_object_set_data (G_OBJECT (gui->window), "model", model);
   g_object_set_data (G_OBJECT (gui->window), "buffer", buffer);
+  g_object_set_data (G_OBJECT (gui->window), "vpaned", vpaned);
 
   cluster = new_cluster();
   g_object_set_data(G_OBJECT (gui->window), "cluster", cluster);
@@ -312,7 +312,7 @@ on_mainentry_activate (GtkTextBuffer *buffer, gpointer user_data)
 
 static void syncprefs (void)
 {
-  GtkWidget *treeview;
+  GtkWidget *treeview, *vpaned;
   GList * columns;
   gint i, length, width;
   servertype *cluster;
@@ -324,6 +324,8 @@ static void syncprefs (void)
 
   gtk_window_get_position(GTK_WINDOW(gui->window), &preferences.x, &preferences.y);
   gtk_window_get_size(GTK_WINDOW(gui->window), &preferences.width, &preferences.height);
+  vpaned = g_object_get_data (G_OBJECT(gui->window), "vpaned");
+  preferences.handlebarpos = gtk_paned_get_position (GTK_PANED(vpaned));
 
   treeview = g_object_get_data (G_OBJECT(gui->window), "treeview");
   columns = gtk_tree_view_get_columns (GTK_TREE_VIEW(treeview));
