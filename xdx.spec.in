@@ -10,7 +10,7 @@
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Copyright: GPL
+License: GPL
 Group: Applications/Networking
 Prefix: /usr
 BuildRoot: /var/tmp/%{name}-%{version}
