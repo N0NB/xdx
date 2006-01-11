@@ -3,7 +3,7 @@ Section: hamradio
 Priority: optional
 Maintainer: Joop Stakenborg <pa3aba@debian.org>
 Standards-Version: 3.6.2
-Build-Depends: libglib2.0-dev, libgtk2.0-dev, debmake, gettext
+Build-Depends: libglib2.0-dev, libgtk2.0-dev, debhelper, gettext
 
 Package: xdx
 Architecture: any
