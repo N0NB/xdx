@@ -56,6 +56,7 @@ typedef struct
   gchar *allfont;
   gint localecho;
   gint handlebarpos;
+  gchar *highlights;
 } preferencestype;
 
 void dircheck (void);

@@ -89,6 +89,7 @@ loadpreferences (void)
   preferences.allfont = g_strdup ("Sans 10");
   preferences.localecho = 1;
   preferences.handlebarpos = 350;
+  preferences.highlights = g_strdup ("?");
 
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -168,6 +169,11 @@ loadpreferences (void)
           preferences.localecho = atoi(value);
         else if (!g_ascii_strcasecmp(label, "handlebarpos")) 
           preferences.handlebarpos = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "highlights"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.highlights = g_strdup(value);
+        }
       }
     fclose (fp);
   }
@@ -248,6 +254,9 @@ savepreferences (void)
     fprintf(fp, "localecho %s\n", str);
     str = g_strdup_printf("%d", preferences.handlebarpos);
     fprintf(fp, "handlebarpos %s\n", str);
+    str = g_strdup_printf("%s", preferences.highlights);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "highlights %s\n", str);
     g_free(str);
     fclose (fp);
   }

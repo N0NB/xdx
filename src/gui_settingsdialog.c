@@ -185,7 +185,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	*pfontsdxentry, *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
 	*pfontshseparator, *pfontshbox1, *pfontshbox2,
 
-	*phighframe, *phighlabel, *phighvbox;
+	*phighframe, *phighframelabel, *phighvbox, *phighlabel, *phighentry;
 
   GtkTreeViewColumn *column;
   GtkWidget *treeview, *maintext, *mainentry;
@@ -427,7 +427,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_frame_set_label_widget (GTK_FRAME (psavingframe), psavinglabel);
 
   pfontsframe = gtk_frame_new (NULL);
-  gtk_box_pack_start (GTK_BOX (pvbox3), pfontsframe, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (pvbox3), pfontsframe, FALSE, FALSE, 0);
   pfontslabel = gtk_label_new (_("Fonts"));
   gtk_frame_set_label_widget (GTK_FRAME (pfontsframe), pfontslabel);
   pfontsvbox = gtk_vbox_new (FALSE, 0);
@@ -456,11 +456,18 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_editable_set_editable (GTK_EDITABLE (pfontsallentry), FALSE);
 
   phighframe = gtk_frame_new (NULL);
-  gtk_box_pack_start (GTK_BOX (pvbox3), phighframe, TRUE, TRUE, 0);
-  phighlabel = gtk_label_new (_("Highlighting"));
-  gtk_frame_set_label_widget (GTK_FRAME (phighframe), phighlabel);
+  gtk_box_pack_start (GTK_BOX (pvbox3), phighframe, FALSE, FALSE, 0);
+  phighframelabel = gtk_label_new (_("Highlighting"));
+  gtk_frame_set_label_widget (GTK_FRAME (phighframe), phighframelabel);
   phighvbox = gtk_vbox_new (TRUE, 0);
   gtk_container_add (GTK_CONTAINER (phighframe), phighvbox);
+  phighlabel = gtk_label_new (_("Comma separated list of words to highlight in the chat window (10 words maximum)"));
+  gtk_label_set_line_wrap (GTK_LABEL (phighlabel), TRUE);
+  gtk_box_pack_start (GTK_BOX (phighvbox), phighlabel, FALSE, FALSE, 0);
+  phighentry = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (phighvbox), phighentry, FALSE, FALSE, 0);
+  if (g_ascii_strcasecmp (preferences.highlights, "?"))
+    gtk_entry_set_text (GTK_ENTRY(phighentry), preferences.highlights);
 
   if (preferences.savedx == 1)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
@@ -703,6 +710,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       PANGO_PIXELS (pango_size) / 2, NULL);
     pango_font_description_free (font_description);
     preferences.allfont = g_strdup (str);
+
+    /* highlights frame*/
+    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry), 0, -1);
+    if (strlen(str) == 0)
+      preferences.highlights = g_strdup ("?");
+    else
+      preferences.highlights = g_strdup (str);
 
     g_free (str);
   }
