@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-EXTRA_DIST = config.rpath mkinstalldirs  \
+EXTRA_DIST = config.rpath mkinstalldirs  config.rpath mkinstalldirs  \
 	Xdx.desktop \
 	xdx.spec \
 	xdx.spec.in \
@@ -12,7 +12,6 @@ EXTRA_DIST = config.rpath mkinstalldirs  \
 	MANUAL.pl
 
 SUBDIRS = \
-	m4 \
 	po \
 	src
 
