@@ -113,7 +113,6 @@ create_mainwindow (void)
   GtkTreeStore *model;
   GdkPixbuf *icon = NULL;
   GError *err = NULL;
-  GString *msg = g_string_new ("");
   servertype *cluster;
   PangoFontDescription *font_description;
   gint pango_size;
@@ -123,9 +122,7 @@ create_mainwindow (void)
   icon = gdk_pixbuf_new_from_file (PACKAGE_DATA_DIR "/pixmaps/xdx.png", &err);
   if (err)
   {
-    g_string_printf (msg, _("Error loading icon: %s"), err->message);
-    updatestatusbar (msg, TRUE);
-    g_string_free (msg, TRUE);
+    g_warning (_("Error loading icon: %s"), err->message);
     g_error_free (err);
     err = NULL;
   }
