@@ -181,11 +181,17 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton, 
     *pinfocheckbutton,
 
-	*pfontsframe, *pfontslabel, *pfontsvbox, *pfontsdxlabel, *pfontsalllabel,
-	*pfontsdxentry, *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
-	*pfontshseparator, *pfontshbox1, *pfontshbox2,
+  *pfontsframe, *pfontslabel, *pfontsvbox, *pfontsdxlabel, *pfontsalllabel,
+  *pfontsdxentry, *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
+  *pfontshseparator, *pfontshbox1, *pfontshbox2,
 
-	*phighframe, *phighframelabel, *phighvbox, *phighlabel, *phighentry;
+  *phighframe, *phighframelabel, *phighvbox, *phighlabel, *phighseparator,
+  *phighhbox, *phighvbox1, *phighhbox2, *phighentry1, *colorbutton1,
+  *phighhox3, *phighentry2, *colorbutton2, *phighhox4, *phighentry3,
+  *colorbutton3, *phighhox5, *phighentry4, *colorbutton4, *vseparator1,
+  *phighvbox2, *phighhox6, *phighentry5, *colorbutton5, *phighhbox7,
+  *phighentry6, *colorbutton6, *phighhbox8, *phighentry7, *colorbutton7,
+  *phighhbox9, *phighentry8, *colorbutton8;
 
   GtkTreeViewColumn *column;
   GtkWidget *treeview, *maintext, *mainentry;
@@ -459,15 +465,93 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (pvbox3), phighframe, FALSE, FALSE, 0);
   phighframelabel = gtk_label_new (_("Highlighting"));
   gtk_frame_set_label_widget (GTK_FRAME (phighframe), phighframelabel);
-  phighvbox = gtk_vbox_new (TRUE, 0);
+  phighvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (phighframe), phighvbox);
-  phighlabel = gtk_label_new (_("Comma separated list of words to highlight in the chat window (10 words maximum)"));
+  phighlabel = gtk_label_new (_("Words and colors to use for highlighting"));
   gtk_label_set_line_wrap (GTK_LABEL (phighlabel), TRUE);
-  gtk_box_pack_start (GTK_BOX (phighvbox), phighlabel, FALSE, FALSE, 0);
-  phighentry = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (phighvbox), phighentry, FALSE, FALSE, 0);
-  if (g_ascii_strcasecmp (preferences.highlights, "?"))
-    gtk_entry_set_text (GTK_ENTRY(phighentry), preferences.highlights);
+  gtk_box_pack_start (GTK_BOX (phighvbox), phighlabel, FALSE, FALSE, 10);
+  phighseparator =  gtk_hseparator_new ();
+  gtk_box_pack_start (GTK_BOX (phighvbox), phighseparator, FALSE, FALSE, 0);
+  phighhbox = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox), phighhbox, FALSE, FALSE, 0);
+  phighvbox1 = gtk_vbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighhbox), phighvbox1, TRUE, TRUE, 0);
+  phighhbox2 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox1), phighhbox2, TRUE, TRUE, 0);
+  phighentry1 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (phighhbox2), phighentry1, TRUE, TRUE, 0);
+  colorbutton1 = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (phighhbox2), colorbutton1, FALSE, FALSE, 0);
+  phighhox3 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox1), phighhox3, TRUE, TRUE, 0);
+  phighentry2 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (phighhox3), phighentry2, TRUE, TRUE, 0);
+  colorbutton2 = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (phighhox3), colorbutton2, FALSE, FALSE, 0);
+  phighhox4 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox1), phighhox4, TRUE, TRUE, 0);
+  phighentry3 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (phighhox4), phighentry3, TRUE, TRUE, 0);
+  colorbutton3 = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (phighhox4), colorbutton3, FALSE, FALSE, 0);
+  phighhox5 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox1), phighhox5, TRUE, TRUE, 0);
+  phighentry4 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (phighhox5), phighentry4, TRUE, TRUE, 0);
+  colorbutton4 = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (phighhox5), colorbutton4, FALSE, FALSE, 0);
+  vseparator1 = gtk_vseparator_new ();
+  gtk_box_pack_start (GTK_BOX (phighhbox), vseparator1, TRUE, TRUE, 0);
+  phighvbox2 = gtk_vbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighhbox), phighvbox2, TRUE, TRUE, 0);
+  phighhox6 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox2), phighhox6, TRUE, TRUE, 0);
+  phighentry5 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (phighhox6), phighentry5, TRUE, TRUE, 0);
+  colorbutton5 = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (phighhox6), colorbutton5, FALSE, FALSE, 0);
+  phighhbox7 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox2), phighhbox7, TRUE, TRUE, 0);
+  phighentry6 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (phighhbox7), phighentry6, TRUE, TRUE, 0);
+  colorbutton6 = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (phighhbox7), colorbutton6, FALSE, FALSE, 0);
+  phighhbox8 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox2), phighhbox8, TRUE, TRUE, 0);
+  phighentry7 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (phighhbox8), phighentry7, TRUE, TRUE, 0);
+  colorbutton7 = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (phighhbox8), colorbutton7, FALSE, FALSE, 0);
+  phighhbox9 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox2), phighhbox9, TRUE, TRUE, 0);
+  phighentry8 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (phighhbox9), phighentry8, TRUE, TRUE, 0);
+  colorbutton8 = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (phighhbox9), colorbutton8, FALSE, FALSE, 0);
+  if (g_ascii_strcasecmp (preferences.highword1, "?"))
+    gtk_entry_set_text (GTK_ENTRY(phighentry1), preferences.highword1);
+  if (g_ascii_strcasecmp (preferences.highword2, "?"))
+    gtk_entry_set_text (GTK_ENTRY(phighentry2), preferences.highword2);
+  if (g_ascii_strcasecmp (preferences.highword3, "?"))
+    gtk_entry_set_text (GTK_ENTRY(phighentry3), preferences.highword3);
+  if (g_ascii_strcasecmp (preferences.highword4, "?"))
+    gtk_entry_set_text (GTK_ENTRY(phighentry4), preferences.highword4);
+  if (g_ascii_strcasecmp (preferences.highword5, "?"))
+    gtk_entry_set_text (GTK_ENTRY(phighentry5), preferences.highword5);
+  if (g_ascii_strcasecmp (preferences.highword6, "?"))
+    gtk_entry_set_text (GTK_ENTRY(phighentry6), preferences.highword6);
+  if (g_ascii_strcasecmp (preferences.highword7, "?"))
+    gtk_entry_set_text (GTK_ENTRY(phighentry7), preferences.highword7);
+  if (g_ascii_strcasecmp (preferences.highword8, "?"))
+    gtk_entry_set_text (GTK_ENTRY(phighentry8), preferences.highword8);
+  gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton1), &preferences.highcolor1);
+  gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton2), &preferences.highcolor2);
+  gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton3), &preferences.highcolor3);
+  gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton4), &preferences.highcolor4);
+  gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton5), &preferences.highcolor5);
+  gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton6), &preferences.highcolor6);
+  gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton7), &preferences.highcolor7);
+  gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton8), &preferences.highcolor8);
 
   if (preferences.savedx == 1)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
@@ -712,11 +796,54 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     preferences.allfont = g_strdup (str);
 
     /* highlights frame*/
-    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry), 0, -1);
+    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry1), 0, -1);
     if (strlen(str) == 0)
-      preferences.highlights = g_strdup ("?");
+      preferences.highword1 = g_strdup ("?");
     else
-      preferences.highlights = g_strdup (str);
+      preferences.highword1 = g_strdup (str);
+    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry2), 0, -1);
+    if (strlen(str) == 0)
+      preferences.highword2 = g_strdup ("?");
+    else
+      preferences.highword2 = g_strdup (str);
+    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry3), 0, -1);
+    if (strlen(str) == 0)
+      preferences.highword3 = g_strdup ("?");
+    else
+      preferences.highword3 = g_strdup (str);
+    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry4), 0, -1);
+    if (strlen(str) == 0)
+      preferences.highword4 = g_strdup ("?");
+    else
+      preferences.highword4 = g_strdup (str);
+    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry5), 0, -1);
+    if (strlen(str) == 0)
+      preferences.highword5 = g_strdup ("?");
+    else
+      preferences.highword5 = g_strdup (str);
+    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry6), 0, -1);
+    if (strlen(str) == 0)
+      preferences.highword6 = g_strdup ("?");
+    else
+      preferences.highword6 = g_strdup (str);
+    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry7), 0, -1);
+    if (strlen(str) == 0)
+      preferences.highword7 = g_strdup ("?");
+    else
+      preferences.highword7 = g_strdup (str);
+    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry8), 0, -1);
+    if (strlen(str) == 0)
+      preferences.highword8 = g_strdup ("?");
+    else
+      preferences.highword8 = g_strdup (str);
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton1), &preferences.highcolor1);
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton2), &preferences.highcolor2);
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton3), &preferences.highcolor3);
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton4), &preferences.highcolor4);
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton5), &preferences.highcolor5);
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton6), &preferences.highcolor6);
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton7), &preferences.highcolor7);
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton8), &preferences.highcolor8);
 
     g_free (str);
   }

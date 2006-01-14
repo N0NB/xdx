@@ -30,6 +30,7 @@
 #include "gui.h"
 
 preferencestype preferences;
+GdkColormap *colormap;
 
 /*
  * check if ~/.xdx directory exists
@@ -60,6 +61,7 @@ loadpreferences (void)
   gchar *preferencesfile, label[100], value[100];
   FILE *fp;
 
+  colormap = gdk_colormap_get_system();
   /* defaults */
   preferences.x = 10;
   preferences.y = 30;
@@ -89,8 +91,23 @@ loadpreferences (void)
   preferences.allfont = g_strdup ("Sans 10");
   preferences.localecho = 1;
   preferences.handlebarpos = 350;
-  preferences.highlights = g_strdup ("?");
-
+  preferences.highword1 = g_strdup ("?");
+  preferences.highword2 = g_strdup ("?");
+  preferences.highword3 = g_strdup ("?");
+  preferences.highword4 = g_strdup ("?");
+  preferences.highword5 = g_strdup ("?");
+  preferences.highword6 = g_strdup ("?");
+  preferences.highword7 = g_strdup ("?");
+  preferences.highword8 = g_strdup ("?");
+  gdk_color_parse("red", &preferences.highcolor1);
+  gdk_color_parse("red", &preferences.highcolor2);
+  gdk_color_parse("red", &preferences.highcolor3);
+  gdk_color_parse("red", &preferences.highcolor4);
+  gdk_color_parse("red", &preferences.highcolor5);
+  gdk_color_parse("red", &preferences.highcolor6);
+  gdk_color_parse("red", &preferences.highcolor7);
+  gdk_color_parse("red", &preferences.highcolor8);
+  
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
   fp = fopen (preferencesfile, "r");
@@ -169,12 +186,63 @@ loadpreferences (void)
           preferences.localecho = atoi(value);
         else if (!g_ascii_strcasecmp(label, "handlebarpos")) 
           preferences.handlebarpos = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "highlights"))
+        else if (!g_ascii_strcasecmp(label, "highword1"))
         {
           g_strdelimit (value, "~", ' ');
-          preferences.highlights = g_strdup(value);
+          preferences.highword1 = g_strdup(value);
         }
-      }
+        else if (!g_ascii_strcasecmp(label, "highword2"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.highword2 = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "highword3"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.highword3 = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "highword4"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.highword4 = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "highword5"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.highword5 = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "highword6"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.highword6 = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "highword7"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.highword7 = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "highword8"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.highword8 = g_strdup(value);
+        }
+	else if (!g_ascii_strcasecmp(label, "highcolor1"))
+          gdk_color_parse(value, &preferences.highcolor1);
+	else if (!g_ascii_strcasecmp(label, "highcolor2"))
+          gdk_color_parse(value, &preferences.highcolor2);
+	else if (!g_ascii_strcasecmp(label, "highcolor3"))
+          gdk_color_parse(value, &preferences.highcolor3);
+	else if (!g_ascii_strcasecmp(label, "highcolor4"))
+          gdk_color_parse(value, &preferences.highcolor4);
+	else if (!g_ascii_strcasecmp(label, "highcolor5"))
+          gdk_color_parse(value, &preferences.highcolor5);
+	else if (!g_ascii_strcasecmp(label, "highcolor6"))
+          gdk_color_parse(value, &preferences.highcolor6);
+	else if (!g_ascii_strcasecmp(label, "highcolor7"))
+          gdk_color_parse(value, &preferences.highcolor7);
+	else if (!g_ascii_strcasecmp(label, "highcolor8"))
+          gdk_color_parse(value, &preferences.highcolor8);
+    }
     fclose (fp);
   }
   g_free(preferencesfile);
@@ -254,9 +322,46 @@ savepreferences (void)
     fprintf(fp, "localecho %s\n", str);
     str = g_strdup_printf("%d", preferences.handlebarpos);
     fprintf(fp, "handlebarpos %s\n", str);
-    str = g_strdup_printf("%s", preferences.highlights);
+    str = g_strdup_printf("%s", preferences.highword1);
     g_strdelimit (str, " ", '~');
-    fprintf(fp, "highlights %s\n", str);
+    fprintf(fp, "highword1 %s\n", str);
+    str = g_strdup_printf("%s", preferences.highword2);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "highword2 %s\n", str);
+    str = g_strdup_printf("%s", preferences.highword3);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "highword3 %s\n", str);
+    str = g_strdup_printf("%s", preferences.highword4);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "highword4 %s\n", str);
+    str = g_strdup_printf("%s", preferences.highword5);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "highword5 %s\n", str);
+    str = g_strdup_printf("%s", preferences.highword6);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "highword6 %s\n", str);
+    str = g_strdup_printf("%s", preferences.highword7);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "highword7 %s\n", str);
+    str = g_strdup_printf("%s", preferences.highword8);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "highword8 %s\n", str);
+    fprintf(fp, "highcolor1 #%04X%04X%04X\n",
+      preferences.highcolor1.red, preferences.highcolor1.green, preferences.highcolor1.blue);
+    fprintf(fp, "highcolor2 #%04X%04X%04X\n",
+      preferences.highcolor2.red, preferences.highcolor2.green, preferences.highcolor2.blue);
+    fprintf(fp, "highcolor3 #%04X%04X%04X\n",
+      preferences.highcolor3.red, preferences.highcolor3.green, preferences.highcolor3.blue);
+    fprintf(fp, "highcolor4 #%04X%04X%04X\n",
+      preferences.highcolor4.red, preferences.highcolor4.green, preferences.highcolor4.blue);
+    fprintf(fp, "highcolor5 #%04X%04X%04X\n",
+      preferences.highcolor5.red, preferences.highcolor5.green, preferences.highcolor5.blue);
+    fprintf(fp, "highcolor6 #%04X%04X%04X\n",
+      preferences.highcolor6.red, preferences.highcolor6.green, preferences.highcolor6.blue);
+    fprintf(fp, "highcolor7 #%04X%04X%04X\n",
+      preferences.highcolor7.red, preferences.highcolor7.green, preferences.highcolor7.blue);
+    fprintf(fp, "highcolor8 #%04X%04X%04X\n",
+      preferences.highcolor8.red, preferences.highcolor8.green, preferences.highcolor8.blue);
     g_free(str);
     fclose (fp);
   }

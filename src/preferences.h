@@ -56,7 +56,22 @@ typedef struct
   gchar *allfont;
   gint localecho;
   gint handlebarpos;
-  gchar *highlights;
+  gchar *highword1;
+  gchar *highword2;
+  gchar *highword3;
+  gchar *highword4;
+  gchar *highword5;
+  gchar *highword6;
+  gchar *highword7;
+  gchar *highword8;
+  GdkColor highcolor1;
+  GdkColor highcolor2;
+  GdkColor highcolor3;
+  GdkColor highcolor4;
+  GdkColor highcolor5;
+  GdkColor highcolor6;
+  GdkColor highcolor7;
+  GdkColor highcolor8;
 } preferencestype;
 
 void dircheck (void);
