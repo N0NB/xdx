@@ -370,6 +370,30 @@ contains_smileys (gchar *str)
 }
 
 /*
+ * check if there is something to highlight
+ */
+static gboolean
+contains_highlights (gchar *str)
+{
+	if (g_strrstr (str, preferences.highword1))
+		return TRUE;
+	if (g_strrstr (str, preferences.highword2))
+		return TRUE;
+	if (g_strrstr (str, preferences.highword3))
+		return TRUE;
+	if (g_strrstr (str, preferences.highword4))
+		return TRUE;
+	if (g_strrstr (str, preferences.highword5))
+		return TRUE;
+	if (g_strrstr (str, preferences.highword6))
+		return TRUE;
+	if (g_strrstr (str, preferences.highword7))
+		return TRUE;
+	if (g_strrstr (str, preferences.highword8))
+		return TRUE;
+	return FALSE;
+}
+/*
  * insert text and when it has a smiley, replace it with a pixmap
  */
 static void insert_with_smileys
@@ -519,8 +543,12 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 		  smileylist = smileylist->next;
 		}
 	    }
+	    if (contains_highlights (utf8))
+	    {
+		
+	    }
             g_free (utf8);
-          }
+	  }
         }
         mark = gtk_text_buffer_get_mark (buffer, "insert");
         gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 
