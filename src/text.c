@@ -420,12 +420,15 @@ void
 maintext_add (gchar msg[], gint len, gint messagetype)
 {
   GtkWidget *maintext, *treeview;
-  GtkTextIter start, end;
+  GtkTextIter start, end, istart, iend;
   GtkTextMark *mark;
   GtkTreeIter iter;
   GtkTreePath *path;
   GtkTreeStore *model;
   GtkTextBuffer *buffer;
+  GtkTextChildAnchor *anchor;
+  GtkWidget *swidget;
+  smiley *s;
   gchar *utf8;
 
   if (len < 1024) msg[len] = '\0';
@@ -492,10 +495,30 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           if (dx->toall && dx->toall[0] && (utf8 = try_utf8(dx->toall)))
           {
             if (preferences.savetoall) savetoall (dx->toall);
+            gtk_text_buffer_insert (buffer, &end, utf8, len);
             if (contains_smileys (utf8))
-              insert_with_smileys (GTK_TEXT_VIEW(maintext), utf8, NULL);
-            else
-	            gtk_text_buffer_insert (buffer, &end, utf8, len);
+	    {
+		mark = gtk_text_buffer_get_mark (buffer, "insert");
+		gtk_text_buffer_get_iter_at_mark (buffer, &istart, mark);
+		gtk_text_buffer_get_start_iter (buffer, &iend);
+		gtk_text_iter_backward_char (&istart);
+		if (!smileylist) create_smiley_list ();
+		while (smileylist)
+		{
+		  s = (smiley *) smileylist->data;
+		  while (gtk_text_iter_backward_search
+		    (&istart, s->str, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
+		  {               
+		    swidget = gtk_image_new_from_file (s->file);
+		    gtk_text_buffer_delete (buffer, &istart, &iend);
+		    anchor = gtk_text_buffer_create_child_anchor (buffer, &istart);
+		    gtk_text_view_add_child_at_anchor (GTK_TEXT_VIEW (maintext), 
+			GTK_WIDGET(swidget), anchor);
+		    gtk_widget_show (swidget);
+		  }
+		  smileylist = smileylist->next;
+		}
+	    }
             g_free (utf8);
           }
         }
