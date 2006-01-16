@@ -116,6 +116,7 @@ create_mainwindow (void)
   servertype *cluster;
   PangoFontDescription *font_description;
   gint pango_size;
+  gchar *colorstr;
 
   gui = new_gui();
   gui->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -220,6 +221,55 @@ create_mainwindow (void)
 			      NULL);
   gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue", 
 				    "underline", PANGO_UNDERLINE_SINGLE, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor1.red * 255 / 65535,
+	preferences.highcolor1.green * 255 / 65535,
+	preferences.highcolor1.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor1", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor2.red * 255 / 65535,
+	preferences.highcolor2.green * 255 / 65535,
+	preferences.highcolor2.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor2", "background",
+	colorstr,NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor3.red * 255 / 65535,
+	preferences.highcolor3.green * 255 / 65535,
+	preferences.highcolor3.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor3", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor4.red * 255 / 65535,
+	preferences.highcolor4.green * 255 / 65535,
+	preferences.highcolor4.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor4", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor5.red * 255 / 65535,
+	preferences.highcolor5.green * 255 / 65535,
+	preferences.highcolor5.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor5", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor6.red * 255 / 65535,
+	preferences.highcolor6.green * 255 / 65535,
+	preferences.highcolor6.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor6", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor7.red * 255 / 65535,
+	preferences.highcolor7.green * 255 / 65535,
+	preferences.highcolor7.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor7", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor8.red * 255 / 65535,
+	preferences.highcolor8.green * 255 / 65535,
+	preferences.highcolor8.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor8", "background",
+	colorstr, NULL);
+  g_free (colorstr);
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);
 
   vpaned = gtk_vpaned_new ();

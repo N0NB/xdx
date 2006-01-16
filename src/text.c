@@ -520,12 +520,12 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           {
             if (preferences.savetoall) savetoall (dx->toall);
             gtk_text_buffer_insert (buffer, &end, utf8, len);
+            mark = gtk_text_buffer_get_mark (buffer, "insert");
+	    gtk_text_buffer_get_iter_at_mark (buffer, &istart, mark);
+	    gtk_text_buffer_get_start_iter (buffer, &iend);
+	    gtk_text_iter_backward_char (&istart);
             if (contains_smileys (utf8))
 	    {
-		mark = gtk_text_buffer_get_mark (buffer, "insert");
-		gtk_text_buffer_get_iter_at_mark (buffer, &istart, mark);
-		gtk_text_buffer_get_start_iter (buffer, &iend);
-		gtk_text_iter_backward_char (&istart);
 		if (!smileylist) create_smiley_list ();
 		while (smileylist)
 		{
@@ -545,7 +545,9 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 	    }
 	    if (contains_highlights (utf8))
 	    {
-		
+		  while (gtk_text_iter_backward_search
+		    (&istart, preferences.highword1, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
+		gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &istart, &iend);
 	    }
             g_free (utf8);
 	  }
