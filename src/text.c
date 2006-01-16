@@ -375,21 +375,29 @@ contains_smileys (gchar *str)
 static gboolean
 contains_highlights (gchar *str)
 {
-	if (g_ascii_strcasecmp (preferences.callsign, "?") && g_strrstr (str, preferences.highword1))
+	if (g_ascii_strcasecmp (preferences.callsign, "?")
+	&& g_strrstr (str, preferences.highword1))
 		return TRUE;
-	if (g_ascii_strcasecmp (preferences.callsign, "?") && g_strrstr (str, preferences.highword2))
+	if (g_ascii_strcasecmp (preferences.callsign, "?")
+	&& g_strrstr (str, preferences.highword2))
 		return TRUE;
-	if (g_ascii_strcasecmp (preferences.callsign, "?") && g_strrstr (str, preferences.highword3))
+	if (g_ascii_strcasecmp (preferences.callsign, "?")
+	&& g_strrstr (str, preferences.highword3))
 		return TRUE;
-	if (g_ascii_strcasecmp (preferences.callsign, "?") && g_strrstr (str, preferences.highword4))
+	if (g_ascii_strcasecmp (preferences.callsign, "?")
+	&& g_strrstr (str, preferences.highword4))
 		return TRUE;
-	if (g_ascii_strcasecmp (preferences.callsign, "?") && g_strrstr (str, preferences.highword5))
+	if (g_ascii_strcasecmp (preferences.callsign, "?")
+	&& g_strrstr (str, preferences.highword5))
 		return TRUE;
-	if (g_ascii_strcasecmp (preferences.callsign, "?") && g_strrstr (str, preferences.highword6))
+	if (g_ascii_strcasecmp (preferences.callsign, "?")
+	&& g_strrstr (str, preferences.highword6))
 		return TRUE;
-	if (g_ascii_strcasecmp (preferences.callsign, "?") && g_strrstr (str, preferences.highword7))
+	if (g_ascii_strcasecmp (preferences.callsign, "?")
+	&& g_strrstr (str, preferences.highword7))
 		return TRUE;
-	if (g_ascii_strcasecmp (preferences.callsign, "?") && g_strrstr (str, preferences.highword8))
+	if (g_ascii_strcasecmp (preferences.callsign, "?")
+	&& g_strrstr (str, preferences.highword8))
 		return TRUE;
 	return FALSE;
 }

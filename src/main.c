@@ -32,17 +32,19 @@
 #include "locale.h"
 
 extern preferencestype preferences;
+GdkColormap *colormap;
 
 int
 main (int argc, char *argv[])
 {
   GtkWidget *treeview, *maintext, *vpaned;
   GtkTreeViewColumn *column;
-  gchar *lang, **wsplit;
+  gchar *lang, **wsplit, *colorstr;
   GString *greeting = g_string_new ("");
   PangoFontDescription *font_description;
   gint pango_size;
-
+  GtkTextBuffer *buffer;
+	
 #ifdef ENABLE_NLS
   bindtextdomain (PACKAGE, PACKAGE_LOCALE_DIR);
   bind_textdomain_codeset (PACKAGE, "UTF-8");
@@ -59,13 +61,65 @@ main (int argc, char *argv[])
   gtk_init (&argc, &argv);
   setlocale(LC_NUMERIC, "C");
 
+  colormap = gdk_colormap_get_system();
   create_mainwindow ();
   dircheck ();
   loadpreferences ();
   loadhistory ();
 
-  treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
   maintext = g_object_get_data (G_OBJECT (gui->window), "maintext");
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	(preferences.highcolor1.red * 255) / 65535,
+	preferences.highcolor1.green * 255 / 65535,
+	preferences.highcolor1.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor1", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor2.red * 255 / 65535,
+	preferences.highcolor2.green * 255 / 65535,
+	preferences.highcolor2.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor2", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor3.red * 255 / 65535,
+	preferences.highcolor3.green * 255 / 65535,
+	preferences.highcolor3.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor3", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor4.red * 255 / 65535,
+	preferences.highcolor4.green * 255 / 65535,
+	preferences.highcolor4.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor4", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor5.red * 255 / 65535,
+	preferences.highcolor5.green * 255 / 65535,
+	preferences.highcolor5.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor5", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor6.red * 255 / 65535,
+	preferences.highcolor6.green * 255 / 65535,
+	preferences.highcolor6.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor6", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor7.red * 255 / 65535,
+	preferences.highcolor7.green * 255 / 65535,
+	preferences.highcolor7.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor7", "background",
+	colorstr, NULL);
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.highcolor8.red * 255 / 65535,
+	preferences.highcolor8.green * 255 / 65535,
+	preferences.highcolor8.blue * 255 / 65535);
+  gtk_text_buffer_create_tag (buffer, "highcolor8", "background",
+	colorstr, NULL);
+  g_free (colorstr);
+
+  treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
   vpaned = g_object_get_data (G_OBJECT (gui->window), "vpaned");
 
   font_description = pango_font_description_from_string (preferences.dxfont);

@@ -30,12 +30,10 @@
 #include "gui.h"
 
 preferencestype preferences;
-GdkColormap *colormap;
 
 /*
  * check if ~/.xdx directory exists
  */
-
 void
 dircheck ()
 {
@@ -61,7 +59,6 @@ loadpreferences (void)
   gchar *preferencesfile, label[100], value[100];
   FILE *fp;
 
-  colormap = gdk_colormap_get_system();
   /* defaults */
   preferences.x = 10;
   preferences.y = 30;
