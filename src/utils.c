@@ -153,6 +153,9 @@ void openmail (gchar *url)
   g_string_free (msg, TRUE);
 }
 
+/*
+ * try to convert an incoming message to utf8
+ */
 gchar *try_utf8 (const gchar *str)
 {
   gsize converted;
@@ -165,10 +168,8 @@ gchar *try_utf8 (const gchar *str)
   utf8 = g_locale_to_utf8(str, -1, &converted, NULL, NULL);
   if (utf8) return(utf8);
 
-  g_free(utf8);
   utf8 = g_convert(str, -1, "UTF-8", "ISO-8859-15", &converted, NULL, NULL);
   if (utf8 && converted == strlen (str)) return(utf8);
-  else if (utf8) g_free(utf8);
- 
+
   return(NULL);
 }

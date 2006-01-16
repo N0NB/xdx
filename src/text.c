@@ -115,6 +115,7 @@ create_smiley_list (void)
   s->str = ":-(";
   s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png";
   smileylist = g_slist_append(smileylist, s);
+//  s = new_smiley (); s->str = "is"; s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png"; smileylist = g_slist_append(smileylist, s);
 }
 
 /* 
@@ -366,6 +367,7 @@ contains_smileys (gchar *str)
     return TRUE;
   else if (g_strrstr (str, ";-)"))
     return TRUE;
+//  else if (g_strrstr (str, "is")) return TRUE;
   return FALSE;
 }
 
@@ -452,7 +454,7 @@ void
 maintext_add (gchar msg[], gint len, gint messagetype)
 {
   GtkWidget *maintext, *treeview;
-  GtkTextIter start, end, istart, iend;
+  GtkTextIter start, end, istart, iend, cstart, cend;
   GtkTextMark *mark;
   GtkTreeIter iter;
   GtkTreePath *path;
@@ -527,32 +529,96 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           if (dx->toall && dx->toall[0] && (utf8 = try_utf8(dx->toall)))
           {
             if (preferences.savetoall) savetoall (dx->toall);
-            gtk_text_buffer_insert (buffer, &end, utf8, len);
+            gtk_text_buffer_insert (buffer, &end, utf8, -1);
             mark = gtk_text_buffer_get_mark (buffer, "insert");
-	         gtk_text_buffer_get_iter_at_mark (buffer, &istart, mark);
-	         gtk_text_buffer_get_start_iter (buffer, &iend);
-	         gtk_text_iter_backward_char (&istart);
+	    gtk_text_buffer_get_iter_at_mark (buffer, &istart, mark);
+	    gtk_text_buffer_get_start_iter (buffer, &iend);
+	    gtk_text_iter_backward_char (&istart);
+            if (contains_highlights (utf8))
+            {
+	      if (g_ascii_strcasecmp (preferences.highword1, "?"))
+              {
+                cstart = istart;
+                cend = iend;
+                while (gtk_text_iter_backward_search (&cstart, preferences.highword1,
+			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &cstart, &cend);
+              }
+	      if (g_ascii_strcasecmp (preferences.highword2, "?"))
+              {
+                cstart = istart;
+                cend = iend;
+                while (gtk_text_iter_backward_search (&cstart, preferences.highword2,
+			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor2", &cstart, &cend);
+              }
+	      if (g_ascii_strcasecmp (preferences.highword3, "?"))
+              {
+                cstart = istart;
+                cend = iend;
+                while (gtk_text_iter_backward_search (&cstart, preferences.highword3,
+			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor3", &cstart, &cend);
+              }
+	      if (g_ascii_strcasecmp (preferences.highword4, "?"))
+              {
+                cstart = istart;
+                cend = iend;
+                while (gtk_text_iter_backward_search (&cstart, preferences.highword4,
+			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor4", &cstart, &cend);
+              }
+	      if (g_ascii_strcasecmp (preferences.highword5, "?"))
+              {
+                cstart = istart;
+                cend = iend;
+                while (gtk_text_iter_backward_search (&cstart, preferences.highword5,
+			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor5", &cstart, &cend);
+              }
+	      if (g_ascii_strcasecmp (preferences.highword6, "?"))
+              {
+                cstart = istart;
+                cend = iend;
+                while (gtk_text_iter_backward_search (&cstart, preferences.highword6,
+			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor6", &cstart, &cend);
+              }
+	      if (g_ascii_strcasecmp (preferences.highword7, "?"))
+              {
+                cstart = istart;
+                cend = iend;
+                while (gtk_text_iter_backward_search (&cstart, preferences.highword7,
+			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor7", &cstart, &cend);
+              }
+	      if (g_ascii_strcasecmp (preferences.highword8, "?"))
+              {
+                cstart = istart;
+                cend = iend;
+                while (gtk_text_iter_backward_search (&cstart, preferences.highword8,
+			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor8", &cstart, &cend);
+              }
+            }
             if (contains_smileys (utf8))
-	         {
+	    {
               if (!smileylist) create_smiley_list ();
+              cstart = istart;
+              cend = iend;
               while (smileylist)
               {
                 s = (smiley *) smileylist->data;
-                while (gtk_text_iter_backward_search(&istart, s->str, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
+                while (gtk_text_iter_backward_search(&cstart, s->str, GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
                 {               
                   swidget = gtk_image_new_from_file (s->file);
-                  gtk_text_buffer_delete (buffer, &istart, &iend);
-                  anchor = gtk_text_buffer_create_child_anchor (buffer, &istart);
+                  gtk_text_buffer_delete (buffer, &cstart, &cend);
+                  anchor = gtk_text_buffer_create_child_anchor (buffer, &cstart);
                   gtk_text_view_add_child_at_anchor (GTK_TEXT_VIEW (maintext), GTK_WIDGET(swidget), anchor);
                   gtk_widget_show (swidget);
                 }
                 smileylist = smileylist->next;
               }
-            }
-            if (contains_highlights (utf8))
-            {
-              while (gtk_text_iter_backward_search (&istart, preferences.highword1, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
-               gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &istart, &iend);
             }
             g_free (utf8);
           }
