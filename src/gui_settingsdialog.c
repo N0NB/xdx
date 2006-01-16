@@ -913,6 +913,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	preferences.highcolor8.blue * 255 / 65535);
     gtk_text_buffer_create_tag (buffer, "highcolor8", "background",
 	str, NULL);
+	/* TODO: apply the new tagtable to the chat window */
     g_free (str);
   }
 
