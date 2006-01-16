@@ -529,36 +529,33 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             if (preferences.savetoall) savetoall (dx->toall);
             gtk_text_buffer_insert (buffer, &end, utf8, len);
             mark = gtk_text_buffer_get_mark (buffer, "insert");
-	    gtk_text_buffer_get_iter_at_mark (buffer, &istart, mark);
-	    gtk_text_buffer_get_start_iter (buffer, &iend);
-	    gtk_text_iter_backward_char (&istart);
+	         gtk_text_buffer_get_iter_at_mark (buffer, &istart, mark);
+	         gtk_text_buffer_get_start_iter (buffer, &iend);
+	         gtk_text_iter_backward_char (&istart);
             if (contains_smileys (utf8))
-	    {
-		if (!smileylist) create_smiley_list ();
-		while (smileylist)
-		{
-		  s = (smiley *) smileylist->data;
-		  while (gtk_text_iter_backward_search
-		    (&istart, s->str, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
-		  {               
-		    swidget = gtk_image_new_from_file (s->file);
-		    gtk_text_buffer_delete (buffer, &istart, &iend);
-		    anchor = gtk_text_buffer_create_child_anchor (buffer, &istart);
-		    gtk_text_view_add_child_at_anchor (GTK_TEXT_VIEW (maintext), 
-			GTK_WIDGET(swidget), anchor);
-		    gtk_widget_show (swidget);
-		  }
-		  smileylist = smileylist->next;
-		}
-	    }
-	    if (contains_highlights (utf8))
-	    {
-		  while (gtk_text_iter_backward_search
-		    (&istart, preferences.highword1, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
-		gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &istart, &iend);
-	    }
+	         {
+              if (!smileylist) create_smiley_list ();
+              while (smileylist)
+              {
+                s = (smiley *) smileylist->data;
+                while (gtk_text_iter_backward_search(&istart, s->str, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
+                {               
+                  swidget = gtk_image_new_from_file (s->file);
+                  gtk_text_buffer_delete (buffer, &istart, &iend);
+                  anchor = gtk_text_buffer_create_child_anchor (buffer, &istart);
+                  gtk_text_view_add_child_at_anchor (GTK_TEXT_VIEW (maintext), GTK_WIDGET(swidget), anchor);
+                  gtk_widget_show (swidget);
+                }
+                smileylist = smileylist->next;
+              }
+            }
+            if (contains_highlights (utf8))
+            {
+              while (gtk_text_iter_backward_search (&istart, preferences.highword1, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
+               gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &istart, &iend);
+            }
             g_free (utf8);
-	  }
+          }
         }
         mark = gtk_text_buffer_get_mark (buffer, "insert");
         gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 
