@@ -41,31 +41,12 @@
 extern preferencestype preferences;
 
 /**********************************MAIN WINDOW********************************/
-
-static GtkItemFactoryEntry menu_items[] = {
-  {N_("/_Program"), NULL, NULL, 0, "<Branch>"},
-  {N_("/_Program/Quit"), "<control>Q", on_quit_activate, 0, "<StockItem>",
-   GTK_STOCK_QUIT},
-  {N_("/_Host"), NULL, NULL, 0, "<Branch>"},
-  {N_("/_Host/Open"), "<control>O", on_open_activate, 0, "<StockItem>",
-   GTK_STOCK_OPEN},
-  {N_("/_Host/Close"), "<control>C", on_close_activate, 0, "<StockItem>",
-   GTK_STOCK_CLOSE},
-  {N_("/_Settings"), NULL, NULL, 0, "<Branch>"},
-  {N_("/_Settings/Preferences"), "<control>P", on_settings_activate, 0, 
-    "<StockItem>", GTK_STOCK_PREFERENCES},
-  {N_("/H_elp"), NULL, NULL, 0, "<Branch>"},
-  {N_("/H_elp/Manual"), "<control>M", on_manual_activate, 0, "<StockItem>",
-   GTK_STOCK_HELP},
-  {N_("/H_elp/About"), "<control>A", on_about_activate, 0, "<StockItem>",
-   GTK_STOCK_HELP},
-};
-
 guitype *new_gui(void)
 {
   guitype *gui = g_new0(guitype, 1);
   gui->window = NULL;
-  gui->item_factory = NULL;
+  gui->action_group = NULL;
+  gui->ui_manager = NULL;
   gui->hostnamehistory = NULL;
   gui->porthistory = NULL;
   gui->txhistory = NULL;
@@ -85,20 +66,63 @@ static gchar *menu_translate(const gchar *path, gpointer data)
 
 
 static void
-get_main_menu (GtkWidget * window, GtkWidget ** menubar)
+get_main_menu (GtkWidget *window, GtkWidget **menubar)
 {
   GtkAccelGroup *accel_group;
 
-  gint nmenu_items = sizeof (menu_items) / sizeof (menu_items[0]);
+
+static GtkActionEntry entries[] = {
+	{ "ProgramMenu", NULL, N_("_Program") },
+	{ "HostMenu", NULL, N_("_Host") },
+	{ "SettingsMenu", NULL, N_("_Settings") },
+	{ "HelpMenu", NULL, N_("H_elp") },
+	
+	{ "Quit", GTK_STOCK_QUIT, N_("Quit"),
+		"<control>Q", "Quit Program", G_CALLBACK(on_quit_activate) },
+	{ "Open", GTK_STOCK_OPEN, N_("Open..."),
+		"<control>O", "Open Connection", G_CALLBACK(on_open_activate) },
+	{ "Close", GTK_STOCK_CLOSE, N_("Close"),
+		"<control>C", "Close Connection", G_CALLBACK(on_close_activate) },
+	{ "Preferences", GTK_STOCK_PREFERENCES, N_("Preferences..."),
+		"<control>P", "Settings for xdx", G_CALLBACK(on_settings_activate) },
+	{ "Manual", GTK_STOCK_HELP, N_("Manual"),
+		"<control>M", "Read the manual", G_CALLBACK(on_manual_activate) },
+	{ "About", GTK_STOCK_HELP, N_("About"),
+		"<control>A", "About xdx", G_CALLBACK(on_about_activate) },
+};
+
+static const char *ui_description =
+"<ui>"
+"  <menubar name='MainMenu'>"
+"    <menu action='ProgramMenu'>"
+"      <menuitem action='Quit'/>"
+"    </menu>"
+"    <menu action='HostMenu'>"
+"      <menuitem action='Open'/>"
+"      <menuitem action='Close'/>"
+"    </menu>"
+"    <menu action='SettingsMenu'>"
+"      <menuitem action='Preferences'/>"
+"    </menu>"
+"    <menu action='HelpMenu'>"
+"      <menuitem action='Manual'/>"
+"      <menuitem action='About'/>"
+"    </menu>"
+"  </menubar>"
+"</ui>";
 
   accel_group = gtk_accel_group_new ();
-  gui->item_factory = gtk_item_factory_new (GTK_TYPE_MENU_BAR, "<main>",
-				       accel_group);
-  gtk_item_factory_set_translate_func(gui->item_factory, menu_translate, NULL, NULL);
-  gtk_item_factory_create_items (gui->item_factory, nmenu_items, menu_items, NULL);
+  gui->action_group = gtk_action_group_new ("MenuActions");
+  gtk_action_group_set_translation_domain (gui->action_group, PACKAGE);
+  gtk_action_group_add_actions
+    (gui->action_group, entries, G_N_ELEMENTS (entries), window);
   gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
-  if (menubar)
-    *menubar = gtk_item_factory_get_widget (gui->item_factory, "<main>");
+  gui->ui_manager = gtk_ui_manager_new ();
+  gtk_ui_manager_insert_action_group (gui->ui_manager, gui->action_group, 0);
+  accel_group = gtk_ui_manager_get_accel_group (gui->ui_manager);
+  gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
+  gtk_ui_manager_add_ui_from_string (gui->ui_manager, ui_description, -1, NULL);
+  *menubar = gtk_ui_manager_get_widget (gui->ui_manager, "/MainMenu");
 }
 
 void
@@ -355,7 +379,8 @@ static void cleanup (void)
   GList *link;
   servertype *cluster;
 
-  gui->item_factory = NULL;
+  gui->action_group = NULL;
+  gui->ui_manager = NULL;
 
   cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
   g_free(cluster);

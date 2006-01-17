@@ -23,7 +23,8 @@
 
 typedef struct guitype {
   GtkWidget *window;
-  GtkItemFactory *item_factory;
+  GtkActionGroup *action_group;
+  GtkUIManager *ui_manager;
   GList *hostnamehistory;
   GList *porthistory;
   GList *txhistory;

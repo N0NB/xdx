@@ -39,10 +39,11 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
   GtkWidget *opendialog, *hostnamecombo, *portcombo, *hbox, *stock, *table,
     *hostlabel, *portlabel, *mainentry;
-  gint response;
+  gint i, num, response;
   GList *node;
   gboolean result = FALSE;
   servertype *cluster;
+  gchar *s;
 
   gtk_widget_set_sensitive (gui->window, 0);
   opendialog = gtk_dialog_new_with_buttons (_("xdx - open connection"),
@@ -67,19 +68,32 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
   hostlabel = gtk_label_new_with_mnemonic (_("_Hostname"));
   gtk_table_attach_defaults (GTK_TABLE (table), hostlabel, 0, 1, 0, 1);
-  hostnamecombo = gtk_combo_new ();
+  hostnamecombo = gtk_combo_box_entry_new_text ();
   if (gui->hostnamehistory)
-    gtk_combo_set_popdown_strings (GTK_COMBO (hostnamecombo),
-				   gui->hostnamehistory);
+  {
+        num = g_list_length (gui->hostnamehistory);
+        for (i = 0; i < num; i++)
+        {
+          s = g_list_nth_data (gui->hostnamehistory, i);
+          gtk_combo_box_prepend_text (GTK_COMBO_BOX (hostnamecombo), s);
+	}
+  }
   gtk_table_attach_defaults (GTK_TABLE (table), hostnamecombo, 1, 2, 0, 1);
-  gtk_label_set_mnemonic_widget (GTK_LABEL (hostlabel), GTK_COMBO(hostnamecombo)->entry);
+//  gtk_label_set_mnemonic_widget (GTK_LABEL (hostlabel), GTK_COMBO(hostnamecombo)->entry);
   portlabel = gtk_label_new_with_mnemonic (_("_Port"));
   gtk_table_attach_defaults (GTK_TABLE (table), portlabel, 0, 1, 1, 2);
-  portcombo = gtk_combo_new ();
+  portcombo = gtk_combo_box_entry_new_text ();
   if (gui->porthistory)
-    gtk_combo_set_popdown_strings (GTK_COMBO (portcombo), gui->porthistory);
+  {
+        num = g_list_length (gui->porthistory);
+        for (i = 0; i < num; i++)
+        {
+          s = g_list_nth_data (gui->porthistory, i);
+          gtk_combo_box_prepend_text (GTK_COMBO_BOX (portcombo), s);
+	}
+  }
   gtk_table_attach_defaults (GTK_TABLE (table), portcombo, 1, 2, 1, 2);
-  gtk_label_set_mnemonic_widget (GTK_LABEL (portlabel), GTK_COMBO(portcombo)->entry);
+//  gtk_label_set_mnemonic_widget (GTK_LABEL (portlabel), GTK_COMBO(portcombo)->entry);
   gtk_widget_show_all (hbox);
   gtk_widget_set_sensitive (gui->window, 0);
   response = gtk_dialog_run (GTK_DIALOG (opendialog));
@@ -87,10 +101,10 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
   if (response == GTK_RESPONSE_OK)
     {
       cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
-      cluster->host = gtk_editable_get_chars (GTK_EDITABLE
-				      (GTK_COMBO (hostnamecombo)->entry), 0, -1);
-      cluster->port = gtk_editable_get_chars (GTK_EDITABLE
-				      (GTK_COMBO (portcombo)->entry), 0, -1);
+      cluster->host = gtk_editable_get_chars
+                (GTK_EDITABLE (GTK_BIN(hostnamecombo)->child), 0, -1);
+      cluster->port = gtk_editable_get_chars
+                (GTK_EDITABLE (GTK_BIN(portcombo)->child), 0, -1);
       if (!g_ascii_strcasecmp (cluster->host, ""))
         cluster->host = "localhost";
       if (!g_ascii_strcasecmp (cluster->port, ""))
@@ -140,8 +154,8 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
         gui->porthistory = g_list_remove (gui->porthistory, 
           g_list_last (gui->porthistory)->data);
 
-      menu_set_sensitive (gui->item_factory, "/Host/Open", FALSE);
-      menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE);
+      menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Open", FALSE);
+      menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
 
       result = clresolve (cluster);
     }
@@ -153,8 +167,8 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   if (!result)
   {
-    menu_set_sensitive (gui->item_factory, "/Host/Open", TRUE);
-    menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE);
+    menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Open", TRUE);
+    menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
   }
     
 }

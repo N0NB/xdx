@@ -56,7 +56,7 @@ statusbar_timeout(gpointer data)
   mainstatusbar = g_object_get_data (G_OBJECT (gui->window), "mainstatusbar");  
   gtk_statusbar_pop(GTK_STATUSBAR(mainstatusbar), 1);  
   gtk_statusbar_push(GTK_STATUSBAR(mainstatusbar), 1, gui->statusbarmessage);  
-  gtk_timeout_remove(gui->statusbartimer);  
+  g_source_remove(gui->statusbartimer);  
   gui->statusbartimer = -1;  
   return FALSE;  
 }  
@@ -77,8 +77,8 @@ updatestatusbar (GString * statusmessage, gboolean timeout)
   if (timeout)
     {
       if (gui->statusbartimer != -1) 
-        gtk_timeout_remove(gui->statusbartimer);  
-      gui->statusbartimer = gtk_timeout_add(5000, statusbar_timeout, NULL);
+        g_source_remove(gui->statusbartimer);  
+      gui->statusbartimer = g_timeout_add(5000, statusbar_timeout, NULL);
     }
   else gui->statusbarmessage = g_strdup(statusmessage->str);
 }
@@ -88,13 +88,13 @@ updatestatusbar (GString * statusmessage, gboolean timeout)
  */
 
 void
-menu_set_sensitive (GtkItemFactory * ifa, const gchar * path, gboolean sens)
+menu_set_sensitive (GtkUIManager *ifa, const gchar * path, gboolean sens)
 {
   GtkWidget *w;
 
   g_return_if_fail (ifa != NULL);
 
-  w = gtk_item_factory_get_item (ifa, path);
+  w = gtk_ui_manager_get_widget (ifa, path);
   gtk_widget_set_sensitive (w, sens);
 }
 

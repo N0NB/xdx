@@ -173,7 +173,7 @@ main (int argc, char *argv[])
     preferences.width, preferences.height);
   gtk_paned_set_position (GTK_PANED (vpaned), preferences.handlebarpos);
 
-  menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE); /* do not translate */
+  menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE); /* do not translate */
   g_string_printf (greeting, _("Welcome to %s"), PACKAGE);
   updatestatusbar(greeting, FALSE);
   g_string_free (greeting, TRUE);
