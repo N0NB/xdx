@@ -203,6 +203,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   GtkTextBuffer *buffer;
   GtkTextTagTable *table;
   GtkTextTag *tag;
+  GdkColor color;
 
   gtk_widget_set_sensitive (gui->window, 0);
   preferencesdialog = gtk_dialog_new_with_buttons (_("xdx - preferences"),
@@ -839,80 +840,97 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.highword8 = g_strdup ("?");
     else
       preferences.highword8 = g_strdup (str);
-    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton1), &preferences.highcolor1);
-    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton2), &preferences.highcolor2);
-    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton3), &preferences.highcolor3);
-    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton4), &preferences.highcolor4);
-    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton5), &preferences.highcolor5);
-    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton6), &preferences.highcolor6);
-    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton7), &preferences.highcolor7);
-    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton8), &preferences.highcolor8);
+
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
     table = gtk_text_buffer_get_tag_table (buffer);
-    tag = gtk_text_tag_table_lookup (table, "highcolor1");
-    gtk_text_tag_table_remove (table, tag);
-    tag = gtk_text_tag_table_lookup (table, "highcolor2");
-    gtk_text_tag_table_remove (table, tag);
-    tag = gtk_text_tag_table_lookup (table, "highcolor3");
-    gtk_text_tag_table_remove (table, tag);
-    tag = gtk_text_tag_table_lookup (table, "highcolor4");
-    gtk_text_tag_table_remove (table, tag);
-    tag = gtk_text_tag_table_lookup (table, "highcolor5");
-    gtk_text_tag_table_remove (table, tag);
-    tag = gtk_text_tag_table_lookup (table, "highcolor6");
-    gtk_text_tag_table_remove (table, tag);
-    tag = gtk_text_tag_table_lookup (table, "highcolor7");
-    gtk_text_tag_table_remove (table, tag);
-    tag = gtk_text_tag_table_lookup (table, "highcolor8");
-    gtk_text_tag_table_remove (table, tag);
-    str = g_strdup_printf ("#%02X%02X%02X",
-	(preferences.highcolor1.red * 255) / 65535,
-	preferences.highcolor1.green * 255 / 65535,
-	preferences.highcolor1.blue * 255 / 65535);
-    gtk_text_buffer_create_tag (buffer, "highcolor1", "background",
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton1), &color);
+    if (! gdk_color_equal(&color, &preferences.highcolor1))
+    {
+      tag = gtk_text_tag_table_lookup (table, "highcolor1");
+      gtk_text_tag_table_remove (table, tag);
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gtk_text_buffer_create_tag (buffer, "highcolor1", "background",
 	str, NULL);
-    str = g_strdup_printf ("#%02X%02X%02X",
-	preferences.highcolor2.red * 255 / 65535,
-	preferences.highcolor2.green * 255 / 65535,
-	preferences.highcolor2.blue * 255 / 65535);
-    gtk_text_buffer_create_tag (buffer, "highcolor2", "background",
+      preferences.highcolor1 = color;
+    }
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton2), &color);
+    if (! gdk_color_equal(&color, &preferences.highcolor2))
+    {
+      tag = gtk_text_tag_table_lookup (table, "highcolor2");
+      gtk_text_tag_table_remove (table, tag);
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gtk_text_buffer_create_tag (buffer, "highcolor2", "background",
 	str, NULL);
-    str = g_strdup_printf ("#%02X%02X%02X",
-	preferences.highcolor3.red * 255 / 65535,
-	preferences.highcolor3.green * 255 / 65535,
-	preferences.highcolor3.blue * 255 / 65535);
-    gtk_text_buffer_create_tag (buffer, "highcolor3", "background",
+      preferences.highcolor2 = color;
+    }
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton3), &color);
+    if (! gdk_color_equal(&color, &preferences.highcolor3))
+    {
+      tag = gtk_text_tag_table_lookup (table, "highcolor3");
+      gtk_text_tag_table_remove (table, tag);
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gtk_text_buffer_create_tag (buffer, "highcolor3", "background",
 	str, NULL);
-    str = g_strdup_printf ("#%02X%02X%02X",
-	preferences.highcolor4.red * 255 / 65535,
-	preferences.highcolor4.green * 255 / 65535,
-	preferences.highcolor4.blue * 255 / 65535);
-    gtk_text_buffer_create_tag (buffer, "highcolor4", "background",
+      preferences.highcolor3 = color;
+    }
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton4), &color);
+    if (! gdk_color_equal(&color, &preferences.highcolor4))
+    {
+      tag = gtk_text_tag_table_lookup (table, "highcolor4");
+      gtk_text_tag_table_remove (table, tag);
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gtk_text_buffer_create_tag (buffer, "highcolor4", "background",
 	str, NULL);
-    str = g_strdup_printf ("#%02X%02X%02X",
-	preferences.highcolor5.red * 255 / 65535,
-	preferences.highcolor5.green * 255 / 65535,
-	preferences.highcolor5.blue * 255 / 65535);
-    gtk_text_buffer_create_tag (buffer, "highcolor5", "background",
+      preferences.highcolor4 = color;
+    }
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton5), &color);
+    if (! gdk_color_equal(&color, &preferences.highcolor5))
+    {
+      tag = gtk_text_tag_table_lookup (table, "highcolor5");
+      gtk_text_tag_table_remove (table, tag);
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gtk_text_buffer_create_tag (buffer, "highcolor5", "background",
 	str, NULL);
-    str = g_strdup_printf ("#%02X%02X%02X",
-	preferences.highcolor6.red * 255 / 65535,
-	preferences.highcolor6.green * 255 / 65535,
-	preferences.highcolor6.blue * 255 / 65535);
-    gtk_text_buffer_create_tag (buffer, "highcolor6", "background",
+      preferences.highcolor5 = color;
+    }
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton6), &color);
+    if (! gdk_color_equal(&color, &preferences.highcolor6))
+    {
+      tag = gtk_text_tag_table_lookup (table, "highcolor6");
+      gtk_text_tag_table_remove (table, tag);
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gtk_text_buffer_create_tag (buffer, "highcolor6", "background",
 	str, NULL);
-    str = g_strdup_printf ("#%02X%02X%02X",
-	preferences.highcolor7.red * 255 / 65535,
-	preferences.highcolor7.green * 255 / 65535,
-	preferences.highcolor7.blue * 255 / 65535);
-    gtk_text_buffer_create_tag (buffer, "highcolor7", "background",
+      preferences.highcolor6 = color;
+    }
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton7), &color);
+    if (! gdk_color_equal(&color, &preferences.highcolor7))
+    {
+      tag = gtk_text_tag_table_lookup (table, "highcolor7");
+      gtk_text_tag_table_remove (table, tag);
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gtk_text_buffer_create_tag (buffer, "highcolor7", "background",
 	str, NULL);
-    str = g_strdup_printf ("#%02X%02X%02X",
-	preferences.highcolor8.red * 255 / 65535,
-	preferences.highcolor8.green * 255 / 65535,
-	preferences.highcolor8.blue * 255 / 65535);
-    gtk_text_buffer_create_tag (buffer, "highcolor8", "background",
+      preferences.highcolor7 = color;
+    }
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton8), &color);
+    if (! gdk_color_equal(&color, &preferences.highcolor8))
+    {
+      tag = gtk_text_tag_table_lookup (table, "highcolor8");
+      gtk_text_tag_table_remove (table, tag);
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gtk_text_buffer_create_tag (buffer, "highcolor8", "background",
 	str, NULL);
+      preferences.highcolor8 = color;
+    }
 	/* TODO: apply the new tagtable to the chat window */
     g_free (str);
   }

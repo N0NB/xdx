@@ -529,10 +529,9 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           if (dx->toall && dx->toall[0] && (utf8 = try_utf8(dx->toall)))
           {
             if (preferences.savetoall) savetoall (dx->toall);
+            iend = end;
             gtk_text_buffer_insert (buffer, &end, utf8, -1);
-            mark = gtk_text_buffer_get_mark (buffer, "insert");
-	    gtk_text_buffer_get_iter_at_mark (buffer, &istart, mark);
-	    gtk_text_buffer_get_start_iter (buffer, &iend);
+	    istart = end;
 	    gtk_text_iter_backward_char (&istart);
             if (contains_highlights (utf8))
             {
