@@ -134,8 +134,8 @@ clresolve (servertype *cluster)
   updatestatusbar (msg, FALSE);
   g_string_free (msg, TRUE);
 
-  menu_set_sensitive (gui->item_factory, "/Host/Open", FALSE);
-  menu_set_sensitive (gui->item_factory, "/Host/Close", TRUE);
+  menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Open", FALSE);
+  menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", TRUE);
 
   cluster->rxchannel = g_io_channel_unix_new (cluster->sockethandle);
   res = g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
@@ -176,8 +176,8 @@ cldisconnect (GString *msg, gboolean timeout)
 
   if (msg) updatestatusbar (msg, timeout);
 
-  menu_set_sensitive (gui->item_factory, "/Host/Open", TRUE);
-  menu_set_sensitive (gui->item_factory, "/Host/Close", FALSE);
+  menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Open", TRUE);
+  menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
 }
 
 /*
