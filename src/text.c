@@ -372,34 +372,92 @@ contains_smileys (gchar *str)
 }
 
 /*
+ * look for a substring
+ */
+static gchar *
+g_utf8_strcasestr (const gchar *haystack, const gchar *needle)
+{
+	gsize needle_len;
+	gsize haystack_len;
+	gchar *ret = NULL;
+	gchar *p;
+	gchar *casefold;
+	gchar *caseless_haystack;
+	gint i;
+
+	g_return_val_if_fail (haystack != NULL, NULL);
+	g_return_val_if_fail (needle != NULL, NULL);
+
+	casefold = g_utf8_casefold (haystack, -1);
+	caseless_haystack = g_utf8_normalize (casefold, -1, G_NORMALIZE_ALL);
+	g_free (casefold);
+
+	needle_len = g_utf8_strlen (needle, -1);
+	haystack_len = g_utf8_strlen (caseless_haystack, -1);
+
+	if (needle_len == 0)
+	{
+		ret = (gchar *)haystack;
+		goto finally_1;
+	}
+
+	if (haystack_len < needle_len)
+	{
+		ret = NULL;
+		goto finally_1;
+	}
+
+	p = (gchar*)caseless_haystack;
+	needle_len = strlen (needle);
+	i = 0;
+
+	while (*p)
+	{
+		if ((strncmp (p, needle, needle_len) == 0))
+		{
+			ret = g_utf8_offset_to_pointer (haystack, i);
+			goto finally_1;
+		}
+
+		p = g_utf8_next_char (p);
+		i++;
+	}
+
+finally_1:
+	g_free (caseless_haystack);
+
+	return ret;
+}
+
+/*
  * check if there is something to highlight
  */
 static gboolean
 contains_highlights (gchar *str)
 {
 	if (g_ascii_strcasecmp (preferences.callsign, "?")
-	&& g_strrstr (str, preferences.highword1))
+	&& g_utf8_strcasestr (str, preferences.highword1))
 		return TRUE;
 	if (g_ascii_strcasecmp (preferences.callsign, "?")
-	&& g_strrstr (str, preferences.highword2))
+	&& g_utf8_strcasestr (str, preferences.highword2))
 		return TRUE;
 	if (g_ascii_strcasecmp (preferences.callsign, "?")
-	&& g_strrstr (str, preferences.highword3))
+	&& g_utf8_strcasestr (str, preferences.highword3))
 		return TRUE;
 	if (g_ascii_strcasecmp (preferences.callsign, "?")
-	&& g_strrstr (str, preferences.highword4))
+	&& g_utf8_strcasestr (str, preferences.highword4))
 		return TRUE;
 	if (g_ascii_strcasecmp (preferences.callsign, "?")
-	&& g_strrstr (str, preferences.highword5))
+	&& g_utf8_strcasestr (str, preferences.highword5))
 		return TRUE;
 	if (g_ascii_strcasecmp (preferences.callsign, "?")
-	&& g_strrstr (str, preferences.highword6))
+	&& g_utf8_strcasestr (str, preferences.highword6))
 		return TRUE;
 	if (g_ascii_strcasecmp (preferences.callsign, "?")
-	&& g_strrstr (str, preferences.highword7))
+	&& g_utf8_strcasestr (str, preferences.highword7))
 		return TRUE;
 	if (g_ascii_strcasecmp (preferences.callsign, "?")
-	&& g_strrstr (str, preferences.highword8))
+	&& g_utf8_strcasestr (str, preferences.highword8))
 		return TRUE;
 	return FALSE;
 }
