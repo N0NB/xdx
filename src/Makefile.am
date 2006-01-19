@@ -40,6 +40,7 @@ xdx_SOURCES = \
 	text.c \
 	utils.c \
   hyperlink.c \
-  save.c
+  save.c \
+  gtksourceiter.h gtksourceiter.c
 
 xdx_LDADD = @PACKAGE_LIBS@
