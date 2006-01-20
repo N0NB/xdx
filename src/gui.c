@@ -58,13 +58,6 @@ guitype *new_gui(void)
   return(gui);
 }
 
-static gchar *menu_translate(const gchar *path, gpointer data)
-{
-  gchar *retval = gettext(path);
-  return retval;
-}
-
-
 static void
 get_main_menu (GtkWidget *window, GtkWidget **menubar)
 {
