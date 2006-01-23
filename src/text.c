@@ -532,8 +532,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             if (preferences.savetoall) savetoall (dx->toall);
             iend = end;
             gtk_text_buffer_insert (buffer, &end, utf8, -1);
-	    istart = end;
-	    gtk_text_iter_backward_char (&istart);
+            istart = end;
+            gtk_text_iter_backward_char (&istart);
             if (contains_highlights (utf8))
             {
 	      if (g_ascii_strcasecmp (preferences.highword1, "?"))
@@ -624,6 +624,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           }
         }
         mark = gtk_text_buffer_get_mark (buffer, "insert");
+	if (!GTK_WIDGET_HAS_FOCUS(maintext))
         gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 
           0.0, 1.0);
         g_free(dx->toall);

@@ -227,7 +227,7 @@ create_mainwindow (void)
 
   maintext = gtk_text_view_new ();
   gtk_container_add (GTK_CONTAINER (mainscrolledwindow), maintext);
-  GTK_WIDGET_UNSET_FLAGS (maintext, GTK_CAN_FOCUS);
+  gtk_text_view_set_editable (GTK_TEXT_VIEW (maintext), FALSE);
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
   gtk_text_buffer_create_tag (buffer, "wwv", "foreground", "darkgreen",
 			      NULL);
