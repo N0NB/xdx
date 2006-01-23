@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-EXTRA_DIST = config.rpath mkinstalldirs  config.rpath mkinstalldirs  \
+EXTRA_DIST = config.rpath mkinstalldirs  \
 	Xdx.desktop \
 	xdx.spec \
 	xdx.spec.in \
@@ -51,14 +51,6 @@ dist-hook:
 		for pixmap in pixmaps/*; do \
 			if test -f $$pixmap; then \
 				cp -p $$pixmap $(distdir)/pixmaps; \
-			fi \
-		done \
-	fi
-	if test -d debian; then \
-		mkdir $(distdir)/debian; \
-		for deb in debian/*; do \
-			if test -f $$deb; then \
-				cp -p $$deb $(distdir)/debian; \
 			fi \
 		done \
 	fi
