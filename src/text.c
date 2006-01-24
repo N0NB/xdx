@@ -434,8 +434,8 @@ static void insert_with_smileys
   while (smileylist)
   {
     s = (smiley *) smileylist->data;
-    while (gtk_text_iter_backward_search
-      (&istart, s->str, GTK_TEXT_SEARCH_VISIBLE_ONLY, &istart, &iend, NULL))
+    while (gtk_source_iter_backward_search
+      (&istart, s->str, GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &istart, &iend, NULL))
     {               
       swidget = gtk_image_new_from_file (s->file);
       gtk_text_buffer_delete (buf, &istart, &iend);
@@ -540,64 +540,64 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               {
                 cstart = istart;
                 cend = iend;
-                while (gtk_text_iter_backward_search (&cstart, preferences.highword1,
-			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                while (gtk_source_iter_backward_search (&cstart, preferences.highword1,
+			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
                   gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &cstart, &cend);
               }
 	      if (g_ascii_strcasecmp (preferences.highword2, "?"))
               {
                 cstart = istart;
                 cend = iend;
-                while (gtk_text_iter_backward_search (&cstart, preferences.highword2,
-			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                while (gtk_source_iter_backward_search (&cstart, preferences.highword2,
+			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor2", &cstart, &cend);
               }
 	      if (g_ascii_strcasecmp (preferences.highword3, "?"))
               {
                 cstart = istart;
                 cend = iend;
-                while (gtk_text_iter_backward_search (&cstart, preferences.highword3,
-			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                while (gtk_source_iter_backward_search (&cstart, preferences.highword3,
+			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor3", &cstart, &cend);
               }
 	      if (g_ascii_strcasecmp (preferences.highword4, "?"))
               {
                 cstart = istart;
                 cend = iend;
-                while (gtk_text_iter_backward_search (&cstart, preferences.highword4,
-			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                while (gtk_source_iter_backward_search (&cstart, preferences.highword4,
+			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor4", &cstart, &cend);
               }
 	      if (g_ascii_strcasecmp (preferences.highword5, "?"))
               {
                 cstart = istart;
                 cend = iend;
-                while (gtk_text_iter_backward_search (&cstart, preferences.highword5,
-			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                while (gtk_source_iter_backward_search (&cstart, preferences.highword5,
+			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor5", &cstart, &cend);
               }
 	      if (g_ascii_strcasecmp (preferences.highword6, "?"))
               {
                 cstart = istart;
                 cend = iend;
-                while (gtk_text_iter_backward_search (&cstart, preferences.highword6,
-			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                while (gtk_source_iter_backward_search (&cstart, preferences.highword6,
+			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor6", &cstart, &cend);
               }
 	      if (g_ascii_strcasecmp (preferences.highword7, "?"))
               {
                 cstart = istart;
                 cend = iend;
-                while (gtk_text_iter_backward_search (&cstart, preferences.highword7,
-			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                while (gtk_source_iter_backward_search (&cstart, preferences.highword7,
+			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor7", &cstart, &cend);
               }
 	      if (g_ascii_strcasecmp (preferences.highword8, "?"))
               {
                 cstart = istart;
                 cend = iend;
-                while (gtk_text_iter_backward_search (&cstart, preferences.highword8,
-			GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                while (gtk_source_iter_backward_search (&cstart, preferences.highword8,
+			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor8", &cstart, &cend);
               }
             }
@@ -609,7 +609,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               while (smileylist)
               {
                 s = (smiley *) smileylist->data;
-                while (gtk_text_iter_backward_search(&cstart, s->str, GTK_TEXT_SEARCH_VISIBLE_ONLY, &cstart, &cend, NULL))
+                while (gtk_source_iter_backward_search(&cstart, s->str, GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
                 {               
                   swidget = gtk_image_new_from_file (s->file);
                   gtk_text_buffer_delete (buffer, &cstart, &cend);
