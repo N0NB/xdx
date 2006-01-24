@@ -37,7 +37,7 @@ GdkColormap *colormap;
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *treeview, *maintext, *vpaned;
+  GtkWidget *treeview, *maintext, *vpaned, *highmenu;
   GtkTreeViewColumn *column;
   gchar *lang, **wsplit, *colorstr;
   GString *greeting = g_string_new ("");
@@ -118,6 +118,70 @@ main (int argc, char *argv[])
   gtk_text_buffer_create_tag (buffer, "highcolor8", "background",
 	colorstr, NULL);
   g_free (colorstr);
+
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/1");
+  if (preferences.highmenu[0] == '1')
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(highmenu), TRUE);
+  if (g_ascii_strcasecmp (preferences.highword1, "?"))
+    gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))),
+      preferences.highword1);
+
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/2");
+  if (preferences.highmenu[1] == '1')
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(highmenu), TRUE);
+  if (g_ascii_strcasecmp (preferences.highword2, "?"))
+    gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))),
+      preferences.highword2);
+
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/3");
+  if (preferences.highmenu[2] == '1')
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(highmenu), TRUE);
+  if (g_ascii_strcasecmp (preferences.highword3, "?"))
+    gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))),
+      preferences.highword3);
+
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/4");
+  if (preferences.highmenu[3] == '1')
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(highmenu), TRUE);
+  if (g_ascii_strcasecmp (preferences.highword4, "?"))
+    gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))),
+      preferences.highword4);
+
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/5");
+  if (preferences.highmenu[4] == '1')
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(highmenu), TRUE);
+  if (g_ascii_strcasecmp (preferences.highword5, "?"))
+    gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))),
+      preferences.highword5);
+
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/6");
+  if (preferences.highmenu[5] == '1')
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(highmenu), TRUE);
+  if (g_ascii_strcasecmp (preferences.highword6, "?"))
+    gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))),
+      preferences.highword6);
+
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/7");
+  if (preferences.highmenu[6] == '1')
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(highmenu), TRUE);
+  if (g_ascii_strcasecmp (preferences.highword7, "?"))
+    gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))),
+      preferences.highword7);
+
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/8");
+  if (preferences.highmenu[7] == '1')
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(highmenu), TRUE);
+  if (g_ascii_strcasecmp (preferences.highword8, "?"))
+    gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))),
+      preferences.highword8);
 
   treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
   vpaned = g_object_get_data (G_OBJECT (gui->window), "vpaned");

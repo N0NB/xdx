@@ -50,3 +50,4 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 gboolean double_click (GtkWidget *widget, GdkEventButton *event, 
             gpointer user_data);
 void on_quit_activate (GtkMenuItem * menuitem, gpointer user_data);
+void on_highlight_activate (GtkAction * action, gpointer user_data);

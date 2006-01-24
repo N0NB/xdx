@@ -72,6 +72,7 @@ typedef struct
   GdkColor highcolor6;
   GdkColor highcolor7;
   GdkColor highcolor8;
+  gchar *highmenu;
 } preferencestype;
 
 void dircheck (void);
