@@ -69,6 +69,7 @@ static GtkActionEntry entries[] = {
 	{ "HostMenu", NULL, N_("_Host") },
 	{ "SettingsMenu", NULL, N_("_Settings") },
 	{ "HelpMenu", NULL, N_("H_elp") },
+	{ "HighMenu", NULL, N_("H_ighlights") },
 	
 	{ "Quit", GTK_STOCK_QUIT, N_("Quit"),
 		"<control>Q", "Quit Program", G_CALLBACK(on_quit_activate) },
@@ -84,6 +85,18 @@ static GtkActionEntry entries[] = {
 		"<control>A", "About xdx", G_CALLBACK(on_about_activate) },
 };
 
+static GtkToggleActionEntry toggle_entries[] =
+{
+  { "1", NULL, "<empty>", NULL, "Highlight 1", G_CALLBACK(on_highlight_activate) },
+  { "2", NULL, "<empty>", NULL, "Highlight 2", G_CALLBACK(on_highlight_activate) },
+  { "3", NULL, "<empty>", NULL, "Highlight 3", G_CALLBACK(on_highlight_activate) },
+  { "4", NULL, "<empty>", NULL, "Highlight 4", G_CALLBACK(on_highlight_activate) },
+  { "5", NULL, "<empty>", NULL, "Highlight 5", G_CALLBACK(on_highlight_activate) },
+  { "6", NULL, "<empty>", NULL, "Highlight 6", G_CALLBACK(on_highlight_activate) },
+  { "7", NULL, "<empty>", NULL, "Highlight 7", G_CALLBACK(on_highlight_activate) },
+  { "8", NULL, "<empty>", NULL, "Highlight 8", G_CALLBACK(on_highlight_activate) },
+};
+
 static const char *ui_description =
 "<ui>"
 "  <menubar name='MainMenu'>"
@@ -95,6 +108,16 @@ static const char *ui_description =
 "      <menuitem action='Close'/>"
 "    </menu>"
 "    <menu action='SettingsMenu'>"
+"      <menu action='HighMenu'>"
+"        <menuitem action='1'/>"
+"        <menuitem action='2'/>"
+"        <menuitem action='3'/>"
+"        <menuitem action='4'/>"
+"        <menuitem action='5'/>"
+"        <menuitem action='6'/>"
+"        <menuitem action='7'/>"
+"        <menuitem action='8'/>"
+"      </menu>"
 "      <menuitem action='Preferences'/>"
 "    </menu>"
 "    <menu action='HelpMenu'>"
@@ -109,6 +132,8 @@ static const char *ui_description =
   gtk_action_group_set_translation_domain (gui->action_group, PACKAGE);
   gtk_action_group_add_actions
     (gui->action_group, entries, G_N_ELEMENTS (entries), window);
+  gtk_action_group_add_toggle_actions
+    (gui->action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), window);
   gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
   gui->ui_manager = gtk_ui_manager_new ();
   gtk_ui_manager_insert_action_group (gui->ui_manager, gui->action_group, 0);
@@ -428,6 +453,11 @@ on_quit_activate (GtkMenuItem * menuitem, gpointer user_data)
   syncprefs ();
   cleanup ();
   gtk_main_quit ();
+}
+
+void
+on_highlight_activate (GtkAction * action, gpointer user_data)
+{
 }
 
 /*
