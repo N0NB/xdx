@@ -493,7 +493,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             gtk_text_iter_backward_char (&istart);
             if (contains_highlights (utf8))
             {
-	      if (g_ascii_strcasecmp (preferences.highword1, "?"))
+	      if (preferences.highmenu[0] == '1' && 
+                g_ascii_strcasecmp (preferences.highword1, "?"))
               {
                 cstart = istart;
                 cend = iend;
@@ -501,7 +502,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
                   gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &cstart, &cend);
               }
-	      if (g_ascii_strcasecmp (preferences.highword2, "?"))
+	      if (preferences.highmenu[1] == '1' &&
+                g_ascii_strcasecmp (preferences.highword2, "?"))
               {
                 cstart = istart;
                 cend = iend;
@@ -509,7 +511,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor2", &cstart, &cend);
               }
-	      if (g_ascii_strcasecmp (preferences.highword3, "?"))
+	      if (preferences.highmenu[2] == '1' &&
+                g_ascii_strcasecmp (preferences.highword3, "?"))
               {
                 cstart = istart;
                 cend = iend;
@@ -517,7 +520,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor3", &cstart, &cend);
               }
-	      if (g_ascii_strcasecmp (preferences.highword4, "?"))
+	      if (preferences.highmenu[3] == '1' &&
+                g_ascii_strcasecmp (preferences.highword4, "?"))
               {
                 cstart = istart;
                 cend = iend;
@@ -525,7 +529,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor4", &cstart, &cend);
               }
-	      if (g_ascii_strcasecmp (preferences.highword5, "?"))
+	      if (preferences.highmenu[4] == '1' &&
+                g_ascii_strcasecmp (preferences.highword5, "?"))
               {
                 cstart = istart;
                 cend = iend;
@@ -533,7 +538,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor5", &cstart, &cend);
               }
-	      if (g_ascii_strcasecmp (preferences.highword6, "?"))
+	      if (preferences.highmenu[5] == '1' &&
+                g_ascii_strcasecmp (preferences.highword6, "?"))
               {
                 cstart = istart;
                 cend = iend;
@@ -541,7 +547,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor6", &cstart, &cend);
               }
-	      if (g_ascii_strcasecmp (preferences.highword7, "?"))
+	      if (preferences.highmenu[6] == '1' &&
+                g_ascii_strcasecmp (preferences.highword7, "?"))
               {
                 cstart = istart;
                 cend = iend;
@@ -549,7 +556,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 			GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &cstart, &cend, NULL))
 		  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor7", &cstart, &cend);
               }
-	      if (g_ascii_strcasecmp (preferences.highword8, "?"))
+	      if (preferences.highmenu[7] == '1' &&
+                g_ascii_strcasecmp (preferences.highword8, "?"))
               {
                 cstart = istart;
                 cend = iend;
