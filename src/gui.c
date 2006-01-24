@@ -69,7 +69,7 @@ static GtkActionEntry entries[] = {
 	{ "HostMenu", NULL, N_("_Host") },
 	{ "SettingsMenu", NULL, N_("_Settings") },
 	{ "HelpMenu", NULL, N_("H_elp") },
-	{ "HighMenu", NULL, N_("H_ighlights") },
+	{ "HighMenu", NULL, N_("Highlights") },
 	
 	{ "Quit", GTK_STOCK_QUIT, N_("Quit"),
 		"<control>Q", "Quit Program", G_CALLBACK(on_quit_activate) },
