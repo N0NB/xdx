@@ -27,6 +27,7 @@
 #include "utils.h"
 #include "gui.h"
 #include "preferences.h"
+#include "gtksourceiter.h"
 
 GtkWidget *preferencesdialog;
 extern preferencestype preferences;
@@ -856,8 +857,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	str, NULL);
       preferences.highcolor1 = color;
       gtk_text_buffer_get_bounds (buffer, &end, &start);
-      while (gtk_text_iter_backward_search (&start, preferences.highword1,
-         GTK_TEXT_SEARCH_VISIBLE_ONLY, &start, &end, NULL))
+      while (gtk_source_iter_backward_search (&start, preferences.highword1,
+         GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &start, &end, NULL))
       gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &start, &end);
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton2), &color);
@@ -871,8 +872,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	str, NULL);
       preferences.highcolor2 = color;
       gtk_text_buffer_get_bounds (buffer, &end, &start);
-      while (gtk_text_iter_backward_search (&start, preferences.highword2,
-         GTK_TEXT_SEARCH_VISIBLE_ONLY, &start, &end, NULL))
+      while (gtk_source_iter_backward_search (&start, preferences.highword2,
+         GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &start, &end, NULL))
       gtk_text_buffer_apply_tag_by_name (buffer, "highcolor2", &start, &end);
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton3), &color);
@@ -886,8 +887,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	str, NULL);
       preferences.highcolor3 = color;
       gtk_text_buffer_get_bounds (buffer, &end, &start);
-      while (gtk_text_iter_backward_search (&start, preferences.highword3,
-         GTK_TEXT_SEARCH_VISIBLE_ONLY, &start, &end, NULL))
+      while (gtk_source_iter_backward_search (&start, preferences.highword3,
+         GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &start, &end, NULL))
       gtk_text_buffer_apply_tag_by_name (buffer, "highcolor3", &start, &end);
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton4), &color);
@@ -901,8 +902,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	str, NULL);
       preferences.highcolor4 = color;
       gtk_text_buffer_get_bounds (buffer, &end, &start);
-      while (gtk_text_iter_backward_search (&start, preferences.highword4,
-         GTK_TEXT_SEARCH_VISIBLE_ONLY, &start, &end, NULL))
+      while (gtk_source_iter_backward_search (&start, preferences.highword4,
+         GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &start, &end, NULL))
       gtk_text_buffer_apply_tag_by_name (buffer, "highcolor4", &start, &end);
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton5), &color);
@@ -916,8 +917,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	str, NULL);
       preferences.highcolor5 = color;
       gtk_text_buffer_get_bounds (buffer, &end, &start);
-      while (gtk_text_iter_backward_search (&start, preferences.highword5,
-         GTK_TEXT_SEARCH_VISIBLE_ONLY, &start, &end, NULL))
+      while (gtk_source_iter_backward_search (&start, preferences.highword5,
+         GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &start, &end, NULL))
       gtk_text_buffer_apply_tag_by_name (buffer, "highcolor5", &start, &end);
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton6), &color);
@@ -931,8 +932,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	str, NULL);
       preferences.highcolor6 = color;
       gtk_text_buffer_get_bounds (buffer, &end, &start);
-      while (gtk_text_iter_backward_search (&start, preferences.highword6,
-         GTK_TEXT_SEARCH_VISIBLE_ONLY, &start, &end, NULL))
+      while (gtk_source_iter_backward_search (&start, preferences.highword6,
+         GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &start, &end, NULL))
       gtk_text_buffer_apply_tag_by_name (buffer, "highcolor6", &start, &end);
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton7), &color);
@@ -946,8 +947,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	str, NULL);
       preferences.highcolor7 = color;
       gtk_text_buffer_get_bounds (buffer, &end, &start);
-      while (gtk_text_iter_backward_search (&start, preferences.highword7,
-         GTK_TEXT_SEARCH_VISIBLE_ONLY, &start, &end, NULL))
+      while (gtk_source_iter_backward_search (&start, preferences.highword7,
+         GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &start, &end, NULL))
       gtk_text_buffer_apply_tag_by_name (buffer, "highcolor7", &start, &end);
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton8), &color);
@@ -961,8 +962,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	str, NULL);
       preferences.highcolor8 = color;
       gtk_text_buffer_get_bounds (buffer, &end, &start);
-      while (gtk_text_iter_backward_search (&start, preferences.highword8,
-         GTK_TEXT_SEARCH_VISIBLE_ONLY, &start, &end, NULL))
+      while (gtk_source_iter_backward_search (&start, preferences.highword8,
+         GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &start, &end, NULL))
       gtk_text_buffer_apply_tag_by_name (buffer, "highcolor8", &start, &end);
     }
     g_free (str);
