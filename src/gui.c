@@ -458,6 +458,41 @@ on_quit_activate (GtkMenuItem * menuitem, gpointer user_data)
 void
 on_highlight_activate (GtkAction * action, gpointer user_data)
 {
+  GtkWidget *highmenu;
+  gboolean state;
+
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/1");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(highmenu));
+  if (state) preferences.highmenu[0] = '1'; else preferences.highmenu[0] = '0';
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/2");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(highmenu));
+  if (state) preferences.highmenu[1] = '1'; else preferences.highmenu[1] = '0';
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/3");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(highmenu));
+  if (state) preferences.highmenu[2] = '1'; else preferences.highmenu[2] = '0';
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/4");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(highmenu));
+  if (state) preferences.highmenu[3] = '1'; else preferences.highmenu[3] = '0';
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/5");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(highmenu));
+  if (state) preferences.highmenu[4] = '1'; else preferences.highmenu[4] = '0';
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/6");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(highmenu));
+  if (state) preferences.highmenu[5] = '1'; else preferences.highmenu[5] = '0';
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/7");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(highmenu));
+  if (state) preferences.highmenu[6] = '1'; else preferences.highmenu[6] = '0';
+  highmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/8");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(highmenu));
+  if (state) preferences.highmenu[7] = '1'; else preferences.highmenu[7] = '0';
 }
 
 /*
