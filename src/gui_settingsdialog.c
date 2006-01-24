@@ -195,7 +195,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   *phighhbox9, *phighentry8, *colorbutton8;
 
   GtkTreeViewColumn *column;
-  GtkWidget *treeview, *maintext, *mainentry;
+  GtkWidget *treeview, *maintext, *mainentry, *highmenu;
   PangoFontDescription *font_description;
   gint response, pango_size;
   gboolean state;
@@ -803,45 +803,130 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
     /* highlights frame*/
     str = gtk_editable_get_chars (GTK_EDITABLE (phighentry1), 0, -1);
+    highmenu = gtk_ui_manager_get_widget
+      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/1");
     if (strlen(str) == 0)
+    {
+      gtk_label_set_text
+        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
       preferences.highword1 = g_strdup ("?");
+    }
     else
+    {
+      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
       preferences.highword1 = g_strdup (str);
+    }
+ 
     str = gtk_editable_get_chars (GTK_EDITABLE (phighentry2), 0, -1);
+    highmenu = gtk_ui_manager_get_widget
+      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/2");
     if (strlen(str) == 0)
+    {
+      gtk_label_set_text
+        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
       preferences.highword2 = g_strdup ("?");
+    }
     else
+    {
+      highmenu = gtk_ui_manager_get_widget
+        (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/2");
+      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
       preferences.highword2 = g_strdup (str);
+    }
+
     str = gtk_editable_get_chars (GTK_EDITABLE (phighentry3), 0, -1);
+    highmenu = gtk_ui_manager_get_widget
+      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/3");
     if (strlen(str) == 0)
+    {
+      gtk_label_set_text
+        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
       preferences.highword3 = g_strdup ("?");
+    }
     else
+    {
+      highmenu = gtk_ui_manager_get_widget
+        (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/3");
+      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
       preferences.highword3 = g_strdup (str);
+    }
+
     str = gtk_editable_get_chars (GTK_EDITABLE (phighentry4), 0, -1);
+    highmenu = gtk_ui_manager_get_widget
+      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/4");
     if (strlen(str) == 0)
+    {
+      gtk_label_set_text
+        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
       preferences.highword4 = g_strdup ("?");
+    }
     else
+    {
+      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
       preferences.highword4 = g_strdup (str);
+    }
+
     str = gtk_editable_get_chars (GTK_EDITABLE (phighentry5), 0, -1);
+    highmenu = gtk_ui_manager_get_widget
+      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/5");
     if (strlen(str) == 0)
+    {
+      gtk_label_set_text
+        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
       preferences.highword5 = g_strdup ("?");
+    }
     else
+    {
+      highmenu = gtk_ui_manager_get_widget
+        (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/5");
+      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
       preferences.highword5 = g_strdup (str);
+    }
+
     str = gtk_editable_get_chars (GTK_EDITABLE (phighentry6), 0, -1);
+    highmenu = gtk_ui_manager_get_widget
+      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/6");
     if (strlen(str) == 0)
+    {
+      gtk_label_set_text
+        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
       preferences.highword6 = g_strdup ("?");
+    }
     else
+    {
+      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
       preferences.highword6 = g_strdup (str);
+    }
+
     str = gtk_editable_get_chars (GTK_EDITABLE (phighentry7), 0, -1);
+    highmenu = gtk_ui_manager_get_widget
+      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/7");
     if (strlen(str) == 0)
+    {
+      gtk_label_set_text
+        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
       preferences.highword7 = g_strdup ("?");
+    }
     else
+    {
+      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
       preferences.highword7 = g_strdup (str);
+    }
+
     str = gtk_editable_get_chars (GTK_EDITABLE (phighentry8), 0, -1);
+    highmenu = gtk_ui_manager_get_widget
+      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/8");
     if (strlen(str) == 0)
+    {
+      gtk_label_set_text
+        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
       preferences.highword8 = g_strdup ("?");
+    }
     else
+    {
+      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
       preferences.highword8 = g_strdup (str);
+    }
 
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
     table = gtk_text_buffer_get_tag_table (buffer);
