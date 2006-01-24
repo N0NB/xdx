@@ -404,49 +404,6 @@ contains_highlights (gchar *str)
 		return TRUE;
 	return FALSE;
 }
-/*
- * insert text and when it has a smiley, replace it with a pixmap
- */
-static void insert_with_smileys
-(GtkTextView *textview, gchar *str, gchar *tag)
-{
-  GtkTextIter istart, end, iend;
-  GtkTextBuffer *buf;
-  GtkTextMark *mark_start;
-  GtkTextChildAnchor *anchor;
-  GtkWidget *swidget;
-  smiley *s;
-
-  buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (textview));
-  gtk_text_buffer_get_end_iter (buf, &end);
-
-  if (tag)
-    gtk_text_buffer_insert_with_tags_by_name (buf, &end, str, -1, tag, NULL);
-  else
-    gtk_text_buffer_insert (buf, &end, str, -1);
-
-  mark_start = gtk_text_buffer_get_insert (buf);
-  gtk_text_buffer_get_iter_at_mark (buf, &istart, mark_start);
-  gtk_text_buffer_get_start_iter (buf, &iend);
-  gtk_text_iter_backward_char (&istart);
-
-  if (!smileylist) create_smiley_list ();
-  while (smileylist)
-  {
-    s = (smiley *) smileylist->data;
-    while (gtk_source_iter_backward_search
-      (&istart, s->str, GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &istart, &iend, NULL))
-    {               
-      swidget = gtk_image_new_from_file (s->file);
-      gtk_text_buffer_delete (buf, &istart, &iend);
-      anchor = gtk_text_buffer_create_child_anchor (buf, &istart);
-      gtk_text_view_add_child_at_anchor (GTK_TEXT_VIEW (textview), 
-        GTK_WIDGET(swidget), anchor);
-      gtk_widget_show (swidget);
-    }
-    smileylist = smileylist->next;
-  }
-}
 
 /*
  * add text to the text widget and dx messages to the list
@@ -635,12 +592,9 @@ maintext_add (gchar msg[], gint len, gint messagetype)
     {
       if (msg && msg[0] && (utf8 = try_utf8(msg)))
       {
-        if (contains_smileys (utf8))
-          insert_with_smileys (GTK_TEXT_VIEW(maintext), utf8, "sent");
-        else
           gtk_text_buffer_insert_with_tags_by_name 
             (buffer, &end, utf8, len, "sent", NULL);
-        g_free (utf8);
+          g_free (utf8);
       }
     }
 }
