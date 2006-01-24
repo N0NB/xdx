@@ -6,13 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-01-24 21:01+0100\n"
-"PO-Revision-Date: 2006-01-24 21:08+0100\n"
+"POT-Creation-Date: 2006-01-24 21:12+0100\n"
+"PO-Revision-Date: 2006-01-24 21:12+0100\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8-bit"
 
 #: src/gui_aboutdialog.c:61
 msgid "xdx - about"
@@ -44,8 +44,8 @@ msgid "H_elp"
 msgstr "_Hulp"
 
 #: src/gui.c:72
-msgid "H_ighlights"
-msgstr "_Oplichten"
+msgid "Highlights"
+msgstr "Oplichten"
 
 #: src/gui.c:74
 msgid "Quit"
