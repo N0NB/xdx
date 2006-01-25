@@ -11,7 +11,7 @@ EXTRA_DIST = config.rpath mkinstalldirs  \
 	MANUAL.nl \
 	MANUAL.pl
 
-SUBDIRS = \
+SUBDIRS = m4 \
 	po \
 	src
 
