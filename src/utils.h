@@ -46,7 +46,7 @@
 
 void add_pixmap_directory (const gchar * directory);
 void updatestatusbar (GString * statusmessage, gboolean timeout);
-void menu_set_sensitive (GtkUIManager *ui_manager, const gchar * path, gboolean sens);
+void menu_set_sensitive (GtkUIManager *uim, const gchar * path, gboolean sens);
 void openurl (gchar *url);
 void openmail (gchar *url);
 gchar *try_utf8 (const gchar *str);

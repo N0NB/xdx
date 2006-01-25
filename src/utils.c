@@ -88,14 +88,12 @@ updatestatusbar (GString * statusmessage, gboolean timeout)
  */
 
 void
-menu_set_sensitive (GtkUIManager *ifa, const gchar * path, gboolean sens)
+menu_set_sensitive (GtkUIManager *uim, const gchar * path, gboolean sens)
 {
-  GtkWidget *w;
+  GtkAction *a;
 
-  g_return_if_fail (ifa != NULL);
-
-  w = gtk_ui_manager_get_widget (ifa, path);
-  gtk_widget_set_sensitive (w, sens);
+  a = gtk_ui_manager_get_action (uim, path);
+  gtk_action_set_sensitive (a, sens);
 }
 
 static void shellcommand (gchar *command)
