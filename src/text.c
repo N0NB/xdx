@@ -306,11 +306,10 @@ dxinfo *new_dx(void)
  * 01234567890123456789012345678901234567890123456789012345678901234567890123456789
  *       -                   -            -     <-- fixed positions
  */
-static dxinfo *
-extractinfo(gchar *msg)
+static gchar* extractinfo(gchar *msg)
 {
-  gchar *dxmsg, *info;
-  gint l, len;
+  gchar *dxmsg, *info, *ret;
+  gint l;
 
   dx = new_dx();
   info = g_strdup(msg);
@@ -340,14 +339,11 @@ extractinfo(gchar *msg)
     dx->dx = FALSE;
     dx->nodx = TRUE;
   }
-  if ((len = msg - dxmsg) > 0) 
-  { /* dx and other messages on one line */
-    dx->toall = g_strndup(msg, len);
-    dx->nodx = TRUE;
-  }
   
   g_free(info);
-  return(dx);
+
+  if ((ret = g_strrstr(msg, "\n")))
+  return (ret + 1); else return NULL;
 }
 
 /*
@@ -438,7 +434,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
         gdk_beep();
         g_strdelimit(msg, "\a", ' ');
       }
-      dx = extractinfo(msg);
+      while ((msg = extractinfo(msg)))
+      {
       if (dx->dx)
       { 
         g_strstrip(dx->freq);
@@ -595,6 +592,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
         g_free(dx->toall);
       }
       g_free(dx);
+      }
     }
     else if (messagetype == MESSAGE_TX)
     {
