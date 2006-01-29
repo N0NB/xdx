@@ -450,11 +450,15 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           gtk_tree_store_set (model, &iter, REM_COLUMN, dx->remark, -1);
           g_free (utf8);
         }
-        path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &iter);
-        gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL, FALSE);
-        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path,
-        	NULL, TRUE, 0.0, 1.0);
-        gtk_tree_path_free (path);
+
+	if (!GTK_WIDGET_HAS_FOCUS(treeview))
+        {
+          path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &iter);
+          gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL, FALSE);
+          gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (treeview), path,
+            NULL, TRUE, 0.0, 1.0);
+          gtk_tree_path_free (path);
+        }
 
         g_free(dx->spotter);
         g_free(dx->freq);
