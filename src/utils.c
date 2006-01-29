@@ -158,16 +158,36 @@ gchar *try_utf8 (const gchar *str)
 {
   gsize converted;
   gchar *utf8;
+  GError *error = NULL;
 
   if (str == NULL) return NULL;
 
-  if (g_utf8_validate(str, -1, NULL)) return g_strdup(str);
+  if (g_utf8_validate(str, -1, NULL))
+    return g_strdup(str);
  
-  utf8 = g_locale_to_utf8(str, -1, &converted, NULL, NULL);
-  if (utf8) return(utf8);
+  utf8 = g_locale_to_utf8(str, -1, &converted, NULL, &error);
+  if (utf8)
+    return(utf8);
+  else 
+    g_warning (_("%d: Unable to convert '%s' to UTF-8: %s"),
+      1, str, error->message);
 
-  utf8 = g_convert(str, -1, "UTF-8", "ISO-8859-15", &converted, NULL, NULL);
-  if (utf8 && converted == strlen (str)) return(utf8);
+  error = NULL;
+  utf8 = g_convert_with_fallback
+    (str, -1, "UTF-8", "ISO-8859-1", ".", &converted, NULL, &error);
+  if (utf8)
+    return(utf8);
+  else 
+    g_warning (_("%d: Unable to convert '%s' to UTF-8: %s"),
+      2, str, error->message);
 
+  error = NULL;
+  utf8 = g_convert_with_fallback
+    (str, -1, "UTF-8", "ISO-8859-15", ".", &converted, NULL, &error);
+  if (utf8)
+    return(utf8);
+  else 
+    g_warning (_("%d: Unable to convert '%s' to UTF-8: %s"),
+      3, str, error->message);
   return(NULL);
 }
