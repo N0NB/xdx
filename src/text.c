@@ -314,7 +314,7 @@ static gchar* extractinfo(gchar *msg)
   dx = new_dx();
   info = g_strdup(msg);
 
-  if ((dxmsg = g_strrstr(info, "DX de ")) && (info[0] == 'D'))
+  if ((dxmsg = strstr(info, "DX de ")) && (info[0] == 'D'))
   {
     if (preferences.savedx) savedx (msg);
     dx->spotter = g_strdup(findcall(dxmsg + 6, &l));
@@ -336,14 +336,19 @@ static gchar* extractinfo(gchar *msg)
     dx->time = NULL;
     dx->info = NULL;
     dx->toall = g_strdup(msg);
+    ret = strstr(dx->toall, "\n");
+    if (ret) *ret = '\0';
     dx->dx = FALSE;
     dx->nodx = TRUE;
   }
   
   g_free(info);
 
-  if ((ret = g_strrstr(msg, "\n")))
-  return (ret + 1); else return NULL;
+  ret = strstr(msg, "\n");
+  if (ret)
+    return (ret + 1); 
+  else
+    return NULL;
 }
 
 /*
@@ -470,17 +475,19 @@ maintext_add (gchar msg[], gint len, gint messagetype)
       if (dx->nodx)  
       {
         gtk_text_buffer_place_cursor(buffer, &end);
-        if (!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
+        if ((!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
             || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
+            && (utf8 = try_utf8(dx->toall)))
         {
-          gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, 
-            len, "wwv", NULL); /* should be utf-8 clean */
+          gtk_text_buffer_insert_with_tags_by_name
+            (buffer, &end, utf8, -1, "wwv", NULL);
           if (preferences.savewwv) savewwv (dx->toall);
         }
-        else if (!g_ascii_strncasecmp (dx->toall, "WX de ", 5))
+        else if (!g_ascii_strncasecmp (dx->toall, "WX de ", 5)
+          && (utf8 = try_utf8(dx->toall)))
         {
-          gtk_text_buffer_insert_with_tags_by_name (buffer, &end, dx->toall, 
-            len, "wx", NULL); /* should be utf-8 clean */
+          gtk_text_buffer_insert_with_tags_by_name
+            (buffer, &end, utf8, -1, "wx", NULL);
           if (preferences.savewx) savewx (dx->toall);
         }
         else
