@@ -22,29 +22,46 @@
  */
 
 #include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
+#include <string.h>
 
 #include "gui.h"
+#include "preferences.h"
 #include "utils.h"
 
-#define XDX_HOMEPAGE "http://www.qsl.net/pg4i/linux/xdx.html"
+extern preferencestype preferences;
 
-/*
- * the link is clicked in the about dialog
- */
-static gboolean on_weblink_button_press_event (GtkWidget *widget, 
-  GdkEventButton *event)
+static void
+handle_url (GtkAboutDialog *about, const char *link, gpointer data)
 {
-  openurl (XDX_HOMEPAGE);
-  return FALSE;
+	gchar *command[] = {NULL, NULL, NULL};
+	gchar *space = NULL;
+
+	command[0] = g_strdup(preferences.browserapp);
+	space = strstr (command[0], " ");
+	if (space)
+		*space = '\0';
+	command[1] = g_strdup (link);
+	g_spawn_async
+		(NULL, command, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
+	g_free (command[0]);
+	g_free (command[1]);
 }
 
-
-static void event_destroy(gpointer data)
+static void
+handle_email (GtkAboutDialog *about, const char *link, gpointer data)
 {
-  GtkWidget *aboutdialog = (GtkWidget *)data;
-  
-  aboutdialog = NULL;
+	gchar *command[] = {NULL, NULL, NULL};
+	gchar *space = NULL;
+
+	command[0] = g_strdup(preferences.mailapp);
+	space = strstr (command[0], " ");
+	if (space)
+		*space = '\0';
+	command[1] = g_strdup_printf ("mailto:%s", link);
+	g_spawn_async
+		(NULL, command, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
+	g_free (command[0]);
+	g_free (command[1]);
 }
 
 /*
@@ -53,59 +70,39 @@ static void event_destroy(gpointer data)
 void
 on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
-  GtkWidget *aboutdialog, *vbox, *aboutlabel, *separator, *eventbox;
-  GString *labeltext = g_string_new ("");
-  PangoFontDescription *font;
-  GdkCursor *cursor;
+	gchar *authors[] = { "Joop Stakenborg PG4I <pg4i@amsat.org>", NULL };
+	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file
+		(PACKAGE_DATA_DIR "/pixmaps/xdx.png", NULL);
 
-  aboutdialog = gtk_dialog_new_with_buttons (_("xdx - about"), 
-    GTK_WINDOW (gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, 
-    GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
+	gtk_about_dialog_set_url_hook (handle_url, NULL, NULL);
+	gtk_about_dialog_set_email_hook (handle_email, NULL, NULL);
 
-  g_signal_connect(G_OBJECT(aboutdialog), "destroy",
-                         GTK_SIGNAL_FUNC(event_destroy), aboutdialog);
-  g_signal_connect(G_OBJECT(aboutdialog), "response",
-                         GTK_SIGNAL_FUNC(gtk_widget_destroy), NULL);
-
-
-  vbox = gtk_vbox_new (FALSE, 8);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), 8);
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (aboutdialog)->vbox), vbox, FALSE,
-		      FALSE, 0);
-
-  g_string_printf (labeltext, _("%s version %s"),
-		   PACKAGE, VERSION);
-  aboutlabel = gtk_label_new (labeltext->str);
-  font = pango_font_description_from_string("helvetica bold 25");
-  gtk_widget_modify_font(aboutlabel, font);
-  pango_font_description_free(font);
-  gtk_box_pack_start (GTK_BOX (vbox), aboutlabel, FALSE, FALSE, 0);
-
-  separator = gtk_hseparator_new();
-  gtk_box_pack_start (GTK_BOX (vbox), separator, FALSE, FALSE, 0);
-
-  g_string_printf (labeltext, "Copyright (C) 2002, Joop Stakenborg <pg4i@amsat.org>");
-  aboutlabel = gtk_label_new (labeltext->str);
-  gtk_box_pack_start (GTK_BOX (vbox), aboutlabel, FALSE, FALSE, 0);
-
-  eventbox = gtk_event_box_new();
-  g_signal_connect(G_OBJECT(eventbox), "button_press_event",
-			G_CALLBACK(on_weblink_button_press_event), NULL);
-  gtk_box_pack_start(GTK_BOX(vbox), eventbox, FALSE, FALSE, 0);
-
-  g_string_printf (labeltext, "<u>"XDX_HOMEPAGE"</u>");
-  aboutlabel = gtk_label_new (labeltext->str);
-  gtk_label_set_use_markup(GTK_LABEL(aboutlabel), TRUE);
-  gtk_container_add (GTK_CONTAINER (eventbox), aboutlabel);
-
-  g_string_printf (labeltext, _("Published under the GNU General Public License"));
-  aboutlabel = gtk_label_new (labeltext->str);
-  g_string_free (labeltext, TRUE);
-  gtk_box_pack_start (GTK_BOX (vbox), aboutlabel, FALSE, FALSE, 0);
-
-  gtk_widget_show_all(aboutdialog);
-
-  cursor = gdk_cursor_new(GDK_HAND2);
-  gdk_window_set_cursor(eventbox->window, cursor);
-  gdk_cursor_unref(cursor);
+	gtk_show_about_dialog (GTK_WINDOW(gui->window), 
+		"authors", authors,
+		"comments", _("Tcp/ip DX cluster client for amateur radio operators"),
+		"license", 
+"Copyright (C) 2002 - 2006 Joop Stakenborg <pg4i@amsat.org>\n"
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 2 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n"
+"GNU Library General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n",
+		"website", "http://www.qsl.net/pg4i/linux/xdx.html",
+		"logo", pixbuf,
+		"translator-credits",
+"Dutch: Joop Stakenborg PG4I <pg4i@amsat.org>\n"
+"French: Jean-Luc Coulon F5IBH <jean-luc.coulon@wanadoo.fr>\n"
+"Polish: Boguslaw Ciastek SQ5TB <ciacho@z.pl>\n"
+"Spanish: Baltasar Perez (EC8AYR) <ec8ayr@yahoo.com>\n",
+		"version", VERSION,
+		NULL);
 }
