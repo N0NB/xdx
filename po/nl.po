@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-01-30 10:13+0100\n"
-"PO-Revision-Date: 2006-01-30 10:13+0100\n"
+"POT-Creation-Date: 2006-01-30 18:00+0100\n"
+"PO-Revision-Date: 2006-01-30 17:59+0100\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit"
+"Content-Transfer-Encoding: 8-bit\n"
 
-#: src/gui_aboutdialog.c:82
+#: src/gui_aboutdialog.c:60
 msgid "Tcp/ip DX cluster client for amateur radio operators"
 msgstr "Tcp/ip·DX·cluster·client·voor zendamateurs"
 
@@ -36,7 +36,7 @@ msgstr "_Hulp"
 
 #: src/gui.c:72
 msgid "Highlights"
-msgstr "Oplichten"
+msgstr "Achtergrond"
 
 #: src/gui.c:74
 msgid "Quit"
@@ -263,11 +263,11 @@ msgstr "Kies A_nder lettertype"
 
 #: src/gui_settingsdialog.c:472
 msgid "Highlighting"
-msgstr "Oplichten"
+msgstr "Achtergrond"
 
 #: src/gui_settingsdialog.c:476
 msgid "Words and colors to use for highlighting"
-msgstr "Woorden en kleuren te gebruiken voor het oplichten"
+msgstr "Woorden en kleuren te gebruiken voor text achtergrond"
 
 #: src/main.c:241
 #, c-format
