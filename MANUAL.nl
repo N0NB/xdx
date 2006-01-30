@@ -76,7 +76,7 @@ Oplichten
 =========
 Op bladzijde 3 van het voorkeuren venster kun je 8 verschillende woorden
 invoeren om te laten oplichten in het onderste venster. Je moet ook het
-oplichten aanzetten voor het betreffende woord in het menu (voorkeuren
+oplichten aanzetten voor het betreffende woord in het menu (instellingen
 -> oplichten).
 
 Smileys
