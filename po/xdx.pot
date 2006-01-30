@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-12 17:50+0200\n"
+"Report-Msgid-Bugs-To: pg4i@amsat.org\n"
+"POT-Creation-Date: 2006-01-30 10:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,73 +16,73 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gui.c:46
-msgid "/_Program"
+#: src/gui_aboutdialog.c:82
+msgid "Tcp/ip DX cluster client for amateur radio operators"
 msgstr ""
 
-#: src/gui.c:47
-msgid "/_Program/Quit"
+#: src/gui.c:68
+msgid "_Program"
 msgstr ""
 
-#: src/gui.c:49
-msgid "/_Host"
+#: src/gui.c:69
+msgid "_Host"
 msgstr ""
 
-#: src/gui.c:50
-msgid "/_Host/Open"
+#: src/gui.c:70
+msgid "_Settings"
 msgstr ""
 
-#: src/gui.c:52
-msgid "/_Host/Close"
+#: src/gui.c:71
+msgid "H_elp"
 msgstr ""
 
-#: src/gui.c:54
-msgid "/_Settings"
+#: src/gui.c:72
+msgid "Highlights"
 msgstr ""
 
-#: src/gui.c:55
-msgid "/_Settings/Preferences"
+#: src/gui.c:74
+msgid "Quit"
 msgstr ""
 
-#: src/gui.c:57
-msgid "/H_elp"
+#: src/gui.c:76
+msgid "Open..."
 msgstr ""
 
-#: src/gui.c:58
-msgid "/H_elp/Manual"
+#: src/gui.c:78
+msgid "Close"
 msgstr ""
 
-#: src/gui.c:60
-msgid "/H_elp/About"
+#: src/gui.c:80
+msgid "Preferences..."
 msgstr ""
 
-#: src/gui.c:123
+#: src/gui.c:82
+msgid "Manual"
+msgstr ""
+
+#: src/gui.c:84
+msgid "About"
+msgstr ""
+
+#: src/gui.c:167
 #, c-format
 msgid "Error loading icon: %s"
 msgstr ""
 
-#: src/gui.c:158
+#: src/gui.c:200 src/gui_settingsdialog.c:388
 msgid "Spotter"
 msgstr ""
 
-#: src/gui.c:179
+#: src/gui.c:224 src/gui_settingsdialog.c:394
 msgid "Remarks"
 msgstr ""
 
-#: src/gui.c:186
+#: src/gui.c:232 src/gui_settingsdialog.c:396
 msgid "Time"
 msgstr ""
 
-#: src/gui_opendialog.c:48
-msgid "xdx - open connection"
-msgstr ""
-
-#: src/gui_opendialog.c:68
-msgid "_Hostname"
-msgstr ""
-
-#: src/gui_opendialog.c:76
-msgid "_Port"
+#: src/gui.c:240 src/gui_settingsdialog.c:398
+msgid "Info"
 msgstr ""
 
 #: src/gui_closedialog.c:44
@@ -94,113 +94,180 @@ msgstr ""
 msgid "Close connection to %s ?"
 msgstr ""
 
-#: src/gui_aboutdialog.c:61
-msgid "xdx - about"
+#: src/gui_closedialog.c:72
+msgid "Connection closed"
 msgstr ""
 
-#: src/gui_aboutdialog.c:76
-#, c-format
-msgid "%s version %s"
+#: src/gui_manualdialog.c:40
+msgid "xdx - manual"
 msgstr ""
 
-#: src/gui_aboutdialog.c:101
-msgid "Published under the GNU General Public License"
+#. TRANSLATORS:
+#. * Do not translate MANUAL unless you provide a faq in your language,
+#. * e.g. the polish faq is called MANUAL.pl.
+#.
+#: src/gui_manualdialog.c:59
+msgid "MANUAL"
 msgstr ""
 
-#: src/gui_settingsdialog.c:128
+#: src/gui_opendialog.c:49
+msgid "xdx - open connection"
+msgstr ""
+
+#: src/gui_opendialog.c:69
+msgid "_Hostname"
+msgstr ""
+
+#: src/gui_opendialog.c:83
+msgid "_Port"
+msgstr ""
+
+#: src/gui_settingsdialog.c:112
+msgid "xdx - Select a font"
+msgstr ""
+
+#: src/gui_settingsdialog.c:125
+msgid "How about this font?"
+msgstr ""
+
+#: src/gui_settingsdialog.c:211
 msgid "xdx - preferences"
 msgstr ""
 
-#: src/gui_settingsdialog.c:144
-msgid "Enable autologin"
+#: src/gui_settingsdialog.c:229 src/gui_settingsdialog.c:371
+msgid "General"
 msgstr ""
 
-#: src/gui_settingsdialog.c:150
-msgid "Callsign"
+#: src/gui_settingsdialog.c:232
+msgid "Output"
 msgstr ""
 
-#: src/gui_settingsdialog.c:157
-msgid "Commands"
-msgstr ""
-
-#: src/gui_settingsdialog.c:164
-msgid "Comma separated list of commands to send at login"
-msgstr ""
-
-#: src/gui_settingsdialog.c:166
-msgid "Callsign to be used for login"
-msgstr ""
-
-#: src/gui_settingsdialog.c:168
-msgid "Login"
-msgstr ""
-
-#: src/gui_settingsdialog.c:198
-msgid "Save DX spots"
-msgstr ""
-
-#: src/gui_settingsdialog.c:200
-msgid "Save WCY/WWV"
-msgstr ""
-
-#: src/gui_settingsdialog.c:202
-msgid "Save \"To all\""
-msgstr ""
-
-#: src/gui_settingsdialog.c:204
-msgid "Save WX"
-msgstr ""
-
-#: src/gui_settingsdialog.c:206
-msgid "Saving"
-msgstr ""
-
-#: src/gui_settingsdialog.c:231
-msgid "Enable hamlib"
-msgstr ""
-
-#: src/gui_settingsdialog.c:237
-msgid "Command for rigctl"
-msgstr ""
-
-#: src/gui_settingsdialog.c:242
-msgid "Hamlib"
+#: src/gui_settingsdialog.c:235 src/gui_settingsdialog.c:443
+msgid "Fonts"
 msgstr ""
 
 #: src/gui_settingsdialog.c:245
+msgid "Enable autologin"
+msgstr ""
+
+#: src/gui_settingsdialog.c:251
+msgid "Callsign"
+msgstr ""
+
+#: src/gui_settingsdialog.c:258
+msgid "Commands"
+msgstr ""
+
+#: src/gui_settingsdialog.c:265
+msgid "Comma separated list of commands to send at login"
+msgstr ""
+
+#: src/gui_settingsdialog.c:267
+msgid "Callsign to be used for login"
+msgstr ""
+
+#: src/gui_settingsdialog.c:269
+msgid "Login"
+msgstr ""
+
+#: src/gui_settingsdialog.c:300
+msgid "Enable hamlib"
+msgstr ""
+
+#: src/gui_settingsdialog.c:306
+msgid "Command for rigctl"
+msgstr ""
+
+#: src/gui_settingsdialog.c:311
+msgid "Hamlib"
+msgstr ""
+
+#: src/gui_settingsdialog.c:314
 #, c-format
 msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
 "using rigctl (%d = the frequency retrieved from the DX spot)"
 msgstr ""
 
-#: src/gui_settingsdialog.c:272
+#: src/gui_settingsdialog.c:341
 msgid "Web browser"
 msgstr ""
 
-#: src/gui_settingsdialog.c:279
+#: src/gui_settingsdialog.c:348
 msgid "Mail program"
 msgstr ""
 
-#: src/gui_settingsdialog.c:284
+#: src/gui_settingsdialog.c:353
 msgid "Programs"
 msgstr ""
 
-#: src/gui_settingsdialog.c:287
+#: src/gui_settingsdialog.c:356
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
 msgstr ""
 
-#: src/gui_settingsdialog.c:289
+#: src/gui_settingsdialog.c:358
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
 
-#: src/gui_manualdialog.c:39
-msgid "xdx - manual"
+#: src/gui_settingsdialog.c:369
+msgid "Echo sent text to the screen"
 msgstr ""
 
-#: src/main.c:80
+#: src/gui_settingsdialog.c:382
+msgid "Columns"
+msgstr ""
+
+#: src/gui_settingsdialog.c:384
+msgid "Columns to show on the screen"
+msgstr ""
+
+#: src/gui_settingsdialog.c:430
+msgid "Save DX spots"
+msgstr ""
+
+#: src/gui_settingsdialog.c:432
+msgid "Save WCY/WWV"
+msgstr ""
+
+#: src/gui_settingsdialog.c:434
+msgid "Save \"To all\""
+msgstr ""
+
+#: src/gui_settingsdialog.c:436
+msgid "Save WX"
+msgstr ""
+
+#: src/gui_settingsdialog.c:438
+msgid "Saving"
+msgstr ""
+
+#: src/gui_settingsdialog.c:447
+msgid "Font for DX messages"
+msgstr ""
+
+#: src/gui_settingsdialog.c:450
+msgid "Select _DX Font"
+msgstr ""
+
+#: src/gui_settingsdialog.c:457
+msgid "Font for other messages"
+msgstr ""
+
+#: src/gui_settingsdialog.c:460
+msgid "Select _Other Fonts"
+msgstr ""
+
+#: src/gui_settingsdialog.c:472
+msgid "Highlighting"
+msgstr ""
+
+#: src/gui_settingsdialog.c:476
+msgid "Words and colors to use for highlighting"
+msgstr ""
+
+#: src/main.c:241
 #, c-format
 msgid "Welcome to %s"
 msgstr ""
@@ -230,6 +297,10 @@ msgstr ""
 msgid "Error on setting channel encoding: %s"
 msgstr ""
 
+#: src/net.c:218 src/net.c:231
+msgid "Connection closed by remote host"
+msgstr ""
+
 #: src/net.c:282
 #, c-format
 msgid "Write failed: %s"
@@ -239,22 +310,27 @@ msgstr ""
 msgid "Nothing to send, you are not connected"
 msgstr ""
 
-#: src/preferences.c:47
+#: src/preferences.c:46
 #, c-format
 msgid "Creating ~/.%s directory."
 msgstr ""
 
-#: src/preferences.c:50
+#: src/preferences.c:49
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr ""
 
-#: src/utils.c:119
+#: src/utils.c:117
 #, c-format
 msgid "Fork has failed: %s"
 msgstr ""
 
-#: src/utils.c:134 src/utils.c:149
+#: src/utils.c:132 src/utils.c:147
 #, c-format
 msgid "Starting: %s"
+msgstr ""
+
+#: src/utils.c:172 src/utils.c:181 src/utils.c:190
+#, c-format
+msgid "%d: Unable to convert '%s' to UTF-8: %s"
 msgstr ""

@@ -6,26 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-01-30 08:39+0100\n"
-"PO-Revision-Date: 2006-01-30 08:42+0100\n"
+"POT-Creation-Date: 2006-01-30 10:13+0100\n"
+"PO-Revision-Date: 2006-01-30 10:13+0100\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit"
 
-#: src/gui_aboutdialog.c:61
-msgid "xdx - about"
-msgstr "xdx - info"
-
-#: src/gui_aboutdialog.c:76
-#, c-format
-msgid "%s version %s"
-msgstr "%s versie %s"
-
-#: src/gui_aboutdialog.c:101
-msgid "Published under the GNU General Public License"
-msgstr "Vrijgegeven onder the GNU General Public License"
+#: src/gui_aboutdialog.c:82
+msgid "Tcp/ip DX cluster client for amateur radio operators"
+msgstr "Tcp/ip·DX·cluster·client·voor zendamateurs"
 
 #: src/gui.c:68
 msgid "_Program"
@@ -345,6 +336,15 @@ msgstr "Starten van: %s"
 #, c-format
 msgid "%d: Unable to convert '%s' to UTF-8: %s"
 msgstr "%d: Kan '%s' niet converteren naar UTF-8: %s"
+
+#~ msgid "xdx - about"
+#~ msgstr "xdx - info"
+
+#~ msgid "%s version %s"
+#~ msgstr "%s versie %s"
+
+#~ msgid "Published under the GNU General Public License"
+#~ msgstr "Vrijgegeven onder the GNU General Public License"
 
 #~ msgid "/_Program/Quit"
 #~ msgstr "/_Programma/Afsluiten"

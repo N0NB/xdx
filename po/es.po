@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  xdx 1.2\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-01-24 21:01+0100\n"
+"POT-Creation-Date: 2006-01-30 10:13+0100\n"
 "PO-Revision-Date: 2004-05-21 23:10+0100\n"
 "Last-Translator: Baltasar Perez (ec8ayr) <ec8ayr@yahoo.com>\n"
 "Language-Team: es <ec8ayr@yahoo.com>\n"
@@ -14,18 +14,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gui_aboutdialog.c:61
-msgid "xdx - about"
-msgstr "xdx - acerca de"
-
-#: src/gui_aboutdialog.c:76
-#, c-format
-msgid "%s version %s"
-msgstr "%s versión %s"
-
-#: src/gui_aboutdialog.c:101
-msgid "Published under the GNU General Public License"
-msgstr "Publicado bajo la Licencia Pública General GNU"
+#: src/gui_aboutdialog.c:82
+msgid "Tcp/ip DX cluster client for amateur radio operators"
+msgstr ""
 
 #: src/gui.c:68
 #, fuzzy
@@ -48,7 +39,7 @@ msgid "H_elp"
 msgstr "/_Ayuda"
 
 #: src/gui.c:72
-msgid "H_ighlights"
+msgid "Highlights"
 msgstr ""
 
 #: src/gui.c:74
@@ -111,7 +102,7 @@ msgstr "¿Cerrar la conexión con %s?"
 msgid "Connection closed"
 msgstr "Conexión finalizada"
 
-#: src/gui_manualdialog.c:39
+#: src/gui_manualdialog.c:40
 msgid "xdx - manual"
 msgstr "xdx - manual"
 
@@ -119,7 +110,7 @@ msgstr "xdx - manual"
 #. * Do not translate MANUAL unless you provide a faq in your language,
 #. * e.g. the polish faq is called MANUAL.pl.
 #.
-#: src/gui_manualdialog.c:56
+#: src/gui_manualdialog.c:59
 msgid "MANUAL"
 msgstr "MANUAL.es"
 
@@ -339,15 +330,29 @@ msgstr "Creando el directorio ~/.%s"
 msgid "~/.%s is not a directory."
 msgstr "~/.%s no es un directorio"
 
-#: src/utils.c:119
+#: src/utils.c:117
 #, c-format
 msgid "Fork has failed: %s"
 msgstr "Ha fallado el fork: %s"
 
-#: src/utils.c:134 src/utils.c:149
+#: src/utils.c:132 src/utils.c:147
 #, c-format
 msgid "Starting: %s"
 msgstr "Iniciando: %s"
+
+#: src/utils.c:172 src/utils.c:181 src/utils.c:190
+#, c-format
+msgid "%d: Unable to convert '%s' to UTF-8: %s"
+msgstr ""
+
+#~ msgid "xdx - about"
+#~ msgstr "xdx - acerca de"
+
+#~ msgid "%s version %s"
+#~ msgstr "%s versión %s"
+
+#~ msgid "Published under the GNU General Public License"
+#~ msgstr "Publicado bajo la Licencia Pública General GNU"
 
 #~ msgid "/_Program/Quit"
 #~ msgstr "/_Programa/Salir"
