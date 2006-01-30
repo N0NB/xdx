@@ -6,13 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-01-24 21:12+0100\n"
-"PO-Revision-Date: 2006-01-24 21:17+0100\n"
+"POT-Creation-Date: 2006-01-30 08:39+0100\n"
+"PO-Revision-Date: 2006-01-30 08:42+0100\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8-bit"
 
 #: src/gui_aboutdialog.c:61
 msgid "xdx - about"
@@ -105,7 +105,7 @@ msgstr "Verbinding naar %s sluiten ?"
 msgid "Connection closed"
 msgstr "Verbinding gesloten"
 
-#: src/gui_manualdialog.c:39
+#: src/gui_manualdialog.c:40
 msgid "xdx - manual"
 msgstr "xdx - handboek"
 
@@ -113,7 +113,7 @@ msgstr "xdx - handboek"
 #. * Do not translate MANUAL unless you provide a faq in your language,
 #. * e.g. the polish faq is called MANUAL.pl.
 #.
-#: src/gui_manualdialog.c:56
+#: src/gui_manualdialog.c:59
 msgid "MANUAL"
 msgstr "MANUAL.nl"
 
@@ -331,15 +331,20 @@ msgstr "Maken van ~/.%s bestandsmap."
 msgid "~/.%s is not a directory."
 msgstr "~/.%s is geen bestandsmap."
 
-#: src/utils.c:119
+#: src/utils.c:117
 #, c-format
 msgid "Fork has failed: %s"
 msgstr "Fork faalt: %s"
 
-#: src/utils.c:134 src/utils.c:149
+#: src/utils.c:132 src/utils.c:147
 #, c-format
 msgid "Starting: %s"
 msgstr "Starten van: %s"
+
+#: src/utils.c:172 src/utils.c:181 src/utils.c:190
+#, c-format
+msgid "%d: Unable to convert '%s' to UTF-8: %s"
+msgstr "%d: Kan '%s' niet converteren naar UTF-8: %s"
 
 #~ msgid "/_Program/Quit"
 #~ msgstr "/_Programma/Afsluiten"

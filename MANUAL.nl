@@ -72,6 +72,13 @@ Starten van de gnome web-browser indien op een URL wordt geklikt:
 Starten van mozilla-mail indien op een URL wordt geklikt:
 'mozilla -compose "to=%s"'.
 
+Oplichten
+=========
+Op bladzijde 3 van het voorkeuren venster kun je 8 verschillende woorden
+invoeren om te laten oplichten in het onderste venster. Je moet ook het
+oplichten aanzetten voor het betreffende woord in het menu (voorkeuren
+-> oplichten).
+
 Smileys
 =======
 Er is ondersteuning aanwezig voor een beperkt aantal smileys in het text

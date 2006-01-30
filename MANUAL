@@ -69,6 +69,12 @@ program (see the preferences dialog):
 Start the gnome web-browser when clicking a URL: 'epiphany %s'.
 Start mozilla-mail on clicking a mail URL: 'mozilla -compose "to=%s"'.
 
+Highlights
+==========
+Page 3 of the preferences dialog allows entry of 8 different words, which
+can be highlighted in the chat window. You should also enable the highlight
+in the menu (Settings -> Highlights).
+
 Smileys
 =======
 There is support for a limited number of smileys in the chat window:
