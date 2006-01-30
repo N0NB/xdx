@@ -16,7 +16,9 @@ Changelog for version xdx (1.3)
     in page 3 of the preferences dialog. You must also enable the corresponding
     highlight menu (Settings -> Highlights) for it to work. 
   * You can disable automatic scrolling of the chat window by clicking in the
-    window.
+    window. Same for the DX window.
+  * Parse of the DX cluster output has been improved. Xdx would sporadically
+    miss DX messages.
 
 Changelog for version xdx (1.2)
 
