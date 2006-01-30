@@ -33,35 +33,13 @@ extern preferencestype preferences;
 static void
 handle_url (GtkAboutDialog *about, const char *link, gpointer data)
 {
-	gchar *command[] = {NULL, NULL, NULL};
-	gchar *space = NULL;
-
-	command[0] = g_strdup(preferences.browserapp);
-	space = strstr (command[0], " ");
-	if (space)
-		*space = '\0';
-	command[1] = g_strdup (link);
-	g_spawn_async
-		(NULL, command, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
-	g_free (command[0]);
-	g_free (command[1]);
+	openurl (link);
 }
 
 static void
 handle_email (GtkAboutDialog *about, const char *link, gpointer data)
 {
-	gchar *command[] = {NULL, NULL, NULL};
-	gchar *space = NULL;
-
-	command[0] = g_strdup(preferences.mailapp);
-	space = strstr (command[0], " ");
-	if (space)
-		*space = '\0';
-	command[1] = g_strdup_printf ("mailto:%s", link);
-	g_spawn_async
-		(NULL, command, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
-	g_free (command[0]);
-	g_free (command[1]);
+	openmail (link);
 }
 
 /*

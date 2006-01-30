@@ -120,7 +120,7 @@ static void shellcommand (gchar *command)
   }
 }
  
-void openurl (gchar *url)
+void openurl (const char *url)
 {
   gchar buf[1024];
   GString *msg = g_string_new ("");
@@ -136,7 +136,7 @@ void openurl (gchar *url)
   g_string_free (msg, TRUE);
 }
 
-void openmail (gchar *url)
+void openmail (const char *url)
 {
   gchar buf[1024];
   GString *msg = g_string_new ("");
