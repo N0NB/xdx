@@ -87,14 +87,7 @@ static GtkActionEntry entries[] = {
 
 static GtkToggleActionEntry toggle_entries[] =
 {
-  { "1", NULL, "<empty>", NULL, "Highlight 1", G_CALLBACK(on_highlight_activate) },
-  { "2", NULL, "<empty>", NULL, "Highlight 2", G_CALLBACK(on_highlight_activate) },
-  { "3", NULL, "<empty>", NULL, "Highlight 3", G_CALLBACK(on_highlight_activate) },
-  { "4", NULL, "<empty>", NULL, "Highlight 4", G_CALLBACK(on_highlight_activate) },
-  { "5", NULL, "<empty>", NULL, "Highlight 5", G_CALLBACK(on_highlight_activate) },
-  { "6", NULL, "<empty>", NULL, "Highlight 6", G_CALLBACK(on_highlight_activate) },
-  { "7", NULL, "<empty>", NULL, "Highlight 7", G_CALLBACK(on_highlight_activate) },
-  { "8", NULL, "<empty>", NULL, "Highlight 8", G_CALLBACK(on_highlight_activate) },
+  { "Sidebar", NULL, "View chat sidebar", NULL, "Highlight 1", G_CALLBACK(on_highlight_activate) },
 };
 
 static const char *ui_description =
@@ -108,16 +101,7 @@ static const char *ui_description =
 "      <menuitem action='Close'/>"
 "    </menu>"
 "    <menu action='SettingsMenu'>"
-"      <menu action='HighMenu'>"
-"        <menuitem action='1'/>"
-"        <menuitem action='2'/>"
-"        <menuitem action='3'/>"
-"        <menuitem action='4'/>"
-"        <menuitem action='5'/>"
-"        <menuitem action='6'/>"
-"        <menuitem action='7'/>"
-"        <menuitem action='8'/>"
-"      </menu>"
+"      <menuitem action='Sidebar'/>"
 "      <menuitem action='Preferences'/>"
 "    </menu>"
 "    <menu action='HelpMenu'>"
@@ -147,8 +131,12 @@ void
 create_mainwindow (void)
 {
   GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned, *clistscrolledwindow,
-	  *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview,
-      *frame;
+    *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview,
+    *frame, *chathbox, *highvbox, *hbox,
+    *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
+    *highentry6, *highentry7, *highentry8, *highcheck1, *highcheck2,
+    *highcheck3, *highcheck4, *highcheck5, *highcheck6, *highcheck7,
+    *highcheck8;
   GtkCellRenderer *renderer, *boldrenderer;
   GtkTreeViewColumn *column;
   GtkTextBuffer *buffer, *entrybuffer;
@@ -246,6 +234,7 @@ create_mainwindow (void)
 
   gtk_container_add (GTK_CONTAINER (clistscrolledwindow), treeview);
 
+  chathbox = gtk_hbox_new (FALSE, 0);
   mainscrolledwindow = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (mainscrolledwindow),
 				  GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
@@ -263,10 +252,70 @@ create_mainwindow (void)
   gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue", 
 				    "underline", PANGO_UNDERLINE_SINGLE, NULL);
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);
+  gtk_box_pack_start (GTK_BOX (chathbox), mainscrolledwindow, TRUE, TRUE, 0);
+
+  highvbox = gtk_vbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (chathbox), highvbox, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highvbox), hbox);
+  highentry1 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highentry1, FALSE, FALSE, 0);
+  highcheck1 = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highcheck1, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highvbox), hbox);
+  highentry2 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highentry2, FALSE, FALSE, 0);
+  highcheck2 = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highcheck2, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highvbox), hbox);
+  highentry3 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highentry3, FALSE, FALSE, 0);
+  highcheck3 = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highcheck3, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highvbox), hbox);
+  highentry4 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highentry4, FALSE, FALSE, 0);
+  highcheck4 = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highcheck4, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highvbox), hbox);
+  highentry5 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highentry5, FALSE, FALSE, 0);
+  highcheck5 = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highcheck5, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highvbox), hbox);
+  highentry6 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highentry6, FALSE, FALSE, 0);
+  highcheck6 = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highcheck6, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highvbox), hbox);
+  highentry7 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highentry7, FALSE, FALSE, 0);
+  highcheck7 = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highcheck7, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highvbox), hbox);
+  highentry8 = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highentry8, FALSE, FALSE, 0);
+  highcheck8 = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (hbox), highcheck8, FALSE, FALSE, 0);
 
   vpaned = gtk_vpaned_new ();
   gtk_paned_add1 (GTK_PANED (vpaned), clistscrolledwindow);
-  gtk_paned_add2 (GTK_PANED (vpaned), mainscrolledwindow);
+  gtk_paned_add2 (GTK_PANED (vpaned), chathbox);
   gtk_box_pack_start (GTK_BOX (mainvbox), vpaned, TRUE, TRUE, 0);
 
   mainentry = gtk_text_view_new ();
@@ -307,6 +356,22 @@ create_mainwindow (void)
   g_object_set_data (G_OBJECT (gui->window), "model", model);
   g_object_set_data (G_OBJECT (gui->window), "buffer", buffer);
   g_object_set_data (G_OBJECT (gui->window), "vpaned", vpaned);
+  g_object_set_data (G_OBJECT (gui->window), "highcheck1", highcheck1);
+  g_object_set_data (G_OBJECT (gui->window), "highcheck2", highcheck2);
+  g_object_set_data (G_OBJECT (gui->window), "highcheck3", highcheck3);
+  g_object_set_data (G_OBJECT (gui->window), "highcheck4", highcheck4);
+  g_object_set_data (G_OBJECT (gui->window), "highcheck5", highcheck5);
+  g_object_set_data (G_OBJECT (gui->window), "highcheck6", highcheck6);
+  g_object_set_data (G_OBJECT (gui->window), "highcheck7", highcheck7);
+  g_object_set_data (G_OBJECT (gui->window), "highcheck8", highcheck8);
+  g_object_set_data (G_OBJECT (gui->window), "highentry1", highentry1);
+  g_object_set_data (G_OBJECT (gui->window), "highentry2", highentry2);
+  g_object_set_data (G_OBJECT (gui->window), "highentry3", highentry3);
+  g_object_set_data (G_OBJECT (gui->window), "highentry4", highentry4);
+  g_object_set_data (G_OBJECT (gui->window), "highentry5", highentry5);
+  g_object_set_data (G_OBJECT (gui->window), "highentry6", highentry6);
+  g_object_set_data (G_OBJECT (gui->window), "highentry7", highentry7);
+  g_object_set_data (G_OBJECT (gui->window), "highentry8", highentry8);
 
   cluster = new_cluster();
   g_object_set_data(G_OBJECT (gui->window), "cluster", cluster);
