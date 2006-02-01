@@ -148,7 +148,7 @@ main (int argc, char *argv[])
   if (preferences.highmenu[7] == '1')
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(highcheck8), TRUE);
   highentry1 = g_object_get_data (G_OBJECT (gui->window), "highentry1");
-  highentry2 = g_object_get_data (G_OBJECT (gui->window), "highentry");
+  highentry2 = g_object_get_data (G_OBJECT (gui->window), "highentry2");
   highentry3 = g_object_get_data (G_OBJECT (gui->window), "highentry3");
   highentry4 = g_object_get_data (G_OBJECT (gui->window), "highentry4");
   highentry5 = g_object_get_data (G_OBJECT (gui->window), "highentry5");

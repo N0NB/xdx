@@ -359,22 +359,40 @@ create_mainwindow (void)
         G_CALLBACK (on_maintext_event_after), NULL);
   g_signal_connect (G_OBJECT (treeview), "button-press-event",
         G_CALLBACK (double_click), NULL);
+
   g_signal_connect ((gpointer) highcheck1, "toggled",
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(1));
- g_signal_connect ((gpointer) highcheck2, "toggled",
+  g_signal_connect ((gpointer) highcheck2, "toggled",
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(2));
- g_signal_connect ((gpointer) highcheck3, "toggled",
+  g_signal_connect ((gpointer) highcheck3, "toggled",
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(3));
- g_signal_connect ((gpointer) highcheck4, "toggled",
+  g_signal_connect ((gpointer) highcheck4, "toggled",
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(4));
- g_signal_connect ((gpointer) highcheck5, "toggled",
+  g_signal_connect ((gpointer) highcheck5, "toggled",
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(5));
- g_signal_connect ((gpointer) highcheck6, "toggled",
+  g_signal_connect ((gpointer) highcheck6, "toggled",
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(6));
- g_signal_connect ((gpointer) highcheck7, "toggled",
+  g_signal_connect ((gpointer) highcheck7, "toggled",
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(7));
- g_signal_connect ((gpointer) highcheck8, "toggled",
+  g_signal_connect ((gpointer) highcheck8, "toggled",
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(8));
+
+  g_signal_connect (G_OBJECT (highentry1), "changed",
+        G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(1));
+  g_signal_connect (G_OBJECT (highentry2), "changed",
+        G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(2));
+  g_signal_connect (G_OBJECT (highentry3), "changed",
+        G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(3));
+  g_signal_connect (G_OBJECT (highentry4), "changed",
+        G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(4));
+  g_signal_connect (G_OBJECT (highentry5), "changed",
+        G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(5));
+  g_signal_connect (G_OBJECT (highentry6), "changed",
+        G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(6));
+  g_signal_connect (G_OBJECT (highentry7), "changed",
+        G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(7));
+  g_signal_connect (G_OBJECT (highentry8), "changed",
+        G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(8));
 
   g_object_set_data (G_OBJECT (gui->window), "maintext", maintext);
   g_object_set_data (G_OBJECT (gui->window), "treeview", treeview);
@@ -580,6 +598,32 @@ on_highcheck_toggled (GtkToggleButton *togglebutton, gpointer user_data)
   else
     preferences.highmenu[GPOINTER_TO_INT(user_data) - 1] = '0';
 }
+
+void on_highentry_changed (GtkEditable * editable, gpointer user_data)
+{
+  gchar *high = gtk_editable_get_chars (GTK_EDITABLE (editable), 0, -1);
+  if (g_utf8_strlen(high, -1) < 2)
+    high = g_strdup ("?");
+
+  if (GPOINTER_TO_INT(user_data) == 1)
+    preferences.highword1 = g_strdup (high);
+  else if (GPOINTER_TO_INT(user_data) == 2)
+    preferences.highword2 = g_strdup (high);
+  else if (GPOINTER_TO_INT(user_data) == 3)
+    preferences.highword3 = g_strdup (high);
+  else if (GPOINTER_TO_INT(user_data) == 4)
+    preferences.highword4 = g_strdup (high);
+  else if (GPOINTER_TO_INT(user_data) == 5)
+    preferences.highword5 = g_strdup (high);
+  else if (GPOINTER_TO_INT(user_data) == 6)
+    preferences.highword6 = g_strdup (high);
+  else if (GPOINTER_TO_INT(user_data) == 7)
+    preferences.highword7 = g_strdup (high);
+  else if (GPOINTER_TO_INT(user_data) == 8)
+    preferences.highword8 = g_strdup (high);
+  g_free (high);
+}
+
 
 /*
  * called at program exit
