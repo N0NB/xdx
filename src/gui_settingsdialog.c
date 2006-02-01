@@ -813,7 +813,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor1", "background",
+      gtk_text_buffer_create_tag (buffer, "highcolor1", "foreground",
 	str, NULL);
       preferences.highcolor1 = color;
     }
@@ -824,7 +824,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor2", "background",
+      gtk_text_buffer_create_tag (buffer, "highcolor2", "foreground",
 	str, NULL);
       preferences.highcolor2 = color;
     }
@@ -835,7 +835,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor3", "background",
+      gtk_text_buffer_create_tag (buffer, "highcolor3", "foreground",
 	str, NULL);
       preferences.highcolor3 = color;
     }
@@ -846,7 +846,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor4", "background",
+      gtk_text_buffer_create_tag (buffer, "highcolor4", "foreground",
 	str, NULL);
       preferences.highcolor4 = color;
     }
@@ -857,7 +857,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor5", "background",
+      gtk_text_buffer_create_tag (buffer, "highcolor5", "foreground",
 	str, NULL);
       preferences.highcolor5 = color;
     }
@@ -868,7 +868,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor6", "background",
+      gtk_text_buffer_create_tag (buffer, "highcolor6", "foreground",
 	str, NULL);
       preferences.highcolor6 = color;
     }
@@ -879,7 +879,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor7", "background",
+      gtk_text_buffer_create_tag (buffer, "highcolor7", "foreground",
 	str, NULL);
       preferences.highcolor7 = color;
     }
@@ -890,7 +890,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor8", "background",
+      gtk_text_buffer_create_tag (buffer, "highcolor8", "foreground",
 	str, NULL);
       preferences.highcolor8 = color;
     }
