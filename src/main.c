@@ -37,9 +37,11 @@ GdkColormap *colormap;
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *treeview, *maintext, *vpaned, *highmenu,
+  GtkWidget *treeview, *maintext, *vpaned, *sidemenu,
     *highcheck1, *highcheck2, *highcheck3, *highcheck4, *highcheck5,
-    *highcheck6, *highcheck7, *highcheck8;
+    *highcheck6, *highcheck7, *highcheck8,
+    *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
+    *highentry6, *highentry7, *highentry8;
   GtkTreeViewColumn *column;
   gchar *lang, **wsplit, *colorstr;
   GString *greeting = g_string_new ("");
@@ -145,6 +147,33 @@ main (int argc, char *argv[])
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(highcheck7), TRUE);
   if (preferences.highmenu[7] == '1')
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(highcheck8), TRUE);
+  highentry1 = g_object_get_data (G_OBJECT (gui->window), "highentry1");
+  highentry2 = g_object_get_data (G_OBJECT (gui->window), "highentry");
+  highentry3 = g_object_get_data (G_OBJECT (gui->window), "highentry3");
+  highentry4 = g_object_get_data (G_OBJECT (gui->window), "highentry4");
+  highentry5 = g_object_get_data (G_OBJECT (gui->window), "highentry5");
+  highentry6 = g_object_get_data (G_OBJECT (gui->window), "highentry6");
+  highentry7 = g_object_get_data (G_OBJECT (gui->window), "highentry7");
+  highentry8 = g_object_get_data (G_OBJECT (gui->window), "highentry8");
+  if (g_ascii_strcasecmp (preferences.highword1, "?"))
+    gtk_entry_set_text (GTK_ENTRY(highentry1), preferences.highword1);
+  if (g_ascii_strcasecmp (preferences.highword2, "?"))
+    gtk_entry_set_text (GTK_ENTRY(highentry2), preferences.highword2);
+  if (g_ascii_strcasecmp (preferences.highword3, "?"))
+    gtk_entry_set_text (GTK_ENTRY(highentry3), preferences.highword3);
+  if (g_ascii_strcasecmp (preferences.highword4, "?"))
+    gtk_entry_set_text (GTK_ENTRY(highentry4), preferences.highword4);
+  if (g_ascii_strcasecmp (preferences.highword5, "?"))
+    gtk_entry_set_text (GTK_ENTRY(highentry5), preferences.highword5);
+  if (g_ascii_strcasecmp (preferences.highword6, "?"))
+    gtk_entry_set_text (GTK_ENTRY(highentry6), preferences.highword6);
+  if (g_ascii_strcasecmp (preferences.highword7, "?"))
+    gtk_entry_set_text (GTK_ENTRY(highentry7), preferences.highword7);
+  if (g_ascii_strcasecmp (preferences.highword8, "?"))
+    gtk_entry_set_text (GTK_ENTRY(highentry8), preferences.highword8);
+
+  sidemenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/Sidebar");
 
   treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
   vpaned = g_object_get_data (G_OBJECT (gui->window), "vpaned");
