@@ -37,7 +37,7 @@ GdkColormap *colormap;
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *treeview, *maintext, *vpaned, *sidemenu,
+  GtkWidget *treeview, *maintext, *vpaned, *sidemenu, *highframe,
     *highcheck1, *highcheck2, *highcheck3, *highcheck4, *highcheck5,
     *highcheck6, *highcheck7, *highcheck8,
     *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
@@ -172,9 +172,6 @@ main (int argc, char *argv[])
   if (g_ascii_strcasecmp (preferences.highword8, "?"))
     gtk_entry_set_text (GTK_ENTRY(highentry8), preferences.highword8);
 
-  sidemenu = gtk_ui_manager_get_widget
-    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/Sidebar");
-
   treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
   vpaned = g_object_get_data (G_OBJECT (gui->window), "vpaned");
 
@@ -228,6 +225,20 @@ main (int argc, char *argv[])
   gtk_window_resize (GTK_WINDOW(gui->window), 
     preferences.width, preferences.height);
   gtk_paned_set_position (GTK_PANED (vpaned), preferences.handlebarpos);
+
+  highframe = g_object_get_data (G_OBJECT (gui->window), "highframe");
+  sidemenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/Sidebar");
+  if (preferences.sidebar == 0)
+  {
+    gtk_widget_hide (highframe);
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(sidemenu), FALSE);
+  }
+  else
+  {
+    gtk_widget_show (highframe);
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(sidemenu), TRUE);
+  }
 
   menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE); /* do not translate */
   g_string_printf (greeting, _("Welcome to %s"), PACKAGE);

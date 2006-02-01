@@ -87,7 +87,7 @@ static GtkActionEntry entries[] = {
 
 static GtkToggleActionEntry toggle_entries[] =
 {
-  { "Sidebar", NULL, "View chat sidebar", NULL, "Highlight 1",
+  { "Sidebar", NULL, N_("Chat sidebar"), "F4", "Chat sidebar on/off",
    G_CALLBACK(on_sidebar_activate) },
 };
 
@@ -375,6 +375,7 @@ create_mainwindow (void)
   g_object_set_data (G_OBJECT (gui->window), "highentry6", highentry6);
   g_object_set_data (G_OBJECT (gui->window), "highentry7", highentry7);
   g_object_set_data (G_OBJECT (gui->window), "highentry8", highentry8);
+  g_object_set_data (G_OBJECT (gui->window), "highframe", highframe);
 
   cluster = new_cluster();
   g_object_set_data(G_OBJECT (gui->window), "cluster", cluster);
@@ -526,13 +527,24 @@ on_quit_activate (GtkMenuItem * menuitem, gpointer user_data)
 void
 on_sidebar_activate (GtkAction * action, gpointer user_data)
 {
-  GtkWidget *sidemenu;
+  GtkWidget *sidemenu, *highframe;
   gboolean state;
 
   sidemenu = gtk_ui_manager_get_widget
-    (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/Sidebar");
+    (gui->ui_manager, "/MainMenu/SettingsMenu/Sidebar");
+  highframe = g_object_get_data (G_OBJECT (gui->window), "highframe");
   state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(sidemenu));
-//  if (state) preferences.highmenu[0] = '1'; else preferences.highmenu[0] = '0';
+
+  if (state)
+  {
+    preferences.sidebar = 1;
+    gtk_widget_show (highframe);
+  }
+  else
+  {
+    preferences.sidebar = 0;
+    gtk_widget_hide (highframe);
+  }
 }
 
 /*

@@ -105,6 +105,7 @@ loadpreferences (void)
   gdk_color_parse("red", &preferences.highcolor7);
   gdk_color_parse("red", &preferences.highcolor8);
   preferences.highmenu = g_strdup ("00000000");
+  preferences.sidebar = 1;
   
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -242,6 +243,8 @@ loadpreferences (void)
           gdk_color_parse(value, &preferences.highcolor8);
         else if (!g_ascii_strcasecmp(label, "highmenu"))
           preferences.highmenu = g_strdup(value);
+        else if (!g_ascii_strcasecmp(label, "sidebar")) 
+          preferences.sidebar = atoi(value);
     }
     fclose (fp);
   }
@@ -364,6 +367,8 @@ savepreferences (void)
       preferences.highcolor8.red, preferences.highcolor8.green, preferences.highcolor8.blue);
     str = g_strdup_printf("%s", preferences.highmenu);
     fprintf(fp, "highmenu %s\n", str);
+    str = g_strdup_printf("%d", preferences.sidebar);
+    fprintf(fp, "sidebar %s\n", str);
     g_free(str);
     fclose (fp);
   }
