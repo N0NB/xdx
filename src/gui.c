@@ -359,6 +359,22 @@ create_mainwindow (void)
         G_CALLBACK (on_maintext_event_after), NULL);
   g_signal_connect (G_OBJECT (treeview), "button-press-event",
         G_CALLBACK (double_click), NULL);
+  g_signal_connect ((gpointer) highcheck1, "toggled",
+        G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(1));
+ g_signal_connect ((gpointer) highcheck2, "toggled",
+        G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(2));
+ g_signal_connect ((gpointer) highcheck3, "toggled",
+        G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(3));
+ g_signal_connect ((gpointer) highcheck4, "toggled",
+        G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(4));
+ g_signal_connect ((gpointer) highcheck5, "toggled",
+        G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(5));
+ g_signal_connect ((gpointer) highcheck6, "toggled",
+        G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(6));
+ g_signal_connect ((gpointer) highcheck7, "toggled",
+        G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(7));
+ g_signal_connect ((gpointer) highcheck8, "toggled",
+        G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(8));
 
   g_object_set_data (G_OBJECT (gui->window), "maintext", maintext);
   g_object_set_data (G_OBJECT (gui->window), "treeview", treeview);
@@ -553,6 +569,16 @@ on_sidebar_activate (GtkAction * action, gpointer user_data)
     preferences.sidebar = 0;
     gtk_widget_hide (highframe);
   }
+}
+
+void 
+on_highcheck_toggled (GtkToggleButton *togglebutton, gpointer user_data)
+{
+  gboolean state = gtk_toggle_button_get_active (togglebutton);
+  if (state)
+    preferences.highmenu[GPOINTER_TO_INT(user_data) - 1] = '1';
+  else
+    preferences.highmenu[GPOINTER_TO_INT(user_data) - 1] = '0';
 }
 
 /*
