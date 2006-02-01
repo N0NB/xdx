@@ -132,7 +132,7 @@ create_mainwindow (void)
 {
   GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned, *clistscrolledwindow,
     *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview,
-    *frame, *chathbox, *highvbox, *hbox,
+    *frame, *chathbox, *highvbox, *hbox, *highframe,
     *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
     *highentry6, *highentry7, *highentry8, *highcheck1, *highcheck2,
     *highcheck3, *highcheck4, *highcheck5, *highcheck6, *highcheck7,
@@ -254,8 +254,10 @@ create_mainwindow (void)
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);
   gtk_box_pack_start (GTK_BOX (chathbox), mainscrolledwindow, TRUE, TRUE, 0);
 
+  highframe = gtk_frame_new (NULL);
+  gtk_box_pack_start (GTK_BOX (chathbox), highframe, FALSE, FALSE, 0);
   highvbox = gtk_vbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (chathbox), highvbox, FALSE, FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highframe), highvbox);
 
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
