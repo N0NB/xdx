@@ -187,15 +187,15 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   *pfontshseparator, *pfontshbox1, *pfontshbox2,
 
   *phighframe, *phighframelabel, *phighvbox, *phighlabel, *phighseparator,
-  *phighhbox, *phighvbox1, *phighhbox2, *phighentry1, *colorbutton1,
-  *phighhox3, *phighentry2, *colorbutton2, *phighhox4, *phighentry3,
-  *colorbutton3, *phighhox5, *phighentry4, *colorbutton4, *vseparator1,
-  *phighvbox2, *phighhox6, *phighentry5, *colorbutton5, *phighhbox7,
-  *phighentry6, *colorbutton6, *phighhbox8, *phighentry7, *colorbutton7,
-  *phighhbox9, *phighentry8, *colorbutton8;
+  *phighhbox, *phighvbox1, *phighhbox2, *phighlabel1, *colorbutton1,
+  *phighhox3, *phighlabel2, *colorbutton2, *phighhox4, *phighlabel3,
+  *colorbutton3, *phighhox5, *phighlabel4, *colorbutton4, *vseparator1,
+  *phighvbox2, *phighhox6, *phighlabel5, *colorbutton5, *phighhbox7,
+  *phighlabel6, *colorbutton6, *phighhbox8, *phighlabel7, *colorbutton7,
+  *phighhbox9, *phighlabel8, *colorbutton8;
 
   GtkTreeViewColumn *column;
-  GtkWidget *treeview, *maintext, *mainentry, *highmenu;
+  GtkWidget *treeview, *maintext, *mainentry;
   PangoFontDescription *font_description;
   gint response, pango_size;
   gboolean state;
@@ -481,74 +481,76 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (phighvbox), phighhbox, FALSE, FALSE, 0);
   phighvbox1 = gtk_vbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighhbox), phighvbox1, TRUE, TRUE, 0);
+
   phighhbox2 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox1), phighhbox2, TRUE, TRUE, 0);
-  phighentry1 = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (phighhbox2), phighentry1, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Highlight color %d"), 1);
+  phighlabel1 = gtk_label_new (str);
+  gtk_box_pack_start (GTK_BOX (phighhbox2), phighlabel1, TRUE, TRUE, 0);
   colorbutton1 = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (phighhbox2), colorbutton1, FALSE, FALSE, 0);
+
   phighhox3 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox1), phighhox3, TRUE, TRUE, 0);
-  phighentry2 = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (phighhox3), phighentry2, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Highlight color %d"), 2);
+  phighlabel2 = gtk_label_new (str);
+  gtk_box_pack_start (GTK_BOX (phighhox3), phighlabel2, TRUE, TRUE, 0);
   colorbutton2 = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (phighhox3), colorbutton2, FALSE, FALSE, 0);
+
   phighhox4 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox1), phighhox4, TRUE, TRUE, 0);
-  phighentry3 = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (phighhox4), phighentry3, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Highlight color %d"), 3);
+  phighlabel3 = gtk_label_new (str);
+  gtk_box_pack_start (GTK_BOX (phighhox4), phighlabel3, TRUE, TRUE, 0);
   colorbutton3 = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (phighhox4), colorbutton3, FALSE, FALSE, 0);
+
   phighhox5 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox1), phighhox5, TRUE, TRUE, 0);
-  phighentry4 = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (phighhox5), phighentry4, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Highlight color %d"), 4);
+  phighlabel4 = gtk_label_new (str);
+  gtk_box_pack_start (GTK_BOX (phighhox5), phighlabel4, TRUE, TRUE, 0);
   colorbutton4 = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (phighhox5), colorbutton4, FALSE, FALSE, 0);
+
   vseparator1 = gtk_vseparator_new ();
   gtk_box_pack_start (GTK_BOX (phighhbox), vseparator1, TRUE, TRUE, 0);
   phighvbox2 = gtk_vbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighhbox), phighvbox2, TRUE, TRUE, 0);
+
   phighhox6 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox2), phighhox6, TRUE, TRUE, 0);
-  phighentry5 = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (phighhox6), phighentry5, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Highlight color %d"), 5);
+  phighlabel5 = gtk_label_new (str);
+  gtk_box_pack_start (GTK_BOX (phighhox6), phighlabel5, TRUE, TRUE, 0);
   colorbutton5 = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (phighhox6), colorbutton5, FALSE, FALSE, 0);
+
   phighhbox7 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox2), phighhbox7, TRUE, TRUE, 0);
-  phighentry6 = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (phighhbox7), phighentry6, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Highlight color %d"), 6);
+  phighlabel6 = gtk_label_new (str);
+  gtk_box_pack_start (GTK_BOX (phighhbox7), phighlabel6, TRUE, TRUE, 0);
   colorbutton6 = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (phighhbox7), colorbutton6, FALSE, FALSE, 0);
+
   phighhbox8 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox2), phighhbox8, TRUE, TRUE, 0);
-  phighentry7 = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (phighhbox8), phighentry7, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Highlight color %d"), 7);
+  phighlabel7 = gtk_label_new (str);
+  gtk_box_pack_start (GTK_BOX (phighhbox8), phighlabel7, TRUE, TRUE, 0);
   colorbutton7 = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (phighhbox8), colorbutton7, FALSE, FALSE, 0);
+
   phighhbox9 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox2), phighhbox9, TRUE, TRUE, 0);
-  phighentry8 = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (phighhbox9), phighentry8, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Highlight color %d"), 8);
+  phighlabel8 = gtk_label_new (str);
+  gtk_box_pack_start (GTK_BOX (phighhbox9), phighlabel8, TRUE, TRUE, 0);
   colorbutton8 = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (phighhbox9), colorbutton8, FALSE, FALSE, 0);
-  if (g_ascii_strcasecmp (preferences.highword1, "?"))
-    gtk_entry_set_text (GTK_ENTRY(phighentry1), preferences.highword1);
-  if (g_ascii_strcasecmp (preferences.highword2, "?"))
-    gtk_entry_set_text (GTK_ENTRY(phighentry2), preferences.highword2);
-  if (g_ascii_strcasecmp (preferences.highword3, "?"))
-    gtk_entry_set_text (GTK_ENTRY(phighentry3), preferences.highword3);
-  if (g_ascii_strcasecmp (preferences.highword4, "?"))
-    gtk_entry_set_text (GTK_ENTRY(phighentry4), preferences.highword4);
-  if (g_ascii_strcasecmp (preferences.highword5, "?"))
-    gtk_entry_set_text (GTK_ENTRY(phighentry5), preferences.highword5);
-  if (g_ascii_strcasecmp (preferences.highword6, "?"))
-    gtk_entry_set_text (GTK_ENTRY(phighentry6), preferences.highword6);
-  if (g_ascii_strcasecmp (preferences.highword7, "?"))
-    gtk_entry_set_text (GTK_ENTRY(phighentry7), preferences.highword7);
-  if (g_ascii_strcasecmp (preferences.highword8, "?"))
-    gtk_entry_set_text (GTK_ENTRY(phighentry8), preferences.highword8);
+
   gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton1), &preferences.highcolor1);
   gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton2), &preferences.highcolor2);
   gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton3), &preferences.highcolor3);
@@ -801,132 +803,6 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     preferences.allfont = g_strdup (str);
 
     /* highlights frame*/
-    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry1), 0, -1);
-    highmenu = gtk_ui_manager_get_widget
-      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/1");
-    if (strlen(str) == 0)
-    {
-      gtk_label_set_text
-        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
-      preferences.highword1 = g_strdup ("?");
-    }
-    else
-    {
-      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
-      preferences.highword1 = g_strdup (str);
-    }
- 
-    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry2), 0, -1);
-    highmenu = gtk_ui_manager_get_widget
-      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/2");
-    if (strlen(str) == 0)
-    {
-      gtk_label_set_text
-        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
-      preferences.highword2 = g_strdup ("?");
-    }
-    else
-    {
-      highmenu = gtk_ui_manager_get_widget
-        (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/2");
-      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
-      preferences.highword2 = g_strdup (str);
-    }
-
-    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry3), 0, -1);
-    highmenu = gtk_ui_manager_get_widget
-      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/3");
-    if (strlen(str) == 0)
-    {
-      gtk_label_set_text
-        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
-      preferences.highword3 = g_strdup ("?");
-    }
-    else
-    {
-      highmenu = gtk_ui_manager_get_widget
-        (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/3");
-      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
-      preferences.highword3 = g_strdup (str);
-    }
-
-    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry4), 0, -1);
-    highmenu = gtk_ui_manager_get_widget
-      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/4");
-    if (strlen(str) == 0)
-    {
-      gtk_label_set_text
-        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
-      preferences.highword4 = g_strdup ("?");
-    }
-    else
-    {
-      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
-      preferences.highword4 = g_strdup (str);
-    }
-
-    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry5), 0, -1);
-    highmenu = gtk_ui_manager_get_widget
-      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/5");
-    if (strlen(str) == 0)
-    {
-      gtk_label_set_text
-        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
-      preferences.highword5 = g_strdup ("?");
-    }
-    else
-    {
-      highmenu = gtk_ui_manager_get_widget
-        (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/5");
-      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
-      preferences.highword5 = g_strdup (str);
-    }
-
-    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry6), 0, -1);
-    highmenu = gtk_ui_manager_get_widget
-      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/6");
-    if (strlen(str) == 0)
-    {
-      gtk_label_set_text
-        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
-      preferences.highword6 = g_strdup ("?");
-    }
-    else
-    {
-      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
-      preferences.highword6 = g_strdup (str);
-    }
-
-    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry7), 0, -1);
-    highmenu = gtk_ui_manager_get_widget
-      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/7");
-    if (strlen(str) == 0)
-    {
-      gtk_label_set_text
-        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
-      preferences.highword7 = g_strdup ("?");
-    }
-    else
-    {
-      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
-      preferences.highword7 = g_strdup (str);
-    }
-
-    str = gtk_editable_get_chars (GTK_EDITABLE (phighentry8), 0, -1);
-    highmenu = gtk_ui_manager_get_widget
-      (gui->ui_manager, "/MainMenu/SettingsMenu/HighMenu/8");
-    if (strlen(str) == 0)
-    {
-      gtk_label_set_text
-        (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), "<empty>");
-      preferences.highword8 = g_strdup ("?");
-    }
-    else
-    {
-      gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN(highmenu))), str);
-      preferences.highword8 = g_strdup (str);
-    }
-
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
     table = gtk_text_buffer_get_tag_table (buffer);
 
