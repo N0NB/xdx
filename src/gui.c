@@ -263,6 +263,7 @@ create_mainwindow (void)
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
   highentry1 = gtk_entry_new ();
+  gtk_widget_set_size_request (highentry1, 80, -1);
   gtk_box_pack_start (GTK_BOX (hbox), highentry1, FALSE, FALSE, 0);
   highcheck1 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck1, FALSE, FALSE, 0);
@@ -270,6 +271,7 @@ create_mainwindow (void)
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
   highentry2 = gtk_entry_new ();
+  gtk_widget_set_size_request (highentry2, 80, -1);
   gtk_box_pack_start (GTK_BOX (hbox), highentry2, FALSE, FALSE, 0);
   highcheck2 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck2, FALSE, FALSE, 0);
@@ -277,6 +279,7 @@ create_mainwindow (void)
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
   highentry3 = gtk_entry_new ();
+  gtk_widget_set_size_request (highentry3, 80, -1);
   gtk_box_pack_start (GTK_BOX (hbox), highentry3, FALSE, FALSE, 0);
   highcheck3 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck3, FALSE, FALSE, 0);
@@ -284,6 +287,7 @@ create_mainwindow (void)
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
   highentry4 = gtk_entry_new ();
+  gtk_widget_set_size_request (highentry4, 80, -1);
   gtk_box_pack_start (GTK_BOX (hbox), highentry4, FALSE, FALSE, 0);
   highcheck4 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck4, FALSE, FALSE, 0);
@@ -291,6 +295,7 @@ create_mainwindow (void)
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
   highentry5 = gtk_entry_new ();
+  gtk_widget_set_size_request (highentry5, 80, -1);
   gtk_box_pack_start (GTK_BOX (hbox), highentry5, FALSE, FALSE, 0);
   highcheck5 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck5, FALSE, FALSE, 0);
@@ -298,6 +303,7 @@ create_mainwindow (void)
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
   highentry6 = gtk_entry_new ();
+  gtk_widget_set_size_request (highentry6, 80, -1);
   gtk_box_pack_start (GTK_BOX (hbox), highentry6, FALSE, FALSE, 0);
   highcheck6 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck6, FALSE, FALSE, 0);
@@ -305,6 +311,7 @@ create_mainwindow (void)
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
   highentry7 = gtk_entry_new ();
+  gtk_widget_set_size_request (highentry7, 80, -1);
   gtk_box_pack_start (GTK_BOX (hbox), highentry7, FALSE, FALSE, 0);
   highcheck7 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck7, FALSE, FALSE, 0);
@@ -312,6 +319,7 @@ create_mainwindow (void)
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
   highentry8 = gtk_entry_new ();
+  gtk_widget_set_size_request (highentry8, 80, -1);
   gtk_box_pack_start (GTK_BOX (hbox), highentry8, FALSE, FALSE, 0);
   highcheck8 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck8, FALSE, FALSE, 0);
