@@ -474,7 +474,6 @@ maintext_add (gchar msg[], gint len, gint messagetype)
       }
       if (dx->nodx)  
       {
-        gtk_text_buffer_place_cursor(buffer, &end);
         if ((!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
             || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
             && (utf8 = try_utf8(dx->toall)))
@@ -596,10 +595,12 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             g_free (utf8);
           }
         }
-        mark = gtk_text_buffer_get_mark (buffer, "insert");
 	if (!GTK_WIDGET_HAS_FOCUS(maintext))
-        gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 
-          0.0, 1.0);
+	{
+          mark = gtk_text_buffer_get_mark (buffer, "insert");
+          gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 
+            0.0, 1.0);
+        }
         g_free(dx->toall);
       }
       g_free(dx);
