@@ -188,9 +188,9 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   *phighframe, *phighframelabel, *phighvbox, *phighlabel, *phighseparator,
   *phighhbox, *phighvbox1, *phighhbox2, *phighlabel1, *colorbutton1,
-  *phighhox3, *phighlabel2, *colorbutton2, *phighhox4, *phighlabel3,
-  *colorbutton3, *phighhox5, *phighlabel4, *colorbutton4, *vseparator1,
-  *phighvbox2, *phighhox6, *phighlabel5, *colorbutton5, *phighhbox7,
+  *phighbox3, *phighlabel2, *colorbutton2, *phighbox4, *phighlabel3,
+  *colorbutton3, *phighbox5, *phighlabel4, *colorbutton4, *vseparator1,
+  *phighvbox2, *phighbox6, *phighlabel5, *colorbutton5, *phighhbox7,
   *phighlabel6, *colorbutton6, *phighhbox8, *phighlabel7, *colorbutton7,
   *phighhbox9, *phighlabel8, *colorbutton8;
 
@@ -484,52 +484,52 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   phighhbox2 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox1), phighhbox2, TRUE, TRUE, 0);
-  str = g_strdup_printf (_("Highlight color %d"), 1);
+  str = g_strdup_printf (_("Color %d"), 1);
   phighlabel1 = gtk_label_new (str);
   gtk_box_pack_start (GTK_BOX (phighhbox2), phighlabel1, TRUE, TRUE, 0);
   colorbutton1 = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (phighhbox2), colorbutton1, FALSE, FALSE, 0);
 
-  phighhox3 = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (phighvbox1), phighhox3, TRUE, TRUE, 0);
-  str = g_strdup_printf (_("Highlight color %d"), 2);
+  phighbox3 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox1), phighbox3, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Color %d"), 2);
   phighlabel2 = gtk_label_new (str);
-  gtk_box_pack_start (GTK_BOX (phighhox3), phighlabel2, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (phighbox3), phighlabel2, TRUE, TRUE, 0);
   colorbutton2 = gtk_color_button_new ();
-  gtk_box_pack_start (GTK_BOX (phighhox3), colorbutton2, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighbox3), colorbutton2, FALSE, FALSE, 0);
 
-  phighhox4 = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (phighvbox1), phighhox4, TRUE, TRUE, 0);
-  str = g_strdup_printf (_("Highlight color %d"), 3);
+  phighbox4 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox1), phighbox4, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Color %d"), 3);
   phighlabel3 = gtk_label_new (str);
-  gtk_box_pack_start (GTK_BOX (phighhox4), phighlabel3, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (phighbox4), phighlabel3, TRUE, TRUE, 0);
   colorbutton3 = gtk_color_button_new ();
-  gtk_box_pack_start (GTK_BOX (phighhox4), colorbutton3, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighbox4), colorbutton3, FALSE, FALSE, 0);
 
-  phighhox5 = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (phighvbox1), phighhox5, TRUE, TRUE, 0);
-  str = g_strdup_printf (_("Highlight color %d"), 4);
+  phighbox5 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox1), phighbox5, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Color %d"), 4);
   phighlabel4 = gtk_label_new (str);
-  gtk_box_pack_start (GTK_BOX (phighhox5), phighlabel4, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (phighbox5), phighlabel4, TRUE, TRUE, 0);
   colorbutton4 = gtk_color_button_new ();
-  gtk_box_pack_start (GTK_BOX (phighhox5), colorbutton4, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighbox5), colorbutton4, FALSE, FALSE, 0);
 
   vseparator1 = gtk_vseparator_new ();
   gtk_box_pack_start (GTK_BOX (phighhbox), vseparator1, TRUE, TRUE, 0);
   phighvbox2 = gtk_vbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighhbox), phighvbox2, TRUE, TRUE, 0);
 
-  phighhox6 = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (phighvbox2), phighhox6, TRUE, TRUE, 0);
-  str = g_strdup_printf (_("Highlight color %d"), 5);
+  phighbox6 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighvbox2), phighbox6, TRUE, TRUE, 0);
+  str = g_strdup_printf (_("Color %d"), 5);
   phighlabel5 = gtk_label_new (str);
-  gtk_box_pack_start (GTK_BOX (phighhox6), phighlabel5, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (phighbox6), phighlabel5, TRUE, TRUE, 0);
   colorbutton5 = gtk_color_button_new ();
-  gtk_box_pack_start (GTK_BOX (phighhox6), colorbutton5, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (phighbox6), colorbutton5, FALSE, FALSE, 0);
 
   phighhbox7 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox2), phighhbox7, TRUE, TRUE, 0);
-  str = g_strdup_printf (_("Highlight color %d"), 6);
+  str = g_strdup_printf (_("Color %d"), 6);
   phighlabel6 = gtk_label_new (str);
   gtk_box_pack_start (GTK_BOX (phighhbox7), phighlabel6, TRUE, TRUE, 0);
   colorbutton6 = gtk_color_button_new ();
@@ -537,7 +537,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   phighhbox8 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox2), phighhbox8, TRUE, TRUE, 0);
-  str = g_strdup_printf (_("Highlight color %d"), 7);
+  str = g_strdup_printf (_("Color %d"), 7);
   phighlabel7 = gtk_label_new (str);
   gtk_box_pack_start (GTK_BOX (phighhbox8), phighlabel7, TRUE, TRUE, 0);
   colorbutton7 = gtk_color_button_new ();
@@ -545,7 +545,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   phighhbox9 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (phighvbox2), phighhbox9, TRUE, TRUE, 0);
-  str = g_strdup_printf (_("Highlight color %d"), 8);
+  str = g_strdup_printf (_("Color %d"), 8);
   phighlabel8 = gtk_label_new (str);
   gtk_box_pack_start (GTK_BOX (phighhbox9), phighlabel8, TRUE, TRUE, 0);
   colorbutton8 = gtk_color_button_new ();
