@@ -243,15 +243,22 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
           g_string_printf (txstr, "%s", preferences.callsign);
           tx (txstr);
           g_string_free (txstr, TRUE);
-          sendsplit = g_strsplit (preferences.commands, ",", 0);
-          while (sendsplit[i])
+          if (g_ascii_strcasecmp (preferences.commands, "?"))
           {
-            txstr = g_string_new (sendsplit[i]);
-            tx (txstr);
-            g_string_free (txstr, TRUE);
-            i++;
+            sendsplit = g_strsplit (preferences.commands, ",", 0);
+            while (sendsplit[i])
+            {
+              if (strlen(sendsplit[i]) > 0)
+              {
+                txstr = g_string_new (sendsplit[i]);
+                tx (txstr);
+                usleep (100000);
+                g_string_free (txstr, TRUE);
+              }
+              i++;
+            }
+            g_strfreev (sendsplit);
           }
-          g_strfreev (sendsplit);
           cluster->connected = TRUE;
         }
       }
