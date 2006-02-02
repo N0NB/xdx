@@ -147,6 +147,7 @@ create_mainwindow (void)
   servertype *cluster;
   PangoFontDescription *font_description;
   gint pango_size;
+  GtkTooltips *tooltips;
 
   gui = new_gui();
   gui->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -328,6 +329,24 @@ create_mainwindow (void)
   gtk_paned_add1 (GTK_PANED (vpaned), clistscrolledwindow);
   gtk_paned_add2 (GTK_PANED (vpaned), chathbox);
   gtk_box_pack_start (GTK_BOX (mainvbox), vpaned, TRUE, TRUE, 0);
+  tooltips = gtk_tooltips_new ();
+
+  gtk_tooltips_set_tip(tooltips, highentry1, _("Enter a word to highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highentry2, _("Enter a word to highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highentry3, _("Enter a word to highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highentry4, _("Enter a word to highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highentry5, _("Enter a word to highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highentry6, _("Enter a word to highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highentry7, _("Enter a word to highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highentry8, _("Enter a word to highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highcheck1, _("Enable/disable highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highcheck2, _("Enable/disable highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highcheck3, _("Enable/disable highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highcheck4, _("Enable/disable highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highcheck5, _("Enable/disable highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highcheck6, _("Enable/disable highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highcheck7, _("Enable/disable highlight"), NULL);
+  gtk_tooltips_set_tip(tooltips, highcheck8, _("Enable/disable highlight"), NULL);
 
   mainentry = gtk_text_view_new ();
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW(mainentry), GTK_WRAP_WORD);
