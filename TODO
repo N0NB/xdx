@@ -1,0 +1,6 @@
+cursor bug
+fill in hostname/port
+double click in filter entry selects all text
+convert filter to lowercase
+do not modify whole text buffer when highlight is changed
+right-click copy text
