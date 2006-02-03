@@ -413,6 +413,23 @@ create_mainwindow (void)
   g_signal_connect (G_OBJECT (highentry8), "changed",
         G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(8));
 
+  g_signal_connect (G_OBJECT (highentry1), "button_press_event",
+        G_CALLBACK (on_highentry_clicked), NULL);
+  g_signal_connect (G_OBJECT (highentry2), "button_press_event",
+        G_CALLBACK (on_highentry_clicked), NULL);
+  g_signal_connect (G_OBJECT (highentry3), "button_press_event",
+        G_CALLBACK (on_highentry_clicked), NULL);
+  g_signal_connect (G_OBJECT (highentry4), "button_press_event",
+        G_CALLBACK (on_highentry_clicked), NULL);
+  g_signal_connect (G_OBJECT (highentry5), "button_press_event",
+        G_CALLBACK (on_highentry_clicked), NULL);
+  g_signal_connect (G_OBJECT (highentry6), "button_press_event",
+        G_CALLBACK (on_highentry_clicked), NULL);
+  g_signal_connect (G_OBJECT (highentry7), "button_press_event",
+        G_CALLBACK (on_highentry_clicked), NULL);
+  g_signal_connect (G_OBJECT (highentry8), "button_press_event",
+        G_CALLBACK (on_highentry_clicked), NULL);
+
   g_object_set_data (G_OBJECT (gui->window), "maintext", maintext);
   g_object_set_data (G_OBJECT (gui->window), "treeview", treeview);
   g_object_set_data (G_OBJECT (gui->window), "mainstatusbar", mainstatusbar);
@@ -643,6 +660,13 @@ void on_highentry_changed (GtkEditable * editable, gpointer user_data)
   g_free (high);
 }
 
+gboolean on_highentry_clicked
+(GtkEditable * entry, GdkEventButton *event, gpointer user_data)
+{
+  if (event->type==GDK_2BUTTON_PRESS)
+    gtk_editable_select_region (entry, 0, -1);
+  return TRUE;
+}
 
 /*
  * called at program exit
