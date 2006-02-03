@@ -642,21 +642,21 @@ void on_highentry_changed (GtkEditable * editable, gpointer user_data)
     high = g_strdup ("?");
 
   if (GPOINTER_TO_INT(user_data) == 1)
-    preferences.highword1 = g_strdup (high);
+    preferences.highword1 = g_utf8_strdown (high, -1);
   else if (GPOINTER_TO_INT(user_data) == 2)
-    preferences.highword2 = g_strdup (high);
+    preferences.highword2 = g_utf8_strdown (high, -1);
   else if (GPOINTER_TO_INT(user_data) == 3)
-    preferences.highword3 = g_strdup (high);
+    preferences.highword3 = g_utf8_strdown (high, -1);
   else if (GPOINTER_TO_INT(user_data) == 4)
-    preferences.highword4 = g_strdup (high);
+    preferences.highword4 = g_utf8_strdown (high, -1);
   else if (GPOINTER_TO_INT(user_data) == 5)
-    preferences.highword5 = g_strdup (high);
+    preferences.highword5 = g_utf8_strdown (high, -1);
   else if (GPOINTER_TO_INT(user_data) == 6)
-    preferences.highword6 = g_strdup (high);
+    preferences.highword6 = g_utf8_strdown (high, -1);
   else if (GPOINTER_TO_INT(user_data) == 7)
-    preferences.highword7 = g_strdup (high);
+    preferences.highword7 = g_utf8_strdown (high, -1);
   else if (GPOINTER_TO_INT(user_data) == 8)
-    preferences.highword8 = g_strdup (high);
+    preferences.highword8 = g_utf8_strdown (high, -1);
   g_free (high);
 }
 
