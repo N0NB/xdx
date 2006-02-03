@@ -1,4 +1,4 @@
-/*
+1/*
  * xdx - GTK+ DX-cluster client for amateur radio
  * Copyright (C) 2002-2003 Joop Stakenborg <pg4i@amsat.org>
  *
@@ -148,7 +148,8 @@ clresolve (servertype *cluster)
     err = NULL;
   }
 
-  cluster->source_id = g_io_add_watch (cluster->rxchannel, G_IO_IN, rx, cluster);
+  cluster->source_id = g_io_add_watch
+    (cluster->rxchannel, G_IO_IN|G_IO_HUP, rx, cluster);
 
   return TRUE;
 }
@@ -224,7 +225,8 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
       break;
     }
 
-  if ((cond & G_IO_IN) && G_IO_STATUS_NORMAL)
+//  if ((cond & G_IO_IN) && G_IO_STATUS_NORMAL)
+  if (cond & G_IO_IN)
     {
       if (numbytes == 0) /* remote end has closed connection */
       {
@@ -252,7 +254,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
               {
                 txstr = g_string_new (sendsplit[i]);
                 tx (txstr);
-                usleep (100000);
+                usleep (500000);
                 g_string_free (txstr, TRUE);
               }
               i++;
@@ -262,6 +264,13 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
           cluster->connected = TRUE;
         }
       }
+    }
+  if (cond & G_IO_HUP)
+    {
+      g_string_printf (msg, _("Connection has been broken"));
+      cldisconnect (msg, FALSE);
+      g_string_free (msg, TRUE);
+      ret = FALSE;
     }
   return ret;
 }
