@@ -79,7 +79,6 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
 	}
   }
   gtk_table_attach_defaults (GTK_TABLE (table), hostnamecombo, 1, 2, 0, 1);
-//  gtk_label_set_mnemonic_widget (GTK_LABEL (hostlabel), GTK_COMBO(hostnamecombo)->entry);
   portlabel = gtk_label_new_with_mnemonic (_("_Port"));
   gtk_table_attach_defaults (GTK_TABLE (table), portlabel, 0, 1, 1, 2);
   portcombo = gtk_combo_box_entry_new_text ();
@@ -93,9 +92,10 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
 	}
   }
   gtk_table_attach_defaults (GTK_TABLE (table), portcombo, 1, 2, 1, 2);
-//  gtk_label_set_mnemonic_widget (GTK_LABEL (portlabel), GTK_COMBO(portcombo)->entry);
   gtk_widget_show_all (hbox);
   gtk_widget_set_sensitive (gui->window, 0);
+  gtk_combo_box_set_active (GTK_COMBO_BOX (portcombo), 1);
+  gtk_combo_box_set_active (GTK_COMBO_BOX (hostnamecombo), 1);
   response = gtk_dialog_run (GTK_DIALOG (opendialog));
 
   if (response == GTK_RESPONSE_OK)
