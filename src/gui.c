@@ -664,8 +664,11 @@ gboolean on_highentry_clicked
 (GtkEditable * entry, GdkEventButton *event, gpointer user_data)
 {
   if (event->type==GDK_2BUTTON_PRESS)
+  {
     gtk_editable_select_region (entry, 0, -1);
-  return TRUE;
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /*
