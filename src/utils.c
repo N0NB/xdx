@@ -164,7 +164,7 @@ gchar *try_utf8 (const gchar *str)
 
   if (g_utf8_validate(str, -1, NULL)) return g_strdup(str);
 
-  utf8 = g_locale_to_utf8(str, -1, &converted, NULL, NULL);
+  utf8 = g_locale_to_utf8(str, -1, &converted, NULL, &error);
   if (utf8) return(utf8);
   else
   {
@@ -175,7 +175,7 @@ gchar *try_utf8 (const gchar *str)
 
   error = NULL;
   utf8 = g_convert_with_fallback
-    (str, -1, "UTF-8", "ISO-8859-1", ".", &converted, NULL, NULL);
+    (str, -1, "UTF-8", "ISO-8859-1", ".", &converted, NULL, &error);
   if (utf8) return(utf8);
   else
   {
@@ -186,7 +186,7 @@ gchar *try_utf8 (const gchar *str)
 
   error = NULL;
   utf8 = g_convert_with_fallback
-    (str, -1, "UTF-8", "ISO-8859-15", ".", &converted, NULL, NULL);
+    (str, -1, "UTF-8", "ISO-8859-15", ".", &converted, NULL, &error);
   if (utf8) return(utf8);
   else
   {
