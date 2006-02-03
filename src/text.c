@@ -597,6 +597,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
         }
 	if (!GTK_WIDGET_HAS_FOCUS(maintext))
 	{
+          gtk_text_buffer_place_cursor(buffer, &end);
           mark = gtk_text_buffer_get_mark (buffer, "insert");
           gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 
             0.0, 1.0);
