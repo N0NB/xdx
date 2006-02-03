@@ -158,18 +158,42 @@ gchar *try_utf8 (const gchar *str)
 {
   gsize converted;
   gchar *utf8;
+  GError *error = NULL;
 
   if (str == NULL) return NULL;
 
   if (g_utf8_validate(str, -1, NULL)) return g_strdup(str);
+
   utf8 = g_locale_to_utf8(str, -1, &converted, NULL, NULL);
   if (utf8) return(utf8);
+  else
+  {
+     g_warning (_("Unable to convert '%s' to UTF-8: %s"), str, error->message);
+     g_warning (_("Trying ISO-8859-1"));
+  }
+  g_error_free (error);
+
+  error = NULL;
   utf8 = g_convert_with_fallback
     (str, -1, "UTF-8", "ISO-8859-1", ".", &converted, NULL, NULL);
   if (utf8) return(utf8);
+  else
+  {
+     g_warning (_("Unable to convert '%s' to UTF-8: %s"), str, error->message);
+     g_warning (_("Trying ISO-8859-15"));
+  }
+  g_error_free (error);
+
+  error = NULL;
   utf8 = g_convert_with_fallback
     (str, -1, "UTF-8", "ISO-8859-15", ".", &converted, NULL, NULL);
   if (utf8) return(utf8);
+  else
+  {
+     g_warning (_("Unable to convert '%s' to UTF-8: %s"), str, error->message);
+     g_warning (_("Conversion to UTF-8 stopped"));
+  }
+  g_error_free (error);
 
   return (NULL);
 }
