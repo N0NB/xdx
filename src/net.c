@@ -149,7 +149,7 @@ clresolve (servertype *cluster)
   }
 
   cluster->source_id = g_io_add_watch
-    (cluster->rxchannel, G_IO_IN|G_IO_HUP, rx, cluster);
+    (cluster->rxchannel, G_IO_IN, rx, cluster);
 
   return TRUE;
 }
@@ -225,8 +225,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
       break;
     }
 
-//  if ((cond & G_IO_IN) && G_IO_STATUS_NORMAL)
-  if (cond & G_IO_IN)
+  if ((cond & G_IO_IN) && G_IO_STATUS_NORMAL)
     {
       if (numbytes == 0) /* remote end has closed connection */
       {
@@ -264,13 +263,6 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
           cluster->connected = TRUE;
         }
       }
-    }
-  if (cond & G_IO_HUP)
-    {
-      g_string_printf (msg, _("Connection has been broken"));
-      cldisconnect (msg, FALSE);
-      g_string_free (msg, TRUE);
-      ret = FALSE;
     }
   return ret;
 }
