@@ -1,4 +1,4 @@
-1/*
+/*
  * xdx - GTK+ DX-cluster client for amateur radio
  * Copyright (C) 2002-2003 Joop Stakenborg <pg4i@amsat.org>
  *
