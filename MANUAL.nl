@@ -3,6 +3,7 @@ xdx - tcp/ip DX-cluster client voor zendamateurs
 
 Xdx is een DX-cluster programma die een lijst toont met DX berichten en 
 een apart venster gebruikt voor WWV, WCY, "To ALL" en andere berichten.
+Xdx is ook geschikt om met ON4KST chat te verbinden.
 
 Wat is een DX cluster?
 ======================
@@ -72,12 +73,12 @@ Starten van de gnome web-browser indien op een URL wordt geklikt:
 Starten van mozilla-mail indien op een URL wordt geklikt:
 'mozilla -compose "to=%s"'.
 
-Oplichten
-=========
-Op bladzijde 3 van het voorkeuren venster kun je 8 verschillende woorden
-invoeren om te laten oplichten in het onderste venster. Je moet ook het
-oplichten aanzetten voor het betreffende woord in het menu (instellingen
--> oplichten).
+Kleuren
+=======
+In het 'chat zijvenster' kun je 8 verschillende woorden invoeren om te laten
+kleuren in het onderste venster. Je moet ook het kleuren aanzetten voor het
+betreffende woord. De kleuren die gebruikt worden kunnen worden ingesteld op
+pagina 3 van het voorkeuren venster.
 
 Smileys
 =======
