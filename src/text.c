@@ -116,7 +116,7 @@ create_smiley_list (void)
   s->str = ":-(";
   s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png";
   smileylist = g_slist_append(smileylist, s);
-//  s = new_smiley (); s->str = "is"; s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png"; smileylist = g_slist_append(smileylist, s);
+  s = new_smiley (); s->str = "is"; s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png"; smileylist = g_slist_append(smileylist, s);
 }
 
 /* 
@@ -369,7 +369,7 @@ contains_smileys (gchar *str)
     return TRUE;
   else if (g_strrstr (str, ";-)"))
     return TRUE;
-//  else if (g_strrstr (str, "is")) return TRUE;
+  else if (g_strrstr (str, "is")) return TRUE;
   return FALSE;
 }
 
@@ -415,7 +415,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 {
   GtkWidget *maintext, *treeview;
   GtkTextIter start, end, smatch, ematch;
-  GtkTextMark *mark;
+  GtkTextMark *startmark, *endmark;
   GtkTreeIter iter;
   GtkTreePath *path;
   GtkTreeStore *model;
@@ -498,9 +498,10 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             if (preferences.savetoall) savetoall (dx->toall);
 
             /* use textmark to find begin and end of added line */
-            mark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
+            startmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
             gtk_text_buffer_insert (buffer, &end, utf8, -1);
             gtk_text_buffer_get_bounds (buffer, &start, &end);
+            endmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
 
             high = contains_highlights (utf8);
             if (g_ascii_strcasecmp (high, "00000000"))
@@ -509,7 +510,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               if (high[i] == '1' && preferences.highmenu[i] == '1')
               {
                 /* set starting point for search */
-                gtk_text_buffer_get_iter_at_mark (buffer, &start, mark);
+                gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
                 tagname = g_strdup_printf ("highcolor%d", i + 1);
                 if (i == 0) p = g_strdup(preferences.highword1);
                 else if (i == 1) p = g_strdup(preferences.highword2);
@@ -536,34 +537,35 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             if (contains_smileys (utf8))
 	    {
               if (!smileylist) create_smiley_list ();
-              gtk_text_buffer_get_iter_at_mark (buffer, &start, mark);
-
               while (smileylist)
               {
                 s = (smiley *) smileylist->data;
-                while (gtk_text_iter_forward_search(&start, s->str,
-                  GTK_TEXT_SEARCH_VISIBLE_ONLY, &smatch, &ematch, NULL))
-                {               
+                gtk_text_buffer_get_iter_at_mark (buffer, &end, endmark);
+                while (gtk_text_iter_backward_search (&end, s->str,
+                  GTK_TEXT_SEARCH_VISIBLE_ONLY|GTK_TEXT_SEARCH_TEXT_ONLY,
+                  &smatch, &ematch, NULL))
+                {      
                   swidget = gtk_image_new_from_file (s->file);
                   gtk_text_buffer_delete (buffer, &smatch, &ematch);
                   anchor = gtk_text_buffer_create_child_anchor (buffer, &smatch);
                   gtk_text_view_add_child_at_anchor (GTK_TEXT_VIEW (maintext),
                     GTK_WIDGET(swidget), anchor);
                   gtk_widget_show (swidget);
-                  start = ematch;
+                  end = smatch;
                 }
                 smileylist = smileylist->next;
               }
             }
-            gtk_text_buffer_delete_mark (buffer, mark);
+            gtk_text_buffer_delete_mark (buffer, startmark);
+            gtk_text_buffer_delete_mark (buffer, endmark);
             g_free (utf8);
           }
         }
 	if (!GTK_WIDGET_HAS_FOCUS(maintext))
 	{
           gtk_text_buffer_place_cursor(buffer, &end);
-          mark = gtk_text_buffer_get_mark (buffer, "insert");
-          gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), mark, 0.0, FALSE, 
+          startmark = gtk_text_buffer_get_mark (buffer, "insert");
+          gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), startmark, 0.0, FALSE, 
             0.0, 1.0);
         }
         g_free(dx->toall);
