@@ -148,6 +148,7 @@ create_mainwindow (void)
   PangoFontDescription *font_description;
   gint pango_size;
   GtkTooltips *tooltips;
+  GtkAccelGroup *key_toggle;
 
   gui = new_gui();
   gui->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -324,6 +325,17 @@ create_mainwindow (void)
   gtk_box_pack_start (GTK_BOX (hbox), highentry8, FALSE, FALSE, 0);
   highcheck8 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck8, FALSE, FALSE, 0);
+
+  key_toggle = gtk_accel_group_new();
+  gtk_window_add_accel_group(GTK_WINDOW(gui->window), key_toggle);
+  gtk_widget_add_accelerator(highcheck1, "clicked", key_toggle, GDK_1, GDK_CONTROL_MASK, 0);
+  gtk_widget_add_accelerator(highcheck2, "clicked", key_toggle, GDK_2, GDK_CONTROL_MASK, 0);
+  gtk_widget_add_accelerator(highcheck3, "clicked", key_toggle, GDK_3, GDK_CONTROL_MASK, 0);
+  gtk_widget_add_accelerator(highcheck4, "clicked", key_toggle, GDK_4, GDK_CONTROL_MASK, 0);
+  gtk_widget_add_accelerator(highcheck5, "clicked", key_toggle, GDK_5, GDK_CONTROL_MASK, 0);
+  gtk_widget_add_accelerator(highcheck6, "clicked", key_toggle, GDK_6, GDK_CONTROL_MASK, 0);
+  gtk_widget_add_accelerator(highcheck7, "clicked", key_toggle, GDK_7, GDK_CONTROL_MASK, 0);
+  gtk_widget_add_accelerator(highcheck8, "clicked", key_toggle, GDK_8, GDK_CONTROL_MASK, 0);
 
   vpaned = gtk_vpaned_new ();
   gtk_paned_add1 (GTK_PANED (vpaned), clistscrolledwindow);
