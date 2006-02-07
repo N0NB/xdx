@@ -149,6 +149,7 @@ create_mainwindow (void)
   gint pango_size;
   GtkTooltips *tooltips;
   GtkAccelGroup *key_toggle;
+  gchar *str;
 
   gui = new_gui();
   gui->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -351,14 +352,22 @@ create_mainwindow (void)
   gtk_tooltips_set_tip(tooltips, highentry6, _("Enter a word to highlight"), NULL);
   gtk_tooltips_set_tip(tooltips, highentry7, _("Enter a word to highlight"), NULL);
   gtk_tooltips_set_tip(tooltips, highentry8, _("Enter a word to highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highcheck1, _("Enable/disable highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highcheck2, _("Enable/disable highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highcheck3, _("Enable/disable highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highcheck4, _("Enable/disable highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highcheck5, _("Enable/disable highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highcheck6, _("Enable/disable highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highcheck7, _("Enable/disable highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highcheck8, _("Enable/disable highlight"), NULL);
+  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 1);
+  gtk_tooltips_set_tip(tooltips, highcheck1, str, NULL);
+  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 2);
+  gtk_tooltips_set_tip(tooltips, highcheck2, str, NULL);
+  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 3);
+  gtk_tooltips_set_tip(tooltips, highcheck3, str, NULL);
+  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 4);
+  gtk_tooltips_set_tip(tooltips, highcheck4, str, NULL);
+  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 5);
+  gtk_tooltips_set_tip(tooltips, highcheck5, str, NULL);
+  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 6);
+  gtk_tooltips_set_tip(tooltips, highcheck6, str, NULL);
+  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 7);
+  gtk_tooltips_set_tip(tooltips, highcheck7, str, NULL);
+  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 8);
+  gtk_tooltips_set_tip(tooltips, highcheck8, str, NULL);
 
   mainentry = gtk_text_view_new ();
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW(mainentry), GTK_WRAP_WORD);
