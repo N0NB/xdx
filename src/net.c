@@ -254,6 +254,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
                 txstr = g_string_new (sendsplit[i]);
                 tx (txstr);
                 usleep (500000);
+                while (gtk_events_pending()) gtk_main_iteration ();
                 g_string_free (txstr, TRUE);
               }
               i++;
