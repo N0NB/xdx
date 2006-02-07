@@ -116,7 +116,7 @@ create_smiley_list (void)
   s->str = ":-(";
   s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png";
   smileylist = g_slist_append(smileylist, s);
-  s = new_smiley (); s->str = "is"; s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png"; smileylist = g_slist_append(smileylist, s);
+//  s = new_smiley (); s->str = "is"; s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png"; smileylist = g_slist_append(smileylist, s);
 }
 
 /* 
@@ -369,7 +369,7 @@ contains_smileys (gchar *str)
     return TRUE;
   else if (g_strrstr (str, ";-)"))
     return TRUE;
-  else if (g_strrstr (str, "is")) return TRUE;
+//  else if (g_strrstr (str, "is")) return TRUE;
   return FALSE;
 }
 
