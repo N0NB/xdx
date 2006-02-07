@@ -7,12 +7,12 @@ msgstr ""
 "Project-Id-Version: xdx 1.2\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
 "POT-Creation-Date: 2006-02-07 20:33+0100\n"
-"PO-Revision-Date: 2006-02-07 20:52+0100\n"
+"PO-Revision-Date: 2006-02-07 20:57+0100\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit"
+"Content-Transfer-Encoding: 8-bit\n"
 
 #: src/gui_aboutdialog.c:60
 msgid "Tcp/ip DX cluster client for amateur radio operators"
@@ -64,7 +64,7 @@ msgstr "Info"
 
 #: src/gui.c:90
 msgid "Chat sidebar"
-msgstr "Chat venster"
+msgstr "Chat zijvenster"
 
 #: src/gui.c:159
 #, c-format
