@@ -3,6 +3,7 @@ xdx - tcp/ip DX-cluster client for Amateur Radio
  
 Xdx is a DX-cluster client which shows a list with DX announcements and a
 separate text widget with WWV, WCY, 'To ALL' and other server messages.
+It is also suited to connect to ON4KST chat.
 
 What is a DX Cluster?
 =====================
@@ -71,9 +72,9 @@ Start mozilla-mail on clicking a mail URL: 'mozilla -compose "to=%s"'.
 
 Highlights
 ==========
-Page 3 of the preferences dialog allows entry of 8 different words, which
-can be highlighted in the chat window. You should also enable the highlight
-in the menu (Settings -> Highlights).
+The 'chat sidebar' allows entry of 8 different words, which can be highlighted
+in the chat window. You should also enable the highlight with a checkbox.
+Colors for the highlights are configured in page 3 of the settings dialog.
 
 Smileys
 =======
