@@ -182,20 +182,22 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton, 
     *pinfocheckbutton,
 
-  *pfontsframe, *pfontslabel, *pfontsvbox, *pfontsdxlabel, *pfontsalllabel,
-  *pfontsdxentry, *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
-  *pfontshseparator, *pfontshbox1, *pfontshbox2,
+    *pfontsframe, *pfontslabel, *pfontsvbox, *pfontsdxlabel, *pfontsalllabel,
+    *pfontsdxentry, *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
+    *pfontshseparator, *pfontshbox1, *pfontshbox2,
 
-  *phighframe, *phighframelabel, *phighvbox, *phighlabel, *phighseparator,
-  *phighhbox, *phighvbox1, *phighhbox2, *phighlabel1, *colorbutton1,
-  *phighbox3, *phighlabel2, *colorbutton2, *phighbox4, *phighlabel3,
-  *colorbutton3, *phighbox5, *phighlabel4, *colorbutton4, *vseparator1,
-  *phighvbox2, *phighbox6, *phighlabel5, *colorbutton5, *phighhbox7,
-  *phighlabel6, *colorbutton6, *phighhbox8, *phighlabel7, *colorbutton7,
-  *phighhbox9, *phighlabel8, *colorbutton8;
+    *phighframe, *phighframelabel, *phighvbox, *phighlabel, *phighseparator,
+    *phighhbox, *phighvbox1, *phighhbox2, *phighlabel1, *colorbutton1,
+    *phighbox3, *phighlabel2, *colorbutton2, *phighbox4, *phighlabel3,
+    *colorbutton3, *phighbox5, *phighlabel4, *colorbutton4, *vseparator1,
+    *phighvbox2, *phighbox6, *phighlabel5, *colorbutton5, *phighhbox7,
+    *phighlabel6, *colorbutton6, *phighhbox8, *phighlabel7, *colorbutton7,
+    *phighhbox9, *phighlabel8, *colorbutton8;
 
   GtkTreeViewColumn *column;
   GtkWidget *treeview, *maintext, *mainentry;
+  GtkWidget *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
+    *highentry6, *highentry7, *highentry8; 
   PangoFontDescription *font_description;
   gint response, pango_size;
   gboolean state;
@@ -815,6 +817,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
       gtk_text_buffer_create_tag (buffer, "highcolor1", "foreground",
 	str, NULL);
+      highentry1 = g_object_get_data (G_OBJECT (gui->window), "highentry1");
+      gtk_widget_modify_text (highentry1, GTK_STATE_NORMAL, &color);
       preferences.highcolor1 = color;
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton2), &color);
@@ -826,6 +830,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
       gtk_text_buffer_create_tag (buffer, "highcolor2", "foreground",
 	str, NULL);
+      highentry2 = g_object_get_data (G_OBJECT (gui->window), "highentry2");
+      gtk_widget_modify_text (highentry2, GTK_STATE_NORMAL, &color);
       preferences.highcolor2 = color;
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton3), &color);
@@ -837,6 +843,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
       gtk_text_buffer_create_tag (buffer, "highcolor3", "foreground",
 	str, NULL);
+      highentry3 = g_object_get_data (G_OBJECT (gui->window), "highentry3");
+      gtk_widget_modify_text (highentry3, GTK_STATE_NORMAL, &color);
       preferences.highcolor3 = color;
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton4), &color);
@@ -848,6 +856,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
       gtk_text_buffer_create_tag (buffer, "highcolor4", "foreground",
 	str, NULL);
+      highentry4 = g_object_get_data (G_OBJECT (gui->window), "highentry4");
+      gtk_widget_modify_text (highentry4, GTK_STATE_NORMAL, &color);
       preferences.highcolor4 = color;
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton5), &color);
@@ -859,6 +869,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
       gtk_text_buffer_create_tag (buffer, "highcolor5", "foreground",
 	str, NULL);
+      highentry5 = g_object_get_data (G_OBJECT (gui->window), "highentry5");
+      gtk_widget_modify_text (highentry5, GTK_STATE_NORMAL, &color);
       preferences.highcolor5 = color;
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton6), &color);
@@ -870,6 +882,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
       gtk_text_buffer_create_tag (buffer, "highcolor6", "foreground",
 	str, NULL);
+      highentry6 = g_object_get_data (G_OBJECT (gui->window), "highentry6");
+      gtk_widget_modify_text (highentry6, GTK_STATE_NORMAL, &color);
       preferences.highcolor6 = color;
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton7), &color);
@@ -881,6 +895,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
       gtk_text_buffer_create_tag (buffer, "highcolor7", "foreground",
 	str, NULL);
+      highentry7 = g_object_get_data (G_OBJECT (gui->window), "highentry7");
+      gtk_widget_modify_text (highentry7, GTK_STATE_NORMAL, &color);
       preferences.highcolor7 = color;
     }
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton8), &color);
@@ -892,6 +908,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
       gtk_text_buffer_create_tag (buffer, "highcolor8", "foreground",
 	str, NULL);
+      highentry8 = g_object_get_data (G_OBJECT (gui->window), "highentry8");
+      gtk_widget_modify_text (highentry8, GTK_STATE_NORMAL, &color);
       preferences.highcolor8 = color;
     }
     g_free (str);
