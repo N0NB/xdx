@@ -71,6 +71,8 @@ linkcontains2dots (gchar *link)
 static gboolean 
 islink (gchar *link)
 {
+  if (g_strrstr (link, "\r"))
+    return FALSE;
   if (g_strrstr (link, " "))
     return FALSE;
   else if (!g_strrstr (link, "."))
