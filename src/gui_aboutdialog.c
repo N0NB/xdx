@@ -81,6 +81,6 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 "French: Jean-Luc Coulon F5IBH <jean-luc.coulon@wanadoo.fr>\n"
 "Polish: Boguslaw Ciastek SQ5TB <ciacho@z.pl>\n"
 "Spanish: Baltasar Perez (EC8AYR) <ec8ayr@yahoo.com>\n",
-		"version", VERSION,
+		"version", PACKAGE_VERSION,
 		NULL);
 }
