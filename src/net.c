@@ -75,7 +75,7 @@ servertype *new_cluster(void)
 gboolean
 clresolve (servertype *cluster)
 {
-  gint ret, opt;
+  gint ret;
   GString *msg = g_string_new ("");
   struct sockaddr_in claddress;
   struct hostent *clhostent;
@@ -108,12 +108,6 @@ clresolve (servertype *cluster)
       return FALSE;
     }
 
-  /* send keepalive probes */
-  setsockopt (cluster->sockethandle, SOL_SOCKET, SO_KEEPALIVE, (gchar *) & opt,
-	      sizeof (opt));
-  /* make connection setup non-blocking */
-  fcntl (cluster->sockethandle, F_SETFL, O_NONBLOCK);
-
   claddress.sin_family = AF_INET;
   claddress.sin_port = htons (atoi (cluster->port));
   bcopy (clhostent->h_addr, &claddress.sin_addr, clhostent->h_length);
@@ -138,16 +132,10 @@ clresolve (servertype *cluster)
   menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", TRUE);
 
   cluster->rxchannel = g_io_channel_unix_new (cluster->sockethandle);
+  g_io_channel_set_flags (cluster->rxchannel, G_IO_FLAG_NONBLOCK, &err);
   res = g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
-  if ((res != G_IO_STATUS_NORMAL) && err)
-  {
-    g_string_printf (msg, _("Error on setting channel encoding: %s"), err->message);
-    updatestatusbar (msg, TRUE);
-    g_string_free (msg, TRUE);
-    g_error_free (err);
-    err = NULL;
-  }
-
+  cluster->source_id = g_io_add_watch
+    (cluster->rxchannel, G_IO_HUP, close_connection, cluster);
   cluster->source_id = g_io_add_watch
     (cluster->rxchannel, G_IO_IN, rx, cluster);
 
@@ -164,14 +152,15 @@ cldisconnect (GString *msg, gboolean timeout)
 {
   servertype *cluster;
 
-  cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
-  g_io_channel_unref(cluster->rxchannel);
+  cluster = g_object_get_data (G_OBJECT(gui->window), "cluster");
+  g_io_channel_shutdown (cluster->rxchannel, TRUE, NULL);
+  g_io_channel_unref (cluster->rxchannel);
   cluster->rxchannel = NULL;
-  g_source_remove(cluster->source_id);
-  g_free(cluster->host);
-  g_free(cluster->port);
+  g_source_remove (cluster->source_id);
+  g_free (cluster->host);
+  g_free (cluster->port);
 
-  close(cluster->sockethandle);
+  close (cluster->sockethandle);
   cluster->sockethandle = -1;
   cluster->connected = FALSE;
 
@@ -181,10 +170,20 @@ cldisconnect (GString *msg, gboolean timeout)
   menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
 }
 
+gboolean
+close_connection (GIOChannel * channel, GIOCondition cond, gpointer data)
+{
+  GString *msg = g_string_new ("");
+
+  g_string_printf (msg, _("Connection closed by remote host"));
+  cldisconnect (msg, FALSE);
+  g_string_free (msg, TRUE);
+  return FALSE;
+}
+
 /*
  * a message is received here
  */
-
 gboolean
 rx (GIOChannel * channel, GIOCondition cond, gpointer data)
 {

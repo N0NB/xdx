@@ -38,5 +38,6 @@ typedef struct servertype {
 servertype *new_cluster(void);
 gboolean clresolve (servertype *cluster);
 void cldisconnect (GString *msg, gboolean timeout);
+gboolean close_connection (GIOChannel * channel, GIOCondition cond, gpointer data);
 gboolean rx (GIOChannel * channel, GIOCondition cond, gpointer data);
 void tx (GString * message);
