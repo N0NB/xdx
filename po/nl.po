@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-02-07 20:33+0100\n"
+"POT-Creation-Date: 2006-02-08 21:50+0100\n"
 "PO-Revision-Date: 2006-02-07 20:57+0100\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
@@ -312,26 +312,21 @@ msgstr "Resolver faalt: %s"
 msgid "Connecting to: %s"
 msgstr "Verbinding maken met: %s"
 
-#: src/net.c:133
+#: src/net.c:127
 #, c-format
 msgid "Connected to %s"
 msgstr "Verbonden met %s"
 
-#: src/net.c:144
-#, c-format
-msgid "Error on setting channel encoding: %s"
-msgstr "Fout bij het instellen van de kanaal encoding: %s"
-
-#: src/net.c:219 src/net.c:232
+#: src/net.c:178 src/net.c:218 src/net.c:231
 msgid "Connection closed by remote host"
 msgstr "Verbinding verbroken"
 
-#: src/net.c:291
+#: src/net.c:290
 #, c-format
 msgid "Write failed: %s"
 msgstr "Schrijven faalt: %s"
 
-#: src/net.c:303
+#: src/net.c:302
 msgid "Nothing to send, you are not connected"
 msgstr "Kan niets versturen, je hebt geen verbinding"
 
@@ -354,6 +349,9 @@ msgstr "Fork faalt: %s"
 #, c-format
 msgid "Starting: %s"
 msgstr "Starten van: %s"
+
+#~ msgid "Error on setting channel encoding: %s"
+#~ msgstr "Fout bij het instellen van de kanaal encoding: %s"
 
 #~ msgid "%d: Unable to convert '%s' to UTF-8: %s"
 #~ msgstr "%d: Kan '%s' niet converteren naar UTF-8: %s"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 1.2\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-02-07 20:33+0100\n"
+"POT-Creation-Date: 2006-02-08 21:50+0100\n"
 "PO-Revision-Date: 2004-12-10 08:25+0100\n"
 "Last-Translator: Boguslaw Ciastek SQ5TB <sq5tb@op.pl>\n"
 "Language-Team: PL <PL@li.org>\n"
@@ -323,26 +323,21 @@ msgstr "Nawiązanie połączenia nieudane: %s"
 msgid "Connecting to: %s"
 msgstr "Łączenie z: %s"
 
-#: src/net.c:133
+#: src/net.c:127
 #, c-format
 msgid "Connected to %s"
 msgstr "Połączony z %s"
 
-#: src/net.c:144
-#, c-format
-msgid "Error on setting channel encoding: %s"
-msgstr "Błąd przy ustawianiu kodowania kanału: %s"
-
-#: src/net.c:219 src/net.c:232
+#: src/net.c:178 src/net.c:218 src/net.c:231
 msgid "Connection closed by remote host"
 msgstr "Połączenie zakończone przez zdalny host."
 
-#: src/net.c:291
+#: src/net.c:290
 #, c-format
 msgid "Write failed: %s"
 msgstr "Nieudana próba zapisu: %s"
 
-#: src/net.c:303
+#: src/net.c:302
 msgid "Nothing to send, you are not connected"
 msgstr "Nic nie wysłano, nie jesteś połączony(a)"
 
@@ -365,6 +360,9 @@ msgstr "Nieudana próba utworzenia procesu potomnego: %s"
 #, c-format
 msgid "Starting: %s"
 msgstr "Uruchamianie: %s"
+
+#~ msgid "Error on setting channel encoding: %s"
+#~ msgstr "Błąd przy ustawianiu kodowania kanału: %s"
 
 #~ msgid "xdx - about"
 #~ msgstr "xdx - o programie"

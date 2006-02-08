@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  xdx 1.2\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-02-07 20:33+0100\n"
+"POT-Creation-Date: 2006-02-08 21:50+0100\n"
 "PO-Revision-Date: 2004-05-21 23:10+0100\n"
 "Last-Translator: Baltasar Perez (ec8ayr) <ec8ayr@yahoo.com>\n"
 "Language-Team: es <ec8ayr@yahoo.com>\n"
@@ -320,26 +320,21 @@ msgstr "Fallo en la resolución: %s"
 msgid "Connecting to: %s"
 msgstr "Conectando con: %s"
 
-#: src/net.c:133
+#: src/net.c:127
 #, c-format
 msgid "Connected to %s"
 msgstr "Conectado a %s"
 
-#: src/net.c:144
-#, c-format
-msgid "Error on setting channel encoding: %s"
-msgstr "Error al establecer la codificación del canal: %s"
-
-#: src/net.c:219 src/net.c:232
+#: src/net.c:178 src/net.c:218 src/net.c:231
 msgid "Connection closed by remote host"
 msgstr "Conexión finalizada por el servidor"
 
-#: src/net.c:291
+#: src/net.c:290
 #, c-format
 msgid "Write failed: %s"
 msgstr "Fallo de escritura: %s"
 
-#: src/net.c:303
+#: src/net.c:302
 msgid "Nothing to send, you are not connected"
 msgstr "Nada para enviar, no está conectado"
 
@@ -362,6 +357,9 @@ msgstr "Ha fallado el fork: %s"
 #, c-format
 msgid "Starting: %s"
 msgstr "Iniciando: %s"
+
+#~ msgid "Error on setting channel encoding: %s"
+#~ msgstr "Error al establecer la codificación del canal: %s"
 
 #~ msgid "xdx - about"
 #~ msgstr "xdx - acerca de"

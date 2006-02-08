@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-02-07 20:33+0100\n"
+"POT-Creation-Date: 2006-02-08 21:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -310,26 +310,21 @@ msgstr ""
 msgid "Connecting to: %s"
 msgstr ""
 
-#: src/net.c:133
+#: src/net.c:127
 #, c-format
 msgid "Connected to %s"
 msgstr ""
 
-#: src/net.c:144
-#, c-format
-msgid "Error on setting channel encoding: %s"
-msgstr ""
-
-#: src/net.c:219 src/net.c:232
+#: src/net.c:178 src/net.c:218 src/net.c:231
 msgid "Connection closed by remote host"
 msgstr ""
 
-#: src/net.c:291
+#: src/net.c:290
 #, c-format
 msgid "Write failed: %s"
 msgstr ""
 
-#: src/net.c:303
+#: src/net.c:302
 msgid "Nothing to send, you are not connected"
 msgstr ""
 
