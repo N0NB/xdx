@@ -26,6 +26,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
+#include <time.h>
 #include "utils.h"
 #include "gui.h"
 #include "preferences.h"
@@ -41,7 +42,7 @@ void
 add_pixmap_directory (const gchar * directory)
 {
   pixmaps_directories = g_list_prepend (pixmaps_directories,
-					g_strdup (directory));
+          g_strdup (directory));
 }
 
 /*
@@ -176,4 +177,55 @@ gchar *try_utf8 (const gchar *str)
   if (utf8) return(utf8);
 
   return (NULL);
+}
+
+/* get the current time, returned value has to be freed */
+gchar *
+gettime (void)
+{
+  time_t current;
+  struct tm *timestruct = NULL;
+  gchar stimenow[20];
+
+  time (&current);
+  timestruct = localtime (&current);
+  strftime (stimenow, 20, "%H%M", timestruct);
+  return (g_strdup (stimenow));
+}
+
+/* get the current date, returned value has to be freed */
+gchar *
+getdate (void)
+{
+  time_t current;
+  struct tm *timestruct = NULL;
+  gchar datenow[20], *date;
+
+  time (&current);
+  timestruct = localtime (&current);
+  strftime (datenow, 20, "%d %b %Y", timestruct);
+
+  if (!g_utf8_validate (datenow, -1, NULL ))
+    date = g_locale_to_utf8 (datenow, -1, NULL, NULL, NULL);
+  else
+    date = g_strdup (datenow);
+  
+  return (date);
+}
+
+/*
+ * log a connection
+ */
+void logconnection (GString *logstr)
+{
+  gchar *str, *f;
+  FILE *fp;
+
+  str = g_strdup_printf ("[%s, %s UTC] %s", getdate(), gettime(), logstr->str);
+  f = g_strdup_printf ("%s/log.txt", gui->preferencesdir);
+  fp = fopen (f, "a");
+  fprintf (fp, "%s\n", str);
+  fclose (fp);
+  g_free (str);
+  g_free (f);
 }

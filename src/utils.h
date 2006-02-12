@@ -50,3 +50,6 @@ void menu_set_sensitive (GtkUIManager *uim, const gchar * path, gboolean sens);
 void openurl (const char *url);
 void openmail (const char *url);
 gchar *try_utf8 (const gchar *str);
+gchar *getdate (void);
+gchar *gettime (void);
+void logconnection (GString *logstr);

@@ -70,6 +70,7 @@ on_close_activate (GtkMenuItem * menuitem, gpointer user_data)
   if (response == GTK_RESPONSE_OK)
     {
       g_string_printf (msg, _("Connection closed"));
+      logconnection (msg);
       cldisconnect (msg, FALSE);
       g_string_free(msg, TRUE);
     }

@@ -126,6 +126,7 @@ clresolve (servertype *cluster)
   
   g_string_printf (msg, _("Connected to %s"), cluster->host);
   updatestatusbar (msg, FALSE);
+  logconnection (msg);
   g_string_free (msg, TRUE);
 
   menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Open", FALSE);
@@ -135,8 +136,6 @@ clresolve (servertype *cluster)
   g_io_channel_set_flags (cluster->rxchannel, G_IO_FLAG_NONBLOCK, &err);
   res = g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
   cluster->source_id = g_io_add_watch
-    (cluster->rxchannel, G_IO_HUP, close_connection, cluster);
-  cluster->source_id = g_io_add_watch
     (cluster->rxchannel, G_IO_IN, rx, cluster);
 
   return TRUE;
@@ -144,21 +143,22 @@ clresolve (servertype *cluster)
 
 
 /*
- * disconnect routine
+ * disconnect routine, called from the disconnect dialog
  */
-
 void
 cldisconnect (GString *msg, gboolean timeout)
 {
   servertype *cluster;
 
   cluster = g_object_get_data (G_OBJECT(gui->window), "cluster");
-  g_io_channel_shutdown (cluster->rxchannel, TRUE, NULL);
-  g_io_channel_unref (cluster->rxchannel);
-  cluster->rxchannel = NULL;
+
+  if (cluster->rxchannel)
+  {
+    g_io_channel_shutdown (cluster->rxchannel, TRUE, NULL);
+    g_io_channel_unref (cluster->rxchannel);
+    cluster->rxchannel = NULL;
+  }
   g_source_remove (cluster->source_id);
-  g_free (cluster->host);
-  g_free (cluster->port);
 
   close (cluster->sockethandle);
   cluster->sockethandle = -1;
@@ -170,14 +170,14 @@ cldisconnect (GString *msg, gboolean timeout)
   menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
 }
 
-gboolean
-close_connection (GIOChannel * channel, GIOCondition cond, gpointer data)
+static gint
+reconnect (gpointer data)
 {
-  GString *msg = g_string_new ("");
+  servertype *cluster;
 
-  g_string_printf (msg, _("Connection closed by remote host"));
-  cldisconnect (msg, FALSE);
-  g_string_free (msg, TRUE);
+  cluster = g_object_get_data (G_OBJECT(gui->window), "cluster");
+  g_source_remove (cluster->reconnecttimer);
+  clresolve (cluster);
   return FALSE;
 }
 
@@ -203,7 +203,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
 
   switch (res)
     {
-    case G_IO_STATUS_ERROR: /*connection refused */
+    case G_IO_STATUS_ERROR: /* connection refused */
       g_string_printf (msg, ("%s"), err->message);
       cldisconnect (msg, FALSE);
       g_string_free (msg, TRUE);
@@ -217,6 +217,12 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
     case G_IO_STATUS_EOF: /* remote end has closed connection */
       g_string_printf (msg, _("Connection closed by remote host"));
       cldisconnect (msg, FALSE);
+      if (preferences.reconnect == 1)
+      {
+        cluster->reconnecttimer = g_timeout_add (10000, reconnect, NULL);
+        g_string_printf (msg, _("Connection closed, trying reconnect in 10 seconds"));
+        updatestatusbar (msg, FALSE);
+      }
       g_string_free (msg, TRUE);
       return FALSE;
       break;
@@ -232,7 +238,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
         cldisconnect (msg, FALSE);
         g_string_free (msg, TRUE);
         ret = FALSE;
-	    }
+      }
       else
       {
         maintext_add (buf, numbytes, MESSAGE_RX);

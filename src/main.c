@@ -37,7 +37,8 @@ GdkColormap *colormap;
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *treeview, *maintext, *vpaned, *sidemenu, *highframe,
+  GtkWidget *treeview, *maintext, *vpaned, *sidemenu, *reconnectmenu,
+    *highframe,
     *highcheck1, *highcheck2, *highcheck3, *highcheck4, *highcheck5,
     *highcheck6, *highcheck7, *highcheck8,
     *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
@@ -247,6 +248,12 @@ main (int argc, char *argv[])
     gtk_widget_show (highframe);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(sidemenu), TRUE);
   }
+  reconnectmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/Reconnect");
+  if (preferences.reconnect == 0)
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(reconnectmenu), FALSE);
+  else
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(reconnectmenu), TRUE);
 
   menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE); /* do not translate */
   g_string_printf (greeting, _("Welcome to %s"), PACKAGE);

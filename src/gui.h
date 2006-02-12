@@ -51,6 +51,7 @@ gboolean double_click (GtkWidget *widget, GdkEventButton *event,
             gpointer user_data);
 void on_quit_activate (GtkMenuItem * menuitem, gpointer user_data);
 void on_sidebar_activate (GtkAction * action, gpointer user_data);
+void on_reconnect_activate (GtkAction * action, gpointer user_data);
 void on_highcheck_toggled (GtkToggleButton *togglebutton, gpointer user_data);
 void on_highentry_changed (GtkEditable * editable, gpointer user_data);
 gboolean on_highentry_clicked

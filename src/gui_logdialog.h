@@ -18,26 +18,7 @@
  */
 
 /*
- *  net.h
+ * gui_logdialog.h
  */
 
-#include <gtk/gtk.h>
-
-#define MESSAGE_RX 1
-#define MESSAGE_TX 2
-
-typedef struct servertype {
-  gchar *host;
-  gchar *port;
-  GIOChannel *rxchannel;
-  guint source_id;
-  gint sockethandle;
-  gboolean connected;
-  gint reconnecttimer;
-} servertype;
-
-servertype *new_cluster(void);
-gboolean clresolve (servertype *cluster);
-void cldisconnect (GString *msg, gboolean timeout);
-gboolean rx (GIOChannel * channel, GIOCondition cond, gpointer data);
-void tx (GString * message);
+void on_log_activate (GtkMenuItem * menuitem, gpointer user_data);

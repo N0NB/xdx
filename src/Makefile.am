@@ -15,6 +15,7 @@ bin_PROGRAMS = xdx
 xdx_SOURCES = \
 	gui.h \
 	gui_opendialog.h \
+	gui_logdialog.h \
 	gui_closedialog.h \
 	gui_aboutdialog.h \
 	gui_settingsdialog.h \
@@ -25,10 +26,12 @@ xdx_SOURCES = \
 	text.h \
 	types.h \
 	utils.h \
-  hyperlink.h \
-  save.h \
+	hyperlink.h \
+	save.h \
+	gtksourceiter.h \
 	gui.c \
 	gui_opendialog.c \
+	gui_logdialog.c \
 	gui_closedialog.c \
 	gui_aboutdialog.c \
 	gui_settingsdialog.c \
@@ -39,8 +42,8 @@ xdx_SOURCES = \
 	preferences.c \
 	text.c \
 	utils.c \
-  hyperlink.c \
-  save.c \
-  gtksourceiter.h gtksourceiter.c
+	hyperlink.c \
+	save.c \
+	gtksourceiter.c
 
 xdx_LDADD = @PACKAGE_LIBS@

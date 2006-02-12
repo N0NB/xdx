@@ -33,6 +33,7 @@
 #include "history.h"
 #include "hyperlink.h"
 #include "gui_opendialog.h"
+#include "gui_logdialog.h"
 #include "gui_closedialog.h"
 #include "gui_aboutdialog.h"
 #include "gui_settingsdialog.h"
@@ -73,10 +74,12 @@ static GtkActionEntry entries[] = {
 	
 	{ "Quit", GTK_STOCK_QUIT, N_("Quit"),
 		"<control>Q", "Quit Program", G_CALLBACK(on_quit_activate) },
-	{ "Open", GTK_STOCK_OPEN, N_("Open..."),
+	{ "Open", GTK_STOCK_NETWORK, N_("Open..."),
 		"<control>O", "Open Connection", G_CALLBACK(on_open_activate) },
 	{ "Close", GTK_STOCK_CLOSE, N_("Close"),
 		"<control>C", "Close Connection", G_CALLBACK(on_close_activate) },
+	{ "ShowLog", GTK_STOCK_OPEN, N_("Connection Log"),
+		"<control>L", "Show connection log", G_CALLBACK(on_log_activate) },
 	{ "Preferences", GTK_STOCK_PREFERENCES, N_("Preferences..."),
 		"<control>P", "Settings for xdx", G_CALLBACK(on_settings_activate) },
 	{ "Manual", GTK_STOCK_HELP, N_("Manual"),
@@ -85,8 +88,11 @@ static GtkActionEntry entries[] = {
 		"<control>A", "About xdx", G_CALLBACK(on_about_activate) },
 };
 
+
 static GtkToggleActionEntry toggle_entries[] =
 {
+  { "Reconnect", NULL, N_("Auto Reconnect"), "<control>R", "Auto Reconnect on/off",
+   G_CALLBACK(on_reconnect_activate) },
   { "Sidebar", NULL, N_("Chat sidebar"), "F4", "Chat sidebar on/off",
    G_CALLBACK(on_sidebar_activate) },
 };
@@ -95,6 +101,7 @@ static const char *ui_description =
 "<ui>"
 "  <menubar name='MainMenu'>"
 "    <menu action='ProgramMenu'>"
+"      <menuitem action='ShowLog'/>"
 "      <menuitem action='Quit'/>"
 "    </menu>"
 "    <menu action='HostMenu'>"
@@ -102,7 +109,9 @@ static const char *ui_description =
 "      <menuitem action='Close'/>"
 "    </menu>"
 "    <menu action='SettingsMenu'>"
+"      <menuitem action='Reconnect'/>"
 "      <menuitem action='Sidebar'/>"
+"      <separator name='sep2'/>"
 "      <menuitem action='Preferences'/>"
 "    </menu>"
 "    <menu action='HelpMenu'>"
@@ -569,7 +578,9 @@ static void cleanup (void)
   gui->ui_manager = NULL;
 
   cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
-  g_free(cluster);
+  g_free (cluster->host);
+  g_free (cluster->port);
+  g_free (cluster);
   gui->window = NULL;
 
   g_free(preferences.columnwidths);
@@ -600,7 +611,7 @@ static void cleanup (void)
   link = gui->txhistory;
   while (link)
 	{
-		g_free(link->data);
+	  g_free(link->data);
 	  link = link->next;
 	}
   g_list_free(gui->txhistory);
@@ -621,6 +632,21 @@ on_quit_activate (GtkMenuItem * menuitem, gpointer user_data)
   syncprefs ();
   cleanup ();
   gtk_main_quit ();
+}
+
+void on_reconnect_activate (GtkAction * action, gpointer user_data)
+{
+  GtkWidget *reconnectmenu;
+  gboolean state;
+
+  reconnectmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/Reconnect");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(reconnectmenu));
+
+  if (state)
+    preferences.reconnect = 1;
+  else
+    preferences.reconnect = 0;
 }
 
 void
