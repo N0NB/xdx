@@ -189,7 +189,7 @@ gettime (void)
 
   time (&current);
   timestruct = localtime (&current);
-  strftime (stimenow, 20, "%H%M", timestruct);
+  strftime (stimenow, 20, "%H:%M:%S", timestruct);
   return (g_strdup (stimenow));
 }
 
