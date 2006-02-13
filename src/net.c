@@ -65,6 +65,8 @@ servertype *new_cluster(void)
   server->source_id = 0;
   server->sockethandle = -1;
   server->connected = FALSE;
+  server->reconnect = FALSE;
+  server->lastcommand = NULL;
   return(server);
 }
 
@@ -118,12 +120,24 @@ clresolve (servertype *cluster)
 
   if (ret == -1 && errno != EINPROGRESS)
     {
-      msg = g_string_new (g_strerror (errno));
-      updatestatusbar (msg, FALSE);
-      g_string_free (msg, TRUE);
+      if (preferences.reconnect == 1 && cluster->reconnect)
+      {
+        g_string_printf (msg, ("%s, trying reconnect in 10 seconds"), g_strerror (errno));
+        updatestatusbar (msg, FALSE);
+        logconnection (msg);
+        cluster->reconnecttimer = g_timeout_add (10000, reconnect, NULL);
+      }
+      else
+      {
+        msg = g_string_new (g_strerror (errno));
+        updatestatusbar (msg, FALSE);
+        logconnection (msg);
+        g_string_free (msg, TRUE);
+      }
       return FALSE;
     }
   
+  if (cluster->reconnect) cluster->reconnect = FALSE;
   g_string_printf (msg, _("Connected to %s"), cluster->host);
   updatestatusbar (msg, FALSE);
   logconnection (msg);
@@ -170,7 +184,7 @@ cldisconnect (GString *msg, gboolean timeout)
   menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
 }
 
-static gint
+gint
 reconnect (gpointer data)
 {
   servertype *cluster;
@@ -204,8 +218,17 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
   switch (res)
     {
     case G_IO_STATUS_ERROR: /* connection refused */
-      g_string_printf (msg, ("%s"), err->message);
-      cldisconnect (msg, FALSE);
+      if (preferences.reconnect == 1 && cluster->reconnect)
+      {
+        g_string_printf (msg, ("%s, trying reconnect in 10 seconds"), err->message);
+        cldisconnect (msg, FALSE);
+        cluster->reconnecttimer = g_timeout_add (10000, reconnect, NULL);
+      }
+      else
+      {
+        g_string_printf (msg, ("%s"), err->message);
+        cldisconnect (msg, FALSE);
+      }
       g_string_free (msg, TRUE);
       g_error_free (err);
       err = NULL;
@@ -215,13 +238,21 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
       ret = TRUE;
       break;
     case G_IO_STATUS_EOF: /* remote end has closed connection */
-      g_string_printf (msg, _("Connection closed by remote host"));
-      cldisconnect (msg, FALSE);
-      if (preferences.reconnect == 1)
+      if (preferences.reconnect == 1 &&
+        (g_ascii_strncasecmp(cluster->lastcommand, "/b", 2) ||
+         g_ascii_strncasecmp(cluster->lastcommand, "/q", 2)))
       {
-        cluster->reconnecttimer = g_timeout_add (10000, reconnect, NULL);
         g_string_printf (msg, _("Connection closed, trying reconnect in 10 seconds"));
-        updatestatusbar (msg, FALSE);
+        cldisconnect (msg, FALSE);
+        logconnection (msg);
+        cluster->reconnecttimer = g_timeout_add (10000, reconnect, NULL);
+        cluster->reconnect = TRUE;
+      }
+      else
+      {
+        g_string_printf (msg, _("Connection closed by remote host"));
+        logconnection (msg);
+        cldisconnect (msg, FALSE);
       }
       g_string_free (msg, TRUE);
       return FALSE;
@@ -287,26 +318,27 @@ tx (GString * txmsg)
   cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
 
   if ((cluster->rxchannel) && (cluster->sockethandle != -1))
+  {
+    if (txmsg->len > 0) tx_save(txmsg);
+    txmsg = g_string_append (txmsg, "\n");
+    numbytes = write (cluster->sockethandle, txmsg->str, txmsg->len);
+    if (numbytes == -1)
     {
-      if (txmsg->len > 0) tx_save(txmsg);
-      txmsg = g_string_append (txmsg, "\n");
-      numbytes = write (cluster->sockethandle, txmsg->str, txmsg->len);
-      if (numbytes == -1)
-      {
-        g_string_printf (errmsg, _("Write failed: %s"), g_strerror (errno));
-        updatestatusbar (errmsg, FALSE);
-        g_string_free (errmsg, TRUE);
-        return;
-      }
-      else if (preferences.localecho == 1)
-      {
-        maintext_add (txmsg->str, txmsg->len, MESSAGE_TX);
-      }
-    }
-  else
-    {
-      g_string_printf (errmsg, _("Nothing to send, you are not connected"));
+      g_string_printf (errmsg, _("Write failed: %s"), g_strerror (errno));
       updatestatusbar (errmsg, FALSE);
       g_string_free (errmsg, TRUE);
+      return;
     }
+    else if (preferences.localecho == 1)
+    {
+      maintext_add (txmsg->str, txmsg->len, MESSAGE_TX);
+    }
+    cluster->lastcommand = g_strdup (txmsg->str);
+  }
+  else
+  {
+    g_string_printf (errmsg, _("Nothing to send, you are not connected"));
+    updatestatusbar (errmsg, FALSE);
+    g_string_free (errmsg, TRUE);
+  }
 }

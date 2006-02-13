@@ -578,8 +578,9 @@ static void cleanup (void)
   gui->ui_manager = NULL;
 
   cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
-  g_free (cluster->host);
-  g_free (cluster->port);
+  if (cluster->host) g_free (cluster->host);
+  if (cluster->port) g_free (cluster->port);
+  if (cluster->lastcommand) g_free (cluster->lastcommand);
   g_free (cluster);
   gui->window = NULL;
 

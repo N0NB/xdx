@@ -49,7 +49,7 @@ on_log_activate (GtkMenuItem * menuitem, gpointer user_data)
               GTK_DIALOG_MODAL |
               GTK_DIALOG_DESTROY_WITH_PARENT,
               GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
-  gtk_widget_set_size_request (logdialog, 400, 300);
+  gtk_widget_set_size_request (logdialog, 600, 300);
   vbox = gtk_vbox_new (FALSE, 8);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 8);
   gtk_container_add (GTK_CONTAINER

@@ -34,6 +34,8 @@ typedef struct servertype {
   gint sockethandle;
   gboolean connected;
   gint reconnecttimer;
+  gboolean reconnect;
+  gchar *lastcommand;
 } servertype;
 
 servertype *new_cluster(void);
@@ -41,3 +43,4 @@ gboolean clresolve (servertype *cluster);
 void cldisconnect (GString *msg, gboolean timeout);
 gboolean rx (GIOChannel * channel, GIOCondition cond, gpointer data);
 void tx (GString * message);
+static gint reconnect (gpointer data);
