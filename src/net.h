@@ -36,6 +36,7 @@ typedef struct servertype {
   gint reconnecttimer;
   gboolean reconnect;
   gchar *lastcommand;
+  gint keepalivetimer;
 } servertype;
 
 servertype *new_cluster(void);
@@ -44,3 +45,4 @@ void cldisconnect (GString *msg, gboolean timeout);
 gboolean rx (GIOChannel * channel, GIOCondition cond, gpointer data);
 void tx (GString * message);
 gint reconnect (gpointer data);
+gint send_keepalivepacket (gpointer data);

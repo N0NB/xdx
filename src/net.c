@@ -65,8 +65,10 @@ servertype *new_cluster(void)
   server->source_id = 0;
   server->sockethandle = -1;
   server->connected = FALSE;
+  server->reconnecttimer = -1;
   server->reconnect = FALSE;
   server->lastcommand = NULL;
+  server->keepalivetimer = -1;
   return(server);
 }
 
@@ -149,6 +151,7 @@ clresolve (servertype *cluster)
   cluster->rxchannel = g_io_channel_unix_new (cluster->sockethandle);
   g_io_channel_set_flags (cluster->rxchannel, G_IO_FLAG_NONBLOCK, &err);
   res = g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
+  cluster->keepalivetimer = g_timeout_add (300000, send_keepalivepacket, NULL);
   cluster->source_id = g_io_add_watch
     (cluster->rxchannel, G_IO_IN, rx, cluster);
 
@@ -173,6 +176,7 @@ cldisconnect (GString *msg, gboolean timeout)
     cluster->rxchannel = NULL;
   }
   g_source_remove (cluster->source_id);
+  g_source_remove (cluster->keepalivetimer);
 
   close (cluster->sockethandle);
   cluster->sockethandle = -1;
@@ -182,6 +186,14 @@ cldisconnect (GString *msg, gboolean timeout)
 
   menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Open", TRUE);
   menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
+}
+
+gint
+send_keepalivepacket (gpointer data)
+{
+  servertype *cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
+  write (cluster->sockethandle, "\t", 1);
+  return TRUE;
 }
 
 gint
