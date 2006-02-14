@@ -43,4 +43,4 @@ gboolean clresolve (servertype *cluster);
 void cldisconnect (GString *msg, gboolean timeout);
 gboolean rx (GIOChannel * channel, GIOCondition cond, gpointer data);
 void tx (GString * message);
-static gint reconnect (gpointer data);
+gint reconnect (gpointer data);

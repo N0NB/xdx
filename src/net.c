@@ -217,18 +217,9 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
 
   switch (res)
     {
-    case G_IO_STATUS_ERROR: /* connection refused */
-      if (preferences.reconnect == 1 && cluster->reconnect)
-      {
-        g_string_printf (msg, ("%s, trying reconnect in 10 seconds"), err->message);
-        cldisconnect (msg, FALSE);
-        cluster->reconnecttimer = g_timeout_add (10000, reconnect, NULL);
-      }
-      else
-      {
-        g_string_printf (msg, ("%s"), err->message);
-        cldisconnect (msg, FALSE);
-      }
+    case G_IO_STATUS_ERROR: /* connection refused ? */
+      g_string_printf (msg, ("%s while connected"), err->message);
+      cldisconnect (msg, FALSE);
       g_string_free (msg, TRUE);
       g_error_free (err);
       err = NULL;
@@ -263,9 +254,9 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
 
   if ((cond & G_IO_IN) && G_IO_STATUS_NORMAL)
     {
-      if (numbytes == 0) /* remote end has closed connection */
+      if (numbytes == 0) /* remote end has closed connection ? */
       {
-        g_string_printf (msg, _("Connection closed by remote host"));
+        g_string_printf (msg, _("Connection closed by remote host (0 bytes received)"));
         cldisconnect (msg, FALSE);
         g_string_free (msg, TRUE);
         ret = FALSE;

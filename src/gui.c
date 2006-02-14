@@ -639,15 +639,20 @@ void on_reconnect_activate (GtkAction * action, gpointer user_data)
 {
   GtkWidget *reconnectmenu;
   gboolean state;
+  servertype *cluster;
 
   reconnectmenu = gtk_ui_manager_get_widget
     (gui->ui_manager, "/MainMenu/SettingsMenu/Reconnect");
   state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(reconnectmenu));
+  cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
 
   if (state)
     preferences.reconnect = 1;
   else
+  {
     preferences.reconnect = 0;
+    cluster->reconnect = FALSE;
+  }
 }
 
 void
