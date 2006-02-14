@@ -195,27 +195,28 @@ gboolean on_maintext_event_after (GtkWidget * widget,
 
   if (event->type != GDK_BUTTON_RELEASE) return FALSE;
   ev = (GdkEventButton *)event;
-  if (ev->button != 1) return FALSE;
-
-  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
-
-  /* we shouldn't follow a link if the user has selected something */
-  gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
-  if (gtk_text_iter_get_offset (&start) != gtk_text_iter_get_offset (&end))
-    return FALSE;
-
-  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (widget),
-    GTK_TEXT_WINDOW_WIDGET, ev->x, ev->y, &x, &y);
-  gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (widget), &iter, x, y);
-
-  if (get_link_tag (&iter))
+  if (ev->button == 1)
   {
-    if (g_strrstr (gui->url, "@"))
-      openmail (gui->url);
-    else
-      openurl (gui->url);
-  }
 
+    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
+
+    /* we shouldn't follow a link if the user has selected something */
+    gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
+    if (gtk_text_iter_get_offset (&start) != gtk_text_iter_get_offset (&end))
+      return FALSE;
+
+    gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (widget),
+      GTK_TEXT_WINDOW_WIDGET, ev->x, ev->y, &x, &y);
+    gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (widget), &iter, x, y);
+
+    if (get_link_tag (&iter))
+    {
+      if (g_strrstr (gui->url, "@"))
+        openmail (gui->url);
+      else
+        openurl (gui->url);
+    }
+  }
   return FALSE;
 }
 
