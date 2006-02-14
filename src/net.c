@@ -230,8 +230,8 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
       break;
     case G_IO_STATUS_EOF: /* remote end has closed connection */
       if (preferences.reconnect == 1 &&
-        (g_ascii_strncasecmp(cluster->lastcommand, "/b", 2) ||
-         g_ascii_strncasecmp(cluster->lastcommand, "/q", 2)))
+          g_ascii_strncasecmp(cluster->lastcommand, "/b", 2) != 0 &&
+          g_ascii_strncasecmp(cluster->lastcommand, "/q", 2) != 0)
       {
         g_string_printf (msg, _("Connection closed, trying reconnect in 10 seconds"));
         cldisconnect (msg, FALSE);
