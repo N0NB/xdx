@@ -262,6 +262,10 @@ create_mainwindow (void)
 			      NULL);
   gtk_text_buffer_create_tag (buffer, "sent", "foreground", "red",
 			      NULL);
+  gtk_text_buffer_create_tag (buffer, "prompt", "foreground", "darkblue",
+			      NULL);
+  gtk_text_buffer_create_tag (buffer, "call", "foreground", "darkblue",
+			      "weight", PANGO_WEIGHT_BOLD, NULL);
   gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue", 
 				    "underline", PANGO_UNDERLINE_SINGLE, NULL);
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);

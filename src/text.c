@@ -407,6 +407,19 @@ contains_highlights (gchar *str)
 	return ret;
 }
 
+static gboolean 
+findp (gunichar ch, gpointer user_data)
+{
+  switch (ch)
+  {
+    case ':':
+    case 'e':
+      return TRUE;
+    default:
+      return FALSE;
+  }
+}
+
 /*
  * add text to the text widget and dx messages to the list
  */
@@ -503,6 +516,23 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             gtk_text_buffer_get_bounds (buffer, &start, &end);
             endmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
 
+            /* colorize prompt */
+            if (!g_ascii_strncasecmp (dx->toall, "To ALL de ", 10))
+            {
+              gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
+              gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
+              if (gtk_text_iter_forward_find_char (&end, findp, NULL, NULL))
+              {
+                gtk_text_iter_forward_char (&end);
+                gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                start = end;
+              }
+              if (gtk_text_iter_forward_find_char (&end, findp, NULL, NULL))
+              {
+                gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
+              }
+            }
+
             high = contains_highlights (utf8);
             if (g_ascii_strcasecmp (high, "00000000"))
             for (i = 0; i < 8; i++)
@@ -534,6 +564,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             }   
             g_free (high);
 
+            /* search backward for smileys, so we don't go past the end of buffer */
             if (contains_smileys (utf8))
 	    {
               if (!smileylist) create_smiley_list ();
