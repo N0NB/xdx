@@ -505,7 +505,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 
             high = contains_highlights (utf8);
             if (g_ascii_strcasecmp (high, "00000000"))
-            for (i = 0; i < 7; i++)
+            for (i = 0; i < 8; i++)
             {
               if (high[i] == '1' && preferences.highmenu[i] == '1')
               {
