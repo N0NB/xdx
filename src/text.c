@@ -24,6 +24,7 @@
 
 #include <gtk/gtk.h>
 #include <string.h>
+#include <stdlib.h>
 #include "types.h"
 #include "utils.h"
 #include "text.h"
@@ -516,7 +517,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             gtk_text_buffer_get_bounds (buffer, &start, &end);
             endmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
 
-            /* colorize prompt */
+            /* check for DX-cluster prompt and colorize it */
             if (g_utf8_strlen(utf8, -1) > 10)
             {
               temp = g_strdup (utf8);
@@ -536,6 +537,19 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
               }
             }
+            }
+
+            /* check for ON4KST prompt and colorize it */
+            if (g_utf8_strlen(utf8, -1) > 5)
+            {
+              temp = g_strdup (utf8);
+              if ((*(temp + 5) == ' ') && (*(temp + 4) == 'Z'))
+              {
+                *(temp + 4) = '\0';
+                if ((atoi(temp) != 0) ||(!strcmp (temp, "0000")))
+                {
+                }
+              }
             }
 
             high = contains_highlights (utf8);
