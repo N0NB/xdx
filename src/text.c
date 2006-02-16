@@ -409,12 +409,25 @@ contains_highlights (gchar *str)
 }
 
 static gboolean 
-findp (gunichar ch, gpointer user_data)
+findclusterprompt (gunichar ch, gpointer user_data)
 {
   switch (ch)
   {
     case ':':
     case 'e':
+      return TRUE;
+    default:
+      return FALSE;
+  }
+}
+
+static gboolean 
+findkstprompt (gunichar ch, gpointer user_data)
+{
+  switch (ch)
+  {
+    case '>':
+    case ' ':
       return TRUE;
     default:
       return FALSE;
@@ -526,13 +539,13 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             {
               gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
               gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
-              if (gtk_text_iter_forward_find_char (&end, findp, NULL, NULL))
+              if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
               {
                 gtk_text_iter_forward_char (&end);
                 gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
                 start = end;
               }
-              if (gtk_text_iter_forward_find_char (&end, findp, NULL, NULL))
+              if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
               {
                 gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
               }
@@ -548,6 +561,22 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 *(temp + 4) = '\0';
                 if ((atoi(temp) != 0) ||(!strcmp (temp, "0000")))
                 {
+                  gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
+                  gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
+                  if (gtk_text_iter_forward_find_char (&end, findkstprompt, NULL, NULL))
+                  {
+                    gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                    start = end;
+                  }
+                  if (gtk_text_iter_forward_find_char (&end, findkstprompt, NULL, NULL))
+                  {
+                    gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
+                    start = end;
+                  }
+                  if (gtk_text_iter_forward_find_char (&end, findkstprompt, NULL, NULL))
+                  {
+                    gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                  }
                 }
               }
             }
