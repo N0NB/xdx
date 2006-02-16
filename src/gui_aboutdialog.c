@@ -57,7 +57,7 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 
 	gtk_show_about_dialog (GTK_WINDOW(gui->window), 
 		"authors", authors,
-		"comments", _("Tcp/ip DX cluster client for amateur radio operators"),
+		"comments", _("Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"),
 		"license", 
 "Copyright (C) 2002 - 2006 Joop Stakenborg <pg4i@amsat.org>\n"
 "\n"
