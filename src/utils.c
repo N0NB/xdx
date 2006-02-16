@@ -152,6 +152,19 @@ void openmail (const char *url)
   g_string_free (msg, TRUE);
 }
 
+void opensound (const char *file)
+{
+  gchar buf[1024];
+  GString *msg = g_string_new ("");
+
+  if (g_strrstr(preferences.soundapp, "%s"))
+  {
+    g_snprintf(buf, sizeof(buf), preferences.soundapp, file);
+    shellcommand (buf);
+  }
+  g_string_free (msg, TRUE);
+}
+
 /*
  * try to convert an incoming message to utf8
  */

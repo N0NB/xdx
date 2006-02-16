@@ -366,7 +366,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_tooltips_set_tip (tooltips, pprogmailentry, 
     _("Mail program to start after clicking on a mail url (%s = mail url)"), NULL);
   gtk_tooltips_set_tip (tooltips, pprogsoundentry, 
-    _("Program used to play sound (%f = sound file)"), NULL);
+    _("Program used to play sound (%s = sound file)"), NULL);
 
   if (g_ascii_strcasecmp (preferences.browserapp, "?"))
     gtk_entry_set_text (GTK_ENTRY(pprogbrowserentry), preferences.browserapp);

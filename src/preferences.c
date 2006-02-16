@@ -78,7 +78,7 @@ loadpreferences (void)
   preferences.rigctl = g_strdup("rigctl -m 1 set_freq %d");;
   preferences.browserapp = g_strdup("firefox %s");
   preferences.mailapp = g_strdup("evolution mailto:%s");
-  preferences.soundapp = g_strdup("play %f");
+  preferences.soundapp = g_strdup("play %s");
   preferences.col0visible = 1;
   preferences.col1visible = 1;
   preferences.col2visible = 1;

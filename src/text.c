@@ -408,6 +408,7 @@ contains_highlights (gchar *str)
 	return ret;
 }
 
+/* used when colorizing DX-cluster prompt */
 static gboolean 
 findclusterprompt (gunichar ch, gpointer user_data)
 {
@@ -421,6 +422,7 @@ findclusterprompt (gunichar ch, gpointer user_data)
   }
 }
 
+/* used when colorizing ON4KST chat prompt */
 static gboolean 
 findkstprompt (gunichar ch, gpointer user_data)
 {
@@ -432,6 +434,15 @@ findkstprompt (gunichar ch, gpointer user_data)
     default:
       return FALSE;
   }
+}
+
+/* play a sound when there is a highlight */
+static void playsound (void)
+{
+  gchar *path = g_build_filename
+    (PACKAGE_DATA_DIR, "sounds", "attention.wav", NULL);
+  opensound (path);
+  g_free (path);
 }
 
 /*
@@ -581,8 +592,11 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               }
             }
 
+            /* check for highlights */
             high = contains_highlights (utf8);
             if (g_ascii_strcasecmp (high, "00000000"))
+            {
+              if (preferences.playsound == 1) playsound ();
             for (i = 0; i < 8; i++)
             {
               if (high[i] == '1' && preferences.highmenu[i] == '1')
@@ -609,7 +623,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 g_free (p);
                 g_free (tagname);
               }
-            }   
+            }
+            }
             g_free (high);
 
             /* search backward for smileys, so we don't go past the end of buffer */
