@@ -28,6 +28,9 @@ Changelog for version xdx (2.0)
     viewed from the menu (Ctrl+l).
   * Xdx will send a keepalive packet every 5 minutes, which is useful for
     bad network connections.
+  * Sound support has been added. When a highlight is active in the chat window,
+    a sound can be heard. In order for the sound to work you must use a second
+    program and set it in the first page of the preferences dialog.
 
 Changelog for version xdx (1.2)
 
