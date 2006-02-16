@@ -436,7 +436,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
   GtkTextChildAnchor *anchor;
   GtkWidget *swidget;
   smiley *s;
-  gchar *utf8, *high, *tagname, *p;
+  gchar *utf8, *high, *tagname, *p, *temp;
   guint i;
 
   if (len < 1024) msg[len] = '\0';
@@ -517,7 +517,11 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             endmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
 
             /* colorize prompt */
-            if (!g_ascii_strncasecmp (dx->toall, "To ALL de ", 10))
+            if (g_utf8_strlen(utf8, -1) > 10)
+            {
+              temp = g_strdup (utf8);
+              *(temp + 10) = '\0';
+            if (!strcmp (temp, "To ALL de "))
             {
               gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
               gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
@@ -531,6 +535,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               {
                 gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
               }
+            }
             }
 
             high = contains_highlights (utf8);
