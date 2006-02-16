@@ -76,6 +76,7 @@ typedef struct
   gchar *highmenu;
   gint sidebar;
   gint reconnect;
+  gint playsound;
 } preferencestype;
 
 void dircheck (void);

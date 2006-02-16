@@ -41,6 +41,9 @@
 
 extern preferencestype preferences;
 
+static void on_highcheck_toggled (GtkToggleButton *togglebutton, gpointer user_data);
+static void on_soundcheck_toggled (GtkToggleButton *togglebutton, gpointer user_data);
+
 /**********************************MAIN WINDOW********************************/
 guitype *new_gui(void)
 {
@@ -146,7 +149,7 @@ create_mainwindow (void)
     *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
     *highentry6, *highentry7, *highentry8, *highcheck1, *highcheck2,
     *highcheck3, *highcheck4, *highcheck5, *highcheck6, *highcheck7,
-    *highcheck8;
+    *highcheck8, *soundcheck;
   GtkCellRenderer *renderer, *boldrenderer;
   GtkTreeViewColumn *column;
   GtkTextBuffer *buffer, *entrybuffer;
@@ -340,6 +343,11 @@ create_mainwindow (void)
   highcheck8 = gtk_check_button_new ();
   gtk_box_pack_start (GTK_BOX (hbox), highcheck8, FALSE, FALSE, 0);
 
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (highvbox), hbox);
+  soundcheck = gtk_check_button_new_with_label (_("Play sound"));
+  gtk_box_pack_start (GTK_BOX (hbox), soundcheck, FALSE, FALSE, 0);
+
   key_toggle = gtk_accel_group_new();
   gtk_window_add_accel_group(GTK_WINDOW(gui->window), key_toggle);
   gtk_widget_add_accelerator(highcheck1, "clicked", key_toggle, GDK_1, GDK_CONTROL_MASK, 0);
@@ -350,6 +358,7 @@ create_mainwindow (void)
   gtk_widget_add_accelerator(highcheck6, "clicked", key_toggle, GDK_6, GDK_CONTROL_MASK, 0);
   gtk_widget_add_accelerator(highcheck7, "clicked", key_toggle, GDK_7, GDK_CONTROL_MASK, 0);
   gtk_widget_add_accelerator(highcheck8, "clicked", key_toggle, GDK_8, GDK_CONTROL_MASK, 0);
+  gtk_widget_add_accelerator(soundcheck, "clicked", key_toggle, GDK_0, GDK_CONTROL_MASK, 0);
 
   vpaned = gtk_vpaned_new ();
   gtk_paned_add1 (GTK_PANED (vpaned), clistscrolledwindow);
@@ -381,6 +390,8 @@ create_mainwindow (void)
   gtk_tooltips_set_tip(tooltips, highcheck7, str, NULL);
   str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 8);
   gtk_tooltips_set_tip(tooltips, highcheck8, str, NULL);
+  str = g_strdup_printf (_("Enable/disable sound [Ctrl+%d]"), 0);
+  gtk_tooltips_set_tip(tooltips, soundcheck, str, NULL);
 
   mainentry = gtk_text_view_new ();
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW(mainentry), GTK_WRAP_WORD);
@@ -429,6 +440,9 @@ create_mainwindow (void)
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(7));
   g_signal_connect ((gpointer) highcheck8, "toggled",
         G_CALLBACK (on_highcheck_toggled), GINT_TO_POINTER(8));
+
+  g_signal_connect ((gpointer) soundcheck, "toggled",
+        G_CALLBACK (on_soundcheck_toggled), NULL);
 
   g_signal_connect (G_OBJECT (highentry1), "changed",
         G_CALLBACK (on_highentry_changed), GINT_TO_POINTER(1));
@@ -479,6 +493,7 @@ create_mainwindow (void)
   g_object_set_data (G_OBJECT (gui->window), "highcheck6", highcheck6);
   g_object_set_data (G_OBJECT (gui->window), "highcheck7", highcheck7);
   g_object_set_data (G_OBJECT (gui->window), "highcheck8", highcheck8);
+  g_object_set_data (G_OBJECT (gui->window), "soundcheck", soundcheck);
   g_object_set_data (G_OBJECT (gui->window), "highentry1", highentry1);
   g_object_set_data (G_OBJECT (gui->window), "highentry2", highentry2);
   g_object_set_data (G_OBJECT (gui->window), "highentry3", highentry3);
@@ -682,7 +697,17 @@ on_sidebar_activate (GtkAction * action, gpointer user_data)
   }
 }
 
-void 
+static void
+on_soundcheck_toggled (GtkToggleButton *togglebutton, gpointer user_data)
+{
+  gboolean state = gtk_toggle_button_get_active (togglebutton);
+  if (state)
+    preferences.playsound = 1;
+  else
+    preferences.playsound = 0;
+}
+
+static void
 on_highcheck_toggled (GtkToggleButton *togglebutton, gpointer user_data)
 {
   gboolean state = gtk_toggle_button_get_active (togglebutton);

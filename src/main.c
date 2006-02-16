@@ -40,7 +40,7 @@ main (int argc, char *argv[])
   GtkWidget *treeview, *maintext, *vpaned, *sidemenu, *reconnectmenu,
     *highframe,
     *highcheck1, *highcheck2, *highcheck3, *highcheck4, *highcheck5,
-    *highcheck6, *highcheck7, *highcheck8,
+    *highcheck6, *highcheck7, *highcheck8, *soundcheck,
     *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
     *highentry6, *highentry7, *highentry8;
   GtkTreeViewColumn *column;
@@ -132,6 +132,7 @@ main (int argc, char *argv[])
   highcheck6 = g_object_get_data (G_OBJECT (gui->window), "highcheck6");
   highcheck7 = g_object_get_data (G_OBJECT (gui->window), "highcheck7");
   highcheck8 = g_object_get_data (G_OBJECT (gui->window), "highcheck8");
+  soundcheck = g_object_get_data (G_OBJECT (gui->window), "soundcheck");
   if (preferences.highmenu[0] == '1')
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(highcheck1), TRUE);
   if (preferences.highmenu[1] == '1')
@@ -148,6 +149,8 @@ main (int argc, char *argv[])
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(highcheck7), TRUE);
   if (preferences.highmenu[7] == '1')
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(highcheck8), TRUE);
+  if (preferences.playsound == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(soundcheck), TRUE);
   highentry1 = g_object_get_data (G_OBJECT (gui->window), "highentry1");
   highentry2 = g_object_get_data (G_OBJECT (gui->window), "highentry2");
   highentry3 = g_object_get_data (G_OBJECT (gui->window), "highentry3");

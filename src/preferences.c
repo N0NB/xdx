@@ -78,7 +78,7 @@ loadpreferences (void)
   preferences.rigctl = g_strdup("rigctl -m 1 set_freq %d");;
   preferences.browserapp = g_strdup("firefox %s");
   preferences.mailapp = g_strdup("evolution mailto:%s");
-  preferences.soundapp = g_strdup("esdplay %f");
+  preferences.soundapp = g_strdup("play %f");
   preferences.col0visible = 1;
   preferences.col1visible = 1;
   preferences.col2visible = 1;
@@ -108,6 +108,7 @@ loadpreferences (void)
   preferences.highmenu = g_strdup ("00000000");
   preferences.sidebar = 1;
   preferences.reconnect = 0;
+  preferences.playsound = 0;
   
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -254,6 +255,8 @@ loadpreferences (void)
           preferences.sidebar = atoi(value);
         else if (!g_ascii_strcasecmp(label, "reconnect")) 
           preferences.reconnect = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "playsound")) 
+          preferences.playsound = atoi(value);
     }
     fclose (fp);
   }
@@ -383,6 +386,8 @@ savepreferences (void)
     fprintf(fp, "sidebar %s\n", str);
     str = g_strdup_printf("%d", preferences.reconnect);
     fprintf(fp, "reconnect %s\n", str);
+    str = g_strdup_printf("%d", preferences.playsound);
+    fprintf(fp, "playsound %s\n", str);
     g_free(str);
     fclose (fp);
   }
