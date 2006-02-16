@@ -50,7 +50,7 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
 	gchar *authors[] = { "Joop Stakenborg PG4I <pg4i@amsat.org>", NULL };
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file
-		(PACKAGE_DATA_DIR "/pixmaps/xdx.png", NULL);
+		(PACKAGE_DATA_DIR "/pixmaps/xdx-logo.png", NULL);
 
 	gtk_about_dialog_set_url_hook (handle_url, NULL, NULL);
 	gtk_about_dialog_set_email_hook (handle_email, NULL, NULL);
