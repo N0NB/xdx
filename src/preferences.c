@@ -78,6 +78,7 @@ loadpreferences (void)
   preferences.rigctl = g_strdup("rigctl -m 1 set_freq %d");;
   preferences.browserapp = g_strdup("firefox %s");
   preferences.mailapp = g_strdup("evolution mailto:%s");
+  preferences.soundapp = g_strdup("esdplay %f");
   preferences.col0visible = 1;
   preferences.col1visible = 1;
   preferences.col2visible = 1;
@@ -159,6 +160,11 @@ loadpreferences (void)
         {
           g_strdelimit (value, "~", ' ');
           preferences.mailapp = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "soundapp"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.soundapp = g_strdup(value);
         }
         else if (!g_ascii_strcasecmp(label, "col0visible")) 
           preferences.col0visible = atoi(value);
@@ -306,6 +312,9 @@ savepreferences (void)
     str = g_strdup_printf("%s", preferences.mailapp);
     g_strdelimit (str, " ", '~');
     fprintf(fp, "mailapp %s\n", str);
+    str = g_strdup_printf("%s", preferences.soundapp);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "soundapp %s\n", str);
     str = g_strdup_printf("%d", preferences.col0visible);
     fprintf(fp, "col0visible %s\n", str);
     str = g_strdup_printf("%d", preferences.col1visible);

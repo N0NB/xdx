@@ -46,6 +46,7 @@ typedef struct
   gchar *rigctl;
   gchar *browserapp;
   gchar *mailapp;
+  gchar *soundapp;
   gint col0visible;
   gint col1visible;
   gint col2visible;

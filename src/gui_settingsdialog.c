@@ -173,7 +173,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
     *pprogframe, *pprogvbox, *pproghbox1, *pprogbrowserlabel, 
     *pprogbrowserentry, *pproghbox2, *pprogmaillabel,
-    *pprogmailentry, *pproglabel,
+    *pprogmailentry, *pproglabel, *pproghbox3, *pprogsoundlabel,
+    *pprogsoundentry,
 
     *pechoframe, *pechocheckbutton, *pechovbox, *pecholabel,
 
@@ -351,17 +352,28 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   pprogmailentry = gtk_entry_new ();
   gtk_box_pack_start (GTK_BOX (pproghbox2), pprogmailentry, TRUE, TRUE, 5);
   gtk_entry_set_max_length (GTK_ENTRY (pprogmailentry), 80);
+  pproghbox3 = gtk_hbox_new (TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (pprogvbox), pproghbox3, TRUE, TRUE, 0);
+  pprogsoundlabel = gtk_label_new (_("Sound playing"));
+  gtk_box_pack_start (GTK_BOX (pproghbox3), pprogsoundlabel, FALSE, FALSE, 0);
+  pprogsoundentry = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (pproghbox3), pprogsoundentry, TRUE, TRUE, 5);
+  gtk_entry_set_max_length (GTK_ENTRY (pprogmailentry), 80);
   pproglabel = gtk_label_new (_("Programs"));
   gtk_frame_set_label_widget (GTK_FRAME (pprogframe), pproglabel);
   gtk_tooltips_set_tip (tooltips, pprogbrowserentry, 
     _("Web browser to start after clicking on a url (%s = url)"), NULL);
   gtk_tooltips_set_tip (tooltips, pprogmailentry, 
     _("Mail program to start after clicking on a mail url (%s = mail url)"), NULL);
+  gtk_tooltips_set_tip (tooltips, pprogsoundentry, 
+    _("Program used to play sound (%f = sound file)"), NULL);
 
   if (g_ascii_strcasecmp (preferences.browserapp, "?"))
     gtk_entry_set_text (GTK_ENTRY(pprogbrowserentry), preferences.browserapp);
   if (g_ascii_strcasecmp (preferences.mailapp, "?"))
     gtk_entry_set_text (GTK_ENTRY(pprogmailentry), preferences.mailapp);
+  if (g_ascii_strcasecmp (preferences.soundapp, "?"))
+    gtk_entry_set_text (GTK_ENTRY(pprogsoundentry), preferences.soundapp);
 
   pechoframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox2), pechoframe, TRUE, TRUE, 0);
@@ -684,6 +696,11 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.mailapp = g_strdup ("?");
     else
       preferences.mailapp = g_strdup (str);
+    str = gtk_editable_get_chars (GTK_EDITABLE (pprogsoundentry), 0, -1);
+    if (strlen(str) == 0)
+      preferences.soundapp = g_strdup ("?");
+    else
+      preferences.soundapp = g_strdup (str);
 
     /* general frame */
     state = gtk_toggle_button_get_active 
