@@ -1,4 +1,4 @@
-Changelog for version xdx (1.3)
+Changelog for version xdx (2.0)
   * Polish translations by Boguslaw Ciastek SQ5TB, thanks!
   * A Dutch manual has been added.
   * Updated gettext and automake version used.
@@ -20,7 +20,14 @@ Changelog for version xdx (1.3)
   * Parse of the DX cluster output has been improved. Xdx would sporadically
     miss DX messages.
   * A new about dialog has been added.
-  * The manual now uses monospace font.
+  * The manual now uses monospace font. It is now activated with F1.
+  * Auto reconnect has been added. When activated through the settings menu,
+    xdx will try to reconnect when the connection is broken. This code is
+    somewhat experimental....
+  * To keep track of your connections a connection log is kept. It can be
+    viewed from the menu (Ctrl+l).
+  * Xdx will send a keepalive packet every 5 minutes, which is useful for
+    bad network connections.
 
 Changelog for version xdx (1.2)
 
