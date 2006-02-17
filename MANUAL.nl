@@ -18,6 +18,11 @@ databases gebruiken.
 Voor een lijst van DX-Clusters zie:
 http://www.cpcug.org/user/wfeidt/Misc/cluster.html.
 
+ON4KST chat is meer bedoeld voor VHF en UHF operators. Het is een plek
+waar zendamateurs ontmoeten voor het plannen van radio verbindingen
+over lange afstanden, moonbounce en meteor scatter. Voor meer informatie
+over ON4KST chat zie http://www.on4kst.com.
+
 Commando's
 ==========
 Hieronder enkele commando's om mee te beginnen:
@@ -26,6 +31,9 @@ announce/full 'msg': Stuur een bericht aan alle verbonden stations.
 bye: Verlaat het DX Cluster.
 dx 'frequency' 'callsign' 'comment': Verstuur informatie over een DX station.
 show/dx: Toon opgeslagen DX berichten.
+
+ON4KST gebruikt een subset van de DX-cluster commando's, Je kan het beste
+'help' typen nadat je verbonden bent.
 
 Voorbeelden van commando's
 ==========================
@@ -42,7 +50,15 @@ Voorkeuren' uit het menu selecteren en autologin aanzetten. Je moet
 inloggen met je roepletters. Nadat je verbonden bent kun je een aantal
 commando's naar het cluster sturen. Je kunt deze invoeren in het
 "Commando's" veld, gescheiden door een komma, 'set/page 0,unset beep'
-zet bijvoorbeeld het pagineren en piepen uit.
+zet bijvoorbeeld het pagineren en piepen uit. Je kan dit veld ook gebruik
+om een wachtwoord te versturen. Er is een delay van 0,5 seconden tussen
+de verschillende commando's.
+
+Verbinding in stand houden
+==========================
+Wanneer je een slecht netwerk hebt en de verbinding regelmatig wordt
+verbroken kan je deze optie aanzetten in het voorkeuren venster. Op deze
+manier wordt elke 500 seconden een return naar de server gestuurd.
 
 DX info opslaan
 ===============
@@ -75,10 +91,18 @@ Starten van mozilla-mail indien op een URL wordt geklikt:
 
 Kleuren
 =======
-In het 'chat zijvenster' kun je 8 verschillende woorden invoeren om te laten
-kleuren in het onderste venster. Je moet ook het kleuren aanzetten voor het
-betreffende woord. De kleuren die gebruikt worden kunnen worden ingesteld op
-pagina 3 van het voorkeuren venster.
+In het 'chat zijvenster' kun je 8 verschillende woorden invoeren om een
+kleur te geven in het onderste venster. Je moet ook het kleuren aanzetten voor
+het betreffende woord. De kleuren die gebruikt worden kunnen worden ingesteld
+op pagina 3 van het voorkeuren venster.
+
+Geluids-ondersteuning
+=====================
+Wanneer een woord een kleur krijgt, kan er ook een geluid worden afgespeeld.
+Om een geluid te horen dien je een exern programma te gebruiken en dit op te
+geven in de eerste pagina van het voorkeuren venster: 'play %s' gebruikt
+play wat deel uitmaakt van sox. 'esdplay %s' gebruikt esdplay, wat wordt 
+gebruikt wanneer je esound in de gnome omgeving hebt gestart.
 
 Smileys
 =======
