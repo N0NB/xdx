@@ -50,6 +50,12 @@ by a comma, e.g. set/page 0,unset beep' will disable paging and stop beeps.
 You can also use commands when a password is needed. There is a 0.5 second
 delay between commands.
 
+Keepalive packets
+=================
+If you have a bad network and experience random disconnects, you can try
+to enable keepalive in the settings dialog. This will send a return to the
+server every 500 seconds.
+
 Saving DX info
 ==============
 Individual messages can be saved to a file when activated from the preferences
