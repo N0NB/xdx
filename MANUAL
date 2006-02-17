@@ -1,5 +1,5 @@
-xdx - tcp/ip DX-cluster client for Amateur Radio
-================================================
+xdx - tcp/ip DX-cluster and ON4KST chat client for Amateur Radio
+================================================================
  
 Xdx is a DX-cluster client which shows a list with DX announcements and a
 separate text widget with WWV, WCY, 'To ALL' and other server messages.
@@ -19,21 +19,26 @@ databases.
 For a list of DX Clusters see:
 http://www.cpcug.org/user/wfeidt/Misc/cluster.html.
 
+ON4KST chat is more suited for VHF and UHF operators. It is a place where
+hams meet for planning long distance radio contact, moonbounce and
+meteor scatter. For more info on ON4KST chat see http://www.on4kst.com.
+
 Commands
 ========
-Here are some basic cluster commands to get started:
+Here are some basic DX-cluster commands to get started:
 
 announce/full 'msg': Send a line of text to all connected stations.
 bye: Exit the DX Cluster.
 dx 'frequency' 'callsign' 'comment': Send DX spot information.
 show/dx: View previously logged DX spots.
 
-Command examples
-================
+ON4KST uses a DX-cluster command subset. It is best if you type '/help'
+after being connected.
+
+DX-cluster Command examples
+===========================
 1) dx 28002.2 xz7a worked with 80m dipole!!
 2) sh/dx on hf/cw 50
-
-Most clusters will provide help by sending a '?' or 'help <command>'.
 
 Autologin
 =========
@@ -42,6 +47,8 @@ The first thing you may want to do after starting xdx is selecting
 login with your Callsign. After connecting, a number of commands can be
 send to the cluster. You may enter them in the 'Commands' entry, separated
 by a comma, e.g. set/page 0,unset beep' will disable paging and stop beeps.
+You can also use commands when a password is needed. There is a 0.5 second
+delay between commands.
 
 Saving DX info
 ==============
@@ -55,11 +62,11 @@ $HOME/.xdx/wx       Weather information.
 
 Hamlib support
 ==============
-When double clicking on a dxspot this will set your rig's frequency. You need 
-the rigctl binary from the hamlib distribution for this. Please modify the ID 
-for your rig in the rigctl command line in preferences dialog, e.g. 
-'rigctl -m 210 set_freq %d' will use ID 210 (Kenwood TS-870), see 
-'rigctl ---list' for a list of models.
+When double clicking on a dxspot in the top window this will set your rig's
+frequency. You need the rigctl binary from the hamlib distribution for this.
+Please modify the ID for your rig in the rigctl command line in preferences
+dialog, e.g. 'rigctl -m 210 set_freq %d' will use ID 210 (Kenwood TS-870),
+see 'rigctl ---list' for a list of models.
 
 Web browsers and mail programs
 ==============================
@@ -75,6 +82,14 @@ Highlights
 The 'chat sidebar' allows entry of 8 different words, which can be highlighted
 in the chat window. You should also enable the highlight with a checkbox.
 Colors for the highlights are configured in page 3 of the settings dialog.
+
+Sound support
+=============
+When a highlight is active in the chat window, a sound can be played.
+In order for the sound to work you must use a secondary program and
+set it in the first page of the preferences dialog: 'play %s' will use
+play, which is part of the sox package, 'esdplay %s' uses esdplay which
+is useful when using gnome and esound.
 
 Smileys
 =======
