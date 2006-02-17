@@ -1,3 +1,4 @@
-This release fixes compilation against version 2.4.0 and higher of the GTK+
-libraries. Spanish translations have been added and it is now possible to show
-or hide columns in the spot window.
+This version adds various changes which makes the program easier to use:
+configurable fonts, more linespacing in the chat window and more use of
+colors. Auto reconnect has been added and a connection log is kept. The chat
+window adds a sidebar with the possibility to create highlights.
