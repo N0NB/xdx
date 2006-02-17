@@ -11,7 +11,7 @@ EXTRA_DIST = config.rpath mkinstalldirs  \
 	MANUAL.nl \
 	MANUAL.pl
 
-SUBDIRS = m4 \
+SUBDIRS = \
 	po \
 	src
 
@@ -28,6 +28,14 @@ install-data-local:
 		for pixmap in $(srcdir)/pixmaps/*; do \
 			if test -f $$pixmap; then \
 				$(INSTALL_DATA) $$pixmap $(DESTDIR)$(pkgdatadir)/pixmaps; \
+			fi \
+		done \
+	fi
+	if test -d $(srcdir)/sounds; then \
+		$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/sounds; \
+		for sound in $(srcdir)/sounds/*; do \
+			if test -f $$sound; then \
+				$(INSTALL_DATA) $$sound $(DESTDIR)$(pkgdatadir)/sounds; \
 			fi \
 		done \
 	fi
@@ -51,6 +59,14 @@ dist-hook:
 		for pixmap in pixmaps/*; do \
 			if test -f $$pixmap; then \
 				cp -p $$pixmap $(distdir)/pixmaps; \
+			fi \
+		done \
+	fi
+	if test -d sounds; then \
+		mkdir $(distdir)/sounds; \
+		for sound in sounds/*; do \
+			if test -f $$sound; then \
+				cp -p $$sound $(distdir)/sounds; \
 			fi \
 		done \
 	fi
