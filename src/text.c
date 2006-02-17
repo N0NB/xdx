@@ -657,10 +657,11 @@ maintext_add (gchar msg[], gint len, gint messagetype)
         }
 	if (!GTK_WIDGET_HAS_FOCUS(maintext))
 	{
+          gtk_text_buffer_get_bounds (buffer, &start, &end);
           gtk_text_buffer_place_cursor(buffer, &end);
-          startmark = gtk_text_buffer_get_mark (buffer, "insert");
-          gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(maintext), startmark, 0.0, FALSE, 
-            0.0, 1.0);
+          endmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
+          gtk_text_view_scroll_to_mark
+            (GTK_TEXT_VIEW(maintext), endmark, 0.0, FALSE, 0.0, 1.0);
         }
         g_free(dx->toall);
       }
