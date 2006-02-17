@@ -109,6 +109,7 @@ loadpreferences (void)
   preferences.sidebar = 1;
   preferences.reconnect = 0;
   preferences.playsound = 0;
+  preferences.keepalive = 0;
   
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -257,6 +258,8 @@ loadpreferences (void)
           preferences.reconnect = atoi(value);
         else if (!g_ascii_strcasecmp(label, "playsound")) 
           preferences.playsound = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "keepalive")) 
+          preferences.keepalive = atoi(value);
     }
     fclose (fp);
   }
@@ -388,6 +391,8 @@ savepreferences (void)
     fprintf(fp, "reconnect %s\n", str);
     str = g_strdup_printf("%d", preferences.playsound);
     fprintf(fp, "playsound %s\n", str);
+    str = g_strdup_printf("%d", preferences.keepalive);
+    fprintf(fp, "keepalive %s\n", str);
     g_free(str);
     fclose (fp);
   }

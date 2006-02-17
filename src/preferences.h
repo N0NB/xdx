@@ -77,6 +77,7 @@ typedef struct
   gint sidebar;
   gint reconnect;
   gint playsound;
+  gint keepalive;
 } preferencestype;
 
 void dircheck (void);

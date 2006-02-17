@@ -191,8 +191,11 @@ cldisconnect (GString *msg, gboolean timeout)
 gint
 send_keepalivepacket (gpointer data)
 {
-  servertype *cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
-  write (cluster->sockethandle, "\t", 1);
+  if (preferences.keepalive == 1)
+  {
+    servertype *cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
+    write (cluster->sockethandle, "\n", 1);
+  }
   return TRUE;
 }
 

@@ -166,7 +166,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *pcommandslabel, *pcommandsentry, *ploginlabel,
 
     *psavingframe, *psavingvbox, *psavedxcheckbutton, *psavewwvcheckbutton,
-    *psavetoallcheckbutton, *psavewxcheckbutton, *psavinglabel, 
+    *psavetoallcheckbutton, *psavewxcheckbutton, *psavinglabel, *psavinghbox,
+    *psavingvbox2, *psavingvbox3,
 
     *phamlibframe, *phamlibvbox, *phamlibcheckbutton, *phamlibhseparator, 
     *phamlibhbox, *priglabel, *prigentry, *phamliblabel, 
@@ -176,12 +177,12 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *pprogmailentry, *pproglabel, *pproghbox3, *pprogsoundlabel,
     *pprogsoundentry,
 
-    *pechoframe, *pechocheckbutton, *pechovbox, *pecholabel,
+    *pechoframe, *pechocheckbutton, *pechovbox, *pecholabel, *plivecheckbutton,
 
     *pcolumnsframe, *pcolumnsvbox, *pcolumnsvboxlabel, *pcolumnslabel,
     *pcolumnshseparator, *pspottercheckbutton, *pqrgcheckbutton,
     *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton, 
-    *pinfocheckbutton,
+    *pinfocheckbutton, *pcolumnshbox, *pcolumnsvbox2, *pcolumnsvbox3,
 
     *pfontsframe, *pfontslabel, *pfontsvbox, *pfontsdxlabel, *pfontsalllabel,
     *pfontsdxentry, *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
@@ -244,7 +245,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (pvbox1), ploginframe, TRUE, TRUE, 0);
   ploginvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (ploginframe), ploginvbox);
-  pautologincheckbutton = gtk_check_button_new_with_mnemonic (_("Enable autologin"));
+  pautologincheckbutton = gtk_check_button_new_with_label (_("Enable autologin"));
   gtk_box_pack_start (GTK_BOX (ploginvbox), pautologincheckbutton, FALSE, FALSE, 0);
   ploginhseparator = gtk_hseparator_new ();
   gtk_box_pack_start (GTK_BOX (ploginvbox), ploginhseparator, TRUE, TRUE, 0);
@@ -299,7 +300,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (pvbox1), phamlibframe, TRUE, TRUE, 0);
   phamlibvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (phamlibframe), phamlibvbox);
-  phamlibcheckbutton = gtk_check_button_new_with_mnemonic (_("Enable hamlib"));
+  phamlibcheckbutton = gtk_check_button_new_with_label (_("Enable hamlib"));
   gtk_box_pack_start (GTK_BOX (phamlibvbox), phamlibcheckbutton, FALSE, FALSE, 0);
   phamlibhseparator = gtk_hseparator_new ();
   gtk_box_pack_start (GTK_BOX (phamlibvbox), phamlibhseparator, TRUE, TRUE, 0);
@@ -379,14 +380,22 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (pvbox2), pechoframe, TRUE, TRUE, 0);
   pechovbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (pechoframe), pechovbox);
-  pechocheckbutton = gtk_check_button_new_with_mnemonic (_("Echo sent text to the screen"));
+  pechocheckbutton = gtk_check_button_new_with_label
+    (_("Echo sent text to the screen"));
   gtk_box_pack_start (GTK_BOX (pechovbox), pechocheckbutton, FALSE, FALSE, 0);
+  plivecheckbutton = gtk_check_button_new_with_label
+    (_("Send keepalive packets (read the manual)"));
+  gtk_box_pack_start (GTK_BOX (pechovbox), plivecheckbutton, FALSE, FALSE, 0);
   pecholabel = gtk_label_new (_("General"));
   gtk_frame_set_label_widget (GTK_FRAME (pechoframe), pecholabel);
   if (preferences.localecho == 1)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pechocheckbutton), TRUE);
   else
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pechocheckbutton), FALSE);
+  if (preferences.keepalive == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(plivecheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(plivecheckbutton), FALSE);
 
   pcolumnsframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox2), pcolumnsframe, TRUE, TRUE, 0);
@@ -398,18 +407,24 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pcolumnsvboxlabel, FALSE, FALSE, 0);
   pcolumnshseparator = gtk_hseparator_new ();
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pcolumnshseparator, FALSE, FALSE, 0);
-  pspottercheckbutton = gtk_check_button_new_with_mnemonic (_("Spotter"));
-  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pspottercheckbutton, FALSE, FALSE, 0);
-  pqrgcheckbutton = gtk_check_button_new_with_mnemonic ("QRG");
-  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pqrgcheckbutton, FALSE, FALSE, 0);
-  pdxcheckbutton = gtk_check_button_new_with_mnemonic ("DX");
-  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pdxcheckbutton, FALSE, FALSE, 0);
-  premarkscheckbutton = gtk_check_button_new_with_mnemonic (_("Remarks"));
-  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), premarkscheckbutton, FALSE, FALSE, 0);
-  ptimecheckbutton = gtk_check_button_new_with_mnemonic (_("Time"));
-  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), ptimecheckbutton, FALSE, FALSE, 0);
-  pinfocheckbutton = gtk_check_button_new_with_mnemonic (_("Info"));
-  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pinfocheckbutton, FALSE, FALSE, 0);
+  pcolumnshbox = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox), pcolumnshbox, FALSE, FALSE, 0);
+  pcolumnsvbox2 = gtk_vbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (pcolumnshbox), pcolumnsvbox2, TRUE, TRUE, 0);
+  pspottercheckbutton = gtk_check_button_new_with_label (_("Spotter"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox2), pspottercheckbutton, FALSE, FALSE, 0);
+  pqrgcheckbutton = gtk_check_button_new_with_label ("QRG");
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox2), pqrgcheckbutton, FALSE, FALSE, 0);
+  pdxcheckbutton = gtk_check_button_new_with_label ("DX");
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox2), pdxcheckbutton, FALSE, FALSE, 0);
+  pcolumnsvbox3 = gtk_vbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (pcolumnshbox), pcolumnsvbox3, TRUE, TRUE, 0);
+  premarkscheckbutton = gtk_check_button_new_with_label (_("Remarks"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox3), premarkscheckbutton, FALSE, FALSE, 0);
+  ptimecheckbutton = gtk_check_button_new_with_label (_("Time"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox3), ptimecheckbutton, FALSE, FALSE, 0);
+  pinfocheckbutton = gtk_check_button_new_with_label (_("Info"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox3), pinfocheckbutton, FALSE, FALSE, 0);
   if (preferences.col0visible == 1)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pspottercheckbutton), TRUE);
   else
@@ -438,16 +453,22 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   psavingframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox2), psavingframe, TRUE, TRUE, 0);
-  psavingvbox = gtk_vbox_new (TRUE, 0);
+  psavingvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (psavingframe), psavingvbox);
-  psavedxcheckbutton = gtk_check_button_new_with_mnemonic (_("Save DX spots"));
-  gtk_box_pack_start (GTK_BOX (psavingvbox), psavedxcheckbutton, FALSE, FALSE, 0);
-  psavewwvcheckbutton = gtk_check_button_new_with_mnemonic (_("Save WCY/WWV"));
-  gtk_box_pack_start (GTK_BOX (psavingvbox), psavewwvcheckbutton, FALSE, FALSE, 0);
-  psavetoallcheckbutton = gtk_check_button_new_with_mnemonic (_("Save \"To all\""));
-  gtk_box_pack_start (GTK_BOX (psavingvbox), psavetoallcheckbutton, FALSE, FALSE, 0);
-  psavewxcheckbutton = gtk_check_button_new_with_mnemonic (_("Save WX"));
-  gtk_box_pack_start (GTK_BOX (psavingvbox), psavewxcheckbutton, FALSE, FALSE, 0);
+  psavinghbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (psavingvbox), psavinghbox);
+  psavingvbox2 = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (psavinghbox), psavingvbox2);
+  psavedxcheckbutton = gtk_check_button_new_with_label (_("Save DX spots"));
+  gtk_box_pack_start (GTK_BOX (psavingvbox2), psavedxcheckbutton, FALSE, FALSE, 0);
+  psavewwvcheckbutton = gtk_check_button_new_with_label (_("Save WCY/WWV"));
+  gtk_box_pack_start (GTK_BOX (psavingvbox2), psavewwvcheckbutton, FALSE, FALSE, 0);
+  psavingvbox3 = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (psavinghbox), psavingvbox3);
+  psavetoallcheckbutton = gtk_check_button_new_with_label (_("Save \"To all\""));
+  gtk_box_pack_start (GTK_BOX (psavingvbox3), psavetoallcheckbutton, FALSE, FALSE, 0);
+  psavewxcheckbutton = gtk_check_button_new_with_label (_("Save WX"));
+  gtk_box_pack_start (GTK_BOX (psavingvbox3), psavewxcheckbutton, FALSE, FALSE, 0);
   psavinglabel = gtk_label_new (_("Saving"));
   gtk_frame_set_label_widget (GTK_FRAME (psavingframe), psavinglabel);
 
@@ -709,6 +730,12 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.localecho = 1;
     else
       preferences.localecho = 0;
+    state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(plivecheckbutton));
+    if (state) 
+      preferences.keepalive = 1;
+    else
+      preferences.keepalive = 0;
 
     /* columns frame */
     treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
