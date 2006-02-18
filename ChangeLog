@@ -26,7 +26,7 @@ Changelog for version xdx (2.0)
     somewhat experimental....
   * To keep track of your connections a connection log is kept. It can be
     viewed from the menu (Ctrl+l).
-  * Xdx can send a keepalive packet every 500 seconds, which is useful for
+  * Xdx can send a keepalive packet every 5 minutes, which is useful for
     bad network connections. You must activate it in the settings dialog.
   * Sound support has been added. When a highlight is active in the chat
     window, a sound can be heard. You must use another program to play sound

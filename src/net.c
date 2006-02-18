@@ -151,7 +151,7 @@ clresolve (servertype *cluster)
   cluster->rxchannel = g_io_channel_unix_new (cluster->sockethandle);
   g_io_channel_set_flags (cluster->rxchannel, G_IO_FLAG_NONBLOCK, &err);
   res = g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
-  cluster->keepalivetimer = g_timeout_add (500000, send_keepalivepacket, NULL);
+  cluster->keepalivetimer = g_timeout_add (300000, send_keepalivepacket, NULL);
   cluster->source_id = g_io_add_watch
     (cluster->rxchannel, G_IO_IN, rx, cluster);
 
@@ -194,7 +194,7 @@ send_keepalivepacket (gpointer data)
   if (preferences.keepalive == 1)
   {
     servertype *cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
-    write (cluster->sockethandle, "\n", 1);
+    write (cluster->sockethandle, "\b", 1);
   }
   return TRUE;
 }

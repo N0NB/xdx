@@ -53,8 +53,8 @@ delay between commands.
 Keepalive packets
 =================
 If you have a bad network and experience random disconnects, you can try
-to enable keepalive in the settings dialog. This will send a return to the
-server every 500 seconds.
+to enable keepalive in the settings dialog. This will send a backspace to the
+server every 5 minutes.
 
 Saving DX info
 ==============

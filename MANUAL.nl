@@ -58,7 +58,7 @@ Verbinding in stand houden
 ==========================
 Wanneer je een slecht netwerk hebt en de verbinding regelmatig wordt
 verbroken kan je deze optie aanzetten in het voorkeuren venster. Op deze
-manier wordt elke 500 seconden een return naar de server gestuurd.
+manier wordt elke 5 minutes een backspace naar de server gestuurd.
 
 DX info opslaan
 ===============
