@@ -94,8 +94,10 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_table_attach_defaults (GTK_TABLE (table), portcombo, 1, 2, 1, 2);
   gtk_widget_show_all (hbox);
   gtk_widget_set_sensitive (gui->window, 0);
-  gtk_combo_box_set_active (GTK_COMBO_BOX (portcombo), 1);
-  gtk_combo_box_set_active (GTK_COMBO_BOX (hostnamecombo), 1);
+  gtk_combo_box_set_active
+    (GTK_COMBO_BOX (portcombo), g_list_length(gui->porthistory) - 1);
+  gtk_combo_box_set_active
+    (GTK_COMBO_BOX (hostnamecombo), g_list_length(gui->hostnamehistory) - 1);
   response = gtk_dialog_run (GTK_DIALOG (opendialog));
 
   if (response == GTK_RESPONSE_OK)
