@@ -414,8 +414,8 @@ findclusterprompt (gunichar ch, gpointer user_data)
 {
   switch (ch)
   {
-    case ':':
-    case 'e':
+    case ':': /* marks end of prompt */
+    case 'e': /* marks start of call */
       return TRUE;
     default:
       return FALSE;
@@ -428,7 +428,7 @@ findkstprompt (gunichar ch, gpointer user_data)
 {
   switch (ch)
   {
-    case '>':
+    case '>': /* marks end of prompt */
     case ' ':
       return TRUE;
     default:
@@ -453,7 +453,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 {
   GtkWidget *maintext, *treeview;
   GtkTextIter start, end, smatch, ematch;
-  GtkTextMark *startmark, *endmark;
+  GtkTextMark *startmark, *endmark, *promptmark;
   GtkTreeIter iter;
   GtkTreePath *path;
   GtkTreeStore *model;
@@ -537,6 +537,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 
             /* use textmark to find begin and end of added line */
             startmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
+            promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
             gtk_text_buffer_insert (buffer, &end, utf8, -1);
             gtk_text_buffer_get_bounds (buffer, &start, &end);
             endmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
@@ -546,21 +547,24 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             {
               temp = g_strdup (utf8);
               *(temp + 10) = '\0';
-            if (!strcmp (temp, "To ALL de "))
-            {
-              gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
-              gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
-              if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
+              if (!strcmp (temp, "To ALL de "))
               {
-                gtk_text_iter_forward_char (&end);
-                gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
-                start = end;
+                gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
+                gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
+                if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
+                {
+                  gtk_text_iter_forward_char (&end);
+                  gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                  start = end;
+                }
+                if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
+                {
+                  gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
+                  gtk_text_iter_forward_char (&end);
+                }
+                /* highlighting starts at prompt */
+                promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
               }
-              if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
-              {
-                gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
-              }
-            }
             }
 
             /* check for ON4KST prompt and colorize it */
@@ -587,13 +591,18 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   if (gtk_text_iter_forward_find_char (&end, findkstprompt, NULL, NULL))
                   {
                     gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                    gtk_text_iter_forward_char (&end);
+                    promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
                   }
                 }
               }
             }
 
             /* check for highlights */
-            high = contains_highlights (utf8);
+            gtk_text_buffer_get_iter_at_mark (buffer, &start, promptmark);
+            gtk_text_buffer_get_iter_at_mark (buffer, &end, endmark);
+            high = contains_highlights
+              (gtk_text_buffer_get_text (buffer, &start, &end, FALSE));
             if (g_ascii_strcasecmp (high, "00000000"))
             {
               if (preferences.playsound == 1) playsound ();
@@ -602,7 +611,6 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               if (high[i] == '1' && preferences.highmenu[i] == '1')
               {
                 /* set starting point for search */
-                gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
                 tagname = g_strdup_printf ("highcolor%d", i + 1);
                 if (i == 0) p = g_strdup(preferences.highword1);
                 else if (i == 1) p = g_strdup(preferences.highword2);
@@ -651,6 +659,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               }
             }
             gtk_text_buffer_delete_mark (buffer, startmark);
+            gtk_text_buffer_delete_mark (buffer, promptmark);
             gtk_text_buffer_delete_mark (buffer, endmark);
             g_free (utf8);
           }
