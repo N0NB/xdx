@@ -345,7 +345,7 @@ create_mainwindow (void)
 
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highvbox), hbox);
-  soundcheck = gtk_check_button_new_with_label (_("Play sound"));
+  soundcheck = gtk_check_button_new_with_label (_("Sound"));
   gtk_box_pack_start (GTK_BOX (hbox), soundcheck, FALSE, FALSE, 0);
 
   key_toggle = gtk_accel_group_new();

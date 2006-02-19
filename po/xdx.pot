@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-02-17 17:10+0100\n"
+"POT-Creation-Date: 2006-02-19 21:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgid "Info"
 msgstr ""
 
 #: src/gui.c:348
-msgid "Play sound"
+msgid "Sound"
 msgstr ""
 
 #: src/gui.c:369 src/gui.c:370 src/gui.c:371 src/gui.c:372 src/gui.c:373
