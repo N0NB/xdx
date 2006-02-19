@@ -54,3 +54,4 @@ gchar *try_utf8 (const gchar *str);
 gchar *getdate (void);
 gchar *gettime (void);
 void logconnection (GString *logstr);
+gchar *my_strreplace(const char *str, const char *delimiter, const char *replacement);

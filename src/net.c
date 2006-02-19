@@ -345,6 +345,7 @@ tx (GString * txmsg)
   {
     g_string_printf (errmsg, _("Nothing to send, you are not connected"));
     updatestatusbar (errmsg, FALSE);
+    g_print ("%s\n", txmsg->str);
     g_string_free (errmsg, TRUE);
   }
 }

@@ -534,7 +534,7 @@ on_mainentry_activate (GtkTextBuffer *buffer, gpointer user_data)
   entry = gtk_textbuffer_get_chars (buffer);
   if ((p = g_strrstr (entry, "\n")))
   {
-    *p = '\0';
+    entry = my_strreplace (entry, "\n", "");
     str = g_string_new (entry);
     tx (str);
     g_string_free (str, TRUE);

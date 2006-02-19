@@ -242,3 +242,16 @@ void logconnection (GString *logstr)
   g_free (str);
   g_free (f);
 }
+
+gchar *
+my_strreplace(const char *str, const char *delimiter, const char *replacement)
+{
+  gchar **split;
+  gchar *ret;
+
+  split = g_strsplit (str, delimiter, 0);
+  ret = g_strjoinv (replacement, split);
+  g_strfreev (split);
+
+  return ret;
+}
