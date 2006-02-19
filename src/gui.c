@@ -265,9 +265,9 @@ create_mainwindow (void)
 			      NULL);
   gtk_text_buffer_create_tag (buffer, "sent", "foreground", "red",
 			      NULL);
-  gtk_text_buffer_create_tag (buffer, "prompt", "foreground", "#000055",
+  gtk_text_buffer_create_tag (buffer, "prompt", "foreground", "#004400",
 			      NULL);
-  gtk_text_buffer_create_tag (buffer, "call", "foreground", "#000055",
+  gtk_text_buffer_create_tag (buffer, "call", "foreground", "#004400",
 			      "weight", PANGO_WEIGHT_BOLD, NULL);
   gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue", 
 				    "underline", PANGO_UNDERLINE_SINGLE, NULL);
