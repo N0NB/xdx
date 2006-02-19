@@ -99,10 +99,10 @@ op pagina 3 van het voorkeuren venster.
 Geluids-ondersteuning
 =====================
 Wanneer een woord een kleur krijgt, kan er ook een geluid worden afgespeeld.
-Om een geluid te horen dien je een exern programma te gebruiken en dit op te
-geven in de eerste pagina van het voorkeuren venster: 'play %s' gebruikt
-play wat deel uitmaakt van sox. 'esdplay %s' gebruikt esdplay, wat wordt 
-gebruikt wanneer je esound in de gnome omgeving hebt gestart.
+Om een geluid te horen dien je een extern programma te gebruiken en dit op te
+geven in de eerste pagina van het voorkeuren venster. Bijvoorbeeld 'play %s'
+gebruikt play wat deel uitmaakt van sox. 'esdplay %s' gebruikt esdplay,
+wat wordt gebruikt wanneer je esound in de gnome omgeving hebt gestart.
 
 Smileys
 =======
