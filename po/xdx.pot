@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-02-19 21:50+0100\n"
+"POT-Creation-Date: 2006-02-23 21:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,18 +101,18 @@ msgstr ""
 msgid "Sound"
 msgstr ""
 
-#: src/gui.c:369 src/gui.c:370 src/gui.c:371 src/gui.c:372 src/gui.c:373
-#: src/gui.c:374 src/gui.c:375 src/gui.c:376
+#: src/gui.c:380 src/gui.c:381 src/gui.c:382 src/gui.c:383 src/gui.c:384
+#: src/gui.c:385 src/gui.c:386 src/gui.c:387
 msgid "Enter a word to highlight"
 msgstr ""
 
-#: src/gui.c:377 src/gui.c:379 src/gui.c:381 src/gui.c:383 src/gui.c:385
-#: src/gui.c:387 src/gui.c:389 src/gui.c:391
+#: src/gui.c:388 src/gui.c:390 src/gui.c:392 src/gui.c:394 src/gui.c:396
+#: src/gui.c:398 src/gui.c:400 src/gui.c:402
 #, c-format
-msgid "Enable/disable highlight [Ctrl+%d]"
+msgid "Include prompt [Ctrl+%d]"
 msgstr ""
 
-#: src/gui.c:393
+#: src/gui.c:404
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
 msgstr ""
