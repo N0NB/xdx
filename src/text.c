@@ -629,7 +629,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 {
                   gtk_text_buffer_apply_tag_by_name (buffer, tagname, &smatch, &ematch);
                   start = ematch;
-                  playsound ();
+                  if (preferences.playsound == 1) playsound ();
                 }
                 g_free (p);
                 g_free (tagname);
