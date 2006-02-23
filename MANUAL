@@ -86,8 +86,12 @@ Start mozilla-mail on clicking a mail URL: 'mozilla -compose "to=%s"'.
 Highlights
 ==========
 The 'chat sidebar' allows entry of 8 different words, which can be highlighted
-in the chat window. You should also enable the highlight with a checkbox.
-Colors for the highlights are configured in page 3 of the settings dialog.
+in the chat window. When the checkbox is used xdx will search for a highlight
+in all of the incoming text. When not used, only the text after the prompt is
+searched. Colors for the highlights are configured in page 3 of the settings
+dialog. You can quickly turn checkboxes on/off with Ctrl-1 to Ctrl-8, you
+can switch between entries with Alt-1 to Alt-8. Alt-0 switches back to the
+send widget.
 
 Sound support
 =============

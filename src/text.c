@@ -562,8 +562,6 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
                   gtk_text_iter_forward_char (&end);
                 }
-                /* highlighting starts at prompt */
-                promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
               }
             }
 
@@ -590,27 +588,28 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   }
                   if (gtk_text_iter_forward_find_char (&end, findkstprompt, NULL, NULL))
                   {
-                    gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
                     gtk_text_iter_forward_char (&end);
-                    promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
+                    gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                    start = end;
                   }
+                  /* in case highlighting starts at prompt */
+                  promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
                 }
               }
             }
 
             /* check for highlights */
-            gtk_text_buffer_get_iter_at_mark (buffer, &start, promptmark);
+            gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
             gtk_text_buffer_get_iter_at_mark (buffer, &end, endmark);
             high = contains_highlights
               (gtk_text_buffer_get_text (buffer, &start, &end, FALSE));
             if (g_ascii_strcasecmp (high, "00000000"))
             {
-              if (preferences.playsound == 1) playsound ();
             for (i = 0; i < 8; i++)
             {
-              if (high[i] == '1' && preferences.highmenu[i] == '1')
+              if (high[i] == '1')
               {
-                /* set starting point for search */
+                /* lookup name of tag and word to be highlighted */
                 tagname = g_strdup_printf ("highcolor%d", i + 1);
                 if (i == 0) p = g_strdup(preferences.highword1);
                 else if (i == 1) p = g_strdup(preferences.highword2);
@@ -621,12 +620,16 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 else if (i == 6) p = g_strdup(preferences.highword7);
                 else if (i == 7) p = g_strdup(preferences.highword8);
                 else p = g_strdup ("???");
+                /* set starting point for search */
+		if (preferences.highmenu[i] == '0')
+                  gtk_text_buffer_get_iter_at_mark (buffer, &start, promptmark);
                 /* search for highlights and apply tag */
                 while (gtk_source_iter_forward_search (&start, p,
                   GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &smatch, &ematch, NULL))
                 {
                   gtk_text_buffer_apply_tag_by_name (buffer, tagname, &smatch, &ematch);
                   start = ematch;
+                  playsound ();
                 }
                 g_free (p);
                 g_free (tagname);

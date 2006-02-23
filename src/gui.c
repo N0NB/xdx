@@ -160,7 +160,7 @@ create_mainwindow (void)
   PangoFontDescription *font_description;
   gint pango_size;
   GtkTooltips *tooltips;
-  GtkAccelGroup *key_toggle;
+  GtkAccelGroup *key_toggle, *grab_focus;
   gchar *str;
 
   gui = new_gui();
@@ -360,6 +360,17 @@ create_mainwindow (void)
   gtk_widget_add_accelerator(highcheck8, "clicked", key_toggle, GDK_8, GDK_CONTROL_MASK, 0);
   gtk_widget_add_accelerator(soundcheck, "clicked", key_toggle, GDK_0, GDK_CONTROL_MASK, 0);
 
+  grab_focus = gtk_accel_group_new();
+  gtk_window_add_accel_group(GTK_WINDOW(gui->window), grab_focus);
+  gtk_widget_add_accelerator(highentry1, "grab-focus", grab_focus, GDK_1, GDK_MOD1_MASK, 0);
+  gtk_widget_add_accelerator(highentry2, "grab-focus", grab_focus, GDK_2, GDK_MOD1_MASK, 0);
+  gtk_widget_add_accelerator(highentry3, "grab-focus", grab_focus, GDK_3, GDK_MOD1_MASK, 0);
+  gtk_widget_add_accelerator(highentry4, "grab-focus", grab_focus, GDK_4, GDK_MOD1_MASK, 0);
+  gtk_widget_add_accelerator(highentry5, "grab-focus", grab_focus, GDK_5, GDK_MOD1_MASK, 0);
+  gtk_widget_add_accelerator(highentry6, "grab-focus", grab_focus, GDK_6, GDK_MOD1_MASK, 0);
+  gtk_widget_add_accelerator(highentry7, "grab-focus", grab_focus, GDK_7, GDK_MOD1_MASK, 0);
+  gtk_widget_add_accelerator(highentry8, "grab-focus", grab_focus, GDK_8, GDK_MOD1_MASK, 0);
+
   vpaned = gtk_vpaned_new ();
   gtk_paned_add1 (GTK_PANED (vpaned), clistscrolledwindow);
   gtk_paned_add2 (GTK_PANED (vpaned), chathbox);
@@ -374,21 +385,21 @@ create_mainwindow (void)
   gtk_tooltips_set_tip(tooltips, highentry6, _("Enter a word to highlight"), NULL);
   gtk_tooltips_set_tip(tooltips, highentry7, _("Enter a word to highlight"), NULL);
   gtk_tooltips_set_tip(tooltips, highentry8, _("Enter a word to highlight"), NULL);
-  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 1);
+  str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 1);
   gtk_tooltips_set_tip(tooltips, highcheck1, str, NULL);
-  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 2);
+  str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 2);
   gtk_tooltips_set_tip(tooltips, highcheck2, str, NULL);
-  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 3);
+  str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 3);
   gtk_tooltips_set_tip(tooltips, highcheck3, str, NULL);
-  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 4);
+  str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 4);
   gtk_tooltips_set_tip(tooltips, highcheck4, str, NULL);
-  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 5);
+  str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 5);
   gtk_tooltips_set_tip(tooltips, highcheck5, str, NULL);
-  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 6);
+  str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 6);
   gtk_tooltips_set_tip(tooltips, highcheck6, str, NULL);
-  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 7);
+  str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 7);
   gtk_tooltips_set_tip(tooltips, highcheck7, str, NULL);
-  str = g_strdup_printf (_("Enable/disable highlight [Ctrl+%d]"), 8);
+  str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 8);
   gtk_tooltips_set_tip(tooltips, highcheck8, str, NULL);
   str = g_strdup_printf (_("Enable/disable sound [Ctrl+%d]"), 0);
   gtk_tooltips_set_tip(tooltips, soundcheck, str, NULL);
@@ -398,6 +409,7 @@ create_mainwindow (void)
   frame = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (mainvbox), frame, FALSE, TRUE, 0);
   gtk_container_add (GTK_CONTAINER (frame), mainentry);
+  gtk_widget_add_accelerator(mainentry, "grab-focus", grab_focus, GDK_0, GDK_MOD1_MASK, 0);
 
   /* height of the frame is 2 times font size */
   font_description = pango_font_description_copy

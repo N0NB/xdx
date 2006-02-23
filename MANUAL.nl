@@ -92,9 +92,12 @@ Starten van mozilla-mail indien op een URL wordt geklikt:
 Kleuren
 =======
 In het 'chat zijvenster' kun je 8 verschillende woorden invoeren om een
-kleur te geven in het onderste venster. Je moet ook het kleuren aanzetten voor
-het betreffende woord. De kleuren die gebruikt worden kunnen worden ingesteld
-op pagina 3 van het voorkeuren venster.
+kleur te geven in het onderste venster. Indien je een checkbox aanzet zal alle
+binnenkomende text worden doorzocht. Anders wordt alleen de text na de prompt
+doorzocht. De kleuren die gebruikt worden kunnen worden ingesteld op pagina 3
+van het voorkeuren venster. Je kunt checkboxen snel aan en uit zetten met de
+toetsen Ctrl-1 tot Ctrl-8, springen naar de verschillende woorden kan met 
+Alt-1 tot Alt-8. Alt-0 brengt je terug naar het zend widget.
 
 Geluids-ondersteuning
 =====================

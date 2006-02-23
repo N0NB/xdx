@@ -13,7 +13,13 @@ Changelog for version xdx (2.0)
   * The position of the divider between the chat and DX window is now saved.
   * You can now use highlights in the chat window. Highlights will produce
     colored text. Words to be highlighted can be set in the 'chat sidebar'.
-    Colors can be set in page 3 of the preferences dialog.
+    When the checkbox next to the highlighted word is checked, xdx will search
+    for a highlight in all of the incoming text. When the checkbox is unchecked,
+    only the text after the prompt is searched.
+  * Checkboxes can be activated with ctrl-1 to ctrl-8. Entries can be focused
+    with alt-1 to alt-8.
+  * Alt-0 will switch focus to the send widget.
+  * Colors used for highlighting can be set in page 3 of the preferences dialog.
   * The chat sidebar can be shown/hidden with F4.
   * You can disable automatic scrolling of the chat window by clicking in the
     window. Same for the DX window.
