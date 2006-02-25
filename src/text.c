@@ -415,7 +415,6 @@ findclusterprompt (gunichar ch, gpointer user_data)
   switch (ch)
   {
     case ':': /* marks end of prompt */
-    case 'e': /* marks start of call */
       return TRUE;
     default:
       return FALSE;
@@ -429,6 +428,18 @@ findkstprompt (gunichar ch, gpointer user_data)
   switch (ch)
   {
     case '>': /* marks end of prompt */
+      return TRUE;
+    default:
+      return FALSE;
+  }
+}
+
+/* used when colorizing all prompts */
+static gboolean 
+findpromptspace (gunichar ch, gpointer user_data)
+{
+  switch (ch)
+  {
     case ' ':
       return TRUE;
     default:
@@ -551,16 +562,19 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               {
                 gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
                 gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
-                if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
-                {
-                  gtk_text_iter_forward_char (&end);
-                  gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
-                  start = end;
-                }
+                if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
+                  if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
+                    if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
+                    {
+                      gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                      start = end;
+                    }
                 if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
                 {
                   gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
+                  start = end;
                   gtk_text_iter_forward_char (&end);
+                  gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
                 }
               }
             }
@@ -576,12 +590,12 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 {
                   gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
                   gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
-                  if (gtk_text_iter_forward_find_char (&end, findkstprompt, NULL, NULL))
+                  if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
                   {
                     gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
                     start = end;
                   }
-                  if (gtk_text_iter_forward_find_char (&end, findkstprompt, NULL, NULL))
+                  if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
                   {
                     gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
                     start = end;
@@ -590,7 +604,6 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   {
                     gtk_text_iter_forward_char (&end);
                     gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
-                    start = end;
                   }
                   /* in case highlighting starts at prompt */
                   promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
