@@ -518,7 +518,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_frame_set_label_widget (GTK_FRAME (phighframe), phighframelabel);
   phighvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (phighframe), phighvbox);
-  phighlabel = gtk_label_new (_("Words and colors to use for highlighting"));
+  phighlabel = gtk_label_new (_("Colors to use for highlighting"));
   gtk_label_set_line_wrap (GTK_LABEL (phighlabel), TRUE);
   gtk_box_pack_start (GTK_BOX (phighvbox), phighlabel, FALSE, FALSE, 10);
   phighseparator =  gtk_hseparator_new ();
