@@ -39,6 +39,7 @@ Changelog for version xdx (2.0)
     and set it in the first page of the preferences dialog.
   * Both ON4KST and DX-cluster prompts in the chat window are now colorized.
     The callsign is bold.
+  * All of the colors in the chat window are now configurable.
 
 Changelog for version xdx (1.2)
 
