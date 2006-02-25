@@ -1000,7 +1000,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   gtk_widget_destroy (preferencesdialog);
   mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
-  gtk_widget_grab_focus (GTK_WIDGET (mainentry));
   gtk_widget_set_sensitive (gui->window, 1);
+  gtk_widget_grab_focus (GTK_WIDGET (mainentry));
 
 }
