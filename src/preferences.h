@@ -78,6 +78,7 @@ typedef struct
   gint reconnect;
   gint playsound;
   gint keepalive;
+  GdkColor promptcolor;
 } preferencestype;
 
 void dircheck (void);

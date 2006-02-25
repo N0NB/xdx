@@ -110,6 +110,7 @@ loadpreferences (void)
   preferences.reconnect = 0;
   preferences.playsound = 0;
   preferences.keepalive = 0;
+  gdk_color_parse("#004400", &preferences.promptcolor);
   
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -260,6 +261,8 @@ loadpreferences (void)
           preferences.playsound = atoi(value);
         else if (!g_ascii_strcasecmp(label, "keepalive")) 
           preferences.keepalive = atoi(value);
+	else if (!g_ascii_strcasecmp(label, "promptcolor"))
+          gdk_color_parse(value, &preferences.promptcolor);
     }
     fclose (fp);
   }
@@ -393,6 +396,8 @@ savepreferences (void)
     fprintf(fp, "playsound %s\n", str);
     str = g_strdup_printf("%d", preferences.keepalive);
     fprintf(fp, "keepalive %s\n", str);
+    fprintf(fp, "promptcolor #%04X%04X%04X\n",
+      preferences.promptcolor.red, preferences.promptcolor.green, preferences.promptcolor.blue);
     g_free(str);
     fclose (fp);
   }

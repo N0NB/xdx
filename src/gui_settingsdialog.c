@@ -157,9 +157,9 @@ on_fontbutton_clicked (GtkButton *button, gpointer user_data)
  */
 void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
-  GtkWidget *pdialog_vbox, *pvbox1, *pvbox2, *pvbox3,
+  GtkWidget *pdialog_vbox, *pvbox1, *pvbox2, *pvbox3, *pvbox4,
 
-    *pnotebook, *plabel1, *plabel2, *plabel3,
+    *pnotebook, *plabel1, *plabel2, *plabel3, *plabel4,
 
     *ploginframe, *ploginvbox, *pautologincheckbutton, *ploginhseparator, 
     *ploginhbox, *pcallsignlabel, *pcallsignentry, *pcommandshbox, 
@@ -194,7 +194,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *colorbutton3, *phighbox5, *phighlabel4, *colorbutton4, *vseparator1,
     *phighvbox2, *phighbox6, *phighlabel5, *colorbutton5, *phighhbox7,
     *phighlabel6, *colorbutton6, *phighhbox8, *phighlabel7, *colorbutton7,
-    *phighhbox9, *phighlabel8, *colorbutton8;
+    *phighhbox9, *phighlabel8, *colorbutton8,
+
+    *pcolorsframe, *pcolorsframelabel, *pcolorsvbox, *pcolorshbox1,
+    *promptcolorlabel, *promptcolorbutton;
 
   GtkTreeViewColumn *column;
   GtkWidget *treeview, *maintext, *mainentry;
@@ -229,6 +232,8 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_container_add (GTK_CONTAINER (pnotebook), pvbox2);
   pvbox3 = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (pnotebook), pvbox3);
+  pvbox4 = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (pnotebook), pvbox4);
   plabel1 = gtk_label_new (_("General"));
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
     gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 0), plabel1);
@@ -238,6 +243,9 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   plabel3 = gtk_label_new (_("Fonts"));
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
     gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 2), plabel3);
+  plabel4 = gtk_label_new (_("Colors"));
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
+    gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 3), plabel4);
   gtk_box_pack_start (GTK_BOX (pdialog_vbox), pnotebook, TRUE, TRUE, 0);
 
 
@@ -594,6 +602,21 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton6), &preferences.highcolor6);
   gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton7), &preferences.highcolor7);
   gtk_color_button_set_color (GTK_COLOR_BUTTON(colorbutton8), &preferences.highcolor8);
+
+  pcolorsframe = gtk_frame_new (NULL);
+  gtk_box_pack_start (GTK_BOX (pvbox4), pcolorsframe, FALSE, FALSE, 0);
+  pcolorsframelabel = gtk_label_new (_("Colors for the chat window"));
+  gtk_frame_set_label_widget (GTK_FRAME (pcolorsframe), pcolorsframelabel);
+  pcolorsvbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (pcolorsframe), pcolorsvbox);
+  pcolorshbox1 = gtk_hbox_new (TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (pcolorsvbox), pcolorshbox1);
+  promptcolorlabel = gtk_label_new (_("Prompt"));
+  gtk_box_pack_start (GTK_BOX (pcolorshbox1), promptcolorlabel, FALSE, FALSE, 0);
+  promptcolorbutton = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (pcolorshbox1), promptcolorbutton, FALSE, FALSE, 0);
+  gtk_color_button_set_color
+    (GTK_COLOR_BUTTON(promptcolorbutton), &preferences.promptcolor);
 
   if (preferences.savedx == 1)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
@@ -955,6 +978,23 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       highentry8 = g_object_get_data (G_OBJECT (gui->window), "highentry8");
       gtk_widget_modify_text (highentry8, GTK_STATE_NORMAL, &color);
       preferences.highcolor8 = color;
+    }
+
+    /* colors frame */
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(promptcolorbutton), &color);
+    if (! gdk_color_equal(&color, &preferences.promptcolor))
+    {
+      tag = gtk_text_tag_table_lookup (table, "prompt");
+      gtk_text_tag_table_remove (table, tag);
+      tag = gtk_text_tag_table_lookup (table, "call");
+      gtk_text_tag_table_remove (table, tag);
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gtk_text_buffer_create_tag
+        (buffer, "prompt", "foreground", str, NULL);
+      gtk_text_buffer_create_tag
+        (buffer, "call", "foreground", str, "weight", PANGO_WEIGHT_BOLD, NULL);
+      preferences.promptcolor = color;
     }
     g_free (str);
   }

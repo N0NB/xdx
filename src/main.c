@@ -75,7 +75,7 @@ main (int argc, char *argv[])
   maintext = g_object_get_data (G_OBJECT (gui->window), "maintext");
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
   colorstr = g_strdup_printf ("#%02X%02X%02X",
-	(preferences.highcolor1.red * 255) / 65535,
+	preferences.highcolor1.red * 255 / 65535,
 	preferences.highcolor1.green * 255 / 65535,
 	preferences.highcolor1.blue * 255 / 65535);
   gtk_text_buffer_create_tag (buffer, "highcolor1", "foreground",
@@ -122,6 +122,16 @@ main (int argc, char *argv[])
 	preferences.highcolor8.blue * 255 / 65535);
   gtk_text_buffer_create_tag (buffer, "highcolor8", "foreground",
 	colorstr, NULL);
+
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.promptcolor.red * 255 / 65535,
+	preferences.promptcolor.green * 255 / 65535,
+	preferences.promptcolor.blue * 255 / 65535);
+  gtk_text_buffer_create_tag
+    (buffer, "prompt", "foreground", colorstr, NULL);
+  gtk_text_buffer_create_tag (buffer, "call", "foreground",
+    colorstr, "weight", PANGO_WEIGHT_BOLD, NULL);
+
   g_free (colorstr);
 
   highcheck1 = g_object_get_data (G_OBJECT (gui->window), "highcheck1");
