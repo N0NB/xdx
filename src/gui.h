@@ -36,6 +36,9 @@ typedef struct guitype {
   gchar *url;
   gchar *prompttagname;
   gchar *calltagname;
+  gchar *senttagname;
+  gchar *wwvtagname;
+  gchar *wxtagname;
 } guitype;
 
 guitype *gui;

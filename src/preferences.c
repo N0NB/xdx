@@ -110,7 +110,10 @@ loadpreferences (void)
   preferences.reconnect = 0;
   preferences.playsound = 0;
   preferences.keepalive = 0;
-  gdk_color_parse("#004400", &preferences.promptcolor);
+  gdk_color_parse("green", &preferences.promptcolor);
+  gdk_color_parse("red", &preferences.sentcolor);
+  gdk_color_parse("darkgreen", &preferences.wwvcolor);
+  gdk_color_parse("magenta", &preferences.wxcolor);
   
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -263,6 +266,12 @@ loadpreferences (void)
           preferences.keepalive = atoi(value);
 	else if (!g_ascii_strcasecmp(label, "promptcolor"))
           gdk_color_parse(value, &preferences.promptcolor);
+	else if (!g_ascii_strcasecmp(label, "sentcolor"))
+          gdk_color_parse(value, &preferences.sentcolor);
+	else if (!g_ascii_strcasecmp(label, "wwvcolor"))
+          gdk_color_parse(value, &preferences.wwvcolor);
+	else if (!g_ascii_strcasecmp(label, "wxcolor"))
+          gdk_color_parse(value, &preferences.wxcolor);
     }
     fclose (fp);
   }
@@ -398,6 +407,12 @@ savepreferences (void)
     fprintf(fp, "keepalive %s\n", str);
     fprintf(fp, "promptcolor #%04X%04X%04X\n",
       preferences.promptcolor.red, preferences.promptcolor.green, preferences.promptcolor.blue);
+    fprintf(fp, "sentcolor #%04X%04X%04X\n",
+      preferences.sentcolor.red, preferences.sentcolor.green, preferences.sentcolor.blue);
+    fprintf(fp, "wwvcolor #%04X%04X%04X\n",
+      preferences.wwvcolor.red, preferences.wwvcolor.green, preferences.wwvcolor.blue);
+    fprintf(fp, "wxcolor #%04X%04X%04X\n",
+      preferences.wxcolor.red, preferences.wxcolor.green, preferences.wxcolor.blue);
     g_free(str);
     fclose (fp);
   }

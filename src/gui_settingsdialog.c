@@ -197,8 +197,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *phighlabel6, *colorbutton6, *phighhbox8, *phighlabel7, *colorbutton7,
     *phighhbox9, *phighlabel8, *colorbutton8,
 
-    *pcolorsframe, *pcolorsframelabel, *pcolorsvbox, *pcolorshbox1,
-    *promptcolorlabel, *promptcolorbutton;
+    *pcolorsframe, *pcolorsframelabel, *pcolorsvbox, *pcolorshbox,
+    *promptcolorlabel, *promptcolorbutton, *sentcolorlabel,
+    *sentcolorbutton, *wwvcolorlabel, *wwvcolorbutton, *wxcolorlabel,
+    *wxcolorbutton;
 
   GtkTreeViewColumn *column;
   GtkWidget *treeview, *maintext, *mainentry;
@@ -610,14 +612,42 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_frame_set_label_widget (GTK_FRAME (pcolorsframe), pcolorsframelabel);
   pcolorsvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (pcolorsframe), pcolorsvbox);
-  pcolorshbox1 = gtk_hbox_new (TRUE, 0);
-  gtk_container_add (GTK_CONTAINER (pcolorsvbox), pcolorshbox1);
+
+  pcolorshbox = gtk_hbox_new (TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (pcolorsvbox), pcolorshbox);
   promptcolorlabel = gtk_label_new (_("Prompt"));
-  gtk_box_pack_start (GTK_BOX (pcolorshbox1), promptcolorlabel, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (pcolorshbox), promptcolorlabel, FALSE, FALSE, 0);
   promptcolorbutton = gtk_color_button_new ();
-  gtk_box_pack_start (GTK_BOX (pcolorshbox1), promptcolorbutton, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (pcolorshbox), promptcolorbutton, FALSE, FALSE, 0);
   gtk_color_button_set_color
     (GTK_COLOR_BUTTON(promptcolorbutton), &preferences.promptcolor);
+
+  pcolorshbox = gtk_hbox_new (TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (pcolorsvbox), pcolorshbox);
+  sentcolorlabel = gtk_label_new (_("Sent text"));
+  gtk_box_pack_start (GTK_BOX (pcolorshbox), sentcolorlabel, FALSE, FALSE, 0);
+  sentcolorbutton = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (pcolorshbox), sentcolorbutton, FALSE, FALSE, 0);
+  gtk_color_button_set_color
+    (GTK_COLOR_BUTTON(sentcolorbutton), &preferences.sentcolor);
+
+  pcolorshbox = gtk_hbox_new (TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (pcolorsvbox), pcolorshbox);
+  wwvcolorlabel = gtk_label_new (_("WWV / WCY"));
+  gtk_box_pack_start (GTK_BOX (pcolorshbox), wwvcolorlabel, FALSE, FALSE, 0);
+  wwvcolorbutton = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (pcolorshbox), wwvcolorbutton, FALSE, FALSE, 0);
+  gtk_color_button_set_color
+    (GTK_COLOR_BUTTON(wwvcolorbutton), &preferences.wwvcolor);
+
+  pcolorshbox = gtk_hbox_new (TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (pcolorsvbox), pcolorshbox);
+  wxcolorlabel = gtk_label_new (_("WX"));
+  gtk_box_pack_start (GTK_BOX (pcolorshbox), wxcolorlabel, FALSE, FALSE, 0);
+  wxcolorbutton = gtk_color_button_new ();
+  gtk_box_pack_start (GTK_BOX (pcolorshbox), wxcolorbutton, FALSE, FALSE, 0);
+  gtk_color_button_set_color
+    (GTK_COLOR_BUTTON(wxcolorbutton), &preferences.wxcolor);
 
   if (preferences.savedx == 1)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
@@ -994,6 +1024,39 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_text_buffer_create_tag
         (buffer, gui->calltagname, "foreground", str, "weight", PANGO_WEIGHT_BOLD, NULL);
       preferences.promptcolor = color;
+    }
+
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(sentcolorbutton), &color);
+    if (! gdk_color_equal(&color, &preferences.sentcolor))
+    {
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gui->senttagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag
+        (buffer, gui->senttagname, "foreground", str, NULL);
+      preferences.sentcolor = color;
+    }
+
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(wwvcolorbutton), &color);
+    if (! gdk_color_equal(&color, &preferences.wwvcolor))
+    {
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gui->wwvtagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag
+        (buffer, gui->wwvtagname, "foreground", str, NULL);
+      preferences.wwvcolor = color;
+    }
+
+    gtk_color_button_get_color (GTK_COLOR_BUTTON(wxcolorbutton), &color);
+    if (! gdk_color_equal(&color, &preferences.wxcolor))
+    {
+      str = g_strdup_printf ("#%02X%02X%02X",
+	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gui->wxtagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag
+        (buffer, gui->wxtagname, "foreground", str, NULL);
+      preferences.wxcolor = color;
     }
     g_free (str);
   }

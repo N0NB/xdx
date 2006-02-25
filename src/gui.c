@@ -61,6 +61,9 @@ guitype *new_gui(void)
   gui->statusbarmessage = NULL;
   gui->prompttagname = NULL;
   gui->calltagname = NULL;
+  gui->senttagname = NULL;
+  gui->wwvtagname = NULL;
+  gui->wxtagname = NULL;
   return(gui);
 }
 
@@ -261,12 +264,6 @@ create_mainwindow (void)
   gtk_container_add (GTK_CONTAINER (mainscrolledwindow), maintext);
   gtk_text_view_set_editable (GTK_TEXT_VIEW (maintext), FALSE);
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
-  gtk_text_buffer_create_tag (buffer, "wwv", "foreground", "darkgreen",
-			      NULL);
-  gtk_text_buffer_create_tag (buffer, "wx", "foreground", "magenta",
-			      NULL);
-  gtk_text_buffer_create_tag (buffer, "sent", "foreground", "red",
-			      NULL);
   gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue", 
     "underline", PANGO_UNDERLINE_SINGLE, NULL);
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);
@@ -657,6 +654,12 @@ static void cleanup (void)
   gui->prompttagname = NULL;
   g_free (gui->calltagname);
   gui->calltagname = NULL;
+  g_free (gui->senttagname);
+  gui->senttagname = NULL;
+  g_free (gui->wwvtagname);
+  gui->wwvtagname = NULL;
+  g_free (gui->wxtagname);
+  gui->wxtagname = NULL;
   g_free(gui);
 }
 

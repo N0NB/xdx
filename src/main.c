@@ -130,10 +130,19 @@ main (int argc, char *argv[])
 	preferences.promptcolor.blue * 255 / 65535);
   gui->prompttagname = g_strdup ("prompt");
   gui->calltagname = g_strdup ("call");
+  gui->wwvtagname = g_strdup ("wwv");
+  gui->senttagname = g_strdup ("sent");
+  gui->wxtagname = g_strdup ("wx");
   gtk_text_buffer_create_tag
     (buffer, gui->prompttagname, "foreground", colorstr, NULL);
   gtk_text_buffer_create_tag (buffer, gui->calltagname, "foreground",
     colorstr, "weight", PANGO_WEIGHT_BOLD, NULL);
+  gtk_text_buffer_create_tag
+    (buffer, gui->wwvtagname, "foreground", "darkgreen", NULL);
+  gtk_text_buffer_create_tag
+    (buffer, gui->wxtagname, "foreground", "magenta", NULL);
+  gtk_text_buffer_create_tag
+    (buffer, gui->senttagname, "foreground", "red", NULL);
 
   g_free (colorstr);
 

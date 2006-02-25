@@ -79,6 +79,9 @@ typedef struct
   gint playsound;
   gint keepalive;
   GdkColor promptcolor;
+  GdkColor sentcolor;
+  GdkColor wwvcolor;
+  GdkColor wxcolor;
 } preferencestype;
 
 void dircheck (void);

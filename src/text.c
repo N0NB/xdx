@@ -530,14 +530,14 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             && (utf8 = try_utf8(dx->toall)))
         {
           gtk_text_buffer_insert_with_tags_by_name
-            (buffer, &end, utf8, -1, "wwv", NULL);
+            (buffer, &end, utf8, -1, gui->wwvtagname, NULL);
           if (preferences.savewwv) savewwv (dx->toall);
         }
         else if (!g_ascii_strncasecmp (dx->toall, "WX de ", 5)
           && (utf8 = try_utf8(dx->toall)))
         {
           gtk_text_buffer_insert_with_tags_by_name
-            (buffer, &end, utf8, -1, "wx", NULL);
+            (buffer, &end, utf8, -1, gui->wxtagname, NULL);
           if (preferences.savewx) savewx (dx->toall);
         }
         else
@@ -698,7 +698,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
       if (msg && msg[0] && (utf8 = try_utf8(msg)))
       {
           gtk_text_buffer_insert_with_tags_by_name 
-            (buffer, &end, utf8, len, "sent", NULL);
+            (buffer, &end, utf8, len, gui->senttagname, NULL);
           g_free (utf8);
       }
     }
