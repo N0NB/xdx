@@ -59,6 +59,8 @@ guitype *new_gui(void)
   gui->txitem = 0;
   gui->statusbartimer = -1;
   gui->statusbarmessage = NULL;
+  gui->prompttagname = NULL;
+  gui->calltagname = NULL;
   return(gui);
 }
 
@@ -651,6 +653,10 @@ static void cleanup (void)
   gui->statusbarmessage = NULL;
   g_free(gui->url);
   gui->url = NULL;
+  g_free (gui->prompttagname);
+  gui->prompttagname = NULL;
+  g_free (gui->calltagname);
+  gui->calltagname = NULL;
   g_free(gui);
 }
 

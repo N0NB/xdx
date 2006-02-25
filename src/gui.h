@@ -34,6 +34,8 @@ typedef struct guitype {
   gint statusbartimer;
   gchar *statusbarmessage;
   gchar *url;
+  gchar *prompttagname;
+  gchar *calltagname;
 } guitype;
 
 guitype *gui;

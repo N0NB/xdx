@@ -23,6 +23,7 @@
 
 #include <gtk/gtk.h>
 #include <string.h>
+#include <stdlib.h>
 #include "gui_settingsdialog.h"
 #include "utils.h"
 #include "gui.h"
@@ -984,16 +985,14 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_color_button_get_color (GTK_COLOR_BUTTON(promptcolorbutton), &color);
     if (! gdk_color_equal(&color, &preferences.promptcolor))
     {
-      tag = gtk_text_tag_table_lookup (table, "prompt");
-      gtk_text_tag_table_remove (table, tag);
-      tag = gtk_text_tag_table_lookup (table, "call");
-      gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+      gui->prompttagname = g_strdup_printf ("%d", rand ());
       gtk_text_buffer_create_tag
-        (buffer, "prompt", "foreground", str, NULL);
+        (buffer, gui->prompttagname, "foreground", str, NULL);
+      gui->calltagname = g_strdup_printf ("%d", rand ());
       gtk_text_buffer_create_tag
-        (buffer, "call", "foreground", str, "weight", PANGO_WEIGHT_BOLD, NULL);
+        (buffer, gui->calltagname, "foreground", str, "weight", PANGO_WEIGHT_BOLD, NULL);
       preferences.promptcolor = color;
     }
     g_free (str);

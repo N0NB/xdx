@@ -566,15 +566,15 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
                     if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
                     {
-                      gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                      gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
                       start = end;
                     }
                 if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
                 {
-                  gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
+                  gtk_text_buffer_apply_tag_by_name (buffer, gui->calltagname, &start, &end);
                   start = end;
                   gtk_text_iter_forward_char (&end);
-                  gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                  gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
                 }
               }
             }
@@ -592,18 +592,18 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
                   if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
                   {
-                    gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                    gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
                     start = end;
                   }
                   if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
                   {
-                    gtk_text_buffer_apply_tag_by_name (buffer, "call", &start, &end);
+                    gtk_text_buffer_apply_tag_by_name (buffer, gui->calltagname, &start, &end);
                     start = end;
                   }
                   if (gtk_text_iter_forward_find_char (&end, findkstprompt, NULL, NULL))
                   {
                     gtk_text_iter_forward_char (&end);
-                    gtk_text_buffer_apply_tag_by_name (buffer, "prompt", &start, &end);
+                    gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
                   }
                   /* in case highlighting starts at prompt */
                   promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);

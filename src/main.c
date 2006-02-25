@@ -33,6 +33,7 @@
 
 extern preferencestype preferences;
 GdkColormap *colormap;
+gchar *prompttagname, *calltagname;
 
 int
 main (int argc, char *argv[])
@@ -127,9 +128,11 @@ main (int argc, char *argv[])
 	preferences.promptcolor.red * 255 / 65535,
 	preferences.promptcolor.green * 255 / 65535,
 	preferences.promptcolor.blue * 255 / 65535);
+  gui->prompttagname = g_strdup ("prompt");
+  gui->calltagname = g_strdup ("call");
   gtk_text_buffer_create_tag
-    (buffer, "prompt", "foreground", colorstr, NULL);
-  gtk_text_buffer_create_tag (buffer, "call", "foreground",
+    (buffer, gui->prompttagname, "foreground", colorstr, NULL);
+  gtk_text_buffer_create_tag (buffer, gui->calltagname, "foreground",
     colorstr, "weight", PANGO_WEIGHT_BOLD, NULL);
 
   g_free (colorstr);
