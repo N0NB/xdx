@@ -22,7 +22,7 @@
  */
 
 #include <gtk/gtk.h>
-
+#include <unistd.h>
 
 #include "utils.h"
 #include "gui.h"
@@ -48,7 +48,9 @@ on_log_activate (GtkMenuItem * menuitem, gpointer user_data)
               GTK_WINDOW (gui->window),
               GTK_DIALOG_MODAL |
               GTK_DIALOG_DESTROY_WITH_PARENT,
-              GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
+              GTK_STOCK_CLEAR, GTK_RESPONSE_CANCEL, 
+              GTK_STOCK_CLOSE, GTK_RESPONSE_OK,
+              NULL);
   gtk_widget_set_size_request (logdialog, 600, 300);
   vbox = gtk_vbox_new (FALSE, 8);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 8);
@@ -66,11 +68,12 @@ on_log_activate (GtkMenuItem * menuitem, gpointer user_data)
     (GTK_CONTAINER (logdialog_scrolledwindow), logdialog_textview);
 
   filename = g_strdup_printf ("%s/log.txt", gui->preferencesdir);
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logdialog_textview));
+  gtk_text_buffer_get_bounds (buffer, &start, &end);
+
   fd = fopen (filename, "r");
   if ((fd = fopen(filename, "r"))) 
   { 
-    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logdialog_textview));
-    gtk_text_buffer_get_bounds (buffer, &start, &end);
     while (!feof(fd))  
     {
       numread = fread(buf, 1, 1024, fd);
@@ -84,5 +87,10 @@ on_log_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   gtk_widget_show_all (logdialog);
   response = gtk_dialog_run (GTK_DIALOG (logdialog));
+  if (response == GTK_RESPONSE_CANCEL)
+  {
+    gtk_text_buffer_set_text (buffer, "", -1);
+    unlink (filename);
+  }
   gtk_widget_destroy (logdialog);
 }
