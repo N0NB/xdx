@@ -64,6 +64,14 @@ guitype *new_gui(void)
   gui->senttagname = NULL;
   gui->wwvtagname = NULL;
   gui->wxtagname = NULL;
+  gui->high1tagname = NULL;
+  gui->high2tagname = NULL;
+  gui->high3tagname = NULL;
+  gui->high4tagname = NULL;
+  gui->high5tagname = NULL;
+  gui->high6tagname = NULL;
+  gui->high7tagname = NULL;
+  gui->high8tagname = NULL;
   return(gui);
 }
 
@@ -660,6 +668,22 @@ static void cleanup (void)
   gui->wwvtagname = NULL;
   g_free (gui->wxtagname);
   gui->wxtagname = NULL;
+  g_free (gui->high1tagname);
+  gui->high1tagname = NULL;
+  g_free (gui->high2tagname);
+  gui->high2tagname = NULL;
+  g_free (gui->high3tagname);
+  gui->high3tagname = NULL;
+  g_free (gui->high4tagname);
+  gui->high4tagname = NULL;
+  g_free (gui->high5tagname);
+  gui->high5tagname = NULL;
+  g_free (gui->high6tagname);
+  gui->high6tagname = NULL;
+  g_free (gui->high7tagname);
+  gui->high7tagname = NULL;
+  g_free (gui->high8tagname);
+  gui->high8tagname = NULL;
   g_free(gui);
 }
 

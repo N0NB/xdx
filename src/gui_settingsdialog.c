@@ -213,7 +213,6 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   GtkTooltips *tooltips;
   GtkTextBuffer *buffer;
   GtkTextTagTable *table;
-  GtkTextTag *tag;
   GdkColor color;
 
   gtk_widget_set_sensitive (gui->window, 0);
@@ -909,11 +908,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton1), &color);
     if (! gdk_color_equal(&color, &preferences.highcolor1))
     {
-      tag = gtk_text_tag_table_lookup (table, "highcolor1");
-      gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor1", "foreground",
+      gui->high1tagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag (buffer, gui->high1tagname, "foreground",
 	str, NULL);
       highentry1 = g_object_get_data (G_OBJECT (gui->window), "highentry1");
       gtk_widget_modify_text (highentry1, GTK_STATE_NORMAL, &color);
@@ -922,11 +920,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton2), &color);
     if (! gdk_color_equal(&color, &preferences.highcolor2))
     {
-      tag = gtk_text_tag_table_lookup (table, "highcolor2");
-      gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor2", "foreground",
+      gui->high2tagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag (buffer, gui->high2tagname, "foreground",
 	str, NULL);
       highentry2 = g_object_get_data (G_OBJECT (gui->window), "highentry2");
       gtk_widget_modify_text (highentry2, GTK_STATE_NORMAL, &color);
@@ -935,11 +932,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton3), &color);
     if (! gdk_color_equal(&color, &preferences.highcolor3))
     {
-      tag = gtk_text_tag_table_lookup (table, "highcolor3");
-      gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor3", "foreground",
+      gui->high3tagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag (buffer, gui->high3tagname, "foreground",
 	str, NULL);
       highentry3 = g_object_get_data (G_OBJECT (gui->window), "highentry3");
       gtk_widget_modify_text (highentry3, GTK_STATE_NORMAL, &color);
@@ -948,11 +944,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton4), &color);
     if (! gdk_color_equal(&color, &preferences.highcolor4))
     {
-      tag = gtk_text_tag_table_lookup (table, "highcolor4");
-      gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor4", "foreground",
+      gui->high4tagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag (buffer, gui->high4tagname, "foreground",
 	str, NULL);
       highentry4 = g_object_get_data (G_OBJECT (gui->window), "highentry4");
       gtk_widget_modify_text (highentry4, GTK_STATE_NORMAL, &color);
@@ -961,11 +956,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton5), &color);
     if (! gdk_color_equal(&color, &preferences.highcolor5))
     {
-      tag = gtk_text_tag_table_lookup (table, "highcolor5");
-      gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor5", "foreground",
+      gui->high5tagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag (buffer, gui->high5tagname, "foreground",
 	str, NULL);
       highentry5 = g_object_get_data (G_OBJECT (gui->window), "highentry5");
       gtk_widget_modify_text (highentry5, GTK_STATE_NORMAL, &color);
@@ -974,11 +968,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton6), &color);
     if (! gdk_color_equal(&color, &preferences.highcolor6))
     {
-      tag = gtk_text_tag_table_lookup (table, "highcolor6");
-      gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor6", "foreground",
+      gui->high6tagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag (buffer, gui->high6tagname, "foreground",
 	str, NULL);
       highentry6 = g_object_get_data (G_OBJECT (gui->window), "highentry6");
       gtk_widget_modify_text (highentry6, GTK_STATE_NORMAL, &color);
@@ -987,11 +980,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton7), &color);
     if (! gdk_color_equal(&color, &preferences.highcolor7))
     {
-      tag = gtk_text_tag_table_lookup (table, "highcolor7");
-      gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor7", "foreground",
+      gui->high7tagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag (buffer, gui->high7tagname, "foreground",
 	str, NULL);
       highentry7 = g_object_get_data (G_OBJECT (gui->window), "highentry7");
       gtk_widget_modify_text (highentry7, GTK_STATE_NORMAL, &color);
@@ -1000,11 +992,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton8), &color);
     if (! gdk_color_equal(&color, &preferences.highcolor8))
     {
-      tag = gtk_text_tag_table_lookup (table, "highcolor8");
-      gtk_text_tag_table_remove (table, tag);
       str = g_strdup_printf ("#%02X%02X%02X",
 	color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
-      gtk_text_buffer_create_tag (buffer, "highcolor8", "foreground",
+      gui->high8tagname = g_strdup_printf ("%d", rand ());
+      gtk_text_buffer_create_tag (buffer, gui->high8tagname, "foreground",
 	str, NULL);
       highentry8 = g_object_get_data (G_OBJECT (gui->window), "highentry8");
       gtk_widget_modify_text (highentry8, GTK_STATE_NORMAL, &color);

@@ -75,53 +75,64 @@ main (int argc, char *argv[])
 
   maintext = g_object_get_data (G_OBJECT (gui->window), "maintext");
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
+
+  /* most of the tagnames are randomised when changed, so we can keep on using the old
+     tags without having to remove them from the tagtable */
+  gui->high1tagname = g_strdup ("highcolor1");
+  gui->high2tagname = g_strdup ("highcolor2");
+  gui->high3tagname = g_strdup ("highcolor3");
+  gui->high4tagname = g_strdup ("highcolor4");
+  gui->high5tagname = g_strdup ("highcolor5");
+  gui->high6tagname = g_strdup ("highcolor6");
+  gui->high7tagname = g_strdup ("highcolor7");
+  gui->high8tagname = g_strdup ("highcolor8");
   colorstr = g_strdup_printf ("#%02X%02X%02X",
 	preferences.highcolor1.red * 255 / 65535,
 	preferences.highcolor1.green * 255 / 65535,
 	preferences.highcolor1.blue * 255 / 65535);
-  gtk_text_buffer_create_tag (buffer, "highcolor1", "foreground",
+  gtk_text_buffer_create_tag (buffer, gui->high1tagname, "foreground",
 	colorstr, NULL);
   colorstr = g_strdup_printf ("#%02X%02X%02X",
 	preferences.highcolor2.red * 255 / 65535,
 	preferences.highcolor2.green * 255 / 65535,
 	preferences.highcolor2.blue * 255 / 65535);
-  gtk_text_buffer_create_tag (buffer, "highcolor2", "foreground",
+  gtk_text_buffer_create_tag (buffer, gui->high2tagname, "foreground",
 	colorstr, NULL);
   colorstr = g_strdup_printf ("#%02X%02X%02X",
 	preferences.highcolor3.red * 255 / 65535,
 	preferences.highcolor3.green * 255 / 65535,
 	preferences.highcolor3.blue * 255 / 65535);
-  gtk_text_buffer_create_tag (buffer, "highcolor3", "foreground",
+  gtk_text_buffer_create_tag (buffer, gui->high3tagname, "foreground",
 	colorstr, NULL);
   colorstr = g_strdup_printf ("#%02X%02X%02X",
 	preferences.highcolor4.red * 255 / 65535,
 	preferences.highcolor4.green * 255 / 65535,
 	preferences.highcolor4.blue * 255 / 65535);
-  gtk_text_buffer_create_tag (buffer, "highcolor4", "foreground",
+  gtk_text_buffer_create_tag (buffer, gui->high4tagname, "foreground",
 	colorstr, NULL);
   colorstr = g_strdup_printf ("#%02X%02X%02X",
 	preferences.highcolor5.red * 255 / 65535,
 	preferences.highcolor5.green * 255 / 65535,
 	preferences.highcolor5.blue * 255 / 65535);
-  gtk_text_buffer_create_tag (buffer, "highcolor5", "foreground",
+  gtk_text_buffer_create_tag (buffer, gui->high5tagname, "foreground",
 	colorstr, NULL);
   colorstr = g_strdup_printf ("#%02X%02X%02X",
 	preferences.highcolor6.red * 255 / 65535,
 	preferences.highcolor6.green * 255 / 65535,
 	preferences.highcolor6.blue * 255 / 65535);
-  gtk_text_buffer_create_tag (buffer, "highcolor6", "foreground",
+  gtk_text_buffer_create_tag (buffer, gui->high6tagname, "foreground",
 	colorstr, NULL);
   colorstr = g_strdup_printf ("#%02X%02X%02X",
 	preferences.highcolor7.red * 255 / 65535,
 	preferences.highcolor7.green * 255 / 65535,
 	preferences.highcolor7.blue * 255 / 65535);
-  gtk_text_buffer_create_tag (buffer, "highcolor7", "foreground",
+  gtk_text_buffer_create_tag (buffer, gui->high7tagname, "foreground",
 	colorstr, NULL);
   colorstr = g_strdup_printf ("#%02X%02X%02X",
 	preferences.highcolor8.red * 255 / 65535,
 	preferences.highcolor8.green * 255 / 65535,
 	preferences.highcolor8.blue * 255 / 65535);
-  gtk_text_buffer_create_tag (buffer, "highcolor8", "foreground",
+  gtk_text_buffer_create_tag (buffer, gui->high8tagname, "foreground",
 	colorstr, NULL);
 
   gui->prompttagname = g_strdup ("prompt");

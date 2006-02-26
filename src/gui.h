@@ -39,6 +39,14 @@ typedef struct guitype {
   gchar *senttagname;
   gchar *wwvtagname;
   gchar *wxtagname;
+  gchar *high1tagname;
+  gchar *high2tagname;
+  gchar *high3tagname;
+  gchar *high4tagname;
+  gchar *high5tagname;
+  gchar *high6tagname;
+  gchar *high7tagname;
+  gchar *high8tagname;
 } guitype;
 
 guitype *gui;

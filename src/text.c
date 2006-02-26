@@ -623,16 +623,51 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               if (high[i] == '1')
               {
                 /* lookup name of tag and word to be highlighted */
-                tagname = g_strdup_printf ("highcolor%d", i + 1);
-                if (i == 0) p = g_strdup(preferences.highword1);
-                else if (i == 1) p = g_strdup(preferences.highword2);
-                else if (i == 2) p = g_strdup(preferences.highword3);
-                else if (i == 3) p = g_strdup(preferences.highword4);
-                else if (i == 4) p = g_strdup(preferences.highword5);
-                else if (i == 5) p = g_strdup(preferences.highword6);
-                else if (i == 6) p = g_strdup(preferences.highword7);
-                else if (i == 7) p = g_strdup(preferences.highword8);
-                else p = g_strdup ("???");
+                if (i == 0)
+                {
+                  tagname = g_strdup (gui->high1tagname);
+                  p = g_strdup(preferences.highword1);
+                }
+                else if (i == 1)
+                {
+                  tagname = g_strdup (gui->high2tagname);
+                  p = g_strdup(preferences.highword2);
+                }
+                else if (i == 2)
+                {
+                  tagname = g_strdup (gui->high3tagname);
+                  p = g_strdup(preferences.highword3);
+                }
+                else if (i == 3)
+                {
+                  tagname = g_strdup (gui->high4tagname);
+                  p = g_strdup(preferences.highword4);
+                }
+                else if (i == 4)
+                {
+                  tagname = g_strdup (gui->high5tagname);
+                  p = g_strdup(preferences.highword5);
+                }
+                else if (i == 5)
+                {
+                  tagname = g_strdup (gui->high6tagname);
+                  p = g_strdup(preferences.highword6);
+                }
+                else if (i == 6)
+                {
+                  tagname = g_strdup (gui->high7tagname);
+                  p = g_strdup(preferences.highword7);
+                }
+                else if (i == 7)
+                {
+                  tagname = g_strdup (gui->high8tagname);
+                  p = g_strdup(preferences.highword8);
+                }
+                else
+                {
+                  p = g_strdup ("???");
+                  tagname = g_strdup ("???");
+                }
                 /* set starting point for search */
 		if (preferences.highmenu[i] == '0')
                   gtk_text_buffer_get_iter_at_mark (buffer, &start, promptmark);
