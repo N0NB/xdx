@@ -91,6 +91,7 @@ on_log_activate (GtkMenuItem * menuitem, gpointer user_data)
   {
     gtk_text_buffer_set_text (buffer, "", -1);
     unlink (filename);
+    response = gtk_dialog_run (GTK_DIALOG (logdialog));
   }
   gtk_widget_destroy (logdialog);
 }
