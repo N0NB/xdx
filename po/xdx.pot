@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-02-26 00:27+0100\n"
+"POT-Creation-Date: 2006-02-26 20:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,99 +20,99 @@ msgstr ""
 msgid "Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"
 msgstr ""
 
-#: src/gui.c:77
+#: src/gui.c:85
 msgid "_Program"
 msgstr ""
 
-#: src/gui.c:78
+#: src/gui.c:86
 msgid "_Host"
 msgstr ""
 
-#: src/gui.c:79
+#: src/gui.c:87
 msgid "_Settings"
 msgstr ""
 
-#: src/gui.c:80
+#: src/gui.c:88
 msgid "H_elp"
 msgstr ""
 
-#: src/gui.c:81
+#: src/gui.c:89
 msgid "Highlights"
 msgstr ""
 
-#: src/gui.c:83
+#: src/gui.c:91
 msgid "Quit"
 msgstr ""
 
-#: src/gui.c:85
+#: src/gui.c:93
 msgid "Connect..."
 msgstr ""
 
-#: src/gui.c:87
+#: src/gui.c:95
 msgid "Disconnect"
 msgstr ""
 
-#: src/gui.c:89
+#: src/gui.c:97
 msgid "Connection Log"
 msgstr ""
 
-#: src/gui.c:91
+#: src/gui.c:99
 msgid "Preferences..."
 msgstr ""
 
-#: src/gui.c:93
+#: src/gui.c:101
 msgid "Manual"
 msgstr ""
 
-#: src/gui.c:95
+#: src/gui.c:103
 msgid "About"
 msgstr ""
 
-#: src/gui.c:102
+#: src/gui.c:110
 msgid "Auto Reconnect"
 msgstr ""
 
-#: src/gui.c:104
+#: src/gui.c:112
 msgid "Chat sidebar"
 msgstr ""
 
-#: src/gui.c:176
+#: src/gui.c:184
 #, c-format
 msgid "Error loading icon: %s"
 msgstr ""
 
-#: src/gui.c:209 src/gui_settingsdialog.c:425
+#: src/gui.c:217 src/gui_settingsdialog.c:424
 msgid "Spotter"
 msgstr ""
 
-#: src/gui.c:233 src/gui_settingsdialog.c:433
+#: src/gui.c:241 src/gui_settingsdialog.c:432
 msgid "Remarks"
 msgstr ""
 
-#: src/gui.c:241 src/gui_settingsdialog.c:435
+#: src/gui.c:249 src/gui_settingsdialog.c:434
 msgid "Time"
 msgstr ""
 
-#: src/gui.c:249 src/gui_settingsdialog.c:437
+#: src/gui.c:257 src/gui_settingsdialog.c:436
 msgid "Info"
 msgstr ""
 
-#: src/gui.c:343
+#: src/gui.c:351
 msgid "Sound"
 msgstr ""
 
-#: src/gui.c:375 src/gui.c:376 src/gui.c:377 src/gui.c:378 src/gui.c:379
-#: src/gui.c:380 src/gui.c:381 src/gui.c:382
+#: src/gui.c:383 src/gui.c:384 src/gui.c:385 src/gui.c:386 src/gui.c:387
+#: src/gui.c:388 src/gui.c:389 src/gui.c:390
 msgid "Enter a word to highlight"
 msgstr ""
 
-#: src/gui.c:383 src/gui.c:385 src/gui.c:387 src/gui.c:389 src/gui.c:391
-#: src/gui.c:393 src/gui.c:395 src/gui.c:397
+#: src/gui.c:391 src/gui.c:393 src/gui.c:395 src/gui.c:397 src/gui.c:399
+#: src/gui.c:401 src/gui.c:403 src/gui.c:405
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
 msgstr ""
 
-#: src/gui.c:399
+#: src/gui.c:407
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
 msgstr ""
@@ -166,189 +166,189 @@ msgstr ""
 msgid "How about this font?"
 msgstr ""
 
-#: src/gui_settingsdialog.c:220
+#: src/gui_settingsdialog.c:219
 msgid "xdx - preferences"
 msgstr ""
 
-#: src/gui_settingsdialog.c:240 src/gui_settingsdialog.c:400
+#: src/gui_settingsdialog.c:239 src/gui_settingsdialog.c:399
 msgid "General"
 msgstr ""
 
-#: src/gui_settingsdialog.c:243
+#: src/gui_settingsdialog.c:242
 msgid "Output"
 msgstr ""
 
-#: src/gui_settingsdialog.c:246 src/gui_settingsdialog.c:488
+#: src/gui_settingsdialog.c:245 src/gui_settingsdialog.c:487
 msgid "Fonts"
 msgstr ""
 
-#: src/gui_settingsdialog.c:249
+#: src/gui_settingsdialog.c:248
 msgid "Colors"
 msgstr ""
 
-#: src/gui_settingsdialog.c:259
+#: src/gui_settingsdialog.c:258
 msgid "Enable autologin"
 msgstr ""
 
-#: src/gui_settingsdialog.c:265
+#: src/gui_settingsdialog.c:264
 msgid "Callsign"
 msgstr ""
 
-#: src/gui_settingsdialog.c:272
+#: src/gui_settingsdialog.c:271
 msgid "Commands"
 msgstr ""
 
-#: src/gui_settingsdialog.c:279
+#: src/gui_settingsdialog.c:278
 msgid "Comma separated list of commands to send at login"
 msgstr ""
 
-#: src/gui_settingsdialog.c:281
+#: src/gui_settingsdialog.c:280
 msgid "Callsign to be used for login"
 msgstr ""
 
-#: src/gui_settingsdialog.c:283
+#: src/gui_settingsdialog.c:282
 msgid "Login"
 msgstr ""
 
-#: src/gui_settingsdialog.c:314
+#: src/gui_settingsdialog.c:313
 msgid "Enable hamlib"
 msgstr ""
 
-#: src/gui_settingsdialog.c:320
+#: src/gui_settingsdialog.c:319
 msgid "Command for rigctl"
 msgstr ""
 
-#: src/gui_settingsdialog.c:325
+#: src/gui_settingsdialog.c:324
 msgid "Hamlib"
 msgstr ""
 
-#: src/gui_settingsdialog.c:328
+#: src/gui_settingsdialog.c:327
 #, c-format
 msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
 "using rigctl (%d = the frequency retrieved from the DX spot)"
 msgstr ""
 
-#: src/gui_settingsdialog.c:355
+#: src/gui_settingsdialog.c:354
 msgid "Web browser"
 msgstr ""
 
-#: src/gui_settingsdialog.c:362
+#: src/gui_settingsdialog.c:361
 msgid "Mail program"
 msgstr ""
 
-#: src/gui_settingsdialog.c:369
+#: src/gui_settingsdialog.c:368
 msgid "Sound playing"
 msgstr ""
 
-#: src/gui_settingsdialog.c:374
+#: src/gui_settingsdialog.c:373
 msgid "Programs"
 msgstr ""
 
-#: src/gui_settingsdialog.c:377
+#: src/gui_settingsdialog.c:376
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
 msgstr ""
 
-#: src/gui_settingsdialog.c:379
+#: src/gui_settingsdialog.c:378
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
 
-#: src/gui_settingsdialog.c:381
+#: src/gui_settingsdialog.c:380
 #, c-format
 msgid "Program used to play sound (%s = sound file)"
 msgstr ""
 
-#: src/gui_settingsdialog.c:395
+#: src/gui_settingsdialog.c:394
 msgid "Echo sent text to the screen"
 msgstr ""
 
-#: src/gui_settingsdialog.c:398
+#: src/gui_settingsdialog.c:397
 msgid "Send keepalive packets (read the manual)"
 msgstr ""
 
-#: src/gui_settingsdialog.c:415
+#: src/gui_settingsdialog.c:414
 msgid "Columns"
 msgstr ""
 
-#: src/gui_settingsdialog.c:417
+#: src/gui_settingsdialog.c:416
 msgid "Columns to show on the screen"
 msgstr ""
 
-#: src/gui_settingsdialog.c:473
+#: src/gui_settingsdialog.c:472
 msgid "Save DX spots"
 msgstr ""
 
-#: src/gui_settingsdialog.c:475
+#: src/gui_settingsdialog.c:474
 msgid "Save WCY/WWV"
 msgstr ""
 
-#: src/gui_settingsdialog.c:479
+#: src/gui_settingsdialog.c:478
 msgid "Save \"To all\""
 msgstr ""
 
-#: src/gui_settingsdialog.c:481
+#: src/gui_settingsdialog.c:480
 msgid "Save WX"
 msgstr ""
 
-#: src/gui_settingsdialog.c:483
+#: src/gui_settingsdialog.c:482
 msgid "Saving"
 msgstr ""
 
-#: src/gui_settingsdialog.c:492
+#: src/gui_settingsdialog.c:491
 msgid "Font for DX messages"
 msgstr ""
 
-#: src/gui_settingsdialog.c:495
+#: src/gui_settingsdialog.c:494
 msgid "Select _DX Font"
 msgstr ""
 
-#: src/gui_settingsdialog.c:502
+#: src/gui_settingsdialog.c:501
 msgid "Font for other messages"
 msgstr ""
 
-#: src/gui_settingsdialog.c:505
+#: src/gui_settingsdialog.c:504
 msgid "Select _Other Fonts"
 msgstr ""
 
-#: src/gui_settingsdialog.c:517
+#: src/gui_settingsdialog.c:516
 msgid "Highlighting"
 msgstr ""
 
-#: src/gui_settingsdialog.c:521
+#: src/gui_settingsdialog.c:520
 msgid "Colors to use for highlighting"
 msgstr ""
 
-#: src/gui_settingsdialog.c:533 src/gui_settingsdialog.c:541
-#: src/gui_settingsdialog.c:549 src/gui_settingsdialog.c:557
-#: src/gui_settingsdialog.c:570 src/gui_settingsdialog.c:578
-#: src/gui_settingsdialog.c:586 src/gui_settingsdialog.c:594
+#: src/gui_settingsdialog.c:532 src/gui_settingsdialog.c:540
+#: src/gui_settingsdialog.c:548 src/gui_settingsdialog.c:556
+#: src/gui_settingsdialog.c:569 src/gui_settingsdialog.c:577
+#: src/gui_settingsdialog.c:585 src/gui_settingsdialog.c:593
 #, c-format
 msgid "Color %d"
 msgstr ""
 
-#: src/gui_settingsdialog.c:611
+#: src/gui_settingsdialog.c:610
 msgid "Colors for the chat window"
 msgstr ""
 
-#: src/gui_settingsdialog.c:618
+#: src/gui_settingsdialog.c:617
 msgid "Prompt"
 msgstr ""
 
-#: src/gui_settingsdialog.c:627
+#: src/gui_settingsdialog.c:626
 msgid "Sent text"
 msgstr ""
 
-#: src/gui_settingsdialog.c:636
+#: src/gui_settingsdialog.c:635
 msgid "WWV / WCY"
 msgstr ""
 
-#: src/gui_settingsdialog.c:645
+#: src/gui_settingsdialog.c:644
 msgid "WX"
 msgstr ""
 
-#: src/main.c:284
+#: src/main.c:310
 #, c-format
 msgid "Welcome to %s"
 msgstr ""
