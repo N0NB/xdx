@@ -124,26 +124,41 @@ main (int argc, char *argv[])
   gtk_text_buffer_create_tag (buffer, "highcolor8", "foreground",
 	colorstr, NULL);
 
-  colorstr = g_strdup_printf ("#%02X%02X%02X",
-	preferences.promptcolor.red * 255 / 65535,
-	preferences.promptcolor.green * 255 / 65535,
-	preferences.promptcolor.blue * 255 / 65535);
   gui->prompttagname = g_strdup ("prompt");
   gui->calltagname = g_strdup ("call");
   gui->wwvtagname = g_strdup ("wwv");
   gui->senttagname = g_strdup ("sent");
   gui->wxtagname = g_strdup ("wx");
+
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.promptcolor.red * 255 / 65535,
+	preferences.promptcolor.green * 255 / 65535,
+	preferences.promptcolor.blue * 255 / 65535);
   gtk_text_buffer_create_tag
     (buffer, gui->prompttagname, "foreground", colorstr, NULL);
   gtk_text_buffer_create_tag (buffer, gui->calltagname, "foreground",
     colorstr, "weight", PANGO_WEIGHT_BOLD, NULL);
-  gtk_text_buffer_create_tag
-    (buffer, gui->wwvtagname, "foreground", "darkgreen", NULL);
-  gtk_text_buffer_create_tag
-    (buffer, gui->wxtagname, "foreground", "magenta", NULL);
-  gtk_text_buffer_create_tag
-    (buffer, gui->senttagname, "foreground", "red", NULL);
 
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.wwvcolor.red * 255 / 65535,
+	preferences.wwvcolor.green * 255 / 65535,
+	preferences.wwvcolor.blue * 255 / 65535);
+  gtk_text_buffer_create_tag
+    (buffer, gui->wwvtagname, "foreground", colorstr, NULL);
+
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.wxcolor.red * 255 / 65535,
+	preferences.wxcolor.green * 255 / 65535,
+	preferences.wxcolor.blue * 255 / 65535);
+  gtk_text_buffer_create_tag
+    (buffer, gui->wxtagname, "foreground", colorstr, NULL);
+
+  colorstr = g_strdup_printf ("#%02X%02X%02X",
+	preferences.sentcolor.red * 255 / 65535,
+	preferences.sentcolor.green * 255 / 65535,
+	preferences.sentcolor.blue * 255 / 65535);
+  gtk_text_buffer_create_tag
+    (buffer, gui->senttagname, "foreground", colorstr, NULL);
   g_free (colorstr);
 
   highcheck1 = g_object_get_data (G_OBJECT (gui->window), "highcheck1");
