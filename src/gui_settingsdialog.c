@@ -630,7 +630,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   pcolorshbox = gtk_hbox_new (TRUE, 0);
   gtk_container_add (GTK_CONTAINER (pcolorsvbox), pcolorshbox);
-  wwvcolorlabel = gtk_label_new (_("WWV / WCY"));
+  wwvcolorlabel = gtk_label_new ("WWV / WCY");
   gtk_box_pack_start (GTK_BOX (pcolorshbox), wwvcolorlabel, FALSE, FALSE, 0);
   wwvcolorbutton = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (pcolorshbox), wwvcolorbutton, FALSE, FALSE, 0);
@@ -639,7 +639,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   pcolorshbox = gtk_hbox_new (TRUE, 0);
   gtk_container_add (GTK_CONTAINER (pcolorsvbox), pcolorshbox);
-  wxcolorlabel = gtk_label_new (_("WX"));
+  wxcolorlabel = gtk_label_new ("WX");
   gtk_box_pack_start (GTK_BOX (pcolorshbox), wxcolorlabel, FALSE, FALSE, 0);
   wxcolorbutton = gtk_color_button_new ();
   gtk_box_pack_start (GTK_BOX (pcolorshbox), wxcolorbutton, FALSE, FALSE, 0);
