@@ -37,16 +37,11 @@ static void
 on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-  GtkWidget *ploginhseparator, *pcallsignlabel, *pcallsignentry, 
-    *pcommandslabel, *pcommandsentry;
+  GtkWidget *ploginhseparator, *pcommandslabel, *pcommandsentry;
   gboolean state;
 
   ploginhseparator = g_object_get_data (G_OBJECT (preferencesdialog), 
     "ploginhseparator");
-  pcallsignlabel = g_object_get_data (G_OBJECT (preferencesdialog), 
-    "pcallsignlabel");
-  pcallsignentry = g_object_get_data (G_OBJECT (preferencesdialog), 
-    "pcallsignentry");
   pcommandslabel = g_object_get_data (G_OBJECT (preferencesdialog), 
     "pcommandslabel");
   pcommandsentry = g_object_get_data (G_OBJECT (preferencesdialog), 
@@ -56,16 +51,12 @@ on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
   if (state)
   {
     gtk_widget_set_sensitive (ploginhseparator, TRUE);
-    gtk_widget_set_sensitive (pcallsignlabel, TRUE);
-    gtk_widget_set_sensitive (pcallsignentry, TRUE);
     gtk_widget_set_sensitive (pcommandslabel, TRUE);
     gtk_widget_set_sensitive (pcommandsentry, TRUE);
   }
   else
   {
     gtk_widget_set_sensitive (ploginhseparator, FALSE);
-    gtk_widget_set_sensitive (pcallsignlabel, FALSE);
-    gtk_widget_set_sensitive (pcallsignentry, FALSE);
     gtk_widget_set_sensitive (pcommandslabel, FALSE);
     gtk_widget_set_sensitive (pcommandsentry, FALSE);
   }
@@ -162,9 +153,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
     *pnotebook, *plabel1, *plabel2, *plabel3, *plabel4,
 
-    *ploginframe, *ploginvbox, *pautologincheckbutton, *ploginhseparator, 
-    *ploginhbox, *pcallsignlabel, *pcallsignentry, *pcommandshbox, 
-    *pcommandslabel, *pcommandsentry, *ploginlabel,
+    *pcallsignframe, *pcallsignhbox, *pcallsignlabel, *pcallsignentry,
+    *pcallsignframelabel, *ploginframe, *ploginvbox, *pautologincheckbutton,
+    *ploginhseparator, *pcommandshbox, *pcommandslabel, *pcommandsentry,
+    *ploginframelabel,
 
     *psavingframe, *psavingvbox, *psavedxcheckbutton, *psavewwvcheckbutton,
     *psavetoallcheckbutton, *psavewxcheckbutton, *psavinglabel, *psavinghbox,
@@ -251,6 +243,16 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (pdialog_vbox), pnotebook, TRUE, TRUE, 0);
 
 
+  pcallsignframe = gtk_frame_new (NULL);
+  gtk_box_pack_start (GTK_BOX (pvbox1), pcallsignframe, TRUE, TRUE, 0);
+  pcallsignhbox = gtk_hbox_new (TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (pcallsignframe), pcallsignhbox);
+  pcallsignlabel = gtk_label_new (_("Your callsign"));
+  gtk_box_pack_start (GTK_BOX (pcallsignhbox), pcallsignlabel, FALSE, FALSE, 0);
+  pcallsignentry = gtk_entry_new ();
+  gtk_box_pack_start (GTK_BOX (pcallsignhbox), pcallsignentry, TRUE, TRUE, 5);
+  gtk_entry_set_max_length (GTK_ENTRY (pcallsignentry), 15);
+
   ploginframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox1), ploginframe, TRUE, TRUE, 0);
   ploginvbox = gtk_vbox_new (FALSE, 0);
@@ -259,13 +261,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (ploginvbox), pautologincheckbutton, FALSE, FALSE, 0);
   ploginhseparator = gtk_hseparator_new ();
   gtk_box_pack_start (GTK_BOX (ploginvbox), ploginhseparator, TRUE, TRUE, 0);
-  ploginhbox = gtk_hbox_new (TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (ploginvbox), ploginhbox, TRUE, TRUE, 0);
-  pcallsignlabel = gtk_label_new (_("Callsign"));
-  gtk_box_pack_start (GTK_BOX (ploginhbox), pcallsignlabel, FALSE, FALSE, 0);
-  pcallsignentry = gtk_entry_new ();
-  gtk_box_pack_start (GTK_BOX (ploginhbox), pcallsignentry, TRUE, TRUE, 5);
-  gtk_entry_set_max_length (GTK_ENTRY (pcallsignentry), 15);
+
   pcommandshbox = gtk_hbox_new (TRUE, 0);
   gtk_box_pack_start (GTK_BOX (ploginvbox), pcommandshbox, TRUE, TRUE, 0);
   pcommandslabel = gtk_label_new (_("Commands"));
@@ -279,8 +275,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_tooltips_set_tip (tooltips, pcallsignentry, 
     _("Callsign to be used for login"), NULL);
 
-  ploginlabel = gtk_label_new (_("Login"));
-  gtk_frame_set_label_widget (GTK_FRAME (ploginframe), ploginlabel);
+  ploginframelabel = gtk_label_new (_("Login"));
+  gtk_frame_set_label_widget (GTK_FRAME (ploginframe), ploginframelabel);
+  pcallsignframelabel = gtk_label_new (_("Callsign"));
+  gtk_frame_set_label_widget (GTK_FRAME (pcallsignframe), pcallsignframelabel);
 
   if (preferences.autologin == 1)
   {
