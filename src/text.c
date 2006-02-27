@@ -472,7 +472,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
   GtkTextChildAnchor *anchor;
   GtkWidget *swidget;
   smiley *s;
-  gchar *utf8, *high, *tagname, *p, *temp;
+  gchar *utf8, *high, *tagname, *p, *temp, *mycall;
   guint i;
 
   if (len < 1024) msg[len] = '\0';
@@ -553,12 +553,12 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             gtk_text_buffer_get_bounds (buffer, &start, &end);
             endmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
 
-            /* check for DX-cluster prompt and colorize it */
+            /* check for 'To ALL de PG4I:' DX-cluster prompt and colorize it */
             if (g_utf8_strlen(utf8, -1) > 10)
             {
               temp = g_strdup (utf8);
               *(temp + 10) = '\0';
-              if (!strcmp (temp, "To ALL de "))
+              if (!strcmp (temp, "To ALL de ") || !strcmp (temp, "To LOCAL d"))
               {
                 gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
                 gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
@@ -575,9 +575,37 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   start = end;
                   gtk_text_iter_forward_char (&end);
                   gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
+                  promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
+                }
+              }
+              g_free (temp);
+            }
+
+            /*
+                normal DX-cluster prompt is something like:
+                PG4I de PI5EHV-8 27-Feb-2006 1709Z >
+                so we look for 'mycall de ' here...
+             */
+            mycall = g_strdup_printf ("%s de ", preferences.callsign);
+            temp = g_strdup (utf8);
+            if (g_utf8_strlen (temp, -1) > strlen (preferences.callsign) + 4)
+            {
+              *(temp + strlen (preferences.callsign) + 4) = '\0';
+
+              if (strcasecmp(temp, mycall) == 0)
+              {
+                gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
+                gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
+                if (gtk_text_iter_forward_find_char (&end, findrightarrowprompt, NULL, NULL))
+                {
+                    gtk_text_iter_forward_char (&end);
+                    gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
+                    promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
                 }
               }
             }
+            g_free (temp);
+            g_free (mycall);
 
             /* check for ON4KST prompt and colorize it */
             if (g_utf8_strlen(utf8, -1) > 5)
@@ -604,11 +632,12 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   {
                     gtk_text_iter_forward_char (&end);
                     gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
+                    /* in case highlighting starts at prompt */
+                    promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
                   }
-                  /* in case highlighting starts at prompt */
-                  promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
                 }
               }
+              g_free (temp);
             }
 
             /* check for highlights */
@@ -618,8 +647,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               (gtk_text_buffer_get_text (buffer, &start, &end, FALSE));
             if (g_ascii_strcasecmp (high, "00000000"))
             {
-            for (i = 0; i < 8; i++)
-            {
+             for (i = 0; i < 8; i++)
+             {
               if (high[i] == '1')
               {
                 /* lookup name of tag and word to be highlighted */
@@ -671,6 +700,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 /* set starting point for search */
 		if (preferences.highmenu[i] == '0')
                   gtk_text_buffer_get_iter_at_mark (buffer, &start, promptmark);
+                else
+                  gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
                 /* search for highlights and apply tag */
                 while (gtk_source_iter_forward_search (&start, p,
                   GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &smatch, &ematch, NULL))
@@ -682,7 +713,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 g_free (p);
                 g_free (tagname);
               }
-            }
+             }
             }
             g_free (high);
 
