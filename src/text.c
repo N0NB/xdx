@@ -410,7 +410,7 @@ contains_highlights (gchar *str)
 
 /* used when colorizing DX-cluster prompt */
 static gboolean 
-findclusterprompt (gunichar ch, gpointer user_data)
+findcolonprompt (gunichar ch, gpointer user_data)
 {
   switch (ch)
   {
@@ -423,7 +423,7 @@ findclusterprompt (gunichar ch, gpointer user_data)
 
 /* used when colorizing ON4KST chat prompt */
 static gboolean 
-findkstprompt (gunichar ch, gpointer user_data)
+findrightarrowprompt (gunichar ch, gpointer user_data)
 {
   switch (ch)
   {
@@ -569,7 +569,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                       gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
                       start = end;
                     }
-                if (gtk_text_iter_forward_find_char (&end, findclusterprompt, NULL, NULL))
+                if (gtk_text_iter_forward_find_char (&end, findcolonprompt, NULL, NULL))
                 {
                   gtk_text_buffer_apply_tag_by_name (buffer, gui->calltagname, &start, &end);
                   start = end;
@@ -600,7 +600,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                     gtk_text_buffer_apply_tag_by_name (buffer, gui->calltagname, &start, &end);
                     start = end;
                   }
-                  if (gtk_text_iter_forward_find_char (&end, findkstprompt, NULL, NULL))
+                  if (gtk_text_iter_forward_find_char (&end, findrightarrowprompt, NULL, NULL))
                   {
                     gtk_text_iter_forward_char (&end);
                     gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
