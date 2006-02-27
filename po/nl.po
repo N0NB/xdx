@@ -6,13 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2006-02-26 20:49+0100\n"
-"PO-Revision-Date: 2006-02-26 00:28+0100\n"
+"POT-Creation-Date: 2006-02-27 16:53+0100\n"
+"PO-Revision-Date: 2006-02-27 16:53+0100\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8-bit"
 
 #: src/gui_aboutdialog.c:60
 msgid "Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"
@@ -79,19 +79,19 @@ msgstr "Chat zijvenster"
 msgid "Error loading icon: %s"
 msgstr "Fout bij het laden van het programma icoon: %s"
 
-#: src/gui.c:217 src/gui_settingsdialog.c:424
+#: src/gui.c:217 src/gui_settingsdialog.c:422
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:241 src/gui_settingsdialog.c:432
+#: src/gui.c:241 src/gui_settingsdialog.c:430
 msgid "Remarks"
 msgstr "Opmerkingen"
 
-#: src/gui.c:249 src/gui_settingsdialog.c:434
+#: src/gui.c:249 src/gui_settingsdialog.c:432
 msgid "Time"
 msgstr "Tijd"
 
-#: src/gui.c:257 src/gui_settingsdialog.c:436
+#: src/gui.c:257 src/gui_settingsdialog.c:434
 msgid "Info"
 msgstr "Info"
 
@@ -156,71 +156,75 @@ msgstr "_Poort"
 msgid "xdx - connection log"
 msgstr "xdx - verbindingslog"
 
-#: src/gui_settingsdialog.c:113
+#: src/gui_settingsdialog.c:104
 msgid "xdx - Select a font"
 msgstr "xdx - Selekteer een lettertype"
 
-#: src/gui_settingsdialog.c:126
+#: src/gui_settingsdialog.c:117
 msgid "How about this font?"
 msgstr "Wat denk je van dit font?"
 
-#: src/gui_settingsdialog.c:219
+#: src/gui_settingsdialog.c:211
 msgid "xdx - preferences"
 msgstr "xdx - voorkeuren"
 
-#: src/gui_settingsdialog.c:239 src/gui_settingsdialog.c:399
+#: src/gui_settingsdialog.c:231 src/gui_settingsdialog.c:397
 msgid "General"
 msgstr "Algemeen"
 
-#: src/gui_settingsdialog.c:242
+#: src/gui_settingsdialog.c:234
 msgid "Output"
 msgstr "Output"
 
-#: src/gui_settingsdialog.c:245 src/gui_settingsdialog.c:487
+#: src/gui_settingsdialog.c:237 src/gui_settingsdialog.c:485
 msgid "Fonts"
 msgstr "Lettertypes"
 
-#: src/gui_settingsdialog.c:248
+#: src/gui_settingsdialog.c:240
 msgid "Colors"
 msgstr "Kleuren"
 
-#: src/gui_settingsdialog.c:258
+#: src/gui_settingsdialog.c:250
+msgid "Your callsign"
+msgstr "Uw roepletters"
+
+#: src/gui_settingsdialog.c:260
 msgid "Enable autologin"
 msgstr "Autologin aanzetten"
 
-#: src/gui_settingsdialog.c:264
-msgid "Callsign"
-msgstr "Roepletters"
-
-#: src/gui_settingsdialog.c:271
+#: src/gui_settingsdialog.c:267
 msgid "Commands"
 msgstr "Commando's"
 
-#: src/gui_settingsdialog.c:278
+#: src/gui_settingsdialog.c:274
 msgid "Comma separated list of commands to send at login"
 msgstr "Commando's te versturen na login gescheiden door een komma"
 
-#: src/gui_settingsdialog.c:280
+#: src/gui_settingsdialog.c:276
 msgid "Callsign to be used for login"
 msgstr "Roepletters te gebruiken voor login"
 
-#: src/gui_settingsdialog.c:282
+#: src/gui_settingsdialog.c:278
 msgid "Login"
 msgstr "Login"
 
-#: src/gui_settingsdialog.c:313
+#: src/gui_settingsdialog.c:280
+msgid "Callsign"
+msgstr "Roepletters"
+
+#: src/gui_settingsdialog.c:311
 msgid "Enable hamlib"
 msgstr "Hamlib aanzetten"
 
-#: src/gui_settingsdialog.c:319
+#: src/gui_settingsdialog.c:317
 msgid "Command for rigctl"
 msgstr "Aanroepen van rigctl"
 
-#: src/gui_settingsdialog.c:324
+#: src/gui_settingsdialog.c:322
 msgid "Hamlib"
 msgstr "Hamlib"
 
-#: src/gui_settingsdialog.c:327
+#: src/gui_settingsdialog.c:325
 #, c-format
 msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
@@ -229,127 +233,119 @@ msgstr ""
 "Wanneer je dubbelklikt op een dx-spot zal dit commando de frequentie van je "
 "ontvanger veranderen met rigctl (%d = de frequentie van de dx-spot)"
 
-#: src/gui_settingsdialog.c:354
+#: src/gui_settingsdialog.c:352
 msgid "Web browser"
 msgstr "Web browser"
 
-#: src/gui_settingsdialog.c:361
+#: src/gui_settingsdialog.c:359
 msgid "Mail program"
 msgstr "Mail programma"
 
-#: src/gui_settingsdialog.c:368
+#: src/gui_settingsdialog.c:366
 msgid "Sound playing"
 msgstr "Geluid afspelen"
 
-#: src/gui_settingsdialog.c:373
+#: src/gui_settingsdialog.c:371
 msgid "Programs"
 msgstr "Programma's"
 
-#: src/gui_settingsdialog.c:376
+#: src/gui_settingsdialog.c:374
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
 msgstr "Starten van web browser na het klikken op een url (%s = url)"
 
-#: src/gui_settingsdialog.c:378
+#: src/gui_settingsdialog.c:376
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
 "Mail programma dat gestart wordt na het klikken op een mail url (%s = mail "
 "url)"
 
-#: src/gui_settingsdialog.c:380
+#: src/gui_settingsdialog.c:378
 #, c-format
 msgid "Program used to play sound (%s = sound file)"
 msgstr ""
 "Programma dat gebruikt wordt om geluid af te spelen (%s = geluidsbestand)"
 
-#: src/gui_settingsdialog.c:394
+#: src/gui_settingsdialog.c:392
 msgid "Echo sent text to the screen"
 msgstr "Verzonden berichten naar het scherm kopiëren"
 
-#: src/gui_settingsdialog.c:397
+#: src/gui_settingsdialog.c:395
 msgid "Send keepalive packets (read the manual)"
 msgstr "Verbinding in stand houden (lees het handboek)"
 
-#: src/gui_settingsdialog.c:414
+#: src/gui_settingsdialog.c:412
 msgid "Columns"
 msgstr "Kolommen"
 
-#: src/gui_settingsdialog.c:416
+#: src/gui_settingsdialog.c:414
 msgid "Columns to show on the screen"
 msgstr "Kolommen die te zien zijn op het scherm"
 
-#: src/gui_settingsdialog.c:472
+#: src/gui_settingsdialog.c:470
 msgid "Save DX spots"
 msgstr "DX spots opslaan"
 
-#: src/gui_settingsdialog.c:474
+#: src/gui_settingsdialog.c:472
 msgid "Save WCY/WWV"
 msgstr "WCY/WWV opslaan"
 
-#: src/gui_settingsdialog.c:478
+#: src/gui_settingsdialog.c:476
 msgid "Save \"To all\""
 msgstr "\"To all\" opslaan"
 
-#: src/gui_settingsdialog.c:480
+#: src/gui_settingsdialog.c:478
 msgid "Save WX"
 msgstr "WX opslaan"
 
-#: src/gui_settingsdialog.c:482
+#: src/gui_settingsdialog.c:480
 msgid "Saving"
 msgstr "Opslaan"
 
-#: src/gui_settingsdialog.c:491
+#: src/gui_settingsdialog.c:489
 msgid "Font for DX messages"
 msgstr "Lettertype voor DX berichten"
 
-#: src/gui_settingsdialog.c:494
+#: src/gui_settingsdialog.c:492
 msgid "Select _DX Font"
 msgstr "Kies _DX lettertype"
 
-#: src/gui_settingsdialog.c:501
+#: src/gui_settingsdialog.c:499
 msgid "Font for other messages"
 msgstr "Lettertype voor andere berichten"
 
-#: src/gui_settingsdialog.c:504
+#: src/gui_settingsdialog.c:502
 msgid "Select _Other Fonts"
 msgstr "Kies A_nder lettertype"
 
-#: src/gui_settingsdialog.c:516
+#: src/gui_settingsdialog.c:514
 msgid "Highlighting"
 msgstr "Kleuren"
 
-#: src/gui_settingsdialog.c:520
+#: src/gui_settingsdialog.c:518
 msgid "Colors to use for highlighting"
 msgstr "Kleuren te gebruiken voor het opvallen"
 
-#: src/gui_settingsdialog.c:532 src/gui_settingsdialog.c:540
-#: src/gui_settingsdialog.c:548 src/gui_settingsdialog.c:556
-#: src/gui_settingsdialog.c:569 src/gui_settingsdialog.c:577
-#: src/gui_settingsdialog.c:585 src/gui_settingsdialog.c:593
+#: src/gui_settingsdialog.c:530 src/gui_settingsdialog.c:538
+#: src/gui_settingsdialog.c:546 src/gui_settingsdialog.c:554
+#: src/gui_settingsdialog.c:567 src/gui_settingsdialog.c:575
+#: src/gui_settingsdialog.c:583 src/gui_settingsdialog.c:591
 #, c-format
 msgid "Color %d"
 msgstr "Kleur %d"
 
-#: src/gui_settingsdialog.c:610
+#: src/gui_settingsdialog.c:608
 msgid "Colors for the chat window"
 msgstr "Kleuren voor het chat venster"
 
-#: src/gui_settingsdialog.c:617
+#: src/gui_settingsdialog.c:615
 msgid "Prompt"
 msgstr "Prompt"
 
-#: src/gui_settingsdialog.c:626
+#: src/gui_settingsdialog.c:624
 msgid "Sent text"
 msgstr "Verzonden text"
-
-#: src/gui_settingsdialog.c:635
-msgid "WWV / WCY"
-msgstr "WWV / WCY"
-
-#: src/gui_settingsdialog.c:644
-msgid "WX"
-msgstr "WX"
 
 #: src/main.c:310
 #, c-format
@@ -416,6 +412,12 @@ msgstr "Fork faalt: %s"
 #, c-format
 msgid "Starting: %s"
 msgstr "Starten van: %s"
+
+#~ msgid "WWV / WCY"
+#~ msgstr "WWV / WCY"
+
+#~ msgid "WX"
+#~ msgstr "WX"
 
 #~ msgid "Enable/disable highlight [Ctrl+%d]"
 #~ msgstr "Kleuren aan/uit zetten [Ctrl+%d]"
