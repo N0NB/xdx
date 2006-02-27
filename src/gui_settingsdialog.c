@@ -700,6 +700,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
   if (response == GTK_RESPONSE_OK)
   {
+    /* callsign frame */
+    str = gtk_editable_get_chars (GTK_EDITABLE (pcallsignentry), 0, -1);
+    if (strlen(str) == 0)
+      preferences.callsign = g_strdup ("N0CALL");
+    else
+      preferences.callsign = g_strdup (str);
+
     /* login frame */
     state = gtk_toggle_button_get_active 
       (GTK_TOGGLE_BUTTON(pautologincheckbutton));
@@ -707,11 +714,6 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.autologin = 1; 
     else 
       preferences.autologin = 0;
-    str = gtk_editable_get_chars (GTK_EDITABLE (pcallsignentry), 0, -1);
-    if (strlen(str) == 0)
-      preferences.callsign = g_strdup ("?");
-    else
-      preferences.callsign = g_strdup (str);
     str = gtk_editable_get_chars (GTK_EDITABLE (pcommandsentry), 0, -1);
     if (strlen(str) == 0)
       preferences.commands = g_strdup ("?");
