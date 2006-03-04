@@ -632,7 +632,6 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   {
                     gtk_text_iter_forward_char (&end);
                     gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
-                    /* in case highlighting starts at prompt */
                     promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
                   }
                 }
@@ -706,7 +705,8 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 while (gtk_source_iter_forward_search (&start, p,
                   GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &smatch, &ematch, NULL))
                 {
-                  gtk_text_buffer_apply_tag_by_name (buffer, tagname, &smatch, &ematch);
+                  gtk_text_buffer_remove_all_tags (buffer, &smatch, &ematch);
+                  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &smatch, &ematch);
                   start = ematch;
                   if (preferences.playsound == 1) playsound ();
                 }
