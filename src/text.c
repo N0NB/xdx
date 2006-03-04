@@ -706,7 +706,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                   GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &smatch, &ematch, NULL))
                 {
                   gtk_text_buffer_remove_all_tags (buffer, &smatch, &ematch);
-                  gtk_text_buffer_apply_tag_by_name (buffer, "highcolor1", &smatch, &ematch);
+                  gtk_text_buffer_apply_tag_by_name (buffer, tagname, &smatch, &ematch);
                   start = ematch;
                   if (preferences.playsound == 1) playsound ();
                 }
