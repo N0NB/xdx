@@ -456,6 +456,12 @@ static void playsound (void)
   g_free (path);
 }
 
+/* prompt types */
+#define NOTFOUND 0
+#define DXCLUSTERNORMALPROMPT 1
+#define DXCLUSTERPUBLICPROMPT 2
+#define ON4KSTPROMPT 3
+
 /*
  * add text to the text widget and dx messages to the list
  */
@@ -473,7 +479,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
   GtkWidget *swidget;
   smiley *s;
   gchar *utf8, *high, *tagname, *p, *temp, *mycall;
-  guint i;
+  guint i, prompttype = NOTFOUND;
 
   if (len < 1024) msg[len] = '\0';
 
@@ -507,6 +513,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           g_free (utf8);
         }
 
+        /* focusing the treeview will stop scrolling */ 
 	if (!GTK_WIDGET_HAS_FOCUS(treeview))
         {
           path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &iter);
@@ -560,6 +567,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
               *(temp + 10) = '\0';
               if (!strcmp (temp, "To ALL de ") || !strcmp (temp, "To LOCAL d"))
               {
+                prompttype = DXCLUSTERPUBLICPROMPT;
                 gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
                 gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
                 if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
@@ -573,8 +581,9 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 {
                   gtk_text_buffer_apply_tag_by_name (buffer, gui->calltagname, &start, &end);
                   start = end;
-                  gtk_text_iter_forward_char (&end);
+                  gtk_text_iter_forward_char (&end); /* forward to colon */
                   gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
+                  /* in case highlighting starts at prompt */
                   promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
                 }
               }
@@ -586,14 +595,17 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 PG4I de PI5EHV-8 27-Feb-2006 1709Z >
                 so we look for 'mycall de ' here...
              */
-            mycall = g_strdup_printf ("%s de ", preferences.callsign);
-            temp = g_strdup (utf8);
-            if (g_utf8_strlen (temp, -1) > strlen (preferences.callsign) + 4)
+            if (prompttype == NOTFOUND)
             {
+             mycall = g_strdup_printf ("%s de ", preferences.callsign);
+             temp = g_strdup (utf8);
+             if (g_utf8_strlen (temp, -1) > strlen (preferences.callsign) + 4)
+             {
               *(temp + strlen (preferences.callsign) + 4) = '\0';
 
               if (strcasecmp(temp, mycall) == 0)
               {
+                prompttype = DXCLUSTERNORMALPROMPT;
                 gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
                 gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
                 if (gtk_text_iter_forward_find_char (&end, findrightarrowprompt, NULL, NULL))
@@ -603,19 +615,24 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                     promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
                 }
               }
+             }
+             g_free (temp);
+             g_free (mycall);
             }
-            g_free (temp);
-            g_free (mycall);
 
-            /* check for ON4KST prompt and colorize it */
-            if (g_utf8_strlen(utf8, -1) > 5)
+            /* check for ON4KST prompt (starts with "1213Z ",
+             * where 1213 is current time) and colorize it */
+            if (prompttype == NOTFOUND)
             {
+             if (g_utf8_strlen(utf8, -1) > 5)
+             {
               temp = g_strdup (utf8);
               if ((*(temp + 5) == ' ') && (*(temp + 4) == 'Z'))
               {
                 *(temp + 4) = '\0';
                 if ((atoi(temp) != 0) ||(!strcmp (temp, "0000")))
                 {
+                  prompttype = ON4KSTPROMPT;
                   gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
                   gtk_text_buffer_get_iter_at_mark (buffer, &end, startmark);
                   if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
@@ -637,9 +654,10 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 }
               }
               g_free (temp);
+             }
             }
 
-            /* check for highlights */
+            /* check for highlights, before or after the prompt */
             gtk_text_buffer_get_iter_at_mark (buffer, &start, startmark);
             gtk_text_buffer_get_iter_at_mark (buffer, &end, endmark);
             high = contains_highlights
@@ -705,6 +723,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 while (gtk_source_iter_forward_search (&start, p,
                   GTK_SOURCE_SEARCH_CASE_INSENSITIVE, &smatch, &ematch, NULL))
                 {
+                  /* we can't tag an already tagged textpart */
                   gtk_text_buffer_remove_all_tags (buffer, &smatch, &ematch);
                   gtk_text_buffer_apply_tag_by_name (buffer, tagname, &smatch, &ematch);
                   start = ematch;
@@ -746,6 +765,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
             g_free (utf8);
           }
         }
+        /* focusing (clicking) the textview will stop scrolling */
 	if (!GTK_WIDGET_HAS_FOCUS(maintext))
 	{
           gtk_text_buffer_get_bounds (buffer, &start, &end);
