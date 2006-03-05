@@ -16,7 +16,7 @@ DX, enviarse mensajes personales hablados, enviar y recibir mensajes de correo,
 buscar y recuperar datos archivados, y acceder a información de bases de datos.
 
 Una lista de Cluster DX en:
-http://www.cpcug.org/user/wfeidt/Misc/cluster.html.
+http://www.ng3k.com/Misc/cluster.html
 
 Comandos
 ========

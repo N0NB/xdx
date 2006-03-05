@@ -17,7 +17,7 @@ do innych użytkowników, wysyłania i odbierania poczty, wyszukiwania i odbiera
 danych archiwalnych i dostępu do informacji zgromadzonych bazach danych.
 
 Lista DX Clusterów dostępna jest pod adresem:
-http://www.cpcug.org/user/wfeidt/Misc/cluster.html.
+http://www.ng3k.com/Misc/cluster.html
 
 Polecenia
 =========

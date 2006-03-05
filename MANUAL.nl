@@ -16,7 +16,7 @@ ontvangen, opgeslagen data doorzoeken en opvragen en informatie
 databases gebruiken.
 
 Voor een lijst van DX-Clusters zie:
-http://www.cpcug.org/user/wfeidt/Misc/cluster.html.
+http://www.ng3k.com/Misc/cluster.html
 
 ON4KST chat is meer bedoeld voor VHF en UHF operators. Het is een plek
 waar zendamateurs ontmoeten voor het plannen van radio verbindingen
