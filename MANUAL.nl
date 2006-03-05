@@ -33,7 +33,8 @@ dx 'frequency' 'callsign' 'comment': Verstuur informatie over een DX station.
 show/dx: Toon opgeslagen DX berichten.
 
 ON4KST gebruikt een subset van de DX-cluster commando's, Je kan het beste
-'help' typen nadat je verbonden bent.
+'/help' typen nadat je verbonden bent. Alle commando's starten hier met
+een '/'.
 
 Voorbeelden van commando's
 ==========================
@@ -43,11 +44,11 @@ Voorbeelden van commando's
 De meeste clusters tonen hulp door een '?' of 'help commando' te
 versturen.
 
-Autologin
-=========
-Het eerste wat je kunt doen na het starten van xdx is 'Instellingen->
-Voorkeuren' uit het menu selecteren en autologin aanzetten. Je moet
-inloggen met je roepletters. Nadat je verbonden bent kun je een aantal
+Roepletters en autologin
+========================
+De roepletters op de eerste pagina van het voorkeuren venster worden
+gebruikt voor het herkennen van de DX-cluster prompt (zodat xdx het een
+kleur kan geven) en voor autologin. Als je autologin aan zet kun je
 commando's naar het cluster sturen. Je kunt deze invoeren in het
 "Commando's" veld, gescheiden door een komma, 'set/page 0,unset beep'
 zet bijvoorbeeld het pagineren en piepen uit. Je kan dit veld ook gebruik

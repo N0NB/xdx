@@ -33,22 +33,22 @@ dx 'frequency' 'callsign' 'comment': Send DX spot information.
 show/dx: View previously logged DX spots.
 
 ON4KST uses a DX-cluster command subset. It is best if you type '/help'
-after being connected.
+after being connected. All of the commands need to start with '/'.
 
 DX-cluster Command examples
 ===========================
 1) dx 28002.2 xz7a worked with 80m dipole!!
 2) sh/dx on hf/cw 50
 
-Autologin
-=========
-The first thing you may want to do after starting xdx is selecting
-'Settings->Preferences' from the menu and enable autologin. You should
-login with your Callsign. After connecting, a number of commands can be
-send to the cluster. You may enter them in the 'Commands' entry, separated
-by a comma, e.g. set/page 0,unset beep' will disable paging and stop beeps.
-You can also use commands when a password is needed. There is a 0.5 second
-delay between commands.
+Callsign and autologin
+======================
+The callsign in the first page of the preferences dialog is used for
+recognizing the DX-cluster prompt (so xdx can colorize it) and for autologin.
+When autologin is enabled, a number of commands can be send to the cluster.
+You may enter them in the 'Commands' entry, separated by a comma,
+e.g. set/page 0,unset beep' will disable paging and stop beeps.
+You can also use commands when a password is needed. There is a
+0.5 second delay between commands.
 
 Keepalive packets
 =================
@@ -91,7 +91,7 @@ in all of the incoming text. When not used, only the text after the prompt is
 searched. Colors for the highlights are configured in page 3 of the settings
 dialog. You can quickly turn checkboxes on/off with Ctrl-1 to Ctrl-8, you
 can switch between entries with Alt-1 to Alt-8. Alt-0 switches back to the
-send widget.
+send widget. 
 
 Sound support
 =============
