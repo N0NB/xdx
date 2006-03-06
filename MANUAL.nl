@@ -71,6 +71,15 @@ $HOME/.xdx/wwv      WCY/WWV berichten met propagatie info.
 $HOME/.xdx/toall    Berichten zoals getoond in het text venster.
 $HOME/.xdx/wx       Weer informatie.
 
+Wanneer wwv data wordt opgeslagen zullen ook bestanden worden aangemaakt
+voor elke WWV host met daarin data gescheiden door een tab. Hiervan kunnen
+gemakkelijk grafieken worden gemaakt. Het formaat van dit bestand:
+
+YYYMMDDHH	SFI	A	K	R
+
+Waarbij SFI de 10.7 cm zonneflux index is, A en K staan voor geomagnetische
+acticiteit en R is het zonnevlekken getal.
+
 Hamlib support
 ==============
 Wanneer je dubbel klikt op een DX bericht zal de frequentie van je

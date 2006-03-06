@@ -66,6 +66,14 @@ $HOME/.xdx/wwv      WCY/WWV anouncements with propagation info.
 $HOME/.xdx/toall    Chat messages as displayed in the bottom text widget.
 $HOME/.xdx/wx       Weather information.
 
+When wwv data is saved, files with "tab seperated values" will be saved for
+every WWV host. This is useful for creating graphs. The format of this file:
+
+YYYMMDDHH	SFI	A	K	R
+
+Where SFI is the 10.7 cm solar flux index, A and K both indicate geomagnetic
+activity and R refers to sunspot numbers.
+
 Hamlib support
 ==============
 When double clicking on a dxspot in the top window this will set your rig's

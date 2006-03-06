@@ -26,7 +26,7 @@ Changelog for version xdx (2.0)
   * Parse of the DX cluster output has been improved. Xdx would sporadically
     miss DX messages.
   * A new about dialog has been added.
-  * The manual now uses monospace font. It is now activated with F1.
+  * The manual now uses monospace font. It is activated with F1.
   * Auto reconnect has been added. When activated through the settings menu,
     xdx will try to reconnect when the connection is broken. This code is
     somewhat experimental....
@@ -40,6 +40,8 @@ Changelog for version xdx (2.0)
   * Both ON4KST and DX-cluster prompts in the chat window are now colorized.
     The callsign is bold.
   * All of the colors in the chat window are now configurable.
+  * When wwv data is saved, files with "tab seperated values" will be saved
+    for every WWV host. See the MANUAL for the data format.
 
 Changelog for version xdx (1.2)
 

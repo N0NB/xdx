@@ -193,8 +193,8 @@ gchar *try_utf8 (const gchar *str)
 }
 
 /* get the current time, returned value has to be freed */
-gchar *
-gettime (void)
+gchar
+*gettime (gboolean formatted)
 {
   time_t current;
   struct tm *timestruct = NULL;
@@ -202,29 +202,31 @@ gettime (void)
 
   time (&current);
   timestruct = localtime (&current);
-  strftime (stimenow, 20, "%H:%M:%S", timestruct);
+  if (formatted)
+    strftime (stimenow, 20, "%T", timestruct);
+  else
+    strftime (stimenow, 20, "%H", timestruct);
   return (g_strdup (stimenow));
 }
 
+
 /* get the current date, returned value has to be freed */
-gchar *
-getdate (void)
+gchar 
+*getdate (gboolean formatted)
 {
   time_t current;
   struct tm *timestruct = NULL;
-  gchar datenow[20], *date;
-
+  gchar datenow[20];
+ 
   time (&current);
   timestruct = localtime (&current);
-  strftime (datenow, 20, "%d %b %Y", timestruct);
-
-  if (!g_utf8_validate (datenow, -1, NULL ))
-    date = g_locale_to_utf8 (datenow, -1, NULL, NULL, NULL);
+  if (formatted)
+    strftime (datenow, 20, "%Y-%m-%d", timestruct);
   else
-    date = g_strdup (datenow);
-  
-  return (date);
+    strftime (datenow, 20, "%Y%m%d", timestruct);
+  return (g_strdup(datenow));
 }
+
 
 /*
  * log a connection
@@ -234,7 +236,8 @@ void logconnection (GString *logstr)
   gchar *str, *f;
   FILE *fp;
 
-  str = g_strdup_printf ("[%s, %s UTC] %s", getdate(), gettime(), logstr->str);
+  str = g_strdup_printf
+    ("[%s, %s UTC] %s", getdate(TRUE), gettime(TRUE), logstr->str);
   f = g_strdup_printf ("%s/log.txt", gui->preferencesdir);
   fp = fopen (f, "a");
   fprintf (fp, "%s\n", str);
