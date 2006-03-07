@@ -577,7 +577,23 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                       gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
                       start = end;
                     }
-                if (gtk_text_iter_forward_find_char (&end, findcolonprompt, NULL, NULL))
+                 /* locally announce DX-spots have time in prompt between brackets */
+                if (index (utf8, '(') && strstr (utf8, "):"))
+                {
+                  if (gtk_text_iter_forward_find_char (&end, findpromptspace, NULL, NULL))
+                  {
+                    gtk_text_buffer_apply_tag_by_name (buffer, gui->calltagname, &start, &end);
+                    start = end;
+                  }
+                  if (gtk_text_iter_forward_find_char (&end, findcolonprompt, NULL, NULL))
+                  {
+                    gtk_text_iter_forward_char (&end); /* forward to colon */
+                    gtk_text_buffer_apply_tag_by_name (buffer, gui->prompttagname, &start, &end);
+                    /* in case highlighting starts at prompt */
+                    promptmark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
+                  }
+                }
+                else if (gtk_text_iter_forward_find_char (&end, findcolonprompt, NULL, NULL))
                 {
                   gtk_text_buffer_apply_tag_by_name (buffer, gui->calltagname, &start, &end);
                   start = end;
