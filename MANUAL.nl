@@ -19,7 +19,7 @@ Voor een lijst van DX-Clusters zie:
 http://www.ng3k.com/Misc/cluster.html
 
 ON4KST chat is meer bedoeld voor VHF en UHF operators. Het is een plek
-waar zendamateurs ontmoeten voor het plannen van radio verbindingen
+waar zendamateurs elkaar ontmoeten voor het plannen van radio verbindingen
 over lange afstanden, moonbounce en meteor scatter. Voor meer informatie
 over ON4KST chat zie http://www.on4kst.com.
 
@@ -78,7 +78,7 @@ gemakkelijk grafieken worden gemaakt. Het formaat van dit bestand:
 YYYMMDDHH	SFI	A	K	R
 
 Waarbij SFI de 10.7 cm zonneflux index is, A en K staan voor geomagnetische
-acticiteit en R is het zonnevlekken getal.
+activiteit en R is het zonnevlekken getal.
 
 Hamlib support
 ==============
