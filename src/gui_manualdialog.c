@@ -40,7 +40,7 @@ void on_manual_activate (GtkMenuItem * menuitem, gpointer user_data)
 	manualdialog = gtk_dialog_new_with_buttons (_("xdx - manual"), 
 		GTK_WINDOW (gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, 
 		GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
-	gtk_widget_set_size_request (manualdialog, 600, 300);
+	gtk_widget_set_size_request (manualdialog, 650, 300);
 
 	swindow = gtk_scrolled_window_new (NULL, NULL);
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (manualdialog)->vbox), 
