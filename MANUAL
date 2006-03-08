@@ -72,7 +72,9 @@ every WWV host. This is useful for creating graphs. The format of this file:
 YYYMMDDHH	SFI	A	K	R
 
 Where SFI is the 10.7 cm solar flux index, A and K both indicate geomagnetic
-activity and R refers to sunspot numbers.
+activity and R refers to sunspot numbers. An example script is included in
+the xdx data directory which uses gnuplot to display data from DK0WCY. It is
+called with 'gnuplot wwv.gnuplot'.
 
 Hamlib support
 ==============

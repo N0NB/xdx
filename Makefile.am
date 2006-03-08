@@ -39,6 +39,13 @@ install-data-local:
 			fi \
 		done \
 	fi
+	if test -d $(srcdir)/gnuplot; then \
+		for plots in $(srcdir)/gnuplot/*; do \
+			if test -f $$plots; then \
+				$(INSTALL_DATA) $$plots $(DESTDIR)$(pkgdatadir); \
+			fi \
+		done \
+	fi
 	if test -f MANUAL; then \
 		$(INSTALL_DATA) MANUAL $(DESTDIR)$(pkgdatadir); \
 	fi
@@ -52,6 +59,8 @@ install-data-local:
 		$(INSTALL_DATA) MANUAL.pl $(DESTDIR)$(pkgdatadir); \
 	fi
 
+uninstall-local:
+	rm -rf $(DESTDIR)$(pkgdatadir)
 
 dist-hook:
 	if test -d pixmaps; then \

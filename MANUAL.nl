@@ -78,7 +78,9 @@ gemakkelijk grafieken worden gemaakt. Het formaat van dit bestand:
 YYYMMDDHH	SFI	A	K	R
 
 Waarbij SFI de 10.7 cm zonneflux index is, A en K staan voor geomagnetische
-activiteit en R is het zonnevlekken getal.
+activiteit en R is het zonnevlekken getal. Een voorbeeld script voor gnuplot
+staat in de xdx data directory, het toont getallen van DK0WCY. Het script
+dient te worden aangeroepen met 'gnuplot wwv.gnuplot'.
 
 Hamlib support
 ==============
