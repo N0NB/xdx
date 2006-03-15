@@ -20,8 +20,8 @@
 # gnuplot script for displaying wwv data, call with 'gnuplot wwv.gnuplot'
 # version 1.0, March 8, 2006 - initial release, distributed with xdx-2.0
 
-set term x11 title "DK0WCY"
-unset mouse
+set term png xFFFFFF
+set out '~/.xdx/DK0WCY.png
 set format x "%.0f"
 set xtics rotate
 
@@ -48,5 +48,3 @@ set origin 0.5,0.05
 plot '~/.xdx/DK0WCY-3.tsv' using 1:5  with lines notitle
 
 unset multiplot
-
-pause -1 "Hit return to continue"
