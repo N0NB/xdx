@@ -79,6 +79,14 @@ dist-hook:
 			fi \
 		done \
 	fi
+	if test -d gnuplot; then \
+		mkdir $(distdir)/gnuplot; \
+		for plots in gnuplot/*; do \
+			if test -f $$plots; then \
+				cp -p $$plots $(distdir)/gnuplot; \
+			fi \
+		done \
+	fi
 
 rpm: Makefile
 	make dist
