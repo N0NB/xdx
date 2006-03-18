@@ -1,7 +1,5 @@
-dnl Process this file with autoconf to produce a configure script.
-
 AC_PREREQ(2.53)
-AC_INIT(xdx, 1.2, pg4i@amsat.org)
+AC_INIT(xdx, 2.0, pg4i@amsat.org)
 AM_INIT_AUTOMAKE
 
 AC_PROG_INSTALL
