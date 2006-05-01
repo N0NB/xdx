@@ -1,0 +1,149 @@
+Xdx - DX-cluster TCP/IP et client de messagerie instantanées ON4KST
+pour les radioamateurs
+===================================================================
+
+Xdx est un client DX-Cluster qui permet d'afficher une liste avec les 
+annonces de DX et une zone textuelle séparée pour WWV, WCY, « To ALL »
+et autres serveurs de messages. Il permet aussi de se connecter au
+système de messagerie instantanée ON4KST.
+
+Qu'est-ce qu'un DX DX Cluster ?
+===============================
+Un DX Cluster permet aux radioamateurs d'indiquer à tous les autres et en
+temps réel les stations DX (stations de radioamateurs rares ou intéressante
+se trouvant partout dans le monde).
+
+Les utilisateurs connectés à un DX Cluster peuvent indiquer des spots DX
+et faire les annonces associées, envoyer des messages personnels, envoyer
+et recevoir du courriel, rechercher des données archivées et obtenir des 
+données à partir d'informations contenues dans des bases de données.
+
+Veuillez consulter l'adresse suivante pour obtenir une liste des DX Clusters :
+http://www.ng3k.com/Misc/cluster.html
+
+Le système de messagerie instantanée ON4KST est plus particulièrement 
+destiné aux opérateurs VHF et UHF. C'est un endroit où les radioamateurs 
+se retrouvent pour prendre rendez-vous pour des contacts radio à longue 
+distance, du trafic par réflexion sur la lune et par réflexion sur des 
+traînées de météorites. Vous trouverez davantage d'informations concernant
+le système de messagerie instantanée ON4KST sur http://www.on4kst.com.
+
+Commandes
+=========
+Voici, pour démarrer, quelques commandes de base du DX-cluster :
+
+announce/full 'msg' : envoyer une ligne de texte à toutes les stations
+connectées.
+bye : quitter le DX Cluster.
+dx 'frequency' 'callsign' 'comment' : envoyer une information de spot DX.
+show/dx : afficher les spots DX précédemment enregistrés.
+
+ON4KST utilise un sous-ensembles des commandes de DX-cluster. Le mieux est 
+d'entrer « /help » après vous être connecté. Toutes les commandes doivent
+commencer par un « / ».
+
+Exemples de commandes DX-cluster
+=================================
+1) dx 28002.2 xz7a worked with 80m dipole!!
+2) sh/dx on hf/cw 50
+
+Indicatif et connexion automatique
+==================================
+L'indicatif qui se trouve dans le premier onglet du dialogue des préférences 
+est utilisé pour reconnaître l'invite du DX-cluster (de cette manière, xdx 
+peut le coloriser) et pour la connexion automatique. Lorsque de l'activation
+de la connexion automatique, certaines commandes peuvent être envoyées au 
+cluster. Vous pouvez les entrer dans la zone « Commandes », séparées par des
+virgules, par exemple : « set/page 0, unset beep » désactivera la pagination
+et coupera l'émission de bips sonores. Vous pouvez aussi utiliser des commandes
+lorsqu'un mot de passe est nécessaire. Il y a un intervalle de 0,5 seconde 
+entre chaque commande.
+
+Paquets de maintien de la connexion
+===================================
+Si vous avez une connexion de mauvaise qualité et que vous avez des 
+déconnexions aléatoires, vous pouvez essayer d'activer le maintien de la 
+connexion dans le dialogue des préférences. Ceci enverra un retour arrière 
+(« Backspace ») au serveur toutes les 5 minutes.
+
+Enregistrement des information du DX
+====================================
+Les messages individuels peuvent être enregistrés dans un fichier lorsque cette
+fonction est activée dans les préférences.
+
+$HOME/.xdx/dxspots  spots DX tels qu'ils sont affichés en tête de liste.
+$HOME/.xdx/wwv      annonces WCY/WWV avec informations sur la propagation.
+$HOME/.xdx/toall    messages de messagerie instantanée qu'ils sont affichés
+                    dans la fenêtre du bas.
+$HOME/.xdx/wx       informations météorologiques.
+
+Lorsque des données wwv sont sauvegardées, les fichiers formatés selon 
+« valeurs séparées par des tabulations » seront enregistrés pour chaque hôte
+WWV. Ceci  est utile pour la création de graphiques. Format de ce fichier :
+
+YYYMMDDHH	SFI	A	K	R
+
+Où SFI est l'index de flux solaire pour 10,7 cm, A et K indiquent tous deux 
+l'activité géomagnétique et R se rapporte au nombres de taches solaires. Un
+exemple de script est inclus dans le répertoire data de xdx, il utilise gnuplot
+pour afficher les données de DK0WCY. Il s'appelle « gnuplot wwv.gnuplot ». Il
+produit en sortie un graphe dans $HOME/.xdx/DK0WCY.png.
+
+Gestion de la Hamlib
+====================
+Un double-clic sur un spot DX dans la fenêtre du haut positionnera la fréquence
+votre station. Vous aurez besoin du binaire « rigctl » qui fait partie de la 
+distribution hamlib pour ça.
+Veuillez modifier l'ID de votre transceiver pour la ligne de commande de rigctl
+dans le dialogue des préférences, par exemple : « rigctl -m 210 set_freq %d »
+utilisera l'ID 210 (Kenwood TS-870), voir « rigctl ---list » pour une liste des
+différents modèles.
+
+Navigateurs web et programme de courriel
+========================================
+Une URL dans la fenêtre de bavardage apparaîtra en bleu et sera soulignée 
+lorsque vous y déplacerez le curseur de la souris. La cliquer ouvrira le 
+lien dans votre navigateur favori ou dans votre programme de courriel 
+(voir le dialogue des préférences) :
+
+Lancer « gnome web-browser » en cliquant une URL : « epiphany %s ».
+Lancer « mozilla-mail » en cliquant sur une URL de mél : 
+« mozilla -compose "to=%s" ».
+
+Mises en évidence
+=================
+La barre latérale de messagerie instantanée (« chat ») permet l'entrée de 8
+mots différents, qui peuvent être mis en évidence dans la fenêtre de messagerie
+instantanée. Lorsque la boîte de vérification est utilisée, xdx recherchera 
+une mise en évidence dans tous les textes en entrée. Lorsqu'elle n'est pas 
+utilisée, la recherche n'est effectuée qu'après le texte situé après l'invite.
+Les couleurs pour les mises en évidence sont configurées dans le troisième 
+onglet du dialogue des préférences. Vous pouvez vous activer/désactiver
+rapidement les boîtes de vérification avec les combinaisons de touches Ctrl-1 
+à Ctrl-8, vous pouvez passer d'une entrée à l'autre à l'aide de Alt-1 à Alt-8.
+Alt-0 permet de revenir à la fenêtre d'émission.
+
+Gestion du son
+==============
+Lorsqu'une mise en évidence est active dans la fenêtre de messagerie
+instantanée, un son peut être joué. Pour que le son fonctionne, vous devez
+utiliser un programme externe et le configurer dans le premier onglet du
+dialogue des préférences : « play %s » utilisera le programme « play » qui fait
+partie du paquet sox, « esdplay %s » utilisera esdplay ce qui est utile pour
+ceux qui utilisent gnome et esound.
+
+Émoticones
+==========
+Un nombre limité d'émotiones sont gérés dans la fenêtre de bavardage 
+(« chat ») :
+:)  :-)  :))  :-))  ;)  ;-)  :(  :-(  :((  :-((
+
+Licence et maintenance
+======================
+Xdx est libre il est publié selon les termes de la Licence Publique 
+Générale (GPL) GNU. Il a été écrit par Joop Stakenborg <pg4i@amsat.org>.
+
+Veuillez signaler si vous découvrez un bogue ou si vous désirez des
+améliorations.
+
+
