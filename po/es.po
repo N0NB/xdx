@@ -18,7 +18,8 @@ msgstr ""
 
 #: src/gui_aboutdialog.c:60
 msgid "Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"
-msgstr "Cliente TCP/IP del DX-Cluster y cliente del chat ON4KST para radioaficionados"
+msgstr ""
+"Cliente TCP/IP del DX-Cluster y cliente del chat ON4KST para radioaficionados"
 
 #: src/gui.c:85
 msgid "_Program"
@@ -30,7 +31,7 @@ msgstr "_Servidor"
 
 #: src/gui.c:87
 msgid "_Settings"
-msgstr "_Configuración"
+msgstr "_ConfiguraciÃ³n"
 
 #: src/gui.c:88
 msgid "H_elp"
@@ -54,7 +55,7 @@ msgstr "Desconectar"
 
 #: src/gui.c:97
 msgid "Connection Log"
-msgstr "Registro de Conexión"
+msgstr "Registro de ConexiÃ³n"
 
 #: src/gui.c:99
 msgid "Preferences..."
@@ -70,7 +71,7 @@ msgstr "Acerca de ..."
 
 #: src/gui.c:110
 msgid "Auto Reconnect"
-msgstr "Volver a conectar automáticamente"
+msgstr "Volver a conectar automÃ¡ticamente"
 
 #: src/gui.c:112
 msgid "Chat sidebar"
@@ -95,7 +96,7 @@ msgstr "Hora"
 
 #: src/gui.c:257 src/gui_settingsdialog.c:434
 msgid "Info"
-msgstr "Información"
+msgstr "InformaciÃ³n"
 
 #: src/gui.c:351
 msgid "Sound"
@@ -119,16 +120,16 @@ msgstr "Habilitar/deshabilitar sonido [Ctrl+%d]"
 
 #: src/gui_closedialog.c:44
 msgid "xdx - close connection"
-msgstr "xdx - cerrar conexión"
+msgstr "xdx - cerrar conexiÃ³n"
 
 #: src/gui_closedialog.c:61
 #, c-format
 msgid "Close connection to %s ?"
-msgstr "¿Cerrar la conexión con %s?"
+msgstr "Â¿Cerrar la conexiÃ³n con %s?"
 
 #: src/gui_closedialog.c:72
 msgid "Connection closed"
-msgstr "Conexión finalizada"
+msgstr "ConexiÃ³n finalizada"
 
 #: src/gui_manualdialog.c:40
 msgid "xdx - manual"
@@ -144,7 +145,7 @@ msgstr "MANUAL.es"
 
 #: src/gui_opendialog.c:49
 msgid "xdx - open connection"
-msgstr "xdx - abrir conexión"
+msgstr "xdx - abrir conexiÃ³n"
 
 #: src/gui_opendialog.c:69
 msgid "_Hostname"
@@ -156,7 +157,7 @@ msgstr "_Puerto"
 
 #: src/gui_logdialog.c:47
 msgid "xdx - connection log"
-msgstr "xdx - registro de conexión"
+msgstr "xdx - registro de conexiÃ³n"
 
 #: src/gui_settingsdialog.c:104
 msgid "xdx - Select a font"
@@ -164,7 +165,7 @@ msgstr "xdx - Seleccionar una fuente"
 
 #: src/gui_settingsdialog.c:117
 msgid "How about this font?"
-msgstr "¿Que le parece esta fuente?"
+msgstr "Â¿Que le parece esta fuente?"
 
 #: src/gui_settingsdialog.c:211
 msgid "xdx - preferences"
@@ -233,7 +234,7 @@ msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
 "using rigctl (%d = the frequency retrieved from the DX spot)"
 msgstr ""
-"Cuando haga doble click sobre un spot DX, su equipo se ajustará a la "
+"Cuando haga doble click sobre un spot DX, su equipo se ajustarÃ¡ a la "
 "frecuencia del spot utilizando rigctl (%d = frecuencia del spot DX)"
 
 #: src/gui_settingsdialog.c:352
@@ -261,7 +262,7 @@ msgstr "Navegador web a ejecutar al hacer click sobre una url (%s = url)"
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
-"Lector de correo a ejecutar al hacer click sobre una dirección (%s = mail "
+"Lector de correo a ejecutar al hacer click sobre una direcciÃ³n (%s = mail "
 "url)"
 
 #: src/gui_settingsdialog.c:378
@@ -362,7 +363,7 @@ msgstr "Resolviendo %s..."
 #: src/net.c:95
 #, c-format
 msgid "Resolve failed: %s"
-msgstr "Fallo en la resolución: %s"
+msgstr "Fallo en la resoluciÃ³n: %s"
 
 #: src/net.c:102
 #, c-format
@@ -376,15 +377,15 @@ msgstr "Conectado a %s"
 
 #: src/net.c:251
 msgid "Connection closed, trying reconnect in 10 seconds"
-msgstr "Conexión finalizada, se intentará conectar de nuevo en 10 segundos"
+msgstr "ConexiÃ³n finalizada, se intentarÃ¡ conectar de nuevo en 10 segundos"
 
 #: src/net.c:259
 msgid "Connection closed by remote host"
-msgstr "Conexión finalizada por el servidor"
+msgstr "ConexiÃ³n finalizada por el servidor"
 
 #: src/net.c:274
 msgid "Connection closed by remote host (0 bytes received)"
-msgstr "Conexión finalizada por el servidor (0 bytes recibidos)"
+msgstr "ConexiÃ³n finalizada por el servidor (0 bytes recibidos)"
 
 #: src/net.c:333
 #, c-format
@@ -393,7 +394,7 @@ msgstr "Fallo de escritura: %s"
 
 #: src/net.c:346
 msgid "Nothing to send, you are not connected"
-msgstr "Nada para enviar, no está conectado"
+msgstr "Nada para enviar, no estÃ¡ conectado"
 
 #: src/preferences.c:46
 #, c-format

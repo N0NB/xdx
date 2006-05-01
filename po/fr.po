@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-21 21:46+0200\n"
+"Report-Msgid-Bugs-To: pg4i@amsat.org\n"
+"POT-Creation-Date: 2006-02-27 16:53+0100\n"
 "PO-Revision-Date: 2006-04-27 10:59+0200\n"
 "Last-Translator: Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -16,421 +16,400 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/gui_aboutdialog.c:60
+#: src/gui_aboutdialog.c:60
 msgid "Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"
 msgstr "Client de chat DX-Cluster TCP/IP et ON4KST pour radioamateur"
 
-#: ../src/gui.c:85
+#: src/gui.c:85
 msgid "_Program"
 msgstr "_Programme"
 
-#: ../src/gui.c:86
+#: src/gui.c:86
 msgid "_Host"
-msgstr "_Hôte"
+msgstr "_HÃ´te"
 
-#: ../src/gui.c:87
+#: src/gui.c:87
 msgid "_Settings"
-msgstr "Para_mètres"
+msgstr "Para_mÃ¨tres"
 
-#: ../src/gui.c:88
+#: src/gui.c:88
 msgid "H_elp"
 msgstr "_Aide"
 
-#: ../src/gui.c:89
+#: src/gui.c:89
 msgid "Highlights"
-msgstr "Mises en évidence"
+msgstr "Mises en Ã©vidence"
 
-#: ../src/gui.c:91
+#: src/gui.c:91
 msgid "Quit"
 msgstr "_Quitter"
 
-#: ../src/gui.c:93
+#: src/gui.c:93
 msgid "Connect..."
 msgstr "_Connecter..."
 
-#: ../src/gui.c:95
+#: src/gui.c:95
 msgid "Disconnect"
-msgstr "_Déconnecter"
+msgstr "_DÃ©connecter"
 
-#: ../src/gui.c:97
+#: src/gui.c:97
 msgid "Connection Log"
 msgstr "_Journal de connexion"
 
-#: ../src/gui.c:99
+#: src/gui.c:99
 msgid "Preferences..."
-msgstr "_Préférences..."
+msgstr "_PrÃ©fÃ©rences..."
 
-#: ../src/gui.c:101
+#: src/gui.c:101
 msgid "Manual"
 msgstr "_Manuel"
 
-#: ../src/gui.c:103
+#: src/gui.c:103
 msgid "About"
-msgstr "_À propos"
+msgstr "_Ã€ propos"
 
-#: ../src/gui.c:110
+#: src/gui.c:110
 msgid "Auto Reconnect"
 msgstr "Reconnexion _automatique"
 
-#: ../src/gui.c:112
+#: src/gui.c:112
 msgid "Chat sidebar"
-msgstr "_Barre latérale de messagerie instantannée"
+msgstr "_Barre latÃ©rale de messagerie instantannÃ©e"
 
-#: ../src/gui.c:184
+#: src/gui.c:184
 #, c-format
 msgid "Error loading icon: %s"
-msgstr "Erreur lors du chargement de l'icône : %s"
+msgstr "Erreur lors du chargement de l'icÃ´neÂ : %s"
 
-#: ../src/gui.c:217
-#: ../src/gui_settingsdialog.c:422
+#: src/gui.c:217 src/gui_settingsdialog.c:422
 msgid "Spotter"
 msgstr "Spotter"
 
-#: ../src/gui.c:241
-#: ../src/gui_settingsdialog.c:430
+#: src/gui.c:241 src/gui_settingsdialog.c:430
 msgid "Remarks"
 msgstr "Commentaires"
 
-#: ../src/gui.c:249
-#: ../src/gui_settingsdialog.c:432
+#: src/gui.c:249 src/gui_settingsdialog.c:432
 msgid "Time"
 msgstr "Heure"
 
-#: ../src/gui.c:257
-#: ../src/gui_settingsdialog.c:434
+#: src/gui.c:257 src/gui_settingsdialog.c:434
 msgid "Info"
 msgstr "Info"
 
-#: ../src/gui.c:351
+#: src/gui.c:351
 msgid "Sound"
 msgstr "Sons"
 
-#: ../src/gui.c:383
-#: ../src/gui.c:384
-#: ../src/gui.c:385
-#: ../src/gui.c:386
-#: ../src/gui.c:387
-#: ../src/gui.c:388
-#: ../src/gui.c:389
-#: ../src/gui.c:390
+#: src/gui.c:383 src/gui.c:384 src/gui.c:385 src/gui.c:386 src/gui.c:387
+#: src/gui.c:388 src/gui.c:389 src/gui.c:390
 msgid "Enter a word to highlight"
-msgstr "Entrer un mot à mettre en évidence"
+msgstr "Entrer un mot Ã  mettre en Ã©vidence"
 
-#: ../src/gui.c:391
-#: ../src/gui.c:393
-#: ../src/gui.c:395
-#: ../src/gui.c:397
-#: ../src/gui.c:399
-#: ../src/gui.c:401
-#: ../src/gui.c:403
-#: ../src/gui.c:405
+#: src/gui.c:391 src/gui.c:393 src/gui.c:395 src/gui.c:397 src/gui.c:399
+#: src/gui.c:401 src/gui.c:403 src/gui.c:405
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
 msgstr "Inclure l'invite [Ctrl+%d]"
 
-#: ../src/gui.c:407
+#: src/gui.c:407
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
-msgstr "Activer/désactiver les sons [Ctrl+%d]"
+msgstr "Activer/dÃ©sactiver les sons [Ctrl+%d]"
 
-#: ../src/gui_closedialog.c:44
+#: src/gui_closedialog.c:44
 msgid "xdx - close connection"
 msgstr "xdx - ferme la connexion"
 
-#: ../src/gui_closedialog.c:61
+#: src/gui_closedialog.c:61
 #, c-format
 msgid "Close connection to %s ?"
-msgstr "Fermer la connexion vers %s ?"
+msgstr "Fermer la connexion vers %sÂ ?"
 
-#: ../src/gui_closedialog.c:72
+#: src/gui_closedialog.c:72
 msgid "Connection closed"
-msgstr "Connexion fermée"
+msgstr "Connexion fermÃ©e"
 
-#: ../src/gui_manualdialog.c:40
+#: src/gui_manualdialog.c:40
 msgid "xdx - manual"
-msgstr "xdx - à propos"
+msgstr "xdx - Ã  propos"
 
 #. TRANSLATORS:
 #. * Do not translate MANUAL unless you provide a faq in your language,
 #. * e.g. the polish faq is called MANUAL.pl.
 #.
-#: ../src/gui_manualdialog.c:59
+#: src/gui_manualdialog.c:59
 msgid "MANUAL"
 msgstr "MANUAL.fr"
 
-#: ../src/gui_opendialog.c:49
+#: src/gui_opendialog.c:49
 msgid "xdx - open connection"
-msgstr "xdx - connexion établie"
+msgstr "xdx - connexion Ã©tablie"
 
-#: ../src/gui_opendialog.c:69
+#: src/gui_opendialog.c:69
 msgid "_Hostname"
-msgstr "Nom d'_hôte"
+msgstr "Nom d'_hÃ´te"
 
-#: ../src/gui_opendialog.c:82
+#: src/gui_opendialog.c:82
 msgid "_Port"
 msgstr "_Port"
 
-#: ../src/gui_logdialog.c:47
+#: src/gui_logdialog.c:47
 msgid "xdx - connection log"
 msgstr "xdx - journal de connexion"
 
-#: ../src/gui_settingsdialog.c:104
+#: src/gui_settingsdialog.c:104
 msgid "xdx - Select a font"
 msgstr "xdx - Choisir une police"
 
-#: ../src/gui_settingsdialog.c:117
+#: src/gui_settingsdialog.c:117
 msgid "How about this font?"
-msgstr "Que pensez-vous de cette police ?"
+msgstr "Que pensez-vous de cette policeÂ ?"
 
-#: ../src/gui_settingsdialog.c:211
+#: src/gui_settingsdialog.c:211
 msgid "xdx - preferences"
-msgstr "xdx - préférences"
+msgstr "xdx - prÃ©fÃ©rences"
 
-#: ../src/gui_settingsdialog.c:231
-#: ../src/gui_settingsdialog.c:397
+#: src/gui_settingsdialog.c:231 src/gui_settingsdialog.c:397
 msgid "General"
-msgstr "Général"
+msgstr "GÃ©nÃ©ral"
 
-#: ../src/gui_settingsdialog.c:234
+#: src/gui_settingsdialog.c:234
 msgid "Output"
 msgstr "Sortie"
 
-#: ../src/gui_settingsdialog.c:237
-#: ../src/gui_settingsdialog.c:485
+#: src/gui_settingsdialog.c:237 src/gui_settingsdialog.c:485
 msgid "Fonts"
 msgstr "Polices"
 
-#: ../src/gui_settingsdialog.c:240
+#: src/gui_settingsdialog.c:240
 msgid "Colors"
 msgstr "Couleurs"
 
-#: ../src/gui_settingsdialog.c:250
+#: src/gui_settingsdialog.c:250
 msgid "Your callsign"
 msgstr "Votre indicatif"
 
-#: ../src/gui_settingsdialog.c:260
+#: src/gui_settingsdialog.c:260
 msgid "Enable autologin"
 msgstr "Activer la connexion automatique"
 
-#: ../src/gui_settingsdialog.c:267
+#: src/gui_settingsdialog.c:267
 msgid "Commands"
 msgstr "Commandes"
 
-#: ../src/gui_settingsdialog.c:274
+#: src/gui_settingsdialog.c:274
 msgid "Comma separated list of commands to send at login"
-msgstr "Liste de commandes séparées par une virgule à lancer lors du login"
+msgstr "Liste de commandes sÃ©parÃ©es par une virgule Ã  lancer lors du login"
 
-#: ../src/gui_settingsdialog.c:276
+#: src/gui_settingsdialog.c:276
 msgid "Callsign to be used for login"
-msgstr "Indicatif à utiliser lors de la connexion"
+msgstr "Indicatif Ã  utiliser lors de la connexion"
 
-#: ../src/gui_settingsdialog.c:278
+#: src/gui_settingsdialog.c:278
 msgid "Login"
 msgstr "Connexion"
 
-#: ../src/gui_settingsdialog.c:280
+#: src/gui_settingsdialog.c:280
 msgid "Callsign"
 msgstr "Indicatif"
 
-#: ../src/gui_settingsdialog.c:311
+#: src/gui_settingsdialog.c:311
 msgid "Enable hamlib"
 msgstr "Activer la hamlib"
 
-#: ../src/gui_settingsdialog.c:317
+#: src/gui_settingsdialog.c:317
 msgid "Command for rigctl"
 msgstr "Commande pour rigctl"
 
-#: ../src/gui_settingsdialog.c:322
+#: src/gui_settingsdialog.c:322
 msgid "Hamlib"
 msgstr "Hamlib"
 
-#: ../src/gui_settingsdialog.c:325
+#: src/gui_settingsdialog.c:325
 #, c-format
-msgid "When double clicking on a dx-spot this will set the frequency of your rig using rigctl (%d = the frequency retrieved from the DX spot)"
-msgstr "Lors du double clic sur un spot dx ceci réglera la fréquence de votre transceiver en utilisant rigctl (%d = la fréquence extraite du spot DX)"
+msgid ""
+"When double clicking on a dx-spot this will set the frequency of your rig "
+"using rigctl (%d = the frequency retrieved from the DX spot)"
+msgstr ""
+"Lors du double clic sur un spot dx ceci rÃ©glera la frÃ©quence de votre "
+"transceiver en utilisant rigctl (%d = la frÃ©quence extraite du spot DX)"
 
-#: ../src/gui_settingsdialog.c:352
+#: src/gui_settingsdialog.c:352
 msgid "Web browser"
 msgstr "Navigateur internet"
 
-#: ../src/gui_settingsdialog.c:359
+#: src/gui_settingsdialog.c:359
 msgid "Mail program"
 msgstr "Programme de gestion du courriel"
 
-#: ../src/gui_settingsdialog.c:366
+#: src/gui_settingsdialog.c:366
 msgid "Sound playing"
 msgstr "Reproduction du son"
 
-#: ../src/gui_settingsdialog.c:371
+#: src/gui_settingsdialog.c:371
 msgid "Programs"
 msgstr "Programmes"
 
-#: ../src/gui_settingsdialog.c:374
+#: src/gui_settingsdialog.c:374
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
-msgstr "Navigateur internet à lancer après avoir cliqué une url (%s = url)"
+msgstr "Navigateur internet Ã  lancer aprÃ¨s avoir cliquÃ© une url (%s = url)"
 
-#: ../src/gui_settingsdialog.c:376
+#: src/gui_settingsdialog.c:376
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
-msgstr "Programme de courriel à lancer après avoir cliqué une url de courrier (%s = url de courriel)"
+msgstr ""
+"Programme de courriel Ã  lancer aprÃ¨s avoir cliquÃ© une url de courrier (%s = "
+"url de courriel)"
 
-#: ../src/gui_settingsdialog.c:378
+#: src/gui_settingsdialog.c:378
 #, c-format
 msgid "Program used to play sound (%s = sound file)"
-msgstr "Programme à utiliser pour jouer les sons (%s = fichier sonore)"
+msgstr "Programme Ã  utiliser pour jouer les sons (%s = fichier sonore)"
 
-#: ../src/gui_settingsdialog.c:392
+#: src/gui_settingsdialog.c:392
 msgid "Echo sent text to the screen"
-msgstr "Envoyer le texte émis à l'écran (« écho »)"
+msgstr "Envoyer le texte Ã©mis Ã  l'Ã©cran (Â«Â Ã©choÂ Â»)"
 
-#: ../src/gui_settingsdialog.c:395
+#: src/gui_settingsdialog.c:395
 msgid "Send keepalive packets (read the manual)"
 msgstr "Envoyer des paquets de maintien de lien (lire le manuel)"
 
-#: ../src/gui_settingsdialog.c:412
+#: src/gui_settingsdialog.c:412
 msgid "Columns"
 msgstr "Colonnes"
 
-#: ../src/gui_settingsdialog.c:414
+#: src/gui_settingsdialog.c:414
 msgid "Columns to show on the screen"
-msgstr "Colonnes à afficher sur l'écran"
+msgstr "Colonnes Ã  afficher sur l'Ã©cran"
 
-#: ../src/gui_settingsdialog.c:470
+#: src/gui_settingsdialog.c:470
 msgid "Save DX spots"
 msgstr "Sauvegarder les spots DX"
 
-#: ../src/gui_settingsdialog.c:472
+#: src/gui_settingsdialog.c:472
 msgid "Save WCY/WWV"
 msgstr "Sauvegarder WCY/WWV"
 
-#: ../src/gui_settingsdialog.c:476
+#: src/gui_settingsdialog.c:476
 msgid "Save \"To all\""
-msgstr "Sauvegarder « To all »"
+msgstr "Sauvegarder Â«Â To allÂ Â»"
 
-#: ../src/gui_settingsdialog.c:478
+#: src/gui_settingsdialog.c:478
 msgid "Save WX"
 msgstr "Sauvegarder WX"
 
-#: ../src/gui_settingsdialog.c:480
+#: src/gui_settingsdialog.c:480
 msgid "Saving"
 msgstr "Enregistrement"
 
-#: ../src/gui_settingsdialog.c:489
+#: src/gui_settingsdialog.c:489
 msgid "Font for DX messages"
 msgstr "Polices pour les messages de DX"
 
-#: ../src/gui_settingsdialog.c:492
+#: src/gui_settingsdialog.c:492
 msgid "Select _DX Font"
 msgstr "Police du _DX"
 
-#: ../src/gui_settingsdialog.c:499
+#: src/gui_settingsdialog.c:499
 msgid "Font for other messages"
 msgstr "Police pour les autres messages"
 
-#: ../src/gui_settingsdialog.c:502
+#: src/gui_settingsdialog.c:502
 msgid "Select _Other Fonts"
 msgstr "Autres polices"
 
-#: ../src/gui_settingsdialog.c:514
+#: src/gui_settingsdialog.c:514
 msgid "Highlighting"
-msgstr "Mise en évidence"
+msgstr "Mise en Ã©vidence"
 
-#: ../src/gui_settingsdialog.c:518
+#: src/gui_settingsdialog.c:518
 msgid "Colors to use for highlighting"
-msgstr "Couleurs à utiliser pour la mise en évidence"
+msgstr "Couleurs Ã  utiliser pour la mise en Ã©vidence"
 
-#: ../src/gui_settingsdialog.c:530
-#: ../src/gui_settingsdialog.c:538
-#: ../src/gui_settingsdialog.c:546
-#: ../src/gui_settingsdialog.c:554
-#: ../src/gui_settingsdialog.c:567
-#: ../src/gui_settingsdialog.c:575
-#: ../src/gui_settingsdialog.c:583
-#: ../src/gui_settingsdialog.c:591
+#: src/gui_settingsdialog.c:530 src/gui_settingsdialog.c:538
+#: src/gui_settingsdialog.c:546 src/gui_settingsdialog.c:554
+#: src/gui_settingsdialog.c:567 src/gui_settingsdialog.c:575
+#: src/gui_settingsdialog.c:583 src/gui_settingsdialog.c:591
 #, c-format
 msgid "Color %d"
 msgstr "Couleur %d"
 
-#: ../src/gui_settingsdialog.c:608
+#: src/gui_settingsdialog.c:608
 msgid "Colors for the chat window"
-msgstr "Couleurs pour la fenêtre de messagerie instantnnée"
+msgstr "Couleurs pour la fenÃªtre de messagerie instantnnÃ©e"
 
-#: ../src/gui_settingsdialog.c:615
+#: src/gui_settingsdialog.c:615
 msgid "Prompt"
 msgstr "Invite"
 
-#: ../src/gui_settingsdialog.c:624
+#: src/gui_settingsdialog.c:624
 msgid "Sent text"
-msgstr "Texte envoyé"
+msgstr "Texte envoyÃ©"
 
-#. do not translate
-#: ../src/main.c:310
+#: src/main.c:310
 #, c-format
 msgid "Welcome to %s"
 msgstr "Bienvenue sur %s"
 
-#: ../src/net.c:89
+#: src/net.c:89
 #, c-format
 msgid "Resolving %s..."
-msgstr "Résolution de %s en cours..."
+msgstr "RÃ©solution de %s en cours..."
 
-#: ../src/net.c:95
+#: src/net.c:95
 #, c-format
 msgid "Resolve failed: %s"
-msgstr "Erreur lors de la résolution : %s"
+msgstr "Erreur lors de la rÃ©solutionÂ : %s"
 
-#: ../src/net.c:102
+#: src/net.c:102
 #, c-format
 msgid "Connecting to: %s"
-msgstr "Connexion à %s en cours"
+msgstr "Connexion Ã  %s en cours"
 
-#: ../src/net.c:143
+#: src/net.c:143
 #, c-format
 msgid "Connected to %s"
-msgstr "Connecté à %s"
+msgstr "ConnectÃ© Ã  %s"
 
-#: ../src/net.c:251
+#: src/net.c:251
 msgid "Connection closed, trying reconnect in 10 seconds"
-msgstr "Connexion fermée, essai de reconnexion dans 10 secondes"
+msgstr "Connexion fermÃ©e, essai de reconnexion dans 10 secondes"
 
-#: ../src/net.c:259
+#: src/net.c:259
 msgid "Connection closed by remote host"
-msgstr "Connexion fermée par l'hôte distant"
+msgstr "Connexion fermÃ©e par l'hÃ´te distant"
 
-#: ../src/net.c:274
+#: src/net.c:274
 msgid "Connection closed by remote host (0 bytes received)"
-msgstr "Connexion fermée par l'hôte distant (aucun octet reçu)"
+msgstr "Connexion fermÃ©e par l'hÃ´te distant (aucun octet reÃ§u)"
 
-#: ../src/net.c:333
+#: src/net.c:333
 #, c-format
 msgid "Write failed: %s"
-msgstr "Erreur d'écriture : %s"
+msgstr "Erreur d'Ã©critureÂ : %s"
 
-#: ../src/net.c:346
+#: src/net.c:346
 msgid "Nothing to send, you are not connected"
-msgstr "Rien à envoyer, vous n'êtes pas connecté"
+msgstr "Rien Ã  envoyer, vous n'Ãªtes pas connectÃ©"
 
-#: ../src/preferences.c:46
+#: src/preferences.c:46
 #, c-format
 msgid "Creating ~/.%s directory."
-msgstr "Création du répertoire ~/.%s."
+msgstr "CrÃ©ation du rÃ©pertoire ~/.%s."
 
-#: ../src/preferences.c:49
+#: src/preferences.c:49
 #, c-format
 msgid "~/.%s is not a directory."
-msgstr "~/.%s n'est pas un répertoire."
+msgstr "~/.%s n'est pas un rÃ©pertoire."
 
-#: ../src/utils.c:118
+#: src/utils.c:118
 #, c-format
 msgid "Fork has failed: %s"
-msgstr "Erreur de fork : %s"
+msgstr "Erreur de forkÂ : %s"
 
-#: ../src/utils.c:133
-#: ../src/utils.c:148
+#: src/utils.c:133 src/utils.c:148
 #, c-format
 msgid "Starting: %s"
-msgstr "Démarrage en cours : %s"
-
-
-
+msgstr "DÃ©marrage en coursÂ : %s"
