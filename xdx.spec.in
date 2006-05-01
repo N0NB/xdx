@@ -60,6 +60,7 @@ rm -rf $RPM_BUILD_ROOT
 /usr/share/man/man1/xdx.1.gz
 /usr/share/xdx/MANUAL
 /usr/share/xdx/MANUAL.es
+/usr/share/xdx/MANUAL.fr
 /usr/share/xdx/MANUAL.nl
 /usr/share/xdx/MANUAL.pl
 /usr/share/xdx/wwv.gnuplot
