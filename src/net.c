@@ -291,14 +291,11 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
             sendsplit = g_strsplit (preferences.commands, ",", 0);
             while (sendsplit[i])
             {
-              if (strlen(sendsplit[i]) > 0)
-              {
-                txstr = g_string_new (sendsplit[i]);
-                tx (txstr);
-                usleep (500000);
-                while (gtk_events_pending()) gtk_main_iteration ();
-                g_string_free (txstr, TRUE);
-              }
+              txstr = g_string_new (sendsplit[i]);
+              tx (txstr);
+              usleep (500000);
+              while (gtk_events_pending()) gtk_main_iteration ();
+              g_string_free (txstr, TRUE);
               i++;
             }
             g_strfreev (sendsplit);
