@@ -99,26 +99,10 @@ menu_set_sensitive (GtkUIManager *uim, const gchar * path, gboolean sens)
 
 static void shellcommand (gchar *command)
 {
-  gint result, pid = -1; 
-  gchar *args[4];
-  GString *msg = g_string_new ("");
-  
-  pid = fork();
-  if (pid == 0) 
-  {
-    args[0] = "sh";
-    args[1] = "-c";
-    args[2] = command;
-    args[3] = NULL;
-    result = execvp(args[0], args);
-    _exit(0);
-  }
-  else if (pid == -1)
-  {
-    g_string_printf (msg, _("Fork has failed: %s"), g_strerror (errno));
-    updatestatusbar (msg, TRUE);
-    g_string_free (msg, TRUE);
-  }
+  gchar **args;
+
+  args = g_strsplit (command, " ", 0);
+  g_spawn_async (NULL, args, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
 }
  
 void openurl (const char *url)
