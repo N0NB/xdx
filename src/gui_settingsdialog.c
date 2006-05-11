@@ -284,8 +284,6 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   {
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pautologincheckbutton), TRUE);
     gtk_widget_set_sensitive (ploginhseparator, TRUE);
-    gtk_widget_set_sensitive (pcallsignlabel, TRUE);
-    gtk_widget_set_sensitive (pcallsignentry, TRUE);
     gtk_widget_set_sensitive (pcommandslabel, TRUE);
     gtk_widget_set_sensitive (pcommandsentry, TRUE);
   }
@@ -293,8 +291,6 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   {
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pautologincheckbutton), FALSE);
     gtk_widget_set_sensitive (ploginhseparator, FALSE);
-    gtk_widget_set_sensitive (pcallsignlabel, FALSE);
-    gtk_widget_set_sensitive (pcallsignentry, FALSE);
     gtk_widget_set_sensitive (pcommandslabel, FALSE);
     gtk_widget_set_sensitive (pcommandsentry, FALSE);
   }
