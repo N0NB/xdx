@@ -1,9 +1,10 @@
 Changelog for version xdx (2.1)
-  * French and Spanish translation updates.
+  * French, Spanish and Polish translation updates.
   * Allow zero length strings in the commands autologin entry. This will send
     a plain return.
   * Make sure we can fill in the callsign in the settings dialog.
-  * Various minor fixes.
+  * Use glib functions for calling external programs.
+  * CLX compatibility for auto-reconnect has been added.
   
 Changelog for version xdx (2.0)
   * Polish translations by Boguslaw Ciastek SQ5TB, thanks!
