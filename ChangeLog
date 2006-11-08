@@ -1,3 +1,6 @@
+Changelog for version xdx (2.2)
+  * This fixes compilation issues due to a missing time.h include statement.
+
 Changelog for version xdx (2.1)
   * French, Spanish and Polish translation updates.
   * Allow zero length strings in the commands autologin entry. This will send

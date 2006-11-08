@@ -1,4 +1,1 @@
-This version adds various changes which makes the program easier to use:
-configurable fonts, more linespacing in the chat window and more use of
-colors. Auto reconnect has been added and a connection log is kept. The chat
-window adds a sidebar with the possibility to create highlights.
+This is a maintenance release which fixes compilation issues.
