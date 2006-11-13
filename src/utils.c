@@ -22,6 +22,7 @@
  */
 
 #include <gtk/gtk.h>
+#include <time.h>
 #include "utils.h"
 #include "gui.h"
 #include "preferences.h"

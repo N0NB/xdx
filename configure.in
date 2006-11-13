@@ -1,5 +1,5 @@
 AC_PREREQ(2.53)
-AC_INIT(xdx, 2.1, pg4i@amsat.org)
+AC_INIT(xdx, 2.2, pg4i@amsat.org)
 AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE
 
