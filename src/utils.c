@@ -174,7 +174,7 @@ gchar *try_utf8 (const gchar *str)
 
 /* get the current time, returned value has to be freed */
 gchar
-*gettime (gboolean formatted)
+*xdxgettime (gboolean formatted)
 {
   time_t current;
   struct tm *timestruct = NULL;
@@ -192,7 +192,7 @@ gchar
 
 /* get the current date, returned value has to be freed */
 gchar 
-*getdate (gboolean formatted)
+*xdxgetdate (gboolean formatted)
 {
   time_t current;
   struct tm *timestruct = NULL;
@@ -217,7 +217,7 @@ void logconnection (GString *logstr)
   FILE *fp;
 
   str = g_strdup_printf
-    ("[%s, %s UTC] %s", getdate(TRUE), gettime(TRUE), logstr->str);
+    ("[%s, %s UTC] %s", xdxgetdate(TRUE), xdxgettime(TRUE), logstr->str);
   f = g_strdup_printf ("%s/log.txt", gui->preferencesdir);
   fp = fopen (f, "a");
   fprintf (fp, "%s\n", str);

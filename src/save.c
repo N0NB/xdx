@@ -39,8 +39,8 @@ void savedx (gchar *dx)
   fp = fopen (savedxfile, "a");
   if (fp)
   {
-    d = getdate (TRUE);
-    t = gettime (TRUE);
+    d = xdxgetdate (TRUE);
+    t = xdxgettime (TRUE);
     fprintf (fp, "%s %s GMT - %s", d, t, dx);
     g_free (t);
     g_free (d);
@@ -93,8 +93,8 @@ void savewwv (gchar *wwv)
   fp = fopen (wwvfile, "a");
   if (fp)
   {
-    d = getdate (TRUE);
-    t = gettime (TRUE);
+    d = xdxgetdate (TRUE);
+    t = xdxgettime (TRUE);
     fprintf (fp, "%s %s GMT - %s", d, t, wwv);
     g_free (t);
     g_free (d);
@@ -110,8 +110,8 @@ void savewwv (gchar *wwv)
   if (fp)
   {
    /* non-formatted use for saving tsv wwv info */
-    d = getdate (FALSE);
-    t = gettime (FALSE);
+    d = xdxgetdate (FALSE);
+    t = xdxgettime (FALSE);
     fprintf (fp, "%s%s", d, t);
     g_free (t);
     g_free (d);
@@ -134,8 +134,8 @@ void savetoall (gchar *toall)
   fp = fopen (toallfile, "a");
   if (fp)
   {
-    d = getdate (TRUE);
-    t = gettime (TRUE);
+    d = xdxgetdate (TRUE);
+    t = xdxgettime (TRUE);
     fprintf (fp, "%s %s GMT - %s", d, t, toall);
     g_free (t);
     g_free (d);
@@ -153,8 +153,8 @@ void savewx (gchar *wx)
   fp = fopen (wxfile, "a");
   if (fp)
   {
-    d = getdate (TRUE);
-    t = gettime (TRUE);
+    d = xdxgetdate (TRUE);
+    t = xdxgettime (TRUE);
     fprintf (fp, "%s %s GMT - %s", d, t, wx);
     g_free (t);
     g_free (d);

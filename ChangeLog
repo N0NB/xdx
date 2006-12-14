@@ -1,3 +1,6 @@
+Changelog for version xdx (3.0)
+  * Compilation fixes for MAC OS X. Thanks to IZ0ETE.
+
 Changelog for version xdx (2.2)
   * This fixes compilation issues due to a missing time.h include statement.
 
