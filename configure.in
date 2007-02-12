@@ -37,7 +37,7 @@ if test "${ac_cv_c_compiler_gnu}" = "yes"; then
   CFLAGS="${CFLAGS} -Wall"
 fi
 
-PKG_CHECK_MODULES(GTK, "gtk+-2.0 >= 2.0.0")
+PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.4.0)
 AC_SUBST(PACKAGE_CFLAGS)
 AC_SUBST(PACKAGE_LIBS)
 
