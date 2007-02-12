@@ -158,7 +158,7 @@ create_mainwindow (void)
 {
   GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned, *clistscrolledwindow,
     *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview,
-    *frame, *chathbox, *highvbox, *hbox, *highframe,
+    *frame, *chathbox, *highvbox, *hbox, *highframe, *mainhbox,
     *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
     *highentry6, *highentry7, *highentry8, *highcheck1, *highcheck2,
     *highcheck3, *highcheck4, *highcheck5, *highcheck6, *highcheck7,
@@ -191,8 +191,11 @@ create_mainwindow (void)
   g_object_unref (icon);
   }
 
+  mainhbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (gui->window), mainhbox);
+
   mainvbox = gtk_vbox_new (FALSE, 0);
-  gtk_container_add (GTK_CONTAINER (gui->window), mainvbox);
+  gtk_container_add (GTK_CONTAINER (mainhbox), mainvbox);
 
   handlebox = gtk_handle_box_new ();
   gtk_box_pack_start (GTK_BOX (mainvbox), handlebox, FALSE, TRUE, 0);
@@ -278,7 +281,7 @@ create_mainwindow (void)
   gtk_box_pack_start (GTK_BOX (chathbox), mainscrolledwindow, TRUE, TRUE, 0);
 
   highframe = gtk_frame_new (NULL);
-  gtk_box_pack_start (GTK_BOX (chathbox), highframe, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (mainhbox), highframe, FALSE, FALSE, 0);
   highvbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (highframe), highvbox);
 
