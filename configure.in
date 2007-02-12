@@ -37,9 +37,7 @@ if test "${ac_cv_c_compiler_gnu}" = "yes"; then
   CFLAGS="${CFLAGS} -Wall"
 fi
 
-dnl Looking for configuration scripts.
-pkg_modules="gtk+-2.0 >= 2.0.0"
-PKG_CHECK_MODULES(PACKAGE, [$pkg_modules])
+PKG_CHECK_MODULES(GTK, "gtk+-2.0 >= 2.0.0")
 AC_SUBST(PACKAGE_CFLAGS)
 AC_SUBST(PACKAGE_LIBS)
 
