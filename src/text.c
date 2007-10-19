@@ -503,6 +503,24 @@ maintext_add (gchar msg[], gint len, gint messagetype)
         g_strstrip(dx->freq);
         g_strstrip(dx->remark);
         gtk_tree_store_append (model, &iter, NULL);
+        high = contains_highlights (dx->dxcall);
+        if (g_ascii_strcasecmp (high, "00000000"))
+        {
+
+gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
+  dx->freq, DX_COLUMN, dx->dxcall, TIME_COLUMN, dx->time, INFO_COLUMN, 
+  dx->info, preferences.highcolor1, INFO_COLUMN + 1, -1);
+          for (i = 0; i < 8; i++)
+          {
+            if (high[i] == '1')
+            {
+              /* lookup name of tag and word to be highlighted */
+              if (i == 0)
+              {
+              }
+            }
+          }
+        }
         gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
   		    dx->freq, DX_COLUMN, dx->dxcall, TIME_COLUMN, dx->time, INFO_COLUMN, 
           dx->info, -1);
@@ -512,6 +530,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           gtk_tree_store_set (model, &iter, REM_COLUMN, dx->remark, -1);
           g_free (utf8);
         }
+
 
         /* focusing the treeview will stop scrolling */ 
 	if (!GTK_WIDGET_HAS_FOCUS(treeview))
