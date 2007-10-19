@@ -202,7 +202,6 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gint response, pango_size;
   gboolean state;
   gchar *str;
-  GtkTooltips *tooltips;
   GtkTextBuffer *buffer;
   GtkTextTagTable *table;
   GdkColor color;
@@ -269,11 +268,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   pcommandsentry = gtk_entry_new ();
   gtk_box_pack_start (GTK_BOX (pcommandshbox), pcommandsentry, TRUE, TRUE, 5);
   gtk_entry_set_max_length (GTK_ENTRY (pcommandsentry), 80);
-  tooltips = gtk_tooltips_new ();
-  gtk_tooltips_set_tip (tooltips, pcommandsentry, 
-    _("Comma separated list of commands to send at login"), NULL);
-  gtk_tooltips_set_tip (tooltips, pcallsignentry, 
-    _("Callsign to be used for login"), NULL);
+  gtk_widget_set_tooltip_text(pcommandsentry, 
+    _("Comma separated list of commands to send at login"));
+  gtk_widget_set_tooltip_text(pcallsignentry, 
+    _("Callsign to be used for login"));
 
   ploginframelabel = gtk_label_new (_("Login"));
   gtk_frame_set_label_widget (GTK_FRAME (ploginframe), ploginframelabel);
@@ -317,10 +315,9 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_entry_set_max_length (GTK_ENTRY (prigentry), 80);
   phamliblabel = gtk_label_new (_("Hamlib"));
   gtk_frame_set_label_widget (GTK_FRAME (phamlibframe), phamliblabel);
-  gtk_tooltips_set_tip (tooltips, prigentry, _(
+  gtk_widget_set_tooltip_text(prigentry, _(
     "When double clicking on a dx-spot this will set the frequency of your "
-    "rig using rigctl (%d = the frequency retrieved from the DX spot)"
-    ), NULL);
+    "rig using rigctl (%d = the frequency retrieved from the DX spot)"));
 
   if (preferences.hamlib == 1)
   {
@@ -366,12 +363,12 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_entry_set_max_length (GTK_ENTRY (pprogmailentry), 80);
   pproglabel = gtk_label_new (_("Programs"));
   gtk_frame_set_label_widget (GTK_FRAME (pprogframe), pproglabel);
-  gtk_tooltips_set_tip (tooltips, pprogbrowserentry, 
-    _("Web browser to start after clicking on a url (%s = url)"), NULL);
-  gtk_tooltips_set_tip (tooltips, pprogmailentry, 
-    _("Mail program to start after clicking on a mail url (%s = mail url)"), NULL);
-  gtk_tooltips_set_tip (tooltips, pprogsoundentry, 
-    _("Program used to play sound (%s = sound file)"), NULL);
+  gtk_widget_set_tooltip_text(pprogbrowserentry, 
+    _("Web browser to start after clicking on a url (%s = url)"));
+  gtk_widget_set_tooltip_text(pprogmailentry, 
+    _("Mail program to start after clicking on a mail url (%s = mail url)"));
+  gtk_widget_set_tooltip_text(pprogsoundentry, 
+    _("Program used to play sound (%s = sound file)"));
 
   if (g_ascii_strcasecmp (preferences.browserapp, "?"))
     gtk_entry_set_text (GTK_ENTRY(pprogbrowserentry), preferences.browserapp);

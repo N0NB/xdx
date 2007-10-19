@@ -172,7 +172,6 @@ create_mainwindow (void)
   servertype *cluster;
   PangoFontDescription *font_description;
   gint pango_size;
-  GtkTooltips *tooltips;
   GtkAccelGroup *key_toggle, *grab_focus;
   gchar *str;
 
@@ -206,9 +205,9 @@ create_mainwindow (void)
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (clistscrolledwindow),
 				  GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
-  model = gtk_tree_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING,
+  model = gtk_tree_store_new (N_COLUMNS + 1, G_TYPE_STRING, G_TYPE_STRING,
 			      G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
-			      G_TYPE_STRING);
+			      G_TYPE_STRING, GDK_TYPE_COLOR);
   treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (model));
   g_object_unref (G_OBJECT (model));
 
@@ -258,7 +257,7 @@ create_mainwindow (void)
 
   column =
     gtk_tree_view_column_new_with_attributes (_("Info"), renderer, "text",
-					      INFO_COLUMN, NULL);
+					      INFO_COLUMN, "foreground-gdk", INFO_COLUMN + 1, NULL);
   gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
@@ -381,34 +380,34 @@ create_mainwindow (void)
   gtk_paned_add1 (GTK_PANED (vpaned), clistscrolledwindow);
   gtk_paned_add2 (GTK_PANED (vpaned), chathbox);
   gtk_box_pack_start (GTK_BOX (mainvbox), vpaned, TRUE, TRUE, 0);
-  tooltips = gtk_tooltips_new ();
 
-  gtk_tooltips_set_tip(tooltips, highentry1, _("Enter a word to highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highentry2, _("Enter a word to highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highentry3, _("Enter a word to highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highentry4, _("Enter a word to highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highentry5, _("Enter a word to highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highentry6, _("Enter a word to highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highentry7, _("Enter a word to highlight"), NULL);
-  gtk_tooltips_set_tip(tooltips, highentry8, _("Enter a word to highlight"), NULL);
+  gtk_widget_set_tooltip_text(highentry1, _("Enter a word to highlight"));
+  gtk_widget_set_tooltip_text(highentry2, _("Enter a word to highlight"));
+  gtk_widget_set_tooltip_text(highentry3, _("Enter a word to highlight"));
+  gtk_widget_set_tooltip_text(highentry4, _("Enter a word to highlight"));
+  gtk_widget_set_tooltip_text(highentry5, _("Enter a word to highlight"));
+  gtk_widget_set_tooltip_text(highentry6, _("Enter a word to highlight"));
+  gtk_widget_set_tooltip_text(highentry7, _("Enter a word to highlight"));
+  gtk_widget_set_tooltip_text(highentry8, _("Enter a word to highlight"));
+
   str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 1);
-  gtk_tooltips_set_tip(tooltips, highcheck1, str, NULL);
+  gtk_widget_set_tooltip_text(highcheck1, str);
   str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 2);
-  gtk_tooltips_set_tip(tooltips, highcheck2, str, NULL);
+  gtk_widget_set_tooltip_text(highcheck2, str);
   str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 3);
-  gtk_tooltips_set_tip(tooltips, highcheck3, str, NULL);
+  gtk_widget_set_tooltip_text(highcheck3, str);
   str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 4);
-  gtk_tooltips_set_tip(tooltips, highcheck4, str, NULL);
+  gtk_widget_set_tooltip_text(highcheck4, str);
   str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 5);
-  gtk_tooltips_set_tip(tooltips, highcheck5, str, NULL);
+  gtk_widget_set_tooltip_text(highcheck5, str);
   str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 6);
-  gtk_tooltips_set_tip(tooltips, highcheck6, str, NULL);
+  gtk_widget_set_tooltip_text(highcheck6, str);
   str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 7);
-  gtk_tooltips_set_tip(tooltips, highcheck7, str, NULL);
+  gtk_widget_set_tooltip_text(highcheck7, str);
   str = g_strdup_printf (_("Include prompt [Ctrl+%d]"), 8);
-  gtk_tooltips_set_tip(tooltips, highcheck8, str, NULL);
+  gtk_widget_set_tooltip_text(highcheck8, str);
   str = g_strdup_printf (_("Enable/disable sound [Ctrl+%d]"), 0);
-  gtk_tooltips_set_tip(tooltips, soundcheck, str, NULL);
+  gtk_widget_set_tooltip_text(soundcheck, str);
 
   mainentry = gtk_text_view_new ();
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW(mainentry), GTK_WRAP_WORD);
