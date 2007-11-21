@@ -10,8 +10,9 @@ EXTRA_DIST = config.rpath mkinstalldirs  \
 	MANUAL.es \
 	MANUAL.fr \
 	MANUAL.nl \
-	MANUAL.pl
-
+	MANUAL.pl \
+	cty.dat
+	
 SUBDIRS = \
 	po \
 	src
@@ -61,6 +62,9 @@ install-data-local:
 	fi
 	if test -f MANUAL.pl; then \
 		$(INSTALL_DATA) MANUAL.pl $(DESTDIR)$(pkgdatadir); \
+	fi
+	if test -f cty.dat; then \
+		$(INSTALL_DATA) cty.dat $(DESTDIR)$(pkgdatadir); \
 	fi
 
 uninstall-local:
