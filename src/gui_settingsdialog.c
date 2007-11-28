@@ -175,7 +175,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *pcolumnsframe, *pcolumnsvbox, *pcolumnsvboxlabel, *pcolumnslabel,
     *pcolumnshseparator, *pspottercheckbutton, *pqrgcheckbutton,
     *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton, 
-    *pinfocheckbutton, *pcolumnshbox, *pcolumnsvbox2, *pcolumnsvbox3,
+    *pinfocheckbutton,*pcountrycheckbutton, *pcolumnshbox, *pcolumnsvbox2, *pcolumnsvbox3,
 
     *pfontsframe, *pfontslabel, *pfontsvbox, *pfontsdxlabel, *pfontsalllabel,
     *pfontsdxentry, *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
@@ -426,7 +426,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox3), ptimecheckbutton, FALSE, FALSE, 0);
   pinfocheckbutton = gtk_check_button_new_with_label (_("Info"));
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox3), pinfocheckbutton, FALSE, FALSE, 0);
-  if (preferences.col0visible == 1)
+  pcountrycheckbutton = gtk_check_button_new_with_label (_("Country"));
+  gtk_box_pack_start (GTK_BOX (pcolumnsvbox3), pcountrycheckbutton, FALSE, FALSE, 0);
+	
+	if (preferences.col0visible == 1)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pspottercheckbutton), TRUE);
   else
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pspottercheckbutton), FALSE);
@@ -450,7 +453,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pinfocheckbutton), TRUE);
   else
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pinfocheckbutton), FALSE);
-
+  if (preferences.col6visible == 1)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pcountrycheckbutton), TRUE);
+  else
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pcountrycheckbutton), FALSE);
 
   psavingframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox2), psavingframe, TRUE, TRUE, 0);
@@ -875,6 +881,21 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
       preferences.col5visible = 0;
     }
+	 state = gtk_toggle_button_get_active 
+      (GTK_TOGGLE_BUTTON(pcountrycheckbutton));
+    column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 6);
+    if (state)
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), TRUE);
+      if (preferences.col6visible == 0)
+        gtk_tree_view_column_set_fixed_width (column, COL6WIDTH);
+      preferences.col6visible = 1;
+    }	    
+    else
+    {
+      gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+      preferences.col6visible = 0;
+    } 
 
     /* fonts frame */
     str = gtk_editable_get_chars (GTK_EDITABLE (pfontsdxentry), 0, -1);

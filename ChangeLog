@@ -1,4 +1,7 @@
-Changelog for version xdx (3.0)
+Changelog for version xdx (2.4)
+  * Added automatic country lookup by Emanuele IZ0ETE.
+
+Changelog for version xdx (2.3)
   * Compilation fixes for MAC OS X. Thanks to IZ0ETE.
 
 Changelog for version xdx (2.2)

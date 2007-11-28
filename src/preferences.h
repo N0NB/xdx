@@ -27,6 +27,7 @@
 #define COL3WIDTH 360
 #define COL4WIDTH 60
 #define COL5WIDTH 60
+#define COL6WIDTH 60
 
 typedef struct
 {
@@ -53,6 +54,7 @@ typedef struct
   gint col3visible;
   gint col4visible;
   gint col5visible;
+  gint col6visible;
   gchar *dxfont;
   gchar *allfont;
   gint localecho;

@@ -65,8 +65,8 @@ loadpreferences (void)
   preferences.width = 700;
   preferences.height = 550;
   preferences.columnwidths = 
-    g_strdup_printf("%d,%d,%d,%d,%d,%d,",
-    COL0WIDTH, COL1WIDTH, COL2WIDTH, COL3WIDTH, COL4WIDTH, COL5WIDTH);
+    g_strdup_printf("%d,%d,%d,%d,%d,%d,%d",
+    COL0WIDTH, COL1WIDTH, COL2WIDTH, COL3WIDTH, COL4WIDTH, COL5WIDTH,COL6WIDTH);
   preferences.autologin = 0;
   preferences.callsign = g_strdup("N0CALL");
   preferences.commands = g_strdup("set/page 0");
@@ -85,6 +85,7 @@ loadpreferences (void)
   preferences.col3visible = 1;
   preferences.col4visible = 1;
   preferences.col5visible = 1;
+  preferences.col6visible = 1;
   preferences.dxfont = g_strdup ("Sans 10");
   preferences.allfont = g_strdup ("Sans 10");
   preferences.localecho = 1;
@@ -184,6 +185,8 @@ loadpreferences (void)
           preferences.col4visible = atoi(value);
         else if (!g_ascii_strcasecmp(label, "col5visible")) 
           preferences.col5visible = atoi(value);
+	else if (!g_ascii_strcasecmp(label, "col6visible")) 
+          preferences.col6visible = atoi(value);
         else if (!g_ascii_strcasecmp(label, "dxfont"))
         {
           g_strdelimit (value, "~", ' ');
@@ -345,6 +348,8 @@ savepreferences (void)
     fprintf(fp, "col4visible %s\n", str);
     str = g_strdup_printf("%d", preferences.col5visible);
     fprintf(fp, "col5visible %s\n", str);
+    str = g_strdup_printf("%d", preferences.col6visible);
+    fprintf(fp, "col6visible %s\n", str);
     str = g_strdup_printf("%s", preferences.dxfont);
     g_strdelimit (str, " ", '~');
     fprintf(fp, "dxfont %s\n", str);
@@ -418,3 +423,4 @@ savepreferences (void)
   }
   g_free(preferencesfile);
 }
+

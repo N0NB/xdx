@@ -34,6 +34,10 @@
 #include "save.h"
 #include "gtksourceiter.h"
 
+GPtrArray *dxcc;
+GHashTable *prefixes;
+gint excitu, exccq, countries;
+
 extern preferencestype preferences;
 
 typedef struct dxinfo 
@@ -44,6 +48,7 @@ typedef struct dxinfo
   gchar *remark;
   gchar *time;
   gchar *info;
+  gchar *country;
   gchar *toall;
   gboolean dx;
   gboolean nodx;
@@ -296,6 +301,7 @@ dxinfo *new_dx(void)
   dx->remark = NULL;
   dx->time = NULL;
   dx->info = NULL;
+  dx->country = NULL;
   dx->toall = NULL;
   dx->dx = FALSE;
   dx->nodx = FALSE;
@@ -311,7 +317,8 @@ static gchar* extractinfo(gchar *msg)
 {
   gchar *dxmsg, *info, *ret;
   gint l;
-
+struct info lookup;
+	
   dx = new_dx();
   info = g_strdup(msg);
 
@@ -324,6 +331,11 @@ static gchar* extractinfo(gchar *msg)
     dx->remark = g_strdup(findrem(dxmsg + 39, &l));
     dx->time = g_strdup(findtime(dxmsg + 39 + l));
     dx->info = g_strdup(findinfo(dxmsg + 45 + l));
+	  
+    lookup = lookupcountry_by_callsign(dx->dxcall);
+    dxcc_data *d = g_ptr_array_index (dxcc, lookup.country);
+    dx->country = g_strdup(d->countryname);
+	  
     dx->toall = NULL;
     dx->dx = TRUE;
     dx->nodx = FALSE;
@@ -336,6 +348,7 @@ static gchar* extractinfo(gchar *msg)
     dx->remark = NULL;
     dx->time = NULL;
     dx->info = NULL;
+    dx->country = NULL;
     dx->toall = g_strdup(msg);
     ret = strstr(dx->toall, "\n");
     if (ret) *ret = '\0';
@@ -503,27 +516,9 @@ maintext_add (gchar msg[], gint len, gint messagetype)
         g_strstrip(dx->freq);
         g_strstrip(dx->remark);
         gtk_tree_store_append (model, &iter, NULL);
-        high = contains_highlights (dx->dxcall);
-        if (g_ascii_strcasecmp (high, "00000000"))
-        {
-
-gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
-  dx->freq, DX_COLUMN, dx->dxcall, TIME_COLUMN, dx->time, INFO_COLUMN, 
-  dx->info, preferences.highcolor1, INFO_COLUMN + 1, -1);
-          for (i = 0; i < 8; i++)
-          {
-            if (high[i] == '1')
-            {
-              /* lookup name of tag and word to be highlighted */
-              if (i == 0)
-              {
-              }
-            }
-          }
-        }
         gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
-  		    dx->freq, DX_COLUMN, dx->dxcall, TIME_COLUMN, dx->time, INFO_COLUMN, 
-          dx->info, -1);
+  	  dx->freq, DX_COLUMN, dx->dxcall, TIME_COLUMN, dx->time, INFO_COLUMN, 
+          dx->info, COUNTRY_COLUMN, dx->country, -1);
         /* remark field may contain foreign language characters */
         if (dx->remark && dx->remark[0] && (utf8 = try_utf8(dx->remark)))
         {
@@ -547,6 +542,7 @@ gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
         g_free(dx->dxcall);
         g_free(dx->remark);
         g_free(dx->time);
+	g_free(dx->country);
         g_free(dx->info);
       }
       if (dx->nodx)  
@@ -824,3 +820,317 @@ gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
       }
     }
 }
+
+/* ---- */
+
+
+/* replace callsign area (K0AR/2 -> K2AR) so we can do correct lookups */
+static gchar *
+change_area (gchar *callsign, gint area)
+{
+	gchar *end, *j;
+
+	end = callsign + strlen (callsign);
+	for (j = callsign; j < end; ++j)
+	{
+		switch (*j)
+		{
+			case '0' ... '9':
+			if ((j - callsign) > 1)
+				*j = area + 48;
+			break;
+		}
+	}
+
+	return(g_strdup(callsign));
+}
+
+/*
+   extract prefix from a callsign with a forward slash:
+   - check if callsign has a '/'
+   - replace callsign area's (K0AR/2 -> K2AR)
+   - skip /mm, /am and /qrp
+   - return string after slash if it is shorter than string before
+ */
+static gchar *
+getpx (gchar *checkcall)
+{
+
+	gchar *pxstr = NULL, **split;
+
+	/* characters after '/' might contain a country */
+	if (strchr(checkcall, '/'))
+	{
+		split = g_strsplit(checkcall, "/", 2);
+		if (split[1]) /* we might be typing */
+		{
+			if ((strlen(split[1]) > 1) && (strlen(split[1]) < strlen(split[0])))
+			/* this might be a candidate */
+			{
+				if ((g_ascii_strcasecmp(split[1], "AM") == 0)
+					|| (g_ascii_strcasecmp(split[1], "MM") == 0))
+					pxstr = NULL; /* don't know location */
+				else if (g_ascii_strcasecmp(split[1], "QRP") == 0)
+					pxstr = g_strdup(split[0]);
+				else pxstr = g_strdup(split[1]);
+			}
+			else if ((strlen(split[1]) == 1) &&
+				split[1][0] >= '0' && split[1][0] <= '9')
+			/* callsign area changed */
+			{
+				pxstr = change_area(split[0], atoi(split[1]));
+			}
+			else pxstr = g_strdup(split[0]);
+		}
+		else pxstr = g_strdup(split[0]);
+		g_strfreev(split);
+	}
+	else
+		pxstr = g_strdup(checkcall);
+
+	return (pxstr);
+}
+
+
+/* parse an exception and extract the CQ and ITU zone */
+static gchar *
+findexc(gchar *exception)
+{
+	gchar *end, *j;
+
+	excitu = 0;
+	exccq = 0;
+	end = exception + strlen (exception);
+	for (j = exception; j < end; ++j)
+	{
+		switch (*j)
+		{
+			case '(':
+				if (*(j+2) == 41)
+					exccq = *(j+1) - 48;
+				else if (*(j+3) == 41)
+					exccq = ((*(j+1) - 48) * 10) + (*(j+2) - 48);
+			case '[':
+				if (*(j+2) == 93)
+					excitu = *(j+1) - 48;
+				else if (*(j+3) == 93)
+					excitu = ((*(j+1) - 48) * 10) + (*(j+2) - 48);
+			case ';':
+				*j = '\0';
+			break;
+		}
+	}
+	return (exception);
+}
+
+
+
+
+
+
+/*
+ * go through exception string and stop when end of prefix
+ * is reached (BT3L(23)[33] -> BT3L)
+ */
+static gchar *
+findpfx_in_exception (gchar * pfx)
+{
+	gchar *end, *j;
+
+	g_strstrip (pfx);
+	end = pfx + strlen (pfx);
+	for (j = pfx; j < end; ++j)
+	{
+		switch (*j)
+		{
+		case '(':
+		case '[':
+		case ';':
+			*j = '\0';
+			break;
+		}
+	}
+	return pfx;
+}
+
+
+/*
+ * go through the hashtable with the current callsign and return the country number
+ * cq zone and itu zone - this also goes through the exceptionlist
+ */
+struct info
+lookupcountry_by_callsign (gchar * callsign)
+{
+	gint ipx, iexc;
+	gchar *px;
+	gchar **excsplit, *exc;
+	gchar *searchpx = NULL;
+	struct info lookup;
+
+	lookup.country = 0;
+	/* first check complete callsign */
+	lookup.country = GPOINTER_TO_INT(g_hash_table_lookup (prefixes, callsign));
+
+	if (lookup.country == 0 && (px = getpx (callsign)))
+	{	/* start with full callsign and truncate it until a correct lookup */
+		for (ipx = strlen (px); ipx > 0; ipx--)
+		{
+			searchpx = g_strndup (px, ipx);
+			lookup.country = GPOINTER_TO_INT
+				(g_hash_table_lookup (prefixes, searchpx));
+			if (lookup.country > 0) break;
+		}
+		g_free (px);
+	}
+	else
+		searchpx = g_strdup (callsign);
+
+	dxcc_data *d = g_ptr_array_index (dxcc, lookup.country);
+	lookup.itu = d -> itu;
+	lookup.cq = d -> cq;
+
+	/* look for CQ/ITU zone exceptions */
+	if (strchr(d->exceptions, '(') || strchr(d->exceptions, '['))
+	{
+		excsplit = g_strsplit (d->exceptions, ",", -1);
+		for (iexc = 0 ;; iexc++)
+		{
+			if (!excsplit[iexc]) break;
+			exc = findexc (excsplit[iexc]);
+			if (g_ascii_strcasecmp (searchpx, exc) == 0)
+			{
+				if (excitu > 0) lookup.itu = excitu;
+				if (exccq > 0) lookup.cq = exccq;
+			}
+		}
+		g_strfreev(excsplit);
+	}
+	return lookup;
+}
+
+
+
+/* add an item from cty.dat to the dxcc array */
+static void
+dxcc_add (gchar *c, gint w, gint i, gchar *cont, gint lat, gint lon,
+	gint tz, gchar *p, gchar *e)
+{
+	dxcc_data *new_dxcc = g_new (dxcc_data, 1);
+
+	new_dxcc -> countryname = g_strdup (c);
+	new_dxcc -> cq = w;
+	new_dxcc -> itu = i;
+	new_dxcc -> continent = g_strdup (cont);
+	new_dxcc -> latitude = lat;
+	new_dxcc -> longitude = lon;
+	new_dxcc -> timezone = tz;
+	new_dxcc -> px = g_strdup (p);
+	new_dxcc -> exceptions = g_strdup (e);
+	g_ptr_array_add (dxcc, new_dxcc);
+}
+
+/* fill the hashtable with all of the prefixes from cty.dat */
+gint
+readctydata (void)
+{
+
+	gchar buf[4096], *cty_location, *pfx, **split, **pfxsplit, *excstr;
+	gint ichar = 0, dxccitem = 0, ipfx = 0, ch = 0;
+	FILE *fp;
+	
+	cty_location = g_strdup_printf ("%s%s%s", PACKAGE_DATA_DIR, G_DIR_SEPARATOR_S, "cty.dat");
+
+	if ((fp = fopen (cty_location, "r")) == NULL)
+	{
+		printf("Cannot find cty.dat in %s !\n",cty_location);
+		g_free (cty_location);
+		return (1);
+	}
+
+	dxcc = g_ptr_array_new ();
+	prefixes = g_hash_table_new_full (g_str_hash, g_str_equal,
+		(GDestroyNotify)g_free, NULL);
+
+	/* first field in case hash_table_lookup returns NULL */
+	dxcc_add ("Unknown", 0, 0, "--", 0, 0, 0, "", "");
+	countries = 1;
+
+	while (!feof (fp))
+	{
+		while (ch != 59)
+		{
+			ch = fgetc (fp);
+			if (ch == EOF) break;
+			buf[ichar++] = ch;
+		}
+		if (ch == EOF)
+		break;
+		buf[ichar] = '\0';
+		ichar = 0;
+		ch = 0;
+
+			/* split up the first line */
+		split = g_strsplit (buf, ":", 9);
+
+		if (!g_strrstr (split[7], "*")) /* ignore WAE countries */
+		{
+		for (dxccitem = 0; dxccitem < 9; dxccitem++)
+			g_strstrip (split[dxccitem]);
+		/* split up the second line */
+		excstr = my_strreplace (split[8], "\r\n", "");
+		excstr = my_strreplace (excstr, "    ", "");
+		excstr = my_strreplace (excstr, ";", "");
+		pfxsplit = g_strsplit (excstr, ",", 0);
+
+		dxcc_add (split[0], atoi(split[1]), atoi(split[2]), split[3],
+			(gint)(strtod(split[4], NULL) * 100), (gint)(strtod(split[5], NULL) * 100),
+			(gint)(strtod(split[6], NULL) * 10), split[7], excstr);
+		g_free (excstr);
+
+		/* official prefix */
+		g_hash_table_insert (prefixes, g_strdup (split[7]),
+			GINT_TO_POINTER (countries));
+
+		/* exception list */
+		for (ipfx = 0;; ipfx++)
+		{
+			if (!pfxsplit[ipfx]) break;
+			pfx = findpfx_in_exception (pfxsplit[ipfx]);
+			if (g_ascii_strcasecmp(pfx, split[7]) != 0)
+				g_hash_table_insert (prefixes, g_strdup (pfx),
+			GINT_TO_POINTER (countries));
+		}
+
+		g_strfreev (pfxsplit);
+		g_strfreev (split);
+		countries++;
+		}
+	}
+	fclose (fp);
+	g_free (cty_location);
+	return (0);
+}
+
+/* free memory used by the dxcc array */
+void
+cleanup_dxcc (void)
+{
+	gint i;
+
+	/* free the dxcc array */
+	if (dxcc)
+	{
+		for (i = 0; i < dxcc->len; i++)
+		{
+			dxcc_data *d = g_ptr_array_index (dxcc, i);
+			g_free (d->countryname);
+			g_free (d->continent);
+			g_free (d->px);
+			g_free (d->exceptions);
+			g_free (d);
+		}
+		g_ptr_array_free (dxcc, TRUE);
+	}
+	if (prefixes) g_hash_table_destroy (prefixes);
+}
+

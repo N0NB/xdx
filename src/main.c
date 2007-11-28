@@ -30,6 +30,7 @@
 #include "history.h"
 #include "utils.h"
 #include "locale.h"
+#include "text.h"
 
 extern preferencestype preferences;
 GdkColormap *colormap;
@@ -72,6 +73,7 @@ main (int argc, char *argv[])
   dircheck ();
   loadpreferences ();
   loadhistory ();
+  readctydata ();
 
   maintext = g_object_get_data (G_OBJECT (gui->window), "maintext");
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
@@ -277,6 +279,11 @@ main (int argc, char *argv[])
     gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
   else
     gtk_tree_view_column_set_fixed_width (column, atoi(wsplit[5]));
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW(treeview), 6);
+  if (!preferences.col6visible)
+    gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
+  else
+    gtk_tree_view_column_set_fixed_width (column, atoi(wsplit[6]));
   g_strfreev (wsplit);
 
   gtk_widget_show_all (gui->window);

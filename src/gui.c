@@ -38,6 +38,7 @@
 #include "gui_aboutdialog.h"
 #include "gui_settingsdialog.h"
 #include "gui_manualdialog.h"
+#include "text.h"
 
 extern preferencestype preferences;
 
@@ -207,7 +208,7 @@ create_mainwindow (void)
 
   model = gtk_tree_store_new (N_COLUMNS + 1, G_TYPE_STRING, G_TYPE_STRING,
 			      G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
-			      G_TYPE_STRING, GDK_TYPE_COLOR);
+			      G_TYPE_STRING,G_TYPE_STRING, GDK_TYPE_COLOR );
   treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (model));
   g_object_unref (G_OBJECT (model));
 
@@ -257,12 +258,20 @@ create_mainwindow (void)
 
   column =
     gtk_tree_view_column_new_with_attributes (_("Info"), renderer, "text",
-					      INFO_COLUMN, "foreground-gdk", INFO_COLUMN + 1, NULL);
+					      INFO_COLUMN, NULL);
   gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-
+	
+	column =
+    gtk_tree_view_column_new_with_attributes (_("Country"), renderer, "text",
+					      COUNTRY_COLUMN, NULL);
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+    GTK_TREE_VIEW_COLUMN_FIXED);
+  gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+		
   gtk_container_add (GTK_CONTAINER (clistscrolledwindow), treeview);
 
   chathbox = gtk_hbox_new (FALSE, 0);
@@ -594,6 +603,7 @@ static void syncprefs (void)
         else if (i == 3) width = COL3WIDTH;
         else if (i == 4) width = COL4WIDTH;
         else if (i == 5) width = COL5WIDTH;
+	else if (i == 6) width = COL6WIDTH;
       }
       g_string_append_printf (w, "%d,", width);
   }
@@ -693,6 +703,7 @@ void
 on_quit_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
   syncprefs ();
+  cleanup_dxcc ();
   cleanup ();
   gtk_main_quit ();
 }
