@@ -164,7 +164,7 @@ create_mainwindow (void)
     *highentry6, *highentry7, *highentry8, *highcheck1, *highcheck2,
     *highcheck3, *highcheck4, *highcheck5, *highcheck6, *highcheck7,
     *highcheck8, *soundcheck;
-  GtkCellRenderer *renderer, *boldrenderer;
+  GtkCellRenderer *renderer, *boldrenderer, *greyrenderer;
   GtkTreeViewColumn *column;
   GtkTextBuffer *buffer, *entrybuffer;
   GtkTreeStore *model;
@@ -214,6 +214,8 @@ create_mainwindow (void)
 
   renderer = gtk_cell_renderer_text_new ();
   boldrenderer = gtk_cell_renderer_text_new ();
+  greyrenderer = gtk_cell_renderer_text_new ();
+
   g_object_set (G_OBJECT (boldrenderer), "weight", "bold", NULL);
 
   column =
@@ -258,15 +260,16 @@ create_mainwindow (void)
 
   column =
     gtk_tree_view_column_new_with_attributes (_("Info"), renderer, "text",
-					      INFO_COLUMN, NULL);
+						INFO_COLUMN, NULL);
   gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 	
 	column =
-    gtk_tree_view_column_new_with_attributes (_("Country"), renderer, "text",
-					      COUNTRY_COLUMN, NULL);
+   gtk_tree_view_column_new_with_attributes (_("Country"), greyrenderer, "text",
+						COUNTRY_COLUMN, NULL);
+  g_object_set(G_OBJECT(greyrenderer), "cell-background", "grey", NULL);
   gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
