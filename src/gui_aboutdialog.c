@@ -59,7 +59,7 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 		"authors", authors,
 		"comments", _("Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"),
 		"license", 
-"Copyright (C) 2002 - 2006 Joop Stakenborg <pg4i@amsat.org>\n"
+"Copyright (C) 2002 - 2007 Joop Stakenborg <pg4i@amsat.org>\n"
 "\n"
 "This program is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -80,6 +80,7 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 "Dutch: Joop Stakenborg PG4I <pg4i@amsat.org>\n"
 "French: Jean-Luc Coulon F5IBH <jean-luc.coulon@wanadoo.fr>\n"
 "Polish: Boguslaw Ciastek SQ5TB <SQ5TB@tlen.pl>\n"
+"Portuguese: David Quental CT1DRB <ct1drb@iol.pt>\n"
 "Spanish: Baltasar Perez EC8AYR <ec8ayr@yahoo.com>\n",
 		"version", PACKAGE_VERSION,
 		NULL);
