@@ -2,6 +2,7 @@ Changelog for version xdx (2.4)
   * Added automatic country lookup by Emanuele IZ0ETE. In order for this to
     work you need to enable the country column in the preferences dialog.
   * With this release visible columns need to be reconfigured.
+  * Portugese translation added. Thanks to David, CT1DRB.
 
 Changelog for version xdx (2.3)
   * Compilation fixes for MAC OS X. Thanks to IZ0ETE.
