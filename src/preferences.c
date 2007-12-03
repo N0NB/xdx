@@ -62,11 +62,11 @@ loadpreferences (void)
   /* defaults */
   preferences.x = 10;
   preferences.y = 30;
-  preferences.width = 700;
+  preferences.width = 750;
   preferences.height = 550;
   preferences.columnwidths = 
     g_strdup_printf("%d,%d,%d,%d,%d,%d,%d",
-    COL0WIDTH, COL1WIDTH, COL2WIDTH, COL3WIDTH, COL4WIDTH, COL5WIDTH,COL6WIDTH);
+    COL0WIDTH, COL1WIDTH, COL2WIDTH, COL3WIDTH, COL4WIDTH, COL5WIDTH, COL6WIDTH);
   preferences.autologin = 0;
   preferences.callsign = g_strdup("N0CALL");
   preferences.commands = g_strdup("set/page 0");
@@ -132,7 +132,7 @@ loadpreferences (void)
           preferences.width = atoi(value);
         else if (!g_ascii_strcasecmp(label, "height")) 
           preferences.height = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "columnwidths")) 
+        else if (!g_ascii_strcasecmp(label, "columnwidths2")) 
           preferences.columnwidths = g_strdup(value);
         else if (!g_ascii_strcasecmp(label, "autologin")) 
           preferences.autologin = atoi(value);
@@ -306,7 +306,7 @@ savepreferences (void)
     str = g_strdup_printf("%d", preferences.height);
     fprintf(fp, "height %s\n", str);
     str = g_strdup_printf("%s", preferences.columnwidths);
-    fprintf(fp, "columnwidths %s\n", str);
+    fprintf(fp, "columnwidths2 %s\n", str);
     str = g_strdup_printf("%d", preferences.autologin);
     fprintf(fp, "autologin %s\n", str);
     str = g_strdup_printf("%s", preferences.callsign);

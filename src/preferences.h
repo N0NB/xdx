@@ -24,7 +24,7 @@
 #define COL0WIDTH 70
 #define COL1WIDTH 70
 #define COL2WIDTH 70
-#define COL3WIDTH 360
+#define COL3WIDTH 250
 #define COL4WIDTH 60
 #define COL5WIDTH 60
 #define COL6WIDTH 60
