@@ -163,7 +163,9 @@ create_mainwindow (void)
     *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
     *highentry6, *highentry7, *highentry8, *highcheck1, *highcheck2,
     *highcheck3, *highcheck4, *highcheck5, *highcheck6, *highcheck7,
-    *highcheck8, *soundcheck;
+    *highcheck8, *soundcheck,
+    *f1button, *f2button, *f3button, *f4button, *f5button,
+    *f6button, *f7button, *f8button, *fvbox, *fhbox1, *fhbox2;
   GtkCellRenderer *renderer, *boldrenderer, *greyrenderer;
   GtkTreeViewColumn *column;
   GtkTextBuffer *buffer, *entrybuffer;
@@ -201,6 +203,29 @@ create_mainwindow (void)
   gtk_box_pack_start (GTK_BOX (mainvbox), handlebox, FALSE, TRUE, 0);
   get_main_menu (gui->window, &mainmenubar);
   gtk_container_add (GTK_CONTAINER (handlebox), mainmenubar);
+
+  fvbox = gtk_vbox_new (FALSE, 0);
+  fhbox1 = gtk_hbox_new (FALSE, 0);
+  fhbox2 = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (fvbox), fhbox1);
+  gtk_container_add (GTK_CONTAINER (fvbox), fhbox2);
+  f1button = gtk_button_new_with_label ("F1");
+  f2button = gtk_button_new_with_label ("F2");
+  f3button = gtk_button_new_with_label ("F3");
+  f4button = gtk_button_new_with_label ("F4");
+  gtk_container_add (GTK_CONTAINER (fhbox1), f1button);
+  gtk_container_add (GTK_CONTAINER (fhbox1), f2button);
+  gtk_container_add (GTK_CONTAINER (fhbox1), f3button);
+  gtk_container_add (GTK_CONTAINER (fhbox1), f4button);
+  f5button = gtk_button_new_with_label ("F5");
+  f6button = gtk_button_new_with_label ("F6");
+  f7button = gtk_button_new_with_label ("F7");
+  f8button = gtk_button_new_with_label ("F8");
+  gtk_container_add (GTK_CONTAINER (fhbox2), f5button);
+  gtk_container_add (GTK_CONTAINER (fhbox2), f6button);
+  gtk_container_add (GTK_CONTAINER (fhbox2), f7button);
+  gtk_container_add (GTK_CONTAINER (fhbox2), f8button);
+  gtk_box_pack_start (GTK_BOX (mainvbox), fvbox, FALSE, TRUE, 0);
 
   clistscrolledwindow = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (clistscrolledwindow),
