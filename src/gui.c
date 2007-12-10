@@ -552,6 +552,9 @@ create_mainwindow (void)
   g_signal_connect (G_OBJECT (f8button), "clicked",
         G_CALLBACK (on_fbutton_clicked), GINT_TO_POINTER(8));
 
+  g_signal_connect (G_OBJECT(f1button), "button-press-event",
+			 G_CALLBACK (on_fbutton_press), GINT_TO_POINTER(1));
+
   g_object_set_data (G_OBJECT (gui->window), "maintext", maintext);
   g_object_set_data (G_OBJECT (gui->window), "treeview", treeview);
   g_object_set_data (G_OBJECT (gui->window), "mainstatusbar", mainstatusbar);
@@ -936,6 +939,12 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
         g_signal_stop_emission_by_name (GTK_OBJECT(widget), "key_press_event");
         tx_next();
       break;
+      default:
+      break;
+    }
+  }
+  switch (event->keyval)
+  {
       case GDK_F1:
         f1button = g_object_get_data (G_OBJECT (gui->window), "f1button");
         g_signal_emit_by_name (G_OBJECT (f1button), "activate");
@@ -970,9 +979,19 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
       break;
       default:
       break;
-    }
   }
   return FALSE;
+}
+
+gboolean
+on_fbutton_press (GtkButton *button, GdkEventButton *event, gpointer user_data)
+{
+	if (event->button == 3)
+	{
+		g_print ("button press\n");
+		return TRUE;
+	}
+	return FALSE;
 }
 
 gboolean 

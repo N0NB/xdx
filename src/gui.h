@@ -63,6 +63,8 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 gboolean double_click (GtkWidget *widget, GdkEventButton *event, 
             gpointer user_data);
 void on_fbutton_clicked (GtkButton *button, gpointer user_data);
+gboolean on_fbutton_press (GtkButton *button, GdkEventButton *event,
+			gpointer user_data);
 void on_quit_activate (GtkMenuItem * menuitem, gpointer user_data);
 void on_sidebar_activate (GtkAction * action, gpointer user_data);
 void on_fkeys_activate (GtkAction * action, gpointer user_data);
