@@ -578,6 +578,14 @@ create_mainwindow (void)
   g_object_set_data (G_OBJECT (gui->window), "highentry8", highentry8);
   g_object_set_data (G_OBJECT (gui->window), "highframe", highframe);
   g_object_set_data (G_OBJECT (gui->window), "fvbox", fvbox);
+  g_object_set_data (G_OBJECT (gui->window), "f1button", f1button);
+  g_object_set_data (G_OBJECT (gui->window), "f2button", f2button);
+  g_object_set_data (G_OBJECT (gui->window), "f3button", f3button);
+  g_object_set_data (G_OBJECT (gui->window), "f4button", f4button);
+  g_object_set_data (G_OBJECT (gui->window), "f5button", f5button);
+  g_object_set_data (G_OBJECT (gui->window), "f6button", f6button);
+  g_object_set_data (G_OBJECT (gui->window), "f7button", f7button);
+  g_object_set_data (G_OBJECT (gui->window), "f8button", f8button);
 
   cluster = new_cluster();
   g_object_set_data(G_OBJECT (gui->window), "cluster", cluster);
@@ -870,6 +878,7 @@ void on_highentry_changed (GtkEditable * editable, gpointer user_data)
 void
 on_fbutton_clicked (GtkButton *button, gpointer user_data)
 {
+	g_print("%d ", GPOINTER_TO_INT(user_data));
 }
 
 gboolean on_highentry_clicked
@@ -911,7 +920,8 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 					 gpointer user_data)
 {
 
-  GtkWidget *mainentry;
+  GtkWidget *mainentry, *f1button, *f2button, *f3button, *f4button,
+    *f5button, *f6button, *f7button, *f8button;
 
   mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
   if (GTK_WIDGET_HAS_FOCUS(mainentry))
@@ -925,6 +935,38 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
       case GDK_Down:
         g_signal_stop_emission_by_name (GTK_OBJECT(widget), "key_press_event");
         tx_next();
+      break;
+      case GDK_F1:
+        f1button = g_object_get_data (G_OBJECT (gui->window), "f1button");
+        g_signal_emit_by_name (G_OBJECT (f1button), "activate");
+      break;
+      case GDK_F2:
+        f2button = g_object_get_data (G_OBJECT (gui->window), "f2button");
+        g_signal_emit_by_name (G_OBJECT (f2button), "activate");
+      break;
+      case GDK_F3:
+        f3button = g_object_get_data (G_OBJECT (gui->window), "f3button");
+        g_signal_emit_by_name (G_OBJECT (f3button), "activate");
+      break;
+      case GDK_F4:
+        f4button = g_object_get_data (G_OBJECT (gui->window), "f4button");
+        g_signal_emit_by_name (G_OBJECT (f4button), "activate");
+      break;
+      case GDK_F5:
+        f5button = g_object_get_data (G_OBJECT (gui->window), "f5button");
+        g_signal_emit_by_name (G_OBJECT (f5button), "activate");
+      break;
+      case GDK_F6:
+        f6button = g_object_get_data (G_OBJECT (gui->window), "f6button");
+        g_signal_emit_by_name (G_OBJECT (f6button), "activate");
+      break;
+      case GDK_F7:
+        f7button = g_object_get_data (G_OBJECT (gui->window), "f7button");
+        g_signal_emit_by_name (G_OBJECT (f7button), "activate");
+      break;
+      case GDK_F8:
+        f8button = g_object_get_data (G_OBJECT (gui->window), "f8button");
+        g_signal_emit_by_name (G_OBJECT (f8button), "activate");
       break;
       default:
       break;
