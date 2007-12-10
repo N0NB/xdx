@@ -85,6 +85,14 @@ typedef struct
   GdkColor sentcolor;
   GdkColor wwvcolor;
   GdkColor wxcolor;
+  gchar *f1command;
+  gchar *f2command;
+  gchar *f3command;
+  gchar *f4command;
+  gchar *f5command;
+  gchar *f6command;
+  gchar *f7command;
+  gchar *f8command;
 } preferencestype;
 
 void dircheck (void);

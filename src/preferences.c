@@ -116,6 +116,14 @@ loadpreferences (void)
   gdk_color_parse("red", &preferences.sentcolor);
   gdk_color_parse("darkgreen", &preferences.wwvcolor);
   gdk_color_parse("magenta", &preferences.wxcolor);
+  preferences.f1command = g_strdup ("^");
+  preferences.f2command = g_strdup ("^");
+  preferences.f3command = g_strdup ("^");
+  preferences.f4command = g_strdup ("^");
+  preferences.f5command = g_strdup ("^");
+  preferences.f6command = g_strdup ("^");
+  preferences.f7command = g_strdup ("^");
+  preferences.f8command = g_strdup ("^");
   
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
@@ -186,7 +194,7 @@ loadpreferences (void)
           preferences.col4visible = atoi(value);
         else if (!g_ascii_strcasecmp(label, "col5visible")) 
           preferences.col5visible = atoi(value);
-	else if (!g_ascii_strcasecmp(label, "col6visible")) 
+        else if (!g_ascii_strcasecmp(label, "col6visible")) 
           preferences.col6visible = atoi(value);
         else if (!g_ascii_strcasecmp(label, "dxfont"))
         {
@@ -242,21 +250,21 @@ loadpreferences (void)
           g_strdelimit (value, "~", ' ');
           preferences.highword8 = g_strdup(value);
         }
-	else if (!g_ascii_strcasecmp(label, "highcolor1"))
+        else if (!g_ascii_strcasecmp(label, "highcolor1"))
           gdk_color_parse(value, &preferences.highcolor1);
-	else if (!g_ascii_strcasecmp(label, "highcolor2"))
+        else if (!g_ascii_strcasecmp(label, "highcolor2"))
           gdk_color_parse(value, &preferences.highcolor2);
-	else if (!g_ascii_strcasecmp(label, "highcolor3"))
+        else if (!g_ascii_strcasecmp(label, "highcolor3"))
           gdk_color_parse(value, &preferences.highcolor3);
-	else if (!g_ascii_strcasecmp(label, "highcolor4"))
+        else if (!g_ascii_strcasecmp(label, "highcolor4"))
           gdk_color_parse(value, &preferences.highcolor4);
-	else if (!g_ascii_strcasecmp(label, "highcolor5"))
+        else if (!g_ascii_strcasecmp(label, "highcolor5"))
           gdk_color_parse(value, &preferences.highcolor5);
-	else if (!g_ascii_strcasecmp(label, "highcolor6"))
+        else if (!g_ascii_strcasecmp(label, "highcolor6"))
           gdk_color_parse(value, &preferences.highcolor6);
-	else if (!g_ascii_strcasecmp(label, "highcolor7"))
+        else if (!g_ascii_strcasecmp(label, "highcolor7"))
           gdk_color_parse(value, &preferences.highcolor7);
-	else if (!g_ascii_strcasecmp(label, "highcolor8"))
+        else if (!g_ascii_strcasecmp(label, "highcolor8"))
           gdk_color_parse(value, &preferences.highcolor8);
         else if (!g_ascii_strcasecmp(label, "highmenu"))
           preferences.highmenu = g_strdup(value);
@@ -270,14 +278,54 @@ loadpreferences (void)
           preferences.playsound = atoi(value);
         else if (!g_ascii_strcasecmp(label, "keepalive")) 
           preferences.keepalive = atoi(value);
-	else if (!g_ascii_strcasecmp(label, "promptcolor"))
+        else if (!g_ascii_strcasecmp(label, "promptcolor"))
           gdk_color_parse(value, &preferences.promptcolor);
-	else if (!g_ascii_strcasecmp(label, "sentcolor"))
+        else if (!g_ascii_strcasecmp(label, "sentcolor"))
           gdk_color_parse(value, &preferences.sentcolor);
-	else if (!g_ascii_strcasecmp(label, "wwvcolor"))
+        else if (!g_ascii_strcasecmp(label, "wwvcolor"))
           gdk_color_parse(value, &preferences.wwvcolor);
-	else if (!g_ascii_strcasecmp(label, "wxcolor"))
+        else if (!g_ascii_strcasecmp(label, "wxcolor"))
           gdk_color_parse(value, &preferences.wxcolor);
+        else if (!g_ascii_strcasecmp(label, "f1command"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.f1command = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "f2command"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.f2command = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "f3command"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.f3command = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "f4command"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.f4command = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "f5command"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.f5command = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "f6command"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.f6command = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "f7command"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.f7command = g_strdup(value);
+        }
+        else if (!g_ascii_strcasecmp(label, "f8command"))
+        {
+          g_strdelimit (value, "~", ' ');
+          preferences.f8command = g_strdup(value);
+        }
     }
     fclose (fp);
   }
@@ -423,6 +471,30 @@ savepreferences (void)
       preferences.wwvcolor.red, preferences.wwvcolor.green, preferences.wwvcolor.blue);
     fprintf(fp, "wxcolor #%04X%04X%04X\n",
       preferences.wxcolor.red, preferences.wxcolor.green, preferences.wxcolor.blue);
+    str = g_strdup_printf("%s", preferences.f1command);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "f1command %s\n", str);
+    str = g_strdup_printf("%s", preferences.f2command);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "f2command %s\n", str);
+    str = g_strdup_printf("%s", preferences.f3command);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "f3command %s\n", str);
+    str = g_strdup_printf("%s", preferences.f4command);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "f4command %s\n", str);
+    str = g_strdup_printf("%s", preferences.f5command);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "f5command %s\n", str);
+    str = g_strdup_printf("%s", preferences.f6command);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "f6command %s\n", str);
+    str = g_strdup_printf("%s", preferences.f7command);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "f7command %s\n", str);
+    str = g_strdup_printf("%s", preferences.f8command);
+    g_strdelimit (str, " ", '~');
+    fprintf(fp, "f8command %s\n", str);
     g_free(str);
     fclose (fp);
   }
