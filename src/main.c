@@ -24,6 +24,8 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
+
 #include "gui.h"
 #include "utils.h"
 #include "preferences.h"
@@ -44,9 +46,11 @@ main (int argc, char *argv[])
     *highcheck1, *highcheck2, *highcheck3, *highcheck4, *highcheck5,
     *highcheck6, *highcheck7, *highcheck8, *soundcheck,
     *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
-    *highentry6, *highentry7, *highentry8;
+    *highentry6, *highentry7, *highentry8,
+    *f1button, *f2button, *f3button, *f4button, *f5button, *f6button,
+    *f7button, *f8button;
   GtkTreeViewColumn *column;
-  gchar *lang, **wsplit, *colorstr;
+  gchar *lang, **wsplit, *colorstr, *str;
   GString *greeting = g_string_new ("");
   PangoFontDescription *font_description;
   gint pango_size;
@@ -285,6 +289,56 @@ main (int argc, char *argv[])
   else
     gtk_tree_view_column_set_fixed_width (column, atoi(wsplit[6]));
   g_strfreev (wsplit);
+
+  f1button = g_object_get_data (G_OBJECT (gui->window), "f1button");
+  f2button = g_object_get_data (G_OBJECT (gui->window), "f2button");
+  f3button = g_object_get_data (G_OBJECT (gui->window), "f3button");
+  f4button = g_object_get_data (G_OBJECT (gui->window), "f4button");
+  f5button = g_object_get_data (G_OBJECT (gui->window), "f5button");
+  f6button = g_object_get_data (G_OBJECT (gui->window), "f6button");
+  f7button = g_object_get_data (G_OBJECT (gui->window), "f7button");
+  f8button = g_object_get_data (G_OBJECT (gui->window), "f8button");
+  if (strcmp(preferences.f1command, "^"))
+    str = g_strdup_printf ("F1: %s", preferences.f1command);
+  else
+    str = g_strdup ("F1:");
+  gtk_button_set_label (GTK_BUTTON (f1button), str);
+  if (strcmp(preferences.f2command, "^"))
+    str = g_strdup_printf ("F2: %s", preferences.f2command);
+  else
+    str = g_strdup ("F2:");
+  gtk_button_set_label (GTK_BUTTON (f2button), str);
+  if (strcmp(preferences.f3command, "^"))
+    str = g_strdup_printf ("F3: %s", preferences.f3command);
+  else
+    str = g_strdup ("F3:");
+  gtk_button_set_label (GTK_BUTTON (f3button), str);
+  if (strcmp(preferences.f4command, "^"))
+    str = g_strdup_printf ("F4: %s", preferences.f4command);
+  else
+    str = g_strdup ("F4:");
+  gtk_button_set_label (GTK_BUTTON (f4button), str);
+  if (strcmp(preferences.f5command, "^"))
+    str = g_strdup_printf ("F5: %s", preferences.f5command);
+  else
+    str = g_strdup ("F5:");
+  gtk_button_set_label (GTK_BUTTON (f5button), str);
+  if (strcmp(preferences.f6command, "^"))
+    str = g_strdup_printf ("F6: %s", preferences.f6command);
+  else
+    str = g_strdup ("F6:");
+  gtk_button_set_label (GTK_BUTTON (f6button), str);
+  if (strcmp(preferences.f7command, "^"))
+    str = g_strdup_printf ("F7: %s", preferences.f7command);
+  else
+    str = g_strdup ("F7:");
+  gtk_button_set_label (GTK_BUTTON (f7button), str);
+  if (strcmp(preferences.f8command, "^"))
+    str = g_strdup_printf ("F8: %s", preferences.f8command);
+  else
+    str = g_strdup ("F8:");
+  gtk_button_set_label (GTK_BUTTON (f8button), str);
+  g_free (str);
 
   gtk_widget_show_all (gui->window);
   gtk_window_move (GTK_WINDOW(gui->window), 

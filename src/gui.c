@@ -24,6 +24,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "types.h"
 #include "gui.h"
@@ -207,23 +208,23 @@ create_mainwindow (void)
   get_main_menu (gui->window, &mainmenubar);
   gtk_container_add (GTK_CONTAINER (handlebox), mainmenubar);
 
-  fvbox = gtk_vbox_new (FALSE, 0);
-  fhbox1 = gtk_hbox_new (FALSE, 0);
-  fhbox2 = gtk_hbox_new (FALSE, 0);
+  fvbox = gtk_vbox_new (TRUE, 0);
+  fhbox1 = gtk_hbox_new (TRUE, 0);
+  fhbox2 = gtk_hbox_new (TRUE, 0);
   gtk_container_add (GTK_CONTAINER (fvbox), fhbox1);
   gtk_container_add (GTK_CONTAINER (fvbox), fhbox2);
-  f1button = gtk_button_new_with_label ("F1");
-  f2button = gtk_button_new_with_label ("F2");
-  f3button = gtk_button_new_with_label ("F3");
-  f4button = gtk_button_new_with_label ("F4");
+  f1button = gtk_button_new_with_label ("");
+  f2button = gtk_button_new_with_label ("");
+  f3button = gtk_button_new_with_label ("");
+  f4button = gtk_button_new_with_label ("");
   gtk_container_add (GTK_CONTAINER (fhbox1), f1button);
   gtk_container_add (GTK_CONTAINER (fhbox1), f2button);
   gtk_container_add (GTK_CONTAINER (fhbox1), f3button);
   gtk_container_add (GTK_CONTAINER (fhbox1), f4button);
-  f5button = gtk_button_new_with_label ("F5");
-  f6button = gtk_button_new_with_label ("F6");
-  f7button = gtk_button_new_with_label ("F7");
-  f8button = gtk_button_new_with_label ("F8");
+  f5button = gtk_button_new_with_label ("");
+  f6button = gtk_button_new_with_label ("");
+  f7button = gtk_button_new_with_label ("");
+  f8button = gtk_button_new_with_label ("");
   gtk_container_add (GTK_CONTAINER (fhbox2), f5button);
   gtk_container_add (GTK_CONTAINER (fhbox2), f6button);
   gtk_container_add (GTK_CONTAINER (fhbox2), f7button);
@@ -1009,13 +1010,121 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 gboolean
 on_fbutton_press (GtkButton *button, GdkEventButton *event, gpointer user_data)
 {
-	GtkWidget *editwindow;
+	GtkWidget *editdialog, *editvbox, *editlabel, *editentry, 
+	  *f1button, *f2button, *f3button, *f4button, *f5button, *f6button,
+      *f7button, *f8button;
+	gchar *temp, *str;
+	gint response;
 
 	if (event->button == 3)
 	{
-		editwindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-		gtk_widget_show_all (editwindow);
-		return TRUE;
+	  editdialog = gtk_dialog_new_with_buttons (_("xdx - edit function key"), 
+	    GTK_WINDOW (gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, 
+	    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
+      editvbox = gtk_vbox_new (TRUE, 0);
+      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (editdialog)->vbox), 
+		editvbox, TRUE, TRUE, 0);
+      temp = g_strdup_printf (_("Command to be used for F%d"), GPOINTER_TO_INT(user_data));
+	  editlabel = gtk_label_new_with_mnemonic (temp);
+	  g_free (temp);
+	  gtk_box_pack_start (GTK_BOX (editvbox), editlabel, TRUE, TRUE, 0);
+	  editentry = gtk_entry_new ();
+	  gtk_box_pack_start (GTK_BOX (editvbox), editentry, TRUE, TRUE, 0);
+
+      if (GPOINTER_TO_INT(user_data) == 1 && strcmp(preferences.f1command, "^"))
+        gtk_entry_set_text (GTK_ENTRY(editentry), preferences.f1command);
+      if (GPOINTER_TO_INT(user_data) == 2 && strcmp(preferences.f2command, "^"))
+        gtk_entry_set_text (GTK_ENTRY(editentry), preferences.f2command);
+      if (GPOINTER_TO_INT(user_data) == 3 && strcmp(preferences.f3command, "^"))
+        gtk_entry_set_text (GTK_ENTRY(editentry), preferences.f3command);
+      if (GPOINTER_TO_INT(user_data) == 4 && strcmp(preferences.f4command, "^"))
+        gtk_entry_set_text (GTK_ENTRY(editentry), preferences.f4command);
+      if (GPOINTER_TO_INT(user_data) == 5 && strcmp(preferences.f5command, "^"))
+        gtk_entry_set_text (GTK_ENTRY(editentry), preferences.f5command);
+      if (GPOINTER_TO_INT(user_data) == 6 && strcmp(preferences.f6command, "^"))
+        gtk_entry_set_text (GTK_ENTRY(editentry), preferences.f6command);
+      if (GPOINTER_TO_INT(user_data) == 7 && strcmp(preferences.f7command, "^"))
+        gtk_entry_set_text (GTK_ENTRY(editentry), preferences.f7command);
+      if (GPOINTER_TO_INT(user_data) == 8 && strcmp(preferences.f8command, "^"))
+        gtk_entry_set_text (GTK_ENTRY(editentry), preferences.f8command);
+
+	  gtk_widget_show_all (editdialog);
+	  response = gtk_dialog_run (GTK_DIALOG (editdialog));
+      if (response == GTK_RESPONSE_OK)
+      {
+      	temp = gtk_editable_get_chars (GTK_EDITABLE (editentry), 0, -1);
+      	if (strlen(temp) > 0)
+      	{
+      	  if (GPOINTER_TO_INT(user_data) == 1)
+      	  {
+      	    f1button = g_object_get_data (G_OBJECT (gui->window), "f1button");
+            preferences.f1command = g_strdup (temp);
+            str = g_strdup_printf ("F1: %s", preferences.f1command);
+            gtk_button_set_label (GTK_BUTTON (f1button), str);
+            g_free (str);
+
+          }
+      	  if (GPOINTER_TO_INT(user_data) == 2)
+      	  {
+      	    f2button = g_object_get_data (G_OBJECT (gui->window), "f2button");
+      	    preferences.f2command = g_strdup (temp);
+            str = g_strdup_printf ("F2: %s", preferences.f2command);
+            gtk_button_set_label (GTK_BUTTON (f2button), str);
+            g_free (str);
+          }
+      	  if (GPOINTER_TO_INT(user_data) == 3)
+      	  {
+      	    f3button = g_object_get_data (G_OBJECT (gui->window), "f3button");
+      	    preferences.f3command = g_strdup (temp);
+            str = g_strdup_printf ("F3: %s", preferences.f3command);
+            gtk_button_set_label (GTK_BUTTON (f3button), str);
+            g_free (str);
+          }
+      	  if (GPOINTER_TO_INT(user_data) == 4)
+      	  {
+      	    f4button = g_object_get_data (G_OBJECT (gui->window), "f4button");
+      	    preferences.f4command = g_strdup (temp);
+            str = g_strdup_printf ("F4: %s", preferences.f4command);
+            gtk_button_set_label (GTK_BUTTON (f4button), str);
+            g_free (str);
+          }
+      	  if (GPOINTER_TO_INT(user_data) == 5)
+      	  {
+      	    f5button = g_object_get_data (G_OBJECT (gui->window), "f5button");
+      	    preferences.f5command = g_strdup (temp);
+            str = g_strdup_printf ("F5: %s", preferences.f5command);
+            gtk_button_set_label (GTK_BUTTON (f5button), str);
+            g_free (str);
+          }
+      	  if (GPOINTER_TO_INT(user_data) == 6)
+      	  {
+      	    f6button = g_object_get_data (G_OBJECT (gui->window), "f6button");
+      	    preferences.f6command = g_strdup (temp);
+            str = g_strdup_printf ("F6: %s", preferences.f6command);
+            gtk_button_set_label (GTK_BUTTON (f6button), str);
+            g_free (str);
+          }
+      	  if (GPOINTER_TO_INT(user_data) == 7)
+      	  {
+      	    f7button = g_object_get_data (G_OBJECT (gui->window), "f7button");
+      	    preferences.f7command = g_strdup (temp);
+            str = g_strdup_printf ("F7: %s", preferences.f7command);
+            gtk_button_set_label (GTK_BUTTON (f7button), str);
+            g_free (str);
+          }
+      	  if (GPOINTER_TO_INT(user_data) == 8)
+      	  {
+      	    f8button = g_object_get_data (G_OBJECT (gui->window), "f8button");
+      	    preferences.f8command = g_strdup (temp);
+            str = g_strdup_printf ("F8: %s", preferences.f8command);
+            gtk_button_set_label (GTK_BUTTON (f8button), str);
+            g_free (str);
+          }
+		}
+		g_free (temp);
+      }
+	  gtk_widget_destroy (editdialog);
+	  return TRUE;
 	}
 	return FALSE;
 }
