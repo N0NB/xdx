@@ -449,6 +449,15 @@ create_mainwindow (void)
   str = g_strdup_printf (_("Enable/disable sound [Ctrl+%d]"), 0);
   gtk_widget_set_tooltip_text(soundcheck, str);
 
+  gtk_widget_set_tooltip_text(f1button, _("Right click to edit"));
+  gtk_widget_set_tooltip_text(f2button, _("Right click to edit"));
+  gtk_widget_set_tooltip_text(f3button, _("Right click to edit"));
+  gtk_widget_set_tooltip_text(f4button, _("Right click to edit"));
+  gtk_widget_set_tooltip_text(f5button, _("Right click to edit"));
+  gtk_widget_set_tooltip_text(f6button, _("Right click to edit"));
+  gtk_widget_set_tooltip_text(f7button, _("Right click to edit"));
+  gtk_widget_set_tooltip_text(f8button, _("Right click to edit"));
+
   mainentry = gtk_text_view_new ();
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW(mainentry), GTK_WRAP_WORD);
   frame = gtk_frame_new (NULL);
@@ -554,6 +563,20 @@ create_mainwindow (void)
 
   g_signal_connect (G_OBJECT(f1button), "button-press-event",
 			 G_CALLBACK (on_fbutton_press), GINT_TO_POINTER(1));
+  g_signal_connect (G_OBJECT(f2button), "button-press-event",
+			 G_CALLBACK (on_fbutton_press), GINT_TO_POINTER(2));
+  g_signal_connect (G_OBJECT(f3button), "button-press-event",
+			 G_CALLBACK (on_fbutton_press), GINT_TO_POINTER(3));
+  g_signal_connect (G_OBJECT(f4button), "button-press-event",
+			 G_CALLBACK (on_fbutton_press), GINT_TO_POINTER(4));
+  g_signal_connect (G_OBJECT(f5button), "button-press-event",
+			 G_CALLBACK (on_fbutton_press), GINT_TO_POINTER(5));
+  g_signal_connect (G_OBJECT(f6button), "button-press-event",
+			 G_CALLBACK (on_fbutton_press), GINT_TO_POINTER(6));
+  g_signal_connect (G_OBJECT(f7button), "button-press-event",
+			 G_CALLBACK (on_fbutton_press), GINT_TO_POINTER(7));
+  g_signal_connect (G_OBJECT(f8button), "button-press-event",
+			 G_CALLBACK (on_fbutton_press), GINT_TO_POINTER(8));
 
   g_object_set_data (G_OBJECT (gui->window), "maintext", maintext);
   g_object_set_data (G_OBJECT (gui->window), "treeview", treeview);
@@ -986,9 +1009,12 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 gboolean
 on_fbutton_press (GtkButton *button, GdkEventButton *event, gpointer user_data)
 {
+	GtkWidget *editwindow;
+
 	if (event->button == 3)
 	{
-		g_print ("button press\n");
+		editwindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+		gtk_widget_show_all (editwindow);
 		return TRUE;
 	}
 	return FALSE;
