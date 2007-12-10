@@ -77,6 +77,7 @@ typedef struct
   GdkColor highcolor8;
   gchar *highmenu;
   gint sidebar;
+  gint fbox;
   gint reconnect;
   gint playsound;
   gint keepalive;

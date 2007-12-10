@@ -108,6 +108,7 @@ loadpreferences (void)
   gdk_color_parse("red", &preferences.highcolor8);
   preferences.highmenu = g_strdup ("00000000");
   preferences.sidebar = 1;
+  preferences.fbox = 1;
   preferences.reconnect = 0;
   preferences.playsound = 0;
   preferences.keepalive = 0;
@@ -261,6 +262,8 @@ loadpreferences (void)
           preferences.highmenu = g_strdup(value);
         else if (!g_ascii_strcasecmp(label, "sidebar")) 
           preferences.sidebar = atoi(value);
+        else if (!g_ascii_strcasecmp(label, "fbox")) 
+          preferences.fbox = atoi(value);
         else if (!g_ascii_strcasecmp(label, "reconnect")) 
           preferences.reconnect = atoi(value);
         else if (!g_ascii_strcasecmp(label, "playsound")) 
@@ -404,6 +407,8 @@ savepreferences (void)
     fprintf(fp, "highmenu %s\n", str);
     str = g_strdup_printf("%d", preferences.sidebar);
     fprintf(fp, "sidebar %s\n", str);
+    str = g_strdup_printf("%d", preferences.fbox);
+    fprintf(fp, "fbox %s\n", str);
     str = g_strdup_printf("%d", preferences.reconnect);
     fprintf(fp, "reconnect %s\n", str);
     str = g_strdup_printf("%d", preferences.playsound);

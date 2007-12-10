@@ -100,7 +100,7 @@ static GtkActionEntry entries[] = {
 	{ "Preferences", GTK_STOCK_PREFERENCES, N_("Preferences..."),
 		"<control>P", "Settings for xdx", G_CALLBACK(on_settings_activate) },
 	{ "Manual", GTK_STOCK_HELP, N_("Manual"),
-		"F1", "Read the manual", G_CALLBACK(on_manual_activate) },
+		"<control>H", "Read the manual", G_CALLBACK(on_manual_activate) },
 	{ "About", GTK_STOCK_HELP, N_("About"),
 		"<control>A", "About xdx", G_CALLBACK(on_about_activate) },
 };
@@ -108,9 +108,11 @@ static GtkActionEntry entries[] = {
 
 static GtkToggleActionEntry toggle_entries[] =
 {
+  { "Keybar", NULL, N_("Function keys bar"), "<control>K", "Function keys on/off",
+   G_CALLBACK(on_fkeys_activate) },
   { "Reconnect", NULL, N_("Auto Reconnect"), "<control>R", "Auto Reconnect on/off",
    G_CALLBACK(on_reconnect_activate) },
-  { "Sidebar", NULL, N_("Chat sidebar"), "F4", "Chat sidebar on/off",
+  { "Sidebar", NULL, N_("Chat sidebar"), "<control>S", "Chat sidebar on/off",
    G_CALLBACK(on_sidebar_activate) },
 };
 
@@ -126,6 +128,7 @@ static const char *ui_description =
 "      <menuitem action='Close'/>"
 "    </menu>"
 "    <menu action='SettingsMenu'>"
+"      <menuitem action='Keybar'/>"
 "      <menuitem action='Reconnect'/>"
 "      <menuitem action='Sidebar'/>"
 "      <separator name='sep2'/>"
@@ -557,6 +560,7 @@ create_mainwindow (void)
   g_object_set_data (G_OBJECT (gui->window), "highentry7", highentry7);
   g_object_set_data (G_OBJECT (gui->window), "highentry8", highentry8);
   g_object_set_data (G_OBJECT (gui->window), "highframe", highframe);
+  g_object_set_data (G_OBJECT (gui->window), "fvbox", fvbox);
 
   cluster = new_cluster();
   g_object_set_data(G_OBJECT (gui->window), "cluster", cluster);
@@ -734,6 +738,28 @@ on_quit_activate (GtkMenuItem * menuitem, gpointer user_data)
   cleanup_dxcc ();
   cleanup ();
   gtk_main_quit ();
+}
+
+void on_fkeys_activate (GtkAction * action, gpointer user_data)
+{
+  GtkWidget *fkeysmenu, *fvbox;;
+  gboolean state;
+
+  fkeysmenu = gtk_ui_manager_get_widget
+    (gui->ui_manager, "/MainMenu/SettingsMenu/Keybar");
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(fkeysmenu));
+  fvbox = g_object_get_data (G_OBJECT (gui->window), "fvbox");
+
+  if (state)
+  {
+  	preferences.fbox = 1;
+  	gtk_widget_show (fvbox);
+  }
+  else
+  {
+  	preferences.fbox = 0;
+  	gtk_widget_hide (fvbox);
+  }
 }
 
 void on_reconnect_activate (GtkAction * action, gpointer user_data)
