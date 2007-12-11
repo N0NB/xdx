@@ -88,7 +88,7 @@ msgstr "Erro a carregar o icon: %s"
 
 #: src/gui.c:251 src/gui_settingsdialog.c:415
 msgid "Spotter"
-msgstr "Spotter"
+msgstr "Quem colocou"
 
 #: src/gui.c:275 src/gui_settingsdialog.c:423
 msgid "Remarks"
@@ -104,7 +104,7 @@ msgstr "Informação"
 
 #: src/gui.c:299 src/gui_settingsdialog.c:429
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #: src/gui.c:394
 msgid "Sound"
