@@ -1,3 +1,7 @@
+Changelog for version xdx (2.4.1)
+  * This fixes compilation against version 2.14 of GTK+. Thanks to Tom,
+    DL1JBE for notifying me.
+
 Changelog for version xdx (2.4)
   * Added automatic country lookup by Emanuele IZ0ETE. In order for this to
     work you need to enable the country column in the preferences dialog.

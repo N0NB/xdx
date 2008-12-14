@@ -59,7 +59,7 @@ void on_manual_activate (GtkMenuItem * menuitem, gpointer user_data)
 	helpfile = g_strdup_printf ("%s%s%s", PACKAGE_DATA_DIR, G_DIR_SEPARATOR_S, _("MANUAL"));
 
 	g_signal_connect(G_OBJECT(manualdialog), "response",
-		GTK_SIGNAL_FUNC(gtk_widget_destroy), NULL);
+		G_CALLBACK(gtk_widget_destroy), NULL);
 
 
 	in = fopen (helpfile, "r");
