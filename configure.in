@@ -1,5 +1,5 @@
 AC_PREREQ(2.53)
-AC_INIT(xdx, 2.4, pg4i@amsat.org)
+AC_INIT(xdx, 2.4.2, pg4i@amsat.org)
 AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE
 
@@ -9,7 +9,7 @@ AC_LANG_C
 AC_CHECK_PROGS(RPMBUILD, rpmbuild, rpm)
 
 dnl Add the languages wich your application supports here.
-ALL_LINGUAS="nl fr es pl pt"
+ALL_LINGUAS="de nl fr es pl pt"
 AM_GNU_GETTEXT([external])
 # autoheader templates for AM_GNU_GETTEXT checks.
 AH_TEMPLATE([ENABLE_NLS], [])
@@ -41,7 +41,7 @@ PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.12.0)
 AC_SUBST(PACKAGE_CFLAGS)
 AC_SUBST(PACKAGE_LIBS)
 
-AC_OUTPUT([ \
+AC_OUTPUT([ po/Makefile.in \
 	xdx.1 \
 	xdx.spec
 	Makefile \

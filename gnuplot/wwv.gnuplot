@@ -22,8 +22,14 @@
 
 set term png xFFFFFF
 set out '~/.xdx/DK0WCY.png
+#set term postscript
+#set out '~/.xdx/DK0WCY.ps'
 set format x "%.0f"
 set xtics rotate
+
+set timefmt "%Y%m%d%H"
+set format x "%Y%m%d"
+set xdata time
 
 set multiplot
 

@@ -1,3 +1,8 @@
+Changelog for version xdx (2.4.2)
+  * German translations added.
+  * Improved gnuplot script for proper use of time format for the x-axis.
+  * Both contributions by Tom DL1JBE, Thanks!
+ 
 Changelog for version xdx (2.4.1)
   * This fixes compilation against version 2.14 of GTK+. Thanks to Tom,
     DL1JBE for notifying me.
