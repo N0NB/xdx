@@ -1,18 +1,18 @@
 #!/bin/sh
 # Run this to generate all the initial makefiles, etc.
 
-AUTOCONF=autoconf
-AUTOMAKE=automake-1.9
-ACLOCAL=aclocal-1.9
+AUTORECONF=autoreconf
+AUTOMAKE=automake
 
-srcdir=`dirname $0`
-test -z "$srcdir" && srcdir=.
+SRCDIR=`dirname $0`
+test -z "$SRCDIR" && SRCDIR=.
 
-cd $srcdir
-
+ORIGDIR=`pwd`
+PROJECT=Xdx
+FILE=src/main.c
 DIE=0
 
-($AUTOCONF --version) < /dev/null > /dev/null 2>&1 || {
+($AUTORECONF --version) < /dev/null > /dev/null 2>&1 || {
         echo
         echo "You must have autoconf installed to compile $PROJECT."
         echo "Download the appropriate package for your distribution,"
@@ -41,16 +41,38 @@ if test "$DIE" -eq 1; then
         exit 1
 fi
 
+cd $SRCDIR
+
 test -f $FILE || {
         echo "You must run this script in the top-level $PROJECT directory"
         exit 1
 }
 
+# gettextize initializes the GNU Gettext system and adds various files
+# and modifies Makefile.am, configure.ac, m4/Makefile.am.  See
+# README.bootstrap for more information.
+
 echo "Running gettextize...  Ignore non-fatal messages."
 gettextize --force --copy --no-changelog
-$ACLOCAL
-$AUTOMAKE --add-missing --copy
-$AUTOCONF
 
-echo "Running configure --enable-maintainer-mode --enable-compile-warnings."
-$srcdir/configure --enable-maintainer-mode --enable-compile-warnings "$@"
+###################################################################
+### autoreconf is now the preferred way to process configure.ac ###
+### which should handle compiler variations and ensures that    ###
+### subtools are processed in the correct order.                ###
+###################################################################
+
+echo "Running '$AUTORECONF -i' to process configure.ac"
+echo "and generate the configure script."
+
+# Tell autoreconf to install needed build system files
+
+$AUTORECONF -i
+
+cd $ORIGDIR
+
+if test -z "$*"; then
+        echo "I am going to run ./configure with no arguments - if you wish "
+        echo "to pass any to it, please specify them on the $0 command line."
+fi
+
+$SRCDIR/configure "$@"

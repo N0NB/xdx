@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
-INCLUDES= \
-	@GTK_CFLAGS@ -I.. \
+AM_CPPFLAGS = \
+	$(GTK_CFLAGS) -I.. \
 	-DPACKAGE_DATA_DIR=\"$(datadir)/xdx\" \
 	-DPACKAGE_LOCALE_DIR=\"$(datadir)/locale\" \
 	-DPACKAGE_SOURCE_DIR=\"$(srcdir)\" \
@@ -46,4 +46,4 @@ xdx_SOURCES = \
 	save.c \
 	gtksourceiter.c 
 
-xdx_LDADD = @GTK_LIBS@
+xdx_LDADD = $(GTK_LIBS)

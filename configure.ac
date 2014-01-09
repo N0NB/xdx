@@ -1,16 +1,38 @@
-AC_PREREQ(2.53)
-AC_INIT(xdx, 2.4.2, pg4i@amsat.org)
-AM_INIT_AUTOMAKE
-AM_MAINTAINER_MODE
+## Process this file with autoconf to create configure. -*- autoconf -*-
 
+dnl Autoconf 2.67 is in Debian Squeeze.
+AC_PREREQ([2.67])
+
+AC_INIT([Xdx],
+	[2.4.3~git],
+	[n0nb@n0nb.us],
+	[xdx],
+	[https://github.com/N0NB/xdx])
+
+AC_CONFIG_SRCDIR([src/main.c])
+AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_HEADERS([include/config.h])
+AC_CONFIG_AUX_DIR([build-aux])
+
+AM_CPPFLAGS="${AM_CPPFLAGS} -I\$(top_srcdir)/include"
+
+AM_INIT_AUTOMAKE([-Wall subdir-objects])
+
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
+AC_USE_SYSTEM_EXTENSIONS
 AC_PROG_INSTALL
 AC_PROG_CC
 AC_LANG_C
-AC_CHECK_PROGS(RPMBUILD, rpmbuild, rpm)
 
-dnl Add the languages wich your application supports here.
-ALL_LINGUAS="de nl fr es pl pt"
+dnl Quell AC_COMPILE_IFELSE warnings
+AC_GNU_SOURCE
+
 AM_GNU_GETTEXT([external])
+
+dnl Should work with at least the version of gettext in Debian Wheezy
+AM_GNU_GETTEXT_VERSION([0.18.1])
+
 # autoheader templates for AM_GNU_GETTEXT checks.
 AH_TEMPLATE([ENABLE_NLS], [])
 AH_TEMPLATE([HAVE_CATGETS], [])
@@ -33,17 +55,20 @@ AC_CHECK_FUNCS([tzset setlocale putenv alarm bzero gethostbyname inet_ntoa memse
 AC_FUNC_STRFTIME
 AC_STRUCT_TM
 
-if test "${ac_cv_c_compiler_gnu}" = "yes"; then
-  CFLAGS="${CFLAGS} -Wall"
-fi
+AX_CFLAGS_WARN_ALL([AM_CFLAGS])
 
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.12.0)
-AC_SUBST(PACKAGE_CFLAGS)
-AC_SUBST(PACKAGE_LIBS)
+dnl Installed GTK must be at least version 2.24
+PKG_CHECK_MODULES([GTK], [gtk+-2.0 >= 2.24.0])
+AC_SUBST([GTK_CFLAGS])
+AC_SUBST([GTK_LIBS])
 
-AC_OUTPUT([ po/Makefile.in \
-	xdx.1 \
-	xdx.spec
-	Makefile \
-	src/Makefile
-	])
+dnl Output accumulated flags to the Makefile files.
+AC_SUBST([AM_CPPFLAGS])
+AC_SUBST([AM_CFLAGS])
+
+AC_CONFIG_FILES([m4/Makefile
+src/Makefile
+Makefile
+xdx.1])
+
+AC_OUTPUT
