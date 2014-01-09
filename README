@@ -1,9 +1,9 @@
-xdx by Joop Stakenborg <pg4i@amsat.org>
+Xdx by Joop Stakenborg <pg4i@amsat.org>
 =======================================
 
 See the file called 'MANUAL' if you want to learn more about xdx or dx-clusters.
 You can also select help->manual from the menu after xdx is started, it will
-display the same file. The file called 'INSTALL' will show you how to compile 
+display the same file. The file called 'INSTALL' will show you how to compile
 xdx for your linux/bsd distribution.
 
 Thanks to Jean-Luc Coulon (F5IBH) for french translations and Baltasar Perez
@@ -11,5 +11,13 @@ Thanks to Jean-Luc Coulon (F5IBH) for french translations and Baltasar Perez
 providing freebsd packages and testing on this platform. Thanks to Harry, LZ1BB
 for suggesting various changes for xdx-2.0.
 
-If you find any bugs let me know and I will try to fix them.
-Joop, PG4I <pg4i@amsat.org>.
+If you find any bugs let me know and I will try to fix them.  Also, language
+translations are welcome.
+Nate, N0NB <n0nb@n0nb.us>
+
+My thanks to Joop, PG4I <pg4i@amsat.org>, for graciously granting his permission
+for me to take over Xdx and (hopefully) fix a few issues so it can be included
+in Debian again.  Development is now hosted at:  https://github.com/N0NB/xdx
+
+73, de Nate >>
+

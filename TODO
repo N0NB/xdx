@@ -1,4 +1,5 @@
 2.5: Function keys for commands
+     Support current versions of cty.dat.
 
 2.6: Communicate with xlog on countries worked/confirmed and colorize
      DX-spots accordingly.

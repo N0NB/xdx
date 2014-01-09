@@ -1,8 +1,16 @@
+Changelog for version Xdx (2.4.3)
+  * Apply Debian patch from bug #577377.
+  * Bring build system up to date for later versions of Autotools.
+  * Do not track any build system generated files in Git VCS.
+  * Modify source as needed for clean build with Gtk+ 2.24.
+  * New upstream maintainer, Nate Bargmann, N0NB <n0nb@n0nb.us>
+  * Development hosted at https://github.com/N0NB/xdx
+
 Changelog for version xdx (2.4.2)
   * German translations added.
   * Improved gnuplot script for proper use of time format for the x-axis.
   * Both contributions by Tom DL1JBE, Thanks!
- 
+
 Changelog for version xdx (2.4.1)
   * This fixes compilation against version 2.14 of GTK+. Thanks to Tom,
     DL1JBE for notifying me.
