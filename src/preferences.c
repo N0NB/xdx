@@ -25,6 +25,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+
+#include "config.h"
 #include "preferences.h"
 #include "utils.h"
 #include "gui.h"

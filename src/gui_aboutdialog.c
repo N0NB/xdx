@@ -24,23 +24,28 @@
 #include <gtk/gtk.h>
 #include <string.h>
 
+#include "config.h"
 #include "gui.h"
 #include "preferences.h"
 #include "utils.h"
 
 extern preferencestype preferences;
 
+/*
 static void
 handle_url (GtkAboutDialog *about, const char *link, gpointer data)
 {
-	openurl (link);
+        openurl (link);
 }
+*/
 
+/*
 static void
 handle_email (GtkAboutDialog *about, const char *link, gpointer data)
 {
-	openmail (link);
+        openmail (link);
 }
+*/
 
 /*
  * called from the menu
@@ -48,18 +53,22 @@ handle_email (GtkAboutDialog *about, const char *link, gpointer data)
 void
 on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
-	gchar *authors[] = { "Joop Stakenborg PG4I <pg4i@amsat.org>", NULL };
+	gchar *authors[] = { "Joop Stakenborg, PG4I <pg4i@amsat.org>",
+	                     "Nate Bargmann, N0NB <n0nb@n0nb.us>",
+	                     NULL };
+
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file
 		(PACKAGE_DATA_DIR "/pixmaps/xdx-logo.png", NULL);
 
-	gtk_about_dialog_set_url_hook (handle_url, NULL, NULL);
-	gtk_about_dialog_set_email_hook (handle_email, NULL, NULL);
+//        gtk_about_dialog_set_url_hook (handle_url, NULL, NULL);
+//        gtk_about_dialog_set_email_hook (handle_email, NULL, NULL);
 
 	gtk_show_about_dialog (GTK_WINDOW(gui->window), 
 		"authors", authors,
 		"comments", _("Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"),
 		"license", 
 "Copyright (C) 2002 - 2007 Joop Stakenborg <pg4i@amsat.org>\n"
+"Copyright (C) 2014 Nate Bargmann <n0nb@n0nb.us>\n"
 "\n"
 "This program is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -74,7 +83,7 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 "You should have received a copy of the GNU General Public License\n"
 "along with this program; if not, write to the Free Software\n"
 "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n",
-		"website", "http://www.qsl.net/pg4i/linux/xdx.html",
+		"website", "https://github.com/N0NB/xdx",
 		"logo", pixbuf,
 		"translator-credits",
 "Dutch: Joop Stakenborg PG4I <pg4i@amsat.org>\n"

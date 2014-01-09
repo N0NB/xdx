@@ -68,27 +68,27 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
   hostlabel = gtk_label_new_with_mnemonic (_("_Hostname"));
   gtk_table_attach_defaults (GTK_TABLE (table), hostlabel, 0, 1, 0, 1);
-  hostnamecombo = gtk_combo_box_entry_new_text ();
+  hostnamecombo = gtk_combo_box_text_new_with_entry();
   if (gui->hostnamehistory)
   {
         num = g_list_length (gui->hostnamehistory);
         for (i = 0; i < num; i++)
         {
           s = g_list_nth_data (gui->hostnamehistory, i);
-          gtk_combo_box_prepend_text (GTK_COMBO_BOX (hostnamecombo), s);
+          gtk_combo_box_text_prepend_text(GTK_COMBO_BOX_TEXT(hostnamecombo), s);
 	}
   }
   gtk_table_attach_defaults (GTK_TABLE (table), hostnamecombo, 1, 2, 0, 1);
   portlabel = gtk_label_new_with_mnemonic (_("_Port"));
   gtk_table_attach_defaults (GTK_TABLE (table), portlabel, 0, 1, 1, 2);
-  portcombo = gtk_combo_box_entry_new_text ();
+  portcombo = gtk_combo_box_text_new_with_entry();
   if (gui->porthistory)
   {
         num = g_list_length (gui->porthistory);
         for (i = 0; i < num; i++)
         {
           s = g_list_nth_data (gui->porthistory, i);
-          gtk_combo_box_prepend_text (GTK_COMBO_BOX (portcombo), s);
+          gtk_combo_box_text_prepend_text(GTK_COMBO_BOX_TEXT(portcombo), s);
 	}
   }
   gtk_table_attach_defaults (GTK_TABLE (table), portcombo, 1, 2, 1, 2);

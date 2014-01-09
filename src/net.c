@@ -84,7 +84,7 @@ clresolve (servertype *cluster)
   struct sockaddr_in claddress;
   struct hostent *clhostent;
   GError *err = NULL;
-  GIOStatus res = G_IO_STATUS_NORMAL;
+//  GIOStatus res = G_IO_STATUS_NORMAL;
 
   g_string_printf (msg, _("Resolving %s..."), cluster->host);
   updatestatusbar (msg, FALSE);
@@ -150,7 +150,8 @@ clresolve (servertype *cluster)
 
   cluster->rxchannel = g_io_channel_unix_new (cluster->sockethandle);
   g_io_channel_set_flags (cluster->rxchannel, G_IO_FLAG_NONBLOCK, &err);
-  res = g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
+//  res = g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
+  g_io_channel_set_encoding (cluster->rxchannel, NULL, &err);
   cluster->keepalivetimer = g_timeout_add (300000, send_keepalivepacket, NULL);
   cluster->source_id = g_io_add_watch
     (cluster->rxchannel, G_IO_IN, rx, cluster);

@@ -26,6 +26,7 @@
 #include <time.h>
 #include <string.h>
 
+#include "config.h"
 #include "gui.h"
 #include "utils.h"
 #include "preferences.h"
@@ -50,12 +51,13 @@ main (int argc, char *argv[])
     *f1button, *f2button, *f3button, *f4button, *f5button, *f6button,
     *f7button, *f8button;
   GtkTreeViewColumn *column;
-  gchar *lang, **wsplit, *colorstr, *str;
+//  gchar *lang, **wsplit, *colorstr, *str;
+  gchar **wsplit, *colorstr, *str;
   GString *greeting = g_string_new ("");
   PangoFontDescription *font_description;
   gint pango_size;
   GtkTextBuffer *buffer;
-	
+
 #ifdef ENABLE_NLS
   bindtextdomain (PACKAGE, PACKAGE_LOCALE_DIR);
   bind_textdomain_codeset (PACKAGE, "UTF-8");
@@ -68,7 +70,7 @@ main (int argc, char *argv[])
   add_pixmap_directory(PACKAGE_DATA_DIR G_DIR_SEPARATOR_S "pixmaps");
   add_pixmap_directory(PACKAGE_SOURCE_DIR G_DIR_SEPARATOR_S "pixmaps");
 
-  lang = gtk_set_locale ();	/* don't free lang */
+//  lang = gtk_set_locale ();	/* don't free lang */
   gtk_init (&argc, &argv);
   setlocale(LC_NUMERIC, "C");
 

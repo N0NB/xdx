@@ -227,12 +227,13 @@ gboolean
 on_maintext_motion_notify_event (GtkWidget * widget, GdkEventMotion *event, 
   gpointer user_data)
 {
-  GdkWindow *window;
+//  GdkWindow *window;
   gint x, y;
   GdkModifierType state;
 
   if (event->is_hint)
-    window = gdk_window_get_pointer (event->window, &x, &y, &state);
+//    window = gdk_window_get_pointer (event->window, &x, &y, &state);
+    gdk_window_get_pointer (event->window, &x, &y, &state);
   else
   {
     x = event->x;

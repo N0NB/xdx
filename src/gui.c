@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "config.h"
 #include "types.h"
 #include "gui.h"
 #include "preferences.h"
@@ -951,7 +952,7 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
     *f5button, *f6button, *f7button, *f8button;
 
   mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
-  if (GTK_WIDGET_HAS_FOCUS(mainentry))
+  if (gtk_widget_has_focus(mainentry))
   {
     switch (event->keyval)
     {

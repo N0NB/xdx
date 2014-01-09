@@ -528,7 +528,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 
 
         /* focusing the treeview will stop scrolling */ 
-	if (!GTK_WIDGET_HAS_FOCUS(treeview))
+	if (!gtk_widget_has_focus(treeview))
         {
           path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &iter);
           gtk_tree_view_set_cursor (GTK_TREE_VIEW (treeview), path, NULL, FALSE);
@@ -797,7 +797,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
           }
         }
         /* focusing (clicking) the textview will stop scrolling */
-	if (!GTK_WIDGET_HAS_FOCUS(maintext))
+	if (!gtk_widget_has_focus(maintext))
 	{
           gtk_text_buffer_get_bounds (buffer, &start, &end);
           gtk_text_buffer_place_cursor(buffer, &end);

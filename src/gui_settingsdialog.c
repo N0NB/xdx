@@ -203,7 +203,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gboolean state;
   gchar *str;
   GtkTextBuffer *buffer;
-  GtkTextTagTable *table;
+//  GtkTextTagTable *table;
   GdkColor color;
 
   gtk_widget_set_sensitive (gui->window, 0);
@@ -917,7 +917,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
     /* highlights frame*/
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
-    table = gtk_text_buffer_get_tag_table (buffer);
+//    table = gtk_text_buffer_get_tag_table (buffer);
 
     gtk_color_button_get_color (GTK_COLOR_BUTTON(colorbutton1), &color);
     if (! gdk_color_equal(&color, &preferences.highcolor1))
