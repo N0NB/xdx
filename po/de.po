@@ -8,136 +8,137 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.4.1\n"
-"Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2007-12-11 19:55+0100\n"
+"Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
+"POT-Creation-Date: 2014-01-09 08:24-0600\n"
 "PO-Revision-Date: 2009-01-10 07:27+0100\n"
 "Last-Translator: Thomas Beierlein <tb@forth-ev.de>\n"
 "Language-Team: German\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/gui_aboutdialog.c:60
+#: src/gui_aboutdialog.c:68
 msgid "Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"
 msgstr "Tcp/ip DX-Cluster und ON4KST Chat Client fuer Funkamateure"
 
-#: src/gui.c:87
+#: src/gui.c:88
 msgid "_Program"
 msgstr "_Programm"
 
-#: src/gui.c:88
+#: src/gui.c:89
 msgid "_Host"
 msgstr "_Host"
 
-#: src/gui.c:89
+#: src/gui.c:90
 msgid "_Settings"
 msgstr "_Einstellungen"
 
-#: src/gui.c:90
+#: src/gui.c:91
 msgid "H_elp"
 msgstr "H_ilfe"
 
-#: src/gui.c:91
+#: src/gui.c:92
 msgid "Highlights"
 msgstr "Highlights"
 
-#: src/gui.c:93
+#: src/gui.c:94
 msgid "Quit"
 msgstr "Quit"
 
-#: src/gui.c:95
+#: src/gui.c:96
 msgid "Connect..."
 msgstr "Verbinden..."
 
-#: src/gui.c:97
+#: src/gui.c:98
 msgid "Disconnect"
 msgstr "Trennen..."
 
-#: src/gui.c:99
+#: src/gui.c:100
 msgid "Connection Log"
 msgstr "Verbindungs Log"
 
-#: src/gui.c:101
+#: src/gui.c:102
 msgid "Preferences..."
 msgstr "Preferences..."
 
-#: src/gui.c:103
+#: src/gui.c:104
 msgid "Manual"
 msgstr "Handbuch"
 
-#: src/gui.c:105
+#: src/gui.c:106
 msgid "About"
 msgstr "About"
 
-#: src/gui.c:112
+#: src/gui.c:113
 msgid "Function keys bar"
 msgstr "Function keys bar"
 
-#: src/gui.c:114
+#: src/gui.c:115
 msgid "Auto Reconnect"
 msgstr "Autom. Neuverbinden"
 
-#: src/gui.c:116
+#: src/gui.c:117
 msgid "Chat sidebar"
 msgstr "Chat sidebar"
 
-#: src/gui.c:190
+#: src/gui.c:191
 #, c-format
 msgid "Error loading icon: %s"
 msgstr "Fehler beim Laden des Icon: %s"
 
-#: src/gui.c:251 src/gui_settingsdialog.c:415
+#: src/gui.c:252 src/gui_settingsdialog.c:415
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:275 src/gui_settingsdialog.c:423
+#: src/gui.c:276 src/gui_settingsdialog.c:423
 msgid "Remarks"
 msgstr "Bemerkungen"
 
-#: src/gui.c:283 src/gui_settingsdialog.c:425
+#: src/gui.c:284 src/gui_settingsdialog.c:425
 msgid "Time"
 msgstr "Zeit"
 
-#: src/gui.c:291 src/gui_settingsdialog.c:427
+#: src/gui.c:292 src/gui_settingsdialog.c:427
 msgid "Info"
 msgstr "Info"
 
-#: src/gui.c:299 src/gui_settingsdialog.c:429
+#: src/gui.c:300 src/gui_settingsdialog.c:429
 msgid "Country"
 msgstr "Land"
 
-#: src/gui.c:394
+#: src/gui.c:395
 msgid "Sound"
 msgstr "Sound"
 
-#: src/gui.c:425 src/gui.c:426 src/gui.c:427 src/gui.c:428 src/gui.c:429
-#: src/gui.c:430 src/gui.c:431 src/gui.c:432
+#: src/gui.c:426 src/gui.c:427 src/gui.c:428 src/gui.c:429 src/gui.c:430
+#: src/gui.c:431 src/gui.c:432 src/gui.c:433
 msgid "Enter a word to highlight"
 msgstr "Hervorzuhebendes Wort eingeben"
 
-#: src/gui.c:434 src/gui.c:436 src/gui.c:438 src/gui.c:440 src/gui.c:442
-#: src/gui.c:444 src/gui.c:446 src/gui.c:448
+#: src/gui.c:435 src/gui.c:437 src/gui.c:439 src/gui.c:441 src/gui.c:443
+#: src/gui.c:445 src/gui.c:447 src/gui.c:449
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
 msgstr "Include prompt [Ctrl+%d]"
 
-#: src/gui.c:450
+#: src/gui.c:451
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
 msgstr "Sound an/aus [Ctrl+%d]"
 
-#: src/gui.c:453 src/gui.c:454 src/gui.c:455 src/gui.c:456 src/gui.c:457
-#: src/gui.c:458 src/gui.c:459 src/gui.c:460
+#: src/gui.c:454 src/gui.c:455 src/gui.c:456 src/gui.c:457 src/gui.c:458
+#: src/gui.c:459 src/gui.c:460 src/gui.c:461
 msgid "Right click to edit"
 msgstr "Right click to edit"
 
-#: src/gui.c:1021
+#: src/gui.c:1022
 #, fuzzy
 msgid "xdx - edit function key"
 msgstr "xdx - Verbindung oeffnen"
 
-#: src/gui.c:1027
+#: src/gui.c:1028
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Rufzeichen fuer das Login"
@@ -374,7 +375,7 @@ msgstr "Prompt"
 msgid "Sent text"
 msgstr "Gesendeter Text"
 
-#: src/main.c:384
+#: src/main.c:386
 #, c-format
 msgid "Welcome to %s"
 msgstr "Willkommen bei %s"
@@ -399,33 +400,33 @@ msgstr "Verbinde mit %s"
 msgid "Connected to %s"
 msgstr "Verbunden mit %s"
 
-#: src/net.c:255
+#: src/net.c:256
 msgid "Connection closed, trying reconnect in 10 seconds"
 msgstr "Verbindung geschlossen, versuche Neuverbindung in 10 Sekunden"
 
-#: src/net.c:263
+#: src/net.c:264
 msgid "Connection closed by remote host"
 msgstr "Verbindung durch Remote Host geschlossen"
 
-#: src/net.c:278
+#: src/net.c:279
 msgid "Connection closed by remote host (0 bytes received)"
 msgstr "Verbindung durch Remote Host geschlossen (0 bytes empfangen)"
 
-#: src/net.c:334
+#: src/net.c:335
 #, c-format
 msgid "Write failed: %s"
 msgstr "Schreiben fehlgeschlagen: %s"
 
-#: src/net.c:347
+#: src/net.c:348
 msgid "Nothing to send, you are not connected"
 msgstr "Nichts zu senden, Sie sind nicht verbunden"
 
-#: src/preferences.c:46
+#: src/preferences.c:48
 #, c-format
 msgid "Creating ~/.%s directory."
 msgstr "Lege Verzeichnis ~/.%s an."
 
-#: src/preferences.c:49
+#: src/preferences.c:51
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr "~/.%s ist kein Verzeichnis."

@@ -2,141 +2,142 @@
 # Copyright (C) 2002-2006 Joop Stakenborg <pg4i@amsat.org>
 # This file is distributed under the same license as the xdx package.
 # Baltasar Perez (ea8bvp) <ea8bvp@yahoo.com>, 2006.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version:  xdx 2.0\n"
-"Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2007-12-11 19:55+0100\n"
+"Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
+"POT-Creation-Date: 2014-01-09 08:24-0600\n"
 "PO-Revision-Date: 2006-04-23 12:12+0100\n"
 "Last-Translator: David Quental <ct1drb@iol.pt>\n"
 "Language-Team: Português/Portugal\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gui_aboutdialog.c:60
+#: src/gui_aboutdialog.c:68
 msgid "Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"
 msgstr ""
 "Cliente TCP/IP de DX-Cluster e cliente de chat ON4KST para radioamadores"
 
-#: src/gui.c:87
+#: src/gui.c:88
 msgid "_Program"
 msgstr "_Programa"
 
-#: src/gui.c:88
+#: src/gui.c:89
 msgid "_Host"
 msgstr "_Servidor"
 
-#: src/gui.c:89
+#: src/gui.c:90
 msgid "_Settings"
 msgstr "_Configuração"
 
-#: src/gui.c:90
+#: src/gui.c:91
 msgid "H_elp"
 msgstr "_Ajuda"
 
-#: src/gui.c:91
+#: src/gui.c:92
 msgid "Highlights"
 msgstr "Ressaltados"
 
-#: src/gui.c:93
+#: src/gui.c:94
 msgid "Quit"
 msgstr "Sair"
 
-#: src/gui.c:95
+#: src/gui.c:96
 msgid "Connect..."
 msgstr "Conectar..."
 
-#: src/gui.c:97
+#: src/gui.c:98
 msgid "Disconnect"
 msgstr "Desconectar"
 
-#: src/gui.c:99
+#: src/gui.c:100
 msgid "Connection Log"
 msgstr "Registo de ligação"
 
-#: src/gui.c:101
+#: src/gui.c:102
 msgid "Preferences..."
 msgstr "Preferências..."
 
-#: src/gui.c:103
+#: src/gui.c:104
 msgid "Manual"
 msgstr "Manual"
 
-#: src/gui.c:105
+#: src/gui.c:106
 msgid "About"
 msgstr "Acerca de ..."
 
-#: src/gui.c:112
+#: src/gui.c:113
 msgid "Function keys bar"
 msgstr ""
 
-#: src/gui.c:114
+#: src/gui.c:115
 msgid "Auto Reconnect"
 msgstr "Voltar a conectar automáticamente"
 
-#: src/gui.c:116
+#: src/gui.c:117
 msgid "Chat sidebar"
 msgstr "Barra lateral de chat"
 
-#: src/gui.c:190
+#: src/gui.c:191
 #, c-format
 msgid "Error loading icon: %s"
 msgstr "Erro a carregar o icon: %s"
 
-#: src/gui.c:251 src/gui_settingsdialog.c:415
+#: src/gui.c:252 src/gui_settingsdialog.c:415
 msgid "Spotter"
 msgstr "Quem colocou"
 
-#: src/gui.c:275 src/gui_settingsdialog.c:423
+#: src/gui.c:276 src/gui_settingsdialog.c:423
 msgid "Remarks"
 msgstr "Comentários"
 
-#: src/gui.c:283 src/gui_settingsdialog.c:425
+#: src/gui.c:284 src/gui_settingsdialog.c:425
 msgid "Time"
 msgstr "Hora"
 
-#: src/gui.c:291 src/gui_settingsdialog.c:427
+#: src/gui.c:292 src/gui_settingsdialog.c:427
 msgid "Info"
 msgstr "Informação"
 
-#: src/gui.c:299 src/gui_settingsdialog.c:429
+#: src/gui.c:300 src/gui_settingsdialog.c:429
 msgid "Country"
 msgstr "País"
 
-#: src/gui.c:394
+#: src/gui.c:395
 msgid "Sound"
 msgstr "Som"
 
-#: src/gui.c:425 src/gui.c:426 src/gui.c:427 src/gui.c:428 src/gui.c:429
-#: src/gui.c:430 src/gui.c:431 src/gui.c:432
+#: src/gui.c:426 src/gui.c:427 src/gui.c:428 src/gui.c:429 src/gui.c:430
+#: src/gui.c:431 src/gui.c:432 src/gui.c:433
 msgid "Enter a word to highlight"
 msgstr "Introduça a palavra a ressaltar"
 
-#: src/gui.c:434 src/gui.c:436 src/gui.c:438 src/gui.c:440 src/gui.c:442
-#: src/gui.c:444 src/gui.c:446 src/gui.c:448
+#: src/gui.c:435 src/gui.c:437 src/gui.c:439 src/gui.c:441 src/gui.c:443
+#: src/gui.c:445 src/gui.c:447 src/gui.c:449
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
 msgstr "Incluir prompt [Ctrl+%d]"
 
-#: src/gui.c:450
+#: src/gui.c:451
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
 msgstr "Habilitar/desabilitar som [Ctrl+%d]"
 
-#: src/gui.c:453 src/gui.c:454 src/gui.c:455 src/gui.c:456 src/gui.c:457
-#: src/gui.c:458 src/gui.c:459 src/gui.c:460
+#: src/gui.c:454 src/gui.c:455 src/gui.c:456 src/gui.c:457 src/gui.c:458
+#: src/gui.c:459 src/gui.c:460 src/gui.c:461
 msgid "Right click to edit"
 msgstr ""
 
-#: src/gui.c:1021
+#: src/gui.c:1022
 #, fuzzy
 msgid "xdx - edit function key"
 msgstr "xdx - abrir conecção"
 
-#: src/gui.c:1027
+#: src/gui.c:1028
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Indicativo a utilizar no DX-Cluster"
@@ -373,7 +374,7 @@ msgstr "Prompt"
 msgid "Sent text"
 msgstr "Texto enviado"
 
-#: src/main.c:384
+#: src/main.c:386
 #, c-format
 msgid "Welcome to %s"
 msgstr "Benvindo ao %s"
@@ -398,33 +399,33 @@ msgstr "Conectando com: %s"
 msgid "Connected to %s"
 msgstr "Conectado a %s"
 
-#: src/net.c:255
+#: src/net.c:256
 msgid "Connection closed, trying reconnect in 10 seconds"
 msgstr "Conecção finalizada, se tentará conectar de novo em 10 segundos"
 
-#: src/net.c:263
+#: src/net.c:264
 msgid "Connection closed by remote host"
 msgstr "Conecção finalizada pelo servidor"
 
-#: src/net.c:278
+#: src/net.c:279
 msgid "Connection closed by remote host (0 bytes received)"
 msgstr "Conecção finalizada pelo servidor (0 bytes recebidos)"
 
-#: src/net.c:334
+#: src/net.c:335
 #, c-format
 msgid "Write failed: %s"
 msgstr "Falha de escrita: %s"
 
-#: src/net.c:347
+#: src/net.c:348
 msgid "Nothing to send, you are not connected"
 msgstr "Nada para enviar, não está conectado"
 
-#: src/preferences.c:46
+#: src/preferences.c:48
 #, c-format
 msgid "Creating ~/.%s directory."
 msgstr "Criando a directoria ~/.%s"
 
-#: src/preferences.c:49
+#: src/preferences.c:51
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr "~/.%s não é uma directoria"
