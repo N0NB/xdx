@@ -1,7 +1,7 @@
 # xdx - GTK+ DX-cluster client for amateur radio
 # Copyright (C) 2002-2006 Joop Stakenborg <pg4i@amsat.org>
 # This file is distributed under the same license as the xdx package.
-# Baltasar Perez (ea8bvp) <ea8bvp@yahoo.com>, 2006.
+# David Quental CT1DRB <ct1drb@radiotelegrafistas.pt>, 2007, 2014.
 #
 #
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
 "POT-Creation-Date: 2014-01-09 08:24-0600\n"
 "PO-Revision-Date: 2006-04-23 12:12+0100\n"
-"Last-Translator: David Quental <ct1drb@iol.pt>\n"
+"Last-Translator: David Quental <ct1drb@radiotelegrafistas.pt>\n"
 "Language-Team: Português/Portugal\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -48,11 +48,11 @@ msgstr "Sair"
 
 #: src/gui.c:96
 msgid "Connect..."
-msgstr "Conectar..."
+msgstr "Ligar..."
 
 #: src/gui.c:98
 msgid "Disconnect"
-msgstr "Desconectar"
+msgstr "Desligar"
 
 #: src/gui.c:100
 msgid "Connection Log"
@@ -68,15 +68,15 @@ msgstr "Manual"
 
 #: src/gui.c:106
 msgid "About"
-msgstr "Acerca de ..."
+msgstr "Acerca de"
 
 #: src/gui.c:113
 msgid "Function keys bar"
-msgstr ""
+msgstr "Barra das teclas de funções"
 
 #: src/gui.c:115
 msgid "Auto Reconnect"
-msgstr "Voltar a conectar automáticamente"
+msgstr "Voltar a ligar automáticamente"
 
 #: src/gui.c:117
 msgid "Chat sidebar"
@@ -130,7 +130,7 @@ msgstr "Habilitar/desabilitar som [Ctrl+%d]"
 #: src/gui.c:454 src/gui.c:455 src/gui.c:456 src/gui.c:457 src/gui.c:458
 #: src/gui.c:459 src/gui.c:460 src/gui.c:461
 msgid "Right click to edit"
-msgstr ""
+msgstr "Carregue na tecla direita para editar"
 
 #: src/gui.c:1022
 #, fuzzy
@@ -144,16 +144,16 @@ msgstr "Indicativo a utilizar no DX-Cluster"
 
 #: src/gui_closedialog.c:44
 msgid "xdx - close connection"
-msgstr "xdx - fechar coneccção"
+msgstr "xdx - fechar ligações"
 
 #: src/gui_closedialog.c:61
 #, c-format
 msgid "Close connection to %s ?"
-msgstr "Fechar a conecção com %s?"
+msgstr "Fechar a ligação com %s?"
 
 #: src/gui_closedialog.c:72
 msgid "Connection closed"
-msgstr "Conecção finalizada"
+msgstr "Ligação finalizada"
 
 #: src/gui_manualdialog.c:40
 msgid "xdx - manual"
@@ -169,7 +169,7 @@ msgstr "MANUAL.pt"
 
 #: src/gui_opendialog.c:49
 msgid "xdx - open connection"
-msgstr "xdx - abrir conecção"
+msgstr "xdx - abrir ligação"
 
 #: src/gui_opendialog.c:69
 msgid "_Hostname"
@@ -181,7 +181,7 @@ msgstr "_Porta"
 
 #: src/gui_logdialog.c:47
 msgid "xdx - connection log"
-msgstr "xdx - registo de conecção"
+msgstr "xdx - registo de ligação"
 
 #: src/gui_settingsdialog.c:104
 msgid "xdx - Select a font"
@@ -258,7 +258,7 @@ msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
 "using rigctl (%d = the frequency retrieved from the DX spot)"
 msgstr ""
-"Quando fizer um dobre click sobre um spot DX, o seu rádio ajustará à "
+"Quando fizer um duplo click sobre um spot DX, o seu rádio ajustará à "
 "frequência do spot utilizando rigctl (%d = frequência do spot DX)"
 
 #: src/gui_settingsdialog.c:345
@@ -392,24 +392,24 @@ msgstr "Falha na resolução: %s"
 #: src/net.c:102
 #, c-format
 msgid "Connecting to: %s"
-msgstr "Conectando com: %s"
+msgstr "Ligando com: %s"
 
 #: src/net.c:143
 #, c-format
 msgid "Connected to %s"
-msgstr "Conectado a %s"
+msgstr "Ligado a %s"
 
 #: src/net.c:256
 msgid "Connection closed, trying reconnect in 10 seconds"
-msgstr "Conecção finalizada, se tentará conectar de novo em 10 segundos"
+msgstr "Ligação finalizada, se tentará ligar de novo em 10 segundos"
 
 #: src/net.c:264
 msgid "Connection closed by remote host"
-msgstr "Conecção finalizada pelo servidor"
+msgstr "Ligação finalizada pelo servidor"
 
 #: src/net.c:279
 msgid "Connection closed by remote host (0 bytes received)"
-msgstr "Conecção finalizada pelo servidor (0 bytes recebidos)"
+msgstr "Ligção finalizada pelo servidor (0 bytes recebidos)"
 
 #: src/net.c:335
 #, c-format
@@ -418,7 +418,7 @@ msgstr "Falha de escrita: %s"
 
 #: src/net.c:348
 msgid "Nothing to send, you are not connected"
-msgstr "Nada para enviar, não está conectado"
+msgstr "Nada para enviar, não está ligado"
 
 #: src/preferences.c:48
 #, c-format

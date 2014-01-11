@@ -89,7 +89,7 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 "Dutch: Joop Stakenborg PG4I <pg4i@amsat.org>\n"
 "French: Jean-Luc Coulon F5IBH <jean-luc.coulon@wanadoo.fr>\n"
 "Polish: Boguslaw Ciastek SQ5TB <SQ5TB@tlen.pl>\n"
-"Portuguese: David Quental CT1DRB <ct1drb@iol.pt>\n"
+"Portuguese: David Quental CT1DRB <ct1drb@radiotelegrafistas.pt>\n"
 "Spanish: Baltasar Perez EC8AYR <ec8ayr@yahoo.com>\n",
 		"version", PACKAGE_VERSION,
 		NULL);
