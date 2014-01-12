@@ -1,4 +1,4 @@
-/*  
+/*
  *  xdx - GTK+ DX-cluster client for amateur radio
  *  Copyright (C) 2002-2006 Joop Stakenborg <pg4i@amsat.org>
  *
@@ -21,19 +21,46 @@
  *  main.c - start of gtk loop.
  */
 
-#include <gtk/gtk.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
 
-#include "config.h"
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#include <gtk/gtk.h>
+
 #include "gui.h"
-#include "utils.h"
-#include "preferences.h"
 #include "history.h"
-#include "utils.h"
 #include "locale.h"
+#include "preferences.h"
 #include "text.h"
+#include "utils.h"
+
 
 extern preferencestype preferences;
 GdkColormap *colormap;
@@ -343,9 +370,9 @@ main (int argc, char *argv[])
   g_free (str);
 
   gtk_widget_show_all (gui->window);
-  gtk_window_move (GTK_WINDOW(gui->window), 
+  gtk_window_move (GTK_WINDOW(gui->window),
     preferences.x, preferences.y);
-  gtk_window_resize (GTK_WINDOW(gui->window), 
+  gtk_window_resize (GTK_WINDOW(gui->window),
     preferences.width, preferences.height);
   gtk_paned_set_position (GTK_PANED (vpaned), preferences.handlebarpos);
 

@@ -21,16 +21,46 @@
  * utils.c - private functions that don't belong in other modules
  */
 
-#include <gtk/gtk.h>
+
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
 #include <time.h>
-#include "utils.h"
+
+#include <gtk/gtk.h>
+
 #include "gui.h"
 #include "preferences.h"
+#include "utils.h"
+
 
 extern preferencestype preferences;
 static GList *pixmaps_directories = NULL;
 
-/* 
+/*
  * use this function to set the directory containing installed pixmaps
  */
 
@@ -43,22 +73,22 @@ add_pixmap_directory (const gchar * directory)
 
 /*
  * set statusbar  message to the previous message after a timeout occurs
- */  
-   
-static gint 
-statusbar_timeout(gpointer data)  
-{  
-  GtkWidget *mainstatusbar;  
+ */
 
-  mainstatusbar = g_object_get_data (G_OBJECT (gui->window), "mainstatusbar");  
-  gtk_statusbar_pop(GTK_STATUSBAR(mainstatusbar), 1);  
-  gtk_statusbar_push(GTK_STATUSBAR(mainstatusbar), 1, gui->statusbarmessage);  
-  g_source_remove(gui->statusbartimer);  
-  gui->statusbartimer = -1;  
-  return FALSE;  
-}  
- 
-/* 
+static gint
+statusbar_timeout(gpointer data)
+{
+  GtkWidget *mainstatusbar;
+
+  mainstatusbar = g_object_get_data (G_OBJECT (gui->window), "mainstatusbar");
+  gtk_statusbar_pop(GTK_STATUSBAR(mainstatusbar), 1);
+  gtk_statusbar_push(GTK_STATUSBAR(mainstatusbar), 1, gui->statusbarmessage);
+  g_source_remove(gui->statusbartimer);
+  gui->statusbartimer = -1;
+  return FALSE;
+}
+
+/*
  * print a message to the statusbar. If timeout is set, the statusbar will
  * be set to the previous message after 5 seconds
  */
@@ -73,14 +103,14 @@ updatestatusbar (GString * statusmessage, gboolean timeout)
   gtk_statusbar_push (GTK_STATUSBAR (mainstatusbar), 1, statusmessage->str);
   if (timeout)
     {
-      if (gui->statusbartimer != -1) 
-        g_source_remove(gui->statusbartimer);  
+      if (gui->statusbartimer != -1)
+        g_source_remove(gui->statusbartimer);
       gui->statusbartimer = g_timeout_add(5000, statusbar_timeout, NULL);
     }
   else gui->statusbarmessage = g_strdup(statusmessage->str);
 }
 
-/* 
+/*
  * enable/disable menus
  */
 
@@ -100,13 +130,13 @@ static void shellcommand (gchar *command)
   args = g_strsplit (command, " ", 0);
   g_spawn_async (NULL, args, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
 }
- 
+
 void openurl (const char *url)
 {
   gchar buf[1024];
   GString *msg = g_string_new ("");
 
-  
+
   if (g_strrstr(preferences.browserapp, "%s"))
   {
     g_snprintf(buf, sizeof(buf), preferences.browserapp, url);
@@ -191,13 +221,13 @@ gchar
 
 
 /* get the current date, returned value has to be freed */
-gchar 
+gchar
 *xdxgetdate (gboolean formatted)
 {
   time_t current;
   struct tm *timestruct = NULL;
   gchar datenow[20];
- 
+
   time (&current);
   timestruct = localtime (&current);
   if (formatted)

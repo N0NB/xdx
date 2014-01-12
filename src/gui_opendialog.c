@@ -21,6 +21,33 @@
  * gui_opendialog.c - dialog for opening a connection
  */
 
+
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
 #include <gtk/gtk.h>
 
 #include "gui.h"
@@ -30,6 +57,7 @@
 
 #define HOSTNAMEHISTORY 10
 #define PORTHISTORY     10
+
 
 /*
  * called from the menu
@@ -111,29 +139,29 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
         cluster->host = "localhost";
       if (!g_ascii_strcasecmp (cluster->port, ""))
         cluster->port = "8000";
-      
+
 
       /* let's see if we need to add host/port to the history */
       node = NULL;
-      node = g_list_find_custom (gui->hostnamehistory, cluster->host, 
+      node = g_list_find_custom (gui->hostnamehistory, cluster->host,
 	      (GCompareFunc)g_ascii_strncasecmp);
       if (!node)
-        gui->hostnamehistory = g_list_prepend (gui->hostnamehistory, 
+        gui->hostnamehistory = g_list_prepend (gui->hostnamehistory,
           g_strdup(cluster->host));
       else
         { /* add last connection to the top of the list */
           if (g_list_position(gui->hostnamehistory, node) != 0)
           {
             g_free(node->data);
-            gui->hostnamehistory = 
+            gui->hostnamehistory =
               g_list_remove_link(gui->hostnamehistory, node);
-            gui->hostnamehistory = 
+            gui->hostnamehistory =
               g_list_prepend(gui->hostnamehistory, g_strdup(cluster->host));
           }
         }
 
       if (g_list_length (gui->hostnamehistory) > HOSTNAMEHISTORY)
-        gui->hostnamehistory = g_list_remove (gui->hostnamehistory, 
+        gui->hostnamehistory = g_list_remove (gui->hostnamehistory,
           g_list_last (gui->hostnamehistory)->data);
       node = NULL;
       node = g_list_find_custom (gui->porthistory, cluster->port,
@@ -145,15 +173,15 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
           if (g_list_position(gui->porthistory, node) != 0)
           {
             g_free(node->data);
-            gui->porthistory = 
+            gui->porthistory =
               g_list_remove_link(gui->porthistory, node);
-            gui->porthistory = 
+            gui->porthistory =
               g_list_prepend(gui->porthistory, g_strdup(cluster->port));
           }
         }
 
       if (g_list_length (gui->porthistory) > PORTHISTORY)
-        gui->porthistory = g_list_remove (gui->porthistory, 
+        gui->porthistory = g_list_remove (gui->porthistory,
           g_list_last (gui->porthistory)->data);
 
       menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Open", FALSE);
@@ -172,5 +200,5 @@ on_open_activate (GtkMenuItem * menuitem, gpointer user_data)
     menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Open", TRUE);
     menu_set_sensitive (gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
   }
-    
+
 }

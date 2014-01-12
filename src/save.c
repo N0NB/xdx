@@ -21,14 +21,18 @@
  * save.c - saving cluster information to harddisk
  */
 
-#include <gtk/gtk.h>
+
 #include <stdio.h>
-#include <time.h>
-#include <string.h>
 #include <stdlib.h>
-#include "save.h"
+#include <string.h>
+#include <time.h>
+
+#include <gtk/gtk.h>
+
 #include "gui.h"
+#include "save.h"
 #include "utils.h"
+
 
 void savedx (gchar *dx)
 {
@@ -50,7 +54,7 @@ void savedx (gchar *dx)
 }
 
 /* in lines that look like this:
-  "SFI=75, A=2, K=2, R= 13" 
+  "SFI=75, A=2, K=2, R= 13"
   "K=0 expK=0 A=4 R=13 SFI=75"
   extract info after the '=' and save it
 */
@@ -72,7 +76,7 @@ static void appendwwvinfo (FILE *fpointer, gchar *item, gchar *line)
         *j = '\0';
         break;
       }
-      else 
+      else
       if (*j == ' ')
       {
         *j = '\0';

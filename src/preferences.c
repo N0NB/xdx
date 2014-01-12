@@ -21,15 +21,43 @@
  * preferences.c - private functions for saving and recalling xdx preferences.
  */
 
-#include <gtk/gtk.h>
+
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
 
-#include "config.h"
+#include <gtk/gtk.h>
+
+#include "gui.h"
 #include "preferences.h"
 #include "utils.h"
-#include "gui.h"
+
 
 preferencestype preferences;
 
@@ -66,7 +94,7 @@ loadpreferences (void)
   preferences.y = 30;
   preferences.width = 750;
   preferences.height = 550;
-  preferences.columnwidths = 
+  preferences.columnwidths =
     g_strdup_printf("%d,%d,%d,%d,%d,%d,%d",
     COL0WIDTH, COL1WIDTH, COL2WIDTH, COL3WIDTH, COL4WIDTH, COL5WIDTH, COL6WIDTH);
   preferences.autologin = 0;
@@ -126,7 +154,7 @@ loadpreferences (void)
   preferences.f6command = g_strdup ("^");
   preferences.f7command = g_strdup ("^");
   preferences.f8command = g_strdup ("^");
-  
+
   /* open preferences file */
   preferencesfile = g_strdup_printf ("%s/preferences", gui->preferencesdir);
   fp = fopen (preferencesfile, "r");
@@ -135,34 +163,34 @@ loadpreferences (void)
     while (!feof (fp))
       {
         if (fscanf (fp, "%s %s", label, value) == EOF) break;
-	      if (!g_ascii_strcasecmp(label, "x")) 
+	      if (!g_ascii_strcasecmp(label, "x"))
           preferences.x = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "y")) 
+        else if (!g_ascii_strcasecmp(label, "y"))
           preferences.y = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "width")) 
+        else if (!g_ascii_strcasecmp(label, "width"))
           preferences.width = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "height")) 
+        else if (!g_ascii_strcasecmp(label, "height"))
           preferences.height = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "columnwidths2")) 
+        else if (!g_ascii_strcasecmp(label, "columnwidths2"))
           preferences.columnwidths = g_strdup(value);
-        else if (!g_ascii_strcasecmp(label, "autologin")) 
+        else if (!g_ascii_strcasecmp(label, "autologin"))
           preferences.autologin = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "callsign")) 
+        else if (!g_ascii_strcasecmp(label, "callsign"))
           preferences.callsign = g_strdup(value);
         else if (!g_ascii_strcasecmp(label, "commands"))
         {
           g_strdelimit (value, "_", ' ');
           preferences.commands = g_strdup(value);
         }
-        else if (!g_ascii_strcasecmp(label, "savedx")) 
+        else if (!g_ascii_strcasecmp(label, "savedx"))
           preferences.savedx = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "savewwv")) 
+        else if (!g_ascii_strcasecmp(label, "savewwv"))
           preferences.savewwv = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "savetoall")) 
+        else if (!g_ascii_strcasecmp(label, "savetoall"))
           preferences.savetoall = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "savewx")) 
+        else if (!g_ascii_strcasecmp(label, "savewx"))
           preferences.savewx = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "hamlib")) 
+        else if (!g_ascii_strcasecmp(label, "hamlib"))
           preferences.hamlib = atoi(value);
         else if (!g_ascii_strcasecmp(label, "rigctl"))
         {
@@ -184,19 +212,19 @@ loadpreferences (void)
           g_strdelimit (value, "~", ' ');
           preferences.soundapp = g_strdup(value);
         }
-        else if (!g_ascii_strcasecmp(label, "col0visible")) 
+        else if (!g_ascii_strcasecmp(label, "col0visible"))
           preferences.col0visible = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "col1visible")) 
+        else if (!g_ascii_strcasecmp(label, "col1visible"))
           preferences.col1visible = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "col2visible")) 
+        else if (!g_ascii_strcasecmp(label, "col2visible"))
           preferences.col2visible = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "col3visible")) 
+        else if (!g_ascii_strcasecmp(label, "col3visible"))
           preferences.col3visible = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "col4visible")) 
+        else if (!g_ascii_strcasecmp(label, "col4visible"))
           preferences.col4visible = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "col5visible")) 
+        else if (!g_ascii_strcasecmp(label, "col5visible"))
           preferences.col5visible = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "col6visible")) 
+        else if (!g_ascii_strcasecmp(label, "col6visible"))
           preferences.col6visible = atoi(value);
         else if (!g_ascii_strcasecmp(label, "dxfont"))
         {
@@ -208,9 +236,9 @@ loadpreferences (void)
           g_strdelimit (value, "~", ' ');
           preferences.allfont = g_strdup(value);
         }
-        else if (!g_ascii_strcasecmp(label, "localecho")) 
+        else if (!g_ascii_strcasecmp(label, "localecho"))
           preferences.localecho = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "handlebarpos")) 
+        else if (!g_ascii_strcasecmp(label, "handlebarpos"))
           preferences.handlebarpos = atoi(value);
         else if (!g_ascii_strcasecmp(label, "highword1"))
         {
@@ -270,15 +298,15 @@ loadpreferences (void)
           gdk_color_parse(value, &preferences.highcolor8);
         else if (!g_ascii_strcasecmp(label, "highmenu"))
           preferences.highmenu = g_strdup(value);
-        else if (!g_ascii_strcasecmp(label, "sidebar")) 
+        else if (!g_ascii_strcasecmp(label, "sidebar"))
           preferences.sidebar = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "fbox")) 
+        else if (!g_ascii_strcasecmp(label, "fbox"))
           preferences.fbox = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "reconnect")) 
+        else if (!g_ascii_strcasecmp(label, "reconnect"))
           preferences.reconnect = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "playsound")) 
+        else if (!g_ascii_strcasecmp(label, "playsound"))
           preferences.playsound = atoi(value);
-        else if (!g_ascii_strcasecmp(label, "keepalive")) 
+        else if (!g_ascii_strcasecmp(label, "keepalive"))
           preferences.keepalive = atoi(value);
         else if (!g_ascii_strcasecmp(label, "promptcolor"))
           gdk_color_parse(value, &preferences.promptcolor);
@@ -502,4 +530,3 @@ savepreferences (void)
   }
   g_free(preferencesfile);
 }
-

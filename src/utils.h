@@ -1,4 +1,4 @@
-/*  
+/*
  *  xdx - GTK+ DX-cluster client for amateur radio
  *  Copyright (C) 2002-2006 Joop Stakenborg <pg4i@amsat.org>
  *
@@ -21,28 +21,9 @@
  * utils.h
  */
 
-/*
- * Standard gettext macros.
- */
-#ifdef ENABLE_NLS
-#  include <libintl.h>
-#  undef _
-#  define _(String) dgettext (PACKAGE, String)
-#  ifdef gettext_noop
-#    define N_(String) gettext_noop (String)
-#  else
-#    define N_(String) (String)
-#  endif
-#else
-#  define textdomain(String) (String)
-#  define gettext(String) (String)
-#  define dgettext(Domain,Message) (Message)
-#  define dcgettext(Domain,Message,Type) (Message)
-#  define bindtextdomain(Domain,Directory) (Domain)
-#  define _(String) (String)
-#  define N_(String) (String)
-#endif
 
+#ifndef XDX_UTILS_H
+#define XDX_UTILS_H
 
 void add_pixmap_directory (const gchar * directory);
 void updatestatusbar (GString * statusmessage, gboolean timeout);
@@ -55,3 +36,5 @@ gchar *xdxgetdate (gboolean formatted);
 gchar *xdxgettime (gboolean formatted);
 void logconnection (GString *logstr);
 gchar *my_strreplace(const char *str, const char *delimiter, const char *replacement);
+
+#endif /* XDX_UTILS_H */

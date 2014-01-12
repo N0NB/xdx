@@ -21,4 +21,10 @@
  * gui_settingsdialog.h
  */
 
+
+#ifndef XDX_GUI_SETTINGSDIALOG_H
+#define XDX_GUI_SETTINGSDIALOG_H
+
 void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data);
+
+#endif /* XDX_GUI_SETTINGSDIALOG_H */

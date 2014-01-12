@@ -21,13 +21,41 @@
  * gui_aboutdialog.c - creation of the about dialog
  */
 
-#include <gtk/gtk.h>
+
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
 #include <string.h>
 
-#include "config.h"
+#include <gtk/gtk.h>
+
 #include "gui.h"
 #include "preferences.h"
 #include "utils.h"
+
 
 extern preferencestype preferences;
 
@@ -63,10 +91,10 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
 //        gtk_about_dialog_set_url_hook (handle_url, NULL, NULL);
 //        gtk_about_dialog_set_email_hook (handle_email, NULL, NULL);
 
-	gtk_show_about_dialog (GTK_WINDOW(gui->window), 
+	gtk_show_about_dialog (GTK_WINDOW(gui->window),
 		"authors", authors,
 		"comments", _("Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"),
-		"license", 
+		"license",
 "Copyright (C) 2002 - 2007 Joop Stakenborg <pg4i@amsat.org>\n"
 "Copyright (C) 2014 Nate Bargmann <n0nb@n0nb.us>\n"
 "\n"

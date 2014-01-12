@@ -21,6 +21,10 @@
  * preferences.h
  */
 
+
+#ifndef XDX_PREFERENCES_H
+#define XDX_PREFERENCES_H
+
 #define COL0WIDTH 70
 #define COL1WIDTH 70
 #define COL2WIDTH 70
@@ -98,3 +102,5 @@ typedef struct
 void dircheck (void);
 void loadpreferences (void);
 void savepreferences (void);
+
+#endif /* XDX_PREFERENCES_H */

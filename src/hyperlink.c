@@ -20,18 +20,22 @@
 /*
  * hyperlink.c - clicking on links
  */
- 
-#include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
+
+
 #include <string.h>
-#include "hyperlink.h"
+
+#include <gdk/gdkkeysyms.h>
+#include <gtk/gtk.h>
+
 #include "gui.h"
+#include "hyperlink.h"
 #include "utils.h"
+
 
 /*
  * count number of dots in a link
  */
-static gboolean 
+static gboolean
 linkcontains2dots (gchar *link)
 {
   gint dots = 0, i = 0;
@@ -68,7 +72,7 @@ linkcontains2dots (gchar *link)
 /*
  * check if link
  */
-static gboolean 
+static gboolean
 islink (gchar *link)
 {
   if (g_strrstr (link, "\r"))
@@ -95,7 +99,7 @@ islink (gchar *link)
 /*
  * used by set_cursor to find begin/end of a word
  */
-static gboolean 
+static gboolean
 findw (gunichar ch, gpointer user_data)
 {
   switch (ch)
@@ -111,7 +115,7 @@ findw (gunichar ch, gpointer user_data)
   }
 }
 
-/* 
+/*
  * change cursor depending on whether we have a link or not
  */
 static void
@@ -124,13 +128,13 @@ set_cursor (GtkTextView *text_view, gint x, gint y)
 
   buffer = gtk_text_view_get_buffer (text_view);
   gtk_text_view_get_iter_at_location (text_view, &iter, x, y);
-  
+
   hand_cursor = gdk_cursor_new (GDK_HAND2);
   normal_cursor = gdk_cursor_new (GDK_XTERM);
 
   startword = iter;
   endword = iter;
-  
+
   if (gtk_text_iter_forward_find_char (&endword, findw, NULL, NULL) &&
     gtk_text_iter_backward_find_char (&startword, findw, NULL, NULL))
   {
@@ -138,7 +142,7 @@ set_cursor (GtkTextView *text_view, gint x, gint y)
     word = gtk_text_buffer_get_slice (buffer, &startword, &endword, FALSE);
     if (word && islink (word))
     {
-      gdk_window_set_cursor (gtk_text_view_get_window 
+      gdk_window_set_cursor (gtk_text_view_get_window
         (text_view, GTK_TEXT_WINDOW_TEXT), hand_cursor);
       gtk_text_buffer_apply_tag_by_name (buffer, "url", &startword, &endword);
       gui->url = g_strdup(word);
@@ -146,7 +150,7 @@ set_cursor (GtkTextView *text_view, gint x, gint y)
     }
     else
     {
-      gdk_window_set_cursor (gtk_text_view_get_window (text_view, 
+      gdk_window_set_cursor (gtk_text_view_get_window (text_view,
         GTK_TEXT_WINDOW_TEXT), normal_cursor);
       gtk_text_buffer_get_bounds (buffer, &start, &end);
       gtk_text_buffer_remove_tag_by_name (buffer, "url", &start, &end);
@@ -166,8 +170,8 @@ get_link_tag(GtkTextIter * iter)
   GtkTextTag *link_tag = NULL;
   GSList *list;
   GSList *tag_list = gtk_text_iter_get_tags(iter);
- 
-  for (list = tag_list; list; list = g_slist_next(list)) 
+
+  for (list = tag_list; list; list = g_slist_next(list))
     {
       GtkTextTag *tag = list->data;
       gchar *name;
@@ -180,12 +184,12 @@ get_link_tag(GtkTextIter * iter)
 
   return link_tag;
 }
- 
+
 
 /*
  * click on a link
  */
-gboolean on_maintext_event_after (GtkWidget * widget, 
+gboolean on_maintext_event_after (GtkWidget * widget,
           GdkEventKey *event, gpointer user_data)
 {
   GtkTextIter start, end, iter;
@@ -223,8 +227,8 @@ gboolean on_maintext_event_after (GtkWidget * widget,
 /*
  * grab mouse coordinates and modify cursor
  */
-gboolean 
-on_maintext_motion_notify_event (GtkWidget * widget, GdkEventMotion *event, 
+gboolean
+on_maintext_motion_notify_event (GtkWidget * widget, GdkEventMotion *event,
   gpointer user_data)
 {
 //  GdkWindow *window;
@@ -240,8 +244,8 @@ on_maintext_motion_notify_event (GtkWidget * widget, GdkEventMotion *event,
     y = event->y;
     state = event->state;
   }
-    
-  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (widget), 
+
+  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (widget),
     GTK_TEXT_WINDOW_WIDGET, event->x, event->y, &x, &y);
   set_cursor (GTK_TEXT_VIEW (widget), x, y);
 

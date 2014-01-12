@@ -21,9 +21,15 @@
  * hyperlink.h
  */
 
-gboolean on_maintext_visibility_notify_event (GtkWidget * widget, 
+
+#ifndef XDX_HYPERLINK_H
+#define XDX_HYPERLINK_H
+
+gboolean on_maintext_visibility_notify_event (GtkWidget * widget,
           GdkEventVisibility *event, gpointer user_data);
-gboolean on_maintext_motion_notify_event (GtkWidget * widget, 
+gboolean on_maintext_motion_notify_event (GtkWidget * widget,
           GdkEventMotion *event, gpointer user_data);
-gboolean on_maintext_event_after (GtkWidget * widget, 
+gboolean on_maintext_event_after (GtkWidget * widget,
           GdkEventKey *event, gpointer user_data);
+
+#endif /* XDX_HYPERLINK_H */

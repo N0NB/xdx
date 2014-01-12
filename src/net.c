@@ -18,40 +18,69 @@
  */
 
 /*
- * net.c - private functions for sending and receiving data, connecting and 
+ * net.c - private functions for sending and receiving data, connecting and
  * disconnecting.
  */
 
 
-#if HAVE_SYS_WAIT_H
-# include <sys/wait.h>
-#endif
-#ifndef WEXITSTATUS
-# define WEXITSTATUS(stat_val) ((unsigned)(stat_val) >> 8)
-#endif
-#ifndef WIFEXITED
-# define WIFEXITED(stat_val) (((stat_val) & 255) == 0)
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
 #endif
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <string.h>
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
+#if HAVE_SYS_WAIT_H
+#  include <sys/wait.h>
+#endif
+#ifndef WEXITSTATUS
+#  define WEXITSTATUS(stat_val) ((unsigned)(stat_val) >> 8)
+#endif
+#ifndef WIFEXITED
+#  define WIFEXITED(stat_val) (((stat_val) & 255) == 0)
+#endif
+
 #include <errno.h>
-#include <netinet/in.h>
-#include <resolv.h>
-#include <netdb.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <signal.h>
 #include <fcntl.h>
+#include <netdb.h>
+#include <resolv.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+
 #include <gtk/gtk.h>
+
 #include "gui.h"
-#include "net.h"
-#include "utils.h"
-#include "text.h"
-#include "preferences.h"
 #include "history.h"
+#include "net.h"
+#include "preferences.h"
+#include "text.h"
+#include "utils.h"
+
 
 extern preferencestype preferences;
 
@@ -72,7 +101,7 @@ servertype *new_cluster(void)
   return(server);
 }
 
-/* 
+/*
  * resolve, connect and create the io channel for reading
  */
 
@@ -138,7 +167,7 @@ clresolve (servertype *cluster)
       }
       return FALSE;
     }
-  
+
   if (cluster->reconnect) cluster->reconnect = FALSE;
   g_string_printf (msg, _("Connected to %s"), cluster->host);
   updatestatusbar (msg, FALSE);
@@ -285,7 +314,7 @@ rx (GIOChannel * channel, GIOCondition cond, gpointer data)
       {
         maintext_add (buf, numbytes, MESSAGE_RX);
         /* autologin */
-        if (!cluster->connected && (preferences.autologin == 1) && 
+        if (!cluster->connected && (preferences.autologin == 1) &&
           (g_ascii_strcasecmp (preferences.callsign, "?")))
         {
           g_string_printf (txstr, "%s", preferences.callsign);
@@ -322,7 +351,7 @@ tx (GString * txmsg)
   gint numbytes;
   GString *errmsg = g_string_new ("");
   servertype *cluster;
-	
+
   cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
 
   if ((cluster->rxchannel) && (cluster->sockethandle != -1))

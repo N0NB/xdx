@@ -21,4 +21,10 @@
  * gui_manualdialog.h
  */
 
+
+#ifndef XDX_GUI_MANUALDIALOG_H
+#define XDX_GUI_MANUALDIALOG_H
+
 void on_manual_activate (GtkMenuItem * menuitem, gpointer user_data);
+
+#endif /* XDX_GUI_MANUALDIALOG_H */
