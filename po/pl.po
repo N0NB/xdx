@@ -164,7 +164,7 @@ msgstr "xdx - podrêcznik"
 #.
 #: src/gui_manualdialog.c:59
 msgid "MANUAL"
-msgstr "MANUAL.pl_utf8"
+msgstr "MANUAL.pl"
 
 #: src/gui_opendialog.c:49
 msgid "xdx - open connection"
