@@ -105,8 +105,8 @@ loadpreferences (void)
   preferences.savetoall = 0;
   preferences.savewx = 0;
   preferences.hamlib = 0;
-  preferences.rigctl = g_strdup("rigctl -m 1 set_freq %d");;
-  preferences.browserapp = g_strdup("firefox %s");
+  preferences.rigctl = g_strdup("rigctl -m 1 -r /dev/rig set_freq %d");;
+  preferences.browserapp = g_strdup("firefox -new-tab %s");
   preferences.mailapp = g_strdup("evolution mailto:%s");
   preferences.soundapp = g_strdup("play %s");
   preferences.col0visible = 1;
