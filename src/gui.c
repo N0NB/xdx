@@ -21,26 +21,54 @@
  * gui.c - where the main window is created
  */
 
-#include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
+
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 
-#include "config.h"
-#include "types.h"
+#include <gdk/gdkkeysyms.h>
+#include <gtk/gtk.h>
+
 #include "gui.h"
-#include "preferences.h"
-#include "net.h"
-#include "utils.h"
+#include "gui_aboutdialog.h"
+#include "gui_closedialog.h"
+#include "gui_logdialog.h"
+#include "gui_manualdialog.h"
+#include "gui_opendialog.h"
+#include "gui_settingsdialog.h"
 #include "history.h"
 #include "hyperlink.h"
-#include "gui_opendialog.h"
-#include "gui_logdialog.h"
-#include "gui_closedialog.h"
-#include "gui_aboutdialog.h"
-#include "gui_settingsdialog.h"
-#include "gui_manualdialog.h"
+#include "net.h"
+#include "preferences.h"
 #include "text.h"
+#include "types.h"
+#include "utils.h"
+
 
 extern preferencestype preferences;
 
@@ -90,7 +118,7 @@ static GtkActionEntry entries[] = {
 	{ "SettingsMenu", NULL, N_("_Settings") },
 	{ "HelpMenu", NULL, N_("H_elp") },
 	{ "HighMenu", NULL, N_("Highlights") },
-	
+
 	{ "Quit", GTK_STOCK_QUIT, N_("Quit"),
 		"<control>Q", "Quit Program", G_CALLBACK(on_quit_activate) },
 	{ "Open", GTK_STOCK_CONNECT, N_("Connect..."),
@@ -251,7 +279,7 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes (_("Spotter"), renderer, "text",
 					      FROM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (GTK_TREE_VIEW_COLUMN(column), 
+  gtk_tree_view_column_set_sizing (GTK_TREE_VIEW_COLUMN(column),
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable (GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
@@ -259,7 +287,7 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes ("QRG", renderer, "text",
 					      FREQ_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing (GTK_TREE_VIEW_COLUMN(column), 
+  gtk_tree_view_column_set_sizing (GTK_TREE_VIEW_COLUMN(column),
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable (GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
@@ -267,7 +295,7 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes ("DX", boldrenderer, "text",
 					      DX_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column),
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
@@ -275,7 +303,7 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes (_("Remarks"), renderer, "text",
 					      REM_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column),
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
@@ -283,7 +311,7 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes (_("Time"), renderer, "text",
 					      TIME_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column),
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
@@ -291,20 +319,20 @@ create_mainwindow (void)
   column =
     gtk_tree_view_column_new_with_attributes (_("Info"), renderer, "text",
 						INFO_COLUMN, NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column),
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-	
+
 	column =
    gtk_tree_view_column_new_with_attributes (_("Country"), greyrenderer, "text",
 						COUNTRY_COLUMN, NULL);
   g_object_set(G_OBJECT(greyrenderer), "cell-background", "grey", NULL);
-  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column), 
+  gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column),
     GTK_TREE_VIEW_COLUMN_FIXED);
   gtk_tree_view_column_set_resizable(GTK_TREE_VIEW_COLUMN(column), TRUE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-		
+
   gtk_container_add (GTK_CONTAINER (clistscrolledwindow), treeview);
 
   chathbox = gtk_hbox_new (FALSE, 0);
@@ -316,7 +344,7 @@ create_mainwindow (void)
   gtk_container_add (GTK_CONTAINER (mainscrolledwindow), maintext);
   gtk_text_view_set_editable (GTK_TEXT_VIEW (maintext), FALSE);
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (maintext));
-  gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue", 
+  gtk_text_buffer_create_tag (buffer, "url", "foreground", "blue",
     "underline", PANGO_UNDERLINE_SINGLE, NULL);
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (maintext), GTK_WRAP_WORD);
   gtk_box_pack_start (GTK_BOX (chathbox), mainscrolledwindow, TRUE, TRUE, 0);
@@ -730,7 +758,7 @@ static void cleanup (void)
 	}
   g_list_free(gui->hostnamehistory);
   gui->hostnamehistory = NULL;
-	
+
   link = gui->porthistory;
   while (link)
 	{
@@ -748,7 +776,7 @@ static void cleanup (void)
 	}
   g_list_free(gui->txhistory);
   gui->txhistory = NULL;
-	
+
   g_free(gui->preferencesdir);
   gui->preferencesdir = NULL;
   g_free(gui->statusbarmessage);
@@ -941,8 +969,8 @@ on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
 }
 
 
-/* 
- * history of the entry widget 
+/*
+ * history of the entry widget
  */
 gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 					 gpointer user_data)
@@ -1011,7 +1039,7 @@ gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
 gboolean
 on_fbutton_press (GtkButton *button, GdkEventButton *event, gpointer user_data)
 {
-	GtkWidget *editdialog, *editvbox, *editlabel, *editentry, 
+	GtkWidget *editdialog, *editvbox, *editlabel, *editentry,
 	  *f1button, *f2button, *f3button, *f4button, *f5button, *f6button,
       *f7button, *f8button;
 	gchar *temp, *str;
@@ -1019,11 +1047,11 @@ on_fbutton_press (GtkButton *button, GdkEventButton *event, gpointer user_data)
 
 	if (event->button == 3)
 	{
-	  editdialog = gtk_dialog_new_with_buttons (_("xdx - edit function key"), 
-	    GTK_WINDOW (gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, 
+	  editdialog = gtk_dialog_new_with_buttons (_("xdx - edit function key"),
+	    GTK_WINDOW (gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 	    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
       editvbox = gtk_vbox_new (TRUE, 0);
-      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (editdialog)->vbox), 
+      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (editdialog)->vbox),
 		editvbox, TRUE, TRUE, 0);
       temp = g_strdup_printf (_("Command to be used for F%d"), GPOINTER_TO_INT(user_data));
 	  editlabel = gtk_label_new_with_mnemonic (temp);
@@ -1130,9 +1158,9 @@ on_fbutton_press (GtkButton *button, GdkEventButton *event, gpointer user_data)
 	return FALSE;
 }
 
-gboolean 
+gboolean
 double_click (GtkWidget *widget, GdkEventButton *event, gpointer user_data)
-{  
+{
   GtkTreeIter selected;
   GtkTreeModel *model;
   gchar *getf, **fsplit, *hamlibstr;

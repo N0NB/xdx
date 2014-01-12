@@ -21,11 +21,41 @@
  * gui_aboutdialog.c - creation of the about dialog
  */
 
-#include <gtk/gtk.h>
+
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
 #include <stdio.h>
+
+#include <gtk/gtk.h>
+
 #include "gui.h"
-#include "utils.h"
 #include "gui_manualdialog.h"
+#include "utils.h"
+
 
 void on_manual_activate (GtkMenuItem * menuitem, gpointer user_data)
 {
@@ -35,15 +65,15 @@ void on_manual_activate (GtkMenuItem * menuitem, gpointer user_data)
 	PangoFontDescription *font_desc;
 	gchar buf[80], *helpfile, *b;
 	FILE *in;
- 
 
-	manualdialog = gtk_dialog_new_with_buttons (_("xdx - manual"), 
-		GTK_WINDOW (gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, 
+
+	manualdialog = gtk_dialog_new_with_buttons (_("xdx - manual"),
+		GTK_WINDOW (gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 		GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
 	gtk_widget_set_size_request (manualdialog, 650, 300);
 
 	swindow = gtk_scrolled_window_new (NULL, NULL);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (manualdialog)->vbox), 
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (manualdialog)->vbox),
 		swindow, TRUE, TRUE, 0);
 	helptextview = gtk_text_view_new ();
 	gtk_text_view_set_editable (GTK_TEXT_VIEW(helptextview), FALSE);

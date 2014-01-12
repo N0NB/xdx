@@ -21,4 +21,10 @@
  * gui_opendialog.h
  */
 
+
+#ifndef XDX_GUI_OPENDIALOG_H
+#define XDX_GUI_OPENDIALOG_H
+
 void on_open_activate (GtkMenuItem * menuitem, gpointer user_data);
+
+#endif /* XDX_GUI_OPENDIALOG_H */

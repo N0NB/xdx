@@ -21,6 +21,9 @@
  * gui.h
  */
 
+#ifndef XDX_GUI_H
+#define XDX_GUI_H
+
 typedef struct guitype {
   GtkWidget *window;
   GtkActionGroup *action_group;
@@ -60,7 +63,7 @@ gboolean on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
 void on_mainentry_activate (GtkTextBuffer *buffer, gpointer user_data);
 gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
             gpointer user_data);
-gboolean double_click (GtkWidget *widget, GdkEventButton *event, 
+gboolean double_click (GtkWidget *widget, GdkEventButton *event,
             gpointer user_data);
 void on_fbutton_clicked (GtkButton *button, gpointer user_data);
 gboolean on_fbutton_press (GtkButton *button, GdkEventButton *event,
@@ -72,3 +75,5 @@ void on_reconnect_activate (GtkAction * action, gpointer user_data);
 void on_highentry_changed (GtkEditable * editable, gpointer user_data);
 gboolean on_highentry_clicked
 (GtkEditable * entry, GdkEventButton *event, gpointer user_data);
+
+#endif /* XDX_GUI_H */

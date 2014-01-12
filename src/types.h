@@ -21,6 +21,10 @@
  *  types.h
  */
 
+
+#ifndef XDX_TYPES_H
+#define XDX_TYPES_H
+
 enum
 {
   FROM_COLUMN,
@@ -32,3 +36,5 @@ enum
   COUNTRY_COLUMN,
   N_COLUMNS
 };
+
+#endif /* XDX_TYPES_H */

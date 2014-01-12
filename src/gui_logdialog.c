@@ -21,12 +21,41 @@
  * gui_logdialog.c - dialog for opening the connection log
  */
 
-#include <gtk/gtk.h>
+
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
 #include <unistd.h>
 
-#include "utils.h"
+#include <gtk/gtk.h>
+
 #include "gui.h"
 #include "gui_logdialog.h"
+#include "utils.h"
+
 
 /*
  * called from the menu
@@ -48,7 +77,7 @@ on_log_activate (GtkMenuItem * menuitem, gpointer user_data)
               GTK_WINDOW (gui->window),
               GTK_DIALOG_MODAL |
               GTK_DIALOG_DESTROY_WITH_PARENT,
-              GTK_STOCK_CLEAR, GTK_RESPONSE_CANCEL, 
+              GTK_STOCK_CLEAR, GTK_RESPONSE_CANCEL,
               GTK_STOCK_CLOSE, GTK_RESPONSE_OK,
               NULL);
   gtk_widget_set_size_request (logdialog, 600, 300);
@@ -72,9 +101,9 @@ on_log_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_text_buffer_get_bounds (buffer, &start, &end);
 
   fd = fopen (filename, "r");
-  if ((fd = fopen(filename, "r"))) 
-  { 
-    while (!feof(fd))  
+  if ((fd = fopen(filename, "r")))
+  {
+    while (!feof(fd))
     {
       numread = fread(buf, 1, 1024, fd);
       gtk_text_buffer_insert (buffer, &end, buf, numread);

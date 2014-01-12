@@ -18,21 +18,25 @@
  */
 
 /*
- * text.c - private functions for looking up and displaying text, either in a 
+ * text.c - private functions for looking up and displaying text, either in a
  * treeview or a textview
  */
 
-#include <gtk/gtk.h>
+
 #include <string.h>
 #include <stdlib.h>
-#include "types.h"
-#include "utils.h"
-#include "text.h"
-#include "net.h"
+
+#include <gtk/gtk.h>
+
 #include "gui.h"
+#include "gtksourceiter.h"
+#include "net.h"
 #include "preferences.h"
 #include "save.h"
-#include "gtksourceiter.h"
+#include "text.h"
+#include "types.h"
+#include "utils.h"
+
 
 GPtrArray *dxcc;
 GHashTable *prefixes;
@@ -40,7 +44,7 @@ gint excitu, exccq, countries;
 
 extern preferencestype preferences;
 
-typedef struct dxinfo 
+typedef struct dxinfo
 {
   gchar *spotter;
   gchar *freq;
@@ -54,12 +58,12 @@ typedef struct dxinfo
   gboolean nodx;
 } dxinfo;
 
-typedef struct 
+typedef struct
 {
   gchar *str;
   gchar *file;
 } smiley;
- 
+
 
 static dxinfo *dx;
 GSList *smileylist = NULL;
@@ -125,8 +129,8 @@ create_smiley_list (void)
 //  s = new_smiley (); s->str = "is"; s->file = PACKAGE_DATA_DIR "/pixmaps/sad.png"; smileylist = g_slist_append(smileylist, s);
 }
 
-/* 
- * extract call from dxmessage and return call and length of call 
+/*
+ * extract call from dxmessage and return call and length of call
  */
 static gchar *
 findcall (gchar * str, gint * spotterlen)
@@ -153,8 +157,8 @@ findcall (gchar * str, gint * spotterlen)
   return (str);
 }
 
-/* 
- * find the end of frequency and DX-call field 
+/*
+ * find the end of frequency and DX-call field
  */
 static gchar *
 findspace (gchar * str)
@@ -178,8 +182,8 @@ findspace (gchar * str)
   return (str);
 }
 
-/* 
- * find the end of frequency field 
+/*
+ * find the end of frequency field
  */
 static gchar *
 findfreq (gchar * str)
@@ -203,9 +207,9 @@ findfreq (gchar * str)
   return (str);
 }
 
-/* 
- * end of remarks field found if there is a space 
- * and the next 2 characters are digits 
+/*
+ * end of remarks field found if there is a space
+ * and the next 2 characters are digits
  */
 static gchar *
 findrem (gchar * str, gint * remlen)
@@ -236,8 +240,8 @@ findrem (gchar * str, gint * remlen)
 
 }
 
-/* 
- * search for the end of time field 
+/*
+ * search for the end of time field
  */
 static gchar *
 findtime (gchar * str)
@@ -261,8 +265,8 @@ findtime (gchar * str)
   return (str);
 }
 
-/* 
- * search for the end of the locator field 
+/*
+ * search for the end of the locator field
  */
 static gchar *
 findinfo (gchar * str)
@@ -318,7 +322,7 @@ static gchar* extractinfo(gchar *msg)
   gchar *dxmsg, *info, *ret;
   gint l;
 struct info lookup;
-	
+
   dx = new_dx();
   info = g_strdup(msg);
 
@@ -331,11 +335,11 @@ struct info lookup;
     dx->remark = g_strdup(findrem(dxmsg + 39, &l));
     dx->time = g_strdup(findtime(dxmsg + 39 + l));
     dx->info = g_strdup(findinfo(dxmsg + 45 + l));
-	  
+
     lookup = lookupcountry_by_callsign(dx->dxcall);
     dxcc_data *d = g_ptr_array_index (dxcc, lookup.country);
     dx->country = g_strdup(d->countryname);
-	  
+
     dx->toall = NULL;
     dx->dx = TRUE;
     dx->nodx = FALSE;
@@ -355,12 +359,12 @@ struct info lookup;
     dx->dx = FALSE;
     dx->nodx = TRUE;
   }
-  
+
   g_free(info);
 
   ret = strstr(msg, "\n");
   if (ret)
-    return (ret + 1); 
+    return (ret + 1);
   else
     return NULL;
 }
@@ -422,7 +426,7 @@ contains_highlights (gchar *str)
 }
 
 /* used when colorizing DX-cluster prompt */
-static gboolean 
+static gboolean
 findcolonprompt (gunichar ch, gpointer user_data)
 {
   switch (ch)
@@ -435,7 +439,7 @@ findcolonprompt (gunichar ch, gpointer user_data)
 }
 
 /* used when colorizing ON4KST chat prompt */
-static gboolean 
+static gboolean
 findrightarrowprompt (gunichar ch, gpointer user_data)
 {
   switch (ch)
@@ -448,7 +452,7 @@ findrightarrowprompt (gunichar ch, gpointer user_data)
 }
 
 /* used when colorizing all prompts */
-static gboolean 
+static gboolean
 findpromptspace (gunichar ch, gpointer user_data)
 {
   switch (ch)
@@ -512,12 +516,12 @@ maintext_add (gchar msg[], gint len, gint messagetype)
       while ((msg = extractinfo(msg)))
       {
       if (dx->dx)
-      { 
+      {
         g_strstrip(dx->freq);
         g_strstrip(dx->remark);
         gtk_tree_store_append (model, &iter, NULL);
         gtk_tree_store_set (model, &iter, FROM_COLUMN, dx->spotter, FREQ_COLUMN,
-  	  dx->freq, DX_COLUMN, dx->dxcall, TIME_COLUMN, dx->time, INFO_COLUMN, 
+  	  dx->freq, DX_COLUMN, dx->dxcall, TIME_COLUMN, dx->time, INFO_COLUMN,
           dx->info, COUNTRY_COLUMN, dx->country, -1);
         /* remark field may contain foreign language characters */
         if (dx->remark && dx->remark[0] && (utf8 = try_utf8(dx->remark)))
@@ -527,7 +531,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
         }
 
 
-        /* focusing the treeview will stop scrolling */ 
+        /* focusing the treeview will stop scrolling */
 	if (!gtk_widget_has_focus(treeview))
         {
           path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), &iter);
@@ -545,7 +549,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
 	g_free(dx->country);
         g_free(dx->info);
       }
-      if (dx->nodx)  
+      if (dx->nodx)
       {
         if ((!g_ascii_strncasecmp (dx->toall, "WWV de ", 6)
             || !g_ascii_strncasecmp (dx->toall, "WCY de ", 6))
@@ -778,7 +782,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
                 while (gtk_text_iter_backward_search (&end, s->str,
                   GTK_TEXT_SEARCH_VISIBLE_ONLY|GTK_TEXT_SEARCH_TEXT_ONLY,
                   &smatch, &ematch, NULL))
-                {      
+                {
                   swidget = gtk_image_new_from_file (s->file);
                   gtk_text_buffer_delete (buffer, &smatch, &ematch);
                   anchor = gtk_text_buffer_create_child_anchor (buffer, &smatch);
@@ -814,7 +818,7 @@ maintext_add (gchar msg[], gint len, gint messagetype)
     {
       if (msg && msg[0] && (utf8 = try_utf8(msg)))
       {
-          gtk_text_buffer_insert_with_tags_by_name 
+          gtk_text_buffer_insert_with_tags_by_name
             (buffer, &end, utf8, len, gui->senttagname, NULL);
           g_free (utf8);
       }
@@ -1037,7 +1041,7 @@ readctydata (void)
 	gchar buf[4096], *cty_location, *pfx, **split, **pfxsplit, *excstr;
 	gint ichar = 0, dxccitem = 0, ipfx = 0, ch = 0;
 	FILE *fp;
-	
+
 	cty_location = g_strdup_printf ("%s%s%s", PACKAGE_DATA_DIR, G_DIR_SEPARATOR_S, "cty.dat");
 
 	if ((fp = fopen (cty_location, "r")) == NULL)
@@ -1133,4 +1137,3 @@ cleanup_dxcc (void)
 	}
 	if (prefixes) g_hash_table_destroy (prefixes);
 }
-

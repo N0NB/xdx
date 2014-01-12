@@ -21,7 +21,9 @@
  *  net.h
  */
 
-#include <gtk/gtk.h>
+
+#ifndef XDX_NET_H
+#define XDX_NET_H
 
 #define MESSAGE_RX 1
 #define MESSAGE_TX 2
@@ -46,3 +48,5 @@ gboolean rx (GIOChannel * channel, GIOCondition cond, gpointer data);
 void tx (GString * message);
 gint reconnect (gpointer data);
 gint send_keepalivepacket (gpointer data);
+
+#endif /* XDX_NET_H */

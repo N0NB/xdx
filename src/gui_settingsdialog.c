@@ -21,14 +21,44 @@
  * gui_settingsdialog.c
  */
 
-#include <gtk/gtk.h>
-#include <string.h>
+
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
 #include <stdlib.h>
-#include "gui_settingsdialog.h"
-#include "utils.h"
-#include "gui.h"
-#include "preferences.h"
+#include <string.h>
+
+#include <gtk/gtk.h>
+
 #include "gtksourceiter.h"
+#include "gui.h"
+#include "gui_settingsdialog.h"
+#include "preferences.h"
+#include "utils.h"
+
 
 GtkWidget *preferencesdialog;
 extern preferencestype preferences;
@@ -40,11 +70,11 @@ on_pautologincheckbutton_toggled       (GtkToggleButton *togglebutton,
   GtkWidget *ploginhseparator, *pcommandslabel, *pcommandsentry;
   gboolean state;
 
-  ploginhseparator = g_object_get_data (G_OBJECT (preferencesdialog), 
+  ploginhseparator = g_object_get_data (G_OBJECT (preferencesdialog),
     "ploginhseparator");
-  pcommandslabel = g_object_get_data (G_OBJECT (preferencesdialog), 
+  pcommandslabel = g_object_get_data (G_OBJECT (preferencesdialog),
     "pcommandslabel");
-  pcommandsentry = g_object_get_data (G_OBJECT (preferencesdialog), 
+  pcommandsentry = g_object_get_data (G_OBJECT (preferencesdialog),
     "pcommandsentry");
 
   state = gtk_toggle_button_get_active (togglebutton);
@@ -70,11 +100,11 @@ on_phamlibcheckbutton_toggled          (GtkToggleButton *togglebutton,
   GtkWidget *phamlibhseparator, *priglabel, *prigentry;
   gboolean state;
 
-  phamlibhseparator = g_object_get_data (G_OBJECT (preferencesdialog), 
+  phamlibhseparator = g_object_get_data (G_OBJECT (preferencesdialog),
     "phamlibhseparator");
-  priglabel = g_object_get_data (G_OBJECT (preferencesdialog), 
+  priglabel = g_object_get_data (G_OBJECT (preferencesdialog),
     "priglabel");
-  prigentry = g_object_get_data (G_OBJECT (preferencesdialog), 
+  prigentry = g_object_get_data (G_OBJECT (preferencesdialog),
     "prigentry");
 
   state = gtk_toggle_button_get_active (togglebutton);
@@ -129,13 +159,13 @@ on_fontbutton_clicked (GtkButton *button, gpointer user_data)
       (GTK_FONT_SELECTION_DIALOG (fontselectiondialog));
     if (GPOINTER_TO_INT(user_data) == 1)
     {
-      pfontsdxentry = g_object_get_data (G_OBJECT (preferencesdialog), 
+      pfontsdxentry = g_object_get_data (G_OBJECT (preferencesdialog),
         "pfontsdxentry");
       gtk_entry_set_text (GTK_ENTRY (pfontsdxentry), font);
     }
 	else
     {
-      pfontsallentry = g_object_get_data (G_OBJECT (preferencesdialog), 
+      pfontsallentry = g_object_get_data (G_OBJECT (preferencesdialog),
         "pfontsallentry");
       gtk_entry_set_text (GTK_ENTRY (pfontsallentry), font);
     }
@@ -162,10 +192,10 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     *psavetoallcheckbutton, *psavewxcheckbutton, *psavinglabel, *psavinghbox,
     *psavingvbox2, *psavingvbox3,
 
-    *phamlibframe, *phamlibvbox, *phamlibcheckbutton, *phamlibhseparator, 
-    *phamlibhbox, *priglabel, *prigentry, *phamliblabel, 
+    *phamlibframe, *phamlibvbox, *phamlibcheckbutton, *phamlibhseparator,
+    *phamlibhbox, *priglabel, *prigentry, *phamliblabel,
 
-    *pprogframe, *pprogvbox, *pproghbox1, *pprogbrowserlabel, 
+    *pprogframe, *pprogvbox, *pproghbox1, *pprogbrowserlabel,
     *pprogbrowserentry, *pproghbox2, *pprogmaillabel,
     *pprogmailentry, *pproglabel, *pproghbox3, *pprogsoundlabel,
     *pprogsoundentry,
@@ -174,7 +204,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 
     *pcolumnsframe, *pcolumnsvbox, *pcolumnsvboxlabel, *pcolumnslabel,
     *pcolumnshseparator, *pspottercheckbutton, *pqrgcheckbutton,
-    *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton, 
+    *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton,
     *pinfocheckbutton,*pcountrycheckbutton, *pcolumnshbox, *pcolumnsvbox2, *pcolumnsvbox3,
 
     *pfontsframe, *pfontslabel, *pfontsvbox, *pfontsdxlabel, *pfontsalllabel,
@@ -197,7 +227,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   GtkTreeViewColumn *column;
   GtkWidget *treeview, *maintext, *mainentry;
   GtkWidget *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
-    *highentry6, *highentry7, *highentry8; 
+    *highentry6, *highentry7, *highentry8;
   PangoFontDescription *font_description;
   gint response, pango_size;
   gboolean state;
@@ -215,7 +245,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
 					    GTK_STOCK_OK,
 					    GTK_RESPONSE_OK, NULL);
 
-  
+
   pdialog_vbox = GTK_DIALOG (preferencesdialog)->vbox;
 
   pnotebook = gtk_notebook_new ();
@@ -228,16 +258,16 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   pvbox4 = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (pnotebook), pvbox4);
   plabel1 = gtk_label_new (_("General"));
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook),
     gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 0), plabel1);
   plabel2 = gtk_label_new (_("Output"));
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook),
     gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 1), plabel2);
   plabel3 = gtk_label_new (_("Fonts"));
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook),
     gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 2), plabel3);
   plabel4 = gtk_label_new (_("Colors"));
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook), 
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (pnotebook),
     gtk_notebook_get_nth_page (GTK_NOTEBOOK (pnotebook), 3), plabel4);
   gtk_box_pack_start (GTK_BOX (pdialog_vbox), pnotebook, TRUE, TRUE, 0);
 
@@ -268,9 +298,9 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   pcommandsentry = gtk_entry_new ();
   gtk_box_pack_start (GTK_BOX (pcommandshbox), pcommandsentry, TRUE, TRUE, 5);
   gtk_entry_set_max_length (GTK_ENTRY (pcommandsentry), 80);
-  gtk_widget_set_tooltip_text(pcommandsentry, 
+  gtk_widget_set_tooltip_text(pcommandsentry,
     _("Comma separated list of commands to send at login"));
-  gtk_widget_set_tooltip_text(pcallsignentry, 
+  gtk_widget_set_tooltip_text(pcallsignentry,
     _("Callsign to be used for login"));
 
   ploginframelabel = gtk_label_new (_("Login"));
@@ -335,7 +365,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   }
   if (g_ascii_strcasecmp (preferences.rigctl, "?"))
     gtk_entry_set_text (GTK_ENTRY(prigentry), preferences.rigctl);
-  
+
   pprogframe = gtk_frame_new (NULL);
   gtk_box_pack_start (GTK_BOX (pvbox1), pprogframe, TRUE, TRUE, 0);
   pprogvbox = gtk_vbox_new (FALSE, 0);
@@ -363,11 +393,11 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_entry_set_max_length (GTK_ENTRY (pprogmailentry), 80);
   pproglabel = gtk_label_new (_("Programs"));
   gtk_frame_set_label_widget (GTK_FRAME (pprogframe), pproglabel);
-  gtk_widget_set_tooltip_text(pprogbrowserentry, 
+  gtk_widget_set_tooltip_text(pprogbrowserentry,
     _("Web browser to start after clicking on a url (%s = url)"));
-  gtk_widget_set_tooltip_text(pprogmailentry, 
+  gtk_widget_set_tooltip_text(pprogmailentry,
     _("Mail program to start after clicking on a mail url (%s = mail url)"));
-  gtk_widget_set_tooltip_text(pprogsoundentry, 
+  gtk_widget_set_tooltip_text(pprogsoundentry,
     _("Program used to play sound (%s = sound file)"));
 
   if (g_ascii_strcasecmp (preferences.browserapp, "?"))
@@ -428,7 +458,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox3), pinfocheckbutton, FALSE, FALSE, 0);
   pcountrycheckbutton = gtk_check_button_new_with_label (_("Country"));
   gtk_box_pack_start (GTK_BOX (pcolumnsvbox3), pcountrycheckbutton, FALSE, FALSE, 0);
-	
+
 	if (preferences.col0visible == 1)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(pspottercheckbutton), TRUE);
   else
@@ -661,7 +691,7 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewxcheckbutton), TRUE);
   else
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(psavewxcheckbutton), FALSE);
- 
+
   g_signal_connect ((gpointer) pautologincheckbutton, "toggled",
                     G_CALLBACK (on_pautologincheckbutton_toggled), NULL);
   g_signal_connect ((gpointer) phamlibcheckbutton, "toggled",
@@ -671,27 +701,27 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
   g_signal_connect ((gpointer) pfontsallbutton, "clicked",
                     G_CALLBACK (on_fontbutton_clicked), GINT_TO_POINTER(2));
 
-  g_object_set_data (G_OBJECT (preferencesdialog), "ploginhseparator", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "ploginhseparator",
     ploginhseparator);
-  g_object_set_data (G_OBJECT (preferencesdialog), "pcallsignlabel", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "pcallsignlabel",
     pcallsignlabel);
-  g_object_set_data (G_OBJECT (preferencesdialog), "pcallsignentry", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "pcallsignentry",
     pcallsignentry);
-  g_object_set_data (G_OBJECT (preferencesdialog), "pcommandslabel", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "pcommandslabel",
     pcommandslabel);
-  g_object_set_data (G_OBJECT (preferencesdialog), "pcommandsentry", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "pcommandsentry",
     pcommandsentry);
 
-  g_object_set_data (G_OBJECT (preferencesdialog), "phamlibhseparator", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "phamlibhseparator",
     phamlibhseparator);
-  g_object_set_data (G_OBJECT (preferencesdialog), "priglabel", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "priglabel",
     priglabel);
-  g_object_set_data (G_OBJECT (preferencesdialog), "prigentry", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "prigentry",
     prigentry);
 
-  g_object_set_data (G_OBJECT (preferencesdialog), "pfontsdxentry", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "pfontsdxentry",
     pfontsdxentry);
-  g_object_set_data (G_OBJECT (preferencesdialog), "pfontsallentry", 
+  g_object_set_data (G_OBJECT (preferencesdialog), "pfontsallentry",
     pfontsallentry);
 
   gtk_widget_show_all (pnotebook);
@@ -707,11 +737,11 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.callsign = g_strdup (str);
 
     /* login frame */
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(pautologincheckbutton));
-    if (state) 
-      preferences.autologin = 1; 
-    else 
+    if (state)
+      preferences.autologin = 1;
+    else
       preferences.autologin = 0;
     str = gtk_editable_get_chars (GTK_EDITABLE (pcommandsentry), 0, -1);
     if (strlen(str) == 0)
@@ -720,37 +750,37 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.commands = g_strdup (str);
 
     /* saving frame */
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(psavedxcheckbutton));
-    if (state) 
-      preferences.savedx = 1; 
-    else 
+    if (state)
+      preferences.savedx = 1;
+    else
       preferences.savedx = 0;
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(psavewwvcheckbutton));
-    if (state) 
-      preferences.savewwv = 1; 
-    else 
+    if (state)
+      preferences.savewwv = 1;
+    else
       preferences.savewwv = 0;
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(psavetoallcheckbutton));
-    if (state) 
-      preferences.savetoall = 1; 
-    else 
+    if (state)
+      preferences.savetoall = 1;
+    else
       preferences.savetoall = 0;
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(psavewxcheckbutton));
-    if (state) 
-      preferences.savewx = 1; 
-    else 
+    if (state)
+      preferences.savewx = 1;
+    else
       preferences.savewx = 0;
 
     /* hamlib frame */
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(phamlibcheckbutton));
-    if (state) 
-      preferences.hamlib = 1; 
-    else 
+    if (state)
+      preferences.hamlib = 1;
+    else
       preferences.hamlib = 0;
     str = gtk_editable_get_chars (GTK_EDITABLE (prigentry), 0, -1);
     if (strlen(str) == 0)
@@ -776,22 +806,22 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       preferences.soundapp = g_strdup (str);
 
     /* general frame */
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(pechocheckbutton));
-    if (state) 
+    if (state)
       preferences.localecho = 1;
     else
       preferences.localecho = 0;
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(plivecheckbutton));
-    if (state) 
+    if (state)
       preferences.keepalive = 1;
     else
       preferences.keepalive = 0;
 
     /* columns frame */
     treeview = g_object_get_data (G_OBJECT (gui->window), "treeview");
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(pspottercheckbutton));
     column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 0);
     if (state)
@@ -800,13 +830,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       if (preferences.col0visible == 0)
         gtk_tree_view_column_set_fixed_width (column, COL0WIDTH);
       preferences.col0visible = 1;
-    }	    
+    }
     else
     {
       gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
       preferences.col0visible = 0;
     }
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(pqrgcheckbutton));
     column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 1);
     if (state)
@@ -815,13 +845,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       if (preferences.col1visible == 0)
         gtk_tree_view_column_set_fixed_width (column, COL1WIDTH);
       preferences.col1visible = 1;
-    }	    
+    }
     else
     {
       gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
       preferences.col1visible = 0;
     }
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(pdxcheckbutton));
     column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 2);
     if (state)
@@ -830,13 +860,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       if (preferences.col2visible == 0)
         gtk_tree_view_column_set_fixed_width (column, COL2WIDTH);
       preferences.col2visible = 1;
-    }	    
+    }
     else
     {
       gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
       preferences.col2visible = 0;
     }
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(premarkscheckbutton));
     column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 3);
     if (state)
@@ -845,13 +875,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       if (preferences.col3visible == 0)
         gtk_tree_view_column_set_fixed_width (column, COL3WIDTH);
       preferences.col3visible = 1;
-    }	    
+    }
     else
     {
       gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
       preferences.col3visible = 0;
     }
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(ptimecheckbutton));
     column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 4);
     if (state)
@@ -860,13 +890,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       if (preferences.col4visible == 0)
         gtk_tree_view_column_set_fixed_width (column, COL4WIDTH);
       preferences.col4visible = 1;
-    }	    
+    }
     else
     {
       gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
       preferences.col4visible = 0;
     }
-    state = gtk_toggle_button_get_active 
+    state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(pinfocheckbutton));
     column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 5);
     if (state)
@@ -875,13 +905,13 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       if (preferences.col5visible == 0)
         gtk_tree_view_column_set_fixed_width (column, COL5WIDTH);
       preferences.col5visible = 1;
-    }	    
+    }
     else
     {
       gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
       preferences.col5visible = 0;
     }
-	 state = gtk_toggle_button_get_active 
+	 state = gtk_toggle_button_get_active
       (GTK_TOGGLE_BUTTON(pcountrycheckbutton));
     column = gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), 6);
     if (state)
@@ -890,12 +920,12 @@ void on_settings_activate (GtkMenuItem * menuitem, gpointer user_data)
       if (preferences.col6visible == 0)
         gtk_tree_view_column_set_fixed_width (column, COL6WIDTH);
       preferences.col6visible = 1;
-    }	    
+    }
     else
     {
       gtk_tree_view_column_set_visible (GTK_TREE_VIEW_COLUMN(column), FALSE);
       preferences.col6visible = 0;
-    } 
+    }
 
     /* fonts frame */
     str = gtk_editable_get_chars (GTK_EDITABLE (pfontsdxentry), 0, -1);

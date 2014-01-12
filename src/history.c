@@ -21,13 +21,17 @@
  * history.c - private functions for handling connect history
  */
 
+
 #include <stdio.h>
+
 #include <gtk/gtk.h>
-#include "utils.h"
-#include "history.h"
+
 #include "gui.h"
+#include "history.h"
+#include "utils.h"
 
 #define TXHISTORY 10
+
 
 /*
  * recall history and copy into the appropriate GList
@@ -102,7 +106,7 @@ void tx_save(GString *txmsg)
   gui->txhistory = g_list_append(gui->txhistory, g_strdup(txmsg->str));
   if (g_list_length(gui->txhistory) > TXHISTORY)
     gui->txhistory = g_list_remove(gui->txhistory, g_list_first(gui->txhistory)->data);
-  else gui->txitem++; 
+  else gui->txitem++;
   gui->updown = 0;
 }
 

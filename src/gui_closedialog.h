@@ -21,4 +21,10 @@
  * gui_closedialog.h
  */
 
+
+#ifndef XDX_GUI_CLOSEDIALOG_H
+#define XDX_GUI_CLOSEDIALOG_H
+
 void on_close_activate (GtkMenuItem * menuitem, gpointer user_data);
+
+#endif /* XDX_GUI_CLOSEDIALOG_H */

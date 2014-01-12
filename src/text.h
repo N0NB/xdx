@@ -21,7 +21,9 @@
  *  text.h
  */
 
-#include <gtk/gtk.h>
+
+#ifndef XDX_TEXT_H
+#define XDX_TEXT_H
 
 typedef struct
 {
@@ -51,3 +53,5 @@ gint readctydata (void);
 struct info lookupcountry_by_callsign (gchar * callsign);
 
 void maintext_add (gchar * msg, gint len, gint messagetype);
+
+#endif /* XDX_TEXT_H */

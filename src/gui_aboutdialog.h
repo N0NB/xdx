@@ -21,4 +21,10 @@
  * gui_aboutdialog.h
  */
 
+
+#ifndef XDX_GUI_ABOUTDIALOG_H
+#define XDX_GUI_ABOUTDIALOG_H
+
 void on_about_activate (GtkMenuItem * menuitem, gpointer user_data);
+
+#endif /* XDX_GUI_ABOUTDIALOG_H */
