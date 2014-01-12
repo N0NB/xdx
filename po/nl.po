@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-01-09 08:24-0600\n"
+"POT-Creation-Date: 2014-01-12 09:03-0600\n"
 "PO-Revision-Date: 2007-12-03 15:36+0100\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: nl <pg4i@amsat.org>\n"
@@ -15,144 +15,144 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: src/gui_aboutdialog.c:68
+#: src/gui_aboutdialog.c:96
 msgid "Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"
 msgstr "Tcp/ip DX cluster en ON4KST chat client voor zendamateurs"
 
-#: src/gui.c:88
+#: src/gui.c:116
 msgid "_Program"
 msgstr "_Programma"
 
-#: src/gui.c:89
+#: src/gui.c:117
 msgid "_Host"
 msgstr "_Station"
 
-#: src/gui.c:90
+#: src/gui.c:118
 msgid "_Settings"
 msgstr "_Instellingen"
 
-#: src/gui.c:91
+#: src/gui.c:119
 msgid "H_elp"
 msgstr "_Hulp"
 
-#: src/gui.c:92
+#: src/gui.c:120
 msgid "Highlights"
 msgstr "Kleuren"
 
-#: src/gui.c:94
+#: src/gui.c:122
 msgid "Quit"
 msgstr "Afsluiten"
 
-#: src/gui.c:96
+#: src/gui.c:124
 msgid "Connect..."
 msgstr "Verbinden..."
 
-#: src/gui.c:98
+#: src/gui.c:126
 msgid "Disconnect"
 msgstr "Verbinding verbreken"
 
-#: src/gui.c:100
+#: src/gui.c:128
 msgid "Connection Log"
 msgstr "Verbindingslog"
 
-#: src/gui.c:102
+#: src/gui.c:130
 msgid "Preferences..."
 msgstr "Voorkeuren..."
 
-#: src/gui.c:104
+#: src/gui.c:132
 msgid "Manual"
 msgstr "Handboek"
 
-#: src/gui.c:106
+#: src/gui.c:134
 msgid "About"
 msgstr "Info"
 
-#: src/gui.c:113
+#: src/gui.c:141
 msgid "Function keys bar"
 msgstr ""
 
-#: src/gui.c:115
+#: src/gui.c:143
 msgid "Auto Reconnect"
 msgstr "Automatisch opnieuw verbinden"
 
-#: src/gui.c:117
+#: src/gui.c:145
 msgid "Chat sidebar"
 msgstr "Chat zijvenster"
 
-#: src/gui.c:191
+#: src/gui.c:219
 #, c-format
 msgid "Error loading icon: %s"
 msgstr "Fout bij het laden van het programma icoon: %s"
 
-#: src/gui.c:252 src/gui_settingsdialog.c:415
+#: src/gui.c:280 src/gui_settingsdialog.c:445
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:276 src/gui_settingsdialog.c:423
+#: src/gui.c:304 src/gui_settingsdialog.c:453
 msgid "Remarks"
 msgstr "Opmerkingen"
 
-#: src/gui.c:284 src/gui_settingsdialog.c:425
+#: src/gui.c:312 src/gui_settingsdialog.c:455
 msgid "Time"
 msgstr "Tijd"
 
-#: src/gui.c:292 src/gui_settingsdialog.c:427
+#: src/gui.c:320 src/gui_settingsdialog.c:457
 msgid "Info"
 msgstr "Info"
 
-#: src/gui.c:300 src/gui_settingsdialog.c:429
+#: src/gui.c:328 src/gui_settingsdialog.c:459
 msgid "Country"
 msgstr "Land"
 
-#: src/gui.c:395
+#: src/gui.c:423
 msgid "Sound"
 msgstr "Geluid"
 
-#: src/gui.c:426 src/gui.c:427 src/gui.c:428 src/gui.c:429 src/gui.c:430
-#: src/gui.c:431 src/gui.c:432 src/gui.c:433
+#: src/gui.c:454 src/gui.c:455 src/gui.c:456 src/gui.c:457 src/gui.c:458
+#: src/gui.c:459 src/gui.c:460 src/gui.c:461
 msgid "Enter a word to highlight"
 msgstr "Voer een woord in om te kleuren"
 
-#: src/gui.c:435 src/gui.c:437 src/gui.c:439 src/gui.c:441 src/gui.c:443
-#: src/gui.c:445 src/gui.c:447 src/gui.c:449
+#: src/gui.c:463 src/gui.c:465 src/gui.c:467 src/gui.c:469 src/gui.c:471
+#: src/gui.c:473 src/gui.c:475 src/gui.c:477
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
 msgstr "Prompt meenemen [Ctrl+%d]"
 
-#: src/gui.c:451
+#: src/gui.c:479
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
 msgstr "Geluid aan/uit zetten [Ctrl+%d]"
 
-#: src/gui.c:454 src/gui.c:455 src/gui.c:456 src/gui.c:457 src/gui.c:458
-#: src/gui.c:459 src/gui.c:460 src/gui.c:461
+#: src/gui.c:482 src/gui.c:483 src/gui.c:484 src/gui.c:485 src/gui.c:486
+#: src/gui.c:487 src/gui.c:488 src/gui.c:489
 msgid "Right click to edit"
 msgstr ""
 
-#: src/gui.c:1022
+#: src/gui.c:1050
 #, fuzzy
 msgid "xdx - edit function key"
 msgstr "xdx - verbinding openen"
 
-#: src/gui.c:1028
+#: src/gui.c:1056
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Roepletters te gebruiken voor login"
 
-#: src/gui_closedialog.c:44
+#: src/gui_closedialog.c:72
 msgid "xdx - close connection"
 msgstr "xdx - verbinding sluiten"
 
-#: src/gui_closedialog.c:61
+#: src/gui_closedialog.c:89
 #, c-format
 msgid "Close connection to %s ?"
 msgstr "Verbinding naar %s sluiten ?"
 
-#: src/gui_closedialog.c:72
+#: src/gui_closedialog.c:100
 msgid "Connection closed"
 msgstr "Verbinding gesloten"
 
-#: src/gui_manualdialog.c:40
+#: src/gui_manualdialog.c:70
 msgid "xdx - manual"
 msgstr "xdx - handboek"
 
@@ -160,95 +160,95 @@ msgstr "xdx - handboek"
 #. * Do not translate MANUAL unless you provide a faq in your language,
 #. * e.g. the polish faq is called MANUAL.pl.
 #.
-#: src/gui_manualdialog.c:59
+#: src/gui_manualdialog.c:89
 msgid "MANUAL"
 msgstr "MANUAL.nl"
 
-#: src/gui_opendialog.c:49
+#: src/gui_opendialog.c:77
 msgid "xdx - open connection"
 msgstr "xdx - verbinding openen"
 
-#: src/gui_opendialog.c:69
+#: src/gui_opendialog.c:97
 msgid "_Hostname"
 msgstr "_Hostnaam"
 
-#: src/gui_opendialog.c:82
+#: src/gui_opendialog.c:110
 msgid "_Port"
 msgstr "_Poort"
 
-#: src/gui_logdialog.c:47
+#: src/gui_logdialog.c:76
 msgid "xdx - connection log"
 msgstr "xdx - verbindingslog"
 
-#: src/gui_settingsdialog.c:104
+#: src/gui_settingsdialog.c:134
 msgid "xdx - Select a font"
 msgstr "xdx - Selekteer een lettertype"
 
-#: src/gui_settingsdialog.c:117
+#: src/gui_settingsdialog.c:147
 msgid "How about this font?"
 msgstr "Wat denk je van dit font?"
 
-#: src/gui_settingsdialog.c:210
+#: src/gui_settingsdialog.c:240
 msgid "xdx - preferences"
 msgstr "xdx - voorkeuren"
 
-#: src/gui_settingsdialog.c:230 src/gui_settingsdialog.c:390
+#: src/gui_settingsdialog.c:260 src/gui_settingsdialog.c:420
 msgid "General"
 msgstr "Algemeen"
 
-#: src/gui_settingsdialog.c:233
+#: src/gui_settingsdialog.c:263
 msgid "Output"
 msgstr "Output"
 
-#: src/gui_settingsdialog.c:236 src/gui_settingsdialog.c:484
+#: src/gui_settingsdialog.c:266 src/gui_settingsdialog.c:514
 msgid "Fonts"
 msgstr "Lettertypes"
 
-#: src/gui_settingsdialog.c:239
+#: src/gui_settingsdialog.c:269
 msgid "Colors"
 msgstr "Kleuren"
 
-#: src/gui_settingsdialog.c:249
+#: src/gui_settingsdialog.c:279
 msgid "Your callsign"
 msgstr "Uw roepletters"
 
-#: src/gui_settingsdialog.c:259
+#: src/gui_settingsdialog.c:289
 msgid "Enable autologin"
 msgstr "Autologin aanzetten"
 
-#: src/gui_settingsdialog.c:266
+#: src/gui_settingsdialog.c:296
 msgid "Commands"
 msgstr "Commando's"
 
-#: src/gui_settingsdialog.c:272
+#: src/gui_settingsdialog.c:302
 msgid "Comma separated list of commands to send at login"
 msgstr "Commando's te versturen na login gescheiden door een komma"
 
-#: src/gui_settingsdialog.c:274
+#: src/gui_settingsdialog.c:304
 msgid "Callsign to be used for login"
 msgstr "Roepletters te gebruiken voor login"
 
-#: src/gui_settingsdialog.c:276
+#: src/gui_settingsdialog.c:306
 msgid "Login"
 msgstr "Login"
 
-#: src/gui_settingsdialog.c:278
+#: src/gui_settingsdialog.c:308
 msgid "Callsign"
 msgstr "Roepletters"
 
-#: src/gui_settingsdialog.c:305
+#: src/gui_settingsdialog.c:335
 msgid "Enable hamlib"
 msgstr "Hamlib aanzetten"
 
-#: src/gui_settingsdialog.c:311
+#: src/gui_settingsdialog.c:341
 msgid "Command for rigctl"
 msgstr "Aanroepen van rigctl"
 
-#: src/gui_settingsdialog.c:316
+#: src/gui_settingsdialog.c:346
 msgid "Hamlib"
 msgstr "Hamlib"
 
-#: src/gui_settingsdialog.c:319
+#: src/gui_settingsdialog.c:349
 #, c-format
 msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
@@ -257,177 +257,177 @@ msgstr ""
 "Wanneer je dubbelklikt op een dx-spot zal dit commando de frequentie van je "
 "ontvanger veranderen met rigctl (%d = de frequentie van de dx-spot)"
 
-#: src/gui_settingsdialog.c:345
+#: src/gui_settingsdialog.c:375
 msgid "Web browser"
 msgstr "Web browser"
 
-#: src/gui_settingsdialog.c:352
+#: src/gui_settingsdialog.c:382
 msgid "Mail program"
 msgstr "Mail programma"
 
-#: src/gui_settingsdialog.c:359
+#: src/gui_settingsdialog.c:389
 msgid "Sound playing"
 msgstr "Geluid afspelen"
 
-#: src/gui_settingsdialog.c:364
+#: src/gui_settingsdialog.c:394
 msgid "Programs"
 msgstr "Programma's"
 
-#: src/gui_settingsdialog.c:367
+#: src/gui_settingsdialog.c:397
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
 msgstr "Starten van web browser na het klikken op een url (%s = url)"
 
-#: src/gui_settingsdialog.c:369
+#: src/gui_settingsdialog.c:399
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
 "Mail programma dat gestart wordt na het klikken op een mail url (%s = mail "
 "url)"
 
-#: src/gui_settingsdialog.c:371
+#: src/gui_settingsdialog.c:401
 #, c-format
 msgid "Program used to play sound (%s = sound file)"
 msgstr ""
 "Programma dat gebruikt wordt om geluid af te spelen (%s = geluidsbestand)"
 
-#: src/gui_settingsdialog.c:385
+#: src/gui_settingsdialog.c:415
 msgid "Echo sent text to the screen"
 msgstr "Verzonden berichten naar het scherm kopiëren"
 
-#: src/gui_settingsdialog.c:388
+#: src/gui_settingsdialog.c:418
 msgid "Send keepalive packets (read the manual)"
 msgstr "Verbinding in stand houden (lees het handboek)"
 
-#: src/gui_settingsdialog.c:405
+#: src/gui_settingsdialog.c:435
 msgid "Columns"
 msgstr "Kolommen"
 
-#: src/gui_settingsdialog.c:407
+#: src/gui_settingsdialog.c:437
 msgid "Columns to show on the screen"
 msgstr "Kolommen die te zien zijn op het scherm"
 
-#: src/gui_settingsdialog.c:469
+#: src/gui_settingsdialog.c:499
 msgid "Save DX spots"
 msgstr "DX spots opslaan"
 
-#: src/gui_settingsdialog.c:471
+#: src/gui_settingsdialog.c:501
 msgid "Save WCY/WWV"
 msgstr "WCY/WWV opslaan"
 
-#: src/gui_settingsdialog.c:475
+#: src/gui_settingsdialog.c:505
 msgid "Save \"To all\""
 msgstr "\"To all\" opslaan"
 
-#: src/gui_settingsdialog.c:477
+#: src/gui_settingsdialog.c:507
 msgid "Save WX"
 msgstr "WX opslaan"
 
-#: src/gui_settingsdialog.c:479
+#: src/gui_settingsdialog.c:509
 msgid "Saving"
 msgstr "Opslaan"
 
-#: src/gui_settingsdialog.c:488
+#: src/gui_settingsdialog.c:518
 msgid "Font for DX messages"
 msgstr "Lettertype voor DX berichten"
 
-#: src/gui_settingsdialog.c:491
+#: src/gui_settingsdialog.c:521
 msgid "Select _DX Font"
 msgstr "Kies _DX lettertype"
 
-#: src/gui_settingsdialog.c:498
+#: src/gui_settingsdialog.c:528
 msgid "Font for other messages"
 msgstr "Lettertype voor andere berichten"
 
-#: src/gui_settingsdialog.c:501
+#: src/gui_settingsdialog.c:531
 msgid "Select _Other Fonts"
 msgstr "Kies A_nder lettertype"
 
-#: src/gui_settingsdialog.c:513
+#: src/gui_settingsdialog.c:543
 msgid "Highlighting"
 msgstr "Kleuren"
 
-#: src/gui_settingsdialog.c:517
+#: src/gui_settingsdialog.c:547
 msgid "Colors to use for highlighting"
 msgstr "Kleuren te gebruiken voor het opvallen"
 
-#: src/gui_settingsdialog.c:529 src/gui_settingsdialog.c:537
-#: src/gui_settingsdialog.c:545 src/gui_settingsdialog.c:553
-#: src/gui_settingsdialog.c:566 src/gui_settingsdialog.c:574
-#: src/gui_settingsdialog.c:582 src/gui_settingsdialog.c:590
+#: src/gui_settingsdialog.c:559 src/gui_settingsdialog.c:567
+#: src/gui_settingsdialog.c:575 src/gui_settingsdialog.c:583
+#: src/gui_settingsdialog.c:596 src/gui_settingsdialog.c:604
+#: src/gui_settingsdialog.c:612 src/gui_settingsdialog.c:620
 #, c-format
 msgid "Color %d"
 msgstr "Kleur %d"
 
-#: src/gui_settingsdialog.c:607
+#: src/gui_settingsdialog.c:637
 msgid "Colors for the chat window"
 msgstr "Kleuren voor het chat venster"
 
-#: src/gui_settingsdialog.c:614
+#: src/gui_settingsdialog.c:644
 msgid "Prompt"
 msgstr "Prompt"
 
-#: src/gui_settingsdialog.c:623
+#: src/gui_settingsdialog.c:653
 msgid "Sent text"
 msgstr "Verzonden text"
 
-#: src/main.c:386
+#: src/main.c:413
 #, c-format
 msgid "Welcome to %s"
 msgstr "Welkom bij %s"
 
-#: src/net.c:89
+#: src/net.c:118
 #, c-format
 msgid "Resolving %s..."
 msgstr "Opzoeken van %s..."
 
-#: src/net.c:95
+#: src/net.c:124
 #, c-format
 msgid "Resolve failed: %s"
 msgstr "Resolver faalt: %s"
 
-#: src/net.c:102
+#: src/net.c:131
 #, c-format
 msgid "Connecting to: %s"
 msgstr "Verbinding maken met: %s"
 
-#: src/net.c:143
+#: src/net.c:172
 #, c-format
 msgid "Connected to %s"
 msgstr "Verbonden met %s"
 
-#: src/net.c:256
+#: src/net.c:285
 msgid "Connection closed, trying reconnect in 10 seconds"
 msgstr "Verbinding verbroken, opnieuw verbinden over 10 seconden"
 
-#: src/net.c:264
+#: src/net.c:293
 msgid "Connection closed by remote host"
 msgstr "Verbinding verbroken"
 
-#: src/net.c:279
+#: src/net.c:308
 msgid "Connection closed by remote host (0 bytes received)"
 msgstr "Verbinding verbroken door server (0 bytes ontvangen)"
 
-#: src/net.c:335
+#: src/net.c:364
 #, c-format
 msgid "Write failed: %s"
 msgstr "Schrijven faalt: %s"
 
-#: src/net.c:348
+#: src/net.c:377
 msgid "Nothing to send, you are not connected"
 msgstr "Kan niets versturen, je hebt geen verbinding"
 
-#: src/preferences.c:48
+#: src/preferences.c:76
 #, c-format
 msgid "Creating ~/.%s directory."
 msgstr "Maken van ~/.%s bestandsmap."
 
-#: src/preferences.c:51
+#: src/preferences.c:79
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr "~/.%s is geen bestandsmap."
 
-#: src/utils.c:113 src/utils.c:128
+#: src/utils.c:143 src/utils.c:158
 #, c-format
 msgid "Starting: %s"
 msgstr "Starten van: %s"
