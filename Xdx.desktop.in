@@ -2,8 +2,8 @@
 Name=Xdx
 Comment=DX-cluster client for amateur radio
 Comment[nl]=DX-cluster client voor zendamateurs
-Exec=/usr/bin/xdx
-Icon=/usr/share/xdx/pixmaps/xdx.png
+Exec=@prefix@/bin/xdx
+Icon=@prefix@/share/xdx/pixmaps/xdx.png
 Terminal=false
 Type=Application
-Categories=Network;HamRadio
+Categories=Network;HamRadio;

@@ -1,7 +1,5 @@
 ## Process this file with automake to produce Makefile.in
 
-DESKTOP_FILES = Xdx.desktop
-
 SHARE_FILES = MANUAL MANUAL.es MANUAL.fr MANUAL.nl MANUAL.pl cty.dat
 
 GNUPLOT_FILES = gnuplot/wwv.gnuplot
@@ -13,12 +11,13 @@ PIXMAP_FILES = pixmaps/bigsmile.png pixmaps/cry.png pixmaps/sad.png \
 SOUND_FILES = sounds/attention.wav
 
 EXTRA_DIST = \
-	xdx.1.in
+	xdx.1.in \
+	Xdx.desktop.in
 
 SUBDIRS = m4 po src
 
 desktopdir = $(datadir)/applications
-dist_desktop_DATA = $(DESKTOP_FILES)
+desktop_DATA = Xdx.desktop
 
 man_MANS = xdx.1
 

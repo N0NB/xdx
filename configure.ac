@@ -69,6 +69,7 @@ AC_SUBST([AM_CFLAGS])
 AC_CONFIG_FILES([m4/Makefile
 src/Makefile
 Makefile
-xdx.1])
+xdx.1
+Xdx.desktop])
 
 AC_OUTPUT
