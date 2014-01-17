@@ -1,11 +1,55 @@
 .\"
-.TH "XDX" "1" "Version @VERSION@" "Joop Stakenborg" "Hamradio"
+.TH "XDX" "1" "@PACKAGE_STRING@" "Joop Stakenborg" "Hamradio"
 .SH "NAME"
-xdx \- tcp/ip DX-cluster client for Amateur Radio
+@PACKAGE_NAME@ \- TCP/IP DX-cluster client for Amateur Radio
+
+.SH SYNOPSIS
+.B @PACKAGE@
+[\fIOPTION\fR]...
 
 .SH "DESCRIPTION"
-\fBXdx\fR is a DX-cluster client which shows a list with DX announcements
-and a separate text widget with WWV, WCY, "To ALL" and other server messages.
+\fB@PACKAGE_NAME@\fR is a GUI DX-cluster client which shows a list with
+DX announcements and a separate text widget with WWV, WCY, "To ALL" and other
+server messages in a single Gtk+ window.  DX Cluster hosts are remembered
+between sessions.
+
+.SH OPTIONS
+Here is a summary of the supported options:
+.TP
+.B \-c, \-\-cty_dat=path/to/cty.dat
+Set path for desired country file.
+.TP
+.B \-h, \-\-help
+Print short \fB@PACKAGE@\fP usage message detailing available options and exit.
+.TP
+.B \-V, \-\-version
+Print @PACKAGE_NAME@ version and short copyright information and exit.
+
+.SH "ENVIRONMENT"
+Instead of the \fB\-c\fP or \fB\-\-cty_dat\fP command line
+options, @PACKAGE_NAME@ will honor the \fBXDX_CTY\fP environment variable.
+However, when the command line option is given the environment varriable will
+be ignored.
+
+.SH "FILES"
+@PACKAGE_NAME@ will look for the country file in the preferences directory,
+normally \fI$HOME/.@PACKAGE@\fP, if a path is not given on the command line or
+the \fBXDX_CTY\fP environment variable is not set.  This is a convenient way
+to keep an up-to-date or custom \fIcty.dat\fP for use just with
+@PACKAGE_NAME@.
+
+.SH "NOTES"
+Updated country files are available from:
+\fIhttp://www.country-files.com/cty/cty.dat\fP
+.PP
+Development is currently hosted at: \fI@PACKAGE_URL@\fP
+
+@PACKAGE_NAME@ has been translated into several languages.  More translations
+are welcome.  Please contact the maintainer for details.
+
+.SH "BUGS"
+@PACKAGE_NAME@ has a new maintainer, Nate Bargmann, N0NB.  Please report bugs
+to \fI<@PACKAGE_BUGREPORT@>\fP until a mailing list is set up.
 
 .SH "SEE ALSO"
-Select Help->Manual after starting xdx for a full manual.
+Select Help->Manual after starting @PACKAGE_NAME@ for a full manual.

@@ -23,10 +23,38 @@
  */
 
 
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+/*
+ * Standard gettext macros.
+ */
+#ifdef ENABLE_NLS
+#  include <libintl.h>
+#  undef _
+#  define _(String) dgettext (PACKAGE, String)
+#  ifdef gettext_noop
+#    define N_(String) gettext_noop (String)
+#  else
+#    define N_(String) (String)
+#  endif
+#else
+#  define textdomain(String) (String)
+#  define gettext(String) (String)
+#  define dgettext(Domain,Message) (Message)
+#  define dcgettext(Domain,Message,Type) (Message)
+#  define bindtextdomain(Domain,Directory) (Domain)
+#  define _(String) (String)
+#  define N_(String) (String)
+#endif
+
+#include <errno.h>
 #include <string.h>
 #include <stdlib.h>
 
 #include <gtk/gtk.h>
+#include <glib/gstdio.h>
 
 #include "gui.h"
 #include "gtksourceiter.h"
@@ -1033,23 +1061,77 @@ dxcc_add (gchar *c, gint w, gint i, gchar *cont, gint lat, gint lon,
 	g_ptr_array_add (dxcc, new_dxcc);
 }
 
-/* fill the hashtable with all of the prefixes from cty.dat */
+
+/* fill the hashtable with all of the prefixes from cty.dat
+ *
+ * Country file format:
+ * http://www.country-files.com/cty/backup/format.htm
+ *
+ */
 gint
 readctydata (void)
 {
-
-	gchar buf[4096], *cty_location, *pfx, **split, **pfxsplit, *excstr;
-	gint ichar = 0, dxccitem = 0, ipfx = 0, ch = 0;
+	gchar buf[MAX_RECORD_SIZE], *cty_location, *pfx, **split, **pfxsplit,
+	      *excstr, *cty_env;
+	gint ichar = 0, dxccitem = 0, ipfx = 0, ch = 0, errsv;
+	extern gchar *opt_cty_path;
 	FILE *fp;
+	GStatBuf statcty;
 
-	cty_location = g_strdup_printf ("%s%s%s", PACKAGE_DATA_DIR, G_DIR_SEPARATOR_S, "cty.dat");
+	/* Check for user specification of the location of the country file
+	 * "cty.dat" in the following order:
+	 * 1. via command line with the -c or --cty_dat options
+	 * 2. via the environment with the XDX_CTY variable
+	 *
+	 * Fall back to:
+	 * 1. preferencesdir/cty.dat
+	 * 2. installed version of cty.dat
+	 */
 
-	if ((fp = fopen (cty_location, "r")) == NULL)
-	{
-		printf("Cannot find cty.dat in %s !\n",cty_location);
+	/* Check if user passed cty.dat path on command line.*/
+	if (opt_cty_path != NULL && g_str_has_suffix(opt_cty_path, "cty.dat")) {
+		cty_location = g_strdup_printf("%s", opt_cty_path);
+
+		g_free(opt_cty_path);
+	} else {
+		/* Support user setting of environment variable XDX_CTY for
+		 * specific location of cty.dat.
+		 */
+		cty_env = getenv("XDX_CTY");
+
+		/* It's most likely that XDX_CTY will not be set. */
+		if (cty_env != NULL && g_str_has_suffix(cty_env, "cty.dat")) {
+			cty_location = g_strdup_printf("%s", cty_env);
+		} else {
+			/* $HOME/.xdx/cty.dat */
+			cty_location = g_strdup_printf("%s%s%s", gui->preferencesdir,
+						       G_DIR_SEPARATOR_S, "cty.dat");
+		}
+	}
+
+	errsv = g_stat(cty_location, &statcty);
+
+	/* Check if --cty_dat, XDX_CTY, or $HOME/.xdx/cty.dat exists. */
+	if (!S_ISREG(statcty.st_mode)) {
+		if (errsv == -1) {
+			g_printerr(_("%s: %s\n"), g_strerror(errno), cty_location );
+		}
+
+		g_free(cty_location);
+
+		/* Fall back to installed cty.dat */
+		cty_location = g_strdup_printf("%s%s%s", PACKAGE_DATA_DIR,
+					        G_DIR_SEPARATOR_S, "cty.dat");
+	}
+
+	if ((fp = fopen (cty_location, "r")) == NULL) {
+		g_printerr(_("Cannot read cty.dat in %s\n"), cty_location);
 		g_free (cty_location);
+
 		return (1);
 	}
+
+	g_print(_("Loading %s\n"), cty_location);
 
 	dxcc = g_ptr_array_new ();
 	prefixes = g_hash_table_new_full (g_str_hash, g_str_equal,
@@ -1059,9 +1141,13 @@ readctydata (void)
 	dxcc_add ("Unknown", 0, 0, "--", 0, 0, 0, "", "");
 	countries = 1;
 
-	while (!feof (fp))
+    /* Read the CTY.DAT file. */
+	while (!feof(fp))
 	{
-		while (ch != 59)
+        /* Check for ';' record terminator.
+         * Avoid buffer overrun of any single record.
+         */
+		while (ch != 59 && ichar < MAX_RECORD_SIZE)
 		{
 			ch = fgetc (fp);
 			if (ch == EOF) break;

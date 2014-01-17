@@ -13,37 +13,39 @@ AM_CPPFLAGS = \
 bin_PROGRAMS = xdx
 
 xdx_SOURCES = \
-	gui.h \
-	gui_opendialog.h \
-	gui_logdialog.h \
-	gui_closedialog.h \
-	gui_aboutdialog.h \
-	gui_settingsdialog.h \
-	gui_manualdialog.h \
-	history.h \
-	net.h \
-	preferences.h \
-	text.h \
-	types.h \
-	utils.h \
-	hyperlink.h \
-	save.h \
+	cmd_opts.c \
+	cmd_opts.h \
+	gtksourceiter.c \
 	gtksourceiter.h \
 	gui.c \
-	gui_opendialog.c \
-	gui_logdialog.c \
-	gui_closedialog.c \
+	gui.h \
 	gui_aboutdialog.c \
-	gui_settingsdialog.c \
+	gui_aboutdialog.h \
+	gui_closedialog.c \
+	gui_closedialog.h \
+	gui_logdialog.c \
+	gui_logdialog.h \
 	gui_manualdialog.c \
+	gui_manualdialog.h \
+	gui_opendialog.c \
+	gui_opendialog.h \
+	gui_settingsdialog.c \
+	gui_settingsdialog.h \
 	history.c \
+	history.h \
+	hyperlink.c \
+	hyperlink.h \
 	main.c \
 	net.c \
+	net.h \
 	preferences.c \
-	text.c \
-	utils.c \
-	hyperlink.c \
+	preferences.h \
 	save.c \
-	gtksourceiter.c 
+	save.h \
+	text.c \
+	text.h \
+	types.h \
+	utils.c \
+	utils.h
 
 xdx_LDADD = $(GTK_LIBS)
