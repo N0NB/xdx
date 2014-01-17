@@ -25,6 +25,13 @@
 #ifndef XDX_TEXT_H
 #define XDX_TEXT_H
 
+/* Buffer size for reading in a single cty.dat record.  Currently the
+ * entire cty.dat file is just under 80k bytes, so any single record should
+ * be much less than this value, but with additions of callsign exceptions
+ * record sizes will undoubtedly continue to grow.
+ */
+#define MAX_RECORD_SIZE 65536
+
 typedef struct
 {
 	gchar *countryname;

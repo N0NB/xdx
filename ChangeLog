@@ -6,6 +6,8 @@ Changelog for version Xdx (2.4.3)
   * New upstream maintainer, Nate Bargmann, N0NB <n0nb@n0nb.us>
   * Development hosted at https://github.com/N0NB/xdx
   * Portuguese translation update from David, CT1DRB
+  * Add support to load updated country file using command line option,
+    environment variable, or placing cty.dat in the preferences directory.
 
 Changelog for version xdx (2.4.2)
   * German translations added.

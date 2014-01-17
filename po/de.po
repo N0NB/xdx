@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.4.1\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-01-12 09:03-0600\n"
+"POT-Creation-Date: 2014-01-16 13:32-0600\n"
 "PO-Revision-Date: 2009-01-10 07:27+0100\n"
 "Last-Translator: Thomas Beierlein <tb@forth-ev.de>\n"
 "Language-Team: German\n"
@@ -375,7 +375,7 @@ msgstr "Prompt"
 msgid "Sent text"
 msgstr "Gesendeter Text"
 
-#: src/main.c:413
+#: src/main.c:416
 #, c-format
 msgid "Welcome to %s"
 msgstr "Willkommen bei %s"
@@ -430,6 +430,21 @@ msgstr "Lege Verzeichnis ~/.%s an."
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr "~/.%s ist kein Verzeichnis."
+
+#: src/text.c:1117
+#, c-format
+msgid "%s: %s\n"
+msgstr ""
+
+#: src/text.c:1128
+#, c-format
+msgid "Cannot read cty.dat in %s\n"
+msgstr ""
+
+#: src/text.c:1134
+#, c-format
+msgid "Loading %s\n"
+msgstr ""
 
 #: src/utils.c:143 src/utils.c:158
 #, c-format

@@ -54,6 +54,7 @@
 
 #include <gtk/gtk.h>
 
+#include "cmd_opts.h"
 #include "gui.h"
 #include "history.h"
 #include "locale.h"
@@ -65,6 +66,7 @@
 extern preferencestype preferences;
 GdkColormap *colormap;
 gchar *prompttagname, *calltagname;
+gchar *opt_cty_path = NULL;     /* For -c or --cty_path options. */
 
 int
 main (int argc, char *argv[])
@@ -100,6 +102,7 @@ main (int argc, char *argv[])
 //  lang = gtk_set_locale ();	/* don't free lang */
   gtk_init (&argc, &argv);
   setlocale(LC_NUMERIC, "C");
+  parse_opts(&argc, &argv);
 
   colormap = gdk_colormap_get_system();
   create_mainwindow ();

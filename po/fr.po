@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-01-12 09:03-0600\n"
+"POT-Creation-Date: 2014-01-16 13:32-0600\n"
 "PO-Revision-Date: 2006-04-27 10:59+0200\n"
 "Last-Translator: Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -372,7 +372,7 @@ msgstr "Invite"
 msgid "Sent text"
 msgstr "Texte envoyé"
 
-#: src/main.c:413
+#: src/main.c:416
 #, c-format
 msgid "Welcome to %s"
 msgstr "Bienvenue sur %s"
@@ -427,6 +427,21 @@ msgstr "Création du répertoire ~/.%s."
 #, c-format
 msgid "~/.%s is not a directory."
 msgstr "~/.%s n'est pas un répertoire."
+
+#: src/text.c:1117
+#, c-format
+msgid "%s: %s\n"
+msgstr ""
+
+#: src/text.c:1128
+#, c-format
+msgid "Cannot read cty.dat in %s\n"
+msgstr ""
+
+#: src/text.c:1134
+#, c-format
+msgid "Loading %s\n"
+msgstr ""
 
 #: src/utils.c:143 src/utils.c:158
 #, c-format

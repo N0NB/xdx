@@ -116,9 +116,51 @@ Smileys
 There is support for a limited number of smileys in the chat window:
 :)  :-)  :))  :-))  ;)  ;-)  :(  :-(  :((  :-((
 
+Country file support
+====================
+Included with the Xdx distribution is cty.dat that provides information for
+determining the country of origin of the spotted callsign.  The country
+file is maintained by Jim Reisert, AD1C and the latest version can be
+downloaded from:
+
+	http://www.country-files.com/cty/cty.dat
+
+The specification for the country file is:
+
+	http://www.country-files.com/cty/backup/format.htm
+
+Updates to the country file are released before major DX contests.  This file
+will be updated more often than Xdx so the version included in the source
+archive will become out of date in a short period of time.  Rather than
+release new versions of Xdx just to update cty.dat, support has been added to
+load the file from your home directory.  This can be done in one of two ways.
+
+1. Place the updated cty.dat into the Xdx preferences directory which is
+   $HOME/.xdx on POSIX platforms.
+
+2. If cty.dat is kept in another directory for use with a logging program, set
+   the XDX_CTY environment variable to the path of cty.dat, e.g.
+   $HOME/log/cty.dat or use the '-c' or '--cty_dat' option on the xdx command
+   line to set the path.
+
+The command line option overrides the setting of the environment variable.
+
+When the environment variable or the command line option is set the cty.dat in
+the preferences directory will not be loaded unless the path does not end in
+"cty.dat" or cty.dat is not a regular file, i.e. is a directory. In such cases
+the preferences directory will be checked.  The system installed version of
+cty.dat will be loaded as a fallback should the simple tests fail and the
+prefences directory does not contain cty.dat.  There is currently no test of
+whether the given cty.dat conforms to the specification.
+
+If, for whatever reason, country determination is not desired, creating a 0 byte
+file named cty.dat and using one of the above means to have Xdx load it will
+disable country processing.
+
 License and support
 ===================
 Xdx is free and published under the GNU GPL license. It is written by
 Joop Stakenborg <pg4i@amsat.org>.
+Nate Bargmann <n0nb@n0nb.us> (current maintainer)
 
 Please send a report if you find bugs or if you want enhancements.
