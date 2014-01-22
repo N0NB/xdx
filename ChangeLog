@@ -8,6 +8,7 @@ Changelog for version Xdx (2.4.3)
   * Portuguese translation update from David, CT1DRB
   * Add support to load updated country file using command line option,
     environment variable, or placing cty.dat in the preferences directory.
+  * Fix URI handling for GTK+ 2.24 and later.
 
 Changelog for version xdx (2.4.2)
   * German translations added.
