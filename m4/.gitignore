@@ -1,0 +1,7 @@
+# Ignore everything in this directory
+*
+# Except these files (be sure files to be tracked are added here!)
+!.gitignore
+!ax_append_flag.m4
+!ax_cflags_warn_all.m4
+!Makefile.am
