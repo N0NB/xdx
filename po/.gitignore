@@ -1,0 +1,14 @@
+# Ignore everything in this directory
+*
+# Except these files (be sure files to be tracked are added here!)
+!.gitignore
+!LINGUAS
+!Makevars
+!POTFILES.in
+!de.po
+!es.po
+!fr.po
+!nl.po
+!pl.po
+!pt.po
+!xdx.pot
