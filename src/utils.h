@@ -28,8 +28,8 @@
 void add_pixmap_directory (const gchar * directory);
 void updatestatusbar (GString * statusmessage, gboolean timeout);
 void menu_set_sensitive (GtkUIManager *uim, const gchar * path, gboolean sens);
-void openurl (const char *url);
-void openmail (const char *url);
+gboolean openurl (const char *url);
+gboolean openmail (const char *url);
 void opensound (const char *file);
 gchar *try_utf8 (const gchar *str);
 gchar *xdxgetdate (gboolean formatted);

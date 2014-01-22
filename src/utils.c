@@ -131,35 +131,46 @@ static void shellcommand (gchar *command)
   g_spawn_async (NULL, args, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, NULL);
 }
 
-void openurl (const char *url)
+/* Returns FALSE if preferences.browserapp setting does not end in "%s" so
+ * desktop defined default browser app is called.
+ */
+gboolean openurl (const char *url)
 {
-  gchar buf[1024];
-  GString *msg = g_string_new ("");
-
-
   if (g_strrstr(preferences.browserapp, "%s"))
   {
+    gchar buf[1024];
+    GString *msg = g_string_new ("");
+
     g_snprintf(buf, sizeof(buf), preferences.browserapp, url);
     g_string_printf (msg, _("Starting: %s"), buf);
     updatestatusbar (msg, TRUE);
     shellcommand (buf);
-  }
-  g_string_free (msg, TRUE);
+    g_string_free (msg, TRUE);
+
+    return TRUE;
+  } else
+    return FALSE;
 }
 
-void openmail (const char *url)
+/* Returns FALSE if preferences.mailapp setting does not end in "%s" so
+ * desktop defined default mail app is called.
+ */
+gboolean openmail (const char *url)
 {
-  gchar buf[1024];
-  GString *msg = g_string_new ("");
-
   if (g_strrstr(preferences.mailapp, "%s"))
   {
+    gchar buf[1024];
+    GString *msg = g_string_new ("");
+
     g_snprintf(buf, sizeof(buf), preferences.mailapp, url);
     g_string_printf (msg, _("Starting: %s"), buf);
     updatestatusbar (msg, TRUE);
     shellcommand (buf);
-  }
-  g_string_free (msg, TRUE);
+    g_string_free (msg, TRUE);
+
+    return TRUE;
+  } else
+    return FALSE;
 }
 
 void opensound (const char *file)

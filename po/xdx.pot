@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.4.3~rc\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-01-16 13:32-0600\n"
+"POT-Creation-Date: 2014-01-22 11:37-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gui_aboutdialog.c:96
-msgid "Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"
+#: src/gui_aboutdialog.c:128
+msgid "TCP/IP DX-cluster and ON4KST chat client for amateur radio operators"
 msgstr ""
 
 #: src/gui.c:116
@@ -438,7 +438,7 @@ msgstr ""
 msgid "Loading %s\n"
 msgstr ""
 
-#: src/utils.c:143 src/utils.c:158
+#: src/utils.c:145 src/utils.c:166
 #, c-format
 msgid "Starting: %s"
 msgstr ""

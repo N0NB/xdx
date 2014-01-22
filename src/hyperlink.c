@@ -196,6 +196,7 @@ gboolean on_maintext_event_after (GtkWidget * widget,
   GtkTextBuffer *buffer;
   GdkEventButton *ev;
   gint x, y;
+  gboolean ret;
 
   if (event->type != GDK_BUTTON_RELEASE) return FALSE;
   ev = (GdkEventButton *)event;
@@ -216,9 +217,16 @@ gboolean on_maintext_event_after (GtkWidget * widget,
     if (get_link_tag (&iter))
     {
       if (g_strrstr (gui->url, "@"))
-        openmail (gui->url);
+        ret = openmail (gui->url);
       else
-        openurl (gui->url);
+        ret = openurl (gui->url);
+
+      /* When ret is FALSE, the link was not handled by openmail or openurl
+       * so call gtk_show_uri to have the desktop defined default app handle
+       * the link.
+       */
+      if (ret == FALSE)
+        gtk_show_uri(NULL, gui->url, GDK_CURRENT_TIME, NULL);
     }
   }
   return FALSE;

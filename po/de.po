@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.4.1\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-01-16 13:32-0600\n"
+"POT-Creation-Date: 2014-01-22 11:37-0600\n"
 "PO-Revision-Date: 2009-01-10 07:27+0100\n"
 "Last-Translator: Thomas Beierlein <tb@forth-ev.de>\n"
 "Language-Team: German\n"
@@ -19,8 +19,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/gui_aboutdialog.c:96
-msgid "Tcp/ip DX-cluster and ON4KST chat client for amateur radio operators"
+#: src/gui_aboutdialog.c:128
+#, fuzzy
+msgid "TCP/IP DX-cluster and ON4KST chat client for amateur radio operators"
 msgstr "Tcp/ip DX-Cluster und ON4KST Chat Client fuer Funkamateure"
 
 #: src/gui.c:116
@@ -446,7 +447,7 @@ msgstr ""
 msgid "Loading %s\n"
 msgstr ""
 
-#: src/utils.c:143 src/utils.c:158
+#: src/utils.c:145 src/utils.c:166
 #, c-format
 msgid "Starting: %s"
 msgstr "Starte: %s"
