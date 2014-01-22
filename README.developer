@@ -1,0 +1,80 @@
+Developer notes for Xdx
+
+
+Build system bootstrap
+======================
+
+A clean Git working directory requires bootstrapping the build system.  The
+'bootstrap.sh' script will handle the details.  See README.bootstrap for more
+information.
+
+Development has taken place with Gettext 0.18.3, Autoconf 2.69, and Automake
+1.14.  Most recent versions of these tools should work.
+
+
+.po file regeneration
+=====================
+
+After modifying source files, xdx.pot and *.po files are updated only by running
+'make dist' or 'make distcheck'.  Even cleaning to the level of 'git clean' and
+then running 'bootstrap.sh' will not update these files.
+
+
+Build files modified by the build system
+========================================
+
+The files Makefile.am, configure.ac, and m4/Makefile.am are modified by the
+Gettext tools.  These changes will not be committed to the repository as they
+will likely differ for different versions of Gettext.  Care is required to
+clean them correctly as those files are tracked in the repository.  The easiest
+way is to have Git restore the pre-modification versions of these files:
+
+	git checkout -- Makefile.am configure.ac m4/Makefile.am
+
+This can be done prior to committing changes and should be done in conjunction
+with 'git clean' and cleaning the build tree.
+
+When modifying those files, intended modifications can be tracked without
+committing by the use of 'git add'.  After adding the file changes the build
+system can be bootstrapped and the Gettext changes dropped using the 'checkout'
+command above.
+
+
+VPATH support
+=============
+
+Development has been done by building in a separate build directory.  For
+example:
+
+	~/git
+	    +-xdx
+	    +-xdb
+
+With the build taking place in 'xdb'.
+
+Bootstrapping can be done from 'xdb':
+
+	../xdx/bootstrap.sh
+
+Then the usual 'make', 'make install' may be used and the binary objects will
+be placed in 'xdb'.
+
+
+Cleaning the directory
+======================
+
+Using a separate build directory allows cleaning the binary objects in 'xdb'
+with:
+
+	rm -rf *
+
+Removing the generated build system files from the source directory using Git:
+
+	git clean -dxf
+
+and then using the 'checkout' command above should result in a pristine Git
+repository.
+
+
+73, Nate, N0NB, n0nb@n0nb.us
+
