@@ -9,6 +9,7 @@ Changelog for version Xdx (2.4.3)
   * Add support to load updated country file using command line option,
     environment variable, or placing cty.dat in the preferences directory.
   * Fix URI handling for GTK+ 2.24 and later.
+  * Disable function keys for this release.
 
 Changelog for version xdx (2.4.2)
   * German translations added.

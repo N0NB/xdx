@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-01-22 11:37-0600\n"
+"POT-Creation-Date: 2014-01-23 08:40-0600\n"
 "PO-Revision-Date: 2006-04-23 12:12+0100\n"
 "Last-Translator: David Quental <ct1drb@radiotelegrafistas.pt>\n"
 "Language-Team: Português/Portugal\n"
@@ -71,74 +71,70 @@ msgstr "Manual"
 msgid "About"
 msgstr "Acerca de"
 
-#: src/gui.c:141
-msgid "Function keys bar"
-msgstr "Barra das teclas de funções"
-
-#: src/gui.c:143
+#: src/gui.c:144
 msgid "Auto Reconnect"
 msgstr "Voltar a ligar automáticamente"
 
-#: src/gui.c:145
+#: src/gui.c:146
 msgid "Chat sidebar"
 msgstr "Barra lateral de chat"
 
-#: src/gui.c:219
+#: src/gui.c:221
 #, c-format
 msgid "Error loading icon: %s"
 msgstr "Erro a carregar o icon: %s"
 
-#: src/gui.c:280 src/gui_settingsdialog.c:445
+#: src/gui.c:282 src/gui_settingsdialog.c:445
 msgid "Spotter"
 msgstr "Quem colocou"
 
-#: src/gui.c:304 src/gui_settingsdialog.c:453
+#: src/gui.c:306 src/gui_settingsdialog.c:453
 msgid "Remarks"
 msgstr "Comentários"
 
-#: src/gui.c:312 src/gui_settingsdialog.c:455
+#: src/gui.c:314 src/gui_settingsdialog.c:455
 msgid "Time"
 msgstr "Hora"
 
-#: src/gui.c:320 src/gui_settingsdialog.c:457
+#: src/gui.c:322 src/gui_settingsdialog.c:457
 msgid "Info"
 msgstr "Informação"
 
-#: src/gui.c:328 src/gui_settingsdialog.c:459
+#: src/gui.c:330 src/gui_settingsdialog.c:459
 msgid "Country"
 msgstr "País"
 
-#: src/gui.c:423
+#: src/gui.c:425
 msgid "Sound"
 msgstr "Som"
 
-#: src/gui.c:454 src/gui.c:455 src/gui.c:456 src/gui.c:457 src/gui.c:458
-#: src/gui.c:459 src/gui.c:460 src/gui.c:461
+#: src/gui.c:456 src/gui.c:457 src/gui.c:458 src/gui.c:459 src/gui.c:460
+#: src/gui.c:461 src/gui.c:462 src/gui.c:463
 msgid "Enter a word to highlight"
 msgstr "Introduça a palavra a ressaltar"
 
-#: src/gui.c:463 src/gui.c:465 src/gui.c:467 src/gui.c:469 src/gui.c:471
-#: src/gui.c:473 src/gui.c:475 src/gui.c:477
+#: src/gui.c:465 src/gui.c:467 src/gui.c:469 src/gui.c:471 src/gui.c:473
+#: src/gui.c:475 src/gui.c:477 src/gui.c:479
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
 msgstr "Incluir prompt [Ctrl+%d]"
 
-#: src/gui.c:479
+#: src/gui.c:481
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
 msgstr "Habilitar/desabilitar som [Ctrl+%d]"
 
-#: src/gui.c:482 src/gui.c:483 src/gui.c:484 src/gui.c:485 src/gui.c:486
-#: src/gui.c:487 src/gui.c:488 src/gui.c:489
+#: src/gui.c:484 src/gui.c:485 src/gui.c:486 src/gui.c:487 src/gui.c:488
+#: src/gui.c:489 src/gui.c:490 src/gui.c:491
 msgid "Right click to edit"
 msgstr "Carregue na tecla direita para editar"
 
-#: src/gui.c:1050
+#: src/gui.c:1052
 #, fuzzy
 msgid "xdx - edit function key"
 msgstr "xdx - abrir conecção"
 
-#: src/gui.c:1056
+#: src/gui.c:1058
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Indicativo a utilizar no DX-Cluster"
@@ -375,7 +371,7 @@ msgstr "Prompt"
 msgid "Sent text"
 msgstr "Texto enviado"
 
-#: src/main.c:416
+#: src/main.c:425
 #, c-format
 msgid "Welcome to %s"
 msgstr "Benvindo ao %s"
@@ -450,6 +446,9 @@ msgstr ""
 #, c-format
 msgid "Starting: %s"
 msgstr "Iniciando: %s"
+
+#~ msgid "Function keys bar"
+#~ msgstr "Barra das teclas de funções"
 
 #~ msgid "Fork has failed: %s"
 #~ msgstr "Ha fallado el fork: %s"

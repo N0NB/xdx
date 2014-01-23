@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-01-22 11:37-0600\n"
+"POT-Creation-Date: 2014-01-23 08:40-0600\n"
 "PO-Revision-Date: 2006-04-27 10:59+0200\n"
 "Last-Translator: Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -70,74 +70,70 @@ msgstr "_Manuel"
 msgid "About"
 msgstr "_À propos"
 
-#: src/gui.c:141
-msgid "Function keys bar"
-msgstr ""
-
-#: src/gui.c:143
+#: src/gui.c:144
 msgid "Auto Reconnect"
 msgstr "Reconnexion _automatique"
 
-#: src/gui.c:145
+#: src/gui.c:146
 msgid "Chat sidebar"
 msgstr "_Barre latérale de messagerie instantannée"
 
-#: src/gui.c:219
+#: src/gui.c:221
 #, c-format
 msgid "Error loading icon: %s"
 msgstr "Erreur lors du chargement de l'icône : %s"
 
-#: src/gui.c:280 src/gui_settingsdialog.c:445
+#: src/gui.c:282 src/gui_settingsdialog.c:445
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:304 src/gui_settingsdialog.c:453
+#: src/gui.c:306 src/gui_settingsdialog.c:453
 msgid "Remarks"
 msgstr "Commentaires"
 
-#: src/gui.c:312 src/gui_settingsdialog.c:455
+#: src/gui.c:314 src/gui_settingsdialog.c:455
 msgid "Time"
 msgstr "Heure"
 
-#: src/gui.c:320 src/gui_settingsdialog.c:457
+#: src/gui.c:322 src/gui_settingsdialog.c:457
 msgid "Info"
 msgstr "Info"
 
-#: src/gui.c:328 src/gui_settingsdialog.c:459
+#: src/gui.c:330 src/gui_settingsdialog.c:459
 msgid "Country"
 msgstr ""
 
-#: src/gui.c:423
+#: src/gui.c:425
 msgid "Sound"
 msgstr "Sons"
 
-#: src/gui.c:454 src/gui.c:455 src/gui.c:456 src/gui.c:457 src/gui.c:458
-#: src/gui.c:459 src/gui.c:460 src/gui.c:461
+#: src/gui.c:456 src/gui.c:457 src/gui.c:458 src/gui.c:459 src/gui.c:460
+#: src/gui.c:461 src/gui.c:462 src/gui.c:463
 msgid "Enter a word to highlight"
 msgstr "Entrer un mot à mettre en évidence"
 
-#: src/gui.c:463 src/gui.c:465 src/gui.c:467 src/gui.c:469 src/gui.c:471
-#: src/gui.c:473 src/gui.c:475 src/gui.c:477
+#: src/gui.c:465 src/gui.c:467 src/gui.c:469 src/gui.c:471 src/gui.c:473
+#: src/gui.c:475 src/gui.c:477 src/gui.c:479
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
 msgstr "Inclure l'invite [Ctrl+%d]"
 
-#: src/gui.c:479
+#: src/gui.c:481
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
 msgstr "Activer/désactiver les sons [Ctrl+%d]"
 
-#: src/gui.c:482 src/gui.c:483 src/gui.c:484 src/gui.c:485 src/gui.c:486
-#: src/gui.c:487 src/gui.c:488 src/gui.c:489
+#: src/gui.c:484 src/gui.c:485 src/gui.c:486 src/gui.c:487 src/gui.c:488
+#: src/gui.c:489 src/gui.c:490 src/gui.c:491
 msgid "Right click to edit"
 msgstr ""
 
-#: src/gui.c:1050
+#: src/gui.c:1052
 #, fuzzy
 msgid "xdx - edit function key"
 msgstr "xdx - connexion établie"
 
-#: src/gui.c:1056
+#: src/gui.c:1058
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Indicatif à utiliser lors de la connexion"
@@ -373,7 +369,7 @@ msgstr "Invite"
 msgid "Sent text"
 msgstr "Texte envoyé"
 
-#: src/main.c:416
+#: src/main.c:425
 #, c-format
 msgid "Welcome to %s"
 msgstr "Bienvenue sur %s"

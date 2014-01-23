@@ -72,7 +72,9 @@ int
 main (int argc, char *argv[])
 {
   GtkWidget *treeview, *maintext, *vpaned, *sidemenu, *reconnectmenu,
-    *highframe, *fkeysmenu, *fvbox,
+  /* TODO: activate F keys */
+/*    *highframe, *fkeysmenu, *fvbox, */
+    *highframe, *fvbox,
     *highcheck1, *highcheck2, *highcheck3, *highcheck4, *highcheck5,
     *highcheck6, *highcheck7, *highcheck8, *soundcheck,
     *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
@@ -380,6 +382,11 @@ main (int argc, char *argv[])
   gtk_paned_set_position (GTK_PANED (vpaned), preferences.handlebarpos);
 
   fvbox = g_object_get_data (G_OBJECT (gui->window), "fvbox");
+
+  gtk_widget_hide (fvbox);
+
+  /* TODO: activate F keys */
+/*
   fkeysmenu = gtk_ui_manager_get_widget
     (gui->ui_manager, "/MainMenu/SettingsMenu/Keybar");
   if (preferences.fbox == 0)
@@ -392,6 +399,8 @@ main (int argc, char *argv[])
     gtk_widget_show (fvbox);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(fkeysmenu), TRUE);
   }
+*/
+
   highframe = g_object_get_data (G_OBJECT (gui->window), "highframe");
   sidemenu = gtk_ui_manager_get_widget
     (gui->ui_manager, "/MainMenu/SettingsMenu/Sidebar");

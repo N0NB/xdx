@@ -138,8 +138,9 @@ static GtkActionEntry entries[] = {
 
 static GtkToggleActionEntry toggle_entries[] =
 {
-  { "Keybar", NULL, N_("Function keys bar"), "<control>K", "Function keys on/off",
-   G_CALLBACK(on_fkeys_activate) },
+  /* TODO: activate F keys */
+/*  { "Keybar", NULL, N_("Function keys bar"), "<control>K", "Function keys on/off",
+   G_CALLBACK(on_fkeys_activate) }, */
   { "Reconnect", NULL, N_("Auto Reconnect"), "<control>R", "Auto Reconnect on/off",
    G_CALLBACK(on_reconnect_activate) },
   { "Sidebar", NULL, N_("Chat sidebar"), "<control>S", "Chat sidebar on/off",
@@ -158,7 +159,8 @@ static const char *ui_description =
 "      <menuitem action='Close'/>"
 "    </menu>"
 "    <menu action='SettingsMenu'>"
-"      <menuitem action='Keybar'/>"
+  /* TODO: activate F keys */
+/*"      <menuitem action='Keybar'/>" */
 "      <menuitem action='Reconnect'/>"
 "      <menuitem action='Sidebar'/>"
 "      <separator name='sep2'/>"
