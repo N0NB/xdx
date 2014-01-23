@@ -1,0 +1,23 @@
+Override of assignment of copyright.
+
+The Makevars file has the key:value pair of:
+
+COPYRIGHT_HOLDER = Joop Stakenborg <pg4i@amsat.org>
+
+After conferring with Joop, both of us agree that we are not interested in
+assignment of copyright.  The option appears to be for the benefit of the
+Free Software Foundation which requires copyright assignment for any non-
+trivial contributions.  The only other option is to leave COPYRIGHT_HOLDER
+blank which will state that the translations are in the public domain.  I
+don't think that is right either.  A project such as this with multiple
+independent contributors doesn't have a suitable option here.
+
+Here is my opinion, with which Joop concurred:  Copyright on the translations
+are held by the contributors of the translations under the terms of the rest
+of the source code--GPL version 2.0 or later.  The commit history should
+be used to determine specific contributions.
+
+Do note that I have not consulted any legal expert in this matter and this is
+simply my personal opinion!
+
+Nate Bargmann <n0nb@n0nb.us>
