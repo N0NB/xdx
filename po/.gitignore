@@ -5,6 +5,7 @@
 !LINGUAS
 !Makevars
 !POTFILES.in
+!README.translations
 !de.po
 !es.po
 !fr.po
