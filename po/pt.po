@@ -434,17 +434,17 @@ msgstr "~/.%s não é uma directoria"
 #: src/text.c:1117
 #, c-format
 msgid "%s: %s\n"
-msgstr ""
+msgstr "%s: %s\n"
 
 #: src/text.c:1128
 #, c-format
 msgid "Cannot read cty.dat in %s\n"
-msgstr ""
+msgstr "Não é possivel ler o ficheiro cty.dat em %s\n"
 
 #: src/text.c:1134
 #, c-format
 msgid "Loading %s\n"
-msgstr ""
+msgstr "A carregar %s\n"
 
 #: src/utils.c:145 src/utils.c:166
 #, c-format
