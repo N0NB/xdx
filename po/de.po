@@ -2,7 +2,7 @@
 # German messages for xdx.
 # Copyright (C) 2008 Joop Stakenborg <pg4i@amsat.org>
 # This file is distributed under the same license as the xdx package.
-# Thomas Beierlein, DL1JBE <tb@forth-ev.de>, 2008.
+# Thomas Beierlein, DL1JBE <tb@forth-ev.de>, 2008, 2014.
 #
 #
 msgid ""
@@ -74,7 +74,7 @@ msgstr "About"
 
 #: src/gui.c:141
 msgid "Function keys bar"
-msgstr "Function keys bar"
+msgstr "Funktionstasten anzeigen"
 
 #: src/gui.c:143
 msgid "Auto Reconnect"
@@ -187,11 +187,11 @@ msgstr "xdx - Verbindungs Log"
 
 #: src/gui_settingsdialog.c:134
 msgid "xdx - Select a font"
-msgstr "xdx - Select a font"
+msgstr "xdx - Fontauswahl"
 
 #: src/gui_settingsdialog.c:147
 msgid "How about this font?"
-msgstr "How about this font?"
+msgstr "Testtext zur Fontauswahl"
 
 #: src/gui_settingsdialog.c:240
 msgid "xdx - preferences"
@@ -211,7 +211,7 @@ msgstr "Fonts"
 
 #: src/gui_settingsdialog.c:269
 msgid "Colors"
-msgstr "Colors"
+msgstr "Farben"
 
 #: src/gui_settingsdialog.c:279
 msgid "Your callsign"
@@ -440,12 +440,12 @@ msgstr ""
 #: src/text.c:1128
 #, c-format
 msgid "Cannot read cty.dat in %s\n"
-msgstr ""
+msgstr "Kann cty.dat in %s nicht lesen\n"
 
 #: src/text.c:1134
 #, c-format
 msgid "Loading %s\n"
-msgstr ""
+msgstr "Lade %s\n"
 
 #: src/utils.c:145 src/utils.c:166
 #, c-format
