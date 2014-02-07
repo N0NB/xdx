@@ -1,1 +1,5 @@
+xdx-2.4.3: Fix compilation against GTK+ 2.24
+           Add command line option and environment variable to specify cty.dat
+           New maintainer, Nate Bargmann, N0NB
+
 xdx-2.4.1: Fixes compilation against version 2.14 of GTK+.
