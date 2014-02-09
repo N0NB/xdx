@@ -5,7 +5,7 @@ AC_PREREQ([2.67])
 
 AC_INIT([Xdx],
 	[2.5~git],
-	[n0nb@n0nb.us],
+	[xdxclusterclient-discuss@lists.sourceforge.net],
 	[xdx],
 	[https://github.com/N0NB/xdx])
 

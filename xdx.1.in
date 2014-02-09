@@ -49,7 +49,7 @@ are welcome.  Please contact the maintainer for details.
 
 .SH "BUGS"
 @PACKAGE_NAME@ has a new maintainer, Nate Bargmann, N0NB.  Please report bugs
-to \fI<@PACKAGE_BUGREPORT@>\fP until a mailing list is set up.
+to \fI<@PACKAGE_BUGREPORT@>\fP.
 
 .SH "SEE ALSO"
 Select Help->Manual after starting @PACKAGE_NAME@ for a full manual.
