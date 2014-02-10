@@ -25,9 +25,9 @@
 #ifndef XDX_SAVE_H
 #define XDX_SAVE_H
 
-void savedx (gchar *dx);
-void savewwv (gchar *wwv);
-void savetoall (gchar *toall);
-void savewx (gchar *wx);
+void savedx(gchar *dx);
+void savewwv(gchar *wwv);
+void savetoall(gchar *toall);
+void savewx(gchar *wx);
 
 #endif /* XDX_SAVE_H */

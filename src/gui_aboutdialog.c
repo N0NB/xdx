@@ -65,16 +65,14 @@ extern preferencestype preferences;
  * the GtkAboutDialog signal handler will call the mail or browser app defined
  * by desktop defaults.
  */
-static gboolean handle_uri_hook(GtkAboutDialog *about,
-                                const char     *link,
-                                gpointer        data)
+static
+gboolean handle_uri_hook(GtkAboutDialog *about,
+                         const char     *link,
+                         gpointer        data)
 {
-    if (g_str_has_prefix(link, "mailto:"))
-    {
+    if (g_str_has_prefix(link, "mailto:")) {
         return openmail(link + 7);
-    }
-    else
-    {
+    } else {
         return openurl(link);
     }
 }
@@ -84,12 +82,14 @@ static gboolean handle_uri_hook(GtkAboutDialog *about,
  * called from the menu
  */
 void
-on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
+on_about_activate(GtkMenuItem   *menuitem,
+                  gpointer       user_data)
 {
-	const gchar *authors[] =
-        { "Joop Stakenborg, PG4I <pg4i@amsat.org>",
-	      "Nate Bargmann, N0NB <n0nb@n0nb.us>",
-	      NULL };
+    const gchar *authors[] = {
+        "Joop Stakenborg, PG4I <pg4i@amsat.org>",
+        "Nate Bargmann, N0NB <n0nb@n0nb.us>",
+        NULL
+    };
 
     gchar *license =
         "Copyright (C) 2002 - 2007 Joop Stakenborg <pg4i@amsat.org>\n"
@@ -116,16 +116,16 @@ on_about_activate (GtkMenuItem * menuitem, gpointer user_data)
         "Portuguese: David Quental CT1DRB <ct1drb@radiotelegrafistas.pt>\n"
         "Spanish: Baltasar Perez EC8AYR <ec8ayr@yahoo.com>\n";
 
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file
-		(PACKAGE_DATA_DIR "/pixmaps/xdx-logo.png", NULL);
+    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file
+                        (PACKAGE_DATA_DIR "/pixmaps/xdx-logo.png", NULL);
 
-	GtkWidget *about = gtk_about_dialog_new();
-	GtkAboutDialog *ad = GTK_ABOUT_DIALOG(about);
+    GtkWidget *about = gtk_about_dialog_new();
+    GtkAboutDialog *ad = GTK_ABOUT_DIALOG(about);
 
-	gtk_about_dialog_set_program_name(ad, PACKAGE_NAME);
-	gtk_about_dialog_set_authors(ad, authors);
-	gtk_about_dialog_set_comments(ad,
-        _("TCP/IP DX-cluster and ON4KST chat client for amateur radio operators"));
+    gtk_about_dialog_set_program_name(ad, PACKAGE_NAME);
+    gtk_about_dialog_set_authors(ad, authors);
+    gtk_about_dialog_set_comments(ad,
+                                  _("TCP/IP DX-cluster and ON4KST chat client for amateur radio operators"));
     gtk_about_dialog_set_license(ad, license);
     gtk_about_dialog_set_website(ad, "https://github.com/N0NB/xdx");
     gtk_about_dialog_set_logo(ad, pixbuf);

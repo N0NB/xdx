@@ -25,8 +25,8 @@
 #ifndef XDX_HISTORY_H
 #define XDX_HISTORY_H
 
-void loadhistory (void);
-void savehistory (void);
+void loadhistory(void);
+void savehistory(void);
 void tx_save(GString *txmsg);
 void tx_previous(void);
 void tx_next(void);

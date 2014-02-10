@@ -34,18 +34,21 @@
 #include "cmd_opts.h"
 
 
-void usage(FILE *stream, gchar *my_name)
+void
+usage(FILE  *stream,
+      gchar *my_name)
 {
     g_fprintf(stream, "Usage: %s [options]\n\n", my_name);
     g_fprintf(stream,
               "  -c --cty_dat cty.dat      Path to cty.dat file\n"
               "  -h --help                 Display this usage information.\n"
               "  -V --version              Print %s version\n",
-             PACKAGE_NAME);
+              PACKAGE_NAME);
 }
 
 
-void version(FILE *stream)
+void
+version(FILE *stream)
 {
     g_fprintf(stream, "%s DX Cluster client\n"
               "Copyright (C) 2002-2006 Joop Stakenborg <pg4i@amsat.org>\n"
@@ -57,14 +60,16 @@ void version(FILE *stream)
 }
 
 
-void parse_opts(int *argc, char ***argv)
+void
+parse_opts(int    *argc,
+           char ***argv)
 {
     int next_opt = 0;
     gchar *my_name;
     extern gchar *opt_cty_path;
 
     /* Valid short options. */
-    const char* const s_opts = "c:hV";
+    const char *const s_opts = "c:hV";
 
     /* Valid long options. */
     const struct option l_opts[] = {
@@ -83,18 +88,23 @@ void parse_opts(int *argc, char ***argv)
             case 'c':
                 opt_cty_path = g_strdup_printf("%s", optarg);
                 break;
+
             case 'h':
                 usage(stdout, my_name);
                 exit(EXIT_SUCCESS);
+
             case 'V':
                 version(stdout);
                 exit(EXIT_SUCCESS);
+
             case '?':
                 version(stderr);
                 usage(stderr, my_name);
                 exit(EXIT_FAILURE);
+
             case -1:
                 break;
+
             default:
                 abort();        /* Major Oops! */
         }

@@ -38,116 +38,124 @@
  */
 
 void
-loadhistory (void)
+loadhistory(void)
 {
-  gchar *historyfile, history[128], **histsplit;
-  FILE *fp;
+    gchar *historyfile, history[128], **histsplit;
+    FILE *fp;
 
-  historyfile = g_strdup_printf ("%s/history", gui->preferencesdir);
-  fp = fopen (historyfile, "r");
-  if (fp == NULL) return;
+    historyfile = g_strdup_printf("%s/history", gui->preferencesdir);
+    fp = fopen(historyfile, "r");
 
-  while (!feof (fp))
-    {
-      if (fscanf (fp, "%s", history) == EOF)
-	break;
-      histsplit = g_strsplit(history, ":", -1);
-      if (!g_ascii_strncasecmp (history, "ho", 2))
-	gui->hostnamehistory =
-	  g_list_append (gui->hostnamehistory, g_strdup(histsplit[1]));
-      else if (!g_ascii_strncasecmp (history, "po", 2))
-	gui->porthistory = g_list_append (gui->porthistory, g_strdup(histsplit[1]));
-      g_strfreev(histsplit);
+    if (fp == NULL) return;
+
+    while (!feof(fp)) {
+        if (fscanf(fp, "%s", history) == EOF)
+            break;
+
+        histsplit = g_strsplit(history, ":", -1);
+
+        if (!g_ascii_strncasecmp(history, "ho", 2))
+            gui->hostnamehistory =
+                g_list_append(gui->hostnamehistory, g_strdup(histsplit[1]));
+        else if (!g_ascii_strncasecmp(history, "po", 2))
+            gui->porthistory = g_list_append(gui->porthistory, g_strdup(histsplit[1]));
+
+        g_strfreev(histsplit);
     }
-  fclose (fp);
-  g_free(historyfile);
+
+    fclose(fp);
+    g_free(historyfile);
 }
+
 
 /*
  * save history to ~/.xdx/history for the hostname combobox and port combobox
  */
 
 void
-savehistory (void)
+savehistory(void)
 {
-  gchar *historyfile;
-  FILE *fp;
-  guint i, n;
-  GList *link;
+    gchar *historyfile;
+    FILE *fp;
+    guint i, n;
+    GList *link;
 
-  historyfile = g_strdup_printf ("%s/history", gui->preferencesdir);
-  fp = fopen (historyfile, "w");
-  if (fp == NULL) return;
+    historyfile = g_strdup_printf("%s/history", gui->preferencesdir);
+    fp = fopen(historyfile, "w");
 
-      if ((n = g_list_length (gui->hostnamehistory)) > 0)
-	{
-	  for (i = 0; i < n; i++)
-	    {
-	      link = g_list_nth (gui->hostnamehistory, i);
-	      if (link) fprintf (fp, "ho:%s\n", (gchar *)link->data);
-	    }
-	}
+    if (fp == NULL) return;
 
-      if ((n = g_list_length (gui->porthistory)) > 0)
-	{
-	  for (i = 0; i < n; i++)
-	    {
-	      link = g_list_nth (gui->porthistory, i);
-	      if (link) fprintf (fp, "po:%s\n", (gchar *)link->data);
-	    }
-	}
+    if ((n = g_list_length(gui->hostnamehistory)) > 0) {
+        for (i = 0; i < n; i++) {
+            link = g_list_nth(gui->hostnamehistory, i);
 
-  fclose (fp);
-  g_free(historyfile);
+            if (link) fprintf(fp, "ho:%s\n", (gchar *)link->data);
+        }
+    }
+
+    if ((n = g_list_length(gui->porthistory)) > 0) {
+        for (i = 0; i < n; i++) {
+            link = g_list_nth(gui->porthistory, i);
+
+            if (link) fprintf(fp, "po:%s\n", (gchar *)link->data);
+        }
+    }
+
+    fclose(fp);
+    g_free(historyfile);
 }
+
 
 void tx_save(GString *txmsg)
 {
-  gui->txhistory = g_list_append(gui->txhistory, g_strdup(txmsg->str));
-  if (g_list_length(gui->txhistory) > TXHISTORY)
-    gui->txhistory = g_list_remove(gui->txhistory, g_list_first(gui->txhistory)->data);
-  else gui->txitem++;
-  gui->updown = 0;
+    gui->txhistory = g_list_append(gui->txhistory, g_strdup(txmsg->str));
+
+    if (g_list_length(gui->txhistory) > TXHISTORY)
+        gui->txhistory = g_list_remove(gui->txhistory, g_list_first(gui->txhistory)->data);
+    else gui->txitem++;
+
+    gui->updown = 0;
 }
+
 
 void tx_previous(void)
 {
-  GtkWidget *mainentry;
-  GtkTextBuffer *entrybuffer;
-  GtkTextIter end;
-  gchar *str;
+    GtkWidget *mainentry;
+    GtkTextBuffer *entrybuffer;
+    GtkTextIter end;
+    gchar *str;
 
-  if (gui->updown < gui->txitem) gui->updown++;
-  if (gui->txhistory)
-  {
-    str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
-    mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
-    entrybuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mainentry));
-    gtk_text_buffer_set_text (entrybuffer, str, -1);
-    gtk_text_buffer_get_end_iter (entrybuffer, &end);
-    gtk_text_buffer_place_cursor (entrybuffer, &end);
-  }
+    if (gui->updown < gui->txitem) gui->updown++;
+
+    if (gui->txhistory) {
+        str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
+        mainentry = g_object_get_data(G_OBJECT(gui->window), "mainentry");
+        entrybuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(mainentry));
+        gtk_text_buffer_set_text(entrybuffer, str, -1);
+        gtk_text_buffer_get_end_iter(entrybuffer, &end);
+        gtk_text_buffer_place_cursor(entrybuffer, &end);
+    }
 }
+
 
 void tx_next(void)
 {
-  GtkWidget *mainentry;
-  GtkTextBuffer *entrybuffer;
-  GtkTextIter end;
-  gchar *str;
+    GtkWidget *mainentry;
+    GtkTextBuffer *entrybuffer;
+    GtkTextIter end;
+    gchar *str;
 
-  if (gui->updown > 0) gui->updown--;
+    if (gui->updown > 0) gui->updown--;
 
-  mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
-  entrybuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (mainentry));
+    mainentry = g_object_get_data(G_OBJECT(gui->window), "mainentry");
+    entrybuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(mainentry));
 
-  if (gui->updown == 0)
-    gtk_text_buffer_set_text (entrybuffer, "", 0);
-  else
-  {
-    str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
-    gtk_text_buffer_set_text (entrybuffer, str, -1);
-    gtk_text_buffer_get_end_iter (entrybuffer, &end);
-    gtk_text_buffer_place_cursor (entrybuffer, &end);
-  }
+    if (gui->updown == 0)
+        gtk_text_buffer_set_text(entrybuffer, "", 0);
+    else {
+        str = g_list_nth_data(gui->txhistory, (gui->txitem) - (gui->updown));
+        gtk_text_buffer_set_text(entrybuffer, str, -1);
+        gtk_text_buffer_get_end_iter(entrybuffer, &end);
+        gtk_text_buffer_place_cursor(entrybuffer, &end);
+    }
 }

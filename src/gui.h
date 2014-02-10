@@ -21,59 +21,86 @@
  * gui.h
  */
 
+
 #ifndef XDX_GUI_H
 #define XDX_GUI_H
 
 typedef struct guitype {
-  GtkWidget *window;
-  GtkActionGroup *action_group;
-  GtkUIManager *ui_manager;
-  GList *hostnamehistory;
-  GList *porthistory;
-  GList *txhistory;
-  gchar *preferencesdir;
-  guint updown;
-  guint txitem;
-  gint statusbartimer;
-  gchar *statusbarmessage;
-  gchar *url;
-  gchar *prompttagname;
-  gchar *calltagname;
-  gchar *senttagname;
-  gchar *wwvtagname;
-  gchar *wxtagname;
-  gchar *high1tagname;
-  gchar *high2tagname;
-  gchar *high3tagname;
-  gchar *high4tagname;
-  gchar *high5tagname;
-  gchar *high6tagname;
-  gchar *high7tagname;
-  gchar *high8tagname;
+    GtkWidget       *window;
+    GtkActionGroup  *action_group;
+    GtkUIManager    *ui_manager;
+    GList           *hostnamehistory;
+    GList           *porthistory;
+    GList           *txhistory;
+    gchar           *preferencesdir;
+    guint            updown;
+    guint            txitem;
+    gint             statusbartimer;
+    gchar           *statusbarmessage;
+    gchar           *url;
+    gchar           *prompttagname;
+    gchar           *calltagname;
+    gchar           *senttagname;
+    gchar           *wwvtagname;
+    gchar           *wxtagname;
+    gchar           *high1tagname;
+    gchar           *high2tagname;
+    gchar           *high3tagname;
+    gchar           *high4tagname;
+    gchar           *high5tagname;
+    gchar           *high6tagname;
+    gchar           *high7tagname;
+    gchar           *high8tagname;
 } guitype;
 
 guitype *gui;
 
 guitype *new_gui(void);
-void create_mainwindow (void);
-gboolean on_mainwindow_delete_event (GtkWidget * widget, GdkEvent * event,
-            gpointer user_data);
-gboolean on_mainwindow_destroy_event (GtkWidget * widget, GdkEvent * event,
-            gpointer user_data);
-void on_mainentry_activate (GtkTextBuffer *buffer, gpointer user_data);
-gboolean on_mainwindow_key_press_event(GtkWidget *widget, GdkEventKey *event,
-            gpointer user_data);
-gboolean double_click (GtkWidget *widget, GdkEventButton *event,
-            gpointer user_data);
-void on_fbutton_clicked (GtkButton *button, gpointer user_data);
-gboolean on_fbutton_press (GtkButton *button, GdkEventButton *event,
-			gpointer user_data);
-void on_quit_activate (GtkMenuItem * menuitem, gpointer user_data);
-void on_sidebar_activate (GtkAction * action, gpointer user_data);
-void on_fkeys_activate (GtkAction * action, gpointer user_data);
-void on_reconnect_activate (GtkAction * action, gpointer user_data);
-void on_highentry_changed (GtkEditable * editable, gpointer user_data);
-gboolean on_highentry_clicked
-(GtkEditable * entry, GdkEventButton *event, gpointer user_data);
+void create_mainwindow(void);
+
+gboolean on_mainwindow_delete_event(GtkWidget   *widget,
+                                    GdkEvent    *event,
+                                    gpointer     user_data);
+
+gboolean on_mainwindow_destroy_event(GtkWidget  *widget,
+                                     GdkEvent   *event,
+                                     gpointer    user_data);
+
+void on_mainentry_activate(GtkTextBuffer    *buffer,
+                           gpointer          user_data);
+
+gboolean on_mainwindow_key_press_event(GtkWidget    *widget,
+                                       GdkEventKey  *event,
+                                       gpointer      user_data);
+
+gboolean double_click(GtkWidget         *widget,
+                      GdkEventButton    *event,
+                      gpointer           user_data);
+
+void on_fbutton_clicked(GtkButton   *button,
+                        gpointer     user_data);
+
+gboolean on_fbutton_press(GtkButton         *button,
+                          GdkEventButton    *event,
+                          gpointer           user_data);
+
+void on_quit_activate(GtkMenuItem   *menuitem,
+                      gpointer       user_data);
+
+void on_sidebar_activate(GtkAction  *action,
+                         gpointer    user_data);
+
+void on_fkeys_activate(GtkAction    *action,
+                       gpointer      user_data);
+
+void on_reconnect_activate(GtkAction    *action,
+                           gpointer      user_data);
+
+void on_highentry_changed(GtkEditable   *editable,
+                          gpointer       user_data);
+
+gboolean on_highentry_clicked(GtkEditable       *entry,
+                              GdkEventButton    *event,
+                              gpointer           user_data);
 
 #endif /* XDX_GUI_H */

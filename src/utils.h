@@ -25,16 +25,21 @@
 #ifndef XDX_UTILS_H
 #define XDX_UTILS_H
 
-void add_pixmap_directory (const gchar * directory);
-void updatestatusbar (GString * statusmessage, gboolean timeout);
-void menu_set_sensitive (GtkUIManager *uim, const gchar * path, gboolean sens);
-gboolean openurl (const char *url);
-gboolean openmail (const char *url);
-void opensound (const char *file);
-gchar *try_utf8 (const gchar *str);
-gchar *xdxgetdate (gboolean formatted);
-gchar *xdxgettime (gboolean formatted);
-void logconnection (GString *logstr);
-gchar *my_strreplace(const char *str, const char *delimiter, const char *replacement);
+void add_pixmap_directory(const gchar *directory);
+void updatestatusbar(GString *statusmessage, gboolean timeout);
+void menu_set_sensitive(GtkUIManager    *uim,
+                        const gchar     *path,
+                        gboolean         sens);
+
+gboolean openurl(const char *url);
+gboolean openmail(const char *url);
+void opensound(const char *file);
+gchar *try_utf8(const gchar *str);
+gchar *xdxgetdate(gboolean formatted);
+gchar *xdxgettime(gboolean formatted);
+void logconnection(GString *logstr);
+gchar *my_strreplace(const char     *str,
+                     const char     *delimiter,
+                     const char     *replacement);
 
 #endif /* XDX_UTILS_H */

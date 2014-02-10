@@ -29,24 +29,29 @@
 #define MESSAGE_TX 2
 
 typedef struct servertype {
-  gchar *host;
-  gchar *port;
-  GIOChannel *rxchannel;
-  guint source_id;
-  gint sockethandle;
-  gboolean connected;
-  gint reconnecttimer;
-  gboolean reconnect;
-  gchar *lastcommand;
-  gint keepalivetimer;
+    gchar       *host;
+    gchar       *port;
+    GIOChannel  *rxchannel;
+    guint        source_id;
+    gint         sockethandle;
+    gboolean     connected;
+    gint         reconnecttimer;
+    gboolean     reconnect;
+    gchar       *lastcommand;
+    gint         keepalivetimer;
 } servertype;
 
 servertype *new_cluster(void);
-gboolean clresolve (servertype *cluster);
-void cldisconnect (GString *msg, gboolean timeout);
-gboolean rx (GIOChannel * channel, GIOCondition cond, gpointer data);
-void tx (GString * message);
-gint reconnect (gpointer data);
-gint send_keepalivepacket (gpointer data);
+gboolean clresolve(servertype *cluster);
+void cldisconnect(GString *msg,
+                  gboolean timeout);
+
+gboolean rx(GIOChannel      *channel,
+            GIOCondition     cond,
+            gpointer         data);
+
+void tx(GString *message);
+gint reconnect(gpointer data);
+gint send_keepalivepacket(gpointer data);
 
 #endif /* XDX_NET_H */

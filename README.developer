@@ -76,5 +76,42 @@ and then using the 'checkout' command above should result in a pristine Git
 repository.
 
 
-73, Nate, N0NB, n0nb@n0nb.us
+Coding style
+============
 
+The subject of numerous holy wars this side of editors, coding style is
+subjective and mostly dictated by whomever stares at the code the most.  My
+preference is mostly implemented in misc/astylerc using the astyle utility
+(http://astyle.sourceforge.net) with a few additional tweaks.
+
+Vertical space is cheap.  I prefer two lines between preprocessor directives and
+the start of the C code.  Also two lines between function definitions and
+between the beginning and end of a function definition and other declarations.
+
+Often multiple statements form a logical block of action.  They can be lumped
+together as would a paragraph.  One line break between logical blocks gives
+the eye a break and the brain a cue that a new logical block has begun.
+
+A function definition has its name begin in column 0 with its return type on
+the line prior.
+
+Mutliple function arguments may be more easily read by lining up the type and
+the argument's name in vertical columns as:
+
+static void
+get_main_menu(GtkWidget  *window,
+              GtkWidget **menubar)
+{
+.
+.
+.
+}
+
+Rather than tabs, I've chosen 4 spaces per indent which gives a good compromise
+between horizontal space and nesting toward the right hand side of the screen.
+Spaces also avoid the case where editors may be configured to interpret tabs
+as equivalent to different spacing.  Things will most often stay nicely lined
+up when everyone uses spaces.
+
+
+73, Nate, N0NB, n0nb@n0nb.us

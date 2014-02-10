@@ -32,33 +32,33 @@
  */
 #define MAX_RECORD_SIZE 65536
 
-typedef struct
-{
-	gchar *countryname;
-	guchar cq;              /* guchar max=255 */
-	guchar itu;
-	gchar *continent;
-	gint latitude;
-	gint longitude;
-	gshort timezone;
-	gchar *px;
-	gchar *exceptions;
-	guint worked;
-	guint confirmed;
+typedef struct {
+    gchar   *countryname;
+    guchar   cq;              /* guchar max=255 */
+    guchar   itu;
+    gchar   *continent;
+    gint     latitude;
+    gint     longitude;
+    gshort   timezone;
+    gchar   *px;
+    gchar   *exceptions;
+    guint    worked;
+    guint    confirmed;
 }
 dxcc_data;
 
-struct info
-{
-	gint country;
-	gint cq;
-	gint itu;
+struct info {
+    gint country;
+    gint cq;
+    gint itu;
 };
 
-void cleanup_dxcc (void);
-gint readctydata (void);
-struct info lookupcountry_by_callsign (gchar * callsign);
+void cleanup_dxcc(void);
+gint readctydata(void);
+struct info lookupcountry_by_callsign(gchar *callsign);
 
-void maintext_add (gchar * msg, gint len, gint messagetype);
+void maintext_add(gchar     *msg,
+                  gint       len,
+                  gint       messagetype);
 
 #endif /* XDX_TEXT_H */

@@ -60,52 +60,52 @@
  * called from the menu
  */
 void
-on_close_activate (GtkMenuItem * menuitem, gpointer user_data)
+on_close_activate(GtkMenuItem   *menuitem,
+                  gpointer       user_data)
 {
-  GtkWidget *closedialog, *closelabel, *hbox, *stock, *mainentry;
-  GString *labeltext = g_string_new ("");
-  GString *msg = g_string_new ("");
-  gint response;
-  servertype *cluster;
+    GtkWidget *closedialog, *closelabel, *hbox, *stock, *mainentry;
+    GString *labeltext = g_string_new("");
+    GString *msg = g_string_new("");
+    gint response;
+    servertype *cluster;
 
-  gtk_widget_set_sensitive (gui->window, 0);
-  closedialog = gtk_dialog_new_with_buttons (_("xdx - close connection"),
-					     GTK_WINDOW (gui->window),
-					     GTK_DIALOG_MODAL |
-					     GTK_DIALOG_DESTROY_WITH_PARENT,
-					     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					     GTK_STOCK_OK,
-					     GTK_RESPONSE_OK, NULL);
-  hbox = gtk_hbox_new (FALSE, 8);
-  gtk_container_set_border_width (GTK_CONTAINER (hbox), 8);
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (closedialog)->vbox), hbox, FALSE,
-		      FALSE, 0);
-  stock =
-    gtk_image_new_from_stock (GTK_STOCK_DIALOG_QUESTION,
-			      GTK_ICON_SIZE_DIALOG);
-  gtk_box_pack_start (GTK_BOX (hbox), stock, FALSE, FALSE, 0);
+    gtk_widget_set_sensitive(gui->window, 0);
+    closedialog = gtk_dialog_new_with_buttons(_("xdx - close connection"),
+                  GTK_WINDOW(gui->window),
+                  GTK_DIALOG_MODAL |
+                  GTK_DIALOG_DESTROY_WITH_PARENT,
+                  GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                  GTK_STOCK_OK,
+                  GTK_RESPONSE_OK, NULL);
+    hbox = gtk_hbox_new(FALSE, 8);
+    gtk_container_set_border_width(GTK_CONTAINER(hbox), 8);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(closedialog)->vbox), hbox, FALSE,
+                       FALSE, 0);
+    stock =
+        gtk_image_new_from_stock(GTK_STOCK_DIALOG_QUESTION,
+                                 GTK_ICON_SIZE_DIALOG);
+    gtk_box_pack_start(GTK_BOX(hbox), stock, FALSE, FALSE, 0);
 
-  cluster = (servertype *)g_object_get_data(G_OBJECT(gui->window), "cluster");
-  g_string_printf (labeltext, _("Close connection to %s ?"),
-		   cluster->host);
-  closelabel = gtk_label_new_with_mnemonic (labeltext->str);
-  g_string_free (labeltext, TRUE);
+    cluster = (servertype *)g_object_get_data(G_OBJECT(gui->window), "cluster");
+    g_string_printf(labeltext, _("Close connection to %s ?"),
+                    cluster->host);
+    closelabel = gtk_label_new_with_mnemonic(labeltext->str);
+    g_string_free(labeltext, TRUE);
 
-  gtk_box_pack_start (GTK_BOX (hbox), closelabel, TRUE, TRUE, 0);
-  gtk_widget_show_all (hbox);
-  response = gtk_dialog_run (GTK_DIALOG (closedialog));
+    gtk_box_pack_start(GTK_BOX(hbox), closelabel, TRUE, TRUE, 0);
+    gtk_widget_show_all(hbox);
+    response = gtk_dialog_run(GTK_DIALOG(closedialog));
 
-  if (response == GTK_RESPONSE_OK)
-    {
-      g_string_printf (msg, _("Connection closed"));
-      logconnection (msg);
-      cldisconnect (msg, FALSE);
-      g_string_free(msg, TRUE);
+    if (response == GTK_RESPONSE_OK) {
+        g_string_printf(msg, _("Connection closed"));
+        logconnection(msg);
+        cldisconnect(msg, FALSE);
+        g_string_free(msg, TRUE);
     }
 
-  gtk_widget_destroy (closedialog);
+    gtk_widget_destroy(closedialog);
 
-  gtk_widget_set_sensitive (gui->window, 1);
-  mainentry = g_object_get_data (G_OBJECT (gui->window), "mainentry");
-  gtk_widget_grab_focus (GTK_WIDGET (mainentry));
+    gtk_widget_set_sensitive(gui->window, 1);
+    mainentry = g_object_get_data(G_OBJECT(gui->window), "mainentry");
+    gtk_widget_grab_focus(GTK_WIDGET(mainentry));
 }

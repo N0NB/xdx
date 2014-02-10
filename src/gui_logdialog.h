@@ -25,6 +25,7 @@
 #ifndef XDX_GUI_LOGDIALOG_H
 #define XDX_GUI_LOGDIALOG_H
 
-void on_log_activate (GtkMenuItem * menuitem, gpointer user_data);
+void on_log_activate(GtkMenuItem    *menuitem,
+                     gpointer        user_data);
 
 #endif /* XDX_GUI_LOGDIALOG_H */
