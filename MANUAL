@@ -5,6 +5,34 @@ Xdx is a DX-cluster client which shows a list with DX announcements and a
 separate text widget with WWV, WCY, 'To ALL' and other server messages.
 It is also suited to connect to ON4KST chat.
 
+Quick keystroke reference
+=========================
+Main menu:
+        Alt-P           Open Program menu
+            Ctl-L       View connection log
+            Ctl-Q       Exit Xdx
+        Alt-H           Open Host menu
+            Ctl-O       Connect to cluster server
+            Ctl-C       Disconnect from cluster server
+        Alt-S           Open Settings menu
+            Ctl-K       Toggle function keys window
+            Ctl-R       Toggle auto reconnect
+            Ctl-S       Toggle highlight window
+            Ctl-P       Open preferences dialog
+        Alt-E           Open Help menu
+            Ctl-H       View this manual
+            Ctl-A       About Xdx
+
+Function keys window:
+        F1 - F8         Saved F1 to F8 commands
+
+Highlights window:
+        Alt-1 - Alt-8   Switch between highlight entries
+        Ctl-1 - Ctl-8   Activate highlights (toggles check boxes)
+
+General:
+        Alt-0           Return focus to the command entry window
+
 What is a DX Cluster?
 =====================
 A DX Cluster is a means for Amateur (Ham) Radio operators to tell each other,
@@ -110,6 +138,14 @@ searched. Colors for the highlights are configured in page 3 of the settings
 dialog. You can quickly turn checkboxes on/off with Ctrl-1 to Ctrl-8, you
 can switch between entries with Alt-1 to Alt-8. Alt-0 switches back to the
 send widget.
+
+Function keys
+=============
+Selecting 'Ctl-k' toggles the function key window.  Commands may be assigned
+to keys F1 through F8 by right-clicking on the mouse and entering the command
+into the pop-up dialog.  Commands will only be sent when a connection to a
+cluster is active.  Commands may be sent even when the function key window
+is hidden.
 
 Sound support
 =============

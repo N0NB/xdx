@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-02-09 10:53-0600\n"
+"POT-Creation-Date: 2014-02-11 14:59-0600\n"
 "PO-Revision-Date: 2014-01-26 20:07+0100\n"
 "Last-Translator: Joop Stakenborg <pg4i@amsat.org>\n"
 "Language-Team: Nederlands <pg4i@amsat.org>\n"
@@ -132,11 +132,11 @@ msgstr "Geluid aan/uit zetten [Ctrl+%d]"
 msgid "Right click to edit"
 msgstr "Rechts klikken om te veranderen"
 
-#: src/gui.c:1130
+#: src/gui.c:1181
 msgid "xdx - edit function key"
 msgstr "xdx - functietoets veranderen\t"
 
-#: src/gui.c:1136
+#: src/gui.c:1187
 #, c-format
 msgid "Command to be used for F%d"
 msgstr "Commando dat gebruikt wordt voor F%d"

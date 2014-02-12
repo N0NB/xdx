@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-02-09 10:53-0600\n"
+"POT-Creation-Date: 2014-02-11 14:59-0600\n"
 "PO-Revision-Date: 2006-05-16 23:19+0200\n"
 "Last-Translator: Boguslaw Ciastek <sq5tb@op.pl>\n"
 "Language-Team: Polish <gnomepl@pandora.info.bielsko.pl>\n"
@@ -132,12 +132,12 @@ msgstr "W³±cz/wy³±cz d¼wiêk [Ctrl+%d]"
 msgid "Right click to edit"
 msgstr ""
 
-#: src/gui.c:1130
+#: src/gui.c:1181
 #, fuzzy
 msgid "xdx - edit function key"
 msgstr "xdx - otwórz po³±czenie"
 
-#: src/gui.c:1136
+#: src/gui.c:1187
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Znak u¿ywany do zalogowania"

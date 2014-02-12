@@ -989,11 +989,62 @@ on_highentry_changed(GtkEditable    *editable,
 }
 
 
+/* Retrieve the associated F button command string from the preferences
+ * and pass it to the socket if there is a cluster connection.
+ */
 void
 on_fbutton_clicked(GtkButton    *button,
                    gpointer      user_data)
 {
-    g_print("%d ", GPOINTER_TO_INT(user_data));
+    GString *txstr = g_string_new("");
+    servertype *cluster;
+
+    cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
+
+    if (cluster->connected) {
+        if (GPOINTER_TO_INT(user_data) == 1
+            && strcmp(preferences.f1command, "^")) {
+            g_string_printf(txstr, "%s", preferences.f1command);
+        }
+
+        if (GPOINTER_TO_INT(user_data) == 2
+            && strcmp(preferences.f2command, "^")) {
+            g_string_printf(txstr, "%s", preferences.f2command);
+        }
+
+        if (GPOINTER_TO_INT(user_data) == 3
+            && strcmp(preferences.f3command, "^")) {
+            g_string_printf(txstr, "%s", preferences.f3command);
+        }
+
+        if (GPOINTER_TO_INT(user_data) == 4
+            && strcmp(preferences.f4command, "^")) {
+            g_string_printf(txstr, "%s", preferences.f4command);
+        }
+
+        if (GPOINTER_TO_INT(user_data) == 5
+            && strcmp(preferences.f5command, "^")) {
+            g_string_printf(txstr, "%s", preferences.f5command);
+        }
+
+        if (GPOINTER_TO_INT(user_data) == 6
+            && strcmp(preferences.f6command, "^")) {
+            g_string_printf(txstr, "%s", preferences.f6command);
+        }
+
+        if (GPOINTER_TO_INT(user_data) == 7
+            && strcmp(preferences.f7command, "^")) {
+            g_string_printf(txstr, "%s", preferences.f7command);
+        }
+
+        if (GPOINTER_TO_INT(user_data) == 8
+            && strcmp(preferences.f8command, "^")) {
+            g_string_printf(txstr, "%s", preferences.f8command);
+        }
+
+        tx(txstr);
+        g_string_free(txstr, TRUE);
+    }
 }
 
 

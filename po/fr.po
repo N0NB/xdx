@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-02-09 10:53-0600\n"
+"POT-Creation-Date: 2014-02-11 14:59-0600\n"
 "PO-Revision-Date: 2006-04-27 10:59+0200\n"
 "Last-Translator: Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -132,12 +132,12 @@ msgstr "Activer/désactiver les sons [Ctrl+%d]"
 msgid "Right click to edit"
 msgstr ""
 
-#: src/gui.c:1130
+#: src/gui.c:1181
 #, fuzzy
 msgid "xdx - edit function key"
 msgstr "xdx - connexion établie"
 
-#: src/gui.c:1136
+#: src/gui.c:1187
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Indicatif à utiliser lors de la connexion"

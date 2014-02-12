@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-02-09 10:53-0600\n"
+"POT-Creation-Date: 2014-02-11 14:59-0600\n"
 "PO-Revision-Date: 2006-04-23 12:12+0100\n"
 "Last-Translator: David Quental <ct1drb@radiotelegrafistas.pt>\n"
 "Language-Team: Português/Portugal\n"
@@ -133,12 +133,12 @@ msgstr "Habilitar/desabilitar som [Ctrl+%d]"
 msgid "Right click to edit"
 msgstr "Carregue na tecla direita para editar"
 
-#: src/gui.c:1130
+#: src/gui.c:1181
 #, fuzzy
 msgid "xdx - edit function key"
 msgstr "xdx - abrir conecção"
 
-#: src/gui.c:1136
+#: src/gui.c:1187
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Indicativo a utilizar no DX-Cluster"
