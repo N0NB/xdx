@@ -10,7 +10,7 @@ Quick keystroke reference
 Main menu:
         Alt-P           Open Program menu
             Ctl-L       View connection log
-            Ctl-Q       Exit Xdx
+            Ctl-Q       Exit Xdx with a close dialog
         Alt-H           Open Host menu
             Ctl-O       Connect to cluster server
             Ctl-C       Disconnect from cluster server

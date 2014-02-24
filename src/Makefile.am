@@ -23,6 +23,8 @@ xdx_SOURCES = \
 	gui_aboutdialog.h \
 	gui_closedialog.c \
 	gui_closedialog.h \
+	gui_exitdialog.c \
+	gui_exitdialog.h \
 	gui_logdialog.c \
 	gui_logdialog.h \
 	gui_manualdialog.c \

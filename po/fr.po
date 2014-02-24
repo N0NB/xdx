@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2014-02-11 14:59-0600\n"
+"POT-Creation-Date: 2014-02-15 21:14-0600\n"
 "PO-Revision-Date: 2006-04-27 10:59+0200\n"
 "Last-Translator: Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -22,122 +22,122 @@ msgstr ""
 msgid "TCP/IP DX-cluster and ON4KST chat client for amateur radio operators"
 msgstr "Client de chat DX-Cluster TCP/IP et ON4KST pour radioamateur"
 
-#: src/gui.c:120
+#: src/gui.c:121
 msgid "_Program"
 msgstr "_Programme"
 
-#: src/gui.c:121
+#: src/gui.c:122
 msgid "_Host"
 msgstr "_Hôte"
 
-#: src/gui.c:122
+#: src/gui.c:123
 msgid "_Settings"
 msgstr "Para_mètres"
 
-#: src/gui.c:123
+#: src/gui.c:124
 msgid "H_elp"
 msgstr "_Aide"
 
-#: src/gui.c:124
+#: src/gui.c:125
 msgid "Highlights"
 msgstr "Mises en évidence"
 
-#: src/gui.c:127
+#: src/gui.c:128
 msgid "Quit"
 msgstr "_Quitter"
 
-#: src/gui.c:131
+#: src/gui.c:132
 msgid "Connect..."
 msgstr "_Connecter..."
 
-#: src/gui.c:135
+#: src/gui.c:136
 msgid "Disconnect"
 msgstr "_Déconnecter"
 
-#: src/gui.c:139
+#: src/gui.c:140
 msgid "Connection Log"
 msgstr "_Journal de connexion"
 
-#: src/gui.c:143
+#: src/gui.c:144
 msgid "Preferences..."
 msgstr "_Préférences..."
 
-#: src/gui.c:147
+#: src/gui.c:148
 msgid "Manual"
 msgstr "_Manuel"
 
-#: src/gui.c:151
+#: src/gui.c:152
 msgid "About"
 msgstr "_À propos"
 
-#: src/gui.c:159
+#: src/gui.c:160
 msgid "Function keys bar"
 msgstr ""
 
-#: src/gui.c:163
+#: src/gui.c:164
 msgid "Auto Reconnect"
 msgstr "Reconnexion _automatique"
 
-#: src/gui.c:167
+#: src/gui.c:168
 msgid "Chat sidebar"
 msgstr "_Barre latérale de messagerie instantannée"
 
-#: src/gui.c:243
+#: src/gui.c:244
 #, c-format
 msgid "Error loading icon: %s"
 msgstr "Erreur lors du chargement de l'icône : %s"
 
-#: src/gui.c:304 src/gui_settingsdialog.c:450
+#: src/gui.c:305 src/gui_settingsdialog.c:450
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:328 src/gui_settingsdialog.c:458
+#: src/gui.c:329 src/gui_settingsdialog.c:458
 msgid "Remarks"
 msgstr "Commentaires"
 
-#: src/gui.c:336 src/gui_settingsdialog.c:460
+#: src/gui.c:337 src/gui_settingsdialog.c:460
 msgid "Time"
 msgstr "Heure"
 
-#: src/gui.c:344 src/gui_settingsdialog.c:462
+#: src/gui.c:345 src/gui_settingsdialog.c:462
 msgid "Info"
 msgstr "Info"
 
-#: src/gui.c:352 src/gui_settingsdialog.c:464
+#: src/gui.c:353 src/gui_settingsdialog.c:464
 msgid "Country"
 msgstr ""
 
-#: src/gui.c:447
+#: src/gui.c:448
 msgid "Sound"
 msgstr "Sons"
 
-#: src/gui.c:478 src/gui.c:479 src/gui.c:480 src/gui.c:481 src/gui.c:482
-#: src/gui.c:483 src/gui.c:484 src/gui.c:485
+#: src/gui.c:479 src/gui.c:480 src/gui.c:481 src/gui.c:482 src/gui.c:483
+#: src/gui.c:484 src/gui.c:485 src/gui.c:486
 msgid "Enter a word to highlight"
 msgstr "Entrer un mot à mettre en évidence"
 
-#: src/gui.c:487 src/gui.c:489 src/gui.c:491 src/gui.c:493 src/gui.c:495
-#: src/gui.c:497 src/gui.c:499 src/gui.c:501
+#: src/gui.c:488 src/gui.c:490 src/gui.c:492 src/gui.c:494 src/gui.c:496
+#: src/gui.c:498 src/gui.c:500 src/gui.c:502
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
 msgstr "Inclure l'invite [Ctrl+%d]"
 
-#: src/gui.c:503
+#: src/gui.c:504
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
 msgstr "Activer/désactiver les sons [Ctrl+%d]"
 
-#: src/gui.c:506 src/gui.c:507 src/gui.c:508 src/gui.c:509 src/gui.c:510
-#: src/gui.c:511 src/gui.c:512 src/gui.c:513
+#: src/gui.c:507 src/gui.c:508 src/gui.c:509 src/gui.c:510 src/gui.c:511
+#: src/gui.c:512 src/gui.c:513 src/gui.c:514
 msgid "Right click to edit"
 msgstr ""
 
-#: src/gui.c:1181
+#: src/gui.c:1182
 #, fuzzy
 msgid "xdx - edit function key"
 msgstr "xdx - connexion établie"
 
-#: src/gui.c:1187
+#: src/gui.c:1188
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Indicatif à utiliser lors de la connexion"
@@ -154,6 +154,14 @@ msgstr "Fermer la connexion vers %s ?"
 #: src/gui_closedialog.c:100
 msgid "Connection closed"
 msgstr "Connexion fermée"
+
+#: src/gui_exitdialog.c:71
+msgid "Exit"
+msgstr ""
+
+#: src/gui_exitdialog.c:88
+msgid "Exit "
+msgstr ""
 
 #: src/gui_manualdialog.c:72
 msgid "xdx - manual"

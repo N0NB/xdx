@@ -1,4 +1,5 @@
 xdx-2.5:   Function keys F1 - F8 send often used commands to the cluster.
+           Close dialog when Ctl-Q is used.
 
 xdx-2.4.3: Fix compilation against GTK+ 2.24
            Add command line option and environment variable to specify cty.dat

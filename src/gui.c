@@ -57,6 +57,7 @@
 #include "gui.h"
 #include "gui_aboutdialog.h"
 #include "gui_closedialog.h"
+#include "gui_exitdialog.h"
 #include "gui_logdialog.h"
 #include "gui_manualdialog.h"
 #include "gui_opendialog.h"
@@ -125,7 +126,7 @@ get_main_menu(GtkWidget  *window,
 
         {
             "Quit", GTK_STOCK_QUIT, N_("Quit"),
-            "<control>Q", "Quit Program", G_CALLBACK(on_quit_activate)
+            "<control>Q", "Quit Program", G_CALLBACK(on_exit_dialog)
         },
         {
             "Open", GTK_STOCK_CONNECT, N_("Connect..."),
