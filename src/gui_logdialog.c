@@ -103,7 +103,7 @@ on_log_activate(GtkMenuItem     *menuitem,
 
     fd = fopen(filename, "r");
 
-    if ((fd = fopen(filename, "r"))) {
+    if (fd != NULL) {
         while (!feof(fd)) {
             numread = fread(buf, 1, 1024, fd);
             gtk_text_buffer_insert(buffer, &end, buf, numread);
