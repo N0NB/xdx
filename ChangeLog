@@ -2,6 +2,8 @@ Changelog for version Xdx (2.5)
   * Complete function key command entry support.
   * Add close dialog when Ctl-Q is used to exit.
   * Update manual page to current conventions.
+  * Update GPL boiler plate for current FSF mailing address.
+    Thanks, Walter Fey, DL8FCL.
 
 Changelog for version Xdx (2.4.3)
   * Apply Debian patch from bug #577377.
