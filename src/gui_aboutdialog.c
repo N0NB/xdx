@@ -10,11 +10,11 @@
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Library General Public License for more details.
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
 /*
@@ -102,12 +102,12 @@ on_about_activate(GtkMenuItem   *menuitem,
         "\n"
         "This program is distributed in the hope that it will be useful,\n"
         "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n"
-        "GNU Library General Public License for more details.\n"
+        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+        "GNU General Public License for more details.\n"
         "\n"
-        "You should have received a copy of the GNU General Public License\n"
-        "along with this program; if not, write to the Free Software\n"
-        "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n";
+        "You should have received a copy of the GNU General Public License along\n"
+        "with this program; if not, write to the Free Software Foundation, Inc.,\n"
+        "51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.\n";
 
     gchar *translators =
         "Dutch: Joop Stakenborg PG4I <pg4i@amsat.org>\n"
