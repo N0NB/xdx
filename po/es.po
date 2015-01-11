@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
 "POT-Creation-Date: 2014-02-15 21:14-0600\n"
 "PO-Revision-Date: 2006-04-23 12:12+0100\n"
-"Last-Translator: Baltasar Perez <ea8bvp@yahoo.com>\n"
+"Last-Translator: Baltasar Perez <ea8bvp@gmail.com>\n"
 "Language-Team: Spanish/Spain <es@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "Acerca de ..."
 
 #: src/gui.c:160
 msgid "Function keys bar"
-msgstr ""
+msgstr "Barra de teclas de función"
 
 #: src/gui.c:164
 msgid "Auto Reconnect"
@@ -106,7 +106,7 @@ msgstr "Información"
 
 #: src/gui.c:353 src/gui_settingsdialog.c:464
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #: src/gui.c:448
 msgid "Sound"
@@ -131,17 +131,17 @@ msgstr "Habilitar/deshabilitar sonido [Ctrl+%d]"
 #: src/gui.c:507 src/gui.c:508 src/gui.c:509 src/gui.c:510 src/gui.c:511
 #: src/gui.c:512 src/gui.c:513 src/gui.c:514
 msgid "Right click to edit"
-msgstr ""
+msgstr "Click con el botón derecho para editar"
 
 #: src/gui.c:1182
 #, fuzzy
 msgid "xdx - edit function key"
-msgstr "xdx - abrir conexión"
+msgstr "xdx - editar la tecla de función"
 
 #: src/gui.c:1188
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
-msgstr "Indicativo a utilizar en el DX-Cluster"
+msgstr "Comando a utilizar para F%d"
 
 #: src/gui_closedialog.c:73
 msgid "xdx - close connection"
@@ -158,11 +158,11 @@ msgstr "Conexión finalizada"
 
 #: src/gui_exitdialog.c:71
 msgid "Exit"
-msgstr ""
+msgstr "Salir"
 
 #: src/gui_exitdialog.c:88
 msgid "Exit "
-msgstr ""
+msgstr "Salir "
 
 #: src/gui_manualdialog.c:72
 msgid "xdx - manual"
@@ -235,7 +235,7 @@ msgstr "Comandos"
 #: src/gui_settingsdialog.c:306
 msgid "Comma separated list of commands to send at login"
 msgstr ""
-"Lista de comandos a enviar al entrar al DX-Cluster, separados por comas"
+"Lista de comandos a enviar al entrar al DX-Cluster (separados por comas)"
 
 #: src/gui_settingsdialog.c:308
 msgid "Callsign to be used for login"
@@ -437,22 +437,22 @@ msgstr "Creando el directorio ~/.%s"
 #: src/preferences.c:79
 #, c-format
 msgid "~/.%s is not a directory."
-msgstr "~/.%s no es un directorio"
+msgstr "~/.%s no es un directorio."
 
 #: src/text.c:1141
 #, c-format
 msgid "%s: %s\n"
-msgstr ""
+msgstr "%s: %s\n"
 
 #: src/text.c:1152
 #, c-format
 msgid "Cannot read cty.dat in %s\n"
-msgstr ""
+msgstr "No se puede leer cty.dat en %s\n"
 
 #: src/text.c:1158
 #, c-format
 msgid "Loading %s\n"
-msgstr ""
+msgstr "Cargando %s\n"
 
 #: src/utils.c:151 src/utils.c:173
 #, c-format
