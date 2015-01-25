@@ -6,8 +6,8 @@ You can also select help->manual from the menu after xdx is started, it will
 display the same file. The file called 'INSTALL' will show you how to compile
 xdx for your linux/bsd distribution.
 
-Thanks to Jean-Luc Coulon (F5IBH) for french translations and Baltasar Perez
-(EB8AKF) for spanish translations of xdx. Thanks to Matt Dawson (GW0VNR) for
+Thanks to Jean-Luc Coulon (F5IBH) for french translations and Baltasar Perez-Diaz
+(EA8BVP) for spanish translations of xdx. Thanks to Matt Dawson (GW0VNR) for
 providing freebsd packages and testing on this platform. Thanks to Harry, LZ1BB
 for suggesting various changes for xdx-2.0.
 
