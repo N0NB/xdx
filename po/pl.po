@@ -1,7 +1,7 @@
 # xdx - GTK+ DX-cluster client for amateur radio
 # Copyright (C) 2002-2006 Joop Stakenborg <pg4i@amsat.org>
 # This file is distributed under the same license as the xdx package.
-# Boguslaw Ciastek SQ5TB <sq5tb@op.pl>, 2004.
+# Bogusław Ciastek SQ5TB <sq5tb@tlen.pl>, 2004-2015.
 #
 #
 msgid ""
@@ -9,18 +9,17 @@ msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
 "POT-Creation-Date: 2014-02-15 21:14-0600\n"
-"PO-Revision-Date: 2006-05-16 23:19+0200\n"
-"Last-Translator: Boguslaw Ciastek <sq5tb@op.pl>\n"
-"Language-Team: Polish <gnomepl@pandora.info.bielsko.pl>\n"
+"PO-Revision-Date: 2015-02-02 20:54+0100\n"
+"Last-Translator: Bogusław Ciastek <sq5tb@tlen.pl>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: src/gui_aboutdialog.c:128
-#, fuzzy
 msgid "TCP/IP DX-cluster and ON4KST chat client for amateur radio operators"
-msgstr "TCP/IP DX cluster i klient czat ON4KST dla radioamator�w"
+msgstr "DX cluster TCP/IP i klient czat ON4KST dla radioamatorów"
 
 #: src/gui.c:121
 msgid "_Program"
@@ -40,23 +39,23 @@ msgstr "P_omoc"
 
 #: src/gui.c:125
 msgid "Highlights"
-msgstr "Wyr�nianie"
+msgstr "Wyróżnianie"
 
 #: src/gui.c:128
 msgid "Quit"
-msgstr "Zako�cz"
+msgstr "Zakończ"
 
 #: src/gui.c:132
 msgid "Connect..."
-msgstr "Po��cz..."
+msgstr "Połącz..."
 
 #: src/gui.c:136
 msgid "Disconnect"
-msgstr "Roz��cz"
+msgstr "Rozłącz"
 
 #: src/gui.c:140
 msgid "Connection Log"
-msgstr "Historia po��cze�"
+msgstr "Historia połączeń"
 
 #: src/gui.c:144
 msgid "Preferences..."
@@ -64,7 +63,7 @@ msgstr "Preferencje..."
 
 #: src/gui.c:148
 msgid "Manual"
-msgstr "Podr�cznik"
+msgstr "Podręcznik"
 
 #: src/gui.c:152
 msgid "About"
@@ -72,11 +71,11 @@ msgstr "O programie"
 
 #: src/gui.c:160
 msgid "Function keys bar"
-msgstr ""
+msgstr "Pasek klawiszy funkcyjnych"
 
 #: src/gui.c:164
 msgid "Auto Reconnect"
-msgstr "Ponowne ��czenie"
+msgstr "Ponowne łączenie"
 
 #: src/gui.c:168
 msgid "Chat sidebar"
@@ -85,7 +84,7 @@ msgstr "Panel czat"
 #: src/gui.c:244
 #, c-format
 msgid "Error loading icon: %s"
-msgstr "B��d podczas wczytywania ikony: %s"
+msgstr "Błąd podczas wczytywania ikony: %s"
 
 #: src/gui.c:305 src/gui_settingsdialog.c:450
 msgid "Spotter"
@@ -105,67 +104,66 @@ msgstr "Info"
 
 #: src/gui.c:353 src/gui_settingsdialog.c:464
 msgid "Country"
-msgstr ""
+msgstr "Kraj"
 
 #: src/gui.c:448
 msgid "Sound"
-msgstr "D�wi�k"
+msgstr "Dźwięk"
 
 #: src/gui.c:479 src/gui.c:480 src/gui.c:481 src/gui.c:482 src/gui.c:483
 #: src/gui.c:484 src/gui.c:485 src/gui.c:486
 msgid "Enter a word to highlight"
-msgstr "Wprowad� wyr�niane s�owo"
+msgstr "Wprowadź wyróżniane słowo"
 
 #: src/gui.c:488 src/gui.c:490 src/gui.c:492 src/gui.c:494 src/gui.c:496
 #: src/gui.c:498 src/gui.c:500 src/gui.c:502
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
-msgstr "��cznie z komunikatami [Ctrl+%d]"
+msgstr "Łącznie z komunikatami [Ctrl+%d]"
 
 #: src/gui.c:504
 #, c-format
 msgid "Enable/disable sound [Ctrl+%d]"
-msgstr "W��cz/wy��cz d�wi�k [Ctrl+%d]"
+msgstr "Włącz/wyłącz dźwięk [Ctrl+%d]"
 
 #: src/gui.c:507 src/gui.c:508 src/gui.c:509 src/gui.c:510 src/gui.c:511
 #: src/gui.c:512 src/gui.c:513 src/gui.c:514
 msgid "Right click to edit"
-msgstr ""
+msgstr "Kliknij prawym aby edytować"
 
 #: src/gui.c:1182
-#, fuzzy
 msgid "xdx - edit function key"
-msgstr "xdx - otw�rz po��czenie"
+msgstr "xdx - edytuj klawisz funkcyjny"
 
 #: src/gui.c:1188
-#, fuzzy, c-format
+#, c-format
 msgid "Command to be used for F%d"
-msgstr "Znak u�ywany do zalogowania"
+msgstr "Polecenie jakie ma zostać użyte dla F%d"
 
 #: src/gui_closedialog.c:73
 msgid "xdx - close connection"
-msgstr "xdx - zako�cz po��czenie"
+msgstr "xdx - zakończ połączenie"
 
 #: src/gui_closedialog.c:90
 #, c-format
 msgid "Close connection to %s ?"
-msgstr "Zako�czy� po��czenie z %s ?"
+msgstr "Zakończyć połączenie z %s ?"
 
 #: src/gui_closedialog.c:100
 msgid "Connection closed"
-msgstr "Po��czenie zako�czone"
+msgstr "Połączenie zakończone"
 
 #: src/gui_exitdialog.c:71
 msgid "Exit"
-msgstr ""
+msgstr "Wyjście "
 
 #: src/gui_exitdialog.c:88
 msgid "Exit "
-msgstr ""
+msgstr "Wyjście "
 
 #: src/gui_manualdialog.c:72
 msgid "xdx - manual"
-msgstr "xdx - podr�cznik"
+msgstr "xdx - podręcznik"
 
 #. TRANSLATORS:
 #. * Do not translate MANUAL unless you provide a faq in your language,
@@ -177,7 +175,7 @@ msgstr "MANUAL.pl"
 
 #: src/gui_opendialog.c:78
 msgid "xdx - open connection"
-msgstr "xdx - otw�rz po��czenie"
+msgstr "xdx - otwórz połączenie"
 
 #: src/gui_opendialog.c:98
 msgid "_Hostname"
@@ -189,15 +187,15 @@ msgstr "_Port"
 
 #: src/gui_logdialog.c:77
 msgid "xdx - connection log"
-msgstr "xdx - historia po��cze�"
+msgstr "xdx - historia połączeń"
 
 #: src/gui_settingsdialog.c:132
 msgid "xdx - Select a font"
-msgstr "xdx - Wybierz czcionk�"
+msgstr "xdx - Wybierz czcionkę"
 
 #: src/gui_settingsdialog.c:146
 msgid "How about this font?"
-msgstr "S�o�ce �wieci nad �odzi�"
+msgstr "Słońce świeci nad Łodzią"
 
 #: src/gui_settingsdialog.c:244
 msgid "xdx - preferences"
@@ -205,11 +203,11 @@ msgstr "xdx - preferencje"
 
 #: src/gui_settingsdialog.c:264 src/gui_settingsdialog.c:423
 msgid "General"
-msgstr "Og�lne"
+msgstr "Ogólne"
 
 #: src/gui_settingsdialog.c:267
 msgid "Output"
-msgstr "Dane wyj�ciowe"
+msgstr "Dane wyjściowe"
 
 #: src/gui_settingsdialog.c:270 src/gui_settingsdialog.c:525
 msgid "Fonts"
@@ -221,11 +219,11 @@ msgstr "Kolory"
 
 #: src/gui_settingsdialog.c:283
 msgid "Your callsign"
-msgstr "Tw�j znak"
+msgstr "Twój znak"
 
 #: src/gui_settingsdialog.c:293
 msgid "Enable autologin"
-msgstr "W��cz automatyczne logowanie"
+msgstr "Włącz automatyczne logowanie"
 
 #: src/gui_settingsdialog.c:300
 msgid "Commands"
@@ -233,11 +231,11 @@ msgstr "Polecenia"
 
 #: src/gui_settingsdialog.c:306
 msgid "Comma separated list of commands to send at login"
-msgstr "Oddzielona przecinkami lista polece� do wys�ania po po��czeniu."
+msgstr "Oddzielona przecinkami lista poleceń do wysłania po połączeniu."
 
 #: src/gui_settingsdialog.c:308
 msgid "Callsign to be used for login"
-msgstr "Znak u�ywany do zalogowania"
+msgstr "Znak używany do zalogowania"
 
 #: src/gui_settingsdialog.c:310
 msgid "Login"
@@ -265,12 +263,12 @@ msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
 "using rigctl (%d = the frequency retrieved from the DX spot)"
 msgstr ""
-"Gdy podw�jnie klikniesz na spocie DX, ustawia cz�stotliwo�� w twoim radiu "
-"u�ywaj�c rigctl (%d = cz�stotliwo�� otrzymana ze spotu DX)"
+"Gdy podwójnie klikniesz na spocie DX, ustawia częstotliwość w twoim radiu "
+"używając rigctl (%d = częstotliwość otrzymana ze spotu DX)"
 
 #: src/gui_settingsdialog.c:376
 msgid "Web browser"
-msgstr "Przegl�darka internetowa"
+msgstr "Przeglądarka internetowa"
 
 #: src/gui_settingsdialog.c:383
 msgid "Mail program"
@@ -278,7 +276,7 @@ msgstr "Program pocztowy"
 
 #: src/gui_settingsdialog.c:390
 msgid "Sound playing"
-msgstr "Odtwarzacz d�wi�ku"
+msgstr "Odtwarzanie dźwięku"
 
 #: src/gui_settingsdialog.c:395
 msgid "Programs"
@@ -288,27 +286,27 @@ msgstr "Programy"
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
 msgstr ""
-"Przegl�darka internetowa uruchamiana po klikni�ciu adresu www (%s = adres)"
+"Przeglądarka internetowa uruchamiana po kliknięciu adresu www (%s = adres)"
 
 #: src/gui_settingsdialog.c:400
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
-"Program pocztowy uruchamiany po klikni�ciu adresu pocztowego (%s = adres "
+"Program pocztowy uruchamiany po kliknięciu adresu pocztowego (%s = adres "
 "pocztowy)"
 
 #: src/gui_settingsdialog.c:402
 #, c-format
 msgid "Program used to play sound (%s = sound file)"
-msgstr "Program u�ywany do odtwarzania d�wi�k�w (%s = plik d�wi�kowy)"
+msgstr "Program używany do odtwarzania dźwięków (%s = plik dźwiękowy)"
 
 #: src/gui_settingsdialog.c:418
 msgid "Echo sent text to the screen"
-msgstr "Powtarzaj wys�any tekst na ekranie"
+msgstr "Powtarzaj wysłany tekst na ekranie"
 
 #: src/gui_settingsdialog.c:421
 msgid "Send keepalive packets (read the manual)"
-msgstr "Wysy�aj pakiety podtrzymuj�ce (przeczytaj podr�cznik)"
+msgstr "Wysyłaj pakiety podtrzymujące (przeczytaj podręcznik)"
 
 #: src/gui_settingsdialog.c:440
 msgid "Columns"
@@ -328,7 +326,7 @@ msgstr "Zapisz WCY/WWV (informacje o propagacji)"
 
 #: src/gui_settingsdialog.c:516
 msgid "Save \"To all\""
-msgstr "Zapisz \"To all\" (wiadomo�ci do wszystkich)"
+msgstr "Zapisz \"To all\" (wiadomości do wszystkich)"
 
 #: src/gui_settingsdialog.c:518
 msgid "Save WX"
@@ -340,27 +338,27 @@ msgstr "Zapisywanie"
 
 #: src/gui_settingsdialog.c:529
 msgid "Font for DX messages"
-msgstr "Czcionka dla wiadomo�ci DX"
+msgstr "Czcionka dla wiadomości DX"
 
 #: src/gui_settingsdialog.c:532
 msgid "Select _DX Font"
-msgstr "Wybierz czcionk� dla _DX"
+msgstr "Wybierz czcionkę dla _DX"
 
 #: src/gui_settingsdialog.c:539
 msgid "Font for other messages"
-msgstr "Czcionka dla pozosta�ych wiadomo�ci"
+msgstr "Czcionka dla pozostałych wiadomości"
 
 #: src/gui_settingsdialog.c:542
 msgid "Select _Other Fonts"
-msgstr "Wybierz czcionk� dla _pozosta�ych"
+msgstr "Wybierz czcionkę dla _pozostałych"
 
 #: src/gui_settingsdialog.c:554
 msgid "Highlighting"
-msgstr "Pod�wietlanie"
+msgstr "Wyróżnianie"
 
 #: src/gui_settingsdialog.c:558
 msgid "Colors to use for highlighting"
-msgstr "Kolory u�ywane przy wyr�nianiu"
+msgstr "Kolory używane przy wyróżnianiu"
 
 #: src/gui_settingsdialog.c:570 src/gui_settingsdialog.c:578
 #: src/gui_settingsdialog.c:586 src/gui_settingsdialog.c:594
@@ -372,7 +370,7 @@ msgstr "Kolor %d"
 
 #: src/gui_settingsdialog.c:648
 msgid "Colors for the chat window"
-msgstr "Kolory w oknie rozm�w"
+msgstr "Kolory w oknie rozmów"
 
 #: src/gui_settingsdialog.c:655
 msgid "Prompt"
@@ -380,7 +378,7 @@ msgstr "Komunikat"
 
 #: src/gui_settingsdialog.c:664
 msgid "Sent text"
-msgstr "Wys�any tekst"
+msgstr "Wysłany tekst"
 
 #: src/main.c:462
 #, c-format
@@ -390,43 +388,43 @@ msgstr "Witamy w %s"
 #: src/net.c:120
 #, c-format
 msgid "Resolving %s..."
-msgstr "Nawi�zywanie po��czenia z %s..."
+msgstr "Tłumaczenie adresu %s..."
 
 #: src/net.c:126
 #, c-format
 msgid "Resolve failed: %s"
-msgstr "Nawi�zanie po��czenia nieudane: %s"
+msgstr "Tłumaczenie adresu nieudane: %s"
 
 #: src/net.c:131
 #, c-format
 msgid "Connecting to: %s"
-msgstr "��czenie z: %s"
+msgstr "Łączenie z: %s"
 
 #: src/net.c:169
 #, c-format
 msgid "Connected to %s"
-msgstr "Po��czony z %s"
+msgstr "Połączony z %s"
 
 #: src/net.c:289
 msgid "Connection closed, trying reconnect in 10 seconds"
-msgstr "Po��czenie zako�czone, ponowna pr�ba po��czenia za 10 sekund"
+msgstr "Połączenie zakończone, ponowna próba połączenia za 10 sekund"
 
 #: src/net.c:295
 msgid "Connection closed by remote host"
-msgstr "Po��czenie zako�czone przez zdalny host."
+msgstr "Połączenie zakończone przez zdalny host."
 
 #: src/net.c:310
 msgid "Connection closed by remote host (0 bytes received)"
-msgstr "Po��czenie zako�czone przez zdalny host (0 bajt�w odebranych)"
+msgstr "Połączenie zakończone przez zdalny host (0 bajtów odebranych)"
 
 #: src/net.c:369
 #, c-format
 msgid "Write failed: %s"
-msgstr "Nieudana pr�ba zapisu: %s"
+msgstr "Nieudana próba zapisu: %s"
 
 #: src/net.c:379
 msgid "Nothing to send, you are not connected"
-msgstr "Nic nie wys�ano, nie jeste� po��czony(a)"
+msgstr "Nic nie wysłano, nie jesteś połączony(a)"
 
 #: src/preferences.c:77
 #, c-format
@@ -441,17 +439,17 @@ msgstr "~/.%s nie jest katalogiem."
 #: src/text.c:1141
 #, c-format
 msgid "%s: %s\n"
-msgstr ""
+msgstr "%s: %s\n"
 
 #: src/text.c:1152
 #, c-format
 msgid "Cannot read cty.dat in %s\n"
-msgstr ""
+msgstr "Nie można odczytać cty.dat w %s\n"
 
 #: src/text.c:1158
 #, c-format
 msgid "Loading %s\n"
-msgstr ""
+msgstr "Wczytywanie %s\n"
 
 #: src/utils.c:151 src/utils.c:173
 #, c-format
@@ -459,10 +457,10 @@ msgid "Starting: %s"
 msgstr "Uruchamianie: %s"
 
 #~ msgid "Fork has failed: %s"
-#~ msgstr "Nieudana pr�ba utworzenia procesu potomnego: %s"
+#~ msgstr "Nieudana próba utworzenia procesu potomnego: %s"
 
 #~ msgid "Error on setting channel encoding: %s"
-#~ msgstr "BÄÂÄšÄÄÂĂÂĂÂĂÂÄÂĂÂd przy ustawianiu kodowania kanaÄÂÄšÄÄÂĂÂu: %s"
+#~ msgstr "BĂÂĂÂĂĹĄĂÂĂÂĂÂÄÂĂÂÄÂĂÂÄÂĂÂĂÂĂÂÄÂĂÂd przy ustawianiu kodowania kanaĂÂĂÂĂĹĄĂÂĂÂĂÂÄÂĂÂu: %s"
 
 #~ msgid "xdx - about"
 #~ msgstr "xdx - o programie"
@@ -474,10 +472,10 @@ msgstr "Uruchamianie: %s"
 #~ msgstr "Opublikowano w oparciu o GNU General Public License"
 
 #~ msgid "/_Program/Quit"
-#~ msgstr "/_Program/WyjÄÂÄšÄÄÂĂÂcie"
+#~ msgstr "/_Program/WyjĂÂĂÂĂĹĄĂÂĂÂĂÂÄÂĂÂcie"
 
 #~ msgid "/_Host/Open"
-#~ msgstr "/_Host/OtwÄÂĂÂĂĹĄĂÂrz"
+#~ msgstr "/_Host/OtwĂÂĂÂÄÂĂÂÄÂÄšÄÄÂĂÂrz"
 
 #~ msgid "/_Host/Close"
 #~ msgstr "/_Host/Zamknij"
