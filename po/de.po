@@ -62,7 +62,7 @@ msgstr "Verbindungs Log"
 
 #: src/gui.c:144
 msgid "Preferences..."
-msgstr "Preferences..."
+msgstr "Einstellungen"
 
 #: src/gui.c:148
 msgid "Manual"
@@ -111,7 +111,7 @@ msgstr "Land"
 
 #: src/gui.c:448
 msgid "Sound"
-msgstr "Sound"
+msgstr "Klang"
 
 #: src/gui.c:479 src/gui.c:480 src/gui.c:481 src/gui.c:482 src/gui.c:483
 #: src/gui.c:484 src/gui.c:485 src/gui.c:486
@@ -132,7 +132,7 @@ msgstr "Sound an/aus [Ctrl+%d]"
 #: src/gui.c:507 src/gui.c:508 src/gui.c:509 src/gui.c:510 src/gui.c:511
 #: src/gui.c:512 src/gui.c:513 src/gui.c:514
 msgid "Right click to edit"
-msgstr "Right click to edit"
+msgstr "Rechts Klick zum editieren"
 
 #: src/gui.c:1182
 #, fuzzy
@@ -159,11 +159,11 @@ msgstr "Verbindung geschlossen"
 
 #: src/gui_exitdialog.c:71
 msgid "Exit"
-msgstr ""
+msgstr "Exit"
 
 #: src/gui_exitdialog.c:88
 msgid "Exit "
-msgstr ""
+msgstr "Exit"
 
 #: src/gui_manualdialog.c:72
 msgid "xdx - manual"
@@ -236,7 +236,7 @@ msgstr "Kommandos"
 #: src/gui_settingsdialog.c:306
 msgid "Comma separated list of commands to send at login"
 msgstr ""
-"Liste von Kommandos, die beim Login gesendet werden (durch Kommata getrennt)"
+"Durch Komma getrennte Liste von Kommandos, die beim Login gesendet werden"
 
 #: src/gui_settingsdialog.c:308
 msgid "Callsign to be used for login"
@@ -252,7 +252,7 @@ msgstr "Rufzeichen"
 
 #: src/gui_settingsdialog.c:338
 msgid "Enable hamlib"
-msgstr "Hamlib nutzen"
+msgstr "Hamlib benutzen"
 
 #: src/gui_settingsdialog.c:344
 msgid "Command for rigctl"
@@ -443,7 +443,7 @@ msgstr "~/.%s ist kein Verzeichnis."
 #: src/text.c:1141
 #, c-format
 msgid "%s: %s\n"
-msgstr ""
+msgstr "%s: %s\n"
 
 #: src/text.c:1152
 #, c-format
