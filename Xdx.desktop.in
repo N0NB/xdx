@@ -2,6 +2,7 @@
 Name=Xdx
 Comment=DX-cluster client for amateur radio
 Comment[nl]=DX-cluster client voor zendamateurs
+Comment[pl]=Klient DX-cluster dla krótkofalowców
 Exec=@prefix@/bin/xdx
 Icon=@prefix@/share/xdx/pixmaps/xdx.png
 Terminal=false
