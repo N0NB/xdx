@@ -8,6 +8,7 @@ Changelog for version Xdx (2.5)
   * German translation update from Tom, DL1JBE.
   * Polish translation update from Bogusław, SQ5TB.
   * Update to CTY-2505 – 20 April 2015.
+  * Add Keywords entry to desktop file.
 
 Changelog for version Xdx (2.4.3)
   * Apply Debian patch from bug #577377.
