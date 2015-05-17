@@ -8,3 +8,4 @@ Icon=@prefix@/share/xdx/pixmaps/xdx.png
 Terminal=false
 Type=Application
 Categories=Network;HamRadio;
+Keywords=DX cluster;packet cluster;DX spotting;
