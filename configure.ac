@@ -4,7 +4,7 @@ dnl Autoconf 2.67 is in Debian Squeeze.
 AC_PREREQ([2.67])
 
 AC_INIT([Xdx],
-	[2.5.0~rc3],
+	[2.5.0],
 	[xdxclusterclient-discuss@lists.sourceforge.net],
 	[xdx],
 	[https://github.com/N0NB/xdx])
@@ -30,8 +30,8 @@ AC_GNU_SOURCE
 
 AM_GNU_GETTEXT([external])
 
-dnl Should work with at least the version of gettext in Debian Wheezy
-AM_GNU_GETTEXT_VERSION([0.18.1])
+dnl Should work with at least the version of gettext in Debian Jessie
+AM_GNU_GETTEXT_VERSION([0.19.3])
 
 # autoheader templates for AM_GNU_GETTEXT checks.
 AH_TEMPLATE([ENABLE_NLS], [])
