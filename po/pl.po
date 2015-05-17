@@ -9,13 +9,14 @@ msgstr ""
 "Project-Id-Version: xdx 2.0\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
 "POT-Creation-Date: 2014-02-15 21:14-0600\n"
-"PO-Revision-Date: 2015-02-02 20:54+0100\n"
+"PO-Revision-Date: 2015-05-17 00:45+0100\n"
 "Last-Translator: Bogusław Ciastek <sq5tb@tlen.pl>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.4\n"
+"Language-Team: \n"
 
 #: src/gui_aboutdialog.c:128
 msgid "TCP/IP DX-cluster and ON4KST chat client for amateur radio operators"
@@ -88,7 +89,7 @@ msgstr "Błąd podczas wczytywania ikony: %s"
 
 #: src/gui.c:305 src/gui_settingsdialog.c:450
 msgid "Spotter"
-msgstr "Nadawca"
+msgstr "Nasłuchujący"
 
 #: src/gui.c:329 src/gui_settingsdialog.c:458
 msgid "Remarks"
@@ -100,7 +101,7 @@ msgstr "Czas"
 
 #: src/gui.c:345 src/gui_settingsdialog.c:462
 msgid "Info"
-msgstr "Info"
+msgstr "Informacja"
 
 #: src/gui.c:353 src/gui_settingsdialog.c:464
 msgid "Country"
@@ -110,13 +111,11 @@ msgstr "Kraj"
 msgid "Sound"
 msgstr "Dźwięk"
 
-#: src/gui.c:479 src/gui.c:480 src/gui.c:481 src/gui.c:482 src/gui.c:483
-#: src/gui.c:484 src/gui.c:485 src/gui.c:486
+#: src/gui.c:479 src/gui.c:480 src/gui.c:481 src/gui.c:482 src/gui.c:483 src/gui.c:484 src/gui.c:485 src/gui.c:486
 msgid "Enter a word to highlight"
 msgstr "Wprowadź wyróżniane słowo"
 
-#: src/gui.c:488 src/gui.c:490 src/gui.c:492 src/gui.c:494 src/gui.c:496
-#: src/gui.c:498 src/gui.c:500 src/gui.c:502
+#: src/gui.c:488 src/gui.c:490 src/gui.c:492 src/gui.c:494 src/gui.c:496 src/gui.c:498 src/gui.c:500 src/gui.c:502
 #, c-format
 msgid "Include prompt [Ctrl+%d]"
 msgstr "Łącznie z komunikatami [Ctrl+%d]"
@@ -126,8 +125,7 @@ msgstr "Łącznie z komunikatami [Ctrl+%d]"
 msgid "Enable/disable sound [Ctrl+%d]"
 msgstr "Włącz/wyłącz dźwięk [Ctrl+%d]"
 
-#: src/gui.c:507 src/gui.c:508 src/gui.c:509 src/gui.c:510 src/gui.c:511
-#: src/gui.c:512 src/gui.c:513 src/gui.c:514
+#: src/gui.c:507 src/gui.c:508 src/gui.c:509 src/gui.c:510 src/gui.c:511 src/gui.c:512 src/gui.c:513 src/gui.c:514
 msgid "Right click to edit"
 msgstr "Kliknij prawym aby edytować"
 
@@ -231,11 +229,11 @@ msgstr "Polecenia"
 
 #: src/gui_settingsdialog.c:306
 msgid "Comma separated list of commands to send at login"
-msgstr "Oddzielona przecinkami lista poleceń do wysłania po połączeniu."
+msgstr "Oddzielona przecinkami lista poleceń do wysłania po połączeniu"
 
 #: src/gui_settingsdialog.c:308
 msgid "Callsign to be used for login"
-msgstr "Znak używany do zalogowania"
+msgstr "Znak używany podczas logowania"
 
 #: src/gui_settingsdialog.c:310
 msgid "Login"
@@ -259,12 +257,8 @@ msgstr "Hamlib"
 
 #: src/gui_settingsdialog.c:352
 #, c-format
-msgid ""
-"When double clicking on a dx-spot this will set the frequency of your rig "
-"using rigctl (%d = the frequency retrieved from the DX spot)"
-msgstr ""
-"Gdy podwójnie klikniesz na spocie DX, ustawia częstotliwość w twoim radiu "
-"używając rigctl (%d = częstotliwość otrzymana ze spotu DX)"
+msgid "When double clicking on a dx-spot this will set the frequency of your rig using rigctl (%d = the frequency retrieved from the DX spot)"
+msgstr "Gdy podwójnie klikniesz na spocie DX, ustawia częstotliwość w twoim radiu używając rigctl (%d = częstotliwość otrzymana ze spotu DX)"
 
 #: src/gui_settingsdialog.c:376
 msgid "Web browser"
@@ -285,15 +279,12 @@ msgstr "Programy"
 #: src/gui_settingsdialog.c:398
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
-msgstr ""
-"Przeglądarka internetowa uruchamiana po kliknięciu adresu www (%s = adres)"
+msgstr "Przeglądarka internetowa uruchamiana po kliknięciu adresu www (%s = adres)"
 
 #: src/gui_settingsdialog.c:400
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
-msgstr ""
-"Program pocztowy uruchamiany po kliknięciu adresu pocztowego (%s = adres "
-"pocztowy)"
+msgstr "Program pocztowy uruchamiany po kliknięciu adresu pocztowego (%s = adres pocztowy)"
 
 #: src/gui_settingsdialog.c:402
 #, c-format
@@ -360,10 +351,8 @@ msgstr "Wyróżnianie"
 msgid "Colors to use for highlighting"
 msgstr "Kolory używane przy wyróżnianiu"
 
-#: src/gui_settingsdialog.c:570 src/gui_settingsdialog.c:578
-#: src/gui_settingsdialog.c:586 src/gui_settingsdialog.c:594
-#: src/gui_settingsdialog.c:607 src/gui_settingsdialog.c:615
-#: src/gui_settingsdialog.c:623 src/gui_settingsdialog.c:631
+#: src/gui_settingsdialog.c:570 src/gui_settingsdialog.c:578 src/gui_settingsdialog.c:586 src/gui_settingsdialog.c:594
+#: src/gui_settingsdialog.c:607 src/gui_settingsdialog.c:615 src/gui_settingsdialog.c:623 src/gui_settingsdialog.c:631
 #, c-format
 msgid "Color %d"
 msgstr "Kolor %d"
@@ -411,7 +400,7 @@ msgstr "Połączenie zakończone, ponowna próba połączenia za 10 sekund"
 
 #: src/net.c:295
 msgid "Connection closed by remote host"
-msgstr "Połączenie zakończone przez zdalny host."
+msgstr "Połączenie zakończone przez zdalny host"
 
 #: src/net.c:310
 msgid "Connection closed by remote host (0 bytes received)"
@@ -429,7 +418,7 @@ msgstr "Nic nie wysłano, nie jesteś połączony(a)"
 #: src/preferences.c:77
 #, c-format
 msgid "Creating ~/.%s directory."
-msgstr "Tworzenie katalogu ~/.%s"
+msgstr "Tworzenie katalogu ~/.%s."
 
 #: src/preferences.c:79
 #, c-format
