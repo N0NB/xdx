@@ -72,7 +72,7 @@ Callsign and autologin
 ======================
 The callsign in the first page of the preferences dialog is used for
 recognizing the DX-cluster prompt (so xdx can colorize it) and for autologin.
-When autologin is enabled, a number of commands can be send to the cluster.
+When autologin is enabled, a number of commands can be sent to the cluster.
 You may enter them in the 'Commands' entry, separated by a comma,
 e.g. set/page 0,unset beep' will disable paging and stop beeps.
 You can also use commands when a password is needed. There is a
@@ -90,11 +90,11 @@ Individual messages can be saved to a file when activated from the preferences
 dialog.
 
 $HOME/.xdx/dxspots  DX spots as displayed in the top list.
-$HOME/.xdx/wwv      WCY/WWV anouncements with propagation info.
+$HOME/.xdx/wwv      WCY/WWV announcements with propagation info.
 $HOME/.xdx/toall    Chat messages as displayed in the bottom text widget.
 $HOME/.xdx/wx       Weather information.
 
-When wwv data is saved, files with "tab seperated values" will be saved for
+When wwv data is saved, files with "tab separated values" will be saved for
 every WWV host. This is useful for creating graphs. The format of this file:
 
 YYYMMDDHH	SFI	A	K	R
@@ -195,7 +195,7 @@ the preferences directory will not be loaded unless the path does not end in
 "cty.dat" or cty.dat is not a regular file, i.e. is a directory. In such cases
 the preferences directory will be checked.  The system installed version of
 cty.dat will be loaded as a fallback should the simple tests fail and the
-prefences directory does not contain cty.dat.  There is currently no test of
+preferences directory does not contain cty.dat.  There is currently no test of
 whether the given cty.dat conforms to the specification.
 
 If, for whatever reason, country determination is not desired, creating a 0 byte
