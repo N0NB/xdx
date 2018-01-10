@@ -95,7 +95,7 @@ the eye a break and the brain a cue that a new logical block has begun.
 A function definition has its name begin in column 0 with its return type on
 the line prior.
 
-Mutliple function arguments may be more easily read by lining up the type and
+Multiple function arguments may be more easily read by lining up the type and
 the argument's name in vertical columns as:
 
 static void

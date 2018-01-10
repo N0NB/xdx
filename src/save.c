@@ -110,7 +110,7 @@ savewwv(gchar *wwv)
         fclose(fp);
     }
 
-    /* extract wwv hostname and save to seperate file for every host */
+    /* extract wwv hostname and save to separate file for every host */
     tmp = g_strdup(wwv + 7);
     ind = index(tmp, ' ');
     *ind = '\0';
