@@ -13,7 +13,7 @@ The simplest way to compile Xdx is:
      requires Gtk+ 2.24.0 or later.
 
   3. Type `make install' to install the programs and any data files and
-     documentation (root/adminstrator privileges may be needed to install
+     documentation (root/administrator privileges may be needed to install
      to the default path).
 
   4. When you want to stip the binary when installing, just type:
