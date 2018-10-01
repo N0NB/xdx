@@ -69,10 +69,3 @@ echo "and generate the configure script."
 $AUTORECONF -i
 
 cd $ORIGDIR
-
-if test -z "$*"; then
-        echo "I am going to run ./configure with no arguments - if you wish "
-        echo "to pass any to it, please specify them on the $0 command line."
-fi
-
-$SRCDIR/configure "$@"

@@ -1,14 +1,14 @@
 Notes on bootstrapping the GNU build system.
 
 The bootstrap.sh script is only required when initializing the build
-system after a 'git clone' or 'git clean' command.  The script will call
-the newly created 'configure' script before exiting.  This means commands
-can be passed to 'bootstrap.sh' and they will be passed to 'configure'.
+system after a 'git clone' or 'git clean' command.
+
 For example:
 
-	../xdx/bootstrap.sh --prefix=$HOME/local
+	../xdx/bootstrap.sh
 
-to install into your home directory.
+to bootstrap the build system and create the configure script and
+its required files.
 
 When 'bootstrap.sh' is run it will check for the existence
 of 'gettextize', 'autoreconf', and 'automake' in the path.  The script
@@ -20,7 +20,8 @@ initialization of the GNU gettext system which handles the translations
 of various strings in Xdx into other languages.  'gettextize' modifies
 'Makefile.am', 'configure.ac', and 'm4/Makefile.am' for the build system.
 As these changes may vary from Gettext releases, they will not be committed
-into repository.  They will be included with the source distribution.
+into repository.  They will be included as modified by Gettext with the source
+distribution.
 
 After 'gettextize' is complete it will print a message to the screen requiring
 acknowledgement by pressing <Return>.  Those details are covered by the next
@@ -31,5 +32,5 @@ preferred tool to use for bootstrapping the build system.  It will complete
 the configuration of Gettext and will call such tools as 'autoconf' and
 'automake' amongst any others that may be needed.
 
-Upon completion the package is ready to build by running 'make' and 'make
-install'.
+Upon completion the package is ready for the "build three step" by running
+'configure', 'make' and 'make install'.

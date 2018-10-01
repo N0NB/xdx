@@ -56,8 +56,8 @@ Bootstrapping can be done from 'xdb':
 
 	../xdx/bootstrap.sh
 
-Then the usual 'make', 'make install' may be used and the binary objects will
-be placed in 'xdb'.
+Then the usual 'configure', 'make', 'make install' commands may be used and the
+binary objects will be placed in 'xdb'.
 
 
 Cleaning the directory
