@@ -32,7 +32,7 @@
 
 #include <string.h>
 
-#include <gtk/gtktextiter.h>
+#include <gtk/gtk.h>
 
 #include "gtksourceiter.h"
 
