@@ -450,26 +450,26 @@ create_mainwindow(void)
 
     key_toggle = gtk_accel_group_new();
     gtk_window_add_accel_group(GTK_WINDOW(gui->window), key_toggle);
-    gtk_widget_add_accelerator(highcheck1, "clicked", key_toggle, GDK_1, GDK_CONTROL_MASK, 0);
-    gtk_widget_add_accelerator(highcheck2, "clicked", key_toggle, GDK_2, GDK_CONTROL_MASK, 0);
-    gtk_widget_add_accelerator(highcheck3, "clicked", key_toggle, GDK_3, GDK_CONTROL_MASK, 0);
-    gtk_widget_add_accelerator(highcheck4, "clicked", key_toggle, GDK_4, GDK_CONTROL_MASK, 0);
-    gtk_widget_add_accelerator(highcheck5, "clicked", key_toggle, GDK_5, GDK_CONTROL_MASK, 0);
-    gtk_widget_add_accelerator(highcheck6, "clicked", key_toggle, GDK_6, GDK_CONTROL_MASK, 0);
-    gtk_widget_add_accelerator(highcheck7, "clicked", key_toggle, GDK_7, GDK_CONTROL_MASK, 0);
-    gtk_widget_add_accelerator(highcheck8, "clicked", key_toggle, GDK_8, GDK_CONTROL_MASK, 0);
-    gtk_widget_add_accelerator(soundcheck, "clicked", key_toggle, GDK_0, GDK_CONTROL_MASK, 0);
+    gtk_widget_add_accelerator(highcheck1, "clicked", key_toggle, GDK_KEY_1, GDK_CONTROL_MASK, 0);
+    gtk_widget_add_accelerator(highcheck2, "clicked", key_toggle, GDK_KEY_2, GDK_CONTROL_MASK, 0);
+    gtk_widget_add_accelerator(highcheck3, "clicked", key_toggle, GDK_KEY_3, GDK_CONTROL_MASK, 0);
+    gtk_widget_add_accelerator(highcheck4, "clicked", key_toggle, GDK_KEY_4, GDK_CONTROL_MASK, 0);
+    gtk_widget_add_accelerator(highcheck5, "clicked", key_toggle, GDK_KEY_5, GDK_CONTROL_MASK, 0);
+    gtk_widget_add_accelerator(highcheck6, "clicked", key_toggle, GDK_KEY_6, GDK_CONTROL_MASK, 0);
+    gtk_widget_add_accelerator(highcheck7, "clicked", key_toggle, GDK_KEY_7, GDK_CONTROL_MASK, 0);
+    gtk_widget_add_accelerator(highcheck8, "clicked", key_toggle, GDK_KEY_8, GDK_CONTROL_MASK, 0);
+    gtk_widget_add_accelerator(soundcheck, "clicked", key_toggle, GDK_KEY_0, GDK_CONTROL_MASK, 0);
 
     grab_focus = gtk_accel_group_new();
     gtk_window_add_accel_group(GTK_WINDOW(gui->window), grab_focus);
-    gtk_widget_add_accelerator(highentry1, "grab-focus", grab_focus, GDK_1, GDK_MOD1_MASK, 0);
-    gtk_widget_add_accelerator(highentry2, "grab-focus", grab_focus, GDK_2, GDK_MOD1_MASK, 0);
-    gtk_widget_add_accelerator(highentry3, "grab-focus", grab_focus, GDK_3, GDK_MOD1_MASK, 0);
-    gtk_widget_add_accelerator(highentry4, "grab-focus", grab_focus, GDK_4, GDK_MOD1_MASK, 0);
-    gtk_widget_add_accelerator(highentry5, "grab-focus", grab_focus, GDK_5, GDK_MOD1_MASK, 0);
-    gtk_widget_add_accelerator(highentry6, "grab-focus", grab_focus, GDK_6, GDK_MOD1_MASK, 0);
-    gtk_widget_add_accelerator(highentry7, "grab-focus", grab_focus, GDK_7, GDK_MOD1_MASK, 0);
-    gtk_widget_add_accelerator(highentry8, "grab-focus", grab_focus, GDK_8, GDK_MOD1_MASK, 0);
+    gtk_widget_add_accelerator(highentry1, "grab-focus", grab_focus, GDK_KEY_1, GDK_MOD1_MASK, 0);
+    gtk_widget_add_accelerator(highentry2, "grab-focus", grab_focus, GDK_KEY_2, GDK_MOD1_MASK, 0);
+    gtk_widget_add_accelerator(highentry3, "grab-focus", grab_focus, GDK_KEY_3, GDK_MOD1_MASK, 0);
+    gtk_widget_add_accelerator(highentry4, "grab-focus", grab_focus, GDK_KEY_4, GDK_MOD1_MASK, 0);
+    gtk_widget_add_accelerator(highentry5, "grab-focus", grab_focus, GDK_KEY_5, GDK_MOD1_MASK, 0);
+    gtk_widget_add_accelerator(highentry6, "grab-focus", grab_focus, GDK_KEY_6, GDK_MOD1_MASK, 0);
+    gtk_widget_add_accelerator(highentry7, "grab-focus", grab_focus, GDK_KEY_7, GDK_MOD1_MASK, 0);
+    gtk_widget_add_accelerator(highentry8, "grab-focus", grab_focus, GDK_KEY_8, GDK_MOD1_MASK, 0);
 
     vpaned = gtk_vpaned_new();
     gtk_paned_add1(GTK_PANED(vpaned), clistscrolledwindow);
@@ -518,7 +518,7 @@ create_mainwindow(void)
     frame = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(mainvbox), frame, FALSE, TRUE, 0);
     gtk_container_add(GTK_CONTAINER(frame), mainentry);
-    gtk_widget_add_accelerator(mainentry, "grab-focus", grab_focus, GDK_0, GDK_MOD1_MASK, 0);
+    gtk_widget_add_accelerator(mainentry, "grab-focus", grab_focus, GDK_KEY_0, GDK_MOD1_MASK, 0);
 
     /* height of the frame is 2 times font size */
     font_description = pango_font_description_copy
@@ -1103,12 +1103,12 @@ on_mainwindow_key_press_event(GtkWidget    *widget,
 
     if (gtk_widget_has_focus(mainentry)) {
         switch (event->keyval) {
-            case GDK_Up:
+            case GDK_KEY_Up:
                 g_signal_stop_emission_by_name(GTK_OBJECT(widget), "key_press_event");
                 tx_previous();
                 break;
 
-            case GDK_Down:
+            case GDK_KEY_Down:
                 g_signal_stop_emission_by_name(GTK_OBJECT(widget), "key_press_event");
                 tx_next();
                 break;
@@ -1119,42 +1119,42 @@ on_mainwindow_key_press_event(GtkWidget    *widget,
     }
 
     switch (event->keyval) {
-        case GDK_F1:
+        case GDK_KEY_F1:
             f1button = g_object_get_data(G_OBJECT(gui->window), "f1button");
             g_signal_emit_by_name(G_OBJECT(f1button), "activate");
             break;
 
-        case GDK_F2:
+        case GDK_KEY_F2:
             f2button = g_object_get_data(G_OBJECT(gui->window), "f2button");
             g_signal_emit_by_name(G_OBJECT(f2button), "activate");
             break;
 
-        case GDK_F3:
+        case GDK_KEY_F3:
             f3button = g_object_get_data(G_OBJECT(gui->window), "f3button");
             g_signal_emit_by_name(G_OBJECT(f3button), "activate");
             break;
 
-        case GDK_F4:
+        case GDK_KEY_F4:
             f4button = g_object_get_data(G_OBJECT(gui->window), "f4button");
             g_signal_emit_by_name(G_OBJECT(f4button), "activate");
             break;
 
-        case GDK_F5:
+        case GDK_KEY_F5:
             f5button = g_object_get_data(G_OBJECT(gui->window), "f5button");
             g_signal_emit_by_name(G_OBJECT(f5button), "activate");
             break;
 
-        case GDK_F6:
+        case GDK_KEY_F6:
             f6button = g_object_get_data(G_OBJECT(gui->window), "f6button");
             g_signal_emit_by_name(G_OBJECT(f6button), "activate");
             break;
 
-        case GDK_F7:
+        case GDK_KEY_F7:
             f7button = g_object_get_data(G_OBJECT(gui->window), "f7button");
             g_signal_emit_by_name(G_OBJECT(f7button), "activate");
             break;
 
-        case GDK_F8:
+        case GDK_KEY_F8:
             f8button = g_object_get_data(G_OBJECT(gui->window), "f8button");
             g_signal_emit_by_name(G_OBJECT(f8button), "activate");
             break;
