@@ -63,7 +63,7 @@ void
 on_close_activate(GtkMenuItem   *menuitem,
                   gpointer       user_data)
 {
-    GtkWidget *closedialog, *closelabel, *hbox, *stock, *mainentry;
+    GtkWidget *closedialog, *closelabel, *hbox, *vbox, *stock, *mainentry;
     GString *labeltext = g_string_new("");
     GString *msg = g_string_new("");
     gint response;
@@ -79,8 +79,10 @@ on_close_activate(GtkMenuItem   *menuitem,
                   GTK_RESPONSE_OK, NULL);
     hbox = gtk_hbox_new(FALSE, 8);
     gtk_container_set_border_width(GTK_CONTAINER(hbox), 8);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(closedialog)->vbox), hbox, FALSE,
-                       FALSE, 0);
+
+    vbox = gtk_dialog_get_content_area(GTK_DIALOG(closedialog));
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
     stock =
         gtk_image_new_from_stock(GTK_STOCK_DIALOG_QUESTION,
                                  GTK_ICON_SIZE_DIALOG);

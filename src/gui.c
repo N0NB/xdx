@@ -1172,7 +1172,7 @@ on_fbutton_press(GtkButton      *button,
                  GdkEventButton *event,
                  gpointer        user_data)
 {
-    GtkWidget *editdialog, *editvbox, *editlabel, *editentry,
+    GtkWidget *editdialog, *editvbox, *editlabel, *editentry, *vbox,
               *f1button, *f2button, *f3button, *f4button, *f5button, *f6button,
               *f7button, *f8button;
     gchar *temp, *str;
@@ -1183,12 +1183,21 @@ on_fbutton_press(GtkButton      *button,
                      GTK_WINDOW(gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
         editvbox = gtk_vbox_new(TRUE, 0);
-        gtk_box_pack_start(GTK_BOX(GTK_DIALOG(editdialog)->vbox),
-                           editvbox, TRUE, TRUE, 0);
+
+        /* This function returns a pointer to the dialog's content area
+         * as setting the member directly as in (GTK_DIALOG(editdialog)->vbox
+         * is deprecated in the GTK+3 API.  Running make with the
+         * CFLAGS+="-DGSEAL_ENABLE" environment variable will cause a
+         * compiler error when attempting to set the member directly.
+         */
+        vbox = gtk_dialog_get_content_area(GTK_DIALOG(editdialog));
+        gtk_box_pack_start(GTK_BOX(vbox), editvbox, TRUE, TRUE, 0);
+
         temp = g_strdup_printf(_("Command to be used for F%d"), GPOINTER_TO_INT(user_data));
         editlabel = gtk_label_new_with_mnemonic(temp);
         g_free(temp);
         gtk_box_pack_start(GTK_BOX(editvbox), editlabel, TRUE, TRUE, 0);
+
         editentry = gtk_entry_new();
         gtk_box_pack_start(GTK_BOX(editvbox), editentry, TRUE, TRUE, 0);
 

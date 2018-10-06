@@ -66,8 +66,8 @@ void
 on_open_activate(GtkMenuItem    *menuitem,
                  gpointer        user_data)
 {
-    GtkWidget *opendialog, *hostnamecombo, *portcombo, *hbox, *stock, *table,
-              *hostlabel, *portlabel, *mainentry;
+    GtkWidget *opendialog, *hostnamecombo, *portcombo, *hbox, *vbox, *stock,
+              *table, *hostlabel, *portlabel, *mainentry, *hnc_child, *pc_child;
     gint i, num, response;
     GList *node;
     gboolean result = FALSE;
@@ -85,8 +85,10 @@ on_open_activate(GtkMenuItem    *menuitem,
 
     hbox = gtk_hbox_new(FALSE, 8);
     gtk_container_set_border_width(GTK_CONTAINER(hbox), 8);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(opendialog)->vbox), hbox, FALSE,
-                       FALSE, 0);
+
+    vbox = gtk_dialog_get_content_area(GTK_DIALOG(opendialog));
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
     stock =
         gtk_image_new_from_stock(GTK_STOCK_DIALOG_QUESTION,
                                  GTK_ICON_SIZE_DIALOG);
@@ -133,10 +135,12 @@ on_open_activate(GtkMenuItem    *menuitem,
 
     if (response == GTK_RESPONSE_OK) {
         cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
-        cluster->host = gtk_editable_get_chars
-                        (GTK_EDITABLE(GTK_BIN(hostnamecombo)->child), 0, -1);
-        cluster->port = gtk_editable_get_chars
-                        (GTK_EDITABLE(GTK_BIN(portcombo)->child), 0, -1);
+
+        hnc_child = gtk_bin_get_child(GTK_BIN(hostnamecombo));
+        cluster->host = gtk_editable_get_chars(GTK_EDITABLE(hnc_child), 0, -1);
+
+        pc_child = gtk_bin_get_child(GTK_BIN(portcombo));
+        cluster->port = gtk_editable_get_chars(GTK_EDITABLE(pc_child), 0, -1);
 
         if (!g_ascii_strcasecmp(cluster->host, ""))
             cluster->host = "localhost";

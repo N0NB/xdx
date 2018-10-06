@@ -61,7 +61,7 @@ void
 on_manual_activate(GtkMenuItem *menuitem,
                    gpointer     user_data)
 {
-    GtkWidget *manualdialog, *swindow, *helptextview;
+    GtkWidget *manualdialog, *swindow, *helptextview, *vbox;
     GtkTextBuffer *buffer;
     GtkTextIter iter;
     PangoFontDescription *font_desc;
@@ -75,8 +75,10 @@ on_manual_activate(GtkMenuItem *menuitem,
     gtk_widget_set_size_request(manualdialog, 650, 300);
 
     swindow = gtk_scrolled_window_new(NULL, NULL);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(manualdialog)->vbox),
-                       swindow, TRUE, TRUE, 0);
+
+    vbox = gtk_dialog_get_content_area(GTK_DIALOG(manualdialog));
+    gtk_box_pack_start(GTK_BOX(vbox),swindow, TRUE, TRUE, 0);
+
     helptextview = gtk_text_view_new();
     gtk_text_view_set_editable(GTK_TEXT_VIEW(helptextview), FALSE);
     gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(helptextview), FALSE);

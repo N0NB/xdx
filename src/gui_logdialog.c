@@ -64,7 +64,9 @@ void
 on_log_activate(GtkMenuItem     *menuitem,
                 gpointer         user_data)
 {
-    GtkWidget *logdialog, *vbox, *logdialog_scrolledwindow, *logdialog_textview;
+    GtkWidget *logdialog, *box, *vbox, *logdialog_scrolledwindow,
+        *logdialog_textview;
+
     gint response;
     FILE *fd;
     gchar *filename;
@@ -84,8 +86,10 @@ on_log_activate(GtkMenuItem     *menuitem,
     gtk_widget_set_size_request(logdialog, 600, 300);
     vbox = gtk_vbox_new(FALSE, 8);
     gtk_container_set_border_width(GTK_CONTAINER(vbox), 8);
-    gtk_container_add(GTK_CONTAINER
-                      (GTK_DIALOG(logdialog)->vbox), vbox);
+
+    box = gtk_dialog_get_content_area(GTK_DIALOG(logdialog));
+    gtk_container_add(GTK_CONTAINER(box), vbox);
+
     logdialog_scrolledwindow = gtk_scrolled_window_new(NULL, NULL);
     gtk_box_pack_start(GTK_BOX(vbox), logdialog_scrolledwindow, TRUE, TRUE, 0);
     gtk_scrolled_window_set_policy
