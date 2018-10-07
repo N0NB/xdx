@@ -1104,12 +1104,12 @@ on_mainwindow_key_press_event(GtkWidget    *widget,
     if (gtk_widget_has_focus(mainentry)) {
         switch (event->keyval) {
             case GDK_KEY_Up:
-                g_signal_stop_emission_by_name(GTK_OBJECT(widget), "key_press_event");
+                g_signal_stop_emission_by_name(G_OBJECT(widget), "key_press_event");
                 tx_previous();
                 break;
 
             case GDK_KEY_Down:
-                g_signal_stop_emission_by_name(GTK_OBJECT(widget), "key_press_event");
+                g_signal_stop_emission_by_name(G_OBJECT(widget), "key_press_event");
                 tx_next();
                 break;
 

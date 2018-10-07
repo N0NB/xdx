@@ -57,8 +57,8 @@ AC_STRUCT_TM
 
 AX_CFLAGS_WARN_ALL([AM_CFLAGS])
 
-dnl Installed GTK must be at least version 2.24
-PKG_CHECK_MODULES([GTK], [gtk+-2.0 >= 2.24.0])
+dnl Installed GTK must be at least version 3.14 (Debian Jessie)
+PKG_CHECK_MODULES([GTK], [gtk+-3.0 >= 3.14.0])
 AC_SUBST([GTK_CFLAGS])
 AC_SUBST([GTK_LIBS])
 

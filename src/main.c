@@ -64,7 +64,7 @@
 
 
 extern preferencestype preferences;
-GdkColormap *colormap;
+GdkVisual *visual;
 gchar *prompttagname, *calltagname;
 gchar *opt_cty_path = NULL;     /* For -c or --cty_path options. */
 
@@ -102,7 +102,7 @@ main(int argc, char *argv[])
     setlocale(LC_NUMERIC, "C");
     parse_opts(&argc, &argv);
 
-    colormap = gdk_colormap_get_system();
+    visual = gdk_visual_get_system();
     create_mainwindow();
     dircheck();
     loadpreferences();
