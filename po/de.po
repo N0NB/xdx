@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xdx 2.4.1\n"
 "Report-Msgid-Bugs-To: n0nb@n0nb.us\n"
-"POT-Creation-Date: 2015-05-17 06:22-0500\n"
+"POT-Creation-Date: 2018-10-08 07:14-0500\n"
 "PO-Revision-Date: 2009-01-10 07:27+0100\n"
 "Last-Translator: Thomas Beierlein <tb@forth-ev.de>\n"
 "Language-Team: German\n"
@@ -89,23 +89,23 @@ msgstr "Chat sidebar"
 msgid "Error loading icon: %s"
 msgstr "Fehler beim Laden des Icon: %s"
 
-#: src/gui.c:305 src/gui_settingsdialog.c:450
+#: src/gui.c:305 src/gui_settingsdialog.c:457
 msgid "Spotter"
 msgstr "Spotter"
 
-#: src/gui.c:329 src/gui_settingsdialog.c:458
+#: src/gui.c:329 src/gui_settingsdialog.c:465
 msgid "Remarks"
 msgstr "Bemerkungen"
 
-#: src/gui.c:337 src/gui_settingsdialog.c:460
+#: src/gui.c:337 src/gui_settingsdialog.c:467
 msgid "Time"
 msgstr "Zeit"
 
-#: src/gui.c:345 src/gui_settingsdialog.c:462
+#: src/gui.c:345 src/gui_settingsdialog.c:469
 msgid "Info"
 msgstr "Info"
 
-#: src/gui.c:353 src/gui_settingsdialog.c:464
+#: src/gui.c:353 src/gui_settingsdialog.c:471
 msgid "Country"
 msgstr "Land"
 
@@ -139,7 +139,7 @@ msgstr "Rechts Klick zum editieren"
 msgid "xdx - edit function key"
 msgstr "xdx - Verbindung oeffnen"
 
-#: src/gui.c:1188
+#: src/gui.c:1196
 #, fuzzy, c-format
 msgid "Command to be used for F%d"
 msgstr "Rufzeichen fuer das Login"
@@ -148,12 +148,12 @@ msgstr "Rufzeichen fuer das Login"
 msgid "xdx - close connection"
 msgstr "xdx - Verbindung schliessen"
 
-#: src/gui_closedialog.c:90
+#: src/gui_closedialog.c:92
 #, c-format
 msgid "Close connection to %s ?"
 msgstr "Verbindung zu %s schliessen?"
 
-#: src/gui_closedialog.c:100
+#: src/gui_closedialog.c:102
 msgid "Connection closed"
 msgstr "Verbindung geschlossen"
 
@@ -161,7 +161,7 @@ msgstr "Verbindung geschlossen"
 msgid "Exit"
 msgstr "Exit"
 
-#: src/gui_exitdialog.c:88
+#: src/gui_exitdialog.c:90
 msgid "Exit "
 msgstr "Exit"
 
@@ -173,7 +173,7 @@ msgstr "xdx - Handbuch"
 #. * Do not translate MANUAL unless you provide a faq in your language,
 #. * e.g. the polish faq is called MANUAL.pl.
 #.
-#: src/gui_manualdialog.c:91
+#: src/gui_manualdialog.c:93
 msgid "MANUAL"
 msgstr "MANUAL"
 
@@ -181,15 +181,15 @@ msgstr "MANUAL"
 msgid "xdx - open connection"
 msgstr "xdx - Verbindung oeffnen"
 
-#: src/gui_opendialog.c:98
+#: src/gui_opendialog.c:100
 msgid "_Hostname"
 msgstr "_Hostname"
 
-#: src/gui_opendialog.c:112
+#: src/gui_opendialog.c:114
 msgid "_Port"
 msgstr "_Port"
 
-#: src/gui_logdialog.c:77
+#: src/gui_logdialog.c:79
 msgid "xdx - connection log"
 msgstr "xdx - Verbindungs Log"
 
@@ -197,72 +197,72 @@ msgstr "xdx - Verbindungs Log"
 msgid "xdx - Select a font"
 msgstr "xdx - Fontauswahl"
 
-#: src/gui_settingsdialog.c:146
+#: src/gui_settingsdialog.c:153
 msgid "How about this font?"
 msgstr "Testtext zur Fontauswahl"
 
-#: src/gui_settingsdialog.c:244
+#: src/gui_settingsdialog.c:251
 msgid "xdx - preferences"
 msgstr "xdx - preferences"
 
-#: src/gui_settingsdialog.c:264 src/gui_settingsdialog.c:423
+#: src/gui_settingsdialog.c:271 src/gui_settingsdialog.c:430
 msgid "General"
 msgstr "Allgemeines"
 
-#: src/gui_settingsdialog.c:267
+#: src/gui_settingsdialog.c:274
 msgid "Output"
 msgstr "Output"
 
-#: src/gui_settingsdialog.c:270 src/gui_settingsdialog.c:525
+#: src/gui_settingsdialog.c:277 src/gui_settingsdialog.c:532
 msgid "Fonts"
 msgstr "Fonts"
 
-#: src/gui_settingsdialog.c:273
+#: src/gui_settingsdialog.c:280
 msgid "Colors"
 msgstr "Farben"
 
-#: src/gui_settingsdialog.c:283
+#: src/gui_settingsdialog.c:290
 msgid "Your callsign"
 msgstr "Ihr Rufzeichen"
 
-#: src/gui_settingsdialog.c:293
+#: src/gui_settingsdialog.c:300
 msgid "Enable autologin"
 msgstr "Autologin erlauben"
 
-#: src/gui_settingsdialog.c:300
+#: src/gui_settingsdialog.c:307
 msgid "Commands"
 msgstr "Kommandos"
 
-#: src/gui_settingsdialog.c:306
+#: src/gui_settingsdialog.c:313
 msgid "Comma separated list of commands to send at login"
 msgstr ""
 "Durch Komma getrennte Liste von Kommandos, die beim Login gesendet werden"
 
-#: src/gui_settingsdialog.c:308
+#: src/gui_settingsdialog.c:315
 msgid "Callsign to be used for login"
 msgstr "Rufzeichen fuer das Login"
 
-#: src/gui_settingsdialog.c:310
+#: src/gui_settingsdialog.c:317
 msgid "Login"
 msgstr "Login"
 
-#: src/gui_settingsdialog.c:312
+#: src/gui_settingsdialog.c:319
 msgid "Callsign"
 msgstr "Rufzeichen"
 
-#: src/gui_settingsdialog.c:338
+#: src/gui_settingsdialog.c:345
 msgid "Enable hamlib"
 msgstr "Hamlib benutzen"
 
-#: src/gui_settingsdialog.c:344
+#: src/gui_settingsdialog.c:351
 msgid "Command for rigctl"
 msgstr "Kommando fuer rigctl"
 
-#: src/gui_settingsdialog.c:349
+#: src/gui_settingsdialog.c:356
 msgid "Hamlib"
 msgstr "Hamlib"
 
-#: src/gui_settingsdialog.c:352
+#: src/gui_settingsdialog.c:359
 #, c-format
 msgid ""
 "When double clicking on a dx-spot this will set the frequency of your rig "
@@ -271,116 +271,116 @@ msgstr ""
 "Doppelclick auf einen DX-Spot setzt die Frequenz mittels rigctl (%d = "
 "Frequenz, die aus dem DX-Spot entnommen wurde)"
 
-#: src/gui_settingsdialog.c:376
+#: src/gui_settingsdialog.c:383
 msgid "Web browser"
 msgstr "Web Browser"
 
-#: src/gui_settingsdialog.c:383
+#: src/gui_settingsdialog.c:390
 msgid "Mail program"
 msgstr "Mail Programm"
 
-#: src/gui_settingsdialog.c:390
+#: src/gui_settingsdialog.c:397
 msgid "Sound playing"
 msgstr "Sound abspielen"
 
-#: src/gui_settingsdialog.c:395
+#: src/gui_settingsdialog.c:402
 msgid "Programs"
 msgstr "Programme"
 
-#: src/gui_settingsdialog.c:398
+#: src/gui_settingsdialog.c:405
 #, c-format
 msgid "Web browser to start after clicking on a url (%s = url)"
 msgstr "Web Browser der bei Klick auf eine URL (%s = url) zu starten ist"
 
-#: src/gui_settingsdialog.c:400
+#: src/gui_settingsdialog.c:407
 #, c-format
 msgid "Mail program to start after clicking on a mail url (%s = mail url)"
 msgstr ""
 "Mail Programm welches bei Klick auf eine Mail URL (%s = Mail url) zu starten "
 "ist"
 
-#: src/gui_settingsdialog.c:402
+#: src/gui_settingsdialog.c:409
 #, c-format
 msgid "Program used to play sound (%s = sound file)"
 msgstr "Programm zum Abspielen eines Sound (%s = Sound Datei)"
 
-#: src/gui_settingsdialog.c:418
+#: src/gui_settingsdialog.c:425
 msgid "Echo sent text to the screen"
 msgstr "Echo sendet Text auf den Bildschirm"
 
-#: src/gui_settingsdialog.c:421
+#: src/gui_settingsdialog.c:428
 msgid "Send keepalive packets (read the manual)"
 msgstr "Sende Keepalive Pakete (bitte Handbuch nachlesen)"
 
-#: src/gui_settingsdialog.c:440
+#: src/gui_settingsdialog.c:447
 msgid "Columns"
 msgstr "Spalten"
 
-#: src/gui_settingsdialog.c:442
+#: src/gui_settingsdialog.c:449
 msgid "Columns to show on the screen"
 msgstr "anzuzeigende Spalten"
 
-#: src/gui_settingsdialog.c:510
+#: src/gui_settingsdialog.c:517
 msgid "Save DX spots"
 msgstr "Speichere DX Spots"
 
-#: src/gui_settingsdialog.c:512
+#: src/gui_settingsdialog.c:519
 msgid "Save WCY/WWV"
 msgstr "Speichere WCY/WWV"
 
-#: src/gui_settingsdialog.c:516
+#: src/gui_settingsdialog.c:523
 msgid "Save \"To all\""
 msgstr "Speichere \"To all\""
 
-#: src/gui_settingsdialog.c:518
+#: src/gui_settingsdialog.c:525
 msgid "Save WX"
 msgstr "Speichere WX"
 
-#: src/gui_settingsdialog.c:520
+#: src/gui_settingsdialog.c:527
 msgid "Saving"
 msgstr "Speichern"
 
-#: src/gui_settingsdialog.c:529
+#: src/gui_settingsdialog.c:536
 msgid "Font for DX messages"
 msgstr "Font fuer DX Nachrichten"
 
-#: src/gui_settingsdialog.c:532
+#: src/gui_settingsdialog.c:539
 msgid "Select _DX Font"
 msgstr "Waehle _DX Font"
 
-#: src/gui_settingsdialog.c:539
+#: src/gui_settingsdialog.c:546
 msgid "Font for other messages"
 msgstr "Font fuer andere Nachrichten"
 
-#: src/gui_settingsdialog.c:542
+#: src/gui_settingsdialog.c:549
 msgid "Select _Other Fonts"
 msgstr "Waehle andere F_onts"
 
-#: src/gui_settingsdialog.c:554
+#: src/gui_settingsdialog.c:561
 msgid "Highlighting"
 msgstr "Hervorhebung"
 
-#: src/gui_settingsdialog.c:558
+#: src/gui_settingsdialog.c:565
 msgid "Colors to use for highlighting"
 msgstr "Farben zur Hervorhebung"
 
-#: src/gui_settingsdialog.c:570 src/gui_settingsdialog.c:578
-#: src/gui_settingsdialog.c:586 src/gui_settingsdialog.c:594
-#: src/gui_settingsdialog.c:607 src/gui_settingsdialog.c:615
-#: src/gui_settingsdialog.c:623 src/gui_settingsdialog.c:631
+#: src/gui_settingsdialog.c:577 src/gui_settingsdialog.c:585
+#: src/gui_settingsdialog.c:593 src/gui_settingsdialog.c:601
+#: src/gui_settingsdialog.c:614 src/gui_settingsdialog.c:622
+#: src/gui_settingsdialog.c:630 src/gui_settingsdialog.c:638
 #, c-format
 msgid "Color %d"
 msgstr "Farbe %d"
 
-#: src/gui_settingsdialog.c:648
+#: src/gui_settingsdialog.c:655
 msgid "Colors for the chat window"
 msgstr "Farben fuer das Chat-Fenster"
 
-#: src/gui_settingsdialog.c:655
+#: src/gui_settingsdialog.c:662
 msgid "Prompt"
 msgstr "Prompt"
 
-#: src/gui_settingsdialog.c:664
+#: src/gui_settingsdialog.c:671
 msgid "Sent text"
 msgstr "Gesendeter Text"
 
