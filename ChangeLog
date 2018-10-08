@@ -1,3 +1,8 @@
+Changelog for version Xdx (2.90)
+  * Spelling corrections.  Thanks, dforsi.
+  * Begin migration to GTK+3.
+  * Release for testing GTK+3 migration.
+
 Changelog for version Xdx (2.5)
   * Complete function key command entry support.
   * Add close dialog when Ctl-Q is used to exit.
