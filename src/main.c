@@ -102,7 +102,8 @@ main(int argc, char *argv[])
     setlocale(LC_NUMERIC, "C");
     parse_opts(&argc, &argv);
 
-    visual = gdk_visual_get_system();
+    visual = gdk_screen_get_system_visual(gdk_screen_get_default());
+
     create_mainwindow();
     dircheck();
     loadpreferences();
