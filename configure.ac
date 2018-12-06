@@ -4,7 +4,7 @@ dnl Autoconf 2.67 is in Debian Squeeze.
 AC_PREREQ([2.67])
 
 AC_INIT([Xdx],
-	[2.90~git],
+	[2.91~git],
 	[xdxclusterclient-discuss@lists.sourceforge.net],
 	[xdx],
 	[https://github.com/N0NB/xdx])
