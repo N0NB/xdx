@@ -76,6 +76,7 @@ extern preferencestype preferences;
 static void on_highcheck_toggled(GtkToggleButton *togglebutton, gpointer user_data);
 static void on_soundcheck_toggled(GtkToggleButton *togglebutton, gpointer user_data);
 
+guitype *gui;
 
 /**********************************MAIN WINDOW********************************/
 guitype *
