@@ -63,6 +63,7 @@
 #include "utils.h"
 
 
+guitype *gui;
 extern preferencestype preferences;
 GdkVisual *visual;
 gchar *prompttagname, *calltagname;
