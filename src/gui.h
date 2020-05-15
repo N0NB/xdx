@@ -53,7 +53,7 @@ typedef struct guitype {
     gchar           *high8tagname;
 } guitype;
 
-guitype *gui;
+extern guitype *gui;
 
 guitype *new_gui(void);
 void create_mainwindow(void);
