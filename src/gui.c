@@ -73,8 +73,10 @@
 
 extern preferencestype preferences;
 
-static void on_highcheck_toggled(GtkToggleButton *togglebutton, gpointer user_data);
-static void on_soundcheck_toggled(GtkToggleButton *togglebutton, gpointer user_data);
+static void on_highcheck_toggled(GtkToggleButton *togglebutton,
+                                 gpointer user_data);
+static void on_soundcheck_toggled(GtkToggleButton *togglebutton,
+                                  gpointer user_data);
 
 
 /**********************************MAIN WINDOW********************************/
@@ -116,56 +118,114 @@ get_main_menu(GtkWidget  *window,
 {
     GtkAccelGroup *accel_group;
 
-
     static GtkActionEntry entries[] = {
-        { "ProgramMenu", NULL, N_("_Program") },
-        { "HostMenu", NULL, N_("_Host") },
-        { "SettingsMenu", NULL, N_("_Settings") },
-        { "HelpMenu", NULL, N_("H_elp") },
-        { "HighMenu", NULL, N_("Highlights") },
-
         {
-            "Quit", GTK_STOCK_QUIT, N_("Quit"),
-            "<control>Q", "Quit Program", G_CALLBACK(on_exit_dialog)
+     "ProgramMenu",
+     NULL,
+     N_("_Program")
         },
         {
-            "Open", GTK_STOCK_CONNECT, N_("Connect..."),
-            "<control>O", "Open Connection", G_CALLBACK(on_open_activate)
+     "HostMenu",
+     NULL,
+     N_("_Host")
         },
         {
-            "Close", GTK_STOCK_DISCONNECT, N_("Disconnect"),
-            "<control>C", "Close Connection", G_CALLBACK(on_close_activate)
+     "SettingsMenu",
+     NULL,
+     N_("_Settings")
         },
         {
-            "ShowLog", GTK_STOCK_OPEN, N_("Connection Log"),
-            "<control>L", "Show connection log", G_CALLBACK(on_log_activate)
+     "HelpMenu",
+     NULL,
+     N_("H_elp")
         },
         {
-            "Preferences", GTK_STOCK_PREFERENCES, N_("Preferences..."),
-            "<control>P", "Settings for xdx", G_CALLBACK(on_settings_activate)
+     "HighMenu",
+     NULL,
+     N_("Highlights")
         },
         {
-            "Manual", GTK_STOCK_HELP, N_("Manual"),
-            "<control>H", "Read the manual", G_CALLBACK(on_manual_activate)
+            "Quit",
+     GTK_STOCK_QUIT,
+     N_("Quit"),
+            "<control>Q",
+     "Quit Program",
+     G_CALLBACK(on_exit_dialog)
         },
         {
-            "About", GTK_STOCK_HELP, N_("About"),
-            "<control>A", "About xdx", G_CALLBACK(on_about_activate)
+            "Open",
+     GTK_STOCK_CONNECT,
+     N_("Connect..."),
+            "<control>O",
+     "Open Connection",
+     G_CALLBACK(on_open_activate)
+        },
+        {
+            "Close",
+     GTK_STOCK_DISCONNECT,
+     N_("Disconnect"),
+            "<control>C",
+     "Close Connection",
+     G_CALLBACK(on_close_activate)
+        },
+        {
+            "ShowLog",
+     GTK_STOCK_OPEN,
+     N_("Connection Log"),
+            "<control>L",
+     "Show connection log",
+     G_CALLBACK(on_log_activate)
+        },
+        {
+            "Preferences",
+     GTK_STOCK_PREFERENCES,
+     N_("Preferences..."),
+            "<control>P",
+     "Settings for Xdx",
+     G_CALLBACK(on_settings_activate)
+        },
+        {
+            "Manual",
+     GTK_STOCK_HELP,
+     N_("Manual"),
+            "<control>H",
+     "Read the manual",
+     G_CALLBACK(on_manual_activate)
+        },
+        {
+            "About",
+     GTK_STOCK_HELP,
+     N_("About"),
+            "<control>A",
+     "About Xdx",
+     G_CALLBACK(on_about_activate)
         },
     };
 
 
     static GtkToggleActionEntry toggle_entries[] = {
         {
-            "Keybar", NULL, N_("Function keys bar"), "<control>K", "Function keys on/off",
+            "Keybar",
+     NULL,
+     N_("Function keys bar"),
+     "<control>K",
+     "Function keys on/off",
             G_CALLBACK(on_fkeys_activate)
         },
         {
-            "Reconnect", NULL, N_("Auto Reconnect"), "<control>R", "Auto Reconnect on/off",
+            "Reconnect",
+     NULL,
+     N_("Auto Reconnect"),
+     "<control>R",
+     "Auto Reconnect on/off",
             G_CALLBACK(on_reconnect_activate)
         },
         {
-            "Sidebar", NULL, N_("Chat sidebar"), "<control>S", "Chat sidebar on/off",
+            "Sidebar",
+     NULL,
+     N_("Chat sidebar"),
+     "<control>S",
+     "Chat sidebar on/off",
             G_CALLBACK(on_sidebar_activate)
         },
     };
@@ -197,17 +257,33 @@ get_main_menu(GtkWidget  *window,
 
     accel_group = gtk_accel_group_new();
     gui->action_group = gtk_action_group_new("MenuActions");
+
     gtk_action_group_set_translation_domain(gui->action_group, PACKAGE);
-    gtk_action_group_add_actions
-    (gui->action_group, entries, G_N_ELEMENTS(entries), window);
-    gtk_action_group_add_toggle_actions
-    (gui->action_group, toggle_entries, G_N_ELEMENTS(toggle_entries), window);
+
+    gtk_action_group_add_actions(gui->action_group,
+                                 entries,
+                                 G_N_ELEMENTS(entries),
+                                 window);
+
+    gtk_action_group_add_toggle_actions(gui->action_group,
+                                        toggle_entries,
+                                        G_N_ELEMENTS(toggle_entries),
+                                        window);
+
     gtk_window_add_accel_group(GTK_WINDOW(window), accel_group);
+
     gui->ui_manager = gtk_ui_manager_new();
+
     gtk_ui_manager_insert_action_group(gui->ui_manager, gui->action_group, 0);
+
     accel_group = gtk_ui_manager_get_accel_group(gui->ui_manager);
+
     gtk_window_add_accel_group(GTK_WINDOW(window), accel_group);
-    gtk_ui_manager_add_ui_from_string(gui->ui_manager, ui_description, -1, NULL);
+    gtk_ui_manager_add_ui_from_string(gui->ui_manager,
+                                      ui_description,
+                                      -1,
+                                      NULL);
+
     *menubar = gtk_ui_manager_get_widget(gui->ui_manager, "/MainMenu");
 }
 
@@ -286,8 +362,10 @@ create_mainwindow(void)
     gtk_box_pack_start(GTK_BOX(mainvbox), fvbox, FALSE, TRUE, 0);
 
     clistscrolledwindow = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(clistscrolledwindow),
-                                   GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
+    gtk_scrolled_window_set_policy(
+            GTK_SCROLLED_WINDOW(clistscrolledwindow),
+            GTK_POLICY_AUTOMATIC,
+            GTK_POLICY_ALWAYS);
 
     model = gtk_tree_store_new(N_COLUMNS + 1, G_TYPE_STRING, G_TYPE_STRING,
                                G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,

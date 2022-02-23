@@ -113,8 +113,9 @@ main(int argc, char *argv[])
     maintext = g_object_get_data(G_OBJECT(gui->window), "maintext");
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maintext));
 
-    /* most of the tagnames are randomised when changed, so we can keep on using the old
-       tags without having to remove them from the tagtable */
+    /* most of the tagnames are randomised when changed, so we can keep on
+     * using the old tags without having to remove them from the tagtable
+     */
     gui->high1tagname = g_strdup("highcolor1");
     gui->high2tagname = g_strdup("highcolor2");
     gui->high3tagname = g_strdup("highcolor3");
@@ -123,54 +124,86 @@ main(int argc, char *argv[])
     gui->high6tagname = g_strdup("highcolor6");
     gui->high7tagname = g_strdup("highcolor7");
     gui->high8tagname = g_strdup("highcolor8");
+
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.highcolor1.red * 255 / 65535,
                                preferences.highcolor1.green * 255 / 65535,
                                preferences.highcolor1.blue * 255 / 65535);
-    gtk_text_buffer_create_tag(buffer, gui->high1tagname, "foreground",
-                               colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->high1tagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
+
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.highcolor2.red * 255 / 65535,
                                preferences.highcolor2.green * 255 / 65535,
                                preferences.highcolor2.blue * 255 / 65535);
-    gtk_text_buffer_create_tag(buffer, gui->high2tagname, "foreground",
-                               colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->high2tagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
+
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.highcolor3.red * 255 / 65535,
                                preferences.highcolor3.green * 255 / 65535,
                                preferences.highcolor3.blue * 255 / 65535);
-    gtk_text_buffer_create_tag(buffer, gui->high3tagname, "foreground",
-                               colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->high3tagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
+
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.highcolor4.red * 255 / 65535,
                                preferences.highcolor4.green * 255 / 65535,
                                preferences.highcolor4.blue * 255 / 65535);
-    gtk_text_buffer_create_tag(buffer, gui->high4tagname, "foreground",
-                               colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->high4tagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
+
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.highcolor5.red * 255 / 65535,
                                preferences.highcolor5.green * 255 / 65535,
                                preferences.highcolor5.blue * 255 / 65535);
-    gtk_text_buffer_create_tag(buffer, gui->high5tagname, "foreground",
-                               colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->high5tagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
+
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.highcolor6.red * 255 / 65535,
                                preferences.highcolor6.green * 255 / 65535,
                                preferences.highcolor6.blue * 255 / 65535);
-    gtk_text_buffer_create_tag(buffer, gui->high6tagname, "foreground",
-                               colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->high6tagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
+
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.highcolor7.red * 255 / 65535,
                                preferences.highcolor7.green * 255 / 65535,
                                preferences.highcolor7.blue * 255 / 65535);
-    gtk_text_buffer_create_tag(buffer, gui->high7tagname, "foreground",
-                               colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->high7tagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
+
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.highcolor8.red * 255 / 65535,
                                preferences.highcolor8.green * 255 / 65535,
                                preferences.highcolor8.blue * 255 / 65535);
-    gtk_text_buffer_create_tag(buffer, gui->high8tagname, "foreground",
-                               colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->high8tagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
 
     gui->prompttagname = g_strdup("prompt");
     gui->calltagname = g_strdup("call");
@@ -182,31 +215,49 @@ main(int argc, char *argv[])
                                preferences.promptcolor.red * 255 / 65535,
                                preferences.promptcolor.green * 255 / 65535,
                                preferences.promptcolor.blue * 255 / 65535);
-    gtk_text_buffer_create_tag
-    (buffer, gui->prompttagname, "foreground", colorstr, NULL);
-    gtk_text_buffer_create_tag(buffer, gui->calltagname, "foreground",
-                               colorstr, "weight", PANGO_WEIGHT_BOLD, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->prompttagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->calltagname,
+                               "foreground",
+                               colorstr,
+                               "weight",
+                               PANGO_WEIGHT_BOLD,
+                               NULL);
 
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.wwvcolor.red * 255 / 65535,
                                preferences.wwvcolor.green * 255 / 65535,
                                preferences.wwvcolor.blue * 255 / 65535);
-    gtk_text_buffer_create_tag
-    (buffer, gui->wwvtagname, "foreground", colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->wwvtagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
 
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.wxcolor.red * 255 / 65535,
                                preferences.wxcolor.green * 255 / 65535,
                                preferences.wxcolor.blue * 255 / 65535);
-    gtk_text_buffer_create_tag
-    (buffer, gui->wxtagname, "foreground", colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->wxtagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
 
     colorstr = g_strdup_printf("#%02X%02X%02X",
                                preferences.sentcolor.red * 255 / 65535,
                                preferences.sentcolor.green * 255 / 65535,
                                preferences.sentcolor.blue * 255 / 65535);
-    gtk_text_buffer_create_tag
-    (buffer, gui->senttagname, "foreground", colorstr, NULL);
+    gtk_text_buffer_create_tag(buffer,
+                               gui->senttagname,
+                               "foreground",
+                               colorstr,
+                               NULL);
+
     g_free(colorstr);
 
     highcheck1 = g_object_get_data(G_OBJECT(gui->window), "highcheck1");
@@ -279,14 +330,37 @@ main(int argc, char *argv[])
     if (g_ascii_strcasecmp(preferences.highword8, "?"))
         gtk_entry_set_text(GTK_ENTRY(highentry8), preferences.highword8);
 
-    gtk_widget_modify_text(highentry1, GTK_STATE_NORMAL, &preferences.highcolor1);
-    gtk_widget_modify_text(highentry2, GTK_STATE_NORMAL, &preferences.highcolor2);
-    gtk_widget_modify_text(highentry3, GTK_STATE_NORMAL, &preferences.highcolor3);
-    gtk_widget_modify_text(highentry4, GTK_STATE_NORMAL, &preferences.highcolor4);
-    gtk_widget_modify_text(highentry5, GTK_STATE_NORMAL, &preferences.highcolor5);
-    gtk_widget_modify_text(highentry6, GTK_STATE_NORMAL, &preferences.highcolor6);
-    gtk_widget_modify_text(highentry7, GTK_STATE_NORMAL, &preferences.highcolor7);
-    gtk_widget_modify_text(highentry8, GTK_STATE_NORMAL, &preferences.highcolor8);
+    gtk_widget_modify_text(highentry1,
+                           GTK_STATE_NORMAL,
+                           &preferences.highcolor1);
+
+    gtk_widget_modify_text(highentry2,
+                           GTK_STATE_NORMAL,
+                           &preferences.highcolor2);
+
+    gtk_widget_modify_text(highentry3,
+                           GTK_STATE_NORMAL,
+                           &preferences.highcolor3);
+
+    gtk_widget_modify_text(highentry4,
+                           GTK_STATE_NORMAL,
+                           &preferences.highcolor4);
+
+    gtk_widget_modify_text(highentry5,
+                           GTK_STATE_NORMAL,
+                           &preferences.highcolor5);
+
+    gtk_widget_modify_text(highentry6,
+                           GTK_STATE_NORMAL,
+                           &preferences.highcolor6);
+
+    gtk_widget_modify_text(highentry7,
+                           GTK_STATE_NORMAL,
+                           &preferences.highcolor7);
+
+    gtk_widget_modify_text(highentry8,
+                           GTK_STATE_NORMAL,
+                           &preferences.highcolor8);
 
     treeview = g_object_get_data(G_OBJECT(gui->window), "treeview");
     vpaned = g_object_get_data(G_OBJECT(gui->window), "vpaned");
@@ -294,12 +368,18 @@ main(int argc, char *argv[])
     font_description = pango_font_description_from_string(preferences.dxfont);
     gtk_widget_modify_font(GTK_WIDGET(treeview), font_description);
     pango_font_description_free(font_description);
+
     font_description = pango_font_description_from_string(preferences.allfont);
     gtk_widget_modify_font(GTK_WIDGET(maintext), font_description);
+
     pango_size = pango_font_description_get_size(font_description);
+
     /* line spacing is half character size */
-    g_object_set(G_OBJECT(maintext), "pixels-below-lines",
-                 PANGO_PIXELS(pango_size) / 2, NULL);
+    g_object_set(G_OBJECT(maintext),
+                 "pixels-below-lines",
+                 PANGO_PIXELS(pango_size) / 2,
+                 NULL);
+
     pango_font_description_free(font_description);
 
     wsplit = g_strsplit(preferences.columnwidths, ",", 0);
@@ -421,13 +501,17 @@ main(int argc, char *argv[])
     g_free(str);
 
     gtk_widget_show_all(gui->window);
+
     gtk_window_move(GTK_WINDOW(gui->window),
                     preferences.x, preferences.y);
+
     gtk_window_resize(GTK_WINDOW(gui->window),
                       preferences.width, preferences.height);
+
     gtk_paned_set_position(GTK_PANED(vpaned), preferences.handlebarpos);
 
     fvbox = g_object_get_data(G_OBJECT(gui->window), "fvbox");
+
     fkeysmenu = gtk_ui_manager_get_widget
                 (gui->ui_manager, "/MainMenu/SettingsMenu/Keybar");
 
@@ -455,11 +539,17 @@ main(int argc, char *argv[])
                     (gui->ui_manager, "/MainMenu/SettingsMenu/Reconnect");
 
     if (preferences.reconnect == 0)
-        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(reconnectmenu), FALSE);
+        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(reconnectmenu),
+                                       FALSE);
     else
-        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(reconnectmenu), TRUE);
+        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(reconnectmenu),
+                                       TRUE);
 
-    menu_set_sensitive(gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);  /* do not translate */
+    /* do not translate */
+    menu_set_sensitive(gui->ui_manager,
+                       "/MainMenu/HostMenu/Close",
+                       FALSE);
+
     g_string_printf(greeting, _("Welcome to %s"), PACKAGE);
     updatestatusbar(greeting, FALSE);
     g_string_free(greeting, TRUE);
