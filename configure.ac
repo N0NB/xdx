@@ -23,10 +23,10 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 AC_USE_SYSTEM_EXTENSIONS
 AC_PROG_INSTALL
 AC_PROG_CC
-AC_LANG_C
+AC_LANG([C])
 
 dnl Quell AC_COMPILE_IFELSE warnings
-AC_GNU_SOURCE
+AC_USE_SYSTEM_EXTENSIONS
 
 AM_GNU_GETTEXT([external])
 
@@ -49,7 +49,19 @@ AC_C_CONST
 
 # Checks for library functions.
 AC_FUNC_FORK
-AC_TYPE_SIGNAL
+m4_warn([obsolete],
+[your code may safely assume C89 semantics that RETSIGTYPE is void.
+Remove this warning and the `AC_CACHE_CHECK' when you adjust the code.])dnl
+AC_CACHE_CHECK([return type of signal handlers],[ac_cv_type_signal],[AC_COMPILE_IFELSE(
+[AC_LANG_PROGRAM([#include <sys/types.h>
+#include <signal.h>
+],
+		 [return *(signal (0, 0)) (0) == 1;])],
+		   [ac_cv_type_signal=int],
+		   [ac_cv_type_signal=void])])
+AC_DEFINE_UNQUOTED([RETSIGTYPE],[$ac_cv_type_signal],[Define as the return type of signal handlers
+		    (`int' or `void').])
+
 AC_FUNC_STAT
 AC_CHECK_FUNCS([tzset setlocale putenv alarm bzero gethostbyname inet_ntoa memset mkdir socket strerror])
 AC_FUNC_STRFTIME
