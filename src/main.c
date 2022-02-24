@@ -67,6 +67,7 @@ extern preferencestype preferences;
 GdkVisual *visual;
 gchar *prompttagname, *calltagname;
 gchar *opt_cty_path = NULL;     /* For -c or --cty_path options. */
+guitype *gui;
 
 int
 main(int argc, char *argv[])
