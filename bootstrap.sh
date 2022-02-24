@@ -4,10 +4,10 @@
 AUTORECONF=autoreconf
 AUTOMAKE=automake
 
-SRCDIR=`dirname $0`
+SRCDIR=$(dirname $0)
 test -z "$SRCDIR" && SRCDIR=.
 
-ORIGDIR=`pwd`
+ORIGDIR=$(pwd)
 PROJECT=Xdx
 FILE=src/main.c
 DIE=0
@@ -29,11 +29,11 @@ DIE=0
 }
 
 (gettext --version) < /dev/null > /dev/null 2>&1 || {
-    echo
-    echo "You must have gettext installed to compile $PROJECT."
-    echo "Download the appropriate package for your distribution,"
-    echo "or get the source tarball at ftp://ftp.gnu.org/pub/gnu/gettext."
-    DIE=1
+        echo
+        echo "You must have gettext installed to compile $PROJECT."
+        echo "Download the appropriate package for your distribution,"
+        echo "or get the source tarball at ftp://ftp.gnu.org/pub/gnu/gettext."
+        DIE=1
 }
 
 
