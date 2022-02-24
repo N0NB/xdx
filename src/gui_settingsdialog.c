@@ -245,7 +245,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     gchar *str;
     GtkTextBuffer *buffer;
 //  GtkTextTagTable *table;
-    GdkColor color;
+    GdkRGBA color;
 
     gtk_widget_set_sensitive(gui->window, 0);
     preferencesdialog = gtk_dialog_new_with_buttons(_("xdx - preferences"),

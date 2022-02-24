@@ -129,24 +129,24 @@ loadpreferences(void)
     preferences.highword6 = g_strdup("?");
     preferences.highword7 = g_strdup("?");
     preferences.highword8 = g_strdup("?");
-    gdk_color_parse("red", &preferences.highcolor1);
-    gdk_color_parse("red", &preferences.highcolor2);
-    gdk_color_parse("red", &preferences.highcolor3);
-    gdk_color_parse("red", &preferences.highcolor4);
-    gdk_color_parse("red", &preferences.highcolor5);
-    gdk_color_parse("red", &preferences.highcolor6);
-    gdk_color_parse("red", &preferences.highcolor7);
-    gdk_color_parse("red", &preferences.highcolor8);
+    gdk_rgba_parse(&preferences.highcolor1, "red");
+    gdk_rgba_parse(&preferences.highcolor2, "red");
+    gdk_rgba_parse(&preferences.highcolor3, "red");
+    gdk_rgba_parse(&preferences.highcolor4, "red");
+    gdk_rgba_parse(&preferences.highcolor5, "red");
+    gdk_rgba_parse(&preferences.highcolor6, "red");
+    gdk_rgba_parse(&preferences.highcolor7, "red");
+    gdk_rgba_parse(&preferences.highcolor8, "red");
     preferences.highmenu = g_strdup("00000000");
     preferences.sidebar = 1;
     preferences.fbox = 1;
     preferences.reconnect = 0;
     preferences.playsound = 0;
     preferences.keepalive = 0;
-    gdk_color_parse("green", &preferences.promptcolor);
-    gdk_color_parse("red", &preferences.sentcolor);
-    gdk_color_parse("darkgreen", &preferences.wwvcolor);
-    gdk_color_parse("magenta", &preferences.wxcolor);
+    gdk_rgba_parse(&preferences.promptcolor, "green");
+    gdk_rgba_parse(&preferences.sentcolor, "red");
+    gdk_rgba_parse(&preferences.wwvcolor, "darkgreen");
+    gdk_rgba_parse(&preferences.wxcolor, "magenta");
     preferences.f1command = g_strdup("^");
     preferences.f2command = g_strdup("^");
     preferences.f3command = g_strdup("^");
@@ -252,21 +252,21 @@ loadpreferences(void)
                 g_strdelimit(value, "~", ' ');
                 preferences.highword8 = g_strdup(value);
             } else if (!g_ascii_strcasecmp(label, "highcolor1"))
-                gdk_color_parse(value, &preferences.highcolor1);
+                gdk_rgba_parse(&preferences.highcolor1, value);
             else if (!g_ascii_strcasecmp(label, "highcolor2"))
-                gdk_color_parse(value, &preferences.highcolor2);
+                gdk_rgba_parse(&preferences.highcolor2, value);
             else if (!g_ascii_strcasecmp(label, "highcolor3"))
-                gdk_color_parse(value, &preferences.highcolor3);
+                gdk_rgba_parse(&preferences.highcolor3, value);
             else if (!g_ascii_strcasecmp(label, "highcolor4"))
-                gdk_color_parse(value, &preferences.highcolor4);
+                gdk_rgba_parse(&preferences.highcolor4, value);
             else if (!g_ascii_strcasecmp(label, "highcolor5"))
-                gdk_color_parse(value, &preferences.highcolor5);
+                gdk_rgba_parse(&preferences.highcolor5, value);
             else if (!g_ascii_strcasecmp(label, "highcolor6"))
-                gdk_color_parse(value, &preferences.highcolor6);
+                gdk_rgba_parse(&preferences.highcolor6, value);
             else if (!g_ascii_strcasecmp(label, "highcolor7"))
-                gdk_color_parse(value, &preferences.highcolor7);
+                gdk_rgba_parse(&preferences.highcolor7, value);
             else if (!g_ascii_strcasecmp(label, "highcolor8"))
-                gdk_color_parse(value, &preferences.highcolor8);
+                gdk_rgba_parse(&preferences.highcolor8, value);
             else if (!g_ascii_strcasecmp(label, "highmenu"))
                 preferences.highmenu = g_strdup(value);
             else if (!g_ascii_strcasecmp(label, "sidebar"))
@@ -280,13 +280,13 @@ loadpreferences(void)
             else if (!g_ascii_strcasecmp(label, "keepalive"))
                 preferences.keepalive = atoi(value);
             else if (!g_ascii_strcasecmp(label, "promptcolor"))
-                gdk_color_parse(value, &preferences.promptcolor);
+                gdk_rgba_parse(&preferences.promptcolor, value);
             else if (!g_ascii_strcasecmp(label, "sentcolor"))
-                gdk_color_parse(value, &preferences.sentcolor);
+                gdk_rgba_parse(&preferences.sentcolor, value);
             else if (!g_ascii_strcasecmp(label, "wwvcolor"))
-                gdk_color_parse(value, &preferences.wwvcolor);
+                gdk_rgba_parse(&preferences.wwvcolor, value);
             else if (!g_ascii_strcasecmp(label, "wxcolor"))
-                gdk_color_parse(value, &preferences.wxcolor);
+                gdk_rgba_parse(&preferences.wxcolor, value);
             else if (!g_ascii_strcasecmp(label, "f1command")) {
                 g_strdelimit(value, "~", ' ');
                 preferences.f1command = g_strdup(value);
@@ -423,22 +423,22 @@ savepreferences(void)
         str = g_strdup_printf("%s", preferences.highword8);
         g_strdelimit(str, " ", '~');
         fprintf(fp, "highword8 %s\n", str);
-        fprintf(fp, "highcolor1 #%04X%04X%04X\n",
-                preferences.highcolor1.red, preferences.highcolor1.green, preferences.highcolor1.blue);
-        fprintf(fp, "highcolor2 #%04X%04X%04X\n",
-                preferences.highcolor2.red, preferences.highcolor2.green, preferences.highcolor2.blue);
-        fprintf(fp, "highcolor3 #%04X%04X%04X\n",
-                preferences.highcolor3.red, preferences.highcolor3.green, preferences.highcolor3.blue);
-        fprintf(fp, "highcolor4 #%04X%04X%04X\n",
-                preferences.highcolor4.red, preferences.highcolor4.green, preferences.highcolor4.blue);
-        fprintf(fp, "highcolor5 #%04X%04X%04X\n",
-                preferences.highcolor5.red, preferences.highcolor5.green, preferences.highcolor5.blue);
-        fprintf(fp, "highcolor6 #%04X%04X%04X\n",
-                preferences.highcolor6.red, preferences.highcolor6.green, preferences.highcolor6.blue);
-        fprintf(fp, "highcolor7 #%04X%04X%04X\n",
-                preferences.highcolor7.red, preferences.highcolor7.green, preferences.highcolor7.blue);
-        fprintf(fp, "highcolor8 #%04X%04X%04X\n",
-                preferences.highcolor8.red, preferences.highcolor8.green, preferences.highcolor8.blue);
+        fprintf(fp, "highcolor1 %s\n",
+                gdk_rgba_to_string(&preferences.highcolor1));
+        fprintf(fp, "highcolor2 %s\n",
+                gdk_rgba_to_string(&preferences.highcolor2));
+        fprintf(fp, "highcolor3 %s\n",
+                gdk_rgba_to_string(&preferences.highcolor3));
+        fprintf(fp, "highcolor4 %s\n",
+                gdk_rgba_to_string(&preferences.highcolor4));
+        fprintf(fp, "highcolor5 %s\n",
+                gdk_rgba_to_string(&preferences.highcolor5));
+        fprintf(fp, "highcolor6 %s\n",
+                gdk_rgba_to_string(&preferences.highcolor6));
+        fprintf(fp, "highcolor7 %s\n",
+                gdk_rgba_to_string(&preferences.highcolor7));
+        fprintf(fp, "highcolor8 %s\n",
+                gdk_rgba_to_string(&preferences.highcolor8));
         str = g_strdup_printf("%s", preferences.highmenu);
         fprintf(fp, "highmenu %s\n", str);
         str = g_strdup_printf("%d", preferences.sidebar);
@@ -451,14 +451,14 @@ savepreferences(void)
         fprintf(fp, "playsound %s\n", str);
         str = g_strdup_printf("%d", preferences.keepalive);
         fprintf(fp, "keepalive %s\n", str);
-        fprintf(fp, "promptcolor #%04X%04X%04X\n",
-                preferences.promptcolor.red, preferences.promptcolor.green, preferences.promptcolor.blue);
-        fprintf(fp, "sentcolor #%04X%04X%04X\n",
-                preferences.sentcolor.red, preferences.sentcolor.green, preferences.sentcolor.blue);
-        fprintf(fp, "wwvcolor #%04X%04X%04X\n",
-                preferences.wwvcolor.red, preferences.wwvcolor.green, preferences.wwvcolor.blue);
-        fprintf(fp, "wxcolor #%04X%04X%04X\n",
-                preferences.wxcolor.red, preferences.wxcolor.green, preferences.wxcolor.blue);
+        fprintf(fp, "promptcolor %s\n",
+                gdk_rgba_to_string(&preferences.promptcolor));
+        fprintf(fp, "sentcolor %s\n",
+                gdk_rgba_to_string(&preferences.sentcolor));
+        fprintf(fp, "wwvcolor %s\n",
+                gdk_rgba_to_string(&preferences.wwvcolor));
+        fprintf(fp, "wxcolor %s\n",
+                gdk_rgba_to_string(&preferences.wxcolor));
         str = g_strdup_printf("%s", preferences.f1command);
         g_strdelimit(str, " ", '~');
         fprintf(fp, "f1command %s\n", str);
