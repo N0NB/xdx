@@ -126,83 +126,67 @@ main(int argc, char *argv[])
     gui->high7tagname = g_strdup("highcolor7");
     gui->high8tagname = g_strdup("highcolor8");
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.highcolor1.red * 255 / 65535,
-                               preferences.highcolor1.green * 255 / 65535,
-                               preferences.highcolor1.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.highcolor1));
     gtk_text_buffer_create_tag(buffer,
                                gui->high1tagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.highcolor2.red * 255 / 65535,
-                               preferences.highcolor2.green * 255 / 65535,
-                               preferences.highcolor2.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.highcolor2));
     gtk_text_buffer_create_tag(buffer,
                                gui->high2tagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.highcolor3.red * 255 / 65535,
-                               preferences.highcolor3.green * 255 / 65535,
-                               preferences.highcolor3.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.highcolor3));
     gtk_text_buffer_create_tag(buffer,
                                gui->high3tagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.highcolor4.red * 255 / 65535,
-                               preferences.highcolor4.green * 255 / 65535,
-                               preferences.highcolor4.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.highcolor4));
     gtk_text_buffer_create_tag(buffer,
                                gui->high4tagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.highcolor5.red * 255 / 65535,
-                               preferences.highcolor5.green * 255 / 65535,
-                               preferences.highcolor5.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.highcolor5));
     gtk_text_buffer_create_tag(buffer,
                                gui->high5tagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.highcolor6.red * 255 / 65535,
-                               preferences.highcolor6.green * 255 / 65535,
-                               preferences.highcolor6.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.highcolor6));
     gtk_text_buffer_create_tag(buffer,
                                gui->high6tagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.highcolor7.red * 255 / 65535,
-                               preferences.highcolor7.green * 255 / 65535,
-                               preferences.highcolor7.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.highcolor7));
     gtk_text_buffer_create_tag(buffer,
                                gui->high7tagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.highcolor8.red * 255 / 65535,
-                               preferences.highcolor8.green * 255 / 65535,
-                               preferences.highcolor8.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.highcolor8));
     gtk_text_buffer_create_tag(buffer,
                                gui->high8tagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
@@ -212,50 +196,42 @@ main(int argc, char *argv[])
     gui->senttagname = g_strdup("sent");
     gui->wxtagname = g_strdup("wx");
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.promptcolor.red * 255 / 65535,
-                               preferences.promptcolor.green * 255 / 65535,
-                               preferences.promptcolor.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.promptcolor));
     gtk_text_buffer_create_tag(buffer,
                                gui->prompttagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
     gtk_text_buffer_create_tag(buffer,
                                gui->calltagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                "weight",
                                PANGO_WEIGHT_BOLD,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.wwvcolor.red * 255 / 65535,
-                               preferences.wwvcolor.green * 255 / 65535,
-                               preferences.wwvcolor.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.wwvcolor));
     gtk_text_buffer_create_tag(buffer,
                                gui->wwvtagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.wxcolor.red * 255 / 65535,
-                               preferences.wxcolor.green * 255 / 65535,
-                               preferences.wxcolor.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.wxcolor));
     gtk_text_buffer_create_tag(buffer,
                                gui->wxtagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
-    colorstr = g_strdup_printf("#%02X%02X%02X",
-                               preferences.sentcolor.red * 255 / 65535,
-                               preferences.sentcolor.green * 255 / 65535,
-                               preferences.sentcolor.blue * 255 / 65535);
+    colorstr = g_strdup_printf("%s",
+                               gdk_rgba_to_string(&preferences.sentcolor));
     gtk_text_buffer_create_tag(buffer,
                                gui->senttagname,
-                               "foreground",
+                               "foreground-rgba",
                                colorstr,
                                NULL);
 
