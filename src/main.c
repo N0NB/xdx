@@ -307,36 +307,36 @@ main(int argc, char *argv[])
     if (g_ascii_strcasecmp(preferences.highword8, "?"))
         gtk_entry_set_text(GTK_ENTRY(highentry8), preferences.highword8);
 
-    gtk_widget_modify_text(highentry1,
-                           GTK_STATE_NORMAL,
+    gtk_widget_override_color(highentry1,
+                           GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor1);
 
-    gtk_widget_modify_text(highentry2,
-                           GTK_STATE_NORMAL,
+    gtk_widget_override_color(highentry2,
+                           GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor2);
 
-    gtk_widget_modify_text(highentry3,
-                           GTK_STATE_NORMAL,
+    gtk_widget_override_color(highentry3,
+                           GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor3);
 
-    gtk_widget_modify_text(highentry4,
-                           GTK_STATE_NORMAL,
+    gtk_widget_override_color(highentry4,
+                           GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor4);
 
-    gtk_widget_modify_text(highentry5,
-                           GTK_STATE_NORMAL,
+    gtk_widget_override_color(highentry5,
+                           GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor5);
 
-    gtk_widget_modify_text(highentry6,
-                           GTK_STATE_NORMAL,
+    gtk_widget_override_color(highentry6,
+                           GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor6);
 
-    gtk_widget_modify_text(highentry7,
-                           GTK_STATE_NORMAL,
+    gtk_widget_override_color(highentry7,
+                           GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor7);
 
-    gtk_widget_modify_text(highentry8,
-                           GTK_STATE_NORMAL,
+    gtk_widget_override_color(highentry8,
+                           GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor8);
 
     treeview = g_object_get_data(G_OBJECT(gui->window), "treeview");
