@@ -248,13 +248,14 @@ on_settings_activate(GtkMenuItem    *menuitem,
     GdkRGBA color;
 
     gtk_widget_set_sensitive(gui->window, 0);
-    preferencesdialog = gtk_dialog_new_with_buttons(_("xdx - preferences"),
+    preferencesdialog = gtk_dialog_new_with_buttons(_("Xdx - Preferences"),
                         GTK_WINDOW(gui->window),
-                        GTK_DIALOG_MODAL |
-                        GTK_DIALOG_DESTROY_WITH_PARENT,
-                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                        GTK_STOCK_OK,
-                        GTK_RESPONSE_OK, NULL);
+                        GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                        _("_Cancel"),
+                        GTK_RESPONSE_CANCEL,
+                        _("_OK"),
+                        GTK_RESPONSE_OK,
+                        NULL);
 
 
     pdialog_vbox = gtk_dialog_get_content_area(GTK_DIALOG(preferencesdialog));
