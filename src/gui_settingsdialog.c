@@ -577,7 +577,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     str = g_strdup_printf(_("Color %d"), 1);
     phighlabel1 = gtk_label_new(str);
     gtk_box_pack_start(GTK_BOX(phighhbox2), phighlabel1, TRUE, TRUE, 0);
-    colorbutton1 = gtk_color_button_new();
+    colorbutton1 = gtk_color_button_new_with_rgba(&preferences.highcolor1);
     gtk_box_pack_start(GTK_BOX(phighhbox2), colorbutton1, FALSE, FALSE, 0);
 
     phighbox3 = gtk_hbox_new(FALSE, 0);
@@ -585,7 +585,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     str = g_strdup_printf(_("Color %d"), 2);
     phighlabel2 = gtk_label_new(str);
     gtk_box_pack_start(GTK_BOX(phighbox3), phighlabel2, TRUE, TRUE, 0);
-    colorbutton2 = gtk_color_button_new();
+    colorbutton2 = gtk_color_button_new_with_rgba(&preferences.highcolor2);
     gtk_box_pack_start(GTK_BOX(phighbox3), colorbutton2, FALSE, FALSE, 0);
 
     phighbox4 = gtk_hbox_new(FALSE, 0);
@@ -593,7 +593,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     str = g_strdup_printf(_("Color %d"), 3);
     phighlabel3 = gtk_label_new(str);
     gtk_box_pack_start(GTK_BOX(phighbox4), phighlabel3, TRUE, TRUE, 0);
-    colorbutton3 = gtk_color_button_new();
+    colorbutton3 = gtk_color_button_new_with_rgba(&preferences.highcolor3);
     gtk_box_pack_start(GTK_BOX(phighbox4), colorbutton3, FALSE, FALSE, 0);
 
     phighbox5 = gtk_hbox_new(FALSE, 0);
@@ -601,7 +601,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     str = g_strdup_printf(_("Color %d"), 4);
     phighlabel4 = gtk_label_new(str);
     gtk_box_pack_start(GTK_BOX(phighbox5), phighlabel4, TRUE, TRUE, 0);
-    colorbutton4 = gtk_color_button_new();
+    colorbutton4 = gtk_color_button_new_with_rgba(&preferences.highcolor4);
     gtk_box_pack_start(GTK_BOX(phighbox5), colorbutton4, FALSE, FALSE, 0);
 
     vseparator1 = gtk_vseparator_new();
@@ -614,7 +614,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     str = g_strdup_printf(_("Color %d"), 5);
     phighlabel5 = gtk_label_new(str);
     gtk_box_pack_start(GTK_BOX(phighbox6), phighlabel5, TRUE, TRUE, 0);
-    colorbutton5 = gtk_color_button_new();
+    colorbutton5 = gtk_color_button_new_with_rgba(&preferences.highcolor5);
     gtk_box_pack_start(GTK_BOX(phighbox6), colorbutton5, FALSE, FALSE, 0);
 
     phighhbox7 = gtk_hbox_new(FALSE, 0);
@@ -622,7 +622,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     str = g_strdup_printf(_("Color %d"), 6);
     phighlabel6 = gtk_label_new(str);
     gtk_box_pack_start(GTK_BOX(phighhbox7), phighlabel6, TRUE, TRUE, 0);
-    colorbutton6 = gtk_color_button_new();
+    colorbutton6 = gtk_color_button_new_with_rgba(&preferences.highcolor6);
     gtk_box_pack_start(GTK_BOX(phighhbox7), colorbutton6, FALSE, FALSE, 0);
 
     phighhbox8 = gtk_hbox_new(FALSE, 0);
@@ -630,7 +630,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     str = g_strdup_printf(_("Color %d"), 7);
     phighlabel7 = gtk_label_new(str);
     gtk_box_pack_start(GTK_BOX(phighhbox8), phighlabel7, TRUE, TRUE, 0);
-    colorbutton7 = gtk_color_button_new();
+    colorbutton7 = gtk_color_button_new_with_rgba(&preferences.highcolor7);
     gtk_box_pack_start(GTK_BOX(phighhbox8), colorbutton7, FALSE, FALSE, 0);
 
     phighhbox9 = gtk_hbox_new(FALSE, 0);
@@ -638,17 +638,8 @@ on_settings_activate(GtkMenuItem    *menuitem,
     str = g_strdup_printf(_("Color %d"), 8);
     phighlabel8 = gtk_label_new(str);
     gtk_box_pack_start(GTK_BOX(phighhbox9), phighlabel8, TRUE, TRUE, 0);
-    colorbutton8 = gtk_color_button_new();
+    colorbutton8 = gtk_color_button_new_with_rgba(&preferences.highcolor8);
     gtk_box_pack_start(GTK_BOX(phighhbox9), colorbutton8, FALSE, FALSE, 0);
-
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(colorbutton1), &preferences.highcolor1);
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(colorbutton2), &preferences.highcolor2);
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(colorbutton3), &preferences.highcolor3);
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(colorbutton4), &preferences.highcolor4);
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(colorbutton5), &preferences.highcolor5);
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(colorbutton6), &preferences.highcolor6);
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(colorbutton7), &preferences.highcolor7);
-    gtk_color_button_set_color(GTK_COLOR_BUTTON(colorbutton8), &preferences.highcolor8);
 
     pcolorsframe = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(pvbox4), pcolorsframe, FALSE, FALSE, 0);
@@ -661,37 +652,29 @@ on_settings_activate(GtkMenuItem    *menuitem,
     gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     promptcolorlabel = gtk_label_new(_("Prompt"));
     gtk_box_pack_start(GTK_BOX(pcolorshbox), promptcolorlabel, FALSE, FALSE, 0);
-    promptcolorbutton = gtk_color_button_new();
+    promptcolorbutton = gtk_color_button_new_with_rgba(&preferences.promptcolor);
     gtk_box_pack_start(GTK_BOX(pcolorshbox), promptcolorbutton, FALSE, FALSE, 0);
-    gtk_color_button_set_color
-    (GTK_COLOR_BUTTON(promptcolorbutton), &preferences.promptcolor);
 
     pcolorshbox = gtk_hbox_new(TRUE, 0);
     gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     sentcolorlabel = gtk_label_new(_("Sent text"));
     gtk_box_pack_start(GTK_BOX(pcolorshbox), sentcolorlabel, FALSE, FALSE, 0);
-    sentcolorbutton = gtk_color_button_new();
+    sentcolorbutton = gtk_color_button_new_with_rgba(&preferences.sentcolor);
     gtk_box_pack_start(GTK_BOX(pcolorshbox), sentcolorbutton, FALSE, FALSE, 0);
-    gtk_color_button_set_color
-    (GTK_COLOR_BUTTON(sentcolorbutton), &preferences.sentcolor);
 
     pcolorshbox = gtk_hbox_new(TRUE, 0);
     gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     wwvcolorlabel = gtk_label_new("WWV / WCY");
     gtk_box_pack_start(GTK_BOX(pcolorshbox), wwvcolorlabel, FALSE, FALSE, 0);
-    wwvcolorbutton = gtk_color_button_new();
+    wwvcolorbutton = gtk_color_button_new_with_rgba(&preferences.wwvcolor);
     gtk_box_pack_start(GTK_BOX(pcolorshbox), wwvcolorbutton, FALSE, FALSE, 0);
-    gtk_color_button_set_color
-    (GTK_COLOR_BUTTON(wwvcolorbutton), &preferences.wwvcolor);
 
     pcolorshbox = gtk_hbox_new(TRUE, 0);
     gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     wxcolorlabel = gtk_label_new("WX");
     gtk_box_pack_start(GTK_BOX(pcolorshbox), wxcolorlabel, FALSE, FALSE, 0);
-    wxcolorbutton = gtk_color_button_new();
+    wxcolorbutton = gtk_color_button_new_with_rgba(&preferences.wxcolor);
     gtk_box_pack_start(GTK_BOX(pcolorshbox), wxcolorbutton, FALSE, FALSE, 0);
-    gtk_color_button_set_color
-    (GTK_COLOR_BUTTON(wxcolorbutton), &preferences.wxcolor);
 
     if (preferences.savedx == 1)
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
@@ -997,155 +980,200 @@ on_settings_activate(GtkMenuItem    *menuitem,
         buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maintext));
 //    table = gtk_text_buffer_get_tag_table (buffer);
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(colorbutton1), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton1), &color);
 
-        if (! gdk_color_equal(&color, &preferences.highcolor1)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.highcolor1)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->high1tagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag(buffer, gui->high1tagname, "foreground",
-                                       str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->high1tagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             highentry1 = g_object_get_data(G_OBJECT(gui->window), "highentry1");
-            gtk_widget_modify_text(highentry1, GTK_STATE_NORMAL, &color);
+            gtk_widget_override_color(highentry1,
+                                      GTK_STATE_FLAG_NORMAL,
+                                      &color);
             preferences.highcolor1 = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(colorbutton2), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton2), &color);
 
-        if (! gdk_color_equal(&color, &preferences.highcolor2)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.highcolor2)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->high2tagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag(buffer, gui->high2tagname, "foreground",
-                                       str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->high2tagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             highentry2 = g_object_get_data(G_OBJECT(gui->window), "highentry2");
-            gtk_widget_modify_text(highentry2, GTK_STATE_NORMAL, &color);
+            gtk_widget_override_color(highentry2,
+                                      GTK_STATE_FLAG_NORMAL,
+                                      &color);
             preferences.highcolor2 = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(colorbutton3), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton3), &color);
 
-        if (! gdk_color_equal(&color, &preferences.highcolor3)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.highcolor3)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->high3tagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag(buffer, gui->high3tagname, "foreground",
-                                       str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->high3tagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             highentry3 = g_object_get_data(G_OBJECT(gui->window), "highentry3");
-            gtk_widget_modify_text(highentry3, GTK_STATE_NORMAL, &color);
+            gtk_widget_override_color(highentry3,
+                                      GTK_STATE_FLAG_NORMAL,
+                                      &color);
             preferences.highcolor3 = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(colorbutton4), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton4), &color);
 
-        if (! gdk_color_equal(&color, &preferences.highcolor4)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.highcolor4)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->high4tagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag(buffer, gui->high4tagname, "foreground",
-                                       str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->high4tagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             highentry4 = g_object_get_data(G_OBJECT(gui->window), "highentry4");
-            gtk_widget_modify_text(highentry4, GTK_STATE_NORMAL, &color);
+            gtk_widget_override_color(highentry4,
+                                      GTK_STATE_FLAG_NORMAL,
+                                      &color);
             preferences.highcolor4 = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(colorbutton5), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton5), &color);
 
-        if (! gdk_color_equal(&color, &preferences.highcolor5)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.highcolor5)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->high5tagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag(buffer, gui->high5tagname, "foreground",
-                                       str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->high5tagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             highentry5 = g_object_get_data(G_OBJECT(gui->window), "highentry5");
-            gtk_widget_modify_text(highentry5, GTK_STATE_NORMAL, &color);
+            gtk_widget_override_color(highentry5,
+                                      GTK_STATE_FLAG_NORMAL,
+                                      &color);
             preferences.highcolor5 = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(colorbutton6), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton6), &color);
 
-        if (! gdk_color_equal(&color, &preferences.highcolor6)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.highcolor6)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->high6tagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag(buffer, gui->high6tagname, "foreground",
-                                       str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->high6tagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             highentry6 = g_object_get_data(G_OBJECT(gui->window), "highentry6");
-            gtk_widget_modify_text(highentry6, GTK_STATE_NORMAL, &color);
+            gtk_widget_override_color(highentry6,
+                                      GTK_STATE_FLAG_NORMAL,
+                                      &color);
             preferences.highcolor6 = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(colorbutton7), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton7), &color);
 
-        if (! gdk_color_equal(&color, &preferences.highcolor7)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.highcolor7)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->high7tagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag(buffer, gui->high7tagname, "foreground",
-                                       str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->high7tagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             highentry7 = g_object_get_data(G_OBJECT(gui->window), "highentry7");
-            gtk_widget_modify_text(highentry7, GTK_STATE_NORMAL, &color);
+            gtk_widget_override_color(highentry7,
+                                      GTK_STATE_FLAG_NORMAL,
+                                      &color);
             preferences.highcolor7 = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(colorbutton8), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton8), &color);
 
-        if (! gdk_color_equal(&color, &preferences.highcolor8)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.highcolor8)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->high8tagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag(buffer, gui->high8tagname, "foreground",
-                                       str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->high8tagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             highentry8 = g_object_get_data(G_OBJECT(gui->window), "highentry8");
-            gtk_widget_modify_text(highentry8, GTK_STATE_NORMAL, &color);
+            gtk_widget_override_color(highentry8,
+                                      GTK_STATE_FLAG_NORMAL,
+                                      &color);
             preferences.highcolor8 = color;
         }
 
         /* colors frame */
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(promptcolorbutton), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(promptcolorbutton), &color);
 
-        if (! gdk_color_equal(&color, &preferences.promptcolor)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.promptcolor)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->prompttagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag
-            (buffer, gui->prompttagname, "foreground", str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->prompttagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             gui->calltagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag
-            (buffer, gui->calltagname, "foreground", str, "weight", PANGO_WEIGHT_BOLD, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->calltagname,
+                                       "foreground",
+                                       str,
+                                       "weight",
+                                       PANGO_WEIGHT_BOLD,
+                                       NULL);
             preferences.promptcolor = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(sentcolorbutton), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(sentcolorbutton), &color);
 
-        if (! gdk_color_equal(&color, &preferences.sentcolor)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.sentcolor)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->senttagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag
-            (buffer, gui->senttagname, "foreground", str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->senttagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             preferences.sentcolor = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(wwvcolorbutton), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(wwvcolorbutton), &color);
 
-        if (! gdk_color_equal(&color, &preferences.wwvcolor)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.wwvcolor)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->wwvtagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag
-            (buffer, gui->wwvtagname, "foreground", str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->wwvtagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             preferences.wwvcolor = color;
         }
 
-        gtk_color_button_get_color(GTK_COLOR_BUTTON(wxcolorbutton), &color);
+        gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(wxcolorbutton), &color);
 
-        if (! gdk_color_equal(&color, &preferences.wxcolor)) {
-            str = g_strdup_printf("#%02X%02X%02X",
-                                  color.red * 255 / 65535, color.green * 255 / 65535, color.blue * 255 / 65535);
+        if (! gdk_rgba_equal(&color, &preferences.wxcolor)) {
+            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->wxtagname = g_strdup_printf("%d", rand());
-            gtk_text_buffer_create_tag
-            (buffer, gui->wxtagname, "foreground", str, NULL);
+            gtk_text_buffer_create_tag(buffer,
+                                       gui->wxtagname,
+                                       "foreground",
+                                       str,
+                                       NULL);
             preferences.wxcolor = color;
         }
 
