@@ -128,8 +128,9 @@ on_fontbutton_clicked(GtkButton     *button,
     gchar *font, *path;
     gint response;
 
-    fontselectiondialog = gtk_font_selection_dialog_new
-                          (_("xdx - Select a font"));
+    fontselectiondialog = gtk_font_chooser_dialog_new(
+                            _("Xdx - Select a font"),
+                            NULL);
     path = g_build_filename(PACKAGE_DATA_DIR, "pixmaps", "xdx.png", NULL);
     fontselectiondialog_icon_pixbuf = gdk_pixbuf_new_from_file(path, NULL);
     g_free(path);
@@ -149,22 +150,25 @@ on_fontbutton_clicked(GtkButton     *button,
      */
 //    gtk_widget_destroy(GTK_FONT_SELECTION_DIALOG
 //                       (fontselectiondialog)->apply_button);
-    gtk_font_selection_dialog_set_preview_text(GTK_FONT_SELECTION_DIALOG
-            (fontselectiondialog), _("How about this font?"));
+    gtk_font_chooser_set_preview_text(
+                            GTK_FONT_CHOOSER(fontselectiondialog),
+                            _("How about this font?"));
 
     if (GPOINTER_TO_INT(user_data) == 1)
-        gtk_font_selection_dialog_set_font_name
-        (GTK_FONT_SELECTION_DIALOG(fontselectiondialog), preferences.dxfont);
+        gtk_font_chooser_set_font(
+                            GTK_FONT_CHOOSER(fontselectiondialog),
+                            preferences.dxfont);
     else
-        gtk_font_selection_dialog_set_font_name
-        (GTK_FONT_SELECTION_DIALOG(fontselectiondialog), preferences.allfont);
+        gtk_font_chooser_set_font(
+                            GTK_FONT_CHOOSER(fontselectiondialog),
+                            preferences.allfont);
 
     gtk_widget_show_all(fontselectiondialog);
     response = gtk_dialog_run(GTK_DIALOG(fontselectiondialog));
 
     if (response == GTK_RESPONSE_OK) {
-        font = gtk_font_selection_dialog_get_font_name
-               (GTK_FONT_SELECTION_DIALOG(fontselectiondialog));
+        font = gtk_font_chooser_get_font(
+                            GTK_FONT_CHOOSER(fontselectiondialog));
 
         if (GPOINTER_TO_INT(user_data) == 1) {
             pfontsdxentry = g_object_get_data(G_OBJECT(preferencesdialog),
