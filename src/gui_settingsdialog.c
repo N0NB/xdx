@@ -265,13 +265,13 @@ on_settings_activate(GtkMenuItem    *menuitem,
     pdialog_vbox = gtk_dialog_get_content_area(GTK_DIALOG(preferencesdialog));
 
     pnotebook = gtk_notebook_new();
-    pvbox1 = gtk_vbox_new(FALSE, 0);
+    pvbox1 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pnotebook), pvbox1);
-    pvbox2 = gtk_vbox_new(FALSE, 0);
+    pvbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pnotebook), pvbox2);
-    pvbox3 = gtk_vbox_new(FALSE, 0);
+    pvbox3 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pnotebook), pvbox3);
-    pvbox4 = gtk_vbox_new(FALSE, 0);
+    pvbox4 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pnotebook), pvbox4);
     plabel1 = gtk_label_new(_("General"));
     gtk_notebook_set_tab_label(GTK_NOTEBOOK(pnotebook),
@@ -290,7 +290,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
 
     pcallsignframe = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(pvbox1), pcallsignframe, TRUE, TRUE, 0);
-    pcallsignhbox = gtk_hbox_new(TRUE, 0);
+    pcallsignhbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add(GTK_CONTAINER(pcallsignframe), pcallsignhbox);
     pcallsignlabel = gtk_label_new(_("Your callsign"));
     gtk_box_pack_start(GTK_BOX(pcallsignhbox), pcallsignlabel, FALSE, FALSE, 0);
@@ -300,14 +300,14 @@ on_settings_activate(GtkMenuItem    *menuitem,
 
     ploginframe = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(pvbox1), ploginframe, TRUE, TRUE, 0);
-    ploginvbox = gtk_vbox_new(FALSE, 0);
+    ploginvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(ploginframe), ploginvbox);
     pautologincheckbutton = gtk_check_button_new_with_label(_("Enable autologin"));
     gtk_box_pack_start(GTK_BOX(ploginvbox), pautologincheckbutton, FALSE, FALSE, 0);
-    ploginhseparator = gtk_hseparator_new();
+    ploginhseparator = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_box_pack_start(GTK_BOX(ploginvbox), ploginhseparator, TRUE, TRUE, 0);
 
-    pcommandshbox = gtk_hbox_new(TRUE, 0);
+    pcommandshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(ploginvbox), pcommandshbox, TRUE, TRUE, 0);
     pcommandslabel = gtk_label_new(_("Commands"));
     gtk_box_pack_start(GTK_BOX(pcommandshbox), pcommandslabel, FALSE, FALSE, 0);
@@ -345,13 +345,13 @@ on_settings_activate(GtkMenuItem    *menuitem,
     phamlibframe = gtk_frame_new(NULL);
     gtk_widget_show(phamlibframe);
     gtk_box_pack_start(GTK_BOX(pvbox1), phamlibframe, TRUE, TRUE, 0);
-    phamlibvbox = gtk_vbox_new(FALSE, 0);
+    phamlibvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(phamlibframe), phamlibvbox);
     phamlibcheckbutton = gtk_check_button_new_with_label(_("Enable hamlib"));
     gtk_box_pack_start(GTK_BOX(phamlibvbox), phamlibcheckbutton, FALSE, FALSE, 0);
-    phamlibhseparator = gtk_hseparator_new();
+    phamlibhseparator = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_box_pack_start(GTK_BOX(phamlibvbox), phamlibhseparator, TRUE, TRUE, 0);
-    phamlibhbox = gtk_hbox_new(TRUE, 0);
+    phamlibhbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phamlibvbox), phamlibhbox, TRUE, TRUE, 0);
     priglabel = gtk_label_new(_("Command for rigctl"));
     gtk_box_pack_start(GTK_BOX(phamlibhbox), priglabel, FALSE, FALSE, 0);
@@ -381,23 +381,23 @@ on_settings_activate(GtkMenuItem    *menuitem,
 
     pprogframe = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(pvbox1), pprogframe, TRUE, TRUE, 0);
-    pprogvbox = gtk_vbox_new(FALSE, 0);
+    pprogvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pprogframe), pprogvbox);
-    pproghbox1 = gtk_hbox_new(TRUE, 0);
+    pproghbox1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(pprogvbox), pproghbox1, TRUE, TRUE, 0);
     pprogbrowserlabel = gtk_label_new(_("Web browser"));
     gtk_box_pack_start(GTK_BOX(pproghbox1), pprogbrowserlabel, FALSE, FALSE, 0);
     pprogbrowserentry = gtk_entry_new();
     gtk_box_pack_start(GTK_BOX(pproghbox1), pprogbrowserentry, TRUE, TRUE, 5);
     gtk_entry_set_max_length(GTK_ENTRY(pprogbrowserentry), 80);
-    pproghbox2 = gtk_hbox_new(TRUE, 0);
+    pproghbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(pprogvbox), pproghbox2, TRUE, TRUE, 0);
     pprogmaillabel = gtk_label_new(_("Mail program"));
     gtk_box_pack_start(GTK_BOX(pproghbox2), pprogmaillabel, FALSE, FALSE, 0);
     pprogmailentry = gtk_entry_new();
     gtk_box_pack_start(GTK_BOX(pproghbox2), pprogmailentry, TRUE, TRUE, 5);
     gtk_entry_set_max_length(GTK_ENTRY(pprogmailentry), 80);
-    pproghbox3 = gtk_hbox_new(TRUE, 0);
+    pproghbox3 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(pprogvbox), pproghbox3, TRUE, TRUE, 0);
     pprogsoundlabel = gtk_label_new(_("Sound playing"));
     gtk_box_pack_start(GTK_BOX(pproghbox3), pprogsoundlabel, FALSE, FALSE, 0);
@@ -424,7 +424,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
 
     pechoframe = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(pvbox2), pechoframe, TRUE, TRUE, 0);
-    pechovbox = gtk_vbox_new(FALSE, 0);
+    pechovbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pechoframe), pechovbox);
     pechocheckbutton = gtk_check_button_new_with_label
                        (_("Echo sent text to the screen"));
@@ -447,17 +447,17 @@ on_settings_activate(GtkMenuItem    *menuitem,
 
     pcolumnsframe = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(pvbox2), pcolumnsframe, TRUE, TRUE, 0);
-    pcolumnsvbox = gtk_vbox_new(FALSE, 0);
+    pcolumnsvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pcolumnsframe), pcolumnsvbox);
     pcolumnslabel = gtk_label_new(_("Columns"));
     gtk_frame_set_label_widget(GTK_FRAME(pcolumnsframe), pcolumnslabel);
     pcolumnsvboxlabel = gtk_label_new(_("Columns to show on the screen"));
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox), pcolumnsvboxlabel, FALSE, FALSE, 0);
-    pcolumnshseparator = gtk_hseparator_new();
+    pcolumnshseparator = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox), pcolumnshseparator, FALSE, FALSE, 0);
-    pcolumnshbox = gtk_hbox_new(FALSE, 0);
+    pcolumnshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox), pcolumnshbox, FALSE, FALSE, 0);
-    pcolumnsvbox2 = gtk_vbox_new(FALSE, 0);
+    pcolumnsvbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(pcolumnshbox), pcolumnsvbox2, TRUE, TRUE, 0);
     pspottercheckbutton = gtk_check_button_new_with_label(_("Spotter"));
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox2), pspottercheckbutton, FALSE, FALSE, 0);
@@ -465,7 +465,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox2), pqrgcheckbutton, FALSE, FALSE, 0);
     pdxcheckbutton = gtk_check_button_new_with_label("DX");
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox2), pdxcheckbutton, FALSE, FALSE, 0);
-    pcolumnsvbox3 = gtk_vbox_new(FALSE, 0);
+    pcolumnsvbox3 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(pcolumnshbox), pcolumnsvbox3, TRUE, TRUE, 0);
     premarkscheckbutton = gtk_check_button_new_with_label(_("Remarks"));
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox3), premarkscheckbutton, FALSE, FALSE, 0);
@@ -513,17 +513,17 @@ on_settings_activate(GtkMenuItem    *menuitem,
 
     psavingframe = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(pvbox2), psavingframe, TRUE, TRUE, 0);
-    psavingvbox = gtk_vbox_new(FALSE, 0);
+    psavingvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(psavingframe), psavingvbox);
-    psavinghbox = gtk_hbox_new(FALSE, 0);
+    psavinghbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add(GTK_CONTAINER(psavingvbox), psavinghbox);
-    psavingvbox2 = gtk_vbox_new(FALSE, 0);
+    psavingvbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(psavinghbox), psavingvbox2);
     psavedxcheckbutton = gtk_check_button_new_with_label(_("Save DX spots"));
     gtk_box_pack_start(GTK_BOX(psavingvbox2), psavedxcheckbutton, FALSE, FALSE, 0);
     psavewwvcheckbutton = gtk_check_button_new_with_label(_("Save WCY/WWV"));
     gtk_box_pack_start(GTK_BOX(psavingvbox2), psavewwvcheckbutton, FALSE, FALSE, 0);
-    psavingvbox3 = gtk_vbox_new(FALSE, 0);
+    psavingvbox3 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(psavinghbox), psavingvbox3);
     psavetoallcheckbutton = gtk_check_button_new_with_label(_("Save \"To all\""));
     gtk_box_pack_start(GTK_BOX(psavingvbox3), psavetoallcheckbutton, FALSE, FALSE, 0);
@@ -536,20 +536,20 @@ on_settings_activate(GtkMenuItem    *menuitem,
     gtk_box_pack_start(GTK_BOX(pvbox3), pfontsframe, FALSE, FALSE, 0);
     pfontslabel = gtk_label_new(_("Fonts"));
     gtk_frame_set_label_widget(GTK_FRAME(pfontsframe), pfontslabel);
-    pfontsvbox = gtk_vbox_new(FALSE, 0);
+    pfontsvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pfontsframe), pfontsvbox);
     pfontsdxlabel = gtk_label_new(_("Font for DX messages"));
-    pfontshbox1 = gtk_hbox_new(FALSE, 0);
+    pfontshbox1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     pfontsdxentry = gtk_entry_new();
     pfontsdxbutton = gtk_button_new_with_mnemonic(_("Select _DX Font"));
     gtk_box_pack_start(GTK_BOX(pfontsvbox), pfontsdxlabel, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(pfontsvbox), pfontshbox1, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(pfontshbox1), pfontsdxentry, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(pfontshbox1), pfontsdxbutton, FALSE, FALSE, 0);
-    pfontshseparator = gtk_hseparator_new();
+    pfontshseparator = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_box_pack_start(GTK_BOX(pfontsvbox), pfontshseparator, FALSE, FALSE, 0);
     pfontsalllabel = gtk_label_new(_("Font for other messages"));
-    pfontshbox2 = gtk_hbox_new(FALSE, 0);
+    pfontshbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     pfontsallentry = gtk_entry_new();
     pfontsallbutton = gtk_button_new_with_mnemonic(_("Select _Other Fonts"));
     gtk_box_pack_start(GTK_BOX(pfontsvbox), pfontsalllabel, FALSE, FALSE, 0);
@@ -565,19 +565,19 @@ on_settings_activate(GtkMenuItem    *menuitem,
     gtk_box_pack_start(GTK_BOX(pvbox3), phighframe, FALSE, FALSE, 0);
     phighframelabel = gtk_label_new(_("Highlighting"));
     gtk_frame_set_label_widget(GTK_FRAME(phighframe), phighframelabel);
-    phighvbox = gtk_vbox_new(FALSE, 0);
+    phighvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(phighframe), phighvbox);
     phighlabel = gtk_label_new(_("Colors to use for highlighting"));
     gtk_label_set_line_wrap(GTK_LABEL(phighlabel), TRUE);
     gtk_box_pack_start(GTK_BOX(phighvbox), phighlabel, FALSE, FALSE, 10);
-    phighseparator =  gtk_hseparator_new();
+    phighseparator =  gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_box_pack_start(GTK_BOX(phighvbox), phighseparator, FALSE, FALSE, 0);
-    phighhbox = gtk_hbox_new(FALSE, 0);
+    phighhbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phighvbox), phighhbox, FALSE, FALSE, 0);
-    phighvbox1 = gtk_vbox_new(FALSE, 0);
+    phighvbox1 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(phighhbox), phighvbox1, TRUE, TRUE, 0);
 
-    phighhbox2 = gtk_hbox_new(FALSE, 0);
+    phighhbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phighvbox1), phighhbox2, TRUE, TRUE, 0);
     str = g_strdup_printf(_("Color %d"), 1);
     phighlabel1 = gtk_label_new(str);
@@ -585,7 +585,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     colorbutton1 = gtk_color_button_new_with_rgba(&preferences.highcolor1);
     gtk_box_pack_start(GTK_BOX(phighhbox2), colorbutton1, FALSE, FALSE, 0);
 
-    phighbox3 = gtk_hbox_new(FALSE, 0);
+    phighbox3 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phighvbox1), phighbox3, TRUE, TRUE, 0);
     str = g_strdup_printf(_("Color %d"), 2);
     phighlabel2 = gtk_label_new(str);
@@ -593,7 +593,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     colorbutton2 = gtk_color_button_new_with_rgba(&preferences.highcolor2);
     gtk_box_pack_start(GTK_BOX(phighbox3), colorbutton2, FALSE, FALSE, 0);
 
-    phighbox4 = gtk_hbox_new(FALSE, 0);
+    phighbox4 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phighvbox1), phighbox4, TRUE, TRUE, 0);
     str = g_strdup_printf(_("Color %d"), 3);
     phighlabel3 = gtk_label_new(str);
@@ -601,7 +601,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     colorbutton3 = gtk_color_button_new_with_rgba(&preferences.highcolor3);
     gtk_box_pack_start(GTK_BOX(phighbox4), colorbutton3, FALSE, FALSE, 0);
 
-    phighbox5 = gtk_hbox_new(FALSE, 0);
+    phighbox5 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phighvbox1), phighbox5, TRUE, TRUE, 0);
     str = g_strdup_printf(_("Color %d"), 4);
     phighlabel4 = gtk_label_new(str);
@@ -609,12 +609,12 @@ on_settings_activate(GtkMenuItem    *menuitem,
     colorbutton4 = gtk_color_button_new_with_rgba(&preferences.highcolor4);
     gtk_box_pack_start(GTK_BOX(phighbox5), colorbutton4, FALSE, FALSE, 0);
 
-    vseparator1 = gtk_vseparator_new();
+    vseparator1 = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
     gtk_box_pack_start(GTK_BOX(phighhbox), vseparator1, TRUE, TRUE, 0);
-    phighvbox2 = gtk_vbox_new(FALSE, 0);
+    phighvbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(phighhbox), phighvbox2, TRUE, TRUE, 0);
 
-    phighbox6 = gtk_hbox_new(FALSE, 0);
+    phighbox6 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phighvbox2), phighbox6, TRUE, TRUE, 0);
     str = g_strdup_printf(_("Color %d"), 5);
     phighlabel5 = gtk_label_new(str);
@@ -622,7 +622,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     colorbutton5 = gtk_color_button_new_with_rgba(&preferences.highcolor5);
     gtk_box_pack_start(GTK_BOX(phighbox6), colorbutton5, FALSE, FALSE, 0);
 
-    phighhbox7 = gtk_hbox_new(FALSE, 0);
+    phighhbox7 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phighvbox2), phighhbox7, TRUE, TRUE, 0);
     str = g_strdup_printf(_("Color %d"), 6);
     phighlabel6 = gtk_label_new(str);
@@ -630,7 +630,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     colorbutton6 = gtk_color_button_new_with_rgba(&preferences.highcolor6);
     gtk_box_pack_start(GTK_BOX(phighhbox7), colorbutton6, FALSE, FALSE, 0);
 
-    phighhbox8 = gtk_hbox_new(FALSE, 0);
+    phighhbox8 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phighvbox2), phighhbox8, TRUE, TRUE, 0);
     str = g_strdup_printf(_("Color %d"), 7);
     phighlabel7 = gtk_label_new(str);
@@ -638,7 +638,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     colorbutton7 = gtk_color_button_new_with_rgba(&preferences.highcolor7);
     gtk_box_pack_start(GTK_BOX(phighhbox8), colorbutton7, FALSE, FALSE, 0);
 
-    phighhbox9 = gtk_hbox_new(FALSE, 0);
+    phighhbox9 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phighvbox2), phighhbox9, TRUE, TRUE, 0);
     str = g_strdup_printf(_("Color %d"), 8);
     phighlabel8 = gtk_label_new(str);
@@ -650,31 +650,31 @@ on_settings_activate(GtkMenuItem    *menuitem,
     gtk_box_pack_start(GTK_BOX(pvbox4), pcolorsframe, FALSE, FALSE, 0);
     pcolorsframelabel = gtk_label_new(_("Colors for the chat window"));
     gtk_frame_set_label_widget(GTK_FRAME(pcolorsframe), pcolorsframelabel);
-    pcolorsvbox = gtk_vbox_new(FALSE, 0);
+    pcolorsvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pcolorsframe), pcolorsvbox);
 
-    pcolorshbox = gtk_hbox_new(TRUE, 0);
+    pcolorshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     promptcolorlabel = gtk_label_new(_("Prompt"));
     gtk_box_pack_start(GTK_BOX(pcolorshbox), promptcolorlabel, FALSE, FALSE, 0);
     promptcolorbutton = gtk_color_button_new_with_rgba(&preferences.promptcolor);
     gtk_box_pack_start(GTK_BOX(pcolorshbox), promptcolorbutton, FALSE, FALSE, 0);
 
-    pcolorshbox = gtk_hbox_new(TRUE, 0);
+    pcolorshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     sentcolorlabel = gtk_label_new(_("Sent text"));
     gtk_box_pack_start(GTK_BOX(pcolorshbox), sentcolorlabel, FALSE, FALSE, 0);
     sentcolorbutton = gtk_color_button_new_with_rgba(&preferences.sentcolor);
     gtk_box_pack_start(GTK_BOX(pcolorshbox), sentcolorbutton, FALSE, FALSE, 0);
 
-    pcolorshbox = gtk_hbox_new(TRUE, 0);
+    pcolorshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     wwvcolorlabel = gtk_label_new("WWV / WCY");
     gtk_box_pack_start(GTK_BOX(pcolorshbox), wwvcolorlabel, FALSE, FALSE, 0);
     wwvcolorbutton = gtk_color_button_new_with_rgba(&preferences.wwvcolor);
     gtk_box_pack_start(GTK_BOX(pcolorshbox), wwvcolorbutton, FALSE, FALSE, 0);
 
-    pcolorshbox = gtk_hbox_new(TRUE, 0);
+    pcolorshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     wxcolorlabel = gtk_label_new("WX");
     gtk_box_pack_start(GTK_BOX(pcolorshbox), wxcolorlabel, FALSE, FALSE, 0);
