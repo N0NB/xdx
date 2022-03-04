@@ -568,6 +568,7 @@ maintext_add(gchar  msg[],
     GtkTextBuffer *buffer;
     GtkTextChildAnchor *anchor;
     GtkWidget *swidget;
+    GdkDisplay *display;
     smiley *s;
     gchar *utf8, *high, *tagname, *p, *temp, *mycall;
     guint i, prompttype = NOTFOUND;
@@ -579,11 +580,12 @@ maintext_add(gchar  msg[],
     treeview = (GtkWidget *)g_object_get_data(G_OBJECT(gui->window), "treeview");
     buffer = (GtkTextBuffer *)g_object_get_data(G_OBJECT(gui->window), "buffer");
     gtk_text_buffer_get_bounds(buffer, &start, &end);
+    display = gdk_display_get_default();
 
     if (messagetype == MESSAGE_RX) {
         /* beep if there is a bell */
         if (g_strrstr(msg, "\a")) {
-            gdk_beep();
+            gdk_display_beep(display);
             g_strdelimit(msg, "\a", ' ');
         }
 
