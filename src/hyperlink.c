@@ -137,13 +137,15 @@ set_cursor(GtkTextView *text_view,
     GtkTextBuffer *buffer;
     GtkTextIter iter, startword, endword, start, end;
     GdkCursor *hand_cursor, *normal_cursor;
+    GdkDisplay *display;
     gchar *word;
 
     buffer = gtk_text_view_get_buffer(text_view);
     gtk_text_view_get_iter_at_location(text_view, &iter, x, y);
 
-    hand_cursor = gdk_cursor_new(GDK_HAND2);
-    normal_cursor = gdk_cursor_new(GDK_XTERM);
+    display = gdk_display_get_default();
+    hand_cursor = gdk_cursor_new_from_name(display, "pointer");
+    normal_cursor = gdk_cursor_new_from_name(display, "text");
 
     startword = iter;
     endword = iter;
@@ -158,14 +160,14 @@ set_cursor(GtkTextView *text_view,
                                   (text_view, GTK_TEXT_WINDOW_TEXT), hand_cursor);
             gtk_text_buffer_apply_tag_by_name(buffer, "url", &startword, &endword);
             gui->url = g_strdup(word);
-            gdk_cursor_unref(hand_cursor);
+            g_object_unref(hand_cursor);
         } else {
             gdk_window_set_cursor(gtk_text_view_get_window(text_view,
                                   GTK_TEXT_WINDOW_TEXT), normal_cursor);
             gtk_text_buffer_get_bounds(buffer, &start, &end);
             gtk_text_buffer_remove_tag_by_name(buffer, "url", &start, &end);
             gui->url = g_strdup("");
-            gdk_cursor_unref(normal_cursor);
+            g_object_unref(normal_cursor);
         }
 
         if (word) g_free(word);
@@ -243,7 +245,10 @@ on_maintext_event_after(GtkWidget      *widget,
              * the link.
              */
             if (ret == FALSE)
-                gtk_show_uri(NULL, gui->url, GDK_CURRENT_TIME, NULL);
+                gtk_show_uri_on_window(GTK_WINDOW(gui->window),
+                                       gui->url,
+                                       GDK_CURRENT_TIME,
+                                       NULL);
         }
     }
 
@@ -259,14 +264,27 @@ on_maintext_motion_notify_event(GtkWidget       *widget,
                                 GdkEventMotion  *event,
                                 gpointer         user_data)
 {
-//  GdkWindow *window;
+    GdkDisplay *display;
+    GdkSeat *seat;
+    GdkDevice *pointer;
     gint x, y;
     GdkModifierType state;
 
-    if (event->is_hint)
-//    window = gdk_window_get_pointer (event->window, &x, &y, &state);
-        gdk_window_get_pointer(event->window, &x, &y, &state);
-    else {
+    /* Setting the display, seat, and pointer variables from:
+     * https://stackoverflow.com/a/24847120
+     * https://stackoverflow.com/a/62962920
+     */
+    display = gdk_display_get_default();
+    seat = gdk_display_get_default_seat(display);
+    pointer  = gdk_seat_get_pointer(seat);
+
+    if (event->is_hint){
+        gdk_window_get_device_position(event->window,
+                                       pointer,
+                                       &x,
+                                       &y,
+                                       &state);
+    } else {
         x = event->x;
         y = event->y;
         state = event->state;
