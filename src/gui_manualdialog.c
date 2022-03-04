@@ -69,9 +69,12 @@ on_manual_activate(GtkMenuItem *menuitem,
     FILE *in;
 
 
-    manualdialog = gtk_dialog_new_with_buttons(_("xdx - manual"),
-                   GTK_WINDOW(gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                   GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
+    manualdialog = gtk_dialog_new_with_buttons(_("Xdx - Manual"),
+                   GTK_WINDOW(gui->window),
+                   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                   _("Close"),
+                   GTK_RESPONSE_CLOSE,
+                   NULL);
     gtk_widget_set_size_request(manualdialog, 650, 300);
 
     swindow = gtk_scrolled_window_new(NULL, NULL);
@@ -113,7 +116,9 @@ on_manual_activate(GtkMenuItem *menuitem,
     }
 
     font_desc = pango_font_description_from_string("mono");
-    gtk_widget_modify_font(helptextview, font_desc);
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    gtk_widget_override_font(helptextview, font_desc);
+#pragma GCC diagnostic pop
     pango_font_description_free(font_desc);
     g_free(helpfile);
     gtk_widget_show_all(manualdialog);
