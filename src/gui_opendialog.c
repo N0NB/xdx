@@ -67,38 +67,43 @@ on_open_activate(GtkMenuItem    *menuitem,
                  gpointer        user_data)
 {
     GtkWidget *opendialog, *hostnamecombo, *portcombo, *hbox, *vbox, *stock,
-              *table, *hostlabel, *portlabel, *mainentry, *hnc_child, *pc_child;
+              *grid, *hostlabel, *portlabel, *mainentry, *hnc_child, *pc_child;
     gint i, num, response;
     GList *node;
+    GValue spacing = G_VALUE_INIT;
     gboolean result = FALSE;
     servertype *cluster;
     gchar *s;
 
     gtk_widget_set_sensitive(gui->window, 0);
-    opendialog = gtk_dialog_new_with_buttons(_("xdx - open connection"),
+    opendialog = gtk_dialog_new_with_buttons(_("Xdx - Open connection"),
                  GTK_WINDOW(gui->window),
-                 GTK_DIALOG_MODAL |
-                 GTK_DIALOG_DESTROY_WITH_PARENT,
-                 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                 GTK_STOCK_OK,
-                 GTK_RESPONSE_OK, NULL);
+                 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                 _("_Cancel"),
+                 GTK_RESPONSE_CANCEL,
+                 _("_OK"),
+                 GTK_RESPONSE_OK,
+                 NULL);
 
-    hbox = gtk_hbox_new(FALSE, 8);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 8);
     gtk_container_set_border_width(GTK_CONTAINER(hbox), 8);
 
     vbox = gtk_dialog_get_content_area(GTK_DIALOG(opendialog));
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-    stock =
-        gtk_image_new_from_stock(GTK_STOCK_DIALOG_QUESTION,
+    stock = gtk_image_new_from_icon_name("dialog-question",
                                  GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start(GTK_BOX(hbox), stock, FALSE, FALSE, 0);
-    table = gtk_table_new(2, 2, FALSE);
-    gtk_table_set_row_spacings(GTK_TABLE(table), 4);
-    gtk_table_set_col_spacings(GTK_TABLE(table), 4);
-    gtk_box_pack_start(GTK_BOX(hbox), table, TRUE, TRUE, 0);
+
+    g_value_init(&spacing, G_TYPE_INT);
+    g_value_set_int(&spacing, 8);
+    grid = gtk_grid_new();
+    g_object_set_property(G_OBJECT(grid), "column-spacing", &spacing);
+    g_object_set_property(G_OBJECT(grid), "row-spacing", &spacing);
+
+    gtk_box_pack_start(GTK_BOX(hbox), grid, TRUE, TRUE, 0);
     hostlabel = gtk_label_new_with_mnemonic(_("_Hostname"));
-    gtk_table_attach_defaults(GTK_TABLE(table), hostlabel, 0, 1, 0, 1);
+    gtk_grid_attach(GTK_GRID(grid), hostlabel, 0, 0, 1, 1);
     hostnamecombo = gtk_combo_box_text_new_with_entry();
 
     if (gui->hostnamehistory) {
@@ -110,9 +115,9 @@ on_open_activate(GtkMenuItem    *menuitem,
         }
     }
 
-    gtk_table_attach_defaults(GTK_TABLE(table), hostnamecombo, 1, 2, 0, 1);
+    gtk_grid_attach(GTK_GRID(grid), hostnamecombo, 1, 0, 1, 1);
     portlabel = gtk_label_new_with_mnemonic(_("_Port"));
-    gtk_table_attach_defaults(GTK_TABLE(table), portlabel, 0, 1, 1, 2);
+    gtk_grid_attach(GTK_GRID(grid), portlabel, 0, 1, 1, 1);
     portcombo = gtk_combo_box_text_new_with_entry();
 
     if (gui->porthistory) {
@@ -124,7 +129,7 @@ on_open_activate(GtkMenuItem    *menuitem,
         }
     }
 
-    gtk_table_attach_defaults(GTK_TABLE(table), portcombo, 1, 2, 1, 2);
+    gtk_grid_attach(GTK_GRID(grid), portcombo, 1, 1, 1, 1);
     gtk_widget_show_all(hbox);
     gtk_widget_set_sensitive(gui->window, 0);
     gtk_combo_box_set_active
