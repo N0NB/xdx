@@ -70,22 +70,23 @@ on_close_activate(GtkMenuItem   *menuitem,
     servertype *cluster;
 
     gtk_widget_set_sensitive(gui->window, 0);
-    closedialog = gtk_dialog_new_with_buttons(_("xdx - close connection"),
+    closedialog = gtk_dialog_new_with_buttons(_("Xdx - Close connection"),
                   GTK_WINDOW(gui->window),
-                  GTK_DIALOG_MODAL |
-                  GTK_DIALOG_DESTROY_WITH_PARENT,
-                  GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                  GTK_STOCK_OK,
-                  GTK_RESPONSE_OK, NULL);
-    hbox = gtk_hbox_new(FALSE, 8);
+                  GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                  _("Cancel"),
+                  GTK_RESPONSE_CANCEL,
+                  _("OK"),
+                  GTK_RESPONSE_OK,
+                  NULL);
+
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 8);
     gtk_container_set_border_width(GTK_CONTAINER(hbox), 8);
 
     vbox = gtk_dialog_get_content_area(GTK_DIALOG(closedialog));
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-    stock =
-        gtk_image_new_from_stock(GTK_STOCK_DIALOG_QUESTION,
-                                 GTK_ICON_SIZE_DIALOG);
+    stock = gtk_image_new_from_icon_name("dialog-question",
+                                         GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start(GTK_BOX(hbox), stock, FALSE, FALSE, 0);
 
     cluster = (servertype *)g_object_get_data(G_OBJECT(gui->window), "cluster");
