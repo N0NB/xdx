@@ -76,15 +76,16 @@ on_log_activate(GtkMenuItem     *menuitem,
     gint numread = 0;
     gchar buf[1025];
 
-    logdialog = gtk_dialog_new_with_buttons(_("xdx - connection log"),
+    logdialog = gtk_dialog_new_with_buttons(_("Xdx - Connection log"),
                                             GTK_WINDOW(gui->window),
-                                            GTK_DIALOG_MODAL |
-                                            GTK_DIALOG_DESTROY_WITH_PARENT,
-                                            GTK_STOCK_CLEAR, GTK_RESPONSE_CANCEL,
-                                            GTK_STOCK_CLOSE, GTK_RESPONSE_OK,
+                                            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                            _("Clear"),
+                                            GTK_RESPONSE_CANCEL,
+                                            _("Close"),
+                                            GTK_RESPONSE_CLOSE,
                                             NULL);
     gtk_widget_set_size_request(logdialog, 600, 300);
-    vbox = gtk_vbox_new(FALSE, 8);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
     gtk_container_set_border_width(GTK_CONTAINER(vbox), 8);
 
     box = gtk_dialog_get_content_area(GTK_DIALOG(logdialog));
