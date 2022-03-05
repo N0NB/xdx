@@ -71,20 +71,20 @@ on_exit_dialog(GtkMenuItem   *menuitem,
     exitdialog = gtk_dialog_new_with_buttons(_("Exit"),
                     GTK_WINDOW(gui->window),
                     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                    GTK_STOCK_NO,
+                    _("No"),
                     GTK_RESPONSE_NO,
-                    GTK_STOCK_YES,
+                    _("Yes"),
                     GTK_RESPONSE_YES,
                     NULL);
 
-    hbox = gtk_hbox_new(FALSE, 8);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 8);
     gtk_container_set_border_width(GTK_CONTAINER(hbox), 8);
 
     vbox = gtk_dialog_get_content_area(GTK_DIALOG(exitdialog));
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
-    stock = gtk_image_new_from_stock(GTK_STOCK_DIALOG_QUESTION,
-                                     GTK_ICON_SIZE_DIALOG);
+    stock = gtk_image_new_from_icon_name("dialog-question",
+                                         GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start(GTK_BOX(hbox), stock, FALSE, FALSE, 0);
 
     g_string_printf(labeltext, _("Exit "PACKAGE_NAME"?"));
