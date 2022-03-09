@@ -103,4 +103,6 @@ gboolean on_highentry_clicked(GtkEditable       *entry,
                               GdkEventButton    *event,
                               gpointer           user_data);
 
+extern GValue grid_spacing;
+
 #endif /* XDX_GUI_H */

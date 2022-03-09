@@ -68,12 +68,13 @@ GdkVisual *visual;
 gchar *prompttagname, *calltagname;
 gchar *opt_cty_path = NULL;     /* For -c or --cty_path options. */
 guitype *gui;
+GValue grid_spacing = G_VALUE_INIT;
 
 int
 main(int argc, char *argv[])
 {
     GtkWidget *treeview, *maintext, *vpaned, *sidemenu, *reconnectmenu,
-              *highframe, *fkeysmenu, *fvbox,
+              *highframe, *fkeysmenu, *fvbox, *func_grid,
               *highcheck1, *highcheck2, *highcheck3, *highcheck4, *highcheck5,
               *highcheck6, *highcheck7, *highcheck8, *soundcheck,
               *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
@@ -102,6 +103,10 @@ main(int argc, char *argv[])
     gtk_init(&argc, &argv);
     setlocale(LC_NUMERIC, "C");
     parse_opts(&argc, &argv);
+
+    /* Application default spacing in pixels between children in grids. */
+    g_value_init(&grid_spacing, G_TYPE_INT);
+    g_value_set_int(&grid_spacing, 8);
 
     visual = gdk_screen_get_system_visual(gdk_screen_get_default());
 
@@ -496,16 +501,16 @@ main(int argc, char *argv[])
 
     gtk_paned_set_position(GTK_PANED(vpaned), preferences.handlebarpos);
 
-    fvbox = g_object_get_data(G_OBJECT(gui->window), "fvbox");
+    func_grid = g_object_get_data(G_OBJECT(gui->window), "func_grid");
 
     fkeysmenu = gtk_ui_manager_get_widget
                 (gui->ui_manager, "/MainMenu/SettingsMenu/Keybar");
 
     if (preferences.fbox == 0) {
-        gtk_widget_hide(fvbox);
+        gtk_widget_hide(func_grid);
         gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(fkeysmenu), FALSE);
     } else {
-        gtk_widget_show(fvbox);
+        gtk_widget_show(func_grid);
         gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(fkeysmenu), TRUE);
     }
 

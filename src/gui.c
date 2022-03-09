@@ -293,13 +293,13 @@ create_mainwindow(void)
 {
     GtkWidget *mainvbox, *handlebox, *mainmenubar, *vpaned, *clistscrolledwindow,
               *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview,
-              *frame, *chathbox, *highvbox, *hbox, *highframe, *mainhbox,
+              *frame, *chathbox, *chat_grid, *highframe, *mainhbox,
               *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
               *highentry6, *highentry7, *highentry8, *highcheck1, *highcheck2,
               *highcheck3, *highcheck4, *highcheck5, *highcheck6, *highcheck7,
               *highcheck8, *soundcheck,
               *f1button, *f2button, *f3button, *f4button, *f5button,
-              *f6button, *f7button, *f8button, *fvbox, *fhbox1, *fhbox2;
+              *f6button, *f7button, *f8button, *func_grid;
     GtkCellRenderer *renderer, *boldrenderer, *greyrenderer;
     GtkTreeViewColumn *column;
     GtkTextBuffer *buffer, *entrybuffer;
@@ -314,6 +314,7 @@ create_mainwindow(void)
 
     gui = new_gui();
     gui->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_widget_set_name(GTK_WIDGET(gui->window), "gui_window");
     icon = gdk_pixbuf_new_from_file(PACKAGE_DATA_DIR "/pixmaps/xdx.png", &err);
 
     if (err) {
@@ -327,10 +328,13 @@ create_mainwindow(void)
         g_object_unref(icon);
     }
 
-    mainhbox = gtk_hbox_new(FALSE, 0);
+    mainhbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_set_homogeneous(GTK_BOX(mainhbox), TRUE);
+    gtk_widget_set_name(GTK_WIDGET(mainhbox), "mainhbox");
     gtk_container_add(GTK_CONTAINER(gui->window), mainhbox);
 
-    mainvbox = gtk_vbox_new(FALSE, 0);
+    mainvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_name(GTK_WIDGET(mainvbox), "mainvbox");
     gtk_container_add(GTK_CONTAINER(mainhbox), mainvbox);
 
     handlebox = gtk_handle_box_new();
@@ -338,28 +342,52 @@ create_mainwindow(void)
     get_main_menu(gui->window, &mainmenubar);
     gtk_container_add(GTK_CONTAINER(handlebox), mainmenubar);
 
-    fvbox = gtk_vbox_new(TRUE, 0);
-    fhbox1 = gtk_hbox_new(TRUE, 0);
-    fhbox2 = gtk_hbox_new(TRUE, 0);
-    gtk_container_add(GTK_CONTAINER(fvbox), fhbox1);
-    gtk_container_add(GTK_CONTAINER(fvbox), fhbox2);
+    /* Use the Gtk grid container for the function keys.
+     *
+     * The grid is laid out in two rows of four key buttons each.
+     */
+    func_grid = gtk_grid_new();
+    g_object_set_property(G_OBJECT(func_grid),
+                                   "column_spacing",
+                                   &grid_spacing);
+    g_object_set_property(G_OBJECT(func_grid),
+                                   "row_spacing",
+                                   &grid_spacing);
+    gtk_widget_set_name(GTK_WIDGET(func_grid), "func_grid");
+
     f1button = gtk_button_new_with_label("");
+    gtk_widget_set_name(GTK_WIDGET(f1button), "f1button");
+    gtk_grid_attach(GTK_GRID(func_grid), f1button, 0, 0, 1, 1);
+
     f2button = gtk_button_new_with_label("");
+    gtk_widget_set_name(GTK_WIDGET(f2button), "f2button");
+    gtk_grid_attach(GTK_GRID(func_grid), f2button, 1, 0, 1, 1);
+
     f3button = gtk_button_new_with_label("");
+    gtk_widget_set_name(GTK_WIDGET(f3button), "f3button");
+    gtk_grid_attach(GTK_GRID(func_grid), f3button, 2, 0, 1, 1);
+
     f4button = gtk_button_new_with_label("");
-    gtk_container_add(GTK_CONTAINER(fhbox1), f1button);
-    gtk_container_add(GTK_CONTAINER(fhbox1), f2button);
-    gtk_container_add(GTK_CONTAINER(fhbox1), f3button);
-    gtk_container_add(GTK_CONTAINER(fhbox1), f4button);
+    gtk_widget_set_name(GTK_WIDGET(f4button), "f4button");
+    gtk_grid_attach(GTK_GRID(func_grid), f4button, 3, 0, 1, 1);
+
     f5button = gtk_button_new_with_label("");
+    gtk_widget_set_name(GTK_WIDGET(f5button), "f5button");
+    gtk_grid_attach(GTK_GRID(func_grid), f5button, 0, 1, 1, 1);
+
     f6button = gtk_button_new_with_label("");
+    gtk_widget_set_name(GTK_WIDGET(f6button), "f6button");
+    gtk_grid_attach(GTK_GRID(func_grid), f6button, 1, 1, 1, 1);
+
     f7button = gtk_button_new_with_label("");
+    gtk_widget_set_name(GTK_WIDGET(f7button), "f7button");
+    gtk_grid_attach(GTK_GRID(func_grid), f7button, 2, 1, 1, 1);
+
     f8button = gtk_button_new_with_label("");
-    gtk_container_add(GTK_CONTAINER(fhbox2), f5button);
-    gtk_container_add(GTK_CONTAINER(fhbox2), f6button);
-    gtk_container_add(GTK_CONTAINER(fhbox2), f7button);
-    gtk_container_add(GTK_CONTAINER(fhbox2), f8button);
-    gtk_box_pack_start(GTK_BOX(mainvbox), fvbox, FALSE, TRUE, 0);
+    gtk_widget_set_name(GTK_WIDGET(f8button), "f8button");
+    gtk_grid_attach(GTK_GRID(func_grid), f8button, 3, 1, 1, 1);
+
+    gtk_box_pack_start(GTK_BOX(mainvbox), func_grid, FALSE, TRUE, 0);
 
     clistscrolledwindow = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_policy(
@@ -367,9 +395,9 @@ create_mainwindow(void)
             GTK_POLICY_AUTOMATIC,
             GTK_POLICY_ALWAYS);
 
-    model = gtk_tree_store_new(N_COLUMNS + 1, G_TYPE_STRING, G_TYPE_STRING,
+    model = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING,
                                G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
-                               G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_COLOR);
+                               G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_RGBA);
     treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(model));
     g_object_unref(G_OBJECT(model));
 
@@ -429,7 +457,7 @@ create_mainwindow(void)
 
     column =
         gtk_tree_view_column_new_with_attributes(_("Country"), greyrenderer, "text",
-                COUNTRY_COLUMN, NULL);
+                COUNTRY_COLUMN, "background-rgba", RGBA_COLUMN, NULL);
     g_object_set(G_OBJECT(greyrenderer), "cell-background", "grey", NULL);
     gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(column),
                                     GTK_TREE_VIEW_COLUMN_FIXED);
@@ -438,93 +466,131 @@ create_mainwindow(void)
 
     gtk_container_add(GTK_CONTAINER(clistscrolledwindow), treeview);
 
-    chathbox = gtk_hbox_new(FALSE, 0);
     mainscrolledwindow = gtk_scrolled_window_new(NULL, NULL);
+    gtk_widget_set_name(GTK_WIDGET(mainscrolledwindow), "mainscrolledwindow");
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(mainscrolledwindow),
                                    GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
     maintext = gtk_text_view_new();
+    gtk_widget_set_name(GTK_WIDGET(maintext), "maintext");
     gtk_container_add(GTK_CONTAINER(mainscrolledwindow), maintext);
     gtk_text_view_set_editable(GTK_TEXT_VIEW(maintext), FALSE);
+
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maintext));
+    gtk_widget_set_name(GTK_WIDGET(buffer), "buffer");
     gtk_text_buffer_create_tag(buffer, "url", "foreground", "blue",
                                "underline", PANGO_UNDERLINE_SINGLE, NULL);
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maintext), GTK_WRAP_WORD);
+
+    chathbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_widget_set_name(GTK_WIDGET(chathbox), "chathbox");
     gtk_box_pack_start(GTK_BOX(chathbox), mainscrolledwindow, TRUE, TRUE, 0);
 
+
+    /* Use the Gtk grid container for the highlight entries and active
+     * checkbutton.
+     *
+     * The grid is laid out in eight rows of one entry and one checkbutton
+     * each and a final row of one checkbutton in the second cell.
+     */
+    chat_grid = gtk_grid_new();
+    g_object_set_property(G_OBJECT(chat_grid),
+                                   "column_spacing",
+                                   &grid_spacing);
+    g_object_set_property(G_OBJECT(chat_grid),
+                                   "row_spacing",
+                                   &grid_spacing);
+    gtk_widget_set_name(GTK_WIDGET(chat_grid), "chat_grid");
+
     highframe = gtk_frame_new(NULL);
+    gtk_widget_set_name(GTK_WIDGET(highframe), "highframe");
     gtk_box_pack_start(GTK_BOX(mainhbox), highframe, FALSE, FALSE, 0);
-    highvbox = gtk_vbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highframe), highvbox);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highvbox), hbox);
+    gtk_container_add(GTK_CONTAINER(highframe), chat_grid);
+
     highentry1 = gtk_entry_new();
+    gtk_widget_set_name(GTK_WIDGET(highentry1), "highentry1");
     gtk_widget_set_size_request(highentry1, 60, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), highentry1, FALSE, FALSE, 0);
-    highcheck1 = gtk_check_button_new();
-    gtk_box_pack_start(GTK_BOX(hbox), highcheck1, FALSE, FALSE, 0);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(highentry1), _("Color 1"));
+    gtk_grid_attach(GTK_GRID(chat_grid), highentry1, 0, 0, 1, 1);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highvbox), hbox);
+    highcheck1 = gtk_check_button_new_with_label(_("Active"));
+    gtk_widget_set_name(GTK_WIDGET(highcheck1), "highcheck1");
+    gtk_grid_attach(GTK_GRID(chat_grid), highcheck1, 1, 0, 1, 1);
+
     highentry2 = gtk_entry_new();
+    gtk_widget_set_name(GTK_WIDGET(highentry2), "highentry2");
     gtk_widget_set_size_request(highentry2, 60, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), highentry2, FALSE, FALSE, 0);
-    highcheck2 = gtk_check_button_new();
-    gtk_box_pack_start(GTK_BOX(hbox), highcheck2, FALSE, FALSE, 0);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(highentry2), _("Color 2"));
+    gtk_grid_attach(GTK_GRID(chat_grid), highentry2, 0, 1, 1, 1);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highvbox), hbox);
+    highcheck2 = gtk_check_button_new_with_label(_("Active"));
+    gtk_widget_set_name(GTK_WIDGET(highcheck2), "highcheck2");
+    gtk_grid_attach(GTK_GRID(chat_grid), highcheck2, 1, 1, 1, 1);
+
     highentry3 = gtk_entry_new();
+    gtk_widget_set_name(GTK_WIDGET(highentry3), "highentry3");
     gtk_widget_set_size_request(highentry3, 60, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), highentry3, FALSE, FALSE, 0);
-    highcheck3 = gtk_check_button_new();
-    gtk_box_pack_start(GTK_BOX(hbox), highcheck3, FALSE, FALSE, 0);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(highentry3), _("Color 3"));
+    gtk_grid_attach(GTK_GRID(chat_grid), highentry3, 0, 2, 1, 1);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highvbox), hbox);
+    highcheck3 = gtk_check_button_new_with_label(_("Active"));
+    gtk_widget_set_name(GTK_WIDGET(highcheck3), "highcheck3");
+    gtk_grid_attach(GTK_GRID(chat_grid), highcheck3, 1, 2, 1, 1);
+
     highentry4 = gtk_entry_new();
+    gtk_widget_set_name(GTK_WIDGET(highentry4), "highentry4");
     gtk_widget_set_size_request(highentry4, 60, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), highentry4, FALSE, FALSE, 0);
-    highcheck4 = gtk_check_button_new();
-    gtk_box_pack_start(GTK_BOX(hbox), highcheck4, FALSE, FALSE, 0);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(highentry4), _("Color 4"));
+    gtk_grid_attach(GTK_GRID(chat_grid), highentry4, 0, 3, 1, 1);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highvbox), hbox);
+    highcheck4 = gtk_check_button_new_with_label(_("Active"));
+    gtk_widget_set_name(GTK_WIDGET(highcheck4), "highcheck4");
+    gtk_grid_attach(GTK_GRID(chat_grid), highcheck4, 1, 3, 1, 1);
+
     highentry5 = gtk_entry_new();
+    gtk_widget_set_name(GTK_WIDGET(highentry5), "highentry5");
     gtk_widget_set_size_request(highentry5, 60, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), highentry5, FALSE, FALSE, 0);
-    highcheck5 = gtk_check_button_new();
-    gtk_box_pack_start(GTK_BOX(hbox), highcheck5, FALSE, FALSE, 0);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(highentry5), _("Color 5"));
+    gtk_grid_attach(GTK_GRID(chat_grid), highentry5, 0, 4, 1, 1);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highvbox), hbox);
+    highcheck5 = gtk_check_button_new_with_label(_("Active"));
+    gtk_widget_set_name(GTK_WIDGET(highcheck5), "highcheck5");
+    gtk_grid_attach(GTK_GRID(chat_grid), highcheck5, 1, 4, 1, 1);
+
     highentry6 = gtk_entry_new();
+    gtk_widget_set_name(GTK_WIDGET(highentry6), "highentry6");
     gtk_widget_set_size_request(highentry6, 60, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), highentry6, FALSE, FALSE, 0);
-    highcheck6 = gtk_check_button_new();
-    gtk_box_pack_start(GTK_BOX(hbox), highcheck6, FALSE, FALSE, 0);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(highentry6), _("Color 6"));
+    gtk_grid_attach(GTK_GRID(chat_grid), highentry6, 0, 5, 1, 1);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highvbox), hbox);
+    highcheck6 = gtk_check_button_new_with_label(_("Active"));
+    gtk_widget_set_name(GTK_WIDGET(highcheck6), "highcheck6");
+    gtk_grid_attach(GTK_GRID(chat_grid), highcheck6, 1, 5, 1, 1);
+
     highentry7 = gtk_entry_new();
+    gtk_widget_set_name(GTK_WIDGET(highentry7), "highentry7");
     gtk_widget_set_size_request(highentry7, 60, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), highentry7, FALSE, FALSE, 0);
-    highcheck7 = gtk_check_button_new();
-    gtk_box_pack_start(GTK_BOX(hbox), highcheck7, FALSE, FALSE, 0);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(highentry7), _("Color 7"));
+    gtk_grid_attach(GTK_GRID(chat_grid), highentry7, 0, 6, 1, 1);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highvbox), hbox);
+    highcheck7 = gtk_check_button_new_with_label(_("Active"));
+    gtk_widget_set_name(GTK_WIDGET(highcheck7), "highcheck7");
+    gtk_grid_attach(GTK_GRID(chat_grid), highcheck7, 1, 6, 1, 1);
+
     highentry8 = gtk_entry_new();
+    gtk_widget_set_name(GTK_WIDGET(highentry8), "highentry8");
     gtk_widget_set_size_request(highentry8, 60, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), highentry8, FALSE, FALSE, 0);
-    highcheck8 = gtk_check_button_new();
-    gtk_box_pack_start(GTK_BOX(hbox), highcheck8, FALSE, FALSE, 0);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(highentry8), _("Color 8"));
+    gtk_grid_attach(GTK_GRID(chat_grid), highentry8, 0, 7, 1, 1);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(highvbox), hbox);
+    highcheck8 = gtk_check_button_new_with_label(_("Active"));
+    gtk_widget_set_name(GTK_WIDGET(highcheck8), "highcheck8");
+    gtk_grid_attach(GTK_GRID(chat_grid), highcheck8, 1, 7, 1, 1);
+
     soundcheck = gtk_check_button_new_with_label(_("Sound"));
-    gtk_box_pack_start(GTK_BOX(hbox), soundcheck, FALSE, FALSE, 0);
+    gtk_widget_set_name(GTK_WIDGET(soundcheck), "soundcheck");
+    gtk_grid_attach(GTK_GRID(chat_grid), soundcheck, 1, 8, 1, 1);
 
     key_toggle = gtk_accel_group_new();
     gtk_window_add_accel_group(GTK_WINDOW(gui->window), key_toggle);
@@ -736,7 +802,8 @@ create_mainwindow(void)
     g_object_set_data(G_OBJECT(gui->window), "highentry7", highentry7);
     g_object_set_data(G_OBJECT(gui->window), "highentry8", highentry8);
     g_object_set_data(G_OBJECT(gui->window), "highframe", highframe);
-    g_object_set_data(G_OBJECT(gui->window), "fvbox", fvbox);
+//    g_object_set_data(G_OBJECT(gui->window), "fvbox", fvbox);
+    g_object_set_data(G_OBJECT(gui->window), "func_grid", func_grid);
     g_object_set_data(G_OBJECT(gui->window), "f1button", f1button);
     g_object_set_data(G_OBJECT(gui->window), "f2button", f2button);
     g_object_set_data(G_OBJECT(gui->window), "f3button", f3button);
@@ -950,20 +1017,20 @@ void
 on_fkeys_activate(GtkAction *action,
                   gpointer   user_data)
 {
-    GtkWidget *fkeysmenu, *fvbox;;
+    GtkWidget *fkeysmenu, *func_grid;;
     gboolean state;
 
     fkeysmenu = gtk_ui_manager_get_widget
                 (gui->ui_manager, "/MainMenu/SettingsMenu/Keybar");
     state = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(fkeysmenu));
-    fvbox = g_object_get_data(G_OBJECT(gui->window), "fvbox");
+    func_grid = g_object_get_data(G_OBJECT(gui->window), "func_grid");
 
     if (state) {
         preferences.fbox = 1;
-        gtk_widget_show(fvbox);
+        gtk_widget_show(func_grid);
     } else {
         preferences.fbox = 0;
-        gtk_widget_hide(fvbox);
+        gtk_widget_hide(func_grid);
     }
 }
 
@@ -1257,10 +1324,15 @@ on_fbutton_press(GtkButton      *button,
     gint response;
 
     if (event->button == 3) {
-        editdialog = gtk_dialog_new_with_buttons(_("xdx - edit function key"),
-                     GTK_WINDOW(gui->window), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
-        editvbox = gtk_vbox_new(TRUE, 0);
+        editdialog = gtk_dialog_new_with_buttons(_("Xdx - Edit function key"),
+                                                 GTK_WINDOW(gui->window),
+                                                 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                 _("Cancel"),
+                                                 GTK_RESPONSE_CANCEL,
+                                                 _("OK"),
+                                                 GTK_RESPONSE_OK,
+                                                 NULL);
+        editvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
         /* This function returns a pointer to the dialog's content area
          * as setting the member directly as in (GTK_DIALOG(editdialog)->vbox

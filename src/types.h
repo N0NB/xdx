@@ -33,6 +33,7 @@ enum {
     TIME_COLUMN,
     INFO_COLUMN,
     COUNTRY_COLUMN,
+    RGBA_COLUMN,
     N_COLUMNS
 };
 
