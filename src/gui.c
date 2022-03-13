@@ -477,7 +477,6 @@ create_mainwindow(void)
     gtk_text_view_set_editable(GTK_TEXT_VIEW(maintext), FALSE);
 
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maintext));
-    gtk_widget_set_name(GTK_WIDGET(buffer), "buffer");
     gtk_text_buffer_create_tag(buffer, "url", "foreground", "blue",
                                "underline", PANGO_UNDERLINE_SINGLE, NULL);
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maintext), GTK_WRAP_WORD);
@@ -615,7 +614,8 @@ create_mainwindow(void)
     gtk_widget_add_accelerator(highentry7, "grab-focus", grab_focus, GDK_KEY_7, GDK_MOD1_MASK, 0);
     gtk_widget_add_accelerator(highentry8, "grab-focus", grab_focus, GDK_KEY_8, GDK_MOD1_MASK, 0);
 
-    vpaned = gtk_vpaned_new();
+    vpaned = gtk_paned_new(GTK_ORIENTATION_VERTICAL);
+    gtk_widget_set_name(GTK_WIDGET(vpaned), "vpaned");
     gtk_paned_add1(GTK_PANED(vpaned), clistscrolledwindow);
     gtk_paned_add2(GTK_PANED(vpaned), chathbox);
     gtk_box_pack_start(GTK_BOX(mainvbox), vpaned, TRUE, TRUE, 0);
@@ -658,15 +658,19 @@ create_mainwindow(void)
     gtk_widget_set_tooltip_text(f8button, _("Right click to edit"));
 
     mainentry = gtk_text_view_new();
+    gtk_widget_set_name(GTK_WIDGET(mainentry), "mainentry");
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(mainentry), GTK_WRAP_WORD);
+
     frame = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(mainvbox), frame, FALSE, TRUE, 0);
     gtk_container_add(GTK_CONTAINER(frame), mainentry);
     gtk_widget_add_accelerator(mainentry, "grab-focus", grab_focus, GDK_KEY_0, GDK_MOD1_MASK, 0);
 
     /* height of the frame is 2 times font size */
-    font_description = pango_font_description_copy
-                       (gtk_widget_get_style(GTK_WIDGET(mainentry))->font_desc);
+    font_description = pango_context_get_font_description(
+                            gtk_widget_get_pango_context(
+                                GTK_WIDGET(mainentry)));
+
     pango_size = pango_font_description_get_size(font_description);
     gtk_widget_set_size_request(frame, -1, 4 * PANGO_PIXELS(pango_size));
 
