@@ -171,8 +171,13 @@ clresolve(servertype *cluster)
     logconnection(msg);
     g_string_free(msg, TRUE);
 
-    menu_set_sensitive(gui->ui_manager, "/MainMenu/HostMenu/Open", FALSE);
-    menu_set_sensitive(gui->ui_manager, "/MainMenu/HostMenu/Close", TRUE);
+    gtk_widget_set_sensitive(GTK_WIDGET(g_object_get_data(G_OBJECT(gui->window),
+                                                          "close_item")),
+                             FALSE);
+
+    gtk_widget_set_sensitive(GTK_WIDGET(g_object_get_data(G_OBJECT(gui->window),
+                                                          "close_item")),
+                             TRUE);
 
     cluster->rxchannel = g_io_channel_unix_new(cluster->sockethandle);
     g_io_channel_set_flags(cluster->rxchannel, G_IO_FLAG_NONBLOCK, &err);
@@ -212,8 +217,13 @@ cldisconnect(GString    *msg,
 
     if (msg) updatestatusbar(msg, timeout);
 
-    menu_set_sensitive(gui->ui_manager, "/MainMenu/HostMenu/Open", TRUE);
-    menu_set_sensitive(gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
+    gtk_widget_set_sensitive(GTK_WIDGET(g_object_get_data(G_OBJECT(gui->window),
+                                                          "open_item")),
+                             TRUE);
+
+    gtk_widget_set_sensitive(GTK_WIDGET(g_object_get_data(G_OBJECT(gui->window),
+                                                          "close_item")),
+                             FALSE);
 }
 
 

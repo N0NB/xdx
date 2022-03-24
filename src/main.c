@@ -74,7 +74,7 @@ int
 main(int argc, char *argv[])
 {
     GtkWidget *treeview, *maintext, *vpaned, *sidemenu, *reconnectmenu,
-              *highframe, *fkeysmenu, *fvbox, *func_grid,
+              *highframe, *fkeysmenu, *func_grid,
               *highcheck1, *highcheck2, *highcheck3, *highcheck4, *highcheck5,
               *highcheck6, *highcheck7, *highcheck8, *soundcheck,
               *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
@@ -502,44 +502,45 @@ main(int argc, char *argv[])
     gtk_paned_set_position(GTK_PANED(vpaned), preferences.handlebarpos);
 
     func_grid = g_object_get_data(G_OBJECT(gui->window), "func_grid");
-
-    fkeysmenu = gtk_ui_manager_get_widget
-                (gui->ui_manager, "/MainMenu/SettingsMenu/Keybar");
+    fkeysmenu = g_object_get_data(G_OBJECT(gui->window), "keybar_item");
 
     if (preferences.fbox == 0) {
         gtk_widget_hide(func_grid);
-        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(fkeysmenu), FALSE);
+        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(fkeysmenu),
+                                       FALSE);
     } else {
         gtk_widget_show(func_grid);
-        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(fkeysmenu), TRUE);
+        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(fkeysmenu),
+                                       TRUE);
     }
 
     highframe = g_object_get_data(G_OBJECT(gui->window), "highframe");
-    sidemenu = gtk_ui_manager_get_widget
-               (gui->ui_manager, "/MainMenu/SettingsMenu/Sidebar");
+    sidemenu = g_object_get_data(G_OBJECT(gui->window), "sidebar_item");
 
     if (preferences.sidebar == 0) {
         gtk_widget_hide(highframe);
-        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(sidemenu), FALSE);
+        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(sidemenu),
+                                       FALSE);
     } else {
         gtk_widget_show(highframe);
-        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(sidemenu), TRUE);
+        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(sidemenu),
+                                       TRUE);
     }
 
-    reconnectmenu = gtk_ui_manager_get_widget
-                    (gui->ui_manager, "/MainMenu/SettingsMenu/Reconnect");
+    reconnectmenu = g_object_get_data(G_OBJECT(gui->window), "reconnect_item");
 
-    if (preferences.reconnect == 0)
+    if (preferences.reconnect == 0) {
         gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(reconnectmenu),
                                        FALSE);
-    else
+    } else {
         gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(reconnectmenu),
                                        TRUE);
+    }
 
-    /* do not translate */
-    menu_set_sensitive(gui->ui_manager,
-                       "/MainMenu/HostMenu/Close",
-                       FALSE);
+    gtk_widget_set_sensitive(GTK_WIDGET(
+                             g_object_get_data(G_OBJECT(gui->window),
+                                                        "close_item")),
+                             FALSE);
 
     g_string_printf(greeting, _("Welcome to %s"), PACKAGE);
     updatestatusbar(greeting, FALSE);

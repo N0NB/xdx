@@ -67,7 +67,8 @@ on_open_activate(GtkMenuItem    *menuitem,
                  gpointer        user_data)
 {
     GtkWidget *opendialog, *hostnamecombo, *portcombo, *hbox, *vbox, *stock,
-              *grid, *hostlabel, *portlabel, *mainentry, *hnc_child, *pc_child;
+              *grid, *hostlabel, *portlabel, *mainentry, *hnc_child, *pc_child,
+              *open_menu, *close_menu;
     gint i, num, response;
     GList *node;
     GValue spacing = G_VALUE_INIT;
@@ -105,6 +106,9 @@ on_open_activate(GtkMenuItem    *menuitem,
     hostlabel = gtk_label_new_with_mnemonic(_("_Hostname"));
     gtk_grid_attach(GTK_GRID(grid), hostlabel, 0, 0, 1, 1);
     hostnamecombo = gtk_combo_box_text_new_with_entry();
+
+    open_menu = g_object_get_data(G_OBJECT(gui->window), "open_item");
+    close_menu= g_object_get_data(G_OBJECT(gui->window), "close_item");
 
     if (gui->hostnamehistory) {
         num = g_list_length(gui->hostnamehistory);
@@ -197,8 +201,8 @@ on_open_activate(GtkMenuItem    *menuitem,
             gui->porthistory = g_list_remove(gui->porthistory,
                                              g_list_last(gui->porthistory)->data);
 
-        menu_set_sensitive(gui->ui_manager, "/MainMenu/HostMenu/Open", FALSE);
-        menu_set_sensitive(gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
+        gtk_widget_set_sensitive(GTK_WIDGET(open_menu), FALSE);
+        gtk_widget_set_sensitive(GTK_WIDGET(close_menu), FALSE);
 
         result = clresolve(cluster);
     }
@@ -209,8 +213,8 @@ on_open_activate(GtkMenuItem    *menuitem,
     gtk_widget_grab_focus(GTK_WIDGET(mainentry));
 
     if (!result) {
-        menu_set_sensitive(gui->ui_manager, "/MainMenu/HostMenu/Open", TRUE);
-        menu_set_sensitive(gui->ui_manager, "/MainMenu/HostMenu/Close", FALSE);
+        gtk_widget_set_sensitive(GTK_WIDGET(open_menu), TRUE);
+        gtk_widget_set_sensitive(GTK_WIDGET(close_menu), FALSE);
     }
 
 }

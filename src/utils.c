@@ -112,21 +112,6 @@ updatestatusbar(GString     *statusmessage,
 }
 
 
-/*
- * enable/disable menus
- */
-void
-menu_set_sensitive(GtkUIManager     *uim,
-                   const gchar      *path,
-                   gboolean          sens)
-{
-    GtkAction *a;
-
-    a = gtk_ui_manager_get_action(uim, path);
-    gtk_action_set_sensitive(a, sens);
-}
-
-
 static void
 shellcommand(gchar *command)
 {
