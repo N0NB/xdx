@@ -124,148 +124,9 @@ get_main_menu(void)
               *keybar_item, *reconnect_item, *sidebar_item, *separator_item, *preferences_item,
               *manual_item, *about_item;
 
-//    static GtkActionEntry entries[] = {
-//        {
-//     "ProgramMenu",
-//     NULL,
-//     N_("_Program")
-//        },
-//        {
-//     "HostMenu",
-//     NULL,
-//     N_("_Host")
-//        },
-//        {
-//     "SettingsMenu",
-//     NULL,
-//     N_("_Settings")
-//        },
-//        {
-//     "HelpMenu",
-//     NULL,
-//     N_("H_elp")
-//        },
-//        {
-//     "HighMenu",
-//     NULL,
-//     N_("Highlights")
-//        },
-//        {
-//            "Quit",
-//     GTK_STOCK_QUIT,
-//     N_("Quit"),
-//            "<control>Q",
-//     "Quit Program",
-//     G_CALLBACK(on_exit_dialog)
-//        },
-//        {
-//            "Open",
-//     GTK_STOCK_CONNECT,
-//     N_("Connect..."),
-//            "<control>O",
-//     "Open Connection",
-//     G_CALLBACK(on_open_activate)
-//        },
-//        {
-//            "Close",
-//     GTK_STOCK_DISCONNECT,
-//     N_("Disconnect"),
-//            "<control>C",
-//     "Close Connection",
-//     G_CALLBACK(on_close_activate)
-//        },
-//        {
-//            "ShowLog",
-//     GTK_STOCK_OPEN,
-//     N_("Connection Log"),
-//            "<control>L",
-//     "Show connection log",
-//     G_CALLBACK(on_log_activate)
-//        },
-//        {
-//            "Preferences",
-//     GTK_STOCK_PREFERENCES,
-//     N_("Preferences..."),
-//            "<control>P",
-//     "Settings for Xdx",
-//     G_CALLBACK(on_settings_activate)
-//        },
-//        {
-//            "Manual",
-//     GTK_STOCK_HELP,
-//     N_("Manual"),
-//            "<control>H",
-//     "Read the manual",
-//     G_CALLBACK(on_manual_activate)
-//        },
-//        {
-//            "About",
-//     GTK_STOCK_HELP,
-//     N_("About"),
-//            "<control>A",
-//     "About Xdx",
-//     G_CALLBACK(on_about_activate)
-//        },
-//    };
-//
-//
-//    static GtkToggleActionEntry toggle_entries[] = {
-//        {
-//            "Keybar",
-//     NULL,
-//     N_("Function keys bar"),
-//     "<control>K",
-//     "Function keys on/off",
-//            G_CALLBACK(on_fkeys_activate)
-//        },
-//        {
-//            "Reconnect",
-//     NULL,
-//     N_("Auto Reconnect"),
-//     "<control>R",
-//     "Auto Reconnect on/off",
-//            G_CALLBACK(on_reconnect_activate)
-//        },
-//        {
-//            "Sidebar",
-//     NULL,
-//     N_("Chat sidebar"),
-//     "<control>S",
-//     "Chat sidebar on/off",
-//            G_CALLBACK(on_sidebar_activate)
-//        },
-//    };
-//
-//    static const char *ui_description =
-//        "<ui>"
-//        "  <menubar name='MainMenu'>"
-//        "    <menu action='ProgramMenu'>"
-//        "      <menuitem action='ShowLog'/>"
-//        "      <menuitem action='Quit'/>"
-//        "    </menu>"
-//        "    <menu action='HostMenu'>"
-//        "      <menuitem action='Open'/>"
-//        "      <menuitem action='Close'/>"
-//        "    </menu>"
-//        "    <menu action='SettingsMenu'>"
-//        "      <menuitem action='Keybar'/>"
-//        "      <menuitem action='Reconnect'/>"
-//        "      <menuitem action='Sidebar'/>"
-//        "      <separator name='sep2'/>"
-//        "      <menuitem action='Preferences'/>"
-//        "    </menu>"
-//        "    <menu action='HelpMenu'>"
-//        "      <menuitem action='Manual'/>"
-//        "      <menuitem action='About'/>"
-//        "    </menu>"
-//        "  </menubar>"
-//        "</ui>";
-
     /* Main menu bar.  Always shown. */
     main_menu = gtk_menu_bar_new();
     gtk_widget_set_name(GTK_WIDGET(main_menu), "main_menu");
-
-    accel_group = gtk_accel_group_new();
 
     program_item = gtk_menu_item_new_with_mnemonic(_("_Program"));
     host_item = gtk_menu_item_new_with_mnemonic(_("_Host"));
@@ -379,36 +240,73 @@ get_main_menu(void)
     g_signal_connect(G_OBJECT(about_item), "activate",
                      G_CALLBACK(on_about_activate), NULL);
 
-//    gui->action_group = gtk_action_group_new("MenuActions");
-//
-//    gtk_action_group_set_translation_domain(gui->action_group, PACKAGE);
-//
-//    gtk_action_group_add_actions(gui->action_group,
-//                                 entries,
-//                                 G_N_ELEMENTS(entries),
-//                                 window);
-//
-//    gtk_action_group_add_toggle_actions(gui->action_group,
-//                                        toggle_entries,
-//                                        G_N_ELEMENTS(toggle_entries),
-//                                        window);
-//
-    gtk_window_add_accel_group(GTK_WINDOW(gui->window), accel_group);
-//
-//    gui->ui_manager = gtk_ui_manager_new();
-//
-//    gtk_ui_manager_insert_action_group(gui->ui_manager, gui->action_group, 0);
-//
-//    accel_group = gtk_ui_manager_get_accel_group(gui->ui_manager);
-//
-//    gtk_window_add_accel_group(GTK_WINDOW(window), accel_group);
-//    gtk_ui_manager_add_ui_from_string(gui->ui_manager,
-//                                      ui_description,
-//                                      -1,
-//                                      NULL);
-//
-//    *menubar = gtk_ui_manager_get_widget(gui->ui_manager, "/MainMenu");
     g_object_set_data(G_OBJECT(gui->window), "main_menu", main_menu);
+
+    /* Submenu item accelerators.  The main menubar items automatically
+     * have the Alt-key accelerators implemented.
+     */
+    accel_group = gtk_accel_group_new();
+    gtk_window_add_accel_group(GTK_WINDOW(gui->window), accel_group);
+    gtk_widget_add_accelerator(showlog_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_L,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(quit_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_Q,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(open_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_O,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(close_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_C,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(keybar_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_K,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(reconnect_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_R,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(sidebar_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_S,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(preferences_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_P,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(manual_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_H,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(about_item,
+                               "activate",
+                               accel_group,
+                               GDK_KEY_A,
+                               GDK_CONTROL_MASK,
+                               GTK_ACCEL_VISIBLE);
 }
 
 
@@ -719,6 +617,7 @@ create_mainwindow(void)
     gtk_widget_set_name(GTK_WIDGET(soundcheck), "soundcheck");
     gtk_grid_attach(GTK_GRID(chat_grid), soundcheck, 1, 8, 1, 1);
 
+    /* Ctrl-1 through Ctrl-8 and Ctrl-0 */
     key_toggle = gtk_accel_group_new();
     gtk_window_add_accel_group(GTK_WINDOW(gui->window), key_toggle);
     gtk_widget_add_accelerator(highcheck1, "clicked", key_toggle, GDK_KEY_1, GDK_CONTROL_MASK, 0);
@@ -731,6 +630,7 @@ create_mainwindow(void)
     gtk_widget_add_accelerator(highcheck8, "clicked", key_toggle, GDK_KEY_8, GDK_CONTROL_MASK, 0);
     gtk_widget_add_accelerator(soundcheck, "clicked", key_toggle, GDK_KEY_0, GDK_CONTROL_MASK, 0);
 
+    /* Alt-1 through Alt-8 */
     grab_focus = gtk_accel_group_new();
     gtk_window_add_accel_group(GTK_WINDOW(gui->window), grab_focus);
     gtk_widget_add_accelerator(highentry1, "grab-focus", grab_focus, GDK_KEY_1, GDK_MOD1_MASK, 0);
@@ -792,6 +692,8 @@ create_mainwindow(void)
     frame = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(mainvbox), frame, FALSE, TRUE, 0);
     gtk_container_add(GTK_CONTAINER(frame), mainentry);
+
+    /* Alt-0 */
     gtk_widget_add_accelerator(mainentry, "grab-focus", grab_focus, GDK_KEY_0, GDK_MOD1_MASK, 0);
 
     /* height of the frame is 2 times font size */
@@ -934,7 +836,6 @@ create_mainwindow(void)
     g_object_set_data(G_OBJECT(gui->window), "highentry7", highentry7);
     g_object_set_data(G_OBJECT(gui->window), "highentry8", highentry8);
     g_object_set_data(G_OBJECT(gui->window), "highframe", highframe);
-//    g_object_set_data(G_OBJECT(gui->window), "fvbox", fvbox);
     g_object_set_data(G_OBJECT(gui->window), "func_grid", func_grid);
     g_object_set_data(G_OBJECT(gui->window), "f1button", f1button);
     g_object_set_data(G_OBJECT(gui->window), "f2button", f2button);
