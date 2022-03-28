@@ -431,7 +431,7 @@ create_mainwindow(void)
     boldrenderer = gtk_cell_renderer_text_new();
     greyrenderer = gtk_cell_renderer_text_new();
 
-    g_object_set(G_OBJECT(boldrenderer), "weight", "bold", NULL);
+    g_object_set(G_OBJECT(boldrenderer), "weight", PANGO_WEIGHT_BOLD, NULL);
 
     column =
         gtk_tree_view_column_new_with_attributes(_("Spotter"), renderer, "text",

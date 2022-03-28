@@ -192,16 +192,12 @@ main(int argc, char *argv[])
                                "foreground-rgba",
                                &preferences.promptcolor,
                                NULL);
-
-    /* Cast PANGO_WEIGHT_BOLD to int to quell runtime warning:
-     * value "<integer>" of type 'gint' is invalid or out of range for property 'weight' of type 'gint'
-     */
     gtk_text_buffer_create_tag(buffer,
                                gui->calltagname,
                                "foreground-rgba",
                                &preferences.promptcolor,
                                "weight",
-                               (int)PANGO_WEIGHT_BOLD,
+                               PANGO_WEIGHT_BOLD,
                                NULL);
 
     gtk_text_buffer_create_tag(buffer,
