@@ -997,6 +997,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
         buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maintext));
 //    table = gtk_text_buffer_get_tag_table (buffer);
 
+        /* User selected colors for user defined word highlighting. */
         gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton1), &color);
 
         if (! gdk_rgba_equal(&color, &preferences.highcolor1)) {
@@ -1004,8 +1005,8 @@ on_settings_activate(GtkMenuItem    *menuitem,
             gui->high1tagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->high1tagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.highcolor1,
                                        NULL);
             highentry1 = g_object_get_data(G_OBJECT(gui->window), "highentry1");
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -1023,8 +1024,8 @@ on_settings_activate(GtkMenuItem    *menuitem,
             gui->high2tagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->high2tagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.highcolor2,
                                        NULL);
             highentry2 = g_object_get_data(G_OBJECT(gui->window), "highentry2");
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -1061,8 +1062,8 @@ on_settings_activate(GtkMenuItem    *menuitem,
             gui->high4tagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->high4tagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.highcolor4,
                                        NULL);
             highentry4 = g_object_get_data(G_OBJECT(gui->window), "highentry4");
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -1080,8 +1081,8 @@ on_settings_activate(GtkMenuItem    *menuitem,
             gui->high5tagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->high5tagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.highcolor5,
                                        NULL);
             highentry5 = g_object_get_data(G_OBJECT(gui->window), "highentry5");
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -1099,8 +1100,8 @@ on_settings_activate(GtkMenuItem    *menuitem,
             gui->high6tagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->high6tagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.highcolor6,
                                        NULL);
             highentry6 = g_object_get_data(G_OBJECT(gui->window), "highentry6");
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -1118,8 +1119,8 @@ on_settings_activate(GtkMenuItem    *menuitem,
             gui->high7tagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->high7tagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.highcolor7,
                                        NULL);
             highentry7 = g_object_get_data(G_OBJECT(gui->window), "highentry7");
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -1137,8 +1138,8 @@ on_settings_activate(GtkMenuItem    *menuitem,
             gui->high8tagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->high8tagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.highcolor8,
                                        NULL);
             highentry8 = g_object_get_data(G_OBJECT(gui->window), "highentry8");
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -1149,24 +1150,27 @@ on_settings_activate(GtkMenuItem    *menuitem,
             preferences.highcolor8 = color;
         }
 
-        /* colors frame */
+        /* User selected colors for Xdx defined string highlighting. */
         gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(promptcolorbutton), &color);
 
         if (! gdk_rgba_equal(&color, &preferences.promptcolor)) {
-            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->prompttagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->prompttagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.promptcolor,
                                        NULL);
             gui->calltagname = g_strdup_printf("%d", rand());
+
+            /* Cast PANGO_WEIGHT_BOLD to int to quell runtime warning:
+             * value "<integer>" of type 'gint' is invalid or out of range for property 'weight' of type 'gint'
+             */
             gtk_text_buffer_create_tag(buffer,
                                        gui->calltagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.promptcolor,
                                        "weight",
-                                       PANGO_WEIGHT_BOLD,
+                                       (int)PANGO_WEIGHT_BOLD,
                                        NULL);
             preferences.promptcolor = color;
         }
@@ -1174,12 +1178,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
         gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(sentcolorbutton), &color);
 
         if (! gdk_rgba_equal(&color, &preferences.sentcolor)) {
-            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->senttagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->senttagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.sentcolor,
                                        NULL);
             preferences.sentcolor = color;
         }
@@ -1187,12 +1190,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
         gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(wwvcolorbutton), &color);
 
         if (! gdk_rgba_equal(&color, &preferences.wwvcolor)) {
-            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->wwvtagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->wwvtagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.wwvcolor,
                                        NULL);
             preferences.wwvcolor = color;
         }
@@ -1200,12 +1202,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
         gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(wxcolorbutton), &color);
 
         if (! gdk_rgba_equal(&color, &preferences.wxcolor)) {
-            str = g_strdup_printf("%s", gdk_rgba_to_string(&color));
             gui->wxtagname = g_strdup_printf("%d", rand());
             gtk_text_buffer_create_tag(buffer,
                                        gui->wxtagname,
-                                       "foreground",
-                                       str,
+                                       "foreground-rgba",
+                                       &preferences.wxcolor,
                                        NULL);
             preferences.wxcolor = color;
         }

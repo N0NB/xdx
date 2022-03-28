@@ -82,7 +82,7 @@ main(int argc, char *argv[])
               *f1button, *f2button, *f3button, *f4button, *f5button, *f6button,
               *f7button, *f8button;
     GtkTreeViewColumn *column;
-    gchar **wsplit, *colorstr, *str;
+    gchar **wsplit, *str;
     GString *greeting = g_string_new("");
     PangoFontDescription *font_description;
     gint pango_size;
@@ -131,68 +131,53 @@ main(int argc, char *argv[])
     gui->high7tagname = g_strdup("highcolor7");
     gui->high8tagname = g_strdup("highcolor8");
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.highcolor1));
+    /* User selected colors for user defined word highlighting. */
     gtk_text_buffer_create_tag(buffer,
                                gui->high1tagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.highcolor1,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.highcolor2));
     gtk_text_buffer_create_tag(buffer,
                                gui->high2tagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.highcolor2,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.highcolor3));
     gtk_text_buffer_create_tag(buffer,
                                gui->high3tagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.highcolor3,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.highcolor4));
     gtk_text_buffer_create_tag(buffer,
                                gui->high4tagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.highcolor4,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.highcolor5));
     gtk_text_buffer_create_tag(buffer,
                                gui->high5tagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.highcolor5,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.highcolor6));
     gtk_text_buffer_create_tag(buffer,
                                gui->high6tagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.highcolor6,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.highcolor7));
     gtk_text_buffer_create_tag(buffer,
                                gui->high7tagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.highcolor7,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.highcolor8));
     gtk_text_buffer_create_tag(buffer,
                                gui->high8tagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.highcolor8,
                                NULL);
 
     gui->prompttagname = g_strdup("prompt");
@@ -201,46 +186,41 @@ main(int argc, char *argv[])
     gui->senttagname = g_strdup("sent");
     gui->wxtagname = g_strdup("wx");
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.promptcolor));
+    /* User selected colors for Xdx defined string highlighting. */
     gtk_text_buffer_create_tag(buffer,
                                gui->prompttagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.promptcolor,
                                NULL);
+
+    /* Cast PANGO_WEIGHT_BOLD to int to quell runtime warning:
+     * value "<integer>" of type 'gint' is invalid or out of range for property 'weight' of type 'gint'
+     */
     gtk_text_buffer_create_tag(buffer,
                                gui->calltagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.promptcolor,
                                "weight",
-                               PANGO_WEIGHT_BOLD,
+                               (int)PANGO_WEIGHT_BOLD,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.wwvcolor));
     gtk_text_buffer_create_tag(buffer,
                                gui->wwvtagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.wwvcolor,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.wxcolor));
     gtk_text_buffer_create_tag(buffer,
                                gui->wxtagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.wxcolor,
                                NULL);
 
-    colorstr = g_strdup_printf("%s",
-                               gdk_rgba_to_string(&preferences.sentcolor));
     gtk_text_buffer_create_tag(buffer,
                                gui->senttagname,
                                "foreground-rgba",
-                               colorstr,
+                               &preferences.sentcolor,
                                NULL);
-
-    g_free(colorstr);
 
     highcheck1 = g_object_get_data(G_OBJECT(gui->window), "highcheck1");
     highcheck2 = g_object_get_data(G_OBJECT(gui->window), "highcheck2");
