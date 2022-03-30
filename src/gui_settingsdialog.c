@@ -248,7 +248,6 @@ on_settings_activate(GtkMenuItem    *menuitem,
     gboolean state;
     gchar *str;
     GtkTextBuffer *buffer;
-//  GtkTextTagTable *table;
     GdkRGBA color;
 
     gtk_widget_set_sensitive(gui->window, 0);
@@ -995,7 +994,6 @@ on_settings_activate(GtkMenuItem    *menuitem,
 
         /* highlights frame*/
         buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maintext));
-//    table = gtk_text_buffer_get_tag_table (buffer);
 
         /* User selected colors for user defined word highlighting. */
         gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(colorbutton1), &color);

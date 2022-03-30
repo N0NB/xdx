@@ -27,7 +27,6 @@
 
 typedef struct guitype {
     GtkWidget       *window;
-    GtkActionGroup  *action_group;
     GList           *hostnamehistory;
     GList           *porthistory;
     GList           *txhistory;

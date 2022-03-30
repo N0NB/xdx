@@ -85,7 +85,6 @@ new_gui(void)
 {
     guitype *gui = g_new0(guitype, 1);
     gui->window = NULL;
-    gui->action_group = NULL;
     gui->hostnamehistory = NULL;
     gui->porthistory = NULL;
     gui->txhistory = NULL;
@@ -947,8 +946,6 @@ cleanup(void)
 {
     GList *link;
     servertype *cluster;
-
-    gui->action_group = NULL;
 
     cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
 

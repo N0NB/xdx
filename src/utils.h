@@ -27,9 +27,6 @@
 
 void add_pixmap_directory(const gchar *directory);
 void updatestatusbar(GString *statusmessage, gboolean timeout);
-void menu_set_sensitive(GtkUIManager    *uim,
-                        const gchar     *path,
-                        gboolean         sens);
 
 gboolean openurl(const char *url);
 gboolean openmail(const char *url);
