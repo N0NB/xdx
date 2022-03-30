@@ -92,8 +92,8 @@ on_about_activate(GtkMenuItem   *menuitem,
     };
 
     gchar *license =
-        "Copyright (C) 2002 - 2007 Joop Stakenborg <pg4i@amsat.org>\n"
-        "Copyright (C) 2014 Nate Bargmann <n0nb@n0nb.us>\n"
+        "Copyright (C) 2002-2007 Joop Stakenborg <pg4i@amsat.org>\n"
+        "Copyright (C) 2014-2022 Nate Bargmann <n0nb@n0nb.us>\n"
         "\n"
         "This program is free software; you can redistribute it and/or modify\n"
         "it under the terms of the GNU General Public License as published by\n"
