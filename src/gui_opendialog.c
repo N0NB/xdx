@@ -71,7 +71,7 @@ on_open_activate(GtkMenuItem    *menuitem,
               *open_menu, *close_menu;
     gint i, num, response;
     GList *node;
-    GValue spacing = G_VALUE_INIT;
+    extern GValue grid_spacing;
     gboolean result = FALSE;
     servertype *cluster;
     gchar *s;
@@ -96,11 +96,9 @@ on_open_activate(GtkMenuItem    *menuitem,
                                  GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start(GTK_BOX(hbox), stock, FALSE, FALSE, 0);
 
-    g_value_init(&spacing, G_TYPE_INT);
-    g_value_set_int(&spacing, 8);
     grid = gtk_grid_new();
-    g_object_set_property(G_OBJECT(grid), "column-spacing", &spacing);
-    g_object_set_property(G_OBJECT(grid), "row-spacing", &spacing);
+    g_object_set_property(G_OBJECT(grid), "column-spacing", &grid_spacing);
+    g_object_set_property(G_OBJECT(grid), "row-spacing", &grid_spacing);
 
     gtk_box_pack_start(GTK_BOX(hbox), grid, TRUE, TRUE, 0);
     hostlabel = gtk_label_new_with_mnemonic(_("_Hostname"));
