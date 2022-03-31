@@ -86,6 +86,7 @@ on_manual_activate(GtkMenuItem *menuitem,
     gtk_text_view_set_editable(GTK_TEXT_VIEW(helptextview), FALSE);
     gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(helptextview), FALSE);
     gtk_container_add(GTK_CONTAINER(swindow), helptextview);
+
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(helptextview));
     gtk_text_buffer_get_start_iter(buffer, &iter);
 
@@ -120,6 +121,8 @@ on_manual_activate(GtkMenuItem *menuitem,
     gtk_widget_override_font(helptextview, font_desc);
 #pragma GCC diagnostic pop
     pango_font_description_free(font_desc);
+
     g_free(helpfile);
+
     gtk_widget_show_all(manualdialog);
 }
