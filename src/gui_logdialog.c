@@ -64,7 +64,7 @@ void
 on_log_activate(GtkMenuItem     *menuitem,
                 gpointer         user_data)
 {
-    GtkWidget *logdialog, *box, *vbox, *logdialog_scrolledwindow,
+    GtkWidget *logdialog, *box, *logdialog_scrolledwindow,
         *logdialog_textview;
 
     gint response;
@@ -85,24 +85,22 @@ on_log_activate(GtkMenuItem     *menuitem,
                                             GTK_RESPONSE_CLOSE,
                                             NULL);
     gtk_widget_set_size_request(logdialog, 600, 300);
-    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
-    gtk_container_set_border_width(GTK_CONTAINER(vbox), 8);
-
     box = gtk_dialog_get_content_area(GTK_DIALOG(logdialog));
-    gtk_container_add(GTK_CONTAINER(box), vbox);
 
     logdialog_scrolledwindow = gtk_scrolled_window_new(NULL, NULL);
-    gtk_box_pack_start(GTK_BOX(vbox), logdialog_scrolledwindow, TRUE, TRUE, 0);
-    gtk_scrolled_window_set_policy
-    (GTK_SCROLLED_WINDOW(logdialog_scrolledwindow),
-     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    gtk_box_pack_start(GTK_BOX(box), logdialog_scrolledwindow, TRUE, TRUE, 0);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(logdialog_scrolledwindow),
+                                   GTK_POLICY_AUTOMATIC,
+                                   GTK_POLICY_AUTOMATIC);
+
     logdialog_textview = gtk_text_view_new();
     gtk_text_view_set_editable(GTK_TEXT_VIEW(logdialog_textview), FALSE);
     gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(logdialog_textview), FALSE);
-    gtk_container_add
-    (GTK_CONTAINER(logdialog_scrolledwindow), logdialog_textview);
+    gtk_container_add(GTK_CONTAINER(logdialog_scrolledwindow),
+                                    logdialog_textview);
 
     filename = g_strdup_printf("%s/log.txt", gui->preferencesdir);
+
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(logdialog_textview));
     gtk_text_buffer_get_bounds(buffer, &start, &end);
 
@@ -121,6 +119,7 @@ on_log_activate(GtkMenuItem     *menuitem,
     }
 
     gtk_widget_show_all(logdialog);
+
     response = gtk_dialog_run(GTK_DIALOG(logdialog));
 
     if (response == GTK_RESPONSE_CANCEL) {
