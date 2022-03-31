@@ -77,6 +77,7 @@ on_open_activate(GtkMenuItem    *menuitem,
     gchar *s;
 
     gtk_widget_set_sensitive(gui->window, 0);
+
     opendialog = gtk_dialog_new_with_buttons(_("Xdx - Open connection"),
                  GTK_WINDOW(gui->window),
                  GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -86,8 +87,8 @@ on_open_activate(GtkMenuItem    *menuitem,
                  GTK_RESPONSE_OK,
                  NULL);
 
-    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 8);
-    gtk_container_set_border_width(GTK_CONTAINER(hbox), 8);
+    hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_container_set_border_width(GTK_CONTAINER(hbox), 6);
 
     vbox = gtk_dialog_get_content_area(GTK_DIALOG(opendialog));
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
@@ -99,14 +100,12 @@ on_open_activate(GtkMenuItem    *menuitem,
     grid = gtk_grid_new();
     g_object_set_property(G_OBJECT(grid), "column-spacing", &grid_spacing);
     g_object_set_property(G_OBJECT(grid), "row-spacing", &grid_spacing);
-
     gtk_box_pack_start(GTK_BOX(hbox), grid, TRUE, TRUE, 0);
-    hostlabel = gtk_label_new_with_mnemonic(_("_Hostname"));
-    gtk_grid_attach(GTK_GRID(grid), hostlabel, 0, 0, 1, 1);
-    hostnamecombo = gtk_combo_box_text_new_with_entry();
 
-    open_menu = g_object_get_data(G_OBJECT(gui->window), "open_item");
-    close_menu= g_object_get_data(G_OBJECT(gui->window), "close_item");
+    hostlabel = gtk_label_new(_("Hostname"));
+    gtk_grid_attach(GTK_GRID(grid), hostlabel, 0, 0, 1, 1);
+
+    hostnamecombo = gtk_combo_box_text_new_with_entry();
 
     if (gui->hostnamehistory) {
         num = g_list_length(gui->hostnamehistory);
@@ -118,8 +117,11 @@ on_open_activate(GtkMenuItem    *menuitem,
     }
 
     gtk_grid_attach(GTK_GRID(grid), hostnamecombo, 1, 0, 1, 1);
-    portlabel = gtk_label_new_with_mnemonic(_("_Port"));
+
+    portlabel = gtk_label_new(_("Port"));
+    gtk_widget_set_halign(GTK_WIDGET(portlabel), GTK_ALIGN_END);
     gtk_grid_attach(GTK_GRID(grid), portlabel, 0, 1, 1, 1);
+
     portcombo = gtk_combo_box_text_new_with_entry();
 
     if (gui->porthistory) {
@@ -132,13 +134,21 @@ on_open_activate(GtkMenuItem    *menuitem,
     }
 
     gtk_grid_attach(GTK_GRID(grid), portcombo, 1, 1, 1, 1);
+
     gtk_widget_show_all(hbox);
+
     gtk_widget_set_sensitive(gui->window, 0);
-    gtk_combo_box_set_active
-    (GTK_COMBO_BOX(portcombo), g_list_length(gui->porthistory) - 1);
-    gtk_combo_box_set_active
-    (GTK_COMBO_BOX(hostnamecombo), g_list_length(gui->hostnamehistory) - 1);
+
+    gtk_combo_box_set_active(GTK_COMBO_BOX(portcombo),
+                             g_list_length(gui->porthistory) - 1);
+
+    gtk_combo_box_set_active(GTK_COMBO_BOX(hostnamecombo),
+                             g_list_length(gui->hostnamehistory) - 1);
+
     response = gtk_dialog_run(GTK_DIALOG(opendialog));
+
+    open_menu = g_object_get_data(G_OBJECT(gui->window), "open_item");
+    close_menu= g_object_get_data(G_OBJECT(gui->window), "close_item");
 
     if (response == GTK_RESPONSE_OK) {
         cluster = g_object_get_data(G_OBJECT(gui->window), "cluster");
