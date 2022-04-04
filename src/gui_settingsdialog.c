@@ -199,20 +199,18 @@ on_settings_activate(GtkMenuItem    *menuitem,
               *pnotebook, *plabel1, *plabel2, *plabel3, *plabel4,
 
               *pcallsignframe, *pcallsignhbox, *pcallsignlabel, *pcallsignentry,
-              *pcallsignframelabel, *ploginframe, *ploginvbox, *pautologincheckbutton,
+              *ploginframe, *ploginvbox, *pautologincheckbutton,
               *ploginhseparator, *pcommandshbox, *pcommandslabel, *pcommandsentry,
-              *ploginframelabel,
 
               *psavingframe, *psavingvbox, *psavedxcheckbutton, *psavewwvcheckbutton,
               *psavetoallcheckbutton, *psavewxcheckbutton, *psavinglabel, *psavinghbox,
               *psavingvbox2, *psavingvbox3,
 
               *phamlibframe, *phamlibvbox, *phamlibcheckbutton, *phamlibhseparator,
-              *phamlibhbox, *priglabel, *prigentry, *phamliblabel,
+              *phamlibhbox, *priglabel, *prigentry,
 
-              *pprogframe, *pprogvbox, *pproghbox1, *pprogbrowserlabel,
-              *pprogbrowserentry, *pproghbox2, *pprogmaillabel,
-              *pprogmailentry, *pproglabel, *pproghbox3, *pprogsoundlabel,
+              *pprogframe, *pprog_grid, *pprogbrowserlabel, *pprogbrowserentry,
+              *pprogmaillabel, *pprogmailentry, *pprogsoundlabel,
               *pprogsoundentry,
 
               *pechoframe, *pechocheckbutton, *pechovbox, *pecholabel, *plivecheckbutton,
@@ -264,64 +262,94 @@ on_settings_activate(GtkMenuItem    *menuitem,
     pdialog_vbox = gtk_dialog_get_content_area(GTK_DIALOG(preferencesdialog));
 
     pnotebook = gtk_notebook_new();
+
     pvbox1 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pnotebook), pvbox1);
+
     pvbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pnotebook), pvbox2);
+
     pvbox3 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pnotebook), pvbox3);
+
     pvbox4 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(pnotebook), pvbox4);
+
     plabel1 = gtk_label_new(_("General"));
     gtk_notebook_set_tab_label(GTK_NOTEBOOK(pnotebook),
-                               gtk_notebook_get_nth_page(GTK_NOTEBOOK(pnotebook), 0), plabel1);
+                               gtk_notebook_get_nth_page(
+                                   GTK_NOTEBOOK(pnotebook), 0), plabel1);
+
     plabel2 = gtk_label_new(_("Output"));
     gtk_notebook_set_tab_label(GTK_NOTEBOOK(pnotebook),
-                               gtk_notebook_get_nth_page(GTK_NOTEBOOK(pnotebook), 1), plabel2);
+                               gtk_notebook_get_nth_page(
+                                   GTK_NOTEBOOK(pnotebook), 1), plabel2);
+
     plabel3 = gtk_label_new(_("Fonts"));
     gtk_notebook_set_tab_label(GTK_NOTEBOOK(pnotebook),
-                               gtk_notebook_get_nth_page(GTK_NOTEBOOK(pnotebook), 2), plabel3);
+                               gtk_notebook_get_nth_page(
+                                   GTK_NOTEBOOK(pnotebook), 2), plabel3);
+
     plabel4 = gtk_label_new(_("Colors"));
     gtk_notebook_set_tab_label(GTK_NOTEBOOK(pnotebook),
-                               gtk_notebook_get_nth_page(GTK_NOTEBOOK(pnotebook), 3), plabel4);
+                               gtk_notebook_get_nth_page(
+                                   GTK_NOTEBOOK(pnotebook), 3), plabel4);
     gtk_box_pack_start(GTK_BOX(pdialog_vbox), pnotebook, TRUE, TRUE, 0);
 
 
-    pcallsignframe = gtk_frame_new(NULL);
-    gtk_box_pack_start(GTK_BOX(pvbox1), pcallsignframe, TRUE, TRUE, 0);
+    /* Callsign frame */
+    pcallsignframe = gtk_frame_new(_("Callsign"));
+    gtk_widget_set_margin_start(GTK_WIDGET(pcallsignframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(pcallsignframe), 5);
+    gtk_box_pack_start(GTK_BOX(pvbox1), pcallsignframe, TRUE, TRUE, 5);
+
     pcallsignhbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(pcallsignhbox), 8);
     gtk_container_add(GTK_CONTAINER(pcallsignframe), pcallsignhbox);
+
     pcallsignlabel = gtk_label_new(_("Your callsign"));
-    gtk_box_pack_start(GTK_BOX(pcallsignhbox), pcallsignlabel, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(pcallsignhbox), pcallsignlabel, FALSE, FALSE, 5);
+
     pcallsignentry = gtk_entry_new();
-    gtk_box_pack_start(GTK_BOX(pcallsignhbox), pcallsignentry, TRUE, TRUE, 5);
     gtk_entry_set_max_length(GTK_ENTRY(pcallsignentry), 15);
+    gtk_box_pack_start(GTK_BOX(pcallsignhbox), pcallsignentry, TRUE, TRUE, 5);
 
-    ploginframe = gtk_frame_new(NULL);
-    gtk_box_pack_start(GTK_BOX(pvbox1), ploginframe, TRUE, TRUE, 0);
-    ploginvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add(GTK_CONTAINER(ploginframe), ploginvbox);
-    pautologincheckbutton = gtk_check_button_new_with_label(_("Enable autologin"));
-    gtk_box_pack_start(GTK_BOX(ploginvbox), pautologincheckbutton, FALSE, FALSE, 0);
-    ploginhseparator = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-    gtk_box_pack_start(GTK_BOX(ploginvbox), ploginhseparator, TRUE, TRUE, 0);
-
-    pcommandshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(ploginvbox), pcommandshbox, TRUE, TRUE, 0);
-    pcommandslabel = gtk_label_new(_("Commands"));
-    gtk_box_pack_start(GTK_BOX(pcommandshbox), pcommandslabel, FALSE, FALSE, 0);
-    pcommandsentry = gtk_entry_new();
-    gtk_box_pack_start(GTK_BOX(pcommandshbox), pcommandsentry, TRUE, TRUE, 5);
-    gtk_entry_set_max_length(GTK_ENTRY(pcommandsentry), 80);
-    gtk_widget_set_tooltip_text(pcommandsentry,
-                                _("Comma separated list of commands to send at login"));
     gtk_widget_set_tooltip_text(pcallsignentry,
                                 _("Callsign to be used for login"));
 
-    ploginframelabel = gtk_label_new(_("Login"));
-    gtk_frame_set_label_widget(GTK_FRAME(ploginframe), ploginframelabel);
-    pcallsignframelabel = gtk_label_new(_("Callsign"));
-    gtk_frame_set_label_widget(GTK_FRAME(pcallsignframe), pcallsignframelabel);
+    if (g_ascii_strcasecmp(preferences.callsign, "?"))
+        gtk_entry_set_text(GTK_ENTRY(pcallsignentry), preferences.callsign);
+
+
+    /* Login frame */
+    ploginframe = gtk_frame_new(_("Login"));
+    gtk_widget_set_margin_start(GTK_WIDGET(ploginframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(ploginframe), 5);
+    gtk_box_pack_start(GTK_BOX(pvbox1), ploginframe, TRUE, TRUE, 5);
+
+    ploginvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_margin_top(GTK_WIDGET(ploginvbox), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(ploginvbox), 8);
+    gtk_container_add(GTK_CONTAINER(ploginframe), ploginvbox);
+
+    pautologincheckbutton = gtk_check_button_new_with_label(_("Enable autologin"));
+    gtk_box_pack_start(GTK_BOX(ploginvbox), pautologincheckbutton, FALSE, FALSE, 0);
+
+    ploginhseparator = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
+    gtk_box_pack_start(GTK_BOX(ploginvbox), ploginhseparator, TRUE, TRUE, 5);
+
+    pcommandshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start(GTK_BOX(ploginvbox), pcommandshbox, TRUE, TRUE, 0);
+
+    pcommandslabel = gtk_label_new(_("Commands"));
+    gtk_box_pack_start(GTK_BOX(pcommandshbox), pcommandslabel, FALSE, FALSE, 5);
+
+    pcommandsentry = gtk_entry_new();
+    gtk_entry_set_max_length(GTK_ENTRY(pcommandsentry), 80);
+    gtk_box_pack_start(GTK_BOX(pcommandshbox), pcommandsentry, TRUE, TRUE, 5);
+
+    gtk_widget_set_tooltip_text(pcommandsentry,
+                _("Comma separated list of commands to send at login"));
 
     if (preferences.autologin == 1) {
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pautologincheckbutton), TRUE);
@@ -335,33 +363,40 @@ on_settings_activate(GtkMenuItem    *menuitem,
         gtk_widget_set_sensitive(pcommandsentry, FALSE);
     }
 
-    if (g_ascii_strcasecmp(preferences.callsign, "?"))
-        gtk_entry_set_text(GTK_ENTRY(pcallsignentry), preferences.callsign);
-
     if (g_ascii_strcasecmp(preferences.commands, "?"))
         gtk_entry_set_text(GTK_ENTRY(pcommandsentry), preferences.commands);
 
-    phamlibframe = gtk_frame_new(NULL);
-    gtk_widget_show(phamlibframe);
-    gtk_box_pack_start(GTK_BOX(pvbox1), phamlibframe, TRUE, TRUE, 0);
+
+    /* Hamlib frame */
+    phamlibframe = gtk_frame_new(_("Hamlib"));
+    gtk_widget_set_margin_start(GTK_WIDGET(phamlibframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(phamlibframe), 5);
+    gtk_box_pack_start(GTK_BOX(pvbox1), phamlibframe, TRUE, TRUE, 5);
+
     phamlibvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_margin_top(GTK_WIDGET(phamlibvbox), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(phamlibvbox), 8);
     gtk_container_add(GTK_CONTAINER(phamlibframe), phamlibvbox);
+
     phamlibcheckbutton = gtk_check_button_new_with_label(_("Enable hamlib"));
     gtk_box_pack_start(GTK_BOX(phamlibvbox), phamlibcheckbutton, FALSE, FALSE, 0);
+
     phamlibhseparator = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-    gtk_box_pack_start(GTK_BOX(phamlibvbox), phamlibhseparator, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(phamlibvbox), phamlibhseparator, TRUE, TRUE, 5);
+
     phamlibhbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(phamlibvbox), phamlibhbox, TRUE, TRUE, 0);
+
     priglabel = gtk_label_new(_("Command for rigctl"));
-    gtk_box_pack_start(GTK_BOX(phamlibhbox), priglabel, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(phamlibhbox), priglabel, FALSE, FALSE, 5);
+
     prigentry = gtk_entry_new();
-    gtk_box_pack_start(GTK_BOX(phamlibhbox), prigentry, TRUE, TRUE, 5);
     gtk_entry_set_max_length(GTK_ENTRY(prigentry), 80);
-    phamliblabel = gtk_label_new(_("Hamlib"));
-    gtk_frame_set_label_widget(GTK_FRAME(phamlibframe), phamliblabel);
+    gtk_box_pack_start(GTK_BOX(phamlibhbox), prigentry, TRUE, TRUE, 5);
+
     gtk_widget_set_tooltip_text(prigentry, _(
-                                    "When double clicking on a dx-spot this will set the frequency of your "
-                                    "rig using rigctl (%d = the frequency retrieved from the DX spot)"));
+        "When double clicking on a dx-spot this will set the frequency of your "
+        "radio using rigctl (%d = the frequency retrieved from the DX spot)"));
 
     if (preferences.hamlib == 1) {
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(phamlibcheckbutton), TRUE);
@@ -378,39 +413,50 @@ on_settings_activate(GtkMenuItem    *menuitem,
     if (g_ascii_strcasecmp(preferences.rigctl, "?"))
         gtk_entry_set_text(GTK_ENTRY(prigentry), preferences.rigctl);
 
-    pprogframe = gtk_frame_new(NULL);
-    gtk_box_pack_start(GTK_BOX(pvbox1), pprogframe, TRUE, TRUE, 0);
-    pprogvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add(GTK_CONTAINER(pprogframe), pprogvbox);
-    pproghbox1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(pprogvbox), pproghbox1, TRUE, TRUE, 0);
+
+    /* Programs frame */
+    pprogframe = gtk_frame_new(_("Programs"));
+    gtk_widget_set_margin_start(GTK_WIDGET(pprogframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(pprogframe), 5);
+    gtk_box_pack_start(GTK_BOX(pvbox1), pprogframe, TRUE, TRUE, 5);
+
+    pprog_grid = gtk_grid_new();
+    gtk_grid_set_column_spacing(GTK_GRID(pprog_grid), 10);
+    gtk_grid_set_row_spacing(GTK_GRID(pprog_grid), 8);
+    gtk_widget_set_margin_top(GTK_WIDGET(pprog_grid), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(pprog_grid), 8);
+    gtk_widget_set_margin_start(GTK_WIDGET(pprog_grid), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(pprog_grid), 5);
+    gtk_container_add(GTK_CONTAINER(pprogframe), pprog_grid);
+
     pprogbrowserlabel = gtk_label_new(_("Web browser"));
-    gtk_box_pack_start(GTK_BOX(pproghbox1), pprogbrowserlabel, FALSE, FALSE, 0);
+    gtk_grid_attach(GTK_GRID(pprog_grid), pprogbrowserlabel, 0, 0, 1, 1);
+
     pprogbrowserentry = gtk_entry_new();
-    gtk_box_pack_start(GTK_BOX(pproghbox1), pprogbrowserentry, TRUE, TRUE, 5);
+    gtk_entry_set_width_chars(GTK_ENTRY(pprogbrowserentry), 25);
     gtk_entry_set_max_length(GTK_ENTRY(pprogbrowserentry), 80);
-    pproghbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(pprogvbox), pproghbox2, TRUE, TRUE, 0);
+    gtk_grid_attach(GTK_GRID(pprog_grid), pprogbrowserentry, 1, 0, 1, 1);
+
     pprogmaillabel = gtk_label_new(_("Mail program"));
-    gtk_box_pack_start(GTK_BOX(pproghbox2), pprogmaillabel, FALSE, FALSE, 0);
+    gtk_grid_attach(GTK_GRID(pprog_grid), pprogmaillabel, 0, 1, 1, 1);
+
     pprogmailentry = gtk_entry_new();
-    gtk_box_pack_start(GTK_BOX(pproghbox2), pprogmailentry, TRUE, TRUE, 5);
     gtk_entry_set_max_length(GTK_ENTRY(pprogmailentry), 80);
-    pproghbox3 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(pprogvbox), pproghbox3, TRUE, TRUE, 0);
+    gtk_grid_attach(GTK_GRID(pprog_grid), pprogmailentry, 1, 1, 1, 1);
+
     pprogsoundlabel = gtk_label_new(_("Sound playing"));
-    gtk_box_pack_start(GTK_BOX(pproghbox3), pprogsoundlabel, FALSE, FALSE, 0);
+    gtk_grid_attach(GTK_GRID(pprog_grid), pprogsoundlabel, 0, 2, 1, 1);
+
     pprogsoundentry = gtk_entry_new();
-    gtk_box_pack_start(GTK_BOX(pproghbox3), pprogsoundentry, TRUE, TRUE, 5);
     gtk_entry_set_max_length(GTK_ENTRY(pprogmailentry), 80);
-    pproglabel = gtk_label_new(_("Programs"));
-    gtk_frame_set_label_widget(GTK_FRAME(pprogframe), pproglabel);
+    gtk_grid_attach(GTK_GRID(pprog_grid), pprogsoundentry, 1, 2, 1, 1);
+
     gtk_widget_set_tooltip_text(pprogbrowserentry,
-                                _("Web browser to start after clicking on a url (%s = url)"));
+            _("Web browser to start after clicking on a url (%s = url)"));
     gtk_widget_set_tooltip_text(pprogmailentry,
-                                _("Mail program to start after clicking on a mail url (%s = mail url)"));
+            _("Mail program to start after clicking on a mail url (%s = mail url)"));
     gtk_widget_set_tooltip_text(pprogsoundentry,
-                                _("Program used to play sound (%s = sound file)"));
+            _("Program used to play sound (%s = sound file)"));
 
     if (g_ascii_strcasecmp(preferences.browserapp, "?"))
         gtk_entry_set_text(GTK_ENTRY(pprogbrowserentry), preferences.browserapp);
@@ -420,6 +466,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
 
     if (g_ascii_strcasecmp(preferences.soundapp, "?"))
         gtk_entry_set_text(GTK_ENTRY(pprogsoundentry), preferences.soundapp);
+
 
     pechoframe = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(pvbox2), pechoframe, TRUE, TRUE, 0);
