@@ -503,9 +503,10 @@ on_settings_activate(GtkMenuItem    *menuitem,
     pcolumnsframe = gtk_frame_new(_("Columns"));
     gtk_widget_set_margin_start(GTK_WIDGET(pcolumnsframe), 5);
     gtk_widget_set_margin_end(GTK_WIDGET(pcolumnsframe), 5);
-    gtk_box_pack_start(GTK_BOX(pvbox2), pcolumnsframe, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(pvbox2), pcolumnsframe, TRUE, TRUE, 5);
 
     pcolumnsvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_margin_top(GTK_WIDGET(pcolumnsvbox), 4);
     gtk_widget_set_margin_bottom(GTK_WIDGET(pcolumnsvbox), 8);
     gtk_container_add(GTK_CONTAINER(pcolumnsframe), pcolumnsvbox);
 
@@ -585,9 +586,10 @@ on_settings_activate(GtkMenuItem    *menuitem,
     psavingframe = gtk_frame_new(_("Saving"));
     gtk_widget_set_margin_start(GTK_WIDGET(psavingframe), 5);
     gtk_widget_set_margin_end(GTK_WIDGET(psavingframe), 5);
-    gtk_box_pack_start(GTK_BOX(pvbox2), psavingframe, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(pvbox2), psavingframe, TRUE, TRUE, 5);
 
     psavingvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_margin_top(GTK_WIDGET(psavingvbox), 4);
     gtk_widget_set_margin_bottom(GTK_WIDGET(psavingvbox), 8);
     gtk_container_add(GTK_CONTAINER(psavingframe), psavingvbox);
 
