@@ -203,7 +203,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
               *ploginhseparator, *pcommandshbox, *pcommandslabel, *pcommandsentry,
 
               *psavingframe, *psavingvbox, *psavedxcheckbutton, *psavewwvcheckbutton,
-              *psavetoallcheckbutton, *psavewxcheckbutton, *psavinglabel, *psavinghbox,
+              *psavetoallcheckbutton, *psavewxcheckbutton, *psavinghbox,
               *psavingvbox2, *psavingvbox3,
 
               *phamlibframe, *phamlibvbox, *phamlibcheckbutton, *phamlibhseparator,
@@ -213,9 +213,9 @@ on_settings_activate(GtkMenuItem    *menuitem,
               *pprogmaillabel, *pprogmailentry, *pprogsoundlabel,
               *pprogsoundentry,
 
-              *pechoframe, *pechocheckbutton, *pechovbox, *pecholabel, *plivecheckbutton,
+              *pechoframe, *pechocheckbutton, *pechovbox, *plivecheckbutton,
 
-              *pcolumnsframe, *pcolumnsvbox, *pcolumnsvboxlabel, *pcolumnslabel,
+              *pcolumnsframe, *pcolumnsvbox, *pcolumnsvboxlabel,
               *pcolumnshseparator, *pspottercheckbutton, *pqrgcheckbutton,
               *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton,
               *pinfocheckbutton, *pcountrycheckbutton, *pcolumnshbox, *pcolumnsvbox2, *pcolumnsvbox3,
@@ -297,6 +297,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
     gtk_box_pack_start(GTK_BOX(pdialog_vbox), pnotebook, TRUE, TRUE, 0);
 
 
+    /* General tab */
     /* Callsign frame */
     pcallsignframe = gtk_frame_new(_("Callsign"));
     gtk_widget_set_margin_start(GTK_WIDGET(pcallsignframe), 5);
@@ -468,18 +469,24 @@ on_settings_activate(GtkMenuItem    *menuitem,
         gtk_entry_set_text(GTK_ENTRY(pprogsoundentry), preferences.soundapp);
 
 
-    pechoframe = gtk_frame_new(NULL);
-    gtk_box_pack_start(GTK_BOX(pvbox2), pechoframe, TRUE, TRUE, 0);
+    /* Output tab */
+    /* General frame */
+    pechoframe = gtk_frame_new(_("General"));
+    gtk_widget_set_margin_start(GTK_WIDGET(pechoframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(pechoframe), 5);
+    gtk_box_pack_start(GTK_BOX(pvbox2), pechoframe, TRUE, TRUE, 5);
+
     pechovbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(pechovbox), 8);
     gtk_container_add(GTK_CONTAINER(pechoframe), pechovbox);
+
     pechocheckbutton = gtk_check_button_new_with_label
                        (_("Echo sent text to the screen"));
-    gtk_box_pack_start(GTK_BOX(pechovbox), pechocheckbutton, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(pechovbox), pechocheckbutton, FALSE, FALSE, 5);
+
     plivecheckbutton = gtk_check_button_new_with_label
                        (_("Send keepalive packets (read the manual)"));
-    gtk_box_pack_start(GTK_BOX(pechovbox), plivecheckbutton, FALSE, FALSE, 0);
-    pecholabel = gtk_label_new(_("General"));
-    gtk_frame_set_label_widget(GTK_FRAME(pechoframe), pecholabel);
+    gtk_box_pack_start(GTK_BOX(pechovbox), plivecheckbutton, FALSE, FALSE, 5);
 
     if (preferences.localecho == 1)
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pechocheckbutton), TRUE);
@@ -491,34 +498,50 @@ on_settings_activate(GtkMenuItem    *menuitem,
     else
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(plivecheckbutton), FALSE);
 
-    pcolumnsframe = gtk_frame_new(NULL);
+
+    /* Columns frame */
+    pcolumnsframe = gtk_frame_new(_("Columns"));
+    gtk_widget_set_margin_start(GTK_WIDGET(pcolumnsframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(pcolumnsframe), 5);
     gtk_box_pack_start(GTK_BOX(pvbox2), pcolumnsframe, TRUE, TRUE, 0);
+
     pcolumnsvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(pcolumnsvbox), 8);
     gtk_container_add(GTK_CONTAINER(pcolumnsframe), pcolumnsvbox);
-    pcolumnslabel = gtk_label_new(_("Columns"));
-    gtk_frame_set_label_widget(GTK_FRAME(pcolumnsframe), pcolumnslabel);
+
     pcolumnsvboxlabel = gtk_label_new(_("Columns to show on the screen"));
-    gtk_box_pack_start(GTK_BOX(pcolumnsvbox), pcolumnsvboxlabel, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(pcolumnsvbox), pcolumnsvboxlabel, FALSE, FALSE, 5);
+
     pcolumnshseparator = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-    gtk_box_pack_start(GTK_BOX(pcolumnsvbox), pcolumnshseparator, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(pcolumnsvbox), pcolumnshseparator, FALSE, FALSE, 5);
+
     pcolumnshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox), pcolumnshbox, FALSE, FALSE, 0);
+
     pcolumnsvbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(pcolumnshbox), pcolumnsvbox2, TRUE, TRUE, 0);
+
     pspottercheckbutton = gtk_check_button_new_with_label(_("Spotter"));
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox2), pspottercheckbutton, FALSE, FALSE, 0);
+
     pqrgcheckbutton = gtk_check_button_new_with_label("QRG");
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox2), pqrgcheckbutton, FALSE, FALSE, 0);
+
     pdxcheckbutton = gtk_check_button_new_with_label("DX");
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox2), pdxcheckbutton, FALSE, FALSE, 0);
+
     pcolumnsvbox3 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(pcolumnshbox), pcolumnsvbox3, TRUE, TRUE, 0);
+
     premarkscheckbutton = gtk_check_button_new_with_label(_("Remarks"));
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox3), premarkscheckbutton, FALSE, FALSE, 0);
+
     ptimecheckbutton = gtk_check_button_new_with_label(_("Time"));
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox3), ptimecheckbutton, FALSE, FALSE, 0);
+
     pinfocheckbutton = gtk_check_button_new_with_label(_("Info"));
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox3), pinfocheckbutton, FALSE, FALSE, 0);
+
     pcountrycheckbutton = gtk_check_button_new_with_label(_("Country"));
     gtk_box_pack_start(GTK_BOX(pcolumnsvbox3), pcountrycheckbutton, FALSE, FALSE, 0);
 
@@ -557,26 +580,58 @@ on_settings_activate(GtkMenuItem    *menuitem,
     else
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pcountrycheckbutton), FALSE);
 
-    psavingframe = gtk_frame_new(NULL);
+
+    /* Saving frame */
+    psavingframe = gtk_frame_new(_("Saving"));
+    gtk_widget_set_margin_start(GTK_WIDGET(psavingframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(psavingframe), 5);
     gtk_box_pack_start(GTK_BOX(pvbox2), psavingframe, TRUE, TRUE, 0);
+
     psavingvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(psavingvbox), 8);
     gtk_container_add(GTK_CONTAINER(psavingframe), psavingvbox);
+
     psavinghbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_container_add(GTK_CONTAINER(psavingvbox), psavinghbox);
+    gtk_box_pack_start(GTK_BOX(psavingvbox), psavinghbox, FALSE, FALSE, 0);
+
     psavingvbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add(GTK_CONTAINER(psavinghbox), psavingvbox2);
+    gtk_box_pack_start(GTK_BOX(psavinghbox), psavingvbox2, TRUE, TRUE, 0);
+
     psavedxcheckbutton = gtk_check_button_new_with_label(_("Save DX spots"));
     gtk_box_pack_start(GTK_BOX(psavingvbox2), psavedxcheckbutton, FALSE, FALSE, 0);
+
     psavewwvcheckbutton = gtk_check_button_new_with_label(_("Save WCY/WWV"));
     gtk_box_pack_start(GTK_BOX(psavingvbox2), psavewwvcheckbutton, FALSE, FALSE, 0);
+
     psavingvbox3 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add(GTK_CONTAINER(psavinghbox), psavingvbox3);
+    gtk_box_pack_start(GTK_BOX(psavinghbox), psavingvbox3, TRUE, TRUE, 0);
+
     psavetoallcheckbutton = gtk_check_button_new_with_label(_("Save \"To all\""));
     gtk_box_pack_start(GTK_BOX(psavingvbox3), psavetoallcheckbutton, FALSE, FALSE, 0);
+
     psavewxcheckbutton = gtk_check_button_new_with_label(_("Save WX"));
     gtk_box_pack_start(GTK_BOX(psavingvbox3), psavewxcheckbutton, FALSE, FALSE, 0);
-    psavinglabel = gtk_label_new(_("Saving"));
-    gtk_frame_set_label_widget(GTK_FRAME(psavingframe), psavinglabel);
+
+    if (preferences.savedx == 1)
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
+    else
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavedxcheckbutton), FALSE);
+
+    if (preferences.savewwv == 1)
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavewwvcheckbutton), TRUE);
+    else
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavewwvcheckbutton), FALSE);
+
+    if (preferences.savetoall == 1)
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavetoallcheckbutton), TRUE);
+    else
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavetoallcheckbutton), FALSE);
+
+    if (preferences.savewx == 1)
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavewxcheckbutton), TRUE);
+    else
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavewxcheckbutton), FALSE);
+
 
     pfontsframe = gtk_frame_new(NULL);
     gtk_box_pack_start(GTK_BOX(pvbox3), pfontsframe, FALSE, FALSE, 0);
@@ -726,26 +781,6 @@ on_settings_activate(GtkMenuItem    *menuitem,
     gtk_box_pack_start(GTK_BOX(pcolorshbox), wxcolorlabel, FALSE, FALSE, 0);
     wxcolorbutton = gtk_color_button_new_with_rgba(&preferences.wxcolor);
     gtk_box_pack_start(GTK_BOX(pcolorshbox), wxcolorbutton, FALSE, FALSE, 0);
-
-    if (preferences.savedx == 1)
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavedxcheckbutton), TRUE);
-    else
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavedxcheckbutton), FALSE);
-
-    if (preferences.savewwv == 1)
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavewwvcheckbutton), TRUE);
-    else
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavewwvcheckbutton), FALSE);
-
-    if (preferences.savetoall == 1)
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavetoallcheckbutton), TRUE);
-    else
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavetoallcheckbutton), FALSE);
-
-    if (preferences.savewx == 1)
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavewxcheckbutton), TRUE);
-    else
-        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavewxcheckbutton), FALSE);
 
     g_signal_connect((gpointer) pautologincheckbutton, "toggled",
                      G_CALLBACK(on_pautologincheckbutton_toggled), NULL);
