@@ -88,6 +88,10 @@ on_log_activate(GtkMenuItem     *menuitem,
     box = gtk_dialog_get_content_area(GTK_DIALOG(logdialog));
 
     logdialog_scrolledwindow = gtk_scrolled_window_new(NULL, NULL);
+    gtk_widget_set_margin_start(GTK_WIDGET(logdialog_scrolledwindow), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(logdialog_scrolledwindow), 5);
+    gtk_widget_set_margin_top(GTK_WIDGET(logdialog_scrolledwindow), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(logdialog_scrolledwindow), 8);
     gtk_box_pack_start(GTK_BOX(box), logdialog_scrolledwindow, TRUE, TRUE, 0);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(logdialog_scrolledwindow),
                                    GTK_POLICY_AUTOMATIC,
