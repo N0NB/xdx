@@ -418,7 +418,7 @@ create_mainwindow(void)
     gtk_scrolled_window_set_policy(
             GTK_SCROLLED_WINDOW(clistscrolledwindow),
             GTK_POLICY_AUTOMATIC,
-            GTK_POLICY_ALWAYS);
+            GTK_POLICY_AUTOMATIC);
 
     model = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING,
                                G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
@@ -494,7 +494,7 @@ create_mainwindow(void)
     mainscrolledwindow = gtk_scrolled_window_new(NULL, NULL);
     gtk_widget_set_name(GTK_WIDGET(mainscrolledwindow), "mainscrolledwindow");
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(mainscrolledwindow),
-                                   GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
+                                   GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
     maintext = gtk_text_view_new();
     gtk_widget_set_name(GTK_WIDGET(maintext), "maintext");
