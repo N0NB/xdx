@@ -684,7 +684,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
 
     /* Colors tab */
     /* Chat Window Colors frame */
-    pcolorsframe = gtk_frame_new(_("Chat window DX cluster highlighting"));
+    pcolorsframe = gtk_frame_new(_("DX cluster messsage highlighting"));
     gtk_widget_set_margin_start(GTK_WIDGET(pcolorsframe), 5);
     gtk_widget_set_margin_end(GTK_WIDGET(pcolorsframe), 5);
     gtk_box_pack_start(GTK_BOX(pvbox4), pcolorsframe, FALSE, FALSE, 5);
