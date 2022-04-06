@@ -199,6 +199,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
               *pnotebook, *plabel1, *plabel2, *plabel3, *plabel4,
 
               *pcallsignframe, *pcallsignhbox, *pcallsignlabel, *pcallsignentry,
+
               *ploginframe, *ploginvbox, *pautologincheckbutton,
               *ploginhseparator, *pcommandshbox, *pcommandslabel, *pcommandsentry,
 
@@ -218,24 +219,24 @@ on_settings_activate(GtkMenuItem    *menuitem,
               *pcolumnsframe, *pcolumnsvbox, *pcolumnsvboxlabel,
               *pcolumnshseparator, *pspottercheckbutton, *pqrgcheckbutton,
               *pdxcheckbutton, *premarkscheckbutton, *ptimecheckbutton,
-              *pinfocheckbutton, *pcountrycheckbutton, *pcolumnshbox, *pcolumnsvbox2, *pcolumnsvbox3,
+              *pinfocheckbutton, *pcountrycheckbutton, *pcolumnshbox,
+              *pcolumnsvbox2, *pcolumnsvbox3,
 
-              *pfontsframe, *pfontslabel, *pfontsvbox, *pfontsdxlabel, *pfontsalllabel,
-              *pfontsdxentry, *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
-              *pfontshseparator, *pfontshbox1, *pfontshbox2,
+              *pfontsframe, *pfontsdxlabel, *pfontsalllabel, *pfontsdxentry,
+              *pfontsallentry, *pfontsdxbutton, *pfontsallbutton,
+              *pfontshseparator, *pfontshseparator2, *pfonts_grid,
 
-              *phighframe, *phighframelabel, *phighvbox, *phighlabel, *phighseparator,
-              *phighhbox, *phighvbox1, *phighhbox2, *phighlabel1, *colorbutton1,
-              *phighbox3, *phighlabel2, *colorbutton2, *phighbox4, *phighlabel3,
-              *colorbutton3, *phighbox5, *phighlabel4, *colorbutton4, *vseparator1,
-              *phighvbox2, *phighbox6, *phighlabel5, *colorbutton5, *phighhbox7,
-              *phighlabel6, *colorbutton6, *phighhbox8, *phighlabel7, *colorbutton7,
-              *phighhbox9, *phighlabel8, *colorbutton8,
+              *pcolorsframe, *pcolorslabel, *pcolorsvbox, *promptcolorlabel,
+              *promptcolorbutton, *sentcolorlabel, *pcolors_grid,
+              *pcolors_separator, *sentcolorbutton, *wwvcolorlabel,
+              *wwvcolorbutton, *wxcolorlabel, *wxcolorbutton,
 
-              *pcolorsframe, *pcolorsframelabel, *pcolorsvbox, *pcolorshbox,
-              *promptcolorlabel, *promptcolorbutton, *sentcolorlabel,
-              *sentcolorbutton, *wwvcolorlabel, *wwvcolorbutton, *wxcolorlabel,
-              *wxcolorbutton;
+              *phighframe, *phighvbox, *phighlabel, *phighseparator,
+              *phighlight_grid,
+              *phighlabel1, *colorbutton1, *phighlabel2, *colorbutton2,
+              *phighlabel3, *colorbutton3, *phighlabel4, *colorbutton4,
+              *phighlabel5, *colorbutton5, *phighlabel6, *colorbutton6,
+              *phighlabel7, *colorbutton7, *phighlabel8, *colorbutton8;
 
     GtkTreeViewColumn *column;
     GtkWidget *treeview, *maintext, *mainentry;
@@ -635,154 +636,196 @@ on_settings_activate(GtkMenuItem    *menuitem,
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(psavewxcheckbutton), FALSE);
 
 
-    pfontsframe = gtk_frame_new(NULL);
-    gtk_box_pack_start(GTK_BOX(pvbox3), pfontsframe, FALSE, FALSE, 0);
-    pfontslabel = gtk_label_new(_("Fonts"));
-    gtk_frame_set_label_widget(GTK_FRAME(pfontsframe), pfontslabel);
-    pfontsvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add(GTK_CONTAINER(pfontsframe), pfontsvbox);
-    pfontsdxlabel = gtk_label_new(_("Font for DX messages"));
-    pfontshbox1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    pfontsdxentry = gtk_entry_new();
-    pfontsdxbutton = gtk_button_new_with_mnemonic(_("Select _DX Font"));
-    gtk_box_pack_start(GTK_BOX(pfontsvbox), pfontsdxlabel, FALSE, FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(pfontsvbox), pfontshbox1, FALSE, FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(pfontshbox1), pfontsdxentry, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(pfontshbox1), pfontsdxbutton, FALSE, FALSE, 0);
+    /* Fonts tab */
+    /* General frame */
+    pfontsframe = gtk_frame_new(_("Fonts"));
+    gtk_widget_set_margin_start(GTK_WIDGET(pfontsframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(pfontsframe), 5);
+    gtk_box_pack_start(GTK_BOX(pvbox3), pfontsframe, TRUE, TRUE, 5);
+
+    pfonts_grid = gtk_grid_new();
+    gtk_grid_set_column_spacing(GTK_GRID(pfonts_grid), 10);
+    gtk_grid_set_row_spacing(GTK_GRID(pfonts_grid), 8);
+    gtk_widget_set_margin_top(GTK_WIDGET(pfonts_grid), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(pfonts_grid), 8);
+    gtk_widget_set_margin_start(GTK_WIDGET(pfonts_grid), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(pfonts_grid), 5);
+    gtk_container_add(GTK_CONTAINER(pfontsframe), pfonts_grid);
+
+    pfontsdxlabel = gtk_label_new(_("Font for DX spots window"));
+    gtk_grid_attach(GTK_GRID(pfonts_grid), pfontsdxlabel, 0, 0, 2, 1);
+
     pfontshseparator = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-    gtk_box_pack_start(GTK_BOX(pfontsvbox), pfontshseparator, FALSE, FALSE, 0);
-    pfontsalllabel = gtk_label_new(_("Font for other messages"));
-    pfontshbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    pfontsallentry = gtk_entry_new();
-    pfontsallbutton = gtk_button_new_with_mnemonic(_("Select _Other Fonts"));
-    gtk_box_pack_start(GTK_BOX(pfontsvbox), pfontsalllabel, FALSE, FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(pfontsvbox), pfontshbox2, FALSE, FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(pfontshbox2), pfontsallentry, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(pfontshbox2), pfontsallbutton, FALSE, FALSE, 0);
+    gtk_grid_attach(GTK_GRID(pfonts_grid), pfontshseparator, 0, 1, 2, 1);
+
+    pfontsdxentry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(pfontsdxentry), preferences.dxfont);
-    gtk_entry_set_text(GTK_ENTRY(pfontsallentry), preferences.allfont);
     gtk_editable_set_editable(GTK_EDITABLE(pfontsdxentry), FALSE);
+    gtk_entry_set_width_chars(GTK_ENTRY(pfontsdxentry), 25);
+    gtk_grid_attach(GTK_GRID(pfonts_grid), pfontsdxentry, 0, 2, 1, 1);
+
+    pfontsdxbutton = gtk_button_new_with_mnemonic(_("Select _DX Font"));
+    gtk_grid_attach(GTK_GRID(pfonts_grid), pfontsdxbutton, 1, 2, 1, 1);
+
+    pfontsalllabel = gtk_label_new(_("Font for message/chat window"));
+    gtk_grid_attach(GTK_GRID(pfonts_grid), pfontsalllabel, 0, 3, 2, 1);
+
+    pfontshseparator2 = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
+    gtk_grid_attach(GTK_GRID(pfonts_grid), pfontshseparator2, 0, 4, 2, 1);
+
+    pfontsallentry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(pfontsallentry), preferences.allfont);
     gtk_editable_set_editable(GTK_EDITABLE(pfontsallentry), FALSE);
+    gtk_grid_attach(GTK_GRID(pfonts_grid), pfontsallentry, 0, 5, 1, 1);
 
-    phighframe = gtk_frame_new(NULL);
-    gtk_box_pack_start(GTK_BOX(pvbox3), phighframe, FALSE, FALSE, 0);
-    phighframelabel = gtk_label_new(_("Highlighting"));
-    gtk_frame_set_label_widget(GTK_FRAME(phighframe), phighframelabel);
-    phighvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add(GTK_CONTAINER(phighframe), phighvbox);
-    phighlabel = gtk_label_new(_("Colors to use for highlighting"));
-    gtk_label_set_line_wrap(GTK_LABEL(phighlabel), TRUE);
-    gtk_box_pack_start(GTK_BOX(phighvbox), phighlabel, FALSE, FALSE, 10);
-    phighseparator =  gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-    gtk_box_pack_start(GTK_BOX(phighvbox), phighseparator, FALSE, FALSE, 0);
-    phighhbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighvbox), phighhbox, FALSE, FALSE, 0);
-    phighvbox1 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighhbox), phighvbox1, TRUE, TRUE, 0);
+    pfontsallbutton = gtk_button_new_with_mnemonic(_("Select _Other Fonts"));
+    gtk_grid_attach(GTK_GRID(pfonts_grid), pfontsallbutton, 1, 5, 1, 1);
 
-    phighhbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighvbox1), phighhbox2, TRUE, TRUE, 0);
-    str = g_strdup_printf(_("Color %d"), 1);
-    phighlabel1 = gtk_label_new(str);
-    gtk_box_pack_start(GTK_BOX(phighhbox2), phighlabel1, TRUE, TRUE, 0);
-    colorbutton1 = gtk_color_button_new_with_rgba(&preferences.highcolor1);
-    gtk_box_pack_start(GTK_BOX(phighhbox2), colorbutton1, FALSE, FALSE, 0);
 
-    phighbox3 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighvbox1), phighbox3, TRUE, TRUE, 0);
-    str = g_strdup_printf(_("Color %d"), 2);
-    phighlabel2 = gtk_label_new(str);
-    gtk_box_pack_start(GTK_BOX(phighbox3), phighlabel2, TRUE, TRUE, 0);
-    colorbutton2 = gtk_color_button_new_with_rgba(&preferences.highcolor2);
-    gtk_box_pack_start(GTK_BOX(phighbox3), colorbutton2, FALSE, FALSE, 0);
+    /* Colors tab */
+    /* Chat Window Colors frame */
+    pcolorsframe = gtk_frame_new(_("Chat window DX cluster highlighting"));
+    gtk_widget_set_margin_start(GTK_WIDGET(pcolorsframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(pcolorsframe), 5);
+    gtk_box_pack_start(GTK_BOX(pvbox4), pcolorsframe, FALSE, FALSE, 5);
 
-    phighbox4 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighvbox1), phighbox4, TRUE, TRUE, 0);
-    str = g_strdup_printf(_("Color %d"), 3);
-    phighlabel3 = gtk_label_new(str);
-    gtk_box_pack_start(GTK_BOX(phighbox4), phighlabel3, TRUE, TRUE, 0);
-    colorbutton3 = gtk_color_button_new_with_rgba(&preferences.highcolor3);
-    gtk_box_pack_start(GTK_BOX(phighbox4), colorbutton3, FALSE, FALSE, 0);
-
-    phighbox5 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighvbox1), phighbox5, TRUE, TRUE, 0);
-    str = g_strdup_printf(_("Color %d"), 4);
-    phighlabel4 = gtk_label_new(str);
-    gtk_box_pack_start(GTK_BOX(phighbox5), phighlabel4, TRUE, TRUE, 0);
-    colorbutton4 = gtk_color_button_new_with_rgba(&preferences.highcolor4);
-    gtk_box_pack_start(GTK_BOX(phighbox5), colorbutton4, FALSE, FALSE, 0);
-
-    vseparator1 = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
-    gtk_box_pack_start(GTK_BOX(phighhbox), vseparator1, TRUE, TRUE, 0);
-    phighvbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighhbox), phighvbox2, TRUE, TRUE, 0);
-
-    phighbox6 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighvbox2), phighbox6, TRUE, TRUE, 0);
-    str = g_strdup_printf(_("Color %d"), 5);
-    phighlabel5 = gtk_label_new(str);
-    gtk_box_pack_start(GTK_BOX(phighbox6), phighlabel5, TRUE, TRUE, 0);
-    colorbutton5 = gtk_color_button_new_with_rgba(&preferences.highcolor5);
-    gtk_box_pack_start(GTK_BOX(phighbox6), colorbutton5, FALSE, FALSE, 0);
-
-    phighhbox7 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighvbox2), phighhbox7, TRUE, TRUE, 0);
-    str = g_strdup_printf(_("Color %d"), 6);
-    phighlabel6 = gtk_label_new(str);
-    gtk_box_pack_start(GTK_BOX(phighhbox7), phighlabel6, TRUE, TRUE, 0);
-    colorbutton6 = gtk_color_button_new_with_rgba(&preferences.highcolor6);
-    gtk_box_pack_start(GTK_BOX(phighhbox7), colorbutton6, FALSE, FALSE, 0);
-
-    phighhbox8 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighvbox2), phighhbox8, TRUE, TRUE, 0);
-    str = g_strdup_printf(_("Color %d"), 7);
-    phighlabel7 = gtk_label_new(str);
-    gtk_box_pack_start(GTK_BOX(phighhbox8), phighlabel7, TRUE, TRUE, 0);
-    colorbutton7 = gtk_color_button_new_with_rgba(&preferences.highcolor7);
-    gtk_box_pack_start(GTK_BOX(phighhbox8), colorbutton7, FALSE, FALSE, 0);
-
-    phighhbox9 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start(GTK_BOX(phighvbox2), phighhbox9, TRUE, TRUE, 0);
-    str = g_strdup_printf(_("Color %d"), 8);
-    phighlabel8 = gtk_label_new(str);
-    gtk_box_pack_start(GTK_BOX(phighhbox9), phighlabel8, TRUE, TRUE, 0);
-    colorbutton8 = gtk_color_button_new_with_rgba(&preferences.highcolor8);
-    gtk_box_pack_start(GTK_BOX(phighhbox9), colorbutton8, FALSE, FALSE, 0);
-
-    pcolorsframe = gtk_frame_new(NULL);
-    gtk_box_pack_start(GTK_BOX(pvbox4), pcolorsframe, FALSE, FALSE, 0);
-    pcolorsframelabel = gtk_label_new(_("Colors for the chat window"));
-    gtk_frame_set_label_widget(GTK_FRAME(pcolorsframe), pcolorsframelabel);
     pcolorsvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_margin_top(GTK_WIDGET(pcolorsvbox), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(pcolorsvbox), 8);
     gtk_container_add(GTK_CONTAINER(pcolorsframe), pcolorsvbox);
 
-    pcolorshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
+    pcolorslabel = gtk_label_new(
+            _("Colors for DX Cluster highlighting"));
+    gtk_label_set_line_wrap(GTK_LABEL(pcolorslabel), TRUE);
+    gtk_box_pack_start(GTK_BOX(pcolorsvbox), pcolorslabel, FALSE, FALSE, 5);
+
+    pcolors_separator =  gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
+    gtk_box_pack_start(GTK_BOX(pcolorsvbox), pcolors_separator, FALSE, FALSE, 5);
+
+    pcolors_grid = gtk_grid_new();
+    gtk_grid_set_column_spacing(GTK_GRID(pcolors_grid), 10);
+    gtk_grid_set_row_spacing(GTK_GRID(pcolors_grid), 8);
+    gtk_widget_set_margin_top(GTK_WIDGET(pcolors_grid), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(pcolors_grid), 8);
+    gtk_widget_set_margin_start(GTK_WIDGET(pcolors_grid), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(pcolors_grid), 5);
+    gtk_grid_set_column_homogeneous(GTK_GRID(pcolors_grid), TRUE);
+    gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolors_grid);
+
     promptcolorlabel = gtk_label_new(_("Prompt"));
-    gtk_box_pack_start(GTK_BOX(pcolorshbox), promptcolorlabel, FALSE, FALSE, 0);
+    gtk_widget_set_halign(GTK_WIDGET(promptcolorlabel), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(pcolors_grid), promptcolorlabel, 0, 0, 1, 1);
+
     promptcolorbutton = gtk_color_button_new_with_rgba(&preferences.promptcolor);
-    gtk_box_pack_start(GTK_BOX(pcolorshbox), promptcolorbutton, FALSE, FALSE, 0);
+    gtk_grid_attach(GTK_GRID(pcolors_grid), promptcolorbutton, 1, 0, 1, 1);
 
-    pcolorshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     sentcolorlabel = gtk_label_new(_("Sent text"));
-    gtk_box_pack_start(GTK_BOX(pcolorshbox), sentcolorlabel, FALSE, FALSE, 0);
+    gtk_widget_set_halign(GTK_WIDGET(sentcolorlabel), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(pcolors_grid), sentcolorlabel, 0, 1, 1, 1);
+
     sentcolorbutton = gtk_color_button_new_with_rgba(&preferences.sentcolor);
-    gtk_box_pack_start(GTK_BOX(pcolorshbox), sentcolorbutton, FALSE, FALSE, 0);
+    gtk_grid_attach(GTK_GRID(pcolors_grid), sentcolorbutton, 1, 1, 1, 1);
 
-    pcolorshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
     wwvcolorlabel = gtk_label_new("WWV / WCY");
-    gtk_box_pack_start(GTK_BOX(pcolorshbox), wwvcolorlabel, FALSE, FALSE, 0);
-    wwvcolorbutton = gtk_color_button_new_with_rgba(&preferences.wwvcolor);
-    gtk_box_pack_start(GTK_BOX(pcolorshbox), wwvcolorbutton, FALSE, FALSE, 0);
+    gtk_widget_set_halign(GTK_WIDGET(wwvcolorlabel), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(pcolors_grid), wwvcolorlabel, 2, 0, 1, 1);
 
-    pcolorshbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_container_add(GTK_CONTAINER(pcolorsvbox), pcolorshbox);
+    wwvcolorbutton = gtk_color_button_new_with_rgba(&preferences.wwvcolor);
+    gtk_grid_attach(GTK_GRID(pcolors_grid), wwvcolorbutton, 3, 0, 1, 1);
+
     wxcolorlabel = gtk_label_new("WX");
-    gtk_box_pack_start(GTK_BOX(pcolorshbox), wxcolorlabel, FALSE, FALSE, 0);
+    gtk_widget_set_halign(GTK_WIDGET(wxcolorlabel), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(pcolors_grid), wxcolorlabel, 2, 1, 1, 1);
+
     wxcolorbutton = gtk_color_button_new_with_rgba(&preferences.wxcolor);
-    gtk_box_pack_start(GTK_BOX(pcolorshbox), wxcolorbutton, FALSE, FALSE, 0);
+    gtk_grid_attach(GTK_GRID(pcolors_grid), wxcolorbutton, 3, 1, 1, 1);
+
+
+    /* Highlighting frame */
+    phighframe = gtk_frame_new(_("Chat window user highlighting"));
+    gtk_widget_set_margin_start(GTK_WIDGET(phighframe), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(phighframe), 5);
+    gtk_box_pack_start(GTK_BOX(pvbox4), phighframe, TRUE, TRUE, 5);
+
+    phighvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_margin_top(GTK_WIDGET(phighvbox), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(phighvbox), 8);
+    gtk_container_add(GTK_CONTAINER(phighframe), phighvbox);
+
+    phighlabel = gtk_label_new(
+            _("Colors for user selected highlighting"));
+    gtk_label_set_line_wrap(GTK_LABEL(phighlabel), TRUE);
+    gtk_box_pack_start(GTK_BOX(phighvbox), phighlabel, FALSE, FALSE, 5);
+
+    phighseparator =  gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
+    gtk_box_pack_start(GTK_BOX(phighvbox), phighseparator, FALSE, FALSE, 5);
+
+    phighlight_grid = gtk_grid_new();
+    gtk_grid_set_column_spacing(GTK_GRID(phighlight_grid), 10);
+    gtk_grid_set_row_spacing(GTK_GRID(phighlight_grid), 8);
+    gtk_widget_set_margin_top(GTK_WIDGET(phighlight_grid), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(phighlight_grid), 8);
+    gtk_widget_set_margin_start(GTK_WIDGET(phighlight_grid), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(phighlight_grid), 5);
+    gtk_grid_set_column_homogeneous(GTK_GRID(phighlight_grid), TRUE);
+    gtk_container_add(GTK_CONTAINER(phighvbox), phighlight_grid);
+
+    phighlabel1 = gtk_label_new(_("Color 1"));
+    gtk_widget_set_halign(GTK_WIDGET(phighlabel1), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), phighlabel1, 0, 0, 1, 1);
+
+    colorbutton1 = gtk_color_button_new_with_rgba(&preferences.highcolor1);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), colorbutton1, 1, 0, 1, 1);
+
+    phighlabel2 = gtk_label_new(_("Color 2"));
+    gtk_widget_set_halign(GTK_WIDGET(phighlabel2), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), phighlabel2, 0, 1, 1, 1);
+
+    colorbutton2 = gtk_color_button_new_with_rgba(&preferences.highcolor2);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), colorbutton2, 1, 1, 1, 1);
+
+    phighlabel3 = gtk_label_new(_("Color 3"));
+    gtk_widget_set_halign(GTK_WIDGET(phighlabel3), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), phighlabel3, 0, 2, 1, 1);
+
+    colorbutton3 = gtk_color_button_new_with_rgba(&preferences.highcolor3);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), colorbutton3, 1, 2, 1, 1);
+
+    phighlabel4 = gtk_label_new(_("Color 4"));
+    gtk_widget_set_halign(GTK_WIDGET(phighlabel4), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), phighlabel4, 0, 3, 1, 1);
+
+    colorbutton4 = gtk_color_button_new_with_rgba(&preferences.highcolor4);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), colorbutton4, 1, 3, 1, 1);
+
+    phighlabel5 = gtk_label_new(_("Color 5"));
+    gtk_widget_set_halign(GTK_WIDGET(phighlabel5), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), phighlabel5, 2, 0, 1, 1);
+
+    colorbutton5 = gtk_color_button_new_with_rgba(&preferences.highcolor5);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), colorbutton5, 3, 0, 1, 1);
+
+    phighlabel6 = gtk_label_new(_("Color 6"));
+    gtk_widget_set_halign(GTK_WIDGET(phighlabel6), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), phighlabel6, 2, 1, 1, 1);
+
+    colorbutton6 = gtk_color_button_new_with_rgba(&preferences.highcolor6);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), colorbutton6, 3, 1, 1, 1);
+
+    phighlabel7 = gtk_label_new(_("Color 7"));
+    gtk_widget_set_halign(GTK_WIDGET(phighlabel7), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), phighlabel7, 2, 2, 1, 1);
+
+    colorbutton7 = gtk_color_button_new_with_rgba(&preferences.highcolor7);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), colorbutton7, 3, 2, 1, 1);
+
+    phighlabel8 = gtk_label_new(_("Color 8"));
+    gtk_widget_set_halign(GTK_WIDGET(phighlabel8), GTK_ALIGN_END);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), phighlabel8, 2, 3, 1, 1);
+
+    colorbutton8 = gtk_color_button_new_with_rgba(&preferences.highcolor8);
+    gtk_grid_attach(GTK_GRID(phighlight_grid), colorbutton8, 3, 3, 1, 1);
+
 
     g_signal_connect((gpointer) pautologincheckbutton, "toggled",
                      G_CALLBACK(on_pautologincheckbutton_toggled), NULL);
