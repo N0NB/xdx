@@ -85,6 +85,10 @@ on_manual_activate(GtkMenuItem *menuitem,
     helptextview = gtk_text_view_new();
     gtk_text_view_set_editable(GTK_TEXT_VIEW(helptextview), FALSE);
     gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(helptextview), FALSE);
+    gtk_widget_set_margin_start(GTK_WIDGET(helptextview), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(helptextview), 5);
+    gtk_widget_set_margin_top(GTK_WIDGET(helptextview), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(helptextview), 8);
     gtk_container_add(GTK_CONTAINER(swindow), helptextview);
 
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(helptextview));
