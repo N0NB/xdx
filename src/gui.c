@@ -312,9 +312,9 @@ get_main_menu(void)
 void
 create_mainwindow(void)
 {
-    GtkWidget *mainvbox, *menu_box, *vpaned, *clistscrolledwindow,
-              *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar, *treeview,
-              *frame, *chathbox, *chat_grid, *highframe, *mainhbox,
+    GtkWidget *gui_vbox, *mainvbox, *menu_box, *vpaned, *clistscrolledwindow,
+              *mainscrolledwindow, *maintext, *mainentry, *mainstatusbar,
+              *treeview, *frame, *chathbox, *chat_grid, *highframe, *mainhbox,
               *highentry1, *highentry2, *highentry3, *highentry4, *highentry5,
               *highentry6, *highentry7, *highentry8, *highcheck1, *highcheck2,
               *highcheck3, *highcheck4, *highcheck5, *highcheck6, *highcheck7,
@@ -349,36 +349,42 @@ create_mainwindow(void)
         g_object_unref(icon);
     }
 
-    mainhbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_set_homogeneous(GTK_BOX(mainhbox), TRUE);
-    gtk_widget_set_name(GTK_WIDGET(mainhbox), "mainhbox");
-    gtk_container_add(GTK_CONTAINER(gui->window), mainhbox);
-
-    mainvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_name(GTK_WIDGET(mainvbox), "mainvbox");
-    gtk_container_add(GTK_CONTAINER(mainhbox), mainvbox);
+    gui_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_name(GTK_WIDGET(gui_vbox), "gui_vbox");
+    gtk_container_add(GTK_CONTAINER(gui->window), gui_vbox);
 
     menu_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_set_name(GTK_WIDGET(menu_box), "menu_box");
-    gtk_container_add(GTK_CONTAINER(mainvbox), menu_box);
-
+    gtk_box_pack_start(GTK_BOX(gui_vbox), menu_box, FALSE, FALSE, 0);
     get_main_menu();
     gtk_container_add(GTK_CONTAINER(menu_box),
                       g_object_get_data(G_OBJECT(gui->window),
                                         "main_menu"));
+
+    mainhbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_widget_set_name(GTK_WIDGET(mainhbox), "mainhbox");
+    gtk_box_pack_start(GTK_BOX(gui_vbox), mainhbox, TRUE, TRUE, 0);
+
+    mainvbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_set_name(GTK_WIDGET(mainvbox), "mainvbox");
+    gtk_box_pack_start(GTK_BOX(mainhbox), mainvbox, TRUE, TRUE, 0);
 
     /* Use the Gtk grid container for the function keys.
      *
      * The grid is laid out in two rows of four key buttons each.
      */
     func_grid = gtk_grid_new();
+    gtk_widget_set_name(GTK_WIDGET(func_grid), "func_grid");
     g_object_set_property(G_OBJECT(func_grid),
                                    "column_spacing",
                                    &grid_spacing);
     g_object_set_property(G_OBJECT(func_grid),
                                    "row_spacing",
                                    &grid_spacing);
-    gtk_widget_set_name(GTK_WIDGET(func_grid), "func_grid");
+    gtk_widget_set_margin_start(GTK_WIDGET(func_grid), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(func_grid), 5);
+    gtk_widget_set_margin_top(GTK_WIDGET(func_grid), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(func_grid), 8);
 
     f1button = gtk_button_new_with_label("");
     gtk_widget_set_name(GTK_WIDGET(f1button), "f1button");
@@ -412,9 +418,11 @@ create_mainwindow(void)
     gtk_widget_set_name(GTK_WIDGET(f8button), "f8button");
     gtk_grid_attach(GTK_GRID(func_grid), f8button, 3, 1, 1, 1);
 
-    gtk_box_pack_start(GTK_BOX(mainvbox), func_grid, FALSE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(gui_vbox), func_grid, FALSE, TRUE, 0);
+    gtk_box_reorder_child(GTK_BOX(gui_vbox), func_grid,1);
 
     clistscrolledwindow = gtk_scrolled_window_new(NULL, NULL);
+    gtk_widget_set_name(GTK_WIDGET(clistscrolledwindow), "clistscrolledwindow");
     gtk_scrolled_window_set_policy(
             GTK_SCROLLED_WINDOW(clistscrolledwindow),
             GTK_POLICY_AUTOMATIC,
@@ -525,9 +533,15 @@ create_mainwindow(void)
                                    "row_spacing",
                                    &grid_spacing);
     gtk_widget_set_name(GTK_WIDGET(chat_grid), "chat_grid");
+    gtk_widget_set_margin_start(GTK_WIDGET(chat_grid ), 5);
+    gtk_widget_set_margin_end(GTK_WIDGET(chat_grid ), 5);
+    gtk_widget_set_margin_top(GTK_WIDGET(chat_grid ), 4);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(chat_grid ), 8);
 
-    highframe = gtk_frame_new(NULL);
+    highframe = gtk_frame_new(_("Text highlighting"));
     gtk_widget_set_name(GTK_WIDGET(highframe), "highframe");
+    gtk_widget_set_margin_end(GTK_WIDGET(highframe), 5);
+    gtk_widget_set_margin_top(GTK_WIDGET(highframe), 4);
     gtk_box_pack_start(GTK_BOX(mainhbox), highframe, FALSE, FALSE, 0);
 
     gtk_container_add(GTK_CONTAINER(highframe), chat_grid);
@@ -643,6 +657,8 @@ create_mainwindow(void)
 
     vpaned = gtk_paned_new(GTK_ORIENTATION_VERTICAL);
     gtk_widget_set_name(GTK_WIDGET(vpaned), "vpaned");
+    gtk_widget_set_margin_start(GTK_WIDGET(vpaned), 4);
+    gtk_widget_set_margin_end(GTK_WIDGET(vpaned), 4);
     gtk_paned_add1(GTK_PANED(vpaned), clistscrolledwindow);
     gtk_paned_add2(GTK_PANED(vpaned), chathbox);
     gtk_box_pack_start(GTK_BOX(mainvbox), vpaned, TRUE, TRUE, 0);
@@ -689,7 +705,11 @@ create_mainwindow(void)
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(mainentry), GTK_WRAP_WORD);
 
     frame = gtk_frame_new(NULL);
-    gtk_box_pack_start(GTK_BOX(mainvbox), frame, FALSE, TRUE, 0);
+    gtk_widget_set_name(GTK_WIDGET(frame), "mainentry_frame");
+    gtk_widget_set_margin_start(GTK_WIDGET(frame), 3);
+    gtk_widget_set_margin_end(GTK_WIDGET(frame), 3);
+    gtk_widget_set_margin_top(GTK_WIDGET(frame), 2);
+    gtk_box_pack_start(GTK_BOX(gui_vbox), frame, FALSE, TRUE, 0);
     gtk_container_add(GTK_CONTAINER(frame), mainentry);
 
     /* Alt-0 */
@@ -704,7 +724,7 @@ create_mainwindow(void)
     gtk_widget_set_size_request(frame, -1, 4 * PANGO_PIXELS(pango_size));
 
     mainstatusbar = gtk_statusbar_new();
-    gtk_box_pack_start(GTK_BOX(mainvbox), mainstatusbar, FALSE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(gui_vbox), mainstatusbar, FALSE, TRUE, 0);
 
     g_signal_connect(G_OBJECT(gui->window), "destroy",
                      G_CALLBACK(on_mainwindow_destroy_event), NULL);
