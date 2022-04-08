@@ -1,4 +1,12 @@
 Changelog for version Xdx (2.90)
+  * Complete migration to GTK3.
+  * Add margins around various frame elements.
+  * Move the highlighting color selections from the Fonts tab to the Colors
+    tab.
+  * Adjust Preferences dialog layout for more consistency.
+  * Release for further testing.
+
+Changelog for version Xdx (2.90)
   * Spelling corrections.  Thanks, dforsi.
   * Begin migration to GTK+3.
   * Release for testing GTK+3 migration.

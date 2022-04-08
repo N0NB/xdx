@@ -1,3 +1,5 @@
+xdx-2.91:  Migrated to GTK3
+
 xdx-2.5:   Function keys F1 - F8 send often used commands to the cluster.
            Close dialog when Ctl-Q is used.
            Update manual page to current conventions.

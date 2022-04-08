@@ -9,8 +9,9 @@ The simplest way to compile Xdx is:
   2. Type `make' to compile the package. Xdx needs the Gtk+2.0 development
      headers and libraries to compile. A package called pkg-config is also
      needed. There is a good chance that they will be installed together
-     with the Gtk+ development environment.  As of version 2.4.3, Xdx
-     requires Gtk+ 2.24.0 or later.
+     with the Gtk+ development environment.  As of version 2.91, Xdx
+     requires Gtk3 3.24 or later (earlier versions not tested, feedback
+     welcome).
 
   3. Type `make install' to install the programs and any data files and
      documentation (root/administrator privileges may be needed to install
