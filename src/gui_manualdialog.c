@@ -121,9 +121,9 @@ on_manual_activate(GtkMenuItem *menuitem,
     }
 
     font_desc = pango_font_description_from_string("mono");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     gtk_widget_override_font(helptextview, font_desc);
-#pragma GCC diagnostic pop
+    G_GNUC_END_IGNORE_DEPRECATIONS
     pango_font_description_free(font_desc);
 
     g_free(helpfile);
