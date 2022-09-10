@@ -127,7 +127,7 @@ on_about_activate(GtkMenuItem   *menuitem,
     gtk_about_dialog_set_comments(ad,
                                   _("TCP/IP DX-cluster and ON4KST chat client for amateur radio operators"));
     gtk_about_dialog_set_license(ad, license);
-    gtk_about_dialog_set_website(ad, "https://github.com/N0NB/xdx");
+    gtk_about_dialog_set_website(ad, "https://github.com/N0NB/xdx/wiki");
     gtk_about_dialog_set_logo(ad, pixbuf);
     gtk_about_dialog_set_translator_credits(ad, translators);
     gtk_about_dialog_set_version(ad, PACKAGE_VERSION);
