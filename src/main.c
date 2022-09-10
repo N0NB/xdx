@@ -291,7 +291,7 @@ main(int argc, char *argv[])
 /* Suppress deprecated warnings until a solution using pango attributes is
  * developed.
  */
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     gtk_widget_override_color(highentry1,
                            GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor1);
@@ -323,21 +323,21 @@ main(int argc, char *argv[])
     gtk_widget_override_color(highentry8,
                            GTK_STATE_FLAG_NORMAL,
                            &preferences.highcolor8);
-#pragma GCC diagnostic pop
+    G_GNUC_END_IGNORE_DEPRECATIONS
 
     treeview = g_object_get_data(G_OBJECT(gui->window), "treeview");
     vpaned = g_object_get_data(G_OBJECT(gui->window), "vpaned");
 
     font_description = pango_font_description_from_string(preferences.dxfont);
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     gtk_widget_modify_font(GTK_WIDGET(treeview), font_description);
-#pragma GCC diagnostic pop
+    G_GNUC_END_IGNORE_DEPRECATIONS
     pango_font_description_free(font_description);
 
     font_description = pango_font_description_from_string(preferences.allfont);
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     gtk_widget_modify_font(GTK_WIDGET(maintext), font_description);
-#pragma GCC diagnostic pop
+    G_GNUC_END_IGNORE_DEPRECATIONS
 
     pango_size = pango_font_description_get_size(font_description);
 
