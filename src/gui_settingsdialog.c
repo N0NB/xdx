@@ -1092,7 +1092,7 @@ on_settings_activate(GtkMenuItem    *menuitem,
         /* fonts frame */
         str = gtk_editable_get_chars(GTK_EDITABLE(pfontsdxentry), 0, -1);
         font_description = pango_font_description_from_string(str);
-/* Employ GCC diagnostic pragma to suppress warnings on these "deprecated"
+/* Employ GTK diagnostic macro to suppress warnings on these "deprecated"
  * functions.  This absurdity is brought about due to the intent that CSS
  * is used for theming but if using already existing interfaces such as pango
  * font names the developer must come up with a solution to convert such names
@@ -1100,18 +1100,18 @@ on_settings_activate(GtkMenuItem    *menuitem,
  *
  * Source:  https://discourse.gnome.org/t/converting-fontchooser-font-style-to-css-font-style/6599
  */
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
         gtk_widget_override_font(GTK_WIDGET(treeview), font_description);
-#pragma GCC diagnostic pop
+        G_GNUC_END_IGNORE_DEPRECATIONS
         pango_font_description_free(font_description);
         preferences.dxfont = g_strdup(str);
 
         str = gtk_editable_get_chars(GTK_EDITABLE(pfontsallentry), 0, -1);
         font_description = pango_font_description_from_string(str);
         maintext = g_object_get_data(G_OBJECT(gui->window), "maintext");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
         gtk_widget_override_font(GTK_WIDGET(maintext), font_description);
-#pragma GCC diagnostic pop
+        G_GNUC_END_IGNORE_DEPRECATIONS
         pango_size = pango_font_description_get_size(font_description);
         /* line spacing is half character size */
         g_object_set(G_OBJECT(maintext), "pixels-below-lines",
@@ -1133,11 +1133,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
                                        &color,
                                        NULL);
             highentry1 = g_object_get_data(G_OBJECT(gui->window), "highentry1");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_widget_override_color(highentry1,
                                       GTK_STATE_FLAG_NORMAL,
                                       &color);
-#pragma GCC diagnostic pop
+            G_GNUC_END_IGNORE_DEPRECATIONS
             preferences.highcolor1 = color;
         }
 
@@ -1151,11 +1151,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
                                        &color,
                                        NULL);
             highentry2 = g_object_get_data(G_OBJECT(gui->window), "highentry2");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_widget_override_color(highentry2,
                                       GTK_STATE_FLAG_NORMAL,
                                       &color);
-#pragma GCC diagnostic pop
+            G_GNUC_END_IGNORE_DEPRECATIONS
             preferences.highcolor2 = color;
         }
 
@@ -1169,11 +1169,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
                                        &color,
                                        NULL);
             highentry3 = g_object_get_data(G_OBJECT(gui->window), "highentry3");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_widget_override_color(highentry3,
                                       GTK_STATE_FLAG_NORMAL,
                                       &color);
-#pragma GCC diagnostic pop
+            G_GNUC_END_IGNORE_DEPRECATIONS
             preferences.highcolor3 = color;
         }
 
@@ -1187,11 +1187,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
                                        &color,
                                        NULL);
             highentry4 = g_object_get_data(G_OBJECT(gui->window), "highentry4");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_widget_override_color(highentry4,
                                       GTK_STATE_FLAG_NORMAL,
                                       &color);
-#pragma GCC diagnostic pop
+            G_GNUC_END_IGNORE_DEPRECATIONS
             preferences.highcolor4 = color;
         }
 
@@ -1205,11 +1205,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
                                        &color,
                                        NULL);
             highentry5 = g_object_get_data(G_OBJECT(gui->window), "highentry5");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_widget_override_color(highentry5,
                                       GTK_STATE_FLAG_NORMAL,
                                       &color);
-#pragma GCC diagnostic pop
+            G_GNUC_END_IGNORE_DEPRECATIONS
             preferences.highcolor5 = color;
         }
 
@@ -1223,11 +1223,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
                                        &color,
                                        NULL);
             highentry6 = g_object_get_data(G_OBJECT(gui->window), "highentry6");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_widget_override_color(highentry6,
                                       GTK_STATE_FLAG_NORMAL,
                                       &color);
-#pragma GCC diagnostic pop
+            G_GNUC_END_IGNORE_DEPRECATIONS
             preferences.highcolor6 = color;
         }
 
@@ -1241,11 +1241,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
                                        &color,
                                        NULL);
             highentry7 = g_object_get_data(G_OBJECT(gui->window), "highentry7");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_widget_override_color(highentry7,
                                       GTK_STATE_FLAG_NORMAL,
                                       &color);
-#pragma GCC diagnostic pop
+            G_GNUC_END_IGNORE_DEPRECATIONS
             preferences.highcolor7 = color;
         }
 
@@ -1259,11 +1259,11 @@ on_settings_activate(GtkMenuItem    *menuitem,
                                        &color,
                                        NULL);
             highentry8 = g_object_get_data(G_OBJECT(gui->window), "highentry8");
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_widget_override_color(highentry8,
                                       GTK_STATE_FLAG_NORMAL,
                                       &color);
-#pragma GCC diagnostic pop
+            G_GNUC_END_IGNORE_DEPRECATIONS
             preferences.highcolor8 = color;
         }
 
