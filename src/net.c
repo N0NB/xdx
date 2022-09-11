@@ -62,7 +62,6 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <netdb.h>
-#include <resolv.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
